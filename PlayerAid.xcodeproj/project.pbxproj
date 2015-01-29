@@ -63,6 +63,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				31F116781A790F680022BD74 /* AppDelegate.h */,
+				31F116791A790F680022BD74 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		318BA8121A7ABB730012F507 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				31F1167B1A790F680022BD74 /* FirstViewController.h */,
+				31F1167C1A790F680022BD74 /* FirstViewController.m */,
+				31F1167E1A790F680022BD74 /* SecondViewController.h */,
+				31F1167F1A790F680022BD74 /* SecondViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
@@ -84,12 +104,8 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
-				31F116781A790F680022BD74 /* AppDelegate.h */,
-				31F116791A790F680022BD74 /* AppDelegate.m */,
-				31F1167B1A790F680022BD74 /* FirstViewController.h */,
-				31F1167C1A790F680022BD74 /* FirstViewController.m */,
-				31F1167E1A790F680022BD74 /* SecondViewController.h */,
-				31F1167F1A790F680022BD74 /* SecondViewController.m */,
+				318BA8111A7ABB6B0012F507 /* AppDelegate */,
+				318BA8121A7ABB730012F507 /* ViewControllers */,
 				31F116811A790F680022BD74 /* Main.storyboard */,
 				31F116841A790F680022BD74 /* Images.xcassets */,
 				31F116861A790F680022BD74 /* LaunchScreen.xib */,
@@ -349,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -359,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -417,6 +435,7 @@
 				31F116991A790F680022BD74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31F1169A1A790F680022BD74 /* Build configuration list for PBXNativeTarget "PlayerAidTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +444,7 @@
 				31F1169C1A790F680022BD74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
