@@ -9,6 +9,7 @@
 #import "IntroViewController.h"
 #import "AlertFactory.h"
 #import "AuthenticationController.h"
+#import "ServerCommunicationController.h"
 
 
 @interface IntroViewController ()
@@ -24,23 +25,37 @@
 
 #pragma mark - Facebook login
 
-- (void)addFacebookLoginButton{
-  
+- (void)addFacebookLoginButton
+{
   __weak typeof(self) weakSelf = self;
+  
+  // TODO: although login button certainly needs to be in here, this whole logic doesn't necessarily belong in here - should be View Controler agnostic!
   FBLoginView *loginView = [AuthenticationController facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
     if (error) {
       [AlertFactory showAlertFromFacebookError:error];
     }
     else {
-      NSString *email = [weakSelf emailFromUser:user];
-      NSLog(@"email: %@", email);
+      AuthenticationRequestData *authRequestData = [AuthenticationRequestData new];
+      authRequestData.email = [weakSelf emailFromUser:user];
+      NSLog(@"email: %@", authRequestData.email);
       
       AssertTrueOrReturn(FBSession.activeSession.isOpen);
       
-      NSString *accessToken = FBSession.activeSession.accessTokenData.accessToken;
-      NSLog(@"access token: %@", accessToken);
+      authRequestData.facebookAuthenticationToken = FBSession.activeSession.accessTokenData.accessToken;
+      NSLog(@"access token: %@", authRequestData.facebookAuthenticationToken);
       
-      // TODO: Now we can send the Facebook access token to our API (with user email address) and push the new view
+      [ServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
+        if (error) {
+          NSLog(@"Internal authentication failure!");
+          // TODO: Show generic error!
+          // TODO: maybe retry every 15 seconds??
+        }
+        else {
+          NSLog(@"Internal authentication success!");
+          // TODO: save the access token from the response
+          // TODO: Push the authenticated view hierarchy!!
+        }
+      }];
     }
   }];
   
@@ -48,7 +63,8 @@
   [self.view addSubview:loginView];
 }
 
-- (NSString *)emailFromUser:(id<FBGraphUser>)user {
+- (NSString *)emailFromUser:(id<FBGraphUser>)user
+{
   // it is possible to have a user without registered email address, but we always want to have one
   NSString *email = [user objectForKey:@"email"];
   return (email ? email : [NSString stringWithFormat:@"%@@facebook.com", user.username]);
@@ -57,9 +73,10 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  // Get the new view controller using [segue destinationViewController].
+  // Pass the selected object to the new view controller.
 }
 
 @end
