@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31777FFA1A7F9445007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* AuthenticationController.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		2250F9FBF5E8C664F2A00ECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		31777FF81A7F9445007057CD /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
+		31777FF91A7F9445007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -74,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31777FF71A7F9426007057CD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31777FF81A7F9445007057CD /* AuthenticationController.h */,
+				31777FF91A7F9445007057CD /* AuthenticationController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				318BA8121A7ABB730012F507 /* ViewControllers */,
@@ -317,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F116801A790F680022BD74 /* SecondViewController.m in Sources */,
+				31777FFA1A7F9445007057CD /* AuthenticationController.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				31F1167D1A790F680022BD74 /* FirstViewController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,

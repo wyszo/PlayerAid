@@ -8,16 +8,16 @@
 #import "KZAsserts.h"
 #import "IntroViewController.h"
 #import "AlertFactory.h"
+#import "AuthenticationController.h"
 
 
-@interface IntroViewController () <FBLoginViewDelegate>
-@property (nonatomic, copy) NSString *userEmail;
-@property (nonatomic, copy) NSString *accessToken;
+@interface IntroViewController ()
 @end
 
 @implementation IntroViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
   [super viewDidLoad];
   [self addFacebookLoginButton];
 }
@@ -25,28 +25,27 @@
 #pragma mark - Facebook login
 
 - (void)addFacebookLoginButton{
-  FBLoginView *loginView = [[FBLoginView alloc] initWithReadPermissions:@[@"email"]];
+  
+  __weak typeof(self) weakSelf = self;
+  FBLoginView *loginView = [AuthenticationController facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
+    if (error) {
+      [AlertFactory showAlertFromFacebookError:error];
+    }
+    else {
+      NSString *email = [weakSelf emailFromUser:user];
+      NSLog(@"email: %@", email);
+      
+      AssertTrueOrReturn(FBSession.activeSession.isOpen);
+      
+      NSString *accessToken = FBSession.activeSession.accessTokenData.accessToken;
+      NSLog(@"access token: %@", accessToken);
+      
+      // TODO: Now we can send the Facebook access token to our API (with user email address) and push the new view
+    }
+  }];
+  
   loginView.center = self.view.center;
-  loginView.delegate = self;
   [self.view addSubview:loginView];
-}
-
-#pragma mark - FBLoginViewDelegate
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-  // TODO: Now we can send the Facebook access token to our API (with user email address) and push the new view
-  
-  AssertTrueOrReturn(FBSession.activeSession.isOpen);
-  
-  self.accessToken = FBSession.activeSession.accessTokenData.accessToken;
-  NSLog(@"access token: %@", self.accessToken);
-}
-
-// callback invoked before loginViewShowingLoggedInUser
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-  
-  self.userEmail = [self emailFromUser:user];
 }
 
 - (NSString *)emailFromUser:(id<FBGraphUser>)user {
@@ -54,15 +53,6 @@
   NSString *email = [user objectForKey:@"email"];
   return (email ? email : [NSString stringWithFormat:@"%@@facebook.com", user.username]);
 }
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-  // TODO: Need to ensure user won't be able to logout from the intro screen
-}
-
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
-  [AlertFactory showAlertFromFacebookError:error];
-}
-
 
 #pragma mark - Navigation
 
