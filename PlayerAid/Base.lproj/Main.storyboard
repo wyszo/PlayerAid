@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -29,16 +30,80 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VS-F2-10W" userLabel="FollowingContainer">
+                                <rect key="frame" x="300" y="64" width="300" height="186"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-gr-D1b">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="186"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Following">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="followingFilterSelected:" destination="9pv-A4-QxB" eventType="touchUpInside" id="COE-VC-Kc2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="oU6-gr-D1b" secondAttribute="centerX" id="GFu-cH-6Dt"/>
+                                    <constraint firstItem="oU6-gr-D1b" firstAttribute="height" secondItem="5VS-F2-10W" secondAttribute="height" id="OvL-uq-gfJ"/>
+                                    <constraint firstAttribute="centerY" secondItem="oU6-gr-D1b" secondAttribute="centerY" id="Pvj-cT-Bf2"/>
+                                    <constraint firstItem="oU6-gr-D1b" firstAttribute="width" secondItem="5VS-F2-10W" secondAttribute="width" id="xti-FW-g4f"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3O-XH-GGQ" userLabel="LatestContainer">
+                                <rect key="frame" x="0.0" y="64" width="300" height="186"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQR-yQ-A0P">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="186"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Latest">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="latestButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="4YQ-vc-XrD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lQR-yQ-A0P" firstAttribute="height" secondItem="j3O-XH-GGQ" secondAttribute="height" id="EdW-ME-hrG"/>
+                                    <constraint firstAttribute="centerX" secondItem="lQR-yQ-A0P" secondAttribute="centerX" id="OEj-dg-aBq"/>
+                                    <constraint firstAttribute="height" constant="186" id="Zdj-Lo-uiA"/>
+                                    <constraint firstItem="lQR-yQ-A0P" firstAttribute="width" secondItem="j3O-XH-GGQ" secondAttribute="width" id="iRc-yG-cBf"/>
+                                    <constraint firstAttribute="centerY" secondItem="lQR-yQ-A0P" secondAttribute="centerY" id="spe-Bs-OXt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="6BV-lF-sBN"/>
+                            <constraint firstItem="5VS-F2-10W" firstAttribute="leading" secondItem="j3O-XH-GGQ" secondAttribute="trailing" id="AcN-Qz-zwt"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Oed-IE-YHG"/>
+                            <constraint firstItem="5VS-F2-10W" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="16" id="VSF-2P-Qyr"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="bep-FS-yO8"/>
+                            <constraint firstItem="5VS-F2-10W" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="cel-5F-ZU8"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="width" secondItem="5VS-F2-10W" secondAttribute="width" id="ckU-tH-OW3"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="mmJ-e8-az8"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="height" secondItem="5VS-F2-10W" secondAttribute="height" id="nqT-to-aBH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Oed-IE-YHG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="eL9-fS-F9n"/>
+                    <connections>
+                        <outlet property="followingFilterView" destination="5VS-F2-10W" id="vTy-lw-B7f"/>
+                        <outlet property="latestFilterView" destination="j3O-XH-GGQ" id="hsl-Nc-v9z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
