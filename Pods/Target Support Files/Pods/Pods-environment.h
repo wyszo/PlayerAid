@@ -72,6 +72,12 @@
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK_Core 10
 #define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK_Core 0
 
+// KZAsserts
+#define COCOAPODS_POD_AVAILABLE_KZAsserts
+#define COCOAPODS_VERSION_MAJOR_KZAsserts 1
+#define COCOAPODS_VERSION_MINOR_KZAsserts 0
+#define COCOAPODS_VERSION_PATCH_KZAsserts 0
+
 // KZPropertyMapper
 #define COCOAPODS_POD_AVAILABLE_KZPropertyMapper
 #define COCOAPODS_VERSION_MAJOR_KZPropertyMapper 2
