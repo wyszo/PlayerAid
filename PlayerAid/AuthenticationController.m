@@ -16,8 +16,6 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
 
 @interface AuthenticationController ()
 
-- (BOOL)sendAuthenticationApiRequestShowErrorOnFailure:(BOOL)showErrorOnFailure completion:(void (^)(NSError *error))completion;
-
 @end
 
 

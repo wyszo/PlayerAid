@@ -13,6 +13,7 @@
 		317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* DataExtractionHelper.m */; };
 		317780091A7FED4F007057CD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780081A7FED4F007057CD /* ProfileViewController.m */; };
 		3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800B1A7FED7A007057CD /* SettingsViewController.m */; };
+		317780101A80049A007057CD /* TutorialsTableDataSourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* TutorialsTableDataSourceDelegate.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -51,6 +52,8 @@
 		317780081A7FED4F007057CD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3177800A1A7FED7A007057CD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3177800B1A7FED7A007057CD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		3177800E1A80049A007057CD /* TutorialsTableDataSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableDataSourceDelegate.h; sourceTree = "<group>"; };
+		3177800F1A80049A007057CD /* TutorialsTableDataSourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsTableDataSourceDelegate.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				31777FFE1A7FBF84007057CD /* Authentication */,
+				3177800D1A80047C007057CD /* Tutorials */,
 				31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */,
 				31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */,
 			);
@@ -105,8 +109,7 @@
 		31777FFE1A7FBF84007057CD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */,
-				31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */,
+				317780161A800630007057CD /* FacebookAuthentication */,
 				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
 				317780001A7FBFBC007057CD /* AuthenticationController.m */,
 			);
@@ -125,16 +128,75 @@
 		317780061A7FED38007057CD /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				317780111A8005F9007057CD /* Home */,
+				317780141A80060A007057CD /* Tutorials */,
+				317780121A8005FE007057CD /* Profile */,
+				317780131A800604007057CD /* Settings */,
+			);
+			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		3177800D1A80047C007057CD /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				3177800E1A80049A007057CD /* TutorialsTableDataSourceDelegate.h */,
+				3177800F1A80049A007057CD /* TutorialsTableDataSourceDelegate.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
+		317780111A8005F9007057CD /* Home */ = {
+			isa = PBXGroup;
+			children = (
 				31F1167B1A790F680022BD74 /* HomeViewController.h */,
 				31F1167C1A790F680022BD74 /* HomeViewController.m */,
-				31F1167E1A790F680022BD74 /* TutorialsViewController.h */,
-				31F1167F1A790F680022BD74 /* TutorialsViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		317780121A8005FE007057CD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
 				317780071A7FED4F007057CD /* ProfileViewController.h */,
 				317780081A7FED4F007057CD /* ProfileViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		317780131A800604007057CD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				3177800A1A7FED7A007057CD /* SettingsViewController.h */,
 				3177800B1A7FED7A007057CD /* SettingsViewController.m */,
 			);
-			name = Tabbar;
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		317780141A80060A007057CD /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				31F1167E1A790F680022BD74 /* TutorialsViewController.h */,
+				31F1167F1A790F680022BD74 /* TutorialsViewController.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
+		317780151A80061A007057CD /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				31DBC18F1A7F03D300740A97 /* IntroViewController.h */,
+				31DBC1901A7F03D300740A97 /* IntroViewController.m */,
+			);
+			name = Intro;
+			sourceTree = "<group>";
+		};
+		317780161A800630007057CD /* FacebookAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */,
+				31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */,
+			);
+			name = FacebookAuthentication;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -150,8 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				317780061A7FED38007057CD /* Tabbar */,
-				31DBC18F1A7F03D300740A97 /* IntroViewController.h */,
-				31DBC1901A7F03D300740A97 /* IntroViewController.m */,
+				317780151A80061A007057CD /* Intro */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -379,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F116801A790F680022BD74 /* TutorialsViewController.m in Sources */,
+				317780101A80049A007057CD /* TutorialsTableDataSourceDelegate.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
