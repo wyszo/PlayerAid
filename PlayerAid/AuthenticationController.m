@@ -11,6 +11,16 @@
 #import "DataExtractionHelper.h"
 
 
+static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
+
+
+@interface AuthenticationController ()
+
+- (BOOL)sendAuthenticationApiRequestShowErrorOnFailure:(BOOL)showErrorOnFailure completion:(void (^)(NSError *error))completion;
+
+@end
+
+
 @implementation AuthenticationController
 
 + (AuthenticationController *)sharedInstance
@@ -26,7 +36,7 @@
 
 + (FBLoginView *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSError *error))completion
 {
-  FBLoginView *loginView = [FacebookAuthenticationController  facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
+  FBLoginView *loginView = [FacebookAuthenticationController facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
     if (error) {
       [AlertFactory showAlertFromFacebookError:error];
     }
@@ -40,26 +50,46 @@
       authRequestData.facebookAuthenticationToken = FBSession.activeSession.accessTokenData.accessToken;
       NSLog(@"access token: %@", authRequestData.facebookAuthenticationToken);
       
-      [ServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
-        if (error) {
-          NSLog(@"Internal authentication failure!");
-          
-          // TODO: Show generic error!
-          // TODO: maybe retry every 15 seconds??
-        }
-        else {
-          NSLog(@"Internal authentication success!");
-          
-          // TODO: save the access token from the response
-          
-          if (completion) {
-            completion(nil);
-          }
-        }
-      }];
+      [[AuthenticationController sharedInstance] sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:YES completion:completion];
     }
   }];
   return loginView;
+}
+
+- (void)sendAuthenticationApiRequestWithAuthenticationRequestData:(AuthenticationRequestData *)authRequestData
+                                               showErrorOnFailure:(BOOL)showErrorOnFailure
+                                                       completion:(void (^)(NSError *error))completion
+{
+   __weak typeof(self) weakSelf = self;
+  [ServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
+    if (error) {
+      NSLog(@"Internal authentication failure!");
+      
+      // possible error codes:
+      // 1100 - facebook token invalid
+      // 1101 - facebook token expired
+      
+      if (showErrorOnFailure) {
+        [AlertFactory showGenericErrorAlertView];
+      }
+      
+      // retry silently on failure after some time delay
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kTimeDelayToRetryAuthenticationRequest * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:NO completion:completion];
+      });
+    }
+    else {
+      NSLog(@"Internal authentication success!");
+      
+      // TODO: save the access token from the response
+      // TODO: (Nice to have) - implement our internal access token caching
+      // TODO: (Nice to have) - reuse old token if using same Facebook authentication
+      
+      if (completion) {
+        completion(nil);
+      }
+    }
+  }];
 }
 
 @end

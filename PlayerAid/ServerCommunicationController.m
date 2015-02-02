@@ -31,7 +31,8 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk";
   return sharedInstance;
 }
 
-+ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
++ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
+                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
   AssertTrueOrReturn(data.facebookAuthenticationToken);
   AssertTrueOrReturn(data.email);

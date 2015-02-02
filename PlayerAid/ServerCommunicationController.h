@@ -9,7 +9,11 @@
 // A wrapper to network requests to our server
 @interface ServerCommunicationController : NSObject
 
-+ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+/**
+ Requests an API token that can be used in all communication with our PlayerAid server.
+ */
++ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
+                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 
 @end
 
