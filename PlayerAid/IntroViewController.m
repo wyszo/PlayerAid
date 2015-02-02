@@ -4,12 +4,14 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
+#import <FacebookSDK/FBSession.h>
 #import "IntroViewController.h"
 #import "AlertFactory.h"
 
 
 @interface IntroViewController () <FBLoginViewDelegate>
 @property (nonatomic, copy) NSString *userEmail;
+@property (nonatomic, copy) NSString *accessToken;
 @end
 
 @implementation IntroViewController
@@ -32,6 +34,13 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
   // TODO: Now we can send the Facebook access token to our API (with user email address) and push the new view
+  
+  // TODO: Assert FBSession.activeSession.isOpen - a session should definitely be open at this point..
+  
+  if (FBSession.activeSession.isOpen) {
+    self.accessToken = FBSession.activeSession.accessTokenData.accessToken;
+    NSLog(@"access token: %@", self.accessToken);
+  }
 }
 
 // callback invoked before loginViewShowingLoggedInUser
@@ -48,7 +57,7 @@
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-  // TODO: Need to ensure user won't be able to logout from this screen
+  // TODO: Need to ensure user won't be able to logout from the intro screen
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
