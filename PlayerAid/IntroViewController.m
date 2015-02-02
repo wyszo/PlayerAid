@@ -5,6 +5,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
 #import "IntroViewController.h"
+#import "AlertFactory.h"
+
 
 @interface IntroViewController () <FBLoginViewDelegate>
 @property (nonatomic, copy) NSString *userEmail;
@@ -46,13 +48,13 @@
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-  
+  // TODO: Need to ensure user won't be able to logout from this screen
 }
 
-- (void)loginView:(FBLoginView *)loginView
-      handleError:(NSError *)error {
-  // TODO: show an alert with error perhaps?
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+  [AlertFactory showAlertFromFacebookError:error];
 }
+
 
 #pragma mark - Navigation
 
