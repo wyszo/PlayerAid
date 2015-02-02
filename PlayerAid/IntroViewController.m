@@ -5,6 +5,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
 #import <FacebookSDK/FBSession.h>
+#import "KZAsserts.h"
 #import "IntroViewController.h"
 #import "AlertFactory.h"
 
@@ -35,12 +36,10 @@
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
   // TODO: Now we can send the Facebook access token to our API (with user email address) and push the new view
   
-  // TODO: Assert FBSession.activeSession.isOpen - a session should definitely be open at this point..
+  AssertTrueOrReturn(FBSession.activeSession.isOpen);
   
-  if (FBSession.activeSession.isOpen) {
-    self.accessToken = FBSession.activeSession.accessTokenData.accessToken;
-    NSLog(@"access token: %@", self.accessToken);
-  }
+  self.accessToken = FBSession.activeSession.accessTokenData.accessToken;
+  NSLog(@"access token: %@", self.accessToken);
 }
 
 // callback invoked before loginViewShowingLoggedInUser
