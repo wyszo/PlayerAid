@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+#import <FacebookSDK/FacebookSDK.h>
 #import "IntroViewController.h"
 
 @interface IntroViewController ()
@@ -12,10 +13,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addFacebookLoginButton];
 }
 
-- (IBAction)facebookLoginButtonPressed:(id)sender {
-    NSLog(@"Facebook button pressed");
+#pragma mark - Facebook login
+
+- (void)addFacebookLoginButton{
+    FBLoginView *loginView = [[FBLoginView alloc] initWithReadPermissions:@[@"email"]];
+    loginView.center = self.view.center;
+    [self.view addSubview:loginView];
 }
 
 /*

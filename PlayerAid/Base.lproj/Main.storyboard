@@ -95,22 +95,7 @@
                     <view key="view" contentMode="scaleToFill" id="6Xd-Vd-sts">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuC-ei-aNT">
-                                <rect key="frame" x="229" y="428" width="143" height="30"/>
-                                <state key="normal" title="Login with Facebook">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebookLoginButtonPressed:" destination="5AG-Cg-YGg" eventType="touchUpInside" id="N6k-Ur-Nxv"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="uuC-ei-aNT" secondAttribute="centerX" id="IGf-DQ-aX8"/>
-                            <constraint firstItem="KB9-uj-xhL" firstAttribute="top" secondItem="uuC-ei-aNT" secondAttribute="bottom" constant="142" id="iSS-Fr-cdN"/>
-                        </constraints>
                     </view>
                     <connections>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="ShowInterfaceForAuthenticatedApp" id="LrL-mL-hNl"/>
