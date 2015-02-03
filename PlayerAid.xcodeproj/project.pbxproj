@@ -15,6 +15,12 @@
 		3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800B1A7FED7A007057CD /* SettingsViewController.m */; };
 		317780101A80049A007057CD /* TutorialsTableDataSourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* TutorialsTableDataSourceDelegate.m */; };
 		317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317780171A80076C007057CD /* DataModel.xcdatamodeld */; };
+		317780271A80975C007057CD /* _Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177801C1A80975C007057CD /* _Section.m */; };
+		317780281A80975C007057CD /* _Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177801E1A80975C007057CD /* _Tutorial.m */; };
+		317780291A80975C007057CD /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780201A80975C007057CD /* _User.m */; };
+		3177802A1A80975C007057CD /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780221A80975C007057CD /* Section.m */; };
+		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
+		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -56,6 +62,18 @@
 		3177800E1A80049A007057CD /* TutorialsTableDataSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableDataSourceDelegate.h; sourceTree = "<group>"; };
 		3177800F1A80049A007057CD /* TutorialsTableDataSourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsTableDataSourceDelegate.m; sourceTree = "<group>"; };
 		317780181A80076C007057CD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3177801B1A80975C007057CD /* _Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Section.h; sourceTree = "<group>"; };
+		3177801C1A80975C007057CD /* _Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Section.m; sourceTree = "<group>"; };
+		3177801D1A80975C007057CD /* _Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Tutorial.h; sourceTree = "<group>"; };
+		3177801E1A80975C007057CD /* _Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Tutorial.m; sourceTree = "<group>"; };
+		3177801F1A80975C007057CD /* _User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _User.h; sourceTree = "<group>"; };
+		317780201A80975C007057CD /* _User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _User.m; sourceTree = "<group>"; };
+		317780211A80975C007057CD /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		317780221A80975C007057CD /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		317780231A80975C007057CD /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		317780241A80975C007057CD /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
+		317780251A80975C007057CD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		317780261A80975C007057CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -201,6 +219,42 @@
 			name = FacebookAuthentication;
 			sourceTree = "<group>";
 		};
+		3177801A1A80975C007057CD /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				3177802E1A80976E007057CD /* Human */,
+				3177802D1A809766007057CD /* Machine */,
+			);
+			name = DataModel;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3177802D1A809766007057CD /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				3177801B1A80975C007057CD /* _Section.h */,
+				3177801C1A80975C007057CD /* _Section.m */,
+				3177801D1A80975C007057CD /* _Tutorial.h */,
+				3177801E1A80975C007057CD /* _Tutorial.m */,
+				3177801F1A80975C007057CD /* _User.h */,
+				317780201A80975C007057CD /* _User.m */,
+			);
+			name = Machine;
+			sourceTree = "<group>";
+		};
+		3177802E1A80976E007057CD /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				317780211A80975C007057CD /* Section.h */,
+				317780221A80975C007057CD /* Section.m */,
+				317780231A80975C007057CD /* Tutorial.h */,
+				317780241A80975C007057CD /* Tutorial.m */,
+				317780251A80975C007057CD /* User.h */,
+				317780261A80975C007057CD /* User.m */,
+			);
+			name = Human;
+			sourceTree = "<group>";
+		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +305,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				3177801A1A80975C007057CD /* DataModel */,
 				317780021A7FC6A7007057CD /* Helpers */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
@@ -442,20 +497,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3177802C1A80975C007057CD /* User.m in Sources */,
 				31F116801A790F680022BD74 /* TutorialsViewController.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSourceDelegate.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
+				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
+				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				317780291A80975C007057CD /* _User.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
+				317780271A80975C007057CD /* _Section.m in Sources */,
+				3177802A1A80975C007057CD /* Section.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
