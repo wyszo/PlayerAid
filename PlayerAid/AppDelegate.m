@@ -3,7 +3,9 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <MagicalRecord+Setup.h>
 #import "AppDelegate.h"
+#import "DataModelMock.h"
 
 @interface AppDelegate ()
 @end
@@ -16,7 +18,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
+  [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
   [self customiseAppearance];
+  [self populateCoreDataWithSampleEntities];
   return YES;
 }
 
@@ -40,6 +44,12 @@
   // White fonts in statusbar and Navigation bars
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+}
+
+- (void)populateCoreDataWithSampleEntities
+{
+  // TODO: switch to client-server communication to populate database
+  [[DataModelMock new] addDummyTutorialObjects];
 }
 
 @end

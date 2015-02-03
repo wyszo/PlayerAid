@@ -21,6 +21,7 @@
 		3177802A1A80975C007057CD /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780221A80975C007057CD /* Section.m */; };
 		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
 		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
+		317780311A80DFAB007057CD /* DataModelMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780301A80DFAB007057CD /* DataModelMock.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -74,6 +75,8 @@
 		317780241A80975C007057CD /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		317780251A80975C007057CD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		317780261A80975C007057CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		3177802F1A80DFAB007057CD /* DataModelMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelMock.h; sourceTree = "<group>"; };
+		317780301A80DFAB007057CD /* DataModelMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelMock.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -255,6 +258,15 @@
 			name = Human;
 			sourceTree = "<group>";
 		};
+		317780321A80E471007057CD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3177802F1A80DFAB007057CD /* DataModelMock.h */,
+				317780301A80DFAB007057CD /* DataModelMock.m */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				3177801A1A80975C007057CD /* DataModel */,
+				317780321A80E471007057CD /* Mocks */,
 				317780021A7FC6A7007057CD /* Helpers */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
@@ -499,6 +512,7 @@
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31F116801A790F680022BD74 /* TutorialsViewController.m in Sources */,
+				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSourceDelegate.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
