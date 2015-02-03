@@ -26,17 +26,28 @@
     _tableView = tableView;
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    
-    [self initializeFetchedResultsController];
   }
   return self;
 }
 
-- (void)initializeFetchedResultsController
+#pragma mark - Handling CoreData fetching
+
+- (void)setPredicate:(NSPredicate *)predicate
 {
-  // perform fetch
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"draft = NO or draft = nil"];
-  self.fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"createdAt" ascending:YES withPredicate:predicate groupBy:nil delegate:self];
+  if (predicate != _predicate) {
+    _predicate = predicate;
+    
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
+  }
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+  if (!_fetchedResultsController) {
+    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"createdAt" ascending:YES withPredicate:self.predicate groupBy:nil delegate:self];
+  }
+  return _fetchedResultsController;
 }
 
 #pragma mark - TableView Data Source

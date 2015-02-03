@@ -12,6 +12,7 @@
 @interface TutorialsTableDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
+@property (nonatomic, strong) NSPredicate *predicate;
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
