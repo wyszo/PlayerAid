@@ -22,6 +22,7 @@
 		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
 		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
 		317780311A80DFAB007057CD /* DataModelMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780301A80DFAB007057CD /* DataModelMock.m */; };
+		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -77,6 +78,8 @@
 		317780261A80975C007057CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3177802F1A80DFAB007057CD /* DataModelMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelMock.h; sourceTree = "<group>"; };
 		317780301A80DFAB007057CD /* DataModelMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelMock.m; sourceTree = "<group>"; };
+		317780341A80E557007057CD /* TutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTableViewCell.h; sourceTree = "<group>"; };
+		317780351A80E557007057CD /* TutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTableViewCell.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -267,6 +270,15 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
+		317780331A80E532007057CD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				317780341A80E557007057CD /* TutorialTableViewCell.h */,
+				317780351A80E557007057CD /* TutorialTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +291,7 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				317780331A80E532007057CD /* Cells */,
 				317780061A7FED38007057CD /* Tabbar */,
 				317780151A80061A007057CD /* Intro */,
 			);
@@ -525,6 +538,7 @@
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,

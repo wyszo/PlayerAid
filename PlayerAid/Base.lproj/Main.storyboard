@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="295" width="600" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TutorialCell" rowHeight="186" id="GpC-4z-D3G">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TutorialCell" rowHeight="186" id="GpC-4z-D3G" customClass="TutorialTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GpC-4z-D3G" id="m8d-Gi-Elb">
@@ -94,7 +94,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-cx-HiB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-cx-HiB" userLabel="Avatar Image View">
                                                     <rect key="frame" x="24" y="95" width="73" height="51"/>
                                                     <color key="backgroundColor" red="0.59999999999999998" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -163,6 +163,14 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="7zo-cG-AGq" id="VgD-j5-N90"/>
+                                            <outlet property="avatarImageView" destination="QfN-cx-HiB" id="jR8-ke-CXR"/>
+                                            <outlet property="favouriteButton" destination="dUD-ci-yFQ" id="rCV-z6-DV2"/>
+                                            <outlet property="sectionLabel" destination="uUv-r7-eot" id="pM6-Cc-EUV"/>
+                                            <outlet property="timeLabel" destination="ujf-ED-2KC" id="oXW-A6-5W2"/>
+                                            <outlet property="titleLabel" destination="Tfq-Qf-5tr" id="KDN-vf-aBK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

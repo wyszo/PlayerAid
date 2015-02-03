@@ -4,8 +4,10 @@
 
 #import <CoreData/CoreData.h>
 #import <NSManagedObject+MagicalFinders.h>
+#import <KZAsserts.h>
 #import "TutorialsTableDataSourceDelegate.h"
 #import "Tutorial.h"
+#import "TutorialTableViewCell.h"
 
 @interface TutorialsTableDataSourceDelegate () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -54,14 +56,11 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: cell customisation
-  
+  AssertTrueOrReturn([cell isKindOfClass:[TutorialTableViewCell class]]);
+  TutorialTableViewCell *tutorialCell = (TutorialTableViewCell *)cell;
   Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  
-  // 1. set title
-  // 2. set date
-  // 3. bind to section
-  // 4. isFavourited?
+  AssertTrueOrReturn(tutorial);
+  [tutorialCell configureWithTutorial:tutorial];
 }
 
 #pragma mark - TableView Delegate
