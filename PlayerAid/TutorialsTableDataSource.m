@@ -5,17 +5,17 @@
 #import <CoreData/CoreData.h>
 #import <NSManagedObject+MagicalFinders.h>
 #import <KZAsserts.h>
-#import "TutorialsTableDataSourceDelegate.h"
+#import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
 
-@interface TutorialsTableDataSourceDelegate () <NSFetchedResultsControllerDelegate>
+@interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView *tableView;
 @end
 
 
-@implementation TutorialsTableDataSourceDelegate
+@implementation TutorialsTableDataSource
 
 #pragma mark - Initilization
 
@@ -26,7 +26,6 @@
     _tableView = tableView;
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    _tableView.allowsSelection = NO;
     
     [self initializeFetchedResultsController];
   }
@@ -67,7 +66,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: implement action handling - show full tutorial view
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  AssertTrueOrReturn(tutorial);
+  [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
