@@ -156,7 +156,6 @@
 			children = (
 				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
 				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
-				318EEAAB1A82DBC100B79E73 /* Skinning */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -363,6 +362,7 @@
 			children = (
 				3177801A1A80975C007057CD /* DataModel */,
 				317780321A80E471007057CD /* Mocks */,
+				318EEAAB1A82DBC100B79E73 /* Skinning */,
 				317780021A7FC6A7007057CD /* Helpers */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
