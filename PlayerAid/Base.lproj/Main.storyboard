@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -277,7 +278,11 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tutorials" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Tutorials" image="tutorials-unselected" selectedImage="tutorials-selected" id="cPa-gy-q4n">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tutorials-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create" id="vVL-VC-xZZ"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="createtutorial" id="vVL-VC-xZZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdI-SP-YkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -316,7 +321,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="EaO-0c-Utx" userLabel="Profile"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9V-94-XeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,7 +345,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="9gh-yP-Vve"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings-unselected" id="9gh-yP-Vve">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="settings-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dX-8w-yEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,7 +400,11 @@
         <scene sceneID="cow-Z8-RU0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YGX-n7-kf9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home-unselected" id="acW-dT-cKf">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="home-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rxr-Qc-hoy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -405,7 +422,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="createtutorial" width="15" height="15"/>
+        <image name="home-selected" width="16" height="16"/>
+        <image name="home-unselected" width="16" height="16"/>
+        <image name="profile-selected" width="16" height="16"/>
+        <image name="profile-unselected" width="16" height="16"/>
+        <image name="settings-selected" width="16" height="16"/>
+        <image name="settings-unselected" width="16" height="16"/>
+        <image name="tutorials-selected" width="16" height="16"/>
+        <image name="tutorials-unselected" width="16" height="16"/>
     </resources>
 </document>
