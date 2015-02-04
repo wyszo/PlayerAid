@@ -6,6 +6,8 @@
 #import <UIKit/UIKit.h>
 #import <KZAsserts.h>
 #import "AppearanceCustomizationHelper.h"
+#import "ColorsHelper.h"
+
 
 @implementation AppearanceCustomizationHelper
 
@@ -27,10 +29,16 @@
 
 - (void)customizeTabbar
 {
-  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor greenColor] }  forState:UIControlStateNormal];
-  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor redColor] } forState:UIControlStateSelected];
+  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarUnselectedTextColor] }  forState:UIControlStateNormal];
+  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarSelectedTextColor] } forState:UIControlStateSelected];
   
   [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+  [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
+  
+  [[UITabBarItem appearance] setTitleTextAttributes:@{
+                                                      [UIFont fontWithName:@"Helvetica Neue" size:11.0f] : NSFontAttributeName
+                                                    }
+                                           forState:UIControlStateNormal];
   
   [self customiseCreateTutorialTabBarButtonBackground];
 }
@@ -46,7 +54,7 @@
   CGFloat tabbarItemWidth = tabBar.frame.size.width / (CGFloat)tabBar.items.count;
   UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(tabbarItemWidth * createItemIndex, 0, tabbarItemWidth, tabBar.frame.size.height)];
   
-  UIColor *createButtonBackgroundColor = [UIColor colorWithRed:1.00 green:0.07 blue:0.7 alpha:1.0];
+  UIColor *createButtonBackgroundColor = [ColorsHelper tabBarCreateTutorialBackgroundColor];
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
   
   [tabBar insertSubview:createButtonBackgroundView atIndex:0];
