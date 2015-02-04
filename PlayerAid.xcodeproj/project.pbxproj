@@ -452,6 +452,7 @@
 				TargetAttributes = {
 					31F116701A790F680022BD74 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = DS39GPXELZ;
 					};
 					31F1168C1A790F680022BD74 = {
 						CreatedOnToolsVersion = 6.2;
@@ -681,8 +682,9 @@
 			baseConfigurationReference = 27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tomasz Wyszomirski (992458E4DU)";
 				INFOPLIST_FILE = PlayerAid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -694,7 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
