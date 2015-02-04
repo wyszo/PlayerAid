@@ -9,6 +9,7 @@
 
 + (UIColor *)tabBarSelectedTextColor;
 + (UIColor *)tabBarUnselectedTextColor;
++ (UIColor *)tabBarSelectedImageTintColor;
 + (UIColor *)tabBarCreateTutorialBackgroundColor;
 
 @end

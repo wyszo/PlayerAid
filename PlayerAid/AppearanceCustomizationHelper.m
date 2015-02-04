@@ -29,18 +29,32 @@
 
 - (void)customizeTabbar
 {
+  [self customizeTabbarFonts];
+  [self customizeTabbarTintColors];
+  [self customizeTabbarTitles];
+  [self customiseCreateTutorialTabBarButtonBackground];
+}
+
+- (void)customizeTabbarFonts
+{
   [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarUnselectedTextColor] }  forState:UIControlStateNormal];
   [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarSelectedTextColor] } forState:UIControlStateSelected];
-  
+}
+
+- (void)customizeTabbarTintColors
+{
   [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+  [[UITabBar appearance] setSelectedImageTintColor:[ColorsHelper tabBarSelectedImageTintColor]];
+}
+
+- (void)customizeTabbarTitles
+{
   [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
   
   [[UITabBarItem appearance] setTitleTextAttributes:@{
                                                       [UIFont fontWithName:@"Helvetica Neue" size:11.0f] : NSFontAttributeName
-                                                    }
+                                                      }
                                            forState:UIControlStateNormal];
-  
-  [self customiseCreateTutorialTabBarButtonBackground];
 }
 
 - (void)customiseCreateTutorialTabBarButtonBackground
