@@ -4,6 +4,8 @@
 
 #import <CoreData/CoreData.h>
 #import <NSManagedObject+MagicalFinders.h>
+#import <MagicalRecord+Actions.h>
+#import <NSManagedObject+MagicalRecord.h>
 #import <KZAsserts.h>
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
@@ -91,10 +93,14 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (self.swipeToDeleteEnabled) {
-    [tableView beginUpdates];
-    // TODO: remove object from CoreData, otherwise deletion will fall over!
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
+    // TODO: make a network request to delete a tutorial - if request fails, queue and retry again
+    // If we wait until we get server response about removing tutorial, we'll experience a lag
+    
+    // just remove object from CoreData, tableView will automatically pick up the change
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+      Tutorial *tutorialInLocalContext = [[self tutorialAtIndexPath:indexPath] MR_inContext:localContext];
+      [tutorialInLocalContext MR_deleteInContext:localContext];
+    }];
   }
 }
 
@@ -104,7 +110,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
 }
@@ -119,6 +125,11 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 }
 
 #pragma mark - Auxiliary methods
+
+- (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
 
 - (UINib *)nibForTutorialCell
 {
