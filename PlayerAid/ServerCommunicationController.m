@@ -7,7 +7,7 @@
 #import "KZAsserts.h"
 
 
-static NSString* kServerBaseURL = @"http://api.playeraid.co.uk";
+static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/api/v1/";
 
 
 @implementation AuthenticationRequestData
@@ -31,7 +31,7 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk";
   return sharedInstance;
 }
 
-+ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
+- (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
                                           completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
   AssertTrueOrReturn(data.facebookAuthenticationToken);
@@ -41,7 +41,7 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk";
                                @"token" : data.facebookAuthenticationToken,
                                @"email" : data.email
                               };
-  [self.sharedInstance.requestOperationManager POST:@"/api/v1/auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.requestOperationManager POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
       completion(operation.response, nil);
     }
@@ -49,6 +49,26 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk";
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
       completion(nil, error);
+    }
+  }];
+}
+
+#pragma mark - Tutorial management
+
+- (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
+{
+  AssertTrueOrReturn(tutorial);
+  
+  NSString *tutorialID; // TODO: extract ID from Tutorial object
+  AssertTrueOrReturn(tutorialID);
+  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  
+  [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (completion) completion(nil);
+    
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(error);
     }
   }];
 }

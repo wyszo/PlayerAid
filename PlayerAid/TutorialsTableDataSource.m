@@ -10,6 +10,7 @@
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
+#import "ServerCommunicationController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -93,12 +94,18 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (self.swipeToDeleteEnabled) {
-    // TODO: make a network request to delete a tutorial - if request fails, queue and retry again
-    // If we wait until we get server response about removing tutorial, we'll experience a lag
+    Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
     
-    // just remove object from CoreData, tableView will automatically pick up the change
+    // Make a delete tutorial network request
+    [ServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
+      if (error) {
+        // TODO: delete tutorial request failed, queue it again, retry
+      }
+    }];
+    
+    // Remove tutorial object from CoreData, tableView will automatically pick up the change
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-      Tutorial *tutorialInLocalContext = [[self tutorialAtIndexPath:indexPath] MR_inContext:localContext];
+      Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
       [tutorialInLocalContext MR_deleteInContext:localContext];
     }];
   }

@@ -59,7 +59,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
                                                        completion:(void (^)(NSError *error))completion
 {
    __weak typeof(self) weakSelf = self;
-  [ServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
+  [ServerCommunicationController.sharedInstance requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
     if (error) {
       NSLog(@"Internal authentication failure!");
       
