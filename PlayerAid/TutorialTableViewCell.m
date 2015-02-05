@@ -3,8 +3,10 @@
 //
 
 #import "TutorialTableViewCell.h"
+#import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"
+
 
 @interface TutorialTableViewCell ()
 
@@ -20,6 +22,11 @@
 
 @implementation TutorialTableViewCell
 
+- (void)awakeFromNib
+{
+  [self.avatarImageView styleAsAvatar];
+}
+
 - (void)configureWithTutorial:(Tutorial *)tutorial
 {
   self.titleLabel.text = tutorial.title;
@@ -27,7 +34,7 @@
   self.sectionLabel.text = tutorial.section.name;
 //  self.timeLabel.text = // tutorial.createdAt -> string // TODO: display creation date
   
-  self.avatarImageView.image = [UIImage imageWithData:tutorial.createdBy.avatar];
+  self.avatarImageView.image = tutorial.createdBy.avatarImage;
 //  self.favouriteButton // TODO: turn favourite button on/off
 }
 

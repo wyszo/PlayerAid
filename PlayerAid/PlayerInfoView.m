@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <KZAsserts.h>
 #import "PlayerInfoView.h"
+#import "UIImageView+AvatarStyling.h"
 
 static NSString *const kNibFileName = @"PlayerInfo";
 
@@ -42,6 +43,11 @@ static NSString *const kNibFileName = @"PlayerInfo";
   return self;
 }
 
+- (void)awakeFromNib
+{
+  [self.avatarImageView styleAsAvatar];
+}
+
 - (void)xibSetup
 {
   self.view = [self loadViewFromNib];
@@ -67,7 +73,7 @@ static NSString *const kNibFileName = @"PlayerInfo";
 - (void)setUser:(User *)user
 {
 // TODO: self.backgroundImageView.image =
-// TODO: self.avatarImageView.image =
+  self.avatarImageView.image = user.avatarImage;
   self.usernameLabel.text = user.username;
   self.descriptionLabel.text = user.userDescription;
 }
