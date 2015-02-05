@@ -30,6 +30,7 @@
 - (void)customizeNavigationBarsAppearance
 {
   [[UINavigationBar appearance] setBarTintColor:[ColorsHelper navigationBarColor]];
+  [[UINavigationBar appearance] setTintColor:[ColorsHelper navigationBarButtonsColor]]; 
   [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
 }
 
