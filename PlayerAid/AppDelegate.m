@@ -46,6 +46,7 @@
 {
   // TODO: switch to client-server communication to populate database
   [[DataModelMock new] addDummyTutorialObjects];
+  [[DataModelMock new] addDummyUserObject];
 }
 
 @end

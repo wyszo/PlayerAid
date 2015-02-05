@@ -7,5 +7,6 @@
 @interface DataModelMock : NSObject
 
 - (void)addDummyTutorialObjects;
+- (void)addDummyUserObject;
 
 @end

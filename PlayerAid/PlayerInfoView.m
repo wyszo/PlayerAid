@@ -52,6 +52,7 @@ static NSString *const kNibFileName = @"PlayerInfo";
 
 - (UIView *)loadViewFromNib
 {
+  // TODO: extract this to a separate category
   NSBundle *bundle = [NSBundle bundleForClass:[self class]];
   UINib *nib = [UINib nibWithNibName:kNibFileName bundle:bundle];
   const NSUInteger viewIndexInXib = 0;
