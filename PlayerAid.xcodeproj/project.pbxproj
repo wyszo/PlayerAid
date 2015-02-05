@@ -26,6 +26,8 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
+		31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfo.xib */; };
+		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -89,6 +91,9 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
+		31C122601A8388EB0069D49A /* PlayerInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfo.xib; sourceTree = "<group>"; };
+		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
+		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -310,6 +315,7 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				31C122621A838A340069D49A /* UI Components */,
 				317780331A80E532007057CD /* Cells */,
 				317780061A7FED38007057CD /* Tabbar */,
 				317780151A80061A007057CD /* Intro */,
@@ -326,6 +332,31 @@
 				318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */,
 			);
 			name = Skinning;
+			sourceTree = "<group>";
+		};
+		31C1225F1A8388C40069D49A /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				31C122601A8388EB0069D49A /* PlayerInfo.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		31C122621A838A340069D49A /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				31C122661A838A590069D49A /* PlayerInfo */,
+			);
+			name = "UI Components";
+			sourceTree = "<group>";
+		};
+		31C122661A838A590069D49A /* PlayerInfo */ = {
+			isa = PBXGroup;
+			children = (
+				31C122631A838A530069D49A /* PlayerInfoView.h */,
+				31C122641A838A530069D49A /* PlayerInfoView.m */,
+			);
+			name = PlayerInfo;
 			sourceTree = "<group>";
 		};
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
@@ -369,6 +400,7 @@
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				318BA8121A7ABB730012F507 /* ViewControllers */,
 				31F116811A790F680022BD74 /* Main.storyboard */,
+				31C1225F1A8388C40069D49A /* Xibs */,
 				31F116841A790F680022BD74 /* Images.xcassets */,
 				31F116861A790F680022BD74 /* LaunchScreen.xib */,
 				31F116741A790F680022BD74 /* Supporting Files */,
@@ -502,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
@@ -570,6 +603,7 @@
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
+				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,

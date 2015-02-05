@@ -321,7 +321,21 @@
                     <view key="view" contentMode="scaleToFill" id="WZN-gV-v0K">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJ4-MB-BR6" customClass="PlayerInfoView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="280"/>
+                                <color key="backgroundColor" red="0.52179554210654944" green="1" blue="0.99167531656916763" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="TIz-47-b0u"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VJ4-MB-BR6" firstAttribute="top" secondItem="WZN-gV-v0K" secondAttribute="topMargin" id="0Gv-z4-d2N"/>
+                            <constraint firstItem="VJ4-MB-BR6" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" constant="-16" id="RMH-73-hyn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VJ4-MB-BR6" secondAttribute="trailing" constant="-16" id="Sze-pg-x2l"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
                         <userDefinedRuntimeAttributes>
