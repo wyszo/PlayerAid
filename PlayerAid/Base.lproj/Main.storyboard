@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VS-F2-10W" userLabel="FollowingContainer">
                                 <rect key="frame" x="300" y="64" width="300" height="186"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-gr-D1b">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-gr-D1b">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="186"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Following">
@@ -44,7 +44,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3O-XH-GGQ" userLabel="LatestContainer">
                                 <rect key="frame" x="0.0" y="64" width="300" height="186"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQR-yQ-A0P">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQR-yQ-A0P">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="186"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Latest">
@@ -199,8 +199,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="eL9-fS-F9n"/>
                     <connections>
-                        <outlet property="followingFilterView" destination="5VS-F2-10W" id="vTy-lw-B7f"/>
-                        <outlet property="latestFilterView" destination="j3O-XH-GGQ" id="hsl-Nc-v9z"/>
+                        <outlet property="followingFilterBackgroundView" destination="5VS-F2-10W" id="JJ4-zz-02A"/>
+                        <outlet property="followingFilterButton" destination="oU6-gr-D1b" id="vgs-S6-hQB"/>
+                        <outlet property="latestFilterBackgroundView" destination="j3O-XH-GGQ" id="f0E-8J-IZS"/>
+                        <outlet property="latestFilterButton" destination="lQR-yQ-A0P" id="b1N-Kk-UjE"/>
                         <outlet property="tutorialsTableView" destination="UA2-bK-PCk" id="qhA-0D-14r"/>
                         <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="WCv-E4-gA0"/>
                     </connections>
@@ -379,7 +381,7 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

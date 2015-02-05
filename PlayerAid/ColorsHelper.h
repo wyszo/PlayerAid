@@ -14,4 +14,9 @@
 
 + (UIColor *)navigationBarColor;
 
++ (UIColor *)tutorialsSelectedFilterButtonColor;
++ (UIColor *)tutorialsSelectedFilterButtonTextColor;
++ (UIColor *)tutorialsUnselectedFilterButtonColor;
++ (UIColor *)tutorialsUnselectedFilterButtonTextColor;
+
 @end

@@ -7,6 +7,7 @@
 #import "HomeViewController.h"
 #import "TutorialsTableDataSource.h"
 #import "TutorialDetailsViewController.h"
+#import "ColorsHelper.h"
 
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
@@ -14,8 +15,10 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 @interface HomeViewController () <TutorialsTableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *latestFilterView;
-@property (weak, nonatomic) IBOutlet UIView *followingFilterView;
+@property (weak, nonatomic) IBOutlet UIView *latestFilterBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *followingFilterBackgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *latestFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *followingFilterButton;
 
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialsTableView;
@@ -37,6 +40,10 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"draft = NO or draft = nil"];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
+ 
+  [self selectFilterLatest];
+  
+  // TODO: Filter buttons should be extracted to a separate class
 }
 
 #pragma mark - latest & following buttons bar
@@ -44,11 +51,47 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 - (IBAction)latestFilterSelected:(id)sender
 {
   // TODO: change predicate to show latest tutorials
+  
+  [self selectFilterLatest];
+}
+
+- (void)selectFilterLatest
+{
+  [self setLatestFilterButtonTextColor:[ColorsHelper tutorialsSelectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsSelectedFilterButtonColor]];
+  
+  [self setFollowingFilterButtonTextColor:[ColorsHelper tutorialsUnselectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsUnselectedFilterButtonColor]];
 }
 
 - (IBAction)followingFilterSelected:(id)sender
 {
   // TODO: change predicate to show tutorials of the users I follow
+  
+  [self selectFilterFollowing];
+}
+
+- (void)selectFilterFollowing
+{
+  [self setLatestFilterButtonTextColor:[ColorsHelper tutorialsUnselectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsUnselectedFilterButtonColor]];
+  
+  [self setFollowingFilterButtonTextColor:[ColorsHelper tutorialsSelectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsSelectedFilterButtonColor]];
+}
+
+- (void)setLatestFilterButtonTextColor:(UIColor *)latestColor andFollowingFilterButtonTextColor:(UIColor *)followingColor
+{
+  self.latestFilterButton.titleLabel.textColor = latestColor;
+  self.followingFilterButton.titleLabel.textColor = followingColor;
+}
+
+- (void)setLatestFilterButtonTextColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor
+{
+  self.latestFilterButton.titleLabel.textColor = textColor;
+  self.latestFilterBackgroundView.backgroundColor = backgroundColor;
+}
+
+- (void)setFollowingFilterButtonTextColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor
+{
+  self.followingFilterButton.titleLabel.textColor = textColor;
+  self.followingFilterBackgroundView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - TutorialTableViewDelegate
