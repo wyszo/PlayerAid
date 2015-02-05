@@ -20,18 +20,14 @@
 
 @implementation TutorialTableViewCell
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
 - (void)configureWithTutorial:(Tutorial *)tutorial
 {
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.username;
-//  self.avatarImageView.image = // TODO: display avatar
-//  self.timeLabel.text = // tutorial.createdAt -> string // TODO: display creation date
   self.sectionLabel.text = tutorial.section.name;
+//  self.timeLabel.text = // tutorial.createdAt -> string // TODO: display creation date
+  
+  self.avatarImageView.image = [UIImage imageWithData:tutorial.createdBy.avatar];
 //  self.favouriteButton // TODO: turn favourite button on/off
 }
 

@@ -5,6 +5,7 @@
 #import <NSManagedObject+MagicalFinders.h>
 #import <NSManagedObject+MagicalRecord.h>
 #import <MagicalRecord/MagicalRecord+Actions.h>
+#import <UIKit/UIKit.h>
 #import "DataModelMock.h"
 #import "Tutorial.h"
 #import "User.h"
@@ -41,6 +42,9 @@
     User *user = [User MR_createInContext:localContext];
     user.username = @"Test user";
     user.userDescription = @"The greatest football player of all time!!";
+    
+    UIImage *userAvatar = [UIImage imageNamed:@"SampleUserAvatar"];
+    [user setAvatar:UIImagePNGRepresentation(userAvatar)];
   }];
 }
 
