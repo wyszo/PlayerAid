@@ -32,7 +32,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
-    UINib *tableViewCellNib = [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
+    UINib *tableViewCellNib = [self nibForTutorialCell];
     [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
@@ -90,6 +90,22 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
   Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static UITableViewCell *sampleCell;
+  if (!sampleCell) {
+    sampleCell = [[[self nibForTutorialCell] instantiateWithOwner:nil options:nil] lastObject];
+  }
+  return sampleCell.frame.size.height;
+}
+
+#pragma mark - Auxiliary methods
+
+- (UINib *)nibForTutorialCell
+{
+  return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
