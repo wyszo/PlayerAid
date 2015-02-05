@@ -27,6 +27,8 @@
   
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@", activeUser];
+  
+  self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
 }
 
 @end

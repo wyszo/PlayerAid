@@ -81,6 +81,23 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
   [tutorialCell configureWithTutorial:tutorial];
 }
 
+#pragma mark - DataSource - deleting cells
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return self.swipeToDeleteEnabled;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.swipeToDeleteEnabled) {
+    [tableView beginUpdates];
+    // TODO: remove object from CoreData, otherwise deletion will fall over!
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
+  }
+}
+
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
