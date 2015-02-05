@@ -7,6 +7,7 @@ extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *draft;
 	__unsafe_unretained NSString *favourited;
+	__unsafe_unretained NSString *inReview;
 	__unsafe_unretained NSString *title;
 } TutorialAttributes;
 
@@ -47,6 +48,14 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateFavourited:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* inReview;
+
+@property (atomic) BOOL inReviewValue;
+- (BOOL)inReviewValue;
+- (void)setInReviewValue:(BOOL)value_;
+
+//- (BOOL)validateInReview:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -77,6 +86,12 @@ extern const struct TutorialRelationships {
 
 - (BOOL)primitiveFavouritedValue;
 - (void)setPrimitiveFavouritedValue:(BOOL)value_;
+
+- (NSNumber*)primitiveInReview;
+- (void)setPrimitiveInReview:(NSNumber*)value;
+
+- (BOOL)primitiveInReviewValue;
+- (void)setPrimitiveInReviewValue:(BOOL)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

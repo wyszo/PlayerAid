@@ -10,6 +10,7 @@
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="draft" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="favourited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="inReview" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTutorial" inverseEntity="User" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="containsTutorial" inverseEntity="Section" syncable="YES"/>
@@ -22,7 +23,7 @@
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="103"/>
     </elements>
 </model>

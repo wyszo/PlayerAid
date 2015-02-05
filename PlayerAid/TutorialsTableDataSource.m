@@ -94,6 +94,8 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (self.swipeToDeleteEnabled) {
+    // TODO: delete tutorial behaviour should be different on different profile tableView filters - current behaviour is correct only for list of tutorials created by a user
+    
     Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
     
     // Make a delete tutorial network request

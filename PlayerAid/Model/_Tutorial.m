@@ -7,6 +7,7 @@ const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
 	.favourited = @"favourited",
+	.inReview = @"inReview",
 	.title = @"title",
 };
 
@@ -48,6 +49,11 @@ const struct TutorialRelationships TutorialRelationships = {
 	}
 	if ([key isEqualToString:@"favouritedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"favourited"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"inReviewValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -95,6 +101,26 @@ const struct TutorialRelationships TutorialRelationships = {
 
 - (void)setPrimitiveFavouritedValue:(BOOL)value_ {
 	[self setPrimitiveFavourited:@(value_)];
+}
+
+@dynamic inReview;
+
+- (BOOL)inReviewValue {
+	NSNumber *result = [self inReview];
+	return [result boolValue];
+}
+
+- (void)setInReviewValue:(BOOL)value_ {
+	[self setInReview:@(value_)];
+}
+
+- (BOOL)primitiveInReviewValue {
+	NSNumber *result = [self primitiveInReview];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveInReviewValue:(BOOL)value_ {
+	[self setPrimitiveInReview:@(value_)];
 }
 
 @dynamic title;
