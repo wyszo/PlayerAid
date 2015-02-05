@@ -3,7 +3,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
-@interface PlayerInfoView : UIView
+IB_DESIGNABLE @interface PlayerInfoView : UIView
+
+@property (nonatomic, weak) User *user;
 
 @end

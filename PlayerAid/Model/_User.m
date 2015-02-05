@@ -5,6 +5,7 @@
 
 const struct UserAttributes UserAttributes = {
 	.avatar = @"avatar",
+	.userDescription = @"userDescription",
 	.username = @"username",
 };
 
@@ -42,6 +43,8 @@ const struct UserRelationships UserRelationships = {
 }
 
 @dynamic avatar;
+
+@dynamic userDescription;
 
 @dynamic username;
 

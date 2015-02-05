@@ -52,13 +52,23 @@ static NSString *const kNibFileName = @"PlayerInfo";
 
 - (UIView *)loadViewFromNib
 {
-  NSBundle *bundle = [NSBundle mainBundle];
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
   UINib *nib = [UINib nibWithNibName:kNibFileName bundle:bundle];
   const NSUInteger viewIndexInXib = 0;
   NSArray *nibViews = [nib instantiateWithOwner:self options:nil];
   AssertTrueOrReturnNil(nibViews.count > viewIndexInXib);
   UIView *view = nibViews[viewIndexInXib];
   return view;
+}
+
+#pragma mark - UI Customization
+
+- (void)setUser:(User *)user
+{
+// TODO: self.backgroundImageView.image =
+// TODO: self.avatarImageView.image =
+  self.usernameLabel.text = user.username;
+  self.descriptionLabel.text = user.userDescription;
 }
 
 @end

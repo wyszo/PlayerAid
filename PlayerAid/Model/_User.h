@@ -5,6 +5,7 @@
 
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *avatar;
+	__unsafe_unretained NSString *userDescription;
 	__unsafe_unretained NSString *username;
 } UserAttributes;
 
@@ -29,6 +30,10 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateAvatar:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* userDescription;
+
+//- (BOOL)validateUserDescription:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* username;
 
 //- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
@@ -43,6 +48,9 @@ extern const struct UserRelationships {
 
 - (id)primitiveAvatar;
 - (void)setPrimitiveAvatar:(id)value;
+
+- (NSString*)primitiveUserDescription;
+- (void)setPrimitiveUserDescription:(NSString*)value;
 
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;
