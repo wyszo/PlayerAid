@@ -15,15 +15,21 @@
 
 - (void)customizeApplicationAppearance
 {
-  [self customizeStatusAndNavigationBarsAppearance];
+  [self customizeStatusBarAppearance];
+  [self customizeNavigationBarsAppearance];
   [self customizeTabbar];
 }
 
 #pragma mark - private implementation
 
-- (void)customizeStatusAndNavigationBarsAppearance
+- (void)customizeStatusBarAppearance
 {
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; // White fonts in statusbar and Navigation bars
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; 
+}
+
+- (void)customizeNavigationBarsAppearance
+{
+  [[UINavigationBar appearance] setBarTintColor:[ColorsHelper navigationBarColor]];
   [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
 }
 

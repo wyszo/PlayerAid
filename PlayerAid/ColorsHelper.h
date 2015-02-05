@@ -12,4 +12,6 @@
 + (UIColor *)tabBarSelectedImageTintColor;
 + (UIColor *)tabBarCreateTutorialBackgroundColor;
 
++ (UIColor *)navigationBarColor;
+
 @end

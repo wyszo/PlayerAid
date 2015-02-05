@@ -16,4 +16,6 @@ UIColorMethodMake(tabBarUnselectedTextColor, 158, 171, 199)
 UIColorMethodMake(tabBarSelectedImageTintColor, 53, 79, 141)
 UIColorMethodMake(tabBarCreateTutorialBackgroundColor, 53, 79, 141)
 
+UIColorMethodMake(navigationBarColor, 42, 70, 136)
+
 @end
