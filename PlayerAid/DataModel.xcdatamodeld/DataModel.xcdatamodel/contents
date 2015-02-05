@@ -4,7 +4,7 @@
         <attribute name="backgroundImage" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="sectionDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containsTutorial" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="section" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="containsTutorial" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="section" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <entity name="Tutorial" representedClassName="Tutorial" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
@@ -18,11 +18,11 @@
         <attribute name="avatar" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
-        <relationship name="createdTutorial" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="createdTutorial" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="105"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="105"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="103"/>
     </elements>
 </model>

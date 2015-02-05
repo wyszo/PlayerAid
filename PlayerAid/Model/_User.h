@@ -38,9 +38,17 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) Tutorial *createdTutorial;
+@property (nonatomic, strong) NSSet *createdTutorial;
 
-//- (BOOL)validateCreatedTutorial:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)createdTutorialSet;
+
+@end
+
+@interface _User (CreatedTutorialCoreDataGeneratedAccessors)
+- (void)addCreatedTutorial:(NSSet*)value_;
+- (void)removeCreatedTutorial:(NSSet*)value_;
+- (void)addCreatedTutorialObject:(Tutorial*)value_;
+- (void)removeCreatedTutorialObject:(Tutorial*)value_;
 
 @end
 
@@ -55,7 +63,7 @@ extern const struct UserRelationships {
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;
 
-- (Tutorial*)primitiveCreatedTutorial;
-- (void)setPrimitiveCreatedTutorial:(Tutorial*)value;
+- (NSMutableSet*)primitiveCreatedTutorial;
+- (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;
 
 @end

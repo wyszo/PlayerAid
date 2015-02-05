@@ -50,5 +50,14 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic createdTutorial;
 
+- (NSMutableSet*)createdTutorialSet {
+	[self willAccessValueForKey:@"createdTutorial"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"createdTutorial"];
+
+	[self didAccessValueForKey:@"createdTutorial"];
+	return result;
+}
+
 @end
 

@@ -11,16 +11,21 @@
 
 @implementation DataModelMock
 
-- (void)addDummyTutorialObjects
+- (void)addDummyTutorialAndUserObjects
 {
+  [self addDummyUserObject];
+  
   [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext *localContext) {
     // delete all tutorial entities
-    [Tutorial MR_truncateAll];
+    [Tutorial MR_truncateAllInContext:localContext];
     
     // recreate a dummy tutorial entities
     Tutorial *tutorial = [Tutorial MR_createInContext:localContext];
     tutorial.title = @"Dummy tutorial title";
     tutorial.createdAt = [NSDate new];
+    
+    User *user = [User MR_findFirstInContext:localContext];
+    [user addCreatedTutorialObject:tutorial];
     
     Tutorial *tutorial2 = [Tutorial MR_createInContext:localContext];
     tutorial2.title = @"Dummy tutorial title 2";
@@ -31,7 +36,7 @@
 - (void)addDummyUserObject
 {
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-    [User MR_truncateAll];
+    [User MR_truncateAllInContext:localContext];
     
     User *user = [User MR_createInContext:localContext];
     user.username = @"Test user";

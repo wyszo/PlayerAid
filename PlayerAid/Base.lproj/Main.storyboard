@@ -329,12 +329,30 @@
                                     <constraint firstAttribute="height" constant="280" id="TIz-47-b0u"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yp-EQ-XxJ" userLabel="Filter Selection View">
+                                <rect key="frame" x="0.0" y="306" width="600" height="43"/>
+                                <color key="backgroundColor" red="0.98239486098345485" green="0.80630179763458509" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="Bpt-5I-AJI"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="knL-tG-Q8f">
+                                <rect key="frame" x="0.0" y="357" width="600" height="194"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VJ4-MB-BR6" firstAttribute="top" secondItem="WZN-gV-v0K" secondAttribute="topMargin" id="0Gv-z4-d2N"/>
+                            <constraint firstItem="knL-tG-Q8f" firstAttribute="top" secondItem="6Yp-EQ-XxJ" secondAttribute="bottom" constant="8" id="3dM-ow-7jD"/>
+                            <constraint firstItem="6Yp-EQ-XxJ" firstAttribute="top" secondItem="VJ4-MB-BR6" secondAttribute="bottom" constant="26" id="9SO-yf-JAu"/>
+                            <constraint firstItem="6Yp-EQ-XxJ" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" constant="-16" id="LKb-Se-eRz"/>
                             <constraint firstItem="VJ4-MB-BR6" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" constant="-16" id="RMH-73-hyn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VJ4-MB-BR6" secondAttribute="trailing" constant="-16" id="Sze-pg-x2l"/>
+                            <constraint firstItem="knL-tG-Q8f" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" constant="-16" id="U7B-ni-yiQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Yp-EQ-XxJ" secondAttribute="trailing" constant="-16" id="WHT-kF-h8G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="knL-tG-Q8f" secondAttribute="trailing" constant="-16" id="lvo-YC-RKG"/>
+                            <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="knL-tG-Q8f" secondAttribute="bottom" id="mQU-Em-qlE"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
@@ -345,6 +363,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="playerInfoView" destination="VJ4-MB-BR6" id="dyS-yP-bSw"/>
+                        <outlet property="tutorialTableView" destination="knL-tG-Q8f" id="bDj-7W-8MO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9V-94-XeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

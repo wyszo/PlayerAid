@@ -50,5 +50,14 @@ const struct SectionRelationships SectionRelationships = {
 
 @dynamic containsTutorial;
 
+- (NSMutableSet*)containsTutorialSet {
+	[self willAccessValueForKey:@"containsTutorial"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"containsTutorial"];
+
+	[self didAccessValueForKey:@"containsTutorial"];
+	return result;
+}
+
 @end
 
