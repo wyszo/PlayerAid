@@ -9,6 +9,11 @@
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
 
+
+static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
+static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
+
+
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView *tableView;
@@ -26,6 +31,9 @@
     _tableView = tableView;
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    
+    UINib *tableViewCellNib = [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
+    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
 }
@@ -59,7 +67,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TutorialCell"];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTutorialCellReuseIdentifier];
   [self configureCell:cell atIndexPath:indexPath];
   return cell;
 }
