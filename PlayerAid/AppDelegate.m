@@ -8,9 +8,11 @@
 #import "AppDelegate.h"
 #import "DataModelMock.h"
 #import "AppearanceCustomizationHelper.h"
+#import "TabBarControllerHandler.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
+@property (strong, nonatomic) TabBarControllerHandler *tabBarControllerHandler;
 @end
 
 
@@ -24,7 +26,22 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
   [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self populateCoreDataWithSampleEntities];
+  [self setupTabBarActionHandling];
   return YES;
+}
+
+- (void)setupTabBarActionHandling
+{
+  __weak typeof(self) weakSelf = self;
+  self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
+    UIViewController *modalViewController = [[UIViewController alloc] init]; // TODO: init from xib
+    modalViewController.view.backgroundColor = [UIColor whiteColor];
+    [weakSelf.window.rootViewController presentViewController:modalViewController animated:YES completion:nil];
+  }];
+  
+  UIViewController *rootViewController = self.window.rootViewController;
+  AssertTrueOrReturn([rootViewController isKindOfClass:[UITabBarController class]]);
+  ((UITabBarController *)rootViewController).delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
