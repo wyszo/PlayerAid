@@ -11,6 +11,7 @@
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
 		310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B41A84C94400B7F921 /* TabBarControllerHandler.m */; };
+		310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -30,7 +31,7 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
-		31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfo.xib */; };
+		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
@@ -65,6 +66,7 @@
 		310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialViewController.m; sourceTree = "<group>"; };
 		310308B31A84C94400B7F921 /* TabBarControllerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarControllerHandler.h; sourceTree = "<group>"; };
 		310308B41A84C94400B7F921 /* TabBarControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarControllerHandler.m; sourceTree = "<group>"; };
+		310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialView.xib; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
-		31C122601A8388EB0069D49A /* PlayerInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfo.xib; sourceTree = "<group>"; };
+		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
@@ -386,8 +388,9 @@
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				31C122601A8388EB0069D49A /* PlayerInfo.xib */,
+				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
 				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
+				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -584,7 +587,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */,
+				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
+				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
