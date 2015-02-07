@@ -173,9 +173,9 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Browse" image="browse-unselected" selectedImage="browse-selected" id="cPa-gy-q4n">
+                    <tabBarItem key="tabBarItem" title="Browse" image="browse-unselected" id="cPa-gy-q4n">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tutorials-selected"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="browse-selected"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                 </viewController>
@@ -362,6 +362,5 @@
         <image name="profile-unselected" width="16" height="16"/>
         <image name="settings-selected" width="16" height="16"/>
         <image name="settings-unselected" width="16" height="16"/>
-        <image name="tutorials-selected" width="16" height="16"/>
     </resources>
 </document>
