@@ -9,12 +9,14 @@
 #import "DataModelMock.h"
 #import "Tutorial.h"
 #import "User.h"
+#import "Section.h"
 
 @implementation DataModelMock
 
 - (void)addDummyTutorialAndUserObjects
 {
   [self addDummyUserObject];
+  [self addDummySections];
   
   [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext *localContext) {
     // delete all tutorial entities
@@ -31,6 +33,9 @@
     Tutorial *tutorial2 = [Tutorial MR_createInContext:localContext];
     tutorial2.title = @"Dummy tutorial title 2";
     tutorial2.createdAt = [NSDate new];
+    
+    Section *section = [Section MR_findFirstInContext:localContext];
+    tutorial2.section = section;
   }];
 }
 
@@ -45,6 +50,21 @@
     
     UIImage *userAvatar = [UIImage imageNamed:@"SampleUserAvatar"];
     [user setAvatar:UIImagePNGRepresentation(userAvatar)];
+  }];
+}
+
+- (void)addDummySections
+{
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [Section MR_truncateAllInContext:localContext];
+    
+    Section *section = [Section MR_createInContext:localContext];
+    section.name = @"Game knowledge";
+    section.sectionDescription = @"The finest football knowledge money can buy";
+    
+    Section *section2 = [Section MR_createInContext:localContext];
+    section2.name = @"Mentality";
+    section2.sectionDescription = @"How to play without going mental";
   }];
 }
 
