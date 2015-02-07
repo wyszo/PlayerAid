@@ -14,46 +14,46 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jBq-6U-qF8" id="Gdk-OC-wt1">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
-                        <rect key="frame" x="16" y="138" width="346" height="36"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tutorial title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
+                        <rect key="frame" x="16" y="139" width="346" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="2zP-2i-5WL"/>
                             <constraint firstAttribute="width" constant="346" id="WwR-69-PvA"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
-                        <rect key="frame" x="50" y="181" width="193" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
+                        <rect key="frame" x="50" y="182" width="193" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="193" id="cm6-Tz-0Ie"/>
                             <constraint firstAttribute="height" constant="21" id="gXA-w8-yvP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-RJ-Tmc" userLabel="Avatar Image View">
-                        <rect key="frame" x="16" y="177" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-RJ-Tmc" userLabel="Avatar Image View">
+                        <rect key="frame" x="16" y="178" width="30" height="30"/>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="DH6-7m-fNO"/>
                             <constraint firstAttribute="width" constant="30" id="ZqS-Vu-gUO"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Pj-OYA">
-                        <rect key="frame" x="455" y="133" width="129" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Pj-OYA">
+                        <rect key="frame" x="455" y="135" width="129" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="129" id="3sp-gm-Mer"/>
                             <constraint firstAttribute="height" constant="28" id="x0D-03-GGU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4">
-                        <rect key="frame" x="520" y="16" width="64" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4">
+                        <rect key="frame" x="520" y="17" width="64" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="4Iw-eX-vo2"/>
                             <constraint firstAttribute="height" constant="30" id="RVP-GF-cK6"/>
@@ -62,21 +62,21 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-PO-gFC" userLabel="Section Title Bgr Image View">
-                        <rect key="frame" x="504" y="177" width="80" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-PO-gFC" userLabel="Section Title Bgr Image View">
+                        <rect key="frame" x="504" y="179" width="80" height="30"/>
                         <color key="backgroundColor" red="0.9375" green="0.27450980390000002" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="NtX-2G-fLW"/>
                             <constraint firstAttribute="width" constant="80" id="pPQ-dc-agz"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDd-oO-kzN">
-                        <rect key="frame" x="417" y="158" width="167" height="49"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDd-oO-kzN">
+                        <rect key="frame" x="504" y="178" width="80" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="167" id="EOA-l5-oc0"/>
-                            <constraint firstAttribute="height" constant="49" id="Piq-qG-20h"/>
+                            <constraint firstAttribute="width" constant="80" id="EOA-l5-oc0"/>
+                            <constraint firstAttribute="height" constant="30" id="Piq-qG-20h"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -153,7 +153,7 @@
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>
             </connections>
-            <point key="canvasLocation" x="436" y="113"/>
+            <point key="canvasLocation" x="436" y="111"/>
         </tableViewCell>
     </objects>
 </document>
