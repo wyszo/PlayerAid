@@ -6,6 +6,7 @@
 #import <KZAsserts.h>
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
+#import "UIView+XibLoading.h"
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
@@ -50,22 +51,10 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)xibSetup
 {
-  self.view = [self loadViewFromNib];
+  self.view = [UIView viewFromNibNamed:kNibFileName withOwner:self];
   self.view.frame = self.bounds;
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self addSubview:self.view];
-}
-
-- (UIView *)loadViewFromNib
-{
-  // TODO: extract this to a separate category
-  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-  UINib *nib = [UINib nibWithNibName:kNibFileName bundle:bundle];
-  const NSUInteger viewIndexInXib = 0;
-  NSArray *nibViews = [nib instantiateWithOwner:self options:nil];
-  AssertTrueOrReturnNil(nibViews.count > viewIndexInXib);
-  UIView *view = nibViews[viewIndexInXib];
-  return view;
 }
 
 #pragma mark - UI Customization
