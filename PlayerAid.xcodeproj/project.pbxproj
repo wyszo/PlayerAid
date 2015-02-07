@@ -205,13 +205,21 @@
 			name = NavigationBar;
 			sourceTree = "<group>";
 		};
+		310308BE1A86354F00B7F921 /* ServerCommunication */ = {
+			isa = PBXGroup;
+			children = (
+				31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */,
+				31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */,
+			);
+			name = ServerCommunication;
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				3177800D1A80047C007057CD /* Tutorials */,
-				31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */,
-				31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */,
+				310308BE1A86354F00B7F921 /* ServerCommunication */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

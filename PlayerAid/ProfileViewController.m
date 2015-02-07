@@ -27,6 +27,7 @@
   
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@", activeUser];
+  self.tutorialsTableDataSource.groupBy = @"draft";
   
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
 }

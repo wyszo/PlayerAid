@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
 @property (nonatomic, strong) NSPredicate *predicate;
+@property (nonatomic, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 
 - (instancetype)init __unavailable;

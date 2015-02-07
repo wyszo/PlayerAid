@@ -36,6 +36,13 @@
     
     Section *section = [Section MR_findFirstInContext:localContext];
     tutorial2.section = section;
+    
+    Tutorial *draftTutorial = [Tutorial MR_createInContext:localContext];
+    draftTutorial.title = @"Dummy draft tutorial";
+    draftTutorial.primitiveDraftValue = YES;
+    draftTutorial.createdAt = [NSDate new];
+    
+    [user addCreatedTutorialObject:draftTutorial];
   }];
 }
 

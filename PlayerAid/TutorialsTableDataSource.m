@@ -29,6 +29,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 
 - (instancetype)initWithTableView:(UITableView *)tableView
 {
+  // TODO: pass a predicate and groupBy in initializer, so we don't reload tableView unnecessarily after setting predicate and groupBy
   self = [super init];
   if (self) {
     _tableView = tableView;
@@ -53,19 +54,44 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
   }
 }
 
+- (void)setGroupBy:(NSString *)groupBy
+{
+  if (groupBy != _groupBy) {
+    _groupBy = groupBy;
+    
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
+  }
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
   if (!_fetchedResultsController) {
-    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"createdAt" ascending:YES withPredicate:self.predicate groupBy:nil delegate:self];
+    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"createdAt" ascending:YES withPredicate:self.predicate groupBy:self.groupBy delegate:self];
   }
   return _fetchedResultsController;
 }
 
 #pragma mark - TableView Data Source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return self.fetchedResultsController.sections.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return self.fetchedResultsController.fetchedObjects.count;
+  return [self sectionInfoForSection:section].numberOfObjects;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+  return [self sectionInfoForSection:section].name;
+}
+
+- (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section
+{
+  return self.fetchedResultsController.sections[section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
