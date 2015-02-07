@@ -13,6 +13,7 @@
 		310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B41A84C94400B7F921 /* TabBarControllerHandler.m */; };
 		310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */; };
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
+		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -70,6 +71,8 @@
 		310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialView.xib; sourceTree = "<group>"; };
 		310308BB1A84D90B00B7F921 /* NavigationBarCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomizationHelper.h; sourceTree = "<group>"; };
 		310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomizationHelper.m; sourceTree = "<group>"; };
+		310308BF1A863F6300B7F921 /* UIView+XibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibLoading.h"; sourceTree = "<group>"; };
+		310308C01A863F6300B7F921 /* UIView+XibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLoading.m"; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 			children = (
 				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
 				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
+				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
+				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
+				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
