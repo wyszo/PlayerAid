@@ -11,10 +11,10 @@
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
 #import "ServerCommunicationController.h"
+#import "TutorialCellHelper.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
-static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 
 
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
@@ -36,7 +36,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
-    UINib *tableViewCellNib = [self nibForTutorialCell];
+    UINib *tableViewCellNib = [TutorialCellHelper nibForTutorialCell];
     [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
@@ -152,11 +152,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static UITableViewCell *sampleCell;
-  if (!sampleCell) {
-    sampleCell = [[[self nibForTutorialCell] instantiateWithOwner:nil options:nil] lastObject];
-  }
-  return sampleCell.frame.size.height;
+  return [TutorialCellHelper cellHeightFromNib];
 }
 
 #pragma mark - Auxiliary methods
@@ -164,11 +160,6 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 - (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
 {
   return [self.fetchedResultsController objectAtIndexPath:indexPath];
-}
-
-- (UINib *)nibForTutorialCell
-{
-  return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

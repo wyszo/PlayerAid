@@ -41,6 +41,7 @@
 		31B735EA1A87D8160081AE15 /* ApplicationViewHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E91A87D8160081AE15 /* ApplicationViewHierarchyHelper.m */; };
 		31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735EC1A87FAD70081AE15 /* _TutorialStep.m */; };
 		31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735EF1A87FADE0081AE15 /* TutorialStep.m */; };
+		31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -132,6 +133,8 @@
 		31B735EC1A87FAD70081AE15 /* _TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TutorialStep.m; sourceTree = "<group>"; };
 		31B735EE1A87FADE0081AE15 /* TutorialStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStep.h; sourceTree = "<group>"; };
 		31B735EF1A87FADE0081AE15 /* TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStep.m; sourceTree = "<group>"; };
+		31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCellHelper.h; sourceTree = "<group>"; };
+		31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCellHelper.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -262,12 +265,13 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				31B735F41A88000B0081AE15 /* Categories */,
 				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
 				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
-				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
-				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 				31B735E81A87D8160081AE15 /* ApplicationViewHierarchyHelper.h */,
 				31B735E91A87D8160081AE15 /* ApplicationViewHierarchyHelper.m */,
+				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
+				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -483,6 +487,15 @@
 				31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */,
 			);
 			name = CreateTutorialHeaderView;
+			sourceTree = "<group>";
+		};
+		31B735F41A88000B0081AE15 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
+				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
@@ -764,6 +777,7 @@
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
+				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
