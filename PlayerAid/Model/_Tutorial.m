@@ -13,6 +13,7 @@ const struct TutorialAttributes TutorialAttributes = {
 };
 
 const struct TutorialRelationships TutorialRelationships = {
+	.consistsOf = @"consistsOf",
 	.createdBy = @"createdBy",
 	.section = @"section",
 };
@@ -128,9 +129,80 @@ const struct TutorialRelationships TutorialRelationships = {
 
 @dynamic title;
 
+@dynamic consistsOf;
+
+- (NSMutableOrderedSet*)consistsOfSet {
+	[self willAccessValueForKey:@"consistsOf"];
+
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"consistsOf"];
+
+	[self didAccessValueForKey:@"consistsOf"];
+	return result;
+}
+
 @dynamic createdBy;
 
 @dynamic section;
 
+@end
+
+@implementation _Tutorial (ConsistsOfCoreDataGeneratedAccessors)
+- (void)addConsistsOf:(NSOrderedSet*)value_ {
+	[self.consistsOfSet unionOrderedSet:value_];
+}
+- (void)removeConsistsOf:(NSOrderedSet*)value_ {
+	[self.consistsOfSet minusOrderedSet:value_];
+}
+- (void)addConsistsOfObject:(TutorialStep*)value_ {
+	[self.consistsOfSet addObject:value_];
+}
+- (void)removeConsistsOfObject:(TutorialStep*)value_ {
+	[self.consistsOfSet removeObject:value_];
+}
+- (void)insertObject:(TutorialStep*)value inConsistsOfAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+- (void)removeObjectFromConsistsOfAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+- (void)insertConsistsOf:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+- (void)removeConsistsOfAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+- (void)replaceObjectInConsistsOfAtIndex:(NSUInteger)idx withObject:(TutorialStep*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+- (void)replaceConsistsOfAtIndexes:(NSIndexSet *)indexes withConsistsOf:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"consistsOf"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self consistsOf]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
 @end
 
