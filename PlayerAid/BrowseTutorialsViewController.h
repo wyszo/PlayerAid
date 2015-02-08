@@ -6,6 +6,4 @@
 
 @interface BrowseTutorialsViewController : UIViewController
 
-
 @end
-

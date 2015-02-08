@@ -7,14 +7,15 @@
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
 
+
 @interface ProfileViewController ()
 
 @property (weak, nonatomic) PlayerInfoView *playerInfoView;
-
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 
 @end
+
 
 @implementation ProfileViewController
 
@@ -36,19 +37,28 @@
   self.playerInfoView.user = activeUser;
 }
 
+#pragma mark - Header View initialization
+
 - (void)setupTableHeaderView
 {
   const NSUInteger kPlayerInforViewHeight = 316;
   const NSUInteger kTutorialsFilterView = 80;
   NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
-
-  UIView *headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight + kTutorialsFilterView)];
-  headerContainerView.backgroundColor = [UIColor grayColor];
   
   PlayerInfoView *playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight)];
-  [headerContainerView addSubview:playerInfoView];
   
-  self.tutorialTableView.tableHeaderView = headerContainerView;
+  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight + kTutorialsFilterView);
+  UIView *containerView = [self wrapView:playerInfoView inAContainerViewWithFrame:containerFrame];
+  
+  self.tutorialTableView.tableHeaderView = containerView;
+}
+
+- (UIView *)wrapView:(UIView *)view inAContainerViewWithFrame:(CGRect)frame
+{
+  UIView *containerView = [[UIView alloc] initWithFrame:frame];
+  containerView.backgroundColor = [UIColor grayColor];
+  [containerView addSubview:view];
+  return containerView;
 }
 
 @end

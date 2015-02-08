@@ -28,9 +28,6 @@
   self.headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
   AssertTrueOrReturn(self.tutorial.objectID);
   self.headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self IN %@", @[ self.tutorial ]];
-  
-  // TODO: setup tutorial tableView to display just one cell
-  // TODO: display tutorial cell at the top
 }
 
 @end

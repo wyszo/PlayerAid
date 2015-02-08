@@ -21,6 +21,8 @@
   self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
+#pragma mark - NavigationBar buttons
+
 - (void)addNavigationBarCancelButton
 {
   UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
@@ -39,7 +41,6 @@
   UIView *buttonContainer = [NavigationBarCustomizationHelper titleViewhWithButtonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
   self.navigationItem.titleView = buttonContainer;
 }
-
 
 #pragma mark - Actions
 

@@ -10,7 +10,6 @@
 
 + (UIView *)viewFromNibNamed:(NSString *)nibName withOwner:(UIView *)owner
 {
-  // TODO: extract this to a separate category
   NSBundle *bundle = [NSBundle bundleForClass:[owner class]];
   UINib *nib = [UINib nibWithNibName:nibName bundle:bundle];
   const NSUInteger viewIndexInXib = 0;

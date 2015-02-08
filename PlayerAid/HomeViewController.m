@@ -58,7 +58,6 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 - (void)selectFilterLatest
 {
   [self setLatestFilterButtonTextColor:[ColorsHelper tutorialsSelectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsSelectedFilterButtonColor]];
-  
   [self setFollowingFilterButtonTextColor:[ColorsHelper tutorialsUnselectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsUnselectedFilterButtonColor]];
 }
 
@@ -72,7 +71,6 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 - (void)selectFilterFollowing
 {
   [self setLatestFilterButtonTextColor:[ColorsHelper tutorialsUnselectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsUnselectedFilterButtonColor]];
-  
   [self setFollowingFilterButtonTextColor:[ColorsHelper tutorialsSelectedFilterButtonTextColor] backgroundColor:[ColorsHelper tutorialsSelectedFilterButtonColor]];
 }
 

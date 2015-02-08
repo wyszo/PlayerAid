@@ -11,6 +11,8 @@
 @interface IntroViewController ()
 @end
 
+
+// TODO: this view should be presented as modal without animation at the beginning
 @implementation IntroViewController
 
 - (void)viewDidLoad

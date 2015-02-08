@@ -22,11 +22,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
-  // TODO: put everything in a tableView instead of just displaying a label
   [self updateSectionsLabel];
 }
 
+// TODO: put everything in a tableView instead of just displaying a label
 - (void)updateSectionsLabel
 {
   NSArray *allSections = [Section MR_findAll];
