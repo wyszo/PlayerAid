@@ -38,7 +38,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   // TODO: it's not clear that data source attaches itself to a tableView passed as a parameter, rethink this
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialsTableView];
   
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"draft = NO or draft = nil"];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
  
   [self selectFilterLatest];

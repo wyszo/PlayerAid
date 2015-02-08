@@ -31,6 +31,8 @@
     Section *section = [Section MR_findFirstInContext:localContext];
     dummyTutorial2.section = section;
     
+    [self tutorialInContext:localContext title:@"Dummy tutorial 3" forUser:user];
+    
     [self draftTutorialInContext:localContext forUser:user];
     [self inReviewTutorialInContext:localContext forUser:user];
   }];
@@ -41,14 +43,14 @@
 - (Tutorial *)draftTutorialInContext:(NSManagedObjectContext *)localContext forUser:(User *)user
 {
   Tutorial *tutorial = [self tutorialInContext:localContext title:@"Dummy draft tutorial" forUser:user];
-  tutorial.primitiveDraftValue = YES;
+  [tutorial setDraftValue:YES];
   return tutorial;
 }
 
 - (Tutorial *)inReviewTutorialInContext:(NSManagedObjectContext *)localContext forUser:(User *)user
 {
   Tutorial *tutorial = [self tutorialInContext:localContext title:@"In Review Tutorial" forUser:user];
-  tutorial.primitiveInReviewValue = YES;
+  [tutorial setInReviewValue:YES];
   return tutorial;
 }
 
@@ -56,6 +58,7 @@
 {
   Tutorial *tutorial = [Tutorial MR_createInContext:localContext];
   tutorial.title = title;
+  tutorial.state = kTutorialStatePublished;
   tutorial.createdAt = [NSDate new];
   if (user) {
     [user addCreatedTutorialObject:tutorial];

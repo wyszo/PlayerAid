@@ -10,7 +10,7 @@
 
 @interface ProfileViewController ()
 
-@property (weak, nonatomic) PlayerInfoView *playerInfoView;
+@property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 
@@ -29,7 +29,7 @@
   
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@", activeUser];
-  self.tutorialsTableDataSource.groupBy = @"draft";
+  self.tutorialsTableDataSource.groupBy = @"state";
   
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
   
@@ -45,10 +45,10 @@
   const NSUInteger kTutorialsFilterView = 80;
   NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
   
-  PlayerInfoView *playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight)];
+  self.playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight)];
   
   CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight + kTutorialsFilterView);
-  UIView *containerView = [self wrapView:playerInfoView inAContainerViewWithFrame:containerFrame];
+  UIView *containerView = [self wrapView:self.playerInfoView inAContainerViewWithFrame:containerFrame];
   
   self.tutorialTableView.tableHeaderView = containerView;
 }

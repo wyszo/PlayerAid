@@ -1,5 +1,11 @@
 #import "_Tutorial.h"
 
+extern NSString *const kTutorialStatePublished;
+
+
 @interface Tutorial : _Tutorial {}
-// Custom logic goes here.
+
+@property (nonatomic, strong) NSNumber *draft;
+@property (nonatomic, strong) NSNumber *inReview;
+
 @end

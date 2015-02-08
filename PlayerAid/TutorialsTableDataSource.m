@@ -67,7 +67,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 - (NSFetchedResultsController *)fetchedResultsController
 {
   if (!_fetchedResultsController) {
-    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"createdAt" ascending:YES withPredicate:self.predicate groupBy:self.groupBy delegate:self];
+    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:self.predicate groupBy:self.groupBy delegate:self];
   }
   return _fetchedResultsController;
 }
@@ -105,7 +105,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 {
   AssertTrueOrReturn([cell isKindOfClass:[TutorialTableViewCell class]]);
   TutorialTableViewCell *tutorialCell = (TutorialTableViewCell *)cell;
-  Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  Tutorial *tutorial = [self sectionInfoForSection:indexPath.section].objects[indexPath.row];
   AssertTrueOrReturn(tutorial);
   [tutorialCell configureWithTutorial:tutorial];
 }

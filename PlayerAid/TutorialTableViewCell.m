@@ -44,10 +44,10 @@
 {
   CGFloat alpha = 1.0f;
   
-  if (tutorial.draft) {
+  if (tutorial.primitiveDraftValue) {
     alpha = 0.5f;
   }
-  else if (tutorial.inReview) {
+  else if (tutorial.primitiveInReviewValue) {
     alpha = 0.75f;
   }
   self.contentView.alpha = alpha;
