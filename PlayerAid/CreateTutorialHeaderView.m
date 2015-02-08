@@ -10,6 +10,7 @@ static NSString *const kNibFileName = @"CreateTutorialHeaderView";
 
 @interface CreateTutorialHeaderView ()
 @property (nonatomic, weak) UIView *view;
+
 @end
 
 

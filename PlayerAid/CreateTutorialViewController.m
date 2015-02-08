@@ -4,10 +4,11 @@
 
 #import "CreateTutorialViewController.h"
 #import "NavigationBarCustomizationHelper.h"
-#import "CreateTutorialHeaderView.h"
+#import "CreateTutorialHeaderViewController.h"
 
 @interface CreateTutorialViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
+@property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @end
 
 
@@ -17,11 +18,10 @@
 {
   [super viewDidLoad];
   [self setupNavigationBarButtons];
-  
-  NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
-  self.tutorialTableView.tableHeaderView = [[CreateTutorialHeaderView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, 200)];
-  
   self.edgesForExtendedLayout = UIRectEdgeNone;
+  
+  self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
 }
 
 #pragma mark - NavigationBar buttons

@@ -37,6 +37,7 @@
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
+		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -120,6 +121,8 @@
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
+		31B735E51A87CC280081AE15 /* CreateTutorialHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderViewController.h; sourceTree = "<group>"; };
+		31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderViewController.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -450,8 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
-				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
+				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
 			);
 			name = "Create Tutorial";
 			sourceTree = "<group>";
@@ -461,6 +464,8 @@
 			children = (
 				31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */,
 				31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */,
+				31B735E51A87CC280081AE15 /* CreateTutorialHeaderViewController.h */,
+				31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */,
 			);
 			name = CreateTutorialHeaderView;
 			sourceTree = "<group>";
@@ -750,6 +755,7 @@
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
+				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
