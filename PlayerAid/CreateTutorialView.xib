@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialViewController">
             <connections>
+                <outlet property="tutorialTableView" destination="TdO-uS-8Rm" id="qrv-Mq-Dej"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RJH-Gf-pw9"/>
             </connections>
         </placeholder>
@@ -15,12 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Tutorial!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5C-Oh-Xbl">
-                    <rect key="frame" x="242" y="258" width="116" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKJ-v8-qVW" customClass="CreateTutorialStepButtonsView">
                     <rect key="frame" x="0.0" y="446" width="600" height="90"/>
                     <color key="backgroundColor" red="0.75592615698115262" green="0.25905553023724526" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -28,14 +23,20 @@
                         <constraint firstAttribute="height" constant="90" id="XzQ-Ix-OtX"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-uS-8Rm">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="438"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YKJ-v8-qVW" secondAttribute="trailing" id="7UJ-Ob-mco"/>
+                <constraint firstItem="TdO-uS-8Rm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FLb-1h-wtd"/>
                 <constraint firstItem="YKJ-v8-qVW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H2z-gE-069"/>
-                <constraint firstAttribute="centerY" secondItem="V5C-Oh-Xbl" secondAttribute="centerY" id="KwP-Md-Vlk"/>
                 <constraint firstAttribute="bottom" secondItem="YKJ-v8-qVW" secondAttribute="bottom" id="NZh-hs-kr0"/>
-                <constraint firstAttribute="centerX" secondItem="V5C-Oh-Xbl" secondAttribute="centerX" id="kWp-df-Cx9"/>
+                <constraint firstItem="YKJ-v8-qVW" firstAttribute="top" secondItem="TdO-uS-8Rm" secondAttribute="bottom" constant="8" id="Uwo-Bj-j1k"/>
+                <constraint firstAttribute="trailing" secondItem="TdO-uS-8Rm" secondAttribute="trailing" id="j0h-7o-jWV"/>
+                <constraint firstItem="TdO-uS-8Rm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mll-Eh-uj6"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
         </view>

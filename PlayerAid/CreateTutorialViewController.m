@@ -4,8 +4,10 @@
 
 #import "CreateTutorialViewController.h"
 #import "NavigationBarCustomizationHelper.h"
+#import "CreateTutorialHeaderView.h"
 
 @interface CreateTutorialViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @end
 
 
@@ -14,14 +16,24 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupNavigationBarButtons];
+  
+  NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
+  self.tutorialTableView.tableHeaderView = [[CreateTutorialHeaderView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, 200)];
+  
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+#pragma mark - NavigationBar buttons
+
+- (void)setupNavigationBarButtons
+{
   [self addNavigationBarCancelButton];
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
   self.navigationItem.rightBarButtonItem.enabled = NO;
 }
-
-#pragma mark - NavigationBar buttons
 
 - (void)addNavigationBarCancelButton
 {

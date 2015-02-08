@@ -35,6 +35,8 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
+		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
+		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -115,6 +117,9 @@
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsView.m; sourceTree = "<group>"; };
+		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
+		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
+		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -441,13 +446,31 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
+				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
+				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
+			);
+			name = "Create Tutorial";
+			sourceTree = "<group>";
+		};
+		31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */,
+				31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */,
+			);
+			name = CreateTutorialHeaderView;
+			sourceTree = "<group>";
+		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
 				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
 				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
-				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
-				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
+				31B735E01A87B4350081AE15 /* Create Tutorial */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -455,6 +478,7 @@
 		31C122621A838A340069D49A /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
 				31C122661A838A590069D49A /* PlayerInfo */,
 			);
@@ -646,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
+				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,
@@ -712,6 +737,7 @@
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
+				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
