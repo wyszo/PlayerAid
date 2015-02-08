@@ -3,11 +3,17 @@
 //
 
 #import "CreateTutorialHeaderViewController.h"
+#import <NSManagedObject+MagicalFinders.h>
+#import <KZAsserts.h>
+#import "ApplicationViewHierarchyHelper.h"
 #import "AlertFactory.h"
+#import "Section.h"
 
 
-@interface CreateTutorialHeaderViewController () <UITextFieldDelegate>
+@interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
+@property (strong, nonatomic) NSArray *actionSheetSections;
 @end
 
 
@@ -46,7 +52,14 @@
 
 - (IBAction)pickACategory:(id)sender
 {
-  // TODO: show categories list
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a category" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:nil];
+  
+  self.actionSheetSections = [Section MR_findAll];
+  for (Section *section in self.actionSheetSections) {
+    [actionSheet addButtonWithTitle:section.name];
+  }
+  
+  [actionSheet showFromTabBar:[ApplicationViewHierarchyHelper applicationTabBarController].tabBar];
 }
 
 - (IBAction)save:(id)sender
@@ -56,6 +69,17 @@
   }
   
   // TODO: save a new tutorial
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex != actionSheet.cancelButtonIndex) {
+    AssertTrueOrReturn(buttonIndex - 1 >= 0);
+    Section *selectedSection = self.actionSheetSections[buttonIndex - 1];
+    [self.pickACategoryButton setTitle:selectedSection.name forState:UIControlStateNormal];
+  }
 }
 
 @end

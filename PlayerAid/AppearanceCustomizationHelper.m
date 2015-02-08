@@ -7,6 +7,7 @@
 #import <KZAsserts.h>
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 @implementation AppearanceCustomizationHelper
@@ -69,7 +70,7 @@
 
 - (void)customiseCreateTutorialTabBarButtonBackground
 {
-  UITabBarController *tabBarController = [self applicationTabBarController];
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
   const NSUInteger createItemIndex = 2;
   
   AssertTrueOrReturn(tabBarController.tabBar.items.count > createItemIndex);
@@ -82,16 +83,6 @@
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
   
   [tabBar insertSubview:createButtonBackgroundView atIndex:0];
-}
-
-- (UITabBarController *)applicationTabBarController
-{
-  id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
-  UIViewController *rootViewController = appDelegate.window.rootViewController;
-  
-  AssertTrueOrReturnNil([rootViewController isKindOfClass:[UITabBarController class]]);
-  UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-  return tabBarController;
 }
 
 @end
