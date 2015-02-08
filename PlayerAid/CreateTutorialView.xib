@@ -21,10 +21,20 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKJ-v8-qVW" customClass="CreateTutorialStepButtonsView">
+                    <rect key="frame" x="0.0" y="446" width="600" height="90"/>
+                    <color key="backgroundColor" red="0.75592615698115262" green="0.25905553023724526" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="XzQ-Ix-OtX"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="YKJ-v8-qVW" secondAttribute="trailing" id="7UJ-Ob-mco"/>
+                <constraint firstItem="YKJ-v8-qVW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H2z-gE-069"/>
                 <constraint firstAttribute="centerY" secondItem="V5C-Oh-Xbl" secondAttribute="centerY" id="KwP-Md-Vlk"/>
+                <constraint firstAttribute="bottom" secondItem="YKJ-v8-qVW" secondAttribute="bottom" id="NZh-hs-kr0"/>
                 <constraint firstAttribute="centerX" secondItem="V5C-Oh-Xbl" secondAttribute="centerX" id="kWp-df-Cx9"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

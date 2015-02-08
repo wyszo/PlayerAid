@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialStepButtonsView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="561" height="105"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlS-vg-Q7i">
+                    <rect key="frame" x="8" y="8" width="168" height="89"/>
+                    <state key="normal" title="Button photo">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCh-y0-XCX">
+                    <rect key="frame" x="385" y="8" width="168" height="89"/>
+                    <state key="normal" title="Button text">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zh-3D-u9T">
+                    <rect key="frame" x="196" y="8" width="169" height="89"/>
+                    <state key="normal" title="Button video">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="6Zh-3D-u9T" secondAttribute="centerX" id="5x6-iH-FxI"/>
+                <constraint firstAttribute="bottom" secondItem="6Zh-3D-u9T" secondAttribute="bottom" constant="8" id="89c-IT-7MF"/>
+                <constraint firstItem="6Zh-3D-u9T" firstAttribute="width" secondItem="NlS-vg-Q7i" secondAttribute="width" id="Hvf-eS-KO9"/>
+                <constraint firstItem="NlS-vg-Q7i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="K2q-pY-JhF"/>
+                <constraint firstItem="6Zh-3D-u9T" firstAttribute="width" secondItem="tCh-y0-XCX" secondAttribute="width" id="M05-Wj-4oF"/>
+                <constraint firstAttribute="bottom" secondItem="tCh-y0-XCX" secondAttribute="bottom" constant="8" id="MI0-2T-WvX"/>
+                <constraint firstItem="tCh-y0-XCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="WbC-5Q-f9K"/>
+                <constraint firstItem="6Zh-3D-u9T" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="X6k-uC-wbQ"/>
+                <constraint firstItem="NlS-vg-Q7i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ZFA-Nr-vhB"/>
+                <constraint firstAttribute="bottom" secondItem="NlS-vg-Q7i" secondAttribute="bottom" constant="8" id="den-8T-iLX"/>
+                <constraint firstItem="6Zh-3D-u9T" firstAttribute="leading" secondItem="NlS-vg-Q7i" secondAttribute="trailing" constant="20" id="npd-sr-rMM"/>
+                <constraint firstAttribute="trailing" secondItem="tCh-y0-XCX" secondAttribute="trailing" constant="8" id="p56-ru-whQ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="523.5" y="118.5"/>
+        </view>
+    </objects>
+</document>
