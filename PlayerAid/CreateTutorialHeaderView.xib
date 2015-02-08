@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialHeaderViewController">
             <connections>
+                <outlet property="titleTextField" destination="5Dc-OW-RT8" id="LSc-zL-qPc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="hNF-RB-SdF"/>
             </connections>
         </placeholder>
@@ -24,6 +25,9 @@
                     <state key="normal" title="Edit Cover Photo">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="editCoverPhoto:" destination="-1" eventType="touchUpInside" id="HCL-AZ-brB"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
                     <rect key="frame" x="377" y="188" width="121" height="30"/>
@@ -34,6 +38,9 @@
                     <state key="normal" title="Pick a category">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="pickACategory:" destination="-1" eventType="touchUpInside" id="f2h-MR-3IJ"/>
+                    </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-OW-RT8" userLabel="title textField">
                     <rect key="frame" x="8" y="150" width="490" height="30"/>
@@ -52,6 +59,9 @@
                     <state key="normal" title="SAVE">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="save:" destination="-1" eventType="touchUpInside" id="4SZ-aF-cO2"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-vS-dew" userLabel="Bottom Separator">
                     <rect key="frame" x="0.0" y="225" width="506" height="1"/>

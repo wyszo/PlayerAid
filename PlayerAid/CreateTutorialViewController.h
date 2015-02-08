@@ -5,6 +5,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CreateTutorialViewController : UIViewController
+@interface CreateTutorialViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

@@ -8,6 +8,8 @@
 
 @implementation AlertFactory
 
+#pragma mark - App Alerts
+
 + (UIAlertView *)showGenericErrorAlertView
 {
   NSString *title = @"Communication Error";
@@ -17,6 +19,16 @@
   [alert show];
   return alert;
 }
+
++ (UIAlertView *)showCreateTutorialNoTitleAlertView
+{
+  NSString *message = @"Tutorial needs to have a title";
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+  [alert show];
+  return alert;
+}
+
+#pragma mark - Facebook
 
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error

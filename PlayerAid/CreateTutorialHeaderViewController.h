@@ -6,4 +6,6 @@
 
 @interface CreateTutorialHeaderViewController : UIViewController
 
+@property (weak, nonatomic) UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate> *imagePickerControllerDelegate;
+
 @end

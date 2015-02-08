@@ -21,6 +21,7 @@
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
+  self.headerViewController.imagePickerControllerDelegate = self;
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
 }
 
@@ -69,6 +70,20 @@
 - (void)dismissViewController
 {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+  [picker dismissViewControllerAnimated:YES completion:nil];
+  
+  // TODO: update header view cover photo
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+  [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
