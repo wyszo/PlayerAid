@@ -6,6 +6,6 @@
 
 @interface DataModelMock : NSObject
 
-- (void)addDummyTutorialAndUserObjects;
+- (void)addDummyTutorialUserAndSectionObjects;
 
 @end

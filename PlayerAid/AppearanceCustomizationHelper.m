@@ -36,15 +36,15 @@
 
 - (void)customizeTabbar
 {
-  [self customizeTabbarFonts];
+  [self customizeTabbarFontColors];
   [self customizeTabbarTintColors];
-  [self customizeTabbarTitles];
+  [self customizeTabbarItemTitles];
   [self customiseCreateTutorialTabBarButtonBackground];
 }
 
-- (void)customizeTabbarFonts
+- (void)customizeTabbarFontColors
 {
-  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarUnselectedTextColor] }  forState:UIControlStateNormal];
+  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarUnselectedTextColor] } forState:UIControlStateNormal];
   [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [ColorsHelper tabBarSelectedTextColor] } forState:UIControlStateSelected];
 }
 
@@ -54,15 +54,18 @@
   [[UITabBar appearance] setSelectedImageTintColor:[ColorsHelper tabBarSelectedImageTintColor]];
 }
 
-- (void)customizeTabbarTitles
+- (void)customizeTabbarItemTitles
 {
   [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
   
-  [[UITabBarItem appearance] setTitleTextAttributes:@{
-                                                      [UIFont fontWithName:@"Helvetica Neue" size:11.0f] : NSFontAttributeName
-                                                      }
-                                           forState:UIControlStateNormal];
+  UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:10.0f];
+  AssertTrueOrReturn(font);
+  
+  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : font } forState:UIControlStateNormal];
+  [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : font } forState:UIControlStateSelected];
 }
+
+#pragma mark - Create Tutorial TabBar button
 
 - (void)customiseCreateTutorialTabBarButtonBackground
 {
