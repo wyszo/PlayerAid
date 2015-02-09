@@ -9,7 +9,7 @@
 @protocol TutorialsTableViewDelegate;
 
 
-@interface TutorialsTableDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface TutorialsTableDataSource : NSObject <UITableViewDelegate>
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
 @property (nonatomic, strong) NSPredicate *predicate;

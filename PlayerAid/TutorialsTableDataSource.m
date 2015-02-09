@@ -17,62 +17,42 @@
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 
-@interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, weak) UITableView *tableView;
+@interface CoreDataTableViewDataSource : NSObject <UITableViewDataSource>
+
+@property (copy, nonatomic) NSFetchedResultsController* (^fetchedResultsControllerLazyInitializationBlock)();
+@property (copy, nonatomic) void (^deleteCellOnSwipeBlock)(NSIndexPath *indexPath);
+
+
+- (instancetype)initWithConfigureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock;
+- (void)resetFetchedResultsController;
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 
-@implementation TutorialsTableDataSource
+@interface CoreDataTableViewDataSource ()
 
-#pragma mark - Initilization
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, copy) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
 
-- (instancetype)initWithTableView:(UITableView *)tableView
+@end
+
+
+@implementation CoreDataTableViewDataSource
+
+#pragma mark - Initialization
+
+- (instancetype)initWithConfigureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock
 {
-  // TODO: pass a predicate and groupBy in initializer, so we don't reload tableView unnecessarily after setting predicate and groupBy
   self = [super init];
   if (self) {
-    _tableView = tableView;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    
-    UINib *tableViewCellNib = [TutorialCellHelper nibForTutorialCell];
-    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
+    _configureCellBlock = configureCellBlock;
   }
   return self;
 }
 
-#pragma mark - Handling CoreData fetching
-
-- (void)setPredicate:(NSPredicate *)predicate
-{
-  if (predicate != _predicate) {
-    _predicate = predicate;
-    
-    _fetchedResultsController = nil;
-    [self.tableView reloadData];
-  }
-}
-
-- (void)setGroupBy:(NSString *)groupBy
-{
-  if (groupBy != _groupBy) {
-    _groupBy = groupBy;
-    
-    _fetchedResultsController = nil;
-    [self.tableView reloadData];
-  }
-}
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-  if (!_fetchedResultsController) {
-    _fetchedResultsController = [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:self.predicate groupBy:self.groupBy delegate:self];
-  }
-  return _fetchedResultsController;
-}
-
-#pragma mark - TableView Data Source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -97,46 +77,169 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTutorialCellReuseIdentifier];
-  [self configureCell:cell atIndexPath:indexPath];
+  
+  if (self.configureCellBlock) {
+    self.configureCellBlock(cell, indexPath);
+  }
   return cell;
 }
+
+#pragma mark - Deleting cells
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return (self.deleteCellOnSwipeBlock != nil);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.deleteCellOnSwipeBlock && editingStyle == UITableViewCellEditingStyleDelete) {
+    self.deleteCellOnSwipeBlock(indexPath);
+  }
+}
+
+#pragma mark - Lazy Initialization
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+  if (!_fetchedResultsController) {
+    if (self.fetchedResultsControllerLazyInitializationBlock) {
+      _fetchedResultsController = self.fetchedResultsControllerLazyInitializationBlock();
+    }
+  }
+  return _fetchedResultsController;
+}
+
+#pragma mark - Other methods
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+  id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSection:indexPath.section];
+  AssertTrueOrReturnNil(sectionInfo.objects.count > indexPath.row);
+  return sectionInfo.objects[indexPath.row];
+}
+
+- (void)resetFetchedResultsController
+{
+  _fetchedResultsController = nil;
+}
+
+@end
+
+
+
+@interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
+@end
+
+
+@implementation TutorialsTableDataSource
+
+#pragma mark - Initilization
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+{
+  // TODO: pass a predicate and groupBy in initializer, so we don't reload tableView unnecessarily after setting predicate and groupBy
+  self = [super init];
+  if (self) {
+    _tableView = tableView;
+    
+    [self initTableViewDataSource];
+    _tableView.delegate = self;
+    
+    UINib *tableViewCellNib = [TutorialCellHelper nibForTutorialCell];
+    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
+  }
+  return self;
+}
+
+- (void)initTableViewDataSource
+{
+  __weak typeof(self) weakSelf = self;
+  
+  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithConfigureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    [weakSelf configureCell:cell atIndexPath:indexPath];
+  }];
+  _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf];
+  };
+  _tableView.dataSource = _tableViewDataSource;
+}
+
+#pragma mark - Handling CoreData fetching
+
+- (void)setPredicate:(NSPredicate *)predicate
+{
+  if (predicate != _predicate) {
+    _predicate = predicate;
+    
+    [self.tableViewDataSource resetFetchedResultsController];
+    [self.tableView reloadData];
+  }
+}
+
+- (void)setGroupBy:(NSString *)groupBy
+{
+  if (groupBy != _groupBy) {
+    _groupBy = groupBy;
+    
+    [self.tableViewDataSource resetFetchedResultsController];
+    [self.tableView reloadData];
+  }
+}
+
+#pragma mark - Cell configuration
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
   AssertTrueOrReturn([cell isKindOfClass:[TutorialTableViewCell class]]);
   TutorialTableViewCell *tutorialCell = (TutorialTableViewCell *)cell;
-  Tutorial *tutorial = [self sectionInfoForSection:indexPath.section].objects[indexPath.row];
+  Tutorial *tutorial = [self.tableViewDataSource objectAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   [tutorialCell configureWithTutorial:tutorial];
 }
 
 #pragma mark - DataSource - deleting cells
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)swipeToDeleteEnabled
 {
-  return self.swipeToDeleteEnabled;
+  return (self.tableViewDataSource.deleteCellOnSwipeBlock != nil);
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)setSwipeToDeleteEnabled:(BOOL)swipeToDeleteEnabled
 {
-  if (self.swipeToDeleteEnabled) {
-    // TODO: delete tutorial behaviour should be different on different profile tableView filters - current behaviour is correct only for list of tutorials created by a user
-    
-    Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
-    
-    // Make a delete tutorial network request
-    [ServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
-      if (error) {
-        // TODO: delete tutorial request failed, queue it again, retry
-      }
-    }];
-    
-    // Remove tutorial object from CoreData, tableView will automatically pick up the change
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-      Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
-      [tutorialInLocalContext MR_deleteInContext:localContext];
-    }];
-  }
+  __weak typeof(self) weakSelf = self;
+  _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
+    [weakSelf deleteTutorialAtIndexPath:indexPath];
+  };
+}
+
+- (void)deleteTutorialAtIndexPath:(NSIndexPath *)indexPath
+{
+  // TODO: delete tutorial behaviour should be different on different profile tableView filters - current behaviour is correct only for list of tutorials created by a user
+  
+  Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
+  
+  // Make a delete tutorial network request
+  [ServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
+    if (error) {
+      // TODO: delete tutorial request failed, queue it again, retry
+    }
+  }];
+  
+  // Remove tutorial object from CoreData, tableView will automatically pick up the change
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
+    [tutorialInLocalContext MR_deleteInContext:localContext];
+  }];
+}
+
+#pragma mark - Auxiliary methods
+
+- (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [self.tableViewDataSource objectAtIndexPath:indexPath];
 }
 
 #pragma mark - TableView Delegate
@@ -153,13 +256,6 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TutorialCellHelper cellHeightFromNib];
-}
-
-#pragma mark - Auxiliary methods
-
-- (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
-{
-  return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
