@@ -13,6 +13,8 @@
 #import "ServerCommunicationController.h"
 #import "TutorialCellHelper.h"
 #import "CoreDataTableViewDataSource.h"
+#import "TableViewFetchedResultsControllerBinder.h"
+
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
@@ -20,6 +22,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
 
@@ -33,11 +36,21 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   if (self) {
     _tableView = tableView;
     
+    [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
+    
     _tableView.delegate = self;
     [_tableView registerNib:[TutorialCellHelper nibForTutorialCell] forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
+}
+
+- (void)initFetchedResultsControllerBinder
+{
+  __weak typeof(self) weakSelf = self;
+  _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    [weakSelf configureCell:cell atIndexPath:indexPath];
+  }];
 }
 
 - (void)initTableViewDataSource
@@ -48,7 +61,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf];
+    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf.fetchedResultsControllerBinder];
   };
   _tableView.dataSource = _tableViewDataSource;
 }
@@ -142,69 +155,6 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TutorialCellHelper cellHeightFromNib];
-}
-
-#pragma mark - NSFetchedResultsControllerDelegate
-
-// source: http://samwize.com/2014/03/29/implementing-nsfetchedresultscontroller-with-magicalrecord/
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-  UITableView *tableView = self.tableView;
-  
-  switch(type) {
-      
-    case NSFetchedResultsChangeInsert:
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
-      break;
-      
-    case NSFetchedResultsChangeDelete:
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
-      break;
-      
-    case NSFetchedResultsChangeUpdate:
-      [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-              atIndexPath:indexPath];
-      break;
-      
-    case NSFetchedResultsChangeMove:
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
-      break;
-  }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-  switch(type) {
-    case NSFetchedResultsChangeInsert:
-      [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                    withRowAnimation:UITableViewRowAnimationFade];
-      break;
-      
-    case NSFetchedResultsChangeDelete:
-      [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                    withRowAnimation:UITableViewRowAnimationFade];
-      break;
-    case NSFetchedResultsChangeMove:
-    case NSFetchedResultsChangeUpdate:
-      break;
-  }
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-  [self.tableView beginUpdates];
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-  [self.tableView endUpdates];
 }
 
 @end

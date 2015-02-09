@@ -9,14 +9,16 @@
 #import "TutorialStep.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
+#import "TableViewFetchedResultsControllerBinder.h"
 
 
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
 static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 
-@interface TutorialStepsDataSource () <NSFetchedResultsControllerDelegate>
+@interface TutorialStepsDataSource ()
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @end
 
@@ -32,12 +34,22 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   if (self) {
     _tableView = tableView;
 //    _tableView.delegate = self;  // TODO: implement delegate methods
+    
+    [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
     
     UINib *tableViewCellNib =  [UINib nibWithNibName:kTutorialStepCellNibName bundle:[NSBundle bundleForClass:[self class]]];
     [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialStepCellReuseIdentifier];
   }
   return self;
+}
+
+- (void)initFetchedResultsControllerBinder
+{
+  __weak typeof(self) weakSelf = self;
+  _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
+  }];
 }
 
 - (void)initTableViewDataSource
@@ -47,15 +59,15 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
-    [weakSelf configureCell:tutorialStepCell forIndexPath:indexPath];
+    [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:nil groupBy:nil delegate:weakSelf];
+    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:nil groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder];
   };
   _tableView.dataSource = _tableViewDataSource;
 }
 
-- (void)configureCell:(TutorialStepTableViewCell *)tutorialStepCell forIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(TutorialStepTableViewCell *)tutorialStepCell atIndexPath:(NSIndexPath *)indexPath
 {
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
