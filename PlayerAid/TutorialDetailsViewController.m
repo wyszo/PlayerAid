@@ -8,11 +8,13 @@
 #import "TutorialTableViewCell.h"
 #import "TutorialsTableDataSource.h"
 #import "TutorialCellHelper.h"
+#import "TutorialStepsDataSource.h"
 
 
 @interface TutorialDetailsViewController ()
 
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
+@property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -26,16 +28,29 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self setupTableView];
+  [self setupTableViewHeader];
+  [self setupTutorialStepsTableView];
 }
 
-- (void)setupTableView
+- (void)setupTableViewHeader
 {
-  self.headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
-  AssertTrueOrReturn(self.tutorial.objectID);
-  self.headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self IN %@", @[ self.tutorial ]];
-  
   self.tableView.tableHeaderView = self.headerTableView;
+  self.headerTableViewDataSource = self.headerTableViewDataSource;
+}
+
+- (void)setupTutorialStepsTableView
+{
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView];
+}
+
+- (TutorialsTableDataSource *)headerTableViewDataSource
+{
+  if (!_headerTableViewDataSource) {
+    AssertTrueOrReturnNil(self.tutorial.objectID); // tutorial needs to have been set before this initialization
+    _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
+    _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self IN %@", @[ self.tutorial ]];
+  }
+  return _headerTableViewDataSource;
 }
 
 #pragma mark - Lazy Initalization

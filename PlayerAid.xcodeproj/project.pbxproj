@@ -44,6 +44,7 @@
 		31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */; };
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
 		31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */; };
+		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -141,6 +142,7 @@
 		31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepsDataSource.m; sourceTree = "<group>"; };
 		31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewDataSource.h; sourceTree = "<group>"; };
 		31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewDataSource.m; sourceTree = "<group>"; };
+		31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStepTableViewCell.xib; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -524,11 +526,20 @@
 			name = CoreDataTableViewDataSource;
 			sourceTree = "<group>";
 		};
+		31B735FF1A88D9780081AE15 /* Tutorial Cells */ = {
+			isa = PBXGroup;
+			children = (
+				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
+				31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */,
+			);
+			name = "Tutorial Cells";
+			sourceTree = "<group>";
+		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
 				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
-				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
+				31B735FF1A88D9780081AE15 /* Tutorial Cells */,
 				31B735E01A87B4350081AE15 /* Create Tutorial */,
 			);
 			name = Xibs;
@@ -730,6 +741,7 @@
 			files = (
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
+				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,

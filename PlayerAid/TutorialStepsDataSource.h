@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface TutorialStepsDataSource : NSObject <UITableViewDataSource>
+@interface TutorialStepsDataSource : NSObject 
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
