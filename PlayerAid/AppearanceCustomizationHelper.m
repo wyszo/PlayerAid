@@ -59,7 +59,7 @@
 {
   [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
   
-  UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:10.0f];
+  UIFont *font = [UIFont fontWithName:@"Avenir-Roman" size:10.0f];
   AssertTrueOrReturn(font);
   
   [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : font } forState:UIControlStateNormal];
