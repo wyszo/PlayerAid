@@ -4,9 +4,11 @@
 
 #import "TutorialStepsDataSource.h"
 #import <CoreData/CoreData.h>
+#import <KZAsserts.h>
 #import <NSManagedObject+MagicalFinders.h>
 #import "TutorialStep.h"
 #import "CoreDataTableViewDataSource.h"
+#import "TutorialStepTableViewCell.h"
 
 
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
@@ -43,7 +45,9 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   __weak typeof(self) weakSelf = self;
   
   _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
-    // TODO: configure Tutorial Step cell
+    AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
+    TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
+    [weakSelf configureCell:tutorialStepCell forIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:nil groupBy:nil delegate:weakSelf];
@@ -51,7 +55,13 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   _tableView.dataSource = _tableViewDataSource;
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate 
+- (void)configureCell:(TutorialStepTableViewCell *)tutorialStepCell forIndexPath:(NSIndexPath *)indexPath
+{
+  TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
+  [tutorialStepCell configureWithTutorialStep:tutorialStep];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
 
 // TODO: make a separate object just handling FetchedResultsControllerDelegate, use ocde from TutorialsTableViewDataSource
 
