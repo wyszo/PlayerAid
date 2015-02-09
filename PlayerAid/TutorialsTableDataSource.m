@@ -12,120 +12,9 @@
 #import "TutorialTableViewCell.h"
 #import "ServerCommunicationController.h"
 #import "TutorialCellHelper.h"
-
+#import "CoreDataTableViewDataSource.h"
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
-
-
-@interface CoreDataTableViewDataSource : NSObject <UITableViewDataSource>
-
-@property (copy, nonatomic) NSFetchedResultsController* (^fetchedResultsControllerLazyInitializationBlock)();
-@property (copy, nonatomic) void (^deleteCellOnSwipeBlock)(NSIndexPath *indexPath);
-
-
-- (instancetype)initWithConfigureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock;
-- (void)resetFetchedResultsController;
-
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
-
-@end
-
-
-@interface CoreDataTableViewDataSource ()
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, copy) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
-
-@end
-
-
-@implementation CoreDataTableViewDataSource
-
-#pragma mark - Initialization
-
-- (instancetype)initWithConfigureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock
-{
-  self = [super init];
-  if (self) {
-    _configureCellBlock = configureCellBlock;
-  }
-  return self;
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-  return self.fetchedResultsController.sections.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  return [self sectionInfoForSection:section].numberOfObjects;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  return [self sectionInfoForSection:section].name;
-}
-
-- (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section
-{
-  return self.fetchedResultsController.sections[section];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTutorialCellReuseIdentifier];
-  
-  if (self.configureCellBlock) {
-    self.configureCellBlock(cell, indexPath);
-  }
-  return cell;
-}
-
-#pragma mark - Deleting cells
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  return (self.deleteCellOnSwipeBlock != nil);
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (self.deleteCellOnSwipeBlock && editingStyle == UITableViewCellEditingStyleDelete) {
-    self.deleteCellOnSwipeBlock(indexPath);
-  }
-}
-
-#pragma mark - Lazy Initialization
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-  if (!_fetchedResultsController) {
-    if (self.fetchedResultsControllerLazyInitializationBlock) {
-      _fetchedResultsController = self.fetchedResultsControllerLazyInitializationBlock();
-    }
-  }
-  return _fetchedResultsController;
-}
-
-#pragma mark - Other methods
-
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
-{
-  id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSection:indexPath.section];
-  AssertTrueOrReturnNil(sectionInfo.objects.count > indexPath.row);
-  return sectionInfo.objects[indexPath.row];
-}
-
-- (void)resetFetchedResultsController
-{
-  _fetchedResultsController = nil;
-}
-
-@end
-
 
 
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
@@ -140,16 +29,13 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (instancetype)initWithTableView:(UITableView *)tableView
 {
-  // TODO: pass a predicate and groupBy in initializer, so we don't reload tableView unnecessarily after setting predicate and groupBy
   self = [super init];
   if (self) {
     _tableView = tableView;
     
     [self initTableViewDataSource];
     _tableView.delegate = self;
-    
-    UINib *tableViewCellNib = [TutorialCellHelper nibForTutorialCell];
-    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
+    [_tableView registerNib:[TutorialCellHelper nibForTutorialCell] forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
 }
@@ -158,7 +44,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 {
   __weak typeof(self) weakSelf = self;
   
-  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithConfigureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {

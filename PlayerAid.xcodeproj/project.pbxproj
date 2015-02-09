@@ -43,6 +43,7 @@
 		31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735EF1A87FADE0081AE15 /* TutorialStep.m */; };
 		31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */; };
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
+		31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -138,6 +139,8 @@
 		31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCellHelper.m; sourceTree = "<group>"; };
 		31B735F51A88009A0081AE15 /* TutorialStepsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepsDataSource.h; sourceTree = "<group>"; };
 		31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepsDataSource.m; sourceTree = "<group>"; };
+		31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewDataSource.h; sourceTree = "<group>"; };
+		31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewDataSource.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				31B735F81A88D3B00081AE15 /* TableView */,
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				3177800D1A80047C007057CD /* Tutorials */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
@@ -501,6 +505,23 @@
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		31B735F81A88D3B00081AE15 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */,
+				31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */,
+			);
+			name = CoreDataTableViewDataSource;
 			sourceTree = "<group>";
 		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
@@ -774,6 +795,7 @@
 				31B735EA1A87D8160081AE15 /* ApplicationViewHierarchyHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
+				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
