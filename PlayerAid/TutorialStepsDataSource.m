@@ -15,8 +15,10 @@
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
 static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
+static const CGFloat kTutorialStepCellHeight = 120;
 
-@interface TutorialStepsDataSource ()
+
+@interface TutorialStepsDataSource () <UITableViewDelegate>
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
@@ -33,7 +35,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   self = [super init];
   if (self) {
     _tableView = tableView;
-//    _tableView.delegate = self;  // TODO: implement delegate methods
+    _tableView.delegate = self;
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -73,9 +75,12 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate
+#pragma mark - UITableViewDelegate
 
-// TODO: make a separate object just handling FetchedResultsControllerDelegate, use ocde from TutorialsTableViewDataSource
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  // TODO: read that value from xib (has to be dependent on tutorialStep type though)
+  return kTutorialStepCellHeight;
+}
 
 @end
