@@ -75,9 +75,10 @@
     [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
     return;
   }
-  
-  
-  // TODO: return to CreateTutotialController and save a new tutorial
+
+  if (self.saveDelegate) {
+    [self.saveDelegate saveTutorialTitled:self.titleTextField.text section:self.selectedSection];
+  }
 }
 
 #pragma mark - UIActionSheetDelegate

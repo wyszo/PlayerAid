@@ -3,12 +3,24 @@
 //
 
 #import "CreateTutorialViewController.h"
+#import <NSManagedObject+MagicalRecord.h>
+#import <NSManagedObjectContext+MagicalRecord.h>
+#import <NSManagedObject+MagicalFinders.h>
+#import <MagicalRecord+Actions.h>
+#import <KZAsserts.h>
+#import "Tutorial.h"
+#import "Section.h"
+#import "User.h"
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
 
-@interface CreateTutorialViewController ()
+
+@interface CreateTutorialViewController () <SaveTutorialDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
+
+@property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
+@property (strong, nonatomic) Tutorial *tutorial;
 @end
 
 
@@ -22,7 +34,34 @@
   
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
   self.headerViewController.imagePickerControllerDelegate = self;
+  self.headerViewController.saveDelegate = self;
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  
+  // Where should we do that? This doesn't seem to be a correct place...
+  [self initializeContextAndNewTutorialObject];
+}
+
+#pragma mark - Context and Tutorial object initialization
+
+- (void)initializeContextAndNewTutorialObject
+{
+  self.createTutorialContext = [NSManagedObjectContext MR_context];
+  AssertTrueOrReturn(self.createTutorialContext);
+  
+  self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+  AssertTrueOrReturn(self.tutorial);
+  
+  [self.tutorial setDraftValue:YES];
+  [self assignTutorialToCurrentUser];
+}
+
+- (void)assignTutorialToCurrentUser
+{
+  // TODO: assign to current user, not the first found in db!
+  
+  User *user = [User MR_findFirstInContext:self.createTutorialContext];
+  AssertTrueOrReturn(user);
+  [user addCreatedTutorialObject:self.tutorial];
 }
 
 #pragma mark - NavigationBar buttons
@@ -70,6 +109,22 @@
 - (void)dismissViewController
 {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - SaveTutorialDelegate
+
+- (void)saveTutorialTitled:(NSString *)title section:(Section *)section
+{
+  AssertTrueOrReturn(title.length);
+  AssertTrueOrReturn(section);
+  
+  self.tutorial.title = title;
+  self.tutorial.createdAt = [NSDate new];
+  [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
+  
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+  
+  [self dismissViewController];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
