@@ -3,6 +3,7 @@
 //
 
 #import <FacebookSDK.h>
+#import <KZAsserts.h>
 #import "AlertFactory.h"
 
 
@@ -22,7 +23,17 @@
 
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
 {
-  NSString *message = @"Tutorial needs to have a title";
+  return [self showAlertViewWithMessage:@"Tutorial needs to have a title"];
+}
+
++ (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView
+{
+  return [self showAlertViewWithMessage:@"You need to select tutorial category first"];
+}
+
++ (UIAlertView *)showAlertViewWithMessage:(NSString *)message
+{
+  AssertTrueOrReturnNil(message.length);
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
   [alert show];
   return alert;

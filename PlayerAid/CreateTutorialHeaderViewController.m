@@ -13,7 +13,9 @@
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
+
 @property (strong, nonatomic) NSArray *actionSheetSections;
+@property (strong, nonatomic) Section *selectedSection;
 @end
 
 
@@ -66,9 +68,16 @@
 {
   if (!self.titleTextField.text.length) {
     [AlertFactory showCreateTutorialNoTitleAlertView];
+    return;
   }
   
-  // TODO: save a new tutorial
+  if (!self.selectedSection) {
+    [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
+    return;
+  }
+  
+  
+  // TODO: return to CreateTutotialController and save a new tutorial
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -77,8 +86,8 @@
 {
   if (buttonIndex != actionSheet.cancelButtonIndex) {
     AssertTrueOrReturn(buttonIndex - 1 >= 0);
-    Section *selectedSection = self.actionSheetSections[buttonIndex - 1];
-    [self.pickACategoryButton setTitle:selectedSection.name forState:UIControlStateNormal];
+    self.selectedSection = self.actionSheetSections[buttonIndex - 1];
+    [self.pickACategoryButton setTitle:self.selectedSection.name forState:UIControlStateNormal];
   }
 }
 

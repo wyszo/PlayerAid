@@ -8,7 +8,10 @@
 @interface AlertFactory : NSObject
 
 + (UIAlertView *)showGenericErrorAlertView;
+
+// Create Tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
++ (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;
