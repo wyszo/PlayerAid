@@ -4,6 +4,7 @@
 
 #import "TutorialTableViewCell.h"
 #import <KZAsserts.h>
+#import <QuartzCore/QuartzCore.h>
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
+@property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 
 @property (weak, nonatomic) Tutorial *tutorial;
 
@@ -28,6 +30,18 @@
 - (void)awakeFromNib
 {
   [self.avatarImageView styleAsSmallAvatar];
+  [self setupGradientOverlay];
+}
+
+- (void)setupGradientOverlay
+{
+  self.gradientOverlayView.alpha = 0.8;
+  
+  CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+  gradientLayer.frame = self.gradientOverlayView.bounds;
+  UIColor *darkBlue = [UIColor colorWithRed:24.0/255.0 green:45.0/255.0 blue:97.0/255.0 alpha:1.0];
+  gradientLayer.colors = @[ (id)[[UIColor clearColor] CGColor], (id)[darkBlue CGColor] ];
+  [self.gradientOverlayView.layer insertSublayer:gradientLayer atIndex:0];
 }
 
 - (void)configureWithTutorial:(Tutorial *)tutorial

@@ -21,6 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-YS-DgD" userLabel="Gradient overlay view">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
                         <rect key="frame" x="16" y="138" width="346" height="36"/>
                         <constraints>
@@ -28,7 +32,7 @@
                             <constraint firstAttribute="width" constant="346" id="WwR-69-PvA"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
@@ -38,7 +42,7 @@
                             <constraint firstAttribute="height" constant="21" id="gXA-w8-yvP"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-RJ-Tmc" userLabel="Avatar Image View">
@@ -56,7 +60,7 @@
                             <constraint firstAttribute="height" constant="28" id="x0D-03-GGU"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4" userLabel="Like button">
@@ -87,7 +91,7 @@
                             <constraint firstAttribute="height" constant="30" id="Piq-qG-20h"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -166,6 +170,7 @@
                 <outlet property="authorLabel" destination="RTe-nH-zxI" id="v5J-dv-5Kf"/>
                 <outlet property="avatarImageView" destination="l9K-RJ-Tmc" id="a3D-Ng-Njx"/>
                 <outlet property="favouriteButton" destination="gdZ-L3-4O4" id="nCJ-zW-1Be"/>
+                <outlet property="gradientOverlayView" destination="0Db-YS-DgD" id="B0i-mM-1vw"/>
                 <outlet property="sectionLabel" destination="LDd-oO-kzN" id="Gki-J3-XJz"/>
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>
