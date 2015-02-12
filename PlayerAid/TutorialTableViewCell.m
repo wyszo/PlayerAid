@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
+@property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 
