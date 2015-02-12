@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialViewController">
             <connections>
+                <outlet property="createTutoriaStepButtonsView" destination="YKJ-v8-qVW" id="gda-TQ-fQe"/>
                 <outlet property="tutorialTableView" destination="TdO-uS-8Rm" id="qrv-Mq-Dej"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RJH-Gf-pw9"/>
             </connections>

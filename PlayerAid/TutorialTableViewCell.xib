@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -16,9 +17,10 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_cell_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="HIu-FA-MpE" userLabel="Overlay Image View">
+                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Overlay view">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
-                    </imageView>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
                         <rect key="frame" x="16" y="138" width="346" height="36"/>
                         <constraints>
@@ -95,25 +97,23 @@
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="bottom" secondItem="Gdk-OC-wt1" secondAttribute="bottomMargin" id="0en-si-9wn"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gdZ-L3-4O4" secondAttribute="trailing" constant="8" id="1ar-Dq-cZM"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="trailing" secondItem="LDd-oO-kzN" secondAttribute="trailing" id="2xO-Nl-BJC"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="HIu-FA-MpE" secondAttribute="trailing" constant="-8" id="7EH-zJ-trf"/>
-                    <constraint firstItem="OOG-mE-GJc" firstAttribute="width" secondItem="HIu-FA-MpE" secondAttribute="width" id="7ob-TM-F8E"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hII-NL-LnG" secondAttribute="bottom" constant="-8" id="7X9-yU-YVq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LDd-oO-kzN" secondAttribute="trailing" constant="18" id="8YE-iW-ZTL"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="trailing" secondItem="Gdk-OC-wt1" secondAttribute="trailingMargin" id="BBM-c9-yRc"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8VG-PO-gFC" secondAttribute="bottom" id="BSL-vY-Z5y"/>
                     <constraint firstAttribute="bottomMargin" secondItem="l9K-RJ-Tmc" secondAttribute="bottom" constant="8" id="BX6-oa-Vd4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="8VG-PO-gFC" secondAttribute="trailing" id="CGf-m0-fIz"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" constant="-0.5" id="CPW-2X-bUt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hII-NL-LnG" secondAttribute="trailing" constant="-8" id="Cwa-Ib-YRs"/>
                     <constraint firstItem="LDd-oO-kzN" firstAttribute="leading" secondItem="RTe-nH-zxI" secondAttribute="trailing" constant="109" id="DBL-6h-hgU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8VG-PO-gFC" secondAttribute="bottom" constant="16" id="DZ9-xH-7P7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VaV-Pj-OYA" secondAttribute="trailing" constant="8" id="JNf-52-43w"/>
                     <constraint firstAttribute="trailingMargin" secondItem="8VG-PO-gFC" secondAttribute="trailing" constant="8" id="KOl-2e-KXV"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="trailing" secondItem="Gdk-OC-wt1" secondAttribute="trailingMargin" id="KT2-HX-UpY"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="trailing" secondItem="Gdk-OC-wt1" secondAttribute="trailingMargin" constant="-8" id="P84-SH-z2H"/>
-                    <constraint firstItem="OOG-mE-GJc" firstAttribute="height" secondItem="HIu-FA-MpE" secondAttribute="height" id="Q7e-XE-js0"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="bottom" secondItem="Gdk-OC-wt1" secondAttribute="bottomMargin" constant="-8" id="R4d-nR-s8P"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="10" id="UbL-4A-fj9"/>
                     <constraint firstItem="LDd-oO-kzN" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="8" id="Uqd-o6-yIs"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="HIu-FA-MpE" secondAttribute="bottom" constant="-8" id="WMQ-kg-4ff"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="4" id="YAA-0y-hKi"/>
                     <constraint firstItem="fFb-Ug-2gd" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="a2s-LB-Ako"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OOG-mE-GJc" secondAttribute="trailing" constant="-8" id="bRL-3C-7b5"/>
@@ -122,14 +122,14 @@
                     <constraint firstItem="gdZ-L3-4O4" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="8" id="daU-3J-uFW"/>
                     <constraint firstItem="fFb-Ug-2gd" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="130" id="dfj-of-nZo"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="e10-KV-CyY"/>
-                    <constraint firstItem="HIu-FA-MpE" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="fkb-nx-XiB"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="bottom" secondItem="Gdk-OC-wt1" secondAttribute="bottomMargin" id="gbc-24-9cY"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="16" id="jXZ-Dz-1eK"/>
                     <constraint firstItem="gdZ-L3-4O4" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="445" id="lBj-Gn-3w8"/>
                     <constraint firstItem="8VG-PO-gFC" firstAttribute="bottom" secondItem="LDd-oO-kzN" secondAttribute="bottom" id="lHe-YD-B5h"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="top" secondItem="gdZ-L3-4O4" secondAttribute="bottom" constant="8" id="mBN-kA-uva"/>
+                    <constraint firstItem="hII-NL-LnG" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="mur-CC-2pc"/>
                     <constraint firstItem="OOG-mE-GJc" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="-8" id="n78-to-rv4"/>
-                    <constraint firstItem="HIu-FA-MpE" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="-8" id="oCm-8n-KrC"/>
+                    <constraint firstItem="hII-NL-LnG" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="-8" id="qRe-5N-gzZ"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="8" id="sfi-hL-a9v"/>
                     <constraint firstAttribute="trailingMargin" secondItem="8VG-PO-gFC" secondAttribute="trailing" id="snv-eT-2Vc"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="top" secondItem="gdZ-L3-4O4" secondAttribute="bottom" constant="8" id="vjF-nl-zHc"/>
@@ -138,8 +138,6 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="7ob-TM-F8E"/>
-                        <exclude reference="Q7e-XE-js0"/>
                         <exclude reference="bd4-ay-fYi"/>
                         <exclude reference="UbL-4A-fj9"/>
                         <exclude reference="sfi-hL-a9v"/>
@@ -172,11 +170,10 @@
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>
             </connections>
-            <point key="canvasLocation" x="436" y="109"/>
+            <point key="canvasLocation" x="436" y="107"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="like_button_unpressed" width="28" height="24"/>
-        <image name="tutorial_cell_overlay" width="320" height="224"/>
     </resources>
 </document>

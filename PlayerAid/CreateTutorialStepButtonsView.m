@@ -36,4 +36,21 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsView";
   return self;
 }
 
+#pragma mark - IBActions
+
+- (IBAction)photoButtonPressed:(id)sender
+{
+  [self.delegate addPhotoStepSelected];
+}
+
+- (IBAction)videoButtonPressed:(id)sender
+{
+  [self.delegate addVideoStepSelected];
+}
+
+- (IBAction)textButtonPressed:(id)sender
+{
+  [self.delegate addTextStepSelected];
+}
+
 @end

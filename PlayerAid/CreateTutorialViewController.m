@@ -9,18 +9,27 @@
 #import <MagicalRecord+Actions.h>
 #import <KZAsserts.h>
 #import "Tutorial.h"
+#import "TutorialStep.h"
 #import "Section.h"
 #import "User.h"
+#import "TutorialStepsDataSource.h"
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
+#import "CreateTutorialStepButtonsView.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate>
+@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
+@property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
+
+
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
+
 @end
 
 
@@ -36,6 +45,12 @@
   self.headerViewController.imagePickerControllerDelegate = self;
   self.headerViewController.saveDelegate = self;
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  
+  // TODO: display just TutorialSteps for current tutorial!!
+  // add predicate to fetch only from current tutorial!!!
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView];
+  
+  self.createTutoriaStepButtonsView.delegate = self;
   
   // Where should we do that? This doesn't seem to be a correct place...
   [self initializeContextAndNewTutorialObject];
@@ -109,6 +124,28 @@
 - (void)dismissViewController
 {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - CreateTutorialStepButtonsDelegate
+
+- (void)addPhotoStepSelected
+{
+  
+}
+
+- (void)addVideoStepSelected
+{
+  
+}
+
+- (void)addTextStepSelected
+{
+  // Adding a temporary tutorial step
+  
+  TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
+  step.text = @"Sample tutorial step";
+  
+  [self.tutorial addConsistsOfObject:step];
 }
 
 #pragma mark - SaveTutorialDelegate
