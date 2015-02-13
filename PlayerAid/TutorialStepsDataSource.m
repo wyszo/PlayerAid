@@ -6,7 +6,9 @@
 #import <CoreData/CoreData.h>
 #import <KZAsserts.h>
 #import <NSManagedObject+MagicalFinders.h>
+#import <NSManagedObject+MagicalRecord.h>
 #import <NSManagedObjectContext+MagicalRecord.h>
+#import <NSManagedObjectContext+MagicalSaves.h>
 #import "TutorialStep.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
@@ -71,6 +73,13 @@ static const CGFloat kTutorialStepCellHeight = 120;
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
   }];
+  
+  _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
+    TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
+    [tutorialStep MR_deleteInContext:weakSelf.context];
+    [weakSelf.context MR_saveOnlySelfAndWait];
+  };
+  
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
     NSManagedObjectContext *context = weakSelf.context;
