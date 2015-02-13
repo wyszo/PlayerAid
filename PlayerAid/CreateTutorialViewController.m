@@ -46,14 +46,13 @@
   self.headerViewController.saveDelegate = self;
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
   
-  // TODO: display just TutorialSteps for current tutorial!!
-  // add predicate to fetch only from current tutorial!!!
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView];
-  
   self.createTutoriaStepButtonsView.delegate = self;
   
   // Where should we do that? This doesn't seem to be a correct place...
   [self initializeContextAndNewTutorialObject];
+  
+  AssertTrueOrReturn(self.tutorial);
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial];
 }
 
 #pragma mark - Context and Tutorial object initialization

@@ -40,15 +40,16 @@
 
 - (void)setupTutorialStepsTableView
 {
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView];
+  AssertTrueOrReturn(self.tutorial);
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
 {
   if (!_headerTableViewDataSource) {
-    AssertTrueOrReturnNil(self.tutorial.objectID); // tutorial needs to have been set before this initialization
     _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
-    _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self IN %@", @[ self.tutorial ]];
+    AssertTrueOrReturnNil(self.tutorial);
+    _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
   }
   return _headerTableViewDataSource;
 }

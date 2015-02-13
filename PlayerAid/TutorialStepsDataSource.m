@@ -22,6 +22,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) Tutorial *tutorial;
 @end
 
 
@@ -30,12 +31,16 @@ static const CGFloat kTutorialStepCellHeight = 120;
 #pragma mark - Initilization
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
-- (instancetype)initWithTableView:(UITableView *)tableView
+- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial
 {
+  AssertTrueOrReturnNil(tableView);
+  AssertTrueOrReturnNil(tutorial);
+  
   self = [super init];
   if (self) {
     _tableView = tableView;
     _tableView.delegate = self;
+    _tutorial = tutorial;
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -64,7 +69,8 @@ static const CGFloat kTutorialStepCellHeight = 120;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:nil groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
+    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder];
   };
   _tableView.dataSource = _tableViewDataSource;
 }
