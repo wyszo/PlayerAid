@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>30585268-653B-42EA-9C73-8449B59F8C36</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PlayerAid</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</key>
+		<string>bitbucket.org:playeraid/playeraid-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PlayerAid.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:playeraid/playeraid-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PlayerAid</string>
+		</dict>
+	</array>
+</dict>
+</plist>
