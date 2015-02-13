@@ -52,7 +52,7 @@
   [self initializeContextAndNewTutorialObject];
   
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
 }
 
 #pragma mark - Context and Tutorial object initialization

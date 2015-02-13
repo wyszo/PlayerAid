@@ -9,6 +9,7 @@
 #import <NSManagedObject+MagicalRecord.h>
 #import <NSManagedObjectContext+MagicalRecord.h>
 #import <NSManagedObjectContext+MagicalSaves.h>
+#import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
@@ -27,6 +28,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, assign) BOOL allowsEditing;
 @end
 
 
@@ -35,7 +37,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
 #pragma mark - Initilization
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
-- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context
+- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing
 {
   AssertTrueOrReturnNil(tableView);
   AssertTrueOrReturnNil(tutorial);
@@ -46,6 +48,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
     _tableView.delegate = self;
     _tutorial = tutorial;
     _context = context;
+    _allowsEditing = allowsEditing;
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -74,27 +77,50 @@ static const CGFloat kTutorialStepCellHeight = 120;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
   }];
   
-  _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
-    TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
-    [tutorialStep MR_deleteInContext:weakSelf.context];
-    [weakSelf.context MR_saveOnlySelfAndWait];
-  };
+  [self setupTableViewDataSourceCellsEditing];
   
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
-    NSManagedObjectContext *context = weakSelf.context;
-    if (!context) {
-      context = [NSManagedObjectContext MR_defaultContext];
-    }
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:context];
+    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
   };
   _tableView.dataSource = _tableViewDataSource;
+}
+
+- (void)setupTableViewDataSourceCellsEditing
+{
+  if (!self.allowsEditing) {
+    return;
+  }
+  
+  __weak typeof(self) weakSelf = self;
+  _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
+    NSString *message = @"Are you sure you want to delete tutorial step? This action cannot be reverted!";
+    [AlertFactory showOKCancelAlertViewWithMessage:message okTitle:@"Yes, delete tutorial step" okAction:^{
+      TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
+      AssertTrueOrReturn(weakSelf.context);
+      [tutorialStep MR_deleteInContext:weakSelf.context];
+      [weakSelf.context MR_saveOnlySelfAndWait];
+    } cancelAction:^{
+      // hide delete button
+      [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+  };
 }
 
 - (void)configureCell:(TutorialStepTableViewCell *)tutorialStepCell atIndexPath:(NSIndexPath *)indexPath
 {
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
+}
+
+#pragma mark - Context 
+
+- (NSManagedObjectContext *)context
+{
+  if (!_context) {
+    return [NSManagedObjectContext MR_defaultContext];
+  }
+  return _context;
 }
 
 #pragma mark - UITableViewDelegate

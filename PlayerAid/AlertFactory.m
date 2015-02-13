@@ -4,6 +4,7 @@
 
 #import <FacebookSDK.h>
 #import <KZAsserts.h>
+#import <UIAlertView+Blocks.h>
 #import "AlertFactory.h"
 
 
@@ -37,6 +38,30 @@
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
   [alert show];
   return alert;
+}
+
++ (UIAlertView *)showOKCancelAlertViewWithMessage:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
+{
+  AssertTrueOrReturnNil(message.length);
+  
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"Cancel" action:^{
+    if (cancelAction) {
+      cancelAction();
+    }
+  }];
+  
+  if (okTitle.length == 0) {
+    okTitle = @"OK";
+  }
+  RIButtonItem *okButtonItem = [RIButtonItem itemWithLabel:okTitle action:^{
+    if (okAction) {
+      okAction();
+    }
+  }];
+  
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
+  [alertView show];
+  return alertView;
 }
 
 #pragma mark - Facebook
