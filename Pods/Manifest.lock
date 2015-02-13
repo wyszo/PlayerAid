@@ -34,13 +34,13 @@ PODS:
   - UIAlertView-Blocks (1.0)
 
 DEPENDENCIES:
-  - AFNetworking
-  - Facebook-iOS-SDK
-  - GoogleAnalytics-iOS-SDK
-  - KZAsserts
-  - KZPropertyMapper
-  - MagicalRecord
-  - UIAlertView-Blocks
+  - AFNetworking (= 2.5.0)
+  - Facebook-iOS-SDK (= 3.22.0)
+  - GoogleAnalytics-iOS-SDK (= 3.10)
+  - KZAsserts (= 1.0)
+  - KZPropertyMapper (= 2.5.1)
+  - MagicalRecord (= 2.2)
+  - UIAlertView-Blocks (= 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
