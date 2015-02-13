@@ -52,7 +52,7 @@
   [self initializeContextAndNewTutorialObject];
   
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext];
 }
 
 #pragma mark - Context and Tutorial object initialization
@@ -145,6 +145,19 @@
   step.text = @"Sample tutorial step";
   
   [self.tutorial addConsistsOfObject:step];
+  
+  [self fillRequiredFieldsForTutorial:self.tutorial];
+  [self.createTutorialContext MR_saveOnlySelfAndWait];
+}
+
+- (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial
+{
+  if (!tutorial.title) {
+    tutorial.title = @"";
+  }
+  if (!tutorial.createdAt) {
+    tutorial.createdAt = [NSDate new];
+  }
 }
 
 #pragma mark - SaveTutorialDelegate

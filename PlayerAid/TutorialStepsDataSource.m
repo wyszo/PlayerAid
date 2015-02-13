@@ -6,6 +6,7 @@
 #import <CoreData/CoreData.h>
 #import <KZAsserts.h>
 #import <NSManagedObject+MagicalFinders.h>
+#import <NSManagedObjectContext+MagicalRecord.h>
 #import "TutorialStep.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
@@ -23,6 +24,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
+@property (nonatomic, strong) NSManagedObjectContext *context;
 @end
 
 
@@ -31,7 +33,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
 #pragma mark - Initilization
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
-- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial
+- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context
 {
   AssertTrueOrReturnNil(tableView);
   AssertTrueOrReturnNil(tutorial);
@@ -41,6 +43,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
     _tableView = tableView;
     _tableView.delegate = self;
     _tutorial = tutorial;
+    _context = context;
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -70,7 +73,11 @@ static const CGFloat kTutorialStepCellHeight = 120;
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder];
+    NSManagedObjectContext *context = weakSelf.context;
+    if (!context) {
+      context = [NSManagedObjectContext MR_defaultContext];
+    }
+    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:context];
   };
   _tableView.dataSource = _tableViewDataSource;
 }

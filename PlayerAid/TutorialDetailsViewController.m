@@ -41,7 +41,7 @@
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
