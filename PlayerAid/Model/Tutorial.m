@@ -2,6 +2,7 @@
 #import <KZAsserts.h>
 
 
+NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
@@ -19,6 +20,7 @@ NSString *const kTutorialStatePublished = @"Published";
 - (void)setState:(NSString *)state
 {
   NSArray *allStates = @[
+                         kTutorialStateUnsaved,
                          kTutorialStateDraft,
                          kTutorialStateInReview,
                          kTutorialStatePublished
@@ -26,6 +28,28 @@ NSString *const kTutorialStatePublished = @"Published";
   
   AssertTrueOrReturn([allStates containsObject:state]);
   self.primitiveState = state;
+}
+
+#pragma mark - Unsaved 
+
+- (NSNumber *)unsaved
+{
+  return @([self primitiveUnsavedValue]);
+}
+
+- (BOOL)primitiveUnsavedValue
+{
+  return [self.state isEqualToString:kTutorialStateUnsaved];
+}
+
+- (void)setUnsavedValue:(BOOL)value_
+{
+  [self setPrimitiveUnsavedValue:value_];
+}
+
+- (void)setPrimitiveUnsavedValue:(BOOL)value
+{
+  self.state = kTutorialStateUnsaved;
 }
 
 #pragma mark - Draft
@@ -39,10 +63,20 @@ NSString *const kTutorialStatePublished = @"Published";
 {
   return [self.state isEqualToString:kTutorialStateDraft];
 }
-  
-- (void)setDraft:(NSNumber *)draft
+
+- (void)setDraftValue:(BOOL)value_
 {
-  self.state = kTutorialStateDraft;
+  [self setPrimitiveDraftValue:value_];
+}
+
+- (void)setPrimitiveDraftValue:(BOOL)value
+{
+  if (value) {
+    self.state = kTutorialStateDraft;
+  }
+  else {
+    self.state = kTutorialStateUnsaved;
+  }
 }
 
 #pragma mark - In Review
@@ -60,6 +94,20 @@ NSString *const kTutorialStatePublished = @"Published";
 - (void)setInReview:(NSNumber *)inReview
 {
   self.state = kTutorialStateInReview;
+}
+
+- (void)setInReviewValue:(BOOL)value_
+{
+  [self setPrimitiveInReviewValue:value_];
+}
+
+- (void)setPrimitiveInReviewValue:(BOOL)value_
+{
+  if (value_) {
+    self.state = kTutorialStateInReview;
+  } else {
+    self.state = kTutorialStateDraft;
+  }
 }
 
 @end

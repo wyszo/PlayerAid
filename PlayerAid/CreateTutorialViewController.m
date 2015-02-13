@@ -62,20 +62,37 @@
   self.createTutorialContext = [NSManagedObjectContext MR_context];
   AssertTrueOrReturn(self.createTutorialContext);
   
+  [self deleteUserUnsavedTutorials];
+  
   self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
   AssertTrueOrReturn(self.tutorial);
   
-  [self.tutorial setDraftValue:YES];
+  self.tutorial.primitiveUnsavedValue = YES;
   [self assignTutorialToCurrentUser];
+}
+
+- (void)deleteUserUnsavedTutorials
+{
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ && unsaved = YES", [self currentUser]];
+  NSArray *unsavedTutorials = [Tutorial MR_findAllSortedBy:nil ascending:YES withPredicate:predicate inContext:self.createTutorialContext];
+  for (Tutorial *tutorial in unsavedTutorials) {
+    [tutorial MR_deleteInContext:self.createTutorialContext];
+  }
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)assignTutorialToCurrentUser
 {
-  // TODO: assign to current user, not the first found in db!
+  [[self currentUser] addCreatedTutorialObject:self.tutorial];
+}
+
+- (User *)currentUser
+{
+  // TODO: return correct current user, not the first one find in a database!
   
   User *user = [User MR_findFirstInContext:self.createTutorialContext];
-  AssertTrueOrReturn(user);
-  [user addCreatedTutorialObject:self.tutorial];
+  AssertTrueOrReturnNil(user);
+  return user;
 }
 
 #pragma mark - NavigationBar buttons
@@ -169,6 +186,7 @@
   
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];
+  self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
   
   [self.createTutorialContext MR_saveToPersistentStoreAndWait];
