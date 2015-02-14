@@ -11,6 +11,7 @@
 #import <NSManagedObjectContext+MagicalSaves.h>
 #import "AlertFactory.h"
 #import "TutorialStep.h"
+#import "Tutorial.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
 #import "TableViewFetchedResultsControllerBinder.h"
@@ -92,6 +93,43 @@ static const CGFloat kTutorialStepCellHeight = 120;
     return;
   }
   
+  [self setupTableViewDataSourceCellMoveRowBlock];
+  [self setupTableViewDataSourceCellDeleteBlock];
+}
+
+- (void)setupTableViewDataSourceCellMoveRowBlock
+{
+  __weak typeof(self) weakSelf = self;
+  _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
+    id objectFrom = [weakSelf.tableViewDataSource objectAtIndexPath:fromIndexPath];
+    id objectTo = [weakSelf.tableViewDataSource objectAtIndexPath:toIndexPath];
+    AssertTrueOrReturn([objectFrom isKindOfClass:[TutorialStep class]]);
+    AssertTrueOrReturn([objectTo isKindOfClass:[TutorialStep class]]);
+    
+    TutorialStep *tutorialStepFrom = objectFrom;
+    TutorialStep *tutorialStepTo = objectTo;
+    
+    Tutorial *parentTutorial = tutorialStepFrom.belongsTo;
+    AssertTrueOrReturn(parentTutorial);
+    AssertTrueOrReturn(parentTutorial == tutorialStepTo.belongsTo);
+    
+    NSInteger fromIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepFrom];
+    NSInteger toIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepTo];
+    
+    TutorialStep *temporaryStep = [TutorialStep MR_createInContext:weakSelf.context];
+    
+    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:temporaryStep];
+    [parentTutorial replaceObjectInConsistsOfAtIndex:toIndex withObject:tutorialStepFrom];
+    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:tutorialStepTo];
+    
+    [temporaryStep MR_deleteInContext:parentTutorial.managedObjectContext];
+    
+//    [weakSelf.context MR_saveOnlySelfAndWait];
+  };
+}
+
+- (void)setupTableViewDataSourceCellDeleteBlock
+{
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
     NSString *message = @"Are you sure you want to delete tutorial step? This action cannot be reverted!";

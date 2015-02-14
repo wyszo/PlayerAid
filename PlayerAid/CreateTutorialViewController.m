@@ -130,6 +130,8 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
+  
+  [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
 }
 
 - (void)publishButtonPressed
@@ -156,10 +158,19 @@
 
 - (void)addTextStepSelected
 {
+  if (self.tutorialTableView.isEditing) {
+    [self.tutorialTableView setEditing:NO animated:YES];
+    return;
+  }
+  
   // Adding a temporary tutorial step
   
   TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
-  step.text = @"Sample tutorial step";
+
+  static NSInteger tutorialStepsCounter;
+  tutorialStepsCounter++;
+  NSString *text = [NSString stringWithFormat:@"Sample tutorial step %li", tutorialStepsCounter];
+  step.text = text;
   
   [self.tutorial addConsistsOfObject:step];
   
