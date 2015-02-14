@@ -54,14 +54,15 @@
 
 - (IBAction)pickACategory:(id)sender
 {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a category" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:nil];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a category" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
   
   self.actionSheetSections = [Section MR_findAll];
   for (Section *section in self.actionSheetSections) {
     [actionSheet addButtonWithTitle:section.name];
   }
-  
-  [actionSheet showFromTabBar:[ApplicationViewHierarchyHelper applicationTabBarController].tabBar];
+
+  UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+  [actionSheet showInView:window];
 }
 
 - (IBAction)save:(id)sender
@@ -85,9 +86,9 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-  if (buttonIndex != actionSheet.cancelButtonIndex) {
-    AssertTrueOrReturn(buttonIndex - 1 >= 0);
-    self.selectedSection = self.actionSheetSections[buttonIndex - 1];
+  if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex) {
+    AssertTrueOrReturn(buttonIndex >= 0);
+    self.selectedSection = self.actionSheetSections[buttonIndex];
     [self.pickACategoryButton setTitle:self.selectedSection.name forState:UIControlStateNormal];
   }
 }
