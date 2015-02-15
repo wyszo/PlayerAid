@@ -101,6 +101,10 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
   
   [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
   [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateSelected];
+  
+  UIImage *createTutorialOriginalImage = [[UIImage imageNamed:@"createtutorial"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+  createTutorialTabBarItem.image = createTutorialOriginalImage;
+  createTutorialTabBarItem.selectedImage = createTutorialOriginalImage;
 }
 
 @end
