@@ -79,19 +79,14 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (void)customizeCreateTutorialTabBarButtonBackground
 {
-  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
-  AssertTrueOrReturn(tabBarController.tabBar.items.count > kTabBarCreateTutorialItemIndex);
-  
-  // TODO: try grabbing UITabBarItem instead of calculating frame manually!
-  
-  UITabBar *tabBar = tabBarController.tabBar;
-  CGFloat tabbarItemWidth = tabBar.frame.size.width / (CGFloat)tabBar.items.count;
-  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(tabbarItemWidth * kTabBarCreateTutorialItemIndex, 0, tabbarItemWidth, tabBar.frame.size.height)];
-  
+  CGRect frame = [ApplicationViewHierarchyHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+
+  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:frame];
   UIColor *createButtonBackgroundColor = [ColorsHelper tabBarCreateTutorialBackgroundColor];
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
-  
-  [tabBar insertSubview:createButtonBackgroundView atIndex:0];
+ 
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
+  [tabBarController.tabBar insertSubview:createButtonBackgroundView atIndex:0];
 }
 
 - (void)customizeCreateTutorialTabBarButtonFont
