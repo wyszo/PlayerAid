@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
+@property (strong, nonatomic) CAGradientLayer *gradientLayer;
 
 @property (weak, nonatomic) Tutorial *tutorial;
 
@@ -36,13 +37,20 @@
 
 - (void)setupGradientOverlay
 {
+  if (self.gradientLayer) {
+    return;
+  }
+  
   self.gradientOverlayView.alpha = 0.8;
   
-  CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-  gradientLayer.frame = self.gradientOverlayView.bounds;
+  self.gradientLayer = [CAGradientLayer layer];
+  self.gradientLayer.frame = self.gradientOverlayView.bounds;
   UIColor *darkBlue = [UIColor colorWithRed:24.0/255.0 green:45.0/255.0 blue:97.0/255.0 alpha:1.0];
-  gradientLayer.colors = @[ (id)[[UIColor clearColor] CGColor], (id)[darkBlue CGColor] ];
-  [self.gradientOverlayView.layer insertSublayer:gradientLayer atIndex:0];
+  self.gradientLayer.colors = @[ (id)[[UIColor colorWithWhite:1.0 alpha:0] CGColor], (id)[darkBlue CGColor] ];
+  self.gradientLayer.shouldRasterize = YES;
+  self.gradientLayer.rasterizationScale = [UIScreen mainScreen].scale;
+  
+  [self.gradientOverlayView.layer insertSublayer:self.gradientLayer atIndex:0];
 }
 
 - (void)configureWithTutorial:(Tutorial *)tutorial
