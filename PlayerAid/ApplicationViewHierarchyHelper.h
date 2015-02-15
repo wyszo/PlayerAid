@@ -9,5 +9,6 @@
 @interface ApplicationViewHierarchyHelper : NSObject
 
 + (UITabBarController *)applicationTabBarController;
++ (UITabBarItem *)tabBarItemAtIndex:(NSInteger)itemIndex;
 
 @end

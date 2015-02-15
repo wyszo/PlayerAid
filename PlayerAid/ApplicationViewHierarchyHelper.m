@@ -18,4 +18,11 @@
   return tabBarController;
 }
 
++ (UITabBarItem *)tabBarItemAtIndex:(NSInteger)itemIndex
+{
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
+  AssertTrueOrReturnNil(tabBarController.tabBar.items.count > itemIndex);
+  return tabBarController.tabBar.items[itemIndex];
+}
+
 @end

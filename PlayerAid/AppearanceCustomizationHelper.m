@@ -10,6 +10,9 @@
 #import "ApplicationViewHierarchyHelper.h"
 
 
+static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
+
+
 @implementation AppearanceCustomizationHelper
 
 #pragma mark - public
@@ -40,7 +43,7 @@
   [self customizeTabbarFontColors];
   [self customizeTabbarTintColors];
   [self customizeTabbarItemTitles];
-  [self customiseCreateTutorialTabBarButtonBackground];
+  [self customizeCreateTutorialTabBarButton];
 }
 
 - (void)customizeTabbarFontColors
@@ -68,21 +71,36 @@
 
 #pragma mark - Create Tutorial TabBar button
 
-- (void)customiseCreateTutorialTabBarButtonBackground
+- (void)customizeCreateTutorialTabBarButton
+{
+  [self customizeCreateTutorialTabBarButtonBackground];
+  [self customizeCreateTutorialTabBarButtonFont];
+}
+
+- (void)customizeCreateTutorialTabBarButtonBackground
 {
   UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
-  const NSUInteger createItemIndex = 2;
+  AssertTrueOrReturn(tabBarController.tabBar.items.count > kTabBarCreateTutorialItemIndex);
   
-  AssertTrueOrReturn(tabBarController.tabBar.items.count > createItemIndex);
+  // TODO: try grabbing UITabBarItem instead of calculating frame manually!
   
   UITabBar *tabBar = tabBarController.tabBar;
   CGFloat tabbarItemWidth = tabBar.frame.size.width / (CGFloat)tabBar.items.count;
-  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(tabbarItemWidth * createItemIndex, 0, tabbarItemWidth, tabBar.frame.size.height)];
+  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(tabbarItemWidth * kTabBarCreateTutorialItemIndex, 0, tabbarItemWidth, tabBar.frame.size.height)];
   
   UIColor *createButtonBackgroundColor = [ColorsHelper tabBarCreateTutorialBackgroundColor];
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
   
   [tabBar insertSubview:createButtonBackgroundView atIndex:0];
+}
+
+- (void)customizeCreateTutorialTabBarButtonFont
+{
+  UITabBarItem *createTutorialTabBarItem = [ApplicationViewHierarchyHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
+  
+  [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
+  [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateSelected];
 }
 
 @end
