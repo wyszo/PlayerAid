@@ -7,7 +7,7 @@
 #import "KZAsserts.h"
 
 
-static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/api/v1/";
+static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 
 
 @implementation AuthenticationRequestData
