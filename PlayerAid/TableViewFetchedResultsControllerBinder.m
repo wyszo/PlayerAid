@@ -51,7 +51,12 @@
       
     case NSFetchedResultsChangeUpdate:
       if (self.configureCellBlock) {
-        self.configureCellBlock([tableView cellForRowAtIndexPath:indexPath], indexPath);
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell) {
+          self.configureCellBlock(cell, indexPath);
+        } else {
+          // FetchedResultsController of a tableView from other tabBar item (now invisible) got the update, but didn't return a new cell when asked (since it's invisible). Expected case, don't worry.
+        }
       }
       break;
       
