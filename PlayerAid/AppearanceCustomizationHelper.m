@@ -8,6 +8,7 @@
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "FontsHelper.h"
 
 
 static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
@@ -37,7 +38,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
   [[UINavigationBar appearance] setBarTintColor:[ColorsHelper navigationBarColor]];
   [[UINavigationBar appearance] setTintColor:[ColorsHelper navigationBarButtonsColor]];
   
-  UIFont *font = [UIFont fontWithName:@"Avenir-Roman" size:16.0];
+  UIFont *font = [FontsHelper navbarTitleFont];
   AssertTrueOrReturn(font);
   [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                          NSForegroundColorAttributeName : [UIColor whiteColor],
@@ -47,7 +48,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (void)customizeNavigationBarButtonsAppearance
 {
-  UIFont *font = [UIFont fontWithName:@"Avenir-Medium" size:16.0];
+  UIFont *font = [FontsHelper navbarButtonsFont];
   AssertTrueOrReturn(font);
   [[UIBarButtonItem appearance] setTitleTextAttributes:@{
                                                          NSForegroundColorAttributeName : [UIColor whiteColor],
