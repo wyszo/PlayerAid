@@ -13,9 +13,14 @@
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
   UIViewController *rootViewController = appDelegate.window.rootViewController;
   
-  AssertTrueOrReturnNil([rootViewController isKindOfClass:[UITabBarController class]]);
-  UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-  return tabBarController;
+  AssertTrueOrReturnNil([rootViewController isKindOfClass:[UINavigationController class]]);
+  UINavigationController *mainNavigationController = (UINavigationController *)rootViewController;
+  AssertTrueOrReturnNil(mainNavigationController);
+  
+  UIViewController *topViewController = mainNavigationController.topViewController;
+  AssertTrueOrReturnNil([topViewController isKindOfClass:[UITabBarController class]]);
+  
+  return (UITabBarController *)topViewController;
 }
 
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex

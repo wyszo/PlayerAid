@@ -10,6 +10,7 @@
 #import "AppearanceCustomizationHelper.h"
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -25,10 +26,23 @@
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
-  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self populateCoreDataWithSampleEntities];
+  
+  // TODO: instead of manually performing this seague, Authentication controller should do that if we're unauthenticated
+  [self performLoginSegue]; // note this has to be called after setting up core data stack
+  
+  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self setupTabBarActionHandling];
+  
   return YES;
+}
+
+- (void)performLoginSegue
+{
+  if (!self.window.keyWindow) {
+    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue to early after initialization
+  }
+  [[ApplicationViewHierarchyHelper applicationTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
 }
 
 - (void)setupTabBarActionHandling
@@ -42,9 +56,7 @@
     [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   }];
   
-  UIViewController *rootViewController = self.window.rootViewController;
-  AssertTrueOrReturn([rootViewController isKindOfClass:[UITabBarController class]]);
-  ((UITabBarController *)rootViewController).delegate = self.tabBarControllerHandler;
+  [ApplicationViewHierarchyHelper applicationTabBarController].delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
