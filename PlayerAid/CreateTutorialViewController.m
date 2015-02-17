@@ -54,6 +54,7 @@
   [self initializeContextAndNewTutorialObject];
   
   AssertTrueOrReturn(self.tutorial);
+  AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
 }
 

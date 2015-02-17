@@ -8,6 +8,7 @@
 #import "IntroViewController.h"
 #import "FacebookLoginControlsFactory.h"
 #import "AuthenticationController_SavingToken.h"
+#import "ColorsHelper.h"
 
 
 @implementation IntroViewController
@@ -16,6 +17,13 @@
 {
   [super viewDidLoad];
   [self addFacebookLoginButton];
+  
+  self.view.backgroundColor = [ColorsHelper loginViewBackgroundColor];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+  return YES;
 }
 
 #pragma mark - Facebook login

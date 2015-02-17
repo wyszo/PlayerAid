@@ -37,6 +37,11 @@
   self.playerInfoView.user = activeUser;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+  return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - Header View initialization
 
 - (void)setupTableHeaderView

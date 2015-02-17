@@ -370,7 +370,7 @@
         <!--Home-->
         <scene sceneID="cow-Z8-RU0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YGX-n7-kf9" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YGX-n7-kf9" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home-unselected" id="acW-dT-cKf">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="home-selected"/>

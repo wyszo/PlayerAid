@@ -25,4 +25,6 @@ UIColorMethodMake(tutorialsSelectedFilterButtonTextColor, 255, 255, 255)
 UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 
+UIColorMethodMake(loginViewBackgroundColor, 44, 72, 134)
+
 @end

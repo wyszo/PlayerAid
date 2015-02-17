@@ -21,4 +21,6 @@
 + (UIColor *)tutorialsUnselectedFilterButtonColor;
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 
++ (UIColor *)loginViewBackgroundColor;
+
 @end

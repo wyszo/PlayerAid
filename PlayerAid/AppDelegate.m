@@ -12,6 +12,7 @@
 #import "CreateTutorialViewController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "AuthenticationController.h"
+#import "NavigationControllerWhiteStatusbar.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -55,7 +56,8 @@
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
     
     CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createTutorialViewController];
+    NavigationControllerWhiteStatusbar *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:createTutorialViewController];
+    
     
     [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   }];
