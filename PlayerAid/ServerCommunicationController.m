@@ -62,7 +62,9 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
   AssertTrueOrReturn(apiToken.length);
   AssertTrueOrReturn(completion);
   
-  // TODO: incorporate API Token into the request!! (bearer)
+  // TODO: this should be done just once for all subsequent requests (not in here)
+  NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
+  [self.requestOperationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
   
   [self.requestOperationManager POST:@"ping" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
