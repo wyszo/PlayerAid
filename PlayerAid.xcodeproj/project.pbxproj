@@ -35,6 +35,8 @@
 		3179840D1A927352001810DE /* PresentAsModalNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179840C1A927352001810DE /* PresentAsModalNoAnimationSegue.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
+		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
+		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
@@ -130,6 +132,9 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
+		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
+		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
+		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsView.m; sourceTree = "<group>"; };
@@ -219,13 +224,14 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
-		310308AE1A83FA7600B7F921 /* Dummy Create tutorial */ = {
+		310308AE1A83FA7600B7F921 /* Create tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				31A621511A92AFCF00A77878 /* CreateTutorialTextStep */,
 				310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */,
 				310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */,
 			);
-			name = "Dummy Create tutorial";
+			name = "Create tutorial";
 			sourceTree = "<group>";
 		};
 		310308B21A84C92F00B7F921 /* TabBarControllerHandler */ = {
@@ -306,7 +312,7 @@
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 				317780111A8005F9007057CD /* Home */,
 				317780141A80060A007057CD /* Browse */,
-				310308AE1A83FA7600B7F921 /* Dummy Create tutorial */,
+				310308AE1A83FA7600B7F921 /* Create tutorial */,
 				317780121A8005FE007057CD /* Profile */,
 				317780131A800604007057CD /* Settings */,
 			);
@@ -485,6 +491,15 @@
 			name = Styling;
 			sourceTree = "<group>";
 		};
+		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
+			isa = PBXGroup;
+			children = (
+				31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */,
+				31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */,
+			);
+			name = CreateTutorialTextStep;
+			sourceTree = "<group>";
+		};
 		31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +523,7 @@
 				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
 				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
+				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
 			);
 			name = "Create Tutorial";
 			sourceTree = "<group>";
@@ -814,6 +830,7 @@
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
+				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 			);
@@ -869,6 +886,7 @@
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
+				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,

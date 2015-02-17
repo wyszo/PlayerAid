@@ -64,6 +64,24 @@
   return alertView;
 }
 
++ (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"No" action:^{
+    if (completionBlock) {
+      completionBlock(NO);
+    }
+  }];
+  RIButtonItem *confirmButtonItem = [RIButtonItem itemWithLabel:@"YES, remove it" action:^{
+    if (completionBlock) {
+      completionBlock(YES);
+    }
+  }];
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Remove tutorial step?" cancelButtonItem:cancelButtonItem otherButtonItems:confirmButtonItem, nil];
+  [alert show];
+  return alert;
+}
+
 #pragma mark - Facebook
 
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2

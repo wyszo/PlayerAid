@@ -29,6 +29,9 @@
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" id="oSu-2R-s3G"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
+            </connections>
             <point key="canvasLocation" x="251.5" y="495.5"/>
         </tableViewCell>
     </objects>

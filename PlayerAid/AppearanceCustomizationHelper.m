@@ -103,7 +103,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
   UIColor *createButtonBackgroundColor = [ColorsHelper tabBarCreateTutorialBackgroundColor];
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
  
-  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper mainTabBarController];
   [tabBarController.tabBar insertSubview:createButtonBackgroundView atIndex:0];
 }
 

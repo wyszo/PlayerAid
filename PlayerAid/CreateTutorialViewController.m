@@ -16,6 +16,8 @@
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
 #import "CreateTutorialStepButtonsView.h"
+#import "ApplicationViewHierarchyHelper.h"
+#import "CreateTutorialTextStepViewController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
@@ -162,20 +164,7 @@
     [self.tutorialTableView setEditing:NO animated:YES];
     return;
   }
-  
-  // Adding a temporary tutorial step
-  
-  TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
-
-  static NSInteger tutorialStepsCounter;
-  tutorialStepsCounter++;
-  NSString *text = [NSString stringWithFormat:@"Sample tutorial step %li", tutorialStepsCounter];
-  step.text = text;
-  
-  [self.tutorial addConsistsOfObject:step];
-  
-  [self fillRequiredFieldsForTutorial:self.tutorial];
-  [self.createTutorialContext MR_saveOnlySelfAndWait];
+  [self pushCreateTutorialTextStepViewController];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial
@@ -186,6 +175,39 @@
   if (!tutorial.createdAt) {
     tutorial.createdAt = [NSDate new];
   }
+}
+
+#pragma mark - Push views
+
+- (void)pushCreateTutorialTextStepViewController
+{
+  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
+  
+  static NSInteger tutorialStepsCounter;
+  tutorialStepsCounter++;
+  NSString *temporaryText = [NSString stringWithFormat:@"Sample tutorial step %li", (long)tutorialStepsCounter];
+  
+  __weak typeof(self) weakSelf = self;
+  viewController.completionBlock = ^(BOOL shouldSaveStep, NSString *text) {
+    if (shouldSaveStep) {
+      [weakSelf saveTutorialStepWithText:temporaryText]; // should pass 'text' here
+    }
+  };
+  
+  UINavigationController *modalNavigationController = self.navigationController;
+  AssertTrueOrReturn(modalNavigationController);
+  [modalNavigationController pushViewController:viewController animated:YES];
+}
+
+- (void)saveTutorialStepWithText:(NSString *)text
+{
+  TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
+  step.text = text;
+  
+  [self.tutorial addConsistsOfObject:step];
+  
+  [self fillRequiredFieldsForTutorial:self.tutorial];
+  [self.createTutorialContext MR_saveOnlySelfAndWait];
 }
 
 #pragma mark - SaveTutorialDelegate

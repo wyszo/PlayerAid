@@ -8,31 +8,35 @@
 
 @implementation ApplicationViewHierarchyHelper
 
-+ (UITabBarController *)applicationTabBarController
++ (UINavigationController *)mainNavigationController
 {
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
   UIViewController *rootViewController = appDelegate.window.rootViewController;
   
   AssertTrueOrReturnNil([rootViewController isKindOfClass:[UINavigationController class]]);
   UINavigationController *mainNavigationController = (UINavigationController *)rootViewController;
+  
   AssertTrueOrReturnNil(mainNavigationController);
-  
-  UIViewController *topViewController = mainNavigationController.topViewController;
+  return mainNavigationController;
+}
+
++ (UITabBarController *)mainTabBarController
+{
+  UIViewController *topViewController = [self.class mainNavigationController].topViewController;
   AssertTrueOrReturnNil([topViewController isKindOfClass:[UITabBarController class]]);
-  
   return (UITabBarController *)topViewController;
 }
 
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex
 {
-  UITabBarController *tabBarController = [self.class applicationTabBarController];
+  UITabBarController *tabBarController = [self.class mainTabBarController];
   AssertTrueOrReturnNil(tabBarController.tabBar.items.count > itemIndex);
   return tabBarController.tabBar.items[itemIndex];
 }
 
 + (CGRect)frameForTabBarItemAtIndex:(NSUInteger)itemIndex
 {
-  UITabBarController *tabBarController = [self.class applicationTabBarController];
+  UITabBarController *tabBarController = [self.class mainTabBarController];
   AssertTrueOr(tabBarController.tabBar.items.count > itemIndex, return CGRectZero;);
   
   NSMutableArray *allTabBarButtons = [NSMutableArray new];

@@ -42,7 +42,7 @@
   if (!self.window.keyWindow) {
     [self.window makeKeyAndVisible];  // need to call this when we try to perform segue to early after initialization
   }
-  [[ApplicationViewHierarchyHelper applicationTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
+  [[ApplicationViewHierarchyHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
 }
 
 - (void)setupTabBarActionHandling
@@ -56,7 +56,7 @@
     [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   }];
   
-  [ApplicationViewHierarchyHelper applicationTabBarController].delegate = self.tabBarControllerHandler;
+  [ApplicationViewHierarchyHelper mainTabBarController].delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
