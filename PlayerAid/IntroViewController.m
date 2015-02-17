@@ -5,7 +5,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
 #import "IntroViewController.h"
-#import "AuthenticationController.h"
+#import "FacebookLoginControlsFactory.h"
 
 
 @interface IntroViewController ()
@@ -25,10 +25,9 @@
 - (void)addFacebookLoginButton
 {
   __weak typeof(self) weakSelf = self;
-  FBLoginView *loginView = [AuthenticationController  facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSError *error) {
-
+  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSError *error) {
     if (!error) {
-      // TODO: Push the authenticated view hierarchy!!
+      [self dismissViewController];
     }
   }];
   
@@ -36,11 +35,16 @@
   [self.view addSubview:loginView];
 }
 
+- (void)dismissViewController
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - DEBUG IBActions
 
 - (IBAction)debugSkipLoginButtonPressed:(id)sender
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewController];
 }
 
 @end

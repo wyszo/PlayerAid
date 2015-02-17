@@ -11,6 +11,7 @@
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "AuthenticationController.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -28,9 +29,9 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
   [self populateCoreDataWithSampleEntities];
   
-  // TODO: instead of manually performing this seague, Authentication controller should do that if we're unauthenticated
-  [self performLoginSegue]; // note this has to be called after setting up core data stack
-  
+  if ([AuthenticationController checkIsUserAuthenticatedPingServer] == NO) {
+    [self performLoginSegue]; // note this has to be called after setting up core data stack
+  }
   [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self setupTabBarActionHandling];
   
@@ -40,7 +41,7 @@
 - (void)performLoginSegue
 {
   if (!self.window.keyWindow) {
-    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue to early after initialization
+    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
   }
   [[ApplicationViewHierarchyHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
 }

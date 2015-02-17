@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -79,6 +80,8 @@
 /* Begin PBXFileReference section */
 		2250F9FBF5E8C664F2A00ECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		31014E421A9352FA002F3485 /* FacebookLoginControlsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginControlsFactory.h; sourceTree = "<group>"; };
+		31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginControlsFactory.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -204,6 +207,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31014E451A93530F002F3485 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				31DBC1931A7F150F00740A97 /* AlertFactory.h */,
+				31DBC1941A7F150F00740A97 /* AlertFactory.m */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		31014E461A935315002F3485 /* FacebookLoginControls */ = {
+			isa = PBXGroup;
+			children = (
+				31014E421A9352FA002F3485 /* FacebookLoginControlsFactory.h */,
+				31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */,
+			);
+			name = FacebookLoginControls;
+			sourceTree = "<group>";
+		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,8 +672,8 @@
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				31DBC1931A7F150F00740A97 /* AlertFactory.h */,
-				31DBC1941A7F150F00740A97 /* AlertFactory.m */,
+				31014E451A93530F002F3485 /* Alert */,
+				31014E461A935315002F3485 /* FacebookLoginControls */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -921,6 +942,7 @@
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
+				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				3179840D1A927352001810DE /* PresentAsModalNoAnimationSegue.m in Sources */,
