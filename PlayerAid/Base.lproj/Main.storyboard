@@ -294,7 +294,32 @@
                     <view key="view" contentMode="scaleToFill" id="6Xd-Vd-sts">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6C-2a-0Mv">
+                                <rect key="frame" x="223" y="471" width="154" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="154" id="6SI-Wc-tjr"/>
+                                    <constraint firstAttribute="height" constant="65" id="VmA-vY-12n"/>
+                                </constraints>
+                                <state key="normal" title="[DEBUG] Skip Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="debugSkipLoginButtonPressed:" destination="5AG-Cg-YGg" eventType="touchUpInside" id="G38-qn-TdZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KB9-uj-xhL" firstAttribute="top" secondItem="c6C-2a-0Mv" secondAttribute="bottom" constant="64" id="6Qr-oK-Rah"/>
+                            <constraint firstItem="KB9-uj-xhL" firstAttribute="top" secondItem="c6C-2a-0Mv" secondAttribute="bottom" constant="64" id="8IB-Zu-yjL"/>
+                            <constraint firstAttribute="centerX" secondItem="c6C-2a-0Mv" secondAttribute="centerX" id="A2c-Mp-VXq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Qr-oK-Rah"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="TV7-14-3s8"/>
                 </viewController>

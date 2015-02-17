@@ -12,7 +12,6 @@
 @end
 
 
-// TODO: this view should be presented as modal without animation at the beginning
 @implementation IntroViewController
 
 - (void)viewDidLoad
@@ -37,13 +36,11 @@
   [self.view addSubview:loginView];
 }
 
-#pragma mark - Navigation
+#pragma mark - DEBUG IBActions
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)debugSkipLoginButtonPressed:(id)sender
 {
-  // Get the new view controller using [segue destinationViewController].
-  // Pass the selected object to the new view controller.
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

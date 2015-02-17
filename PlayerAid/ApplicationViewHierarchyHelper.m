@@ -70,4 +70,20 @@
   return CGRectZero;
 }
 
+#pragma mark - Traversing TabBar view hierarchy
+
++ (UIView *)tabBarControllerBackgroundView
+{
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper mainTabBarController];
+  AssertTrueOrReturnNil(tabBarController);
+  
+  UIView *tabBarBackgroundView;
+  for (UIView *subview in tabBarController.tabBar.subviews) {
+    if ([subview isKindOfClass:NSClassFromString(@"_UITabBarBackgroundView")]) {
+      tabBarBackgroundView = subview;
+    }
+  }
+  return tabBarBackgroundView; // can be nil
+}
+
 @end
