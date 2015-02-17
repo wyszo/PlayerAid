@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */; };
+		31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */ = {isa = PBXBuildFile; fileRef = 31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -82,6 +83,7 @@
 		27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		31014E421A9352FA002F3485 /* FacebookLoginControlsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginControlsFactory.h; sourceTree = "<group>"; };
 		31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginControlsFactory.m; sourceTree = "<group>"; };
+		31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController_SavingToken.h; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -225,6 +227,16 @@
 			name = FacebookLoginControls;
 			sourceTree = "<group>";
 		};
+		31014E491A93926B002F3485 /* AuthenticationController */ = {
+			isa = PBXGroup;
+			children = (
+				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
+				317780001A7FBFBC007057CD /* AuthenticationController.m */,
+				31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */,
+			);
+			name = AuthenticationController;
+			sourceTree = "<group>";
+		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,8 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				317780161A800630007057CD /* FacebookAuthentication */,
-				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
-				317780001A7FBFBC007057CD /* AuthenticationController.m */,
+				31014E491A93926B002F3485 /* AuthenticationController */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -918,6 +929,7 @@
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
+				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,

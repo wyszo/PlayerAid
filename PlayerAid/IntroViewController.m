@@ -4,12 +4,10 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
+#import <KZAsserts.h>
 #import "IntroViewController.h"
 #import "FacebookLoginControlsFactory.h"
-
-
-@interface IntroViewController ()
-@end
+#import "AuthenticationController_SavingToken.h"
 
 
 @implementation IntroViewController
@@ -25,9 +23,10 @@
 - (void)addFacebookLoginButton
 {
   __weak typeof(self) weakSelf = self;
-  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSError *error) {
+  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
     if (!error) {
-      [self dismissViewController];
+      [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
+      [weakSelf dismissViewController];
     }
   }];
   

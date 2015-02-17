@@ -3,7 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <KZAsserts.h>
 #import "AuthenticationController.h"
+#import "AuthenticationController_SavingToken.h"
 #import "ServerCommunicationController.h"
 
 
@@ -41,6 +43,14 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
 + (NSString *)apiAuthenticationTokenFromUserDefaults
 {
   return [[NSUserDefaults standardUserDefaults] stringForKey:(NSString *)kApiAuthenticationTokenKey];
+}
+
++ (void)saveApiAuthenticationTokenToUserDefaults:(NSString *)apiToken
+{
+  AssertTrueOrReturn(apiToken.length);
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults setObject:apiToken forKey:(NSString *)kApiAuthenticationTokenKey];
+  [userDefaults synchronize];
 }
 
 @end

@@ -27,7 +27,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
 
 #pragma mark - Creating Facebook login button
 
-+ (FBLoginView *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSError *error))completion
++ (FBLoginView *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSString *apiToken, NSError *error))completion
 {
   FBLoginView *loginView = [FacebookAuthenticationController facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
     if (error) {
@@ -51,7 +51,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
 
 - (void)sendAuthenticationApiRequestWithAuthenticationRequestData:(AuthenticationRequestData *)authRequestData
                                                showErrorOnFailure:(BOOL)showErrorOnFailure
-                                                       completion:(void (^)(NSError *error))completion
+                                                       completion:(void (^)(NSString *apiToken, NSError *error))completion
 {
   __weak typeof(self) weakSelf = self;
   [ServerCommunicationController.sharedInstance requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
@@ -74,12 +74,13 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
     else {
       NSLog(@"Internal authentication success!");
       
-      // TODO: save the access token from the response
       // TODO: (Nice to have) - implement our internal access token caching
       // TODO: (Nice to have) - reuse old token if using same Facebook authentication
-      
+
+      NSString *accessToken = response.allHeaderFields[@"accessToken"];
+      AssertTrueOrReturn(accessToken.length);
       if (completion) {
-        completion(nil);
+        completion(accessToken, nil);
       }
     }
   }];
