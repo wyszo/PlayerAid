@@ -29,9 +29,12 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
   [self populateCoreDataWithSampleEntities];
   
-  if ([AuthenticationController checkIsUserAuthenticatedPingServer] == NO) {
-    [self performLoginSegue]; // note this has to be called after setting up core data stack
-  }
+  [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
+    if (!authenticated) {
+      [self performLoginSegue]; // note this has to be called after setting up core data stack
+    }
+  }];
+  
   [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self setupTabBarActionHandling];
   

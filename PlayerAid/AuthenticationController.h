@@ -10,6 +10,6 @@
 - (instancetype)init __unavailable;
 + (instancetype)new __unavailable;
 
-+ (BOOL)checkIsUserAuthenticatedPingServer;
++ (void)checkIsUserAuthenticatedPingServerCompletion:(void (^)(BOOL authenticated))completion;
 
 @end

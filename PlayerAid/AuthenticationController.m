@@ -4,19 +4,43 @@
 
 #import <Foundation/Foundation.h>
 #import "AuthenticationController.h"
+#import "ServerCommunicationController.h"
+
+
+static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey";
 
 
 @implementation AuthenticationController
 
 #pragma mark - Verifying authentication state 
 
-+ (BOOL)checkIsUserAuthenticatedPingServer
++ (void)checkIsUserAuthenticatedPingServerCompletion:(void (^)(BOOL authenticated))completion
 {
-  // TODO: 1. check if user logged in to Facebook (do we need that?). Probably we don't if we already have our internal token. But still - maybe we need to check it anyway??
+  // TODO: what if our token is valid, but Facebook token is not??
   
-  // TODO: 2. check if our API token is valid - send a ping network request
+  NSString *apiToken = [self apiAuthenticationTokenFromUserDefaults];
+  if (!apiToken.length) {
+    if (completion) {
+      completion(NO); // not authenticated
+    }
+    return;
+  }
   
-  return NO;
+  // ping server to check if token is valid
+  [[ServerCommunicationController sharedInstance] pingWithApiToken:apiToken completion:^(NSError *error) {
+    if (completion) {
+      // TODO: handle various types of errors
+      BOOL authenticated = (error == nil);
+      completion(authenticated);
+    }
+  }];
+}
+
+#pragma mark - API Authentication Token
+
++ (NSString *)apiAuthenticationTokenFromUserDefaults
+{
+  return [[NSUserDefaults standardUserDefaults] stringForKey:(NSString *)kApiAuthenticationTokenKey];
 }
 
 @end
