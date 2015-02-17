@@ -32,6 +32,7 @@
   
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (!authenticated) {
+      // TODO: present login screen instantly and then dismiss it in here if authenticated!
       [self performLoginSegue]; // note this has to be called after setting up core data stack
     }
   }];
@@ -57,7 +58,6 @@
     
     CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
     NavigationControllerWhiteStatusbar *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:createTutorialViewController];
-    
     
     [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   }];

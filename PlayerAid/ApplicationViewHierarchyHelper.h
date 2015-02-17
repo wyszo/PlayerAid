@@ -8,7 +8,6 @@
 
 @interface ApplicationViewHierarchyHelper : NSObject
 
-+ (UINavigationController *)mainNavigationController;
 + (UITabBarController *)mainTabBarController;
 
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex;

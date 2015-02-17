@@ -8,23 +8,12 @@
 
 @implementation ApplicationViewHierarchyHelper
 
-+ (UINavigationController *)mainNavigationController
++ (UITabBarController *)mainTabBarController
 {
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
   UIViewController *rootViewController = appDelegate.window.rootViewController;
-  
-  AssertTrueOrReturnNil([rootViewController isKindOfClass:[UINavigationController class]]);
-  UINavigationController *mainNavigationController = (UINavigationController *)rootViewController;
-  
-  AssertTrueOrReturnNil(mainNavigationController);
-  return mainNavigationController;
-}
-
-+ (UITabBarController *)mainTabBarController
-{
-  UIViewController *topViewController = [self.class mainNavigationController].topViewController;
-  AssertTrueOrReturnNil([topViewController isKindOfClass:[UITabBarController class]]);
-  return (UITabBarController *)topViewController;
+  AssertTrueOrReturnNil([rootViewController isKindOfClass:[UITabBarController class]]);
+  return (UITabBarController *)rootViewController;
 }
 
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex
