@@ -10,6 +10,7 @@
 		31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */; };
 		31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */ = {isa = PBXBuildFile; fileRef = 31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */; };
 		31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */; };
+		31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -86,6 +87,8 @@
 		31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController_SavingToken.h; sourceTree = "<group>"; };
 		31014E4B1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerWhiteStatusbar.h; sourceTree = "<group>"; };
 		31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerWhiteStatusbar.m; sourceTree = "<group>"; };
+		31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
+		31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -244,6 +247,25 @@
 				31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */,
 			);
 			name = MainNavigationController;
+			sourceTree = "<group>";
+		};
+		31014E4E1A948623002F3485 /* Other View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31014E4A1A93EA75002F3485 /* MainNavigationController */,
+				317780151A80061A007057CD /* Intro */,
+				31014E521A948686002F3485 /* Terms and Conditions */,
+			);
+			name = "Other View Controllers";
+			sourceTree = "<group>";
+		};
+		31014E521A948686002F3485 /* Terms and Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */,
+				31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */,
+			);
+			name = "Terms and Conditions";
 			sourceTree = "<group>";
 		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
@@ -503,11 +525,10 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				31C122621A838A340069D49A /* UI Components */,
 				317780331A80E532007057CD /* Cells */,
 				317780061A7FED38007057CD /* Tabbar */,
-				317780151A80061A007057CD /* Intro */,
+				31014E4E1A948623002F3485 /* Other View Controllers */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -951,6 +972,7 @@
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
+				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,

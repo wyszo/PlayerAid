@@ -22,9 +22,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self addFacebookLoginButton];
   
   self.view.backgroundColor = [ColorsHelper loginViewBackgroundColor];
+  [self addFacebookLoginButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -60,6 +66,11 @@
 - (IBAction)debugSkipLoginButtonPressed:(id)sender
 {
   [self dismissViewController];
+}
+
+- (IBAction)termsAndConditionsButtonPressed:(id)sender
+{
+  [self performSegueWithIdentifier:@"TermsAndConditionsSegue" sender:self];
 }
 
 @end
