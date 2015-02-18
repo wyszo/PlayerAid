@@ -47,6 +47,9 @@
     if (!error) {
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
       [weakSelf dismissViewController];
+      
+      // TODO: Save Facebook username
+      // TODO: Sync Facebook profile picture
     }
   }];
   
