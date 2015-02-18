@@ -4,11 +4,17 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
+#import <UIView+FLKAutoLayout.h>
 #import <KZAsserts.h>
 #import "IntroViewController.h"
 #import "FacebookLoginControlsFactory.h"
 #import "AuthenticationController_SavingToken.h"
 #import "ColorsHelper.h"
+
+
+@interface IntroViewController ()
+@property (weak, nonatomic) IBOutlet UIView *loginButtonContainer;
+@end
 
 
 @implementation IntroViewController
@@ -38,8 +44,10 @@
     }
   }];
   
-  loginView.center = self.view.center;
-  [self.view addSubview:loginView];
+  AssertTrueOrReturn(self.loginButtonContainer);
+  [self.loginButtonContainer addSubview:loginView];
+  
+  [loginView alignCenterWithView:self.loginButtonContainer];
 }
 
 - (void)dismissViewController
