@@ -59,22 +59,14 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 
 - (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *erorr))completion
 {
-  AssertTrueOrReturn(apiToken.length);
-  AssertTrueOrReturn(completion);
-  
-  // TODO: this should be done just once for all subsequent requests (not in here)
-  NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
-  [self.requestOperationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
-  
-  [self.requestOperationManager POST:@"ping" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(nil);
-    }
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(error);
-    }
-  }];
+  [self postRequestWithApiToken:apiToken urlString:@"ping" completion:completion];
+}
+
+#pragma mark - Users management
+
+- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion
+{
+  [self postRequestWithApiToken:apiToken urlString:@"user" completion:completion];
 }
 
 #pragma mark - Tutorial management
@@ -97,6 +89,27 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
   }];
 }
 
+#pragma mark - Auxiliary methods
+
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString completion:(void (^)(NSError *error))completion
+{
+  AssertTrueOrReturn(apiToken.length);
+  AssertTrueOrReturn(urlString.length);
+  AssertTrueOrReturn(completion);
+  
+  NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
+  [self.requestOperationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+  
+  [self.requestOperationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (completion) {
+      completion(nil);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(error);
+    }
+  }];
+}
 
 #pragma mark - Lazy initialization
 

@@ -48,8 +48,9 @@
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
       [weakSelf dismissViewController];
       
-      // TODO: Save Facebook username
-      // TODO: Sync Facebook profile picture
+      // TODO: trigger /user rest API request: [UsersController updateProfileInfo]
+      // TODO: Save username
+      // TODO: Sync profile picture
     }
   }];
   

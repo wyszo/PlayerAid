@@ -4,9 +4,10 @@
 #import "_User.h"
 
 const struct UserAttributes UserAttributes = {
-	.avatar = @"avatar",
+	.name = @"name",
+	.pictureURL = @"pictureURL",
+	.serverID = @"serverID",
 	.userDescription = @"userDescription",
-	.username = @"username",
 };
 
 const struct UserRelationships UserRelationships = {
@@ -42,11 +43,13 @@ const struct UserRelationships UserRelationships = {
 	return keyPaths;
 }
 
-@dynamic avatar;
+@dynamic name;
+
+@dynamic pictureURL;
+
+@dynamic serverID;
 
 @dynamic userDescription;
-
-@dynamic username;
 
 @dynamic createdTutorial;
 

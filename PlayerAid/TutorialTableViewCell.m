@@ -58,11 +58,11 @@
   self.tutorial = tutorial;
   
   self.titleLabel.text = tutorial.title;
-  self.authorLabel.text = tutorial.createdBy.username;
+  self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabel.text = tutorial.section.name;
 //  self.timeLabel.text = // tutorial.createdAt -> string // TODO: display creation date
   
-  self.avatarImageView.image = tutorial.createdBy.avatarImage;
+  [tutorial.createdBy placeAvatarInImageView:self.avatarImageView];
   [self setFavouritedButtonState:tutorial.favouritedValue];
   
   [self adjustAlphaFromTutorial:tutorial];

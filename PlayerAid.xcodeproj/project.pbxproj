@@ -11,6 +11,9 @@
 		31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */ = {isa = PBXBuildFile; fileRef = 31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */; };
 		31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */; };
 		31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */; };
+		31014E561A9610ED002F3485 /* UsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E551A9610ED002F3485 /* UsersController.m */; };
+		31014E5B1A96422A002F3485 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 31014E5A1A96422A002F3485 /* user.json */; };
+		31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E5D1A96431C002F3485 /* MockedServerResponses.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -89,6 +92,11 @@
 		31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerWhiteStatusbar.m; sourceTree = "<group>"; };
 		31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
 		31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
+		31014E541A9610ED002F3485 /* UsersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersController.h; sourceTree = "<group>"; };
+		31014E551A9610ED002F3485 /* UsersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersController.m; sourceTree = "<group>"; };
+		31014E5A1A96422A002F3485 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		31014E5C1A96431C002F3485 /* MockedServerResponses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockedServerResponses.h; sourceTree = "<group>"; };
+		31014E5D1A96431C002F3485 /* MockedServerResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockedServerResponses.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -268,6 +276,33 @@
 			name = "Terms and Conditions";
 			sourceTree = "<group>";
 		};
+		31014E531A961084002F3485 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				31014E541A9610ED002F3485 /* UsersController.h */,
+				31014E551A9610ED002F3485 /* UsersController.m */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		31014E591A964213002F3485 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				31014E5A1A96422A002F3485 /* user.json */,
+			);
+			name = JSONs;
+			sourceTree = "<group>";
+		};
+		31014E5F1A964354002F3485 /* Mocked Server Responses */ = {
+			isa = PBXGroup;
+			children = (
+				31014E591A964213002F3485 /* JSONs */,
+				31014E5C1A96431C002F3485 /* MockedServerResponses.h */,
+				31014E5D1A96431C002F3485 /* MockedServerResponses.m */,
+			);
+			name = "Mocked Server Responses";
+			sourceTree = "<group>";
+		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +372,7 @@
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				31014E531A961084002F3485 /* Users */,
 				31B735F81A88D3B00081AE15 /* TableView */,
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				3177800D1A80047C007057CD /* DataSources */,
@@ -491,6 +527,7 @@
 			children = (
 				3177802F1A80DFAB007057CD /* DataModelMock.h */,
 				317780301A80DFAB007057CD /* DataModelMock.m */,
+				31014E5F1A964354002F3485 /* Mocked Server Responses */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -885,6 +922,7 @@
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
+				31014E5B1A96422A002F3485 /* user.json in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,6 +978,7 @@
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
+				31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
@@ -968,6 +1007,7 @@
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
+				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,

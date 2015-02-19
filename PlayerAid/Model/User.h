@@ -3,6 +3,7 @@
 
 @interface User : _User {}
 
-- (UIImage *)avatarImage;
+- (void)configureFromDictionary:(NSDictionary *)dictionary;
+- (void)placeAvatarInImageView:(UIImageView *)imageView;
 
 @end

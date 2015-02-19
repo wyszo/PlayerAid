@@ -23,15 +23,16 @@
         <relationship name="belongsTo" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="consistsOf" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="avatar" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="createdTutorial" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="103"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="120"/>
     </elements>
 </model>

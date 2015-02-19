@@ -20,6 +20,8 @@
 
 - (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion;
 
+- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion;
+
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end

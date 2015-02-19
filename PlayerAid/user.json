@@ -1,0 +1,54 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "picture": "http://lorempixel.com/200/200/",
+  "description": "Coach of a fake sports team.",
+  "followers": [
+                {
+                "id": 2,
+                "name": "Jane Doe",
+                "picture": "http://lorempixel.com/200/200/",
+                "description": "Player in a fake sports team."
+                }
+                ],
+  "following": [
+                {
+                "id": 3,
+                "name": "Jimmy Doe",
+                "picture": "http://lorempixel.com/200/200/",
+                "description": "Member of a fake sports team."
+                }
+                ],
+  "likes": [
+            {
+            "id": 2,
+            "title": "Ibrahimović's Taekwondo Kick!",
+            "image": "http://lorempixel.com/400/600/",
+            "section": "Technique",
+            "author": {
+            "id": 3,
+            "name": "Jimmy Doe",
+            "picture": "http://lorempixel.com/200/200/",
+            "description": "Member of a fake sports team."
+            },
+            "createdOn": "2015-02-01T09:00:00Z",
+            "status": "Published"
+            }
+            ],
+  "tutorials": [
+                {
+                "id": 1,
+                "title": "How to fake an injury like an Italian!",
+                "image": "http://lorempixel.com/400/600/",
+                "section": "Technique",
+                "author": {
+                "id": 1,
+                "name": "John Doe",
+                "picture": "http://lorempixel.com/200/200/",
+                "description": "Coach of a fake sports team."
+                },
+                "createdOn": "2015-01-31T15:00:00Z",
+                "status": "Draft"
+                }
+                ]
+}
