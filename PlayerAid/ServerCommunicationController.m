@@ -57,14 +57,14 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 
 #pragma mark - Ping
 
-- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *erorr))completion
+- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *erorr))completion
 {
   [self postRequestWithApiToken:apiToken urlString:@"ping" completion:completion];
 }
 
 #pragma mark - Users management
 
-- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion
+- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
   [self postRequestWithApiToken:apiToken urlString:@"user" completion:completion];
 }
@@ -91,7 +91,7 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 
 #pragma mark - Auxiliary methods
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString completion:(void (^)(NSError *error))completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
   AssertTrueOrReturn(apiToken.length);
   AssertTrueOrReturn(urlString.length);
@@ -102,11 +102,11 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
   
   [self.requestOperationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
-      completion(nil);
+      completion(operation.response, nil);
     }
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
-      completion(error);
+      completion(operation.response, error);
     }
   }];
 }

@@ -4,6 +4,7 @@
 #import "_User.h"
 
 const struct UserAttributes UserAttributes = {
+	.loggedInUser = @"loggedInUser",
 	.name = @"name",
 	.pictureURL = @"pictureURL",
 	.serverID = @"serverID",
@@ -40,7 +41,33 @@ const struct UserRelationships UserRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"loggedInUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"loggedInUser"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
+}
+
+@dynamic loggedInUser;
+
+- (BOOL)loggedInUserValue {
+	NSNumber *result = [self loggedInUser];
+	return [result boolValue];
+}
+
+- (void)setLoggedInUserValue:(BOOL)value_ {
+	[self setLoggedInUser:@(value_)];
+}
+
+- (BOOL)primitiveLoggedInUserValue {
+	NSNumber *result = [self primitiveLoggedInUser];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveLoggedInUserValue:(BOOL)value_ {
+	[self setPrimitiveLoggedInUser:@(value_)];
 }
 
 @dynamic name;

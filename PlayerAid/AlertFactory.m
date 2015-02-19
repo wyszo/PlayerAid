@@ -82,6 +82,24 @@
   return alert;
 }
 
+#pragma mark - Other alerts
+
++ (UIAlertView *)blockingFirstSyncFailedAlertView
+{
+  NSString *title = @"Communication Error";
+  NSString *message = @"\nUnable to contact PlayerAid cloud. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection. The app will continue to try to connect. \n\nThe data has never been sync with PlayerAid cloud, can't continue until synchronisation succeeds! Retrying...";
+
+  return [self blockingAlertWithTitle:title message:message];
+}
+
+
++ (UIAlertView *)blockingAlertWithTitle:(NSString *)title message:(NSString *)message
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:nil];
+  [alert show];
+  return alert;
+}
+
 #pragma mark - Facebook
 
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2

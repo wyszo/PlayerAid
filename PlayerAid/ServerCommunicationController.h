@@ -18,9 +18,9 @@
 - (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
                                           completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 
-- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion;
+- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 
-- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSError *error))completion;
+- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 

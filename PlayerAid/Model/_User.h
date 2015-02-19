@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct UserAttributes {
+	__unsafe_unretained NSString *loggedInUser;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *pictureURL;
 	__unsafe_unretained NSString *serverID;
@@ -24,6 +25,14 @@ extern const struct UserRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) UserID* objectID;
+
+@property (nonatomic, strong) NSNumber* loggedInUser;
+
+@property (atomic) BOOL loggedInUserValue;
+- (BOOL)loggedInUserValue;
+- (void)setLoggedInUserValue:(BOOL)value_;
+
+//- (BOOL)validateLoggedInUser:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* name;
 
@@ -56,6 +65,12 @@ extern const struct UserRelationships {
 @end
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveLoggedInUser;
+- (void)setPrimitiveLoggedInUser:(NSNumber*)value;
+
+- (BOOL)primitiveLoggedInUserValue;
+- (void)setPrimitiveLoggedInUserValue:(BOOL)value_;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;

@@ -29,7 +29,7 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
   }
   
   // ping server to check if token is valid
-  [[ServerCommunicationController sharedInstance] pingWithApiToken:apiToken completion:^(NSError *error) {
+  [[ServerCommunicationController sharedInstance] pingWithApiToken:apiToken completion:^(NSHTTPURLResponse *response, NSError *error) {
     if (completion) {
       // TODO: handle various types of errors
       BOOL authenticated = (error == nil);

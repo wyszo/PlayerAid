@@ -10,6 +10,7 @@
 #import "FacebookLoginControlsFactory.h"
 #import "AuthenticationController_SavingToken.h"
 #import "ColorsHelper.h"
+#import "UsersController.h"
 
 
 @interface IntroViewController ()
@@ -47,10 +48,7 @@
     if (!error) {
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
       [weakSelf dismissViewController];
-      
-      // TODO: trigger /user rest API request: [UsersController updateProfileInfo]
-      // TODO: Save username
-      // TODO: Sync profile picture
+      [[UsersController sharedInstance] updateUserProfile];
     }
   }];
   
@@ -70,6 +68,9 @@
 - (IBAction)debugSkipLoginButtonPressed:(id)sender
 {
   [self dismissViewController];
+  
+  // TODO: ideally this should not be done manually from here
+  [[UsersController sharedInstance] updateUserProfile];
 }
 
 - (IBAction)termsAndConditionsButtonPressed:(id)sender

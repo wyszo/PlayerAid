@@ -15,6 +15,9 @@
 + (UIAlertView *)showOKCancelAlertViewWithMessage:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 
+// Other errors
++ (UIAlertView *)blockingFirstSyncFailedAlertView;
+
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;
 

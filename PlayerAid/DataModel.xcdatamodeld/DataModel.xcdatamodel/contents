@@ -23,6 +23,7 @@
         <relationship name="belongsTo" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="consistsOf" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="loggedInUser" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,6 +34,6 @@
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="120"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="135"/>
     </elements>
 </model>
