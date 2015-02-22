@@ -3,7 +3,6 @@
 //
 
 #import "FacebookAuthenticationController.h"
-#import "KZAsserts.h"
 
 
 @interface FacebookAuthenticationController () <FBLoginViewDelegate>

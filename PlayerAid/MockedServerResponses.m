@@ -3,7 +3,6 @@
 //
 
 #import "MockedServerResponses.h"
-#import <KZAsserts.h>
 
 
 @implementation MockedServerResponses

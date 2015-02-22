@@ -3,10 +3,6 @@
 //
 
 #import "UsersController.h"
-#import <NSManagedObject+MagicalFinders.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <MagicalRecord+Actions.h>
-#import <KZAsserts.h>
 #import "User.h"
 #import "ServerCommunicationController.h"
 #import "AlertFactory.h"

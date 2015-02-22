@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
 
 @interface UsersController : NSObject
 

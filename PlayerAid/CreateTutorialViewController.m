@@ -3,11 +3,6 @@
 //
 
 #import "CreateTutorialViewController.h"
-#import <NSManagedObject+MagicalRecord.h>
-#import <NSManagedObjectContext+MagicalRecord.h>
-#import <NSManagedObject+MagicalFinders.h>
-#import <MagicalRecord+Actions.h>
-#import <KZAsserts.h>
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"

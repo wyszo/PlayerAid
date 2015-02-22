@@ -3,7 +3,6 @@
 //
 
 #import "ApplicationViewHierarchyHelper.h"
-#import <KZAsserts.h>
 
 
 @implementation ApplicationViewHierarchyHelper

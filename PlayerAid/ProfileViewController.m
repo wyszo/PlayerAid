@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <NSManagedObject+MagicalFinders.h>
 #import "ProfileViewController.h"
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"

@@ -2,8 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "Tutorial.h"
 
 @protocol TutorialsTableViewDelegate;

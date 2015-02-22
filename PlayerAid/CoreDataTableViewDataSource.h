@@ -2,10 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
-
 
 @interface CoreDataTableViewDataSource : NSObject <UITableViewDataSource>
 

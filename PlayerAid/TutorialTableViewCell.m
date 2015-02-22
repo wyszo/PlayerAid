@@ -3,7 +3,6 @@
 //
 
 #import "TutorialTableViewCell.h"
-#import <KZAsserts.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"

@@ -5,7 +5,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <FacebookSDK/FBGraphUser.h>
 #import <UIView+FLKAutoLayout.h>
-#import <KZAsserts.h>
 #import "IntroViewController.h"
 #import "FacebookLoginControlsFactory.h"
 #import "AuthenticationController_SavingToken.h"

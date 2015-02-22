@@ -2,8 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-#import <KZAsserts.h>
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
 #import "UIView+XibLoading.h"

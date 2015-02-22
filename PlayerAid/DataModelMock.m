@@ -2,11 +2,6 @@
 //  PlayerAid
 //
 
-#import <NSManagedObject+MagicalFinders.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <MagicalRecord/MagicalRecord+Actions.h>
-#import <KZAsserts.h>
-#import <UIKit/UIKit.h>
 #import "DataModelMock.h"
 #import "Tutorial.h"
 #import "User.h"

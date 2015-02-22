@@ -2,11 +2,6 @@
 //  PlayerAid
 //
 
-#import <CoreData/CoreData.h>
-#import <NSManagedObject+MagicalFinders.h>
-#import <MagicalRecord+Actions.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <KZAsserts.h>
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"

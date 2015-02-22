@@ -3,8 +3,6 @@
 //
 
 #import <FacebookSDK.h>
-#import <KZAsserts.h>
-#import <UIAlertView+Blocks.h>
 #import "AlertFactory.h"
 
 

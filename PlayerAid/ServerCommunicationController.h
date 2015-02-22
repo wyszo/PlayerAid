@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
 #import "Tutorial.h"
 
 @class AuthenticationRequestData;

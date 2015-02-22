@@ -4,7 +4,6 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <MagicalRecord+Setup.h>
-#import <KZAsserts.h>
 #import "AppDelegate.h"
 #import "DataModelMock.h"
 #import "AppearanceCustomizationHelper.h"
