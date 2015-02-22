@@ -19,6 +19,3 @@
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end
-
-
-

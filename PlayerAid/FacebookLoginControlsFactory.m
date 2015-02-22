@@ -10,7 +10,11 @@
 #import "DispatchHelper.h"
 
 
-static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
+static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
+
+@interface FacebookLoginControlsFactory ()
+@property (nonatomic, weak) UIAlertView *serverUnreachableAlertView;
+@end
 
 
 @implementation FacebookLoginControlsFactory
@@ -62,28 +66,48 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
       // 1100 - facebook token invalid
       // 1101 - facebook token expired
       
-      if (showErrorOnFailure) {
-        [AlertFactory showGenericErrorAlertView];
-      }
-      
-      // retry silently on failure after some time delay
-      DISPATCH_AFTER(kTimeDelayToRetryAuthenticationRequest, ^{
-        [weakSelf sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:NO completion:completion];
-      });
+      [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
     }
     else {
       NSLog(@"Internal authentication success!");
-      
-      // TODO: (Nice to have) - implement our internal access token caching
-      // TODO: (Nice to have) - reuse old token if using same Facebook authentication
 
       NSString *accessToken = response.allHeaderFields[@"accessToken"];
-      AssertTrueOrReturn(accessToken.length);
+      
+      if (accessToken.length == 0) {
+        [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
+        return;
+      }
+      
+      [weakSelf dismissServerUnreachableAlertViewIfPresented];
+      
       if (completion) {
         completion(accessToken, nil);
       }
     }
   }];
+}
+
+- (void)dismissServerUnreachableAlertViewIfPresented
+{
+  if (self.serverUnreachableAlertView) {
+    [self.serverUnreachableAlertView dismissWithClickedButtonIndex:0 animated:YES];
+  }
+}
+
+- (void)showServerUnreachableAlert:(BOOL)showAlert andRetryAuthenticationRequestAfterDelayWithData:(AuthenticationRequestData *)authRequestData completion:(void (^)(NSString *apiToken, NSError *error))completion
+{
+  if (showAlert) {
+    self.serverUnreachableAlertView = [AlertFactory showGenericErrorAlertView];
+  }
+  [self retryAuthenticationRequestAfterDelaywWithData:authRequestData showErrorOnFailure:NO completion:completion];
+}
+
+- (void)retryAuthenticationRequestAfterDelaywWithData:(AuthenticationRequestData *)authRequestData showErrorOnFailure:(BOOL)showErrorOnFailure completion:(void (^)(NSString *apiToken, NSError *error))completion
+{
+  __weak typeof(self) weakSelf = self;
+  DISPATCH_AFTER(kTimeDelayToRetryAuthenticationRequest, ^{
+    [weakSelf sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:showErrorOnFailure completion:completion];
+  });
 }
 
 @end

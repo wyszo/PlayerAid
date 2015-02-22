@@ -5,10 +5,13 @@
 @class AuthenticationRequestData;
 
 
+/**
+ Allows to access those parts of our RESET API that don't require access token. HTTP cache is never used. 
+ */
 @interface UnauthenticatedServerCommunicationController : NSObject
 
 /**
- Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class)
+ Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
  */
 + (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
                                           completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;

@@ -46,7 +46,11 @@
                                @"token" : data.facebookAuthenticationToken,
                                @"email" : data.email
                                };
-  [self.requestOperationManager POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  
+  AFHTTPRequestOperationManager *requestOperationManagerBypassingCache = self.requestOperationManager;
+  requestOperationManagerBypassingCache.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+  
+  [requestOperationManagerBypassingCache POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
       completion(operation.response, nil);
     }
@@ -66,6 +70,7 @@
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+    _requestOperationManager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
   }
   return _requestOperationManager;
 }

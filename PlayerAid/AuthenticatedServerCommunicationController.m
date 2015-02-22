@@ -7,11 +7,11 @@
 #import "GlobalSettings.h"
 
 
-
 @interface AuthenticatedServerCommunicationController ()
 @property (nonatomic, strong) AFHTTPRequestOperationManager *requestOperationManager;
 @property (nonatomic, strong) NSString *apiToken;
 @end
+
 
 @implementation AuthenticatedServerCommunicationController
 
@@ -36,14 +36,14 @@
 
 - (void)pingCompletion:(void (^)(NSHTTPURLResponse *response, NSError *erorr))completion
 {
-  [self postRequestWithApiToken:self.apiToken urlString:@"ping" completion:completion];
+  [self postRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
 #pragma mark - Users management
 
 - (void)postUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
-  [self postRequestWithApiToken:self.apiToken urlString:@"user" completion:completion];
+  [self postRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
 }
 
 #pragma mark - Tutorial management
@@ -66,18 +66,21 @@
   }];
 }
 
-#pragma mark - Auxiliary methods
+#pragma mark - Sending requests
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
   AssertTrueOrReturn(apiToken.length);
   AssertTrueOrReturn(urlString.length);
   AssertTrueOrReturn(completion);
   
+  AFHTTPRequestOperationManager *operationManager = self.requestOperationManager;
   NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
-  [self.requestOperationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+  [operationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
   
-  [self.requestOperationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  operationManager.requestSerializer.cachePolicy = (useCache ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData);
+  
+  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
       completion(operation.response, nil);
     }
@@ -92,11 +95,12 @@
 
 - (AFHTTPRequestOperationManager *)requestOperationManager
 {
-  NSURL *url = [NSURL URLWithString:kServerBaseURL];
+  NSURL *url = [NSURL URLWithString:(NSString *)kServerBaseURL];
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
   }
+  _requestOperationManager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy; // reset to default cache
   return _requestOperationManager;
 }
 
