@@ -10,6 +10,7 @@
 #import "AuthenticationController_SavingToken.h"
 #import "ColorsHelper.h"
 #import "UsersController.h"
+#import "AuthenticatedServerCommunicationController.h"
 
 
 @interface IntroViewController ()
@@ -44,10 +45,15 @@
 {
   __weak typeof(self) weakSelf = self;
   FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
-    if (!error) {
+    if (!error && apiToken.length) {
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
+      [AuthenticatedServerCommunicationController setApiToken:apiToken];
       [weakSelf dismissViewController];
       [[UsersController sharedInstance] updateUserProfile];
+    }
+    else if (!apiToken)
+    {
+      // TODO: display an error that we didn't get a correct API token from server!
     }
   }];
   

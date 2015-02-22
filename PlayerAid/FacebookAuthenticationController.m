@@ -15,10 +15,10 @@
 
 #pragma mark - Singleton
 
-+ (FacebookAuthenticationController *)sharedInstance
++ (instancetype)sharedInstance
 {
   /* Technical debt: could easily avoid making a singleton here */
-  static FacebookAuthenticationController *sharedInstance = nil;
+  static id sharedInstance = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedInstance = [[self alloc] init];
@@ -30,7 +30,7 @@
 
 + (FBLoginView *)facebookLoginViewWithLoginCompletion:(void (^)(id<FBGraphUser> user, NSError *error))completion
 {
-  self.sharedInstance.completionBlock = completion;
+  ((FacebookAuthenticationController *)self.sharedInstance).completionBlock = completion;
   
   FBLoginView *loginView = [[FBLoginView alloc] initWithReadPermissions:@[@"email"]];
   loginView.delegate = self.sharedInstance;

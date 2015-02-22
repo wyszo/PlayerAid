@@ -4,7 +4,7 @@
 
 #import "FacebookLoginControlsFactory.h"
 #import "FacebookAuthenticationController.h"
-#import "ServerCommunicationController.h"
+#import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "DataExtractionHelper.h"
 #import "DispatchHelper.h"
@@ -54,7 +54,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
                                                        completion:(void (^)(NSString *apiToken, NSError *error))completion
 {
   __weak typeof(self) weakSelf = self;
-  [ServerCommunicationController.sharedInstance requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
+  [UnauthenticatedServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
     if (error) {
       NSLog(@"Internal authentication failure!");
       

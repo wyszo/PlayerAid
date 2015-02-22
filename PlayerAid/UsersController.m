@@ -4,7 +4,7 @@
 
 #import "UsersController.h"
 #import "User.h"
-#import "ServerCommunicationController.h"
+#import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "DispatchHelper.h"
 
@@ -35,7 +35,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 - (void)updateUserProfile
 {
   __weak typeof(self) weakSelf = self;
-  [[ServerCommunicationController sharedInstance] postUserWithApiToken:nil completion:^(NSHTTPURLResponse *response, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance] postUserCompletion:^(NSHTTPURLResponse *response, NSError *error) {
     if (error) {
       if ([weakSelf isFirstTimeUserSynchronization]) {
         [self showBlockingAlertIfItHasNotBeenShown];
