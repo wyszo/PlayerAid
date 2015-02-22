@@ -31,13 +31,13 @@
 #pragma mark - Authentication
 
 + (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+                                          completion:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion
 {
   [[self sharedInstance] requestAPITokenWithAuthenticationRequestData:data completion:completion];
 }
 
 - (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+                                          completion:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion
 {
   AssertTrueOrReturn(data.facebookAuthenticationToken);
   AssertTrueOrReturn(data.email);
@@ -52,12 +52,12 @@
   
   [requestOperationManagerBypassingCache POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
-      completion(operation.response, nil);
+      completion(operation.response, responseObject, nil);
     }
     
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
-      completion(nil, error);
+      completion(nil, nil, error);
     }
   }];
 }

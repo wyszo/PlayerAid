@@ -58,7 +58,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
                                                        completion:(void (^)(NSString *apiToken, NSError *error))completion
 {
   __weak typeof(self) weakSelf = self;
-  [UnauthenticatedServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, NSError *error) {
+  [UnauthenticatedServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       NSLog(@"Internal authentication failure!");
       
@@ -69,15 +69,14 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
       [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
     }
     else {
-      NSLog(@"Internal authentication success!");
-
-      NSString *accessToken = response.allHeaderFields[@"accessToken"];
-      
+      NSString *accessToken = [weakSelf accessTokenFromResponseObject:responseObject];
       if (accessToken.length == 0) {
+        NSLog(@"Internal authentication failure!");
         [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
         return;
       }
       
+      NSLog(@"Internal authentication success!");
       [weakSelf dismissServerUnreachableAlertViewIfPresented];
       
       if (completion) {
@@ -85,6 +84,15 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
       }
     }
   }];
+}
+
+- (NSString *)accessTokenFromResponseObject:(id)responseObject
+{
+  AssertTrueOrReturnNil([responseObject isKindOfClass:[NSDictionary class]]);
+  NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+  NSString *accessToken = responseDictionary[@"token"];
+  AssertTrueOrReturnNil(accessToken.length > 0);
+  return accessToken;
 }
 
 - (void)dismissServerUnreachableAlertViewIfPresented
