@@ -1,9 +1,5 @@
 //
-//  Settings.m
 //  PlayerAid
 //
-//  Created by Wyszo on 22/02/15.
-//
-//
 
-#import <Foundation/Foundation.h>
+NSString const* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";

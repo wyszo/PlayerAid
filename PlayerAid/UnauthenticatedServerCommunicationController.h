@@ -1,13 +1,25 @@
 //
-//  UnauthenticatedServerCommunicationController.h
 //  PlayerAid
 //
-//  Created by Wyszo on 22/02/15.
-//
-//
 
-#import <Foundation/Foundation.h>
+@class AuthenticationRequestData;
+
 
 @interface UnauthenticatedServerCommunicationController : NSObject
+
+/**
+ Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class)
+ */
++ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
+                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+
+@end
+
+
+// Helper class to deliver request parameters
+@interface AuthenticationRequestData : NSObject
+
+@property (nonatomic, copy) NSString *facebookAuthenticationToken;
+@property (nonatomic, copy) NSString *email;
 
 @end

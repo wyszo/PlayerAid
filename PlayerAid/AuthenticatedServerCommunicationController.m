@@ -3,27 +3,22 @@
 //
 
 #import <AFNetworking.h>
-#import "ServerCommunicationController.h"
-#import "KZAsserts.h"
+#import "AuthenticatedServerCommunicationController.h"
+#import "GlobalSettings.h"
 
 
-static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 
-
-@implementation AuthenticationRequestData
-@end
-
-
-@interface ServerCommunicationController ()
+@interface AuthenticatedServerCommunicationController ()
 @property (nonatomic, strong) AFHTTPRequestOperationManager *requestOperationManager;
+@property (nonatomic, strong) NSString *apiToken;
 @end
 
-@implementation ServerCommunicationController
+@implementation AuthenticatedServerCommunicationController
 
-+ (ServerCommunicationController *)sharedInstance
++ (instancetype)sharedInstance
 {
   /* Technical debt: could easily avoid making a singleton here */
-  static ServerCommunicationController *sharedInstance = nil;
+  static id sharedInstance = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedInstance = [[self alloc] init];
@@ -31,42 +26,24 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/v1/";
   return sharedInstance;
 }
 
-#pragma mark - Authentication
-
-- (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
++ (void)setApiToken:(NSString *)apiToken
 {
-  AssertTrueOrReturn(data.facebookAuthenticationToken);
-  AssertTrueOrReturn(data.email);
-  
-  NSDictionary *parameters = @{
-                               @"token" : data.facebookAuthenticationToken,
-                               @"email" : data.email
-                              };
-  [self.requestOperationManager POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(operation.response, nil);
-    }
-    
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(nil, error);
-    }
-  }];
+  AssertTrueOrReturn(apiToken.length);
+  ((AuthenticatedServerCommunicationController *)[self sharedInstance]).apiToken = apiToken;
 }
 
 #pragma mark - Ping
 
-- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *erorr))completion
+- (void)pingCompletion:(void (^)(NSHTTPURLResponse *response, NSError *erorr))completion
 {
-  [self postRequestWithApiToken:apiToken urlString:@"ping" completion:completion];
+  [self postRequestWithApiToken:self.apiToken urlString:@"ping" completion:completion];
 }
 
 #pragma mark - Users management
 
-- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)postUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
-  [self postRequestWithApiToken:apiToken urlString:@"user" completion:completion];
+  [self postRequestWithApiToken:self.apiToken urlString:@"user" completion:completion];
 }
 
 #pragma mark - Tutorial management

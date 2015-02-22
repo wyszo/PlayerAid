@@ -4,32 +4,21 @@
 
 #import "Tutorial.h"
 
-@class AuthenticationRequestData;
-
-// A wrapper to network requests to our server
-@interface ServerCommunicationController : NSObject
-
-+ (ServerCommunicationController *)sharedInstance;
 
 /**
- Requests an API token that can be used in all communication with our PlayerAid server.
+ A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!
  */
-- (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+@interface AuthenticatedServerCommunicationController : NSObject
 
-- (void)pingWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
++ (instancetype)sharedInstance;
++ (void)setApiToken:(NSString *)apiToken;
 
-- (void)postUserWithApiToken:(NSString *)apiToken completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 
+- (void)pingCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+- (void)postUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end
 
 
-// Helper class to deliver request parameters
-@interface AuthenticationRequestData : NSObject
 
-@property (nonatomic, copy) NSString *facebookAuthenticationToken;
-@property (nonatomic, copy) NSString *email;
-
-@end
