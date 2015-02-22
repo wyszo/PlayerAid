@@ -50,7 +50,9 @@
   // at this point frame is not correct on iPhone 6 and 6+, recalculating (based on item width)
   
   CGRect screenSize = [UIScreen mainScreen].bounds;
-  frame = CGRectMake((screenSize.size.width - frame.size.width) / 2.0, frame.origin.y, frame.size.width, frame.size.height);
+  CGFloat yPos = 0; // frame.origin.y returns 1 which is not what we want
+  CGFloat originalYOffset = frame.origin.y;
+  frame = CGRectMake((screenSize.size.width - frame.size.width) / 2.0, yPos, frame.size.width, frame.size.height + originalYOffset);
   
   return frame;
   
