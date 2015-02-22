@@ -14,6 +14,7 @@
 		31014E561A9610ED002F3485 /* UsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E551A9610ED002F3485 /* UsersController.m */; };
 		31014E5B1A96422A002F3485 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 31014E5A1A96422A002F3485 /* user.json */; };
 		31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E5D1A96431C002F3485 /* MockedServerResponses.m */; };
+		31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E621A99EFF1002F3485 /* DispatchHelper.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -97,6 +98,8 @@
 		31014E5A1A96422A002F3485 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		31014E5C1A96431C002F3485 /* MockedServerResponses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockedServerResponses.h; sourceTree = "<group>"; };
 		31014E5D1A96431C002F3485 /* MockedServerResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockedServerResponses.m; sourceTree = "<group>"; };
+		31014E621A99EFF1002F3485 /* DispatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchHelper.m; sourceTree = "<group>"; };
+		31014E631A99EFF1002F3485 /* DispatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchHelper.h; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 				31B735E91A87D8160081AE15 /* ApplicationViewHierarchyHelper.m */,
 				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
 				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
+				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1016,6 +1021,7 @@
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
+				31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,

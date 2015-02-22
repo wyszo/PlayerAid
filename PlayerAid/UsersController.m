@@ -10,7 +10,7 @@
 #import "User.h"
 #import "ServerCommunicationController.h"
 #import "AlertFactory.h"
-
+#import "DispatchHelper.h"
 
 static const CGFloat kRetryShortDelay = 3.0;
 static const CGFloat kRetryLongDelay = 10.0;
@@ -44,14 +44,14 @@ static const CGFloat kRetryLongDelay = 10.0;
       if ([weakSelf isFirstTimeUserSynchronization]) {
         [self showBlockingAlertIfItHasNotBeenShown];
         
-        // this is the first synchronisation, retry api callsoon
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRetryShortDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // this is the first synchronisation, retry api call soon
+        DISPATCH_AFTER(kRetryShortDelay, ^{
           [weakSelf updateUserProfile];
         });
       }
       else {
         // subsequent synchronisation, profile is probably up to date anyway, retry api call after longer delay
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRetryLongDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        DISPATCH_AFTER(kRetryLongDelay, ^{
           [weakSelf updateUserProfile];
         });
       }
@@ -82,7 +82,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 - (void)showBlockingAlertIfItHasNotBeenShown
 {
   if (!self.hasBlockingAlertAlreadyBeenShown) {
-    self.blockingAlertView = [AlertFactory blockingFirstSyncFailedAlertView];
+    self.blockingAlertView = [AlertFactory showBlockingFirstSyncFailedAlertView];
     self.hasBlockingAlertAlreadyBeenShown = YES;
   }
 }

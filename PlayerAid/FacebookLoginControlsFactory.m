@@ -8,6 +8,7 @@
 #import "ServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "DataExtractionHelper.h"
+#import "DispatchHelper.h"
 
 
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
@@ -67,7 +68,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
       }
       
       // retry silently on failure after some time delay
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kTimeDelayToRetryAuthenticationRequest * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      DISPATCH_AFTER(kTimeDelayToRetryAuthenticationRequest, ^{
         [weakSelf sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:NO completion:completion];
       });
     }

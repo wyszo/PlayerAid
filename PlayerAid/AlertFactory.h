@@ -16,7 +16,7 @@
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 
 // Other errors
-+ (UIAlertView *)blockingFirstSyncFailedAlertView;
++ (UIAlertView *)showBlockingFirstSyncFailedAlertView;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;

@@ -84,7 +84,7 @@
 
 #pragma mark - Other alerts
 
-+ (UIAlertView *)blockingFirstSyncFailedAlertView
++ (UIAlertView *)showBlockingFirstSyncFailedAlertView
 {
   NSString *title = @"Communication Error";
   NSString *message = @"\nUnable to contact PlayerAid cloud. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection. The app will continue to try to connect. \n\nThe data has never been sync with PlayerAid cloud, can't continue until synchronisation succeeds! Retrying...";
