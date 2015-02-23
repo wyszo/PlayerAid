@@ -9,8 +9,8 @@
 #import "FacebookLoginControlsFactory.h"
 #import "AuthenticationController_SavingToken.h"
 #import "ColorsHelper.h"
-#import "UsersController.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "ServerDataFetchController.h"
 
 
 @interface IntroViewController ()
@@ -49,12 +49,9 @@
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
       [AuthenticatedServerCommunicationController setApiToken:apiToken];
       [weakSelf dismissViewController];
-      [[UsersController sharedInstance] updateUserProfile];
+      [ServerDataFetchController updateUserAndTutorials];
     }
-    else if (!apiToken)
-    {
-      // TODO: display an error that we didn't get a correct API token from server!
-    }
+    // standard facebook errors and behaviour when apiToken is empty is already handled internally
   }];
   
   AssertTrueOrReturn(self.loginButtonContainer);
@@ -73,9 +70,7 @@
 - (IBAction)debugSkipLoginButtonPressed:(id)sender
 {
   [self dismissViewController];
-  
-  // TODO: ideally this should not be done manually from here
-  [[UsersController sharedInstance] updateUserProfile];
+  [ServerDataFetchController updateUserAndTutorials];
 }
 
 - (IBAction)termsAndConditionsButtonPressed:(id)sender

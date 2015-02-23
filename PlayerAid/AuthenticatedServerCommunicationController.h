@@ -15,7 +15,7 @@
 
 
 - (void)pingCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
-- (void)postUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+- (void)getUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end

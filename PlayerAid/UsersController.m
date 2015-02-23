@@ -35,7 +35,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 - (void)updateUserProfile
 {
   __weak typeof(self) weakSelf = self;
-  [[AuthenticatedServerCommunicationController sharedInstance] postUserCompletion:^(NSHTTPURLResponse *response, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance] getUserCompletion:^(NSHTTPURLResponse *response, NSError *error) {
     if (error) {
       if ([weakSelf isFirstTimeUserSynchronization]) {
         [self showBlockingAlertIfItHasNotBeenShown];
@@ -54,7 +54,7 @@ static const CGFloat kRetryLongDelay = 10.0;
     }
     else if (!error) {
       [weakSelf dismissBlockingAlertView];
-      [weakSelf updateLoggedInUserObjectWithDictionary:response.allHeaderFields];
+      [weakSelf updateLoggedInUserObjectWithDictionary:nil]; // TODO: pass responseObject here
     }
   }];
 }
@@ -91,7 +91,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 
 - (BOOL)isFirstTimeUserSynchronization
 {
-  User *user = [User MR_findFirst];
+  User *user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
   BOOL anyUserFound = (user != nil);
   return !anyUserFound;
 }

@@ -41,9 +41,9 @@
 
 #pragma mark - Users management
 
-- (void)postUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)getUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
-  [self postRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
+  [self getRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
 }
 
 #pragma mark - Tutorial management
@@ -68,27 +68,67 @@
 
 #pragma mark - Sending requests
 
+- (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+{
+  [self requestWithType:@"GET" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
+}
+
 - (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {
-  AssertTrueOrReturn(apiToken.length);
+  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
+}
+
+- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+{
+  AssertTrueOrReturn(requestType.length);
   AssertTrueOrReturn(urlString.length);
   AssertTrueOrReturn(completion);
   
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:apiToken useCacheIfAllowed:useCache];
+
+  NSString *selectorString = [requestType stringByAppendingString:@":parameters:success:failure:"];
+  SEL selector = NSSelectorFromString(selectorString);
+  AssertTrueOrReturn([operationManager respondsToSelector:selector]);
+  
+  [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (completion) {
+      completion(operation.response, nil);
+    }
+  } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(operation.response, error);
+    }
+  }];
+}
+
+- (void)invokeAFNetworkingOperationWithReuqestWithSelector:(SEL)selector operationManager:(AFHTTPRequestOperationManager *)operationManager urlString:(NSString *)urlString successBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
+{
+  AssertTrueOrReturn(selector);
+  AssertTrueOrReturn(operationManager);
+  AssertTrueOrReturn(urlString.length);
+  
+  NSMethodSignature *methodSignature = [operationManager methodSignatureForSelector:selector];
+  AssertTrueOrReturn(methodSignature);
+  
+  NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+  [invocation setTarget:operationManager];
+  [invocation setSelector:selector];
+  
+  [invocation setArgument:&urlString atIndex:2]; // indexes 0 and 1 are reserved
+  if (successBlock) { [invocation setArgument:&successBlock atIndex:4]; }
+  if (failureBlock) { [invocation setArgument:&failureBlock atIndex:5]; }
+  [invocation invoke];
+}
+
+- (AFHTTPRequestOperationManager *)operationManageWithApiToken:(NSString *)apiToken useCacheIfAllowed:(BOOL)useCache
+{
+  AssertTrueOrReturnNil(apiToken.length);
   AFHTTPRequestOperationManager *operationManager = self.requestOperationManager;
   NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
   [operationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
   
   operationManager.requestSerializer.cachePolicy = (useCache ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData);
-  
-  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(operation.response, nil);
-    }
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(operation.response, error);
-    }
-  }];
+  return operationManager;
 }
 
 #pragma mark - Lazy initialization

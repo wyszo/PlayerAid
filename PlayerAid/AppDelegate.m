@@ -13,6 +13,7 @@
 #import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "UsersController.h"
+#import "ServerDataFetchController.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -32,14 +33,9 @@
   
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (authenticated) {
-      [[UsersController sharedInstance] updateUserProfile];
-      // if this is the first time we fetch the profile - show blocking alert view on failure (and retry)!
-      
-//      [[TutorialsController sharedInstance] updateTutorialsList];
-      // if this is the first time we fetch tutorials - show blocking alert view on failure (and retry)!
+      [ServerDataFetchController updateUserAndTutorials];
     }
     else {
-      // TODO: present login screen instantly and then dismiss it in here if authenticated!
       [self performLoginSegue]; // note this has to be called after setting up core data stack
     }
   }];
