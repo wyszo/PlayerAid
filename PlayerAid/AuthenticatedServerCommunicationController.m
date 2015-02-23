@@ -34,14 +34,14 @@
 
 #pragma mark - Ping
 
-- (void)pingCompletion:(void (^)(NSHTTPURLResponse *response, NSError *erorr))completion
+- (void)pingCompletion:(NetworkResponseBlock)completion
 {
   [self postRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
 #pragma mark - Users management
 
-- (void)getUserCompletion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)getUserCompletion:(NetworkResponseBlock)completion
 {
   [self getRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
 }
@@ -68,17 +68,17 @@
 
 #pragma mark - Sending requests
 
-- (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
   [self requestWithType:@"GET" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
   [self requestWithType:@"POST" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
+- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(requestType.length);
   AssertTrueOrReturn(urlString.length);
@@ -92,11 +92,11 @@
   
   [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
-      completion(operation.response, nil);
+      completion(operation.response, responseObject, nil);
     }
   } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
-      completion(operation.response, error);
+      completion(operation.response, nil, error);
     }
   }];
 }

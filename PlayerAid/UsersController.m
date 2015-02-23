@@ -35,7 +35,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 - (void)updateUserProfile
 {
   __weak typeof(self) weakSelf = self;
-  [[AuthenticatedServerCommunicationController sharedInstance] getUserCompletion:^(NSHTTPURLResponse *response, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance] getUserCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       if ([weakSelf isFirstTimeUserSynchronization]) {
         [self showBlockingAlertIfItHasNotBeenShown];
@@ -54,7 +54,9 @@ static const CGFloat kRetryLongDelay = 10.0;
     }
     else if (!error) {
       [weakSelf dismissBlockingAlertView];
-      [weakSelf updateLoggedInUserObjectWithDictionary:nil]; // TODO: pass responseObject here
+      
+      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+      [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject]; // TODO: pass responseObject here
     }
   }];
 }
