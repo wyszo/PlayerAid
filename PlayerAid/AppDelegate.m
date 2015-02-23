@@ -29,7 +29,7 @@
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
-  [self populateCoreDataWithSampleEntities];
+//  [self populateCoreDataWithSampleEntities];
   
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (authenticated) {
