@@ -4,6 +4,7 @@
 #import <KZPropertyMapper.h>
 #import <UIImageView+AFNetworking.h>
 #import "Tutorial.h"
+#import "TutorialsHelper.h"
 
 
 @implementation User
@@ -43,9 +44,8 @@
     AssertTrueOrReturn([obj isKindOfClass:[NSDictionary class]]);
     NSDictionary *dictionary = (NSDictionary *)obj;
     
-    NSString *serverID = [Tutorial serverIDFromTutorialDictionary:dictionary];
-    Tutorial *tutorial = [Tutorial tutorialWithServerID:serverID inContext:self.managedObjectContext];
-    tutorial = [tutorial MR_inContext:self.managedObjectContext];
+    NSString *serverID = [TutorialsHelper serverIDFromTutorialDictionary:dictionary];
+    Tutorial *tutorial = [TutorialsHelper tutorialWithServerID:serverID inContext:self.managedObjectContext];
     if (!tutorial) {
       tutorial = [Tutorial MR_createInContext:self.managedObjectContext];
     }

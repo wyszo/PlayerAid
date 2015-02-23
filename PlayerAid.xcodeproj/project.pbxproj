@@ -18,6 +18,7 @@
 		31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E671A99FF57002F3485 /* GlobalSettings.m */; };
 		31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */; };
 		31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E701A9AA182002F3485 /* ServerDataFetchController.m */; };
+		31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E731A9B8407002F3485 /* TutorialsHelper.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -110,6 +111,8 @@
 		31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnauthenticatedServerCommunicationController.m; sourceTree = "<group>"; };
 		31014E6F1A9AA182002F3485 /* ServerDataFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataFetchController.h; sourceTree = "<group>"; };
 		31014E701A9AA182002F3485 /* ServerDataFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerDataFetchController.m; sourceTree = "<group>"; };
+		31014E721A9B8407002F3485 /* TutorialsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsHelper.h; sourceTree = "<group>"; };
+		31014E731A9B8407002F3485 /* TutorialsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsHelper.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
 				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
 				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
+				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
+				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1035,6 +1040,7 @@
 				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
+				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,

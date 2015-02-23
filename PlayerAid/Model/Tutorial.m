@@ -6,7 +6,7 @@ NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
-NSString *const kServerIDPropertyName = @"id";
+NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 
 @implementation Tutorial
@@ -18,7 +18,7 @@ NSString *const kServerIDPropertyName = @"id";
   AssertTrueOrReturn(dictionary.count);
   
   NSDictionary *mapping = @{
-                            kServerIDPropertyName : KZProperty(serverID),
+                            kTutorialDictionaryServerIDPropertyName : KZProperty(serverID),
                             @"title" : KZProperty(title),
                             @"createdOn" : KZBox(Date, createdAt),
                             @"status" : KZCall(stateFromString:, state)
@@ -28,19 +28,6 @@ NSString *const kServerIDPropertyName = @"id";
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
-}
-
-#pragma mark - Auxiliary class methods
-
-+ (Tutorial *)tutorialWithServerID:(NSString *)serverID inContext:(NSManagedObjectContext *)localContext
-{
-  return [Tutorial MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"serverID == %@", serverID] inContext:localContext];
-}
-
-+ (NSString *)serverIDFromTutorialDictionary:(NSDictionary *)dictionary
-{
-  AssertTrueOrReturnNil(dictionary.count);
-  return dictionary[kServerIDPropertyName];
 }
 
 #pragma mark - State
