@@ -167,6 +167,7 @@
             <connections>
                 <outlet property="authorLabel" destination="RTe-nH-zxI" id="v5J-dv-5Kf"/>
                 <outlet property="avatarImageView" destination="l9K-RJ-Tmc" id="a3D-Ng-Njx"/>
+                <outlet property="backgroundImageView" destination="OOG-mE-GJc" id="I4J-Zg-EjE"/>
                 <outlet property="favouriteButton" destination="gdZ-L3-4O4" id="nCJ-zW-1Be"/>
                 <outlet property="gradientOverlayView" destination="0Db-YS-DgD" id="B0i-mM-1vw"/>
                 <outlet property="sectionLabel" destination="LDd-oO-kzN" id="Gki-J3-XJz"/>

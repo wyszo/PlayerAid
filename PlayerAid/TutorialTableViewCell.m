@@ -4,6 +4,7 @@
 
 #import "TutorialTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <UIImageView+AFNetworking.h>
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"
@@ -11,6 +12,7 @@
 
 @interface TutorialTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -56,6 +58,9 @@
 {
   self.tutorial = tutorial;
   
+  NSURL *imageURL = [NSURL URLWithString:tutorial.imageURL];
+  [self.backgroundImageView setImageWithURL:imageURL];
+  
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabel.text = tutorial.section.name;
@@ -67,7 +72,7 @@
   [self adjustAlphaFromTutorial:tutorial];
 }
 
--(void)adjustAlphaFromTutorial:(Tutorial *)tutorial
+- (void)adjustAlphaFromTutorial:(Tutorial *)tutorial
 {
   CGFloat alpha = 1.0f;
   
