@@ -10,6 +10,9 @@
 #import "Section.h"
 
 
+static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
+
+
 @interface TutorialTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -58,9 +61,7 @@
 {
   self.tutorial = tutorial;
   
-  NSURL *imageURL = [NSURL URLWithString:tutorial.imageURL];
-  [self.backgroundImageView setImageWithURL:imageURL];
-  
+  [self updateBackgroundImageView];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabel.text = tutorial.section.name;
@@ -70,6 +71,20 @@
   [self setFavouritedButtonState:tutorial.favouritedValue];
   
   [self adjustAlphaFromTutorial:tutorial];
+}
+
+- (void)updateBackgroundImageView
+{
+  __weak UIImageView *weakBackgroundImageView = self.backgroundImageView;
+  NSURLRequest *imageURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.tutorial.imageURL]];
+  
+  [self.backgroundImageView setImageWithURLRequest:imageURLRequest placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    weakBackgroundImageView.alpha = 0.0f;
+    weakBackgroundImageView.image = image;
+    [UIView animateWithDuration:kBackgroundImageViewFadeInDuration animations:^{
+      weakBackgroundImageView.alpha = 1.0f;
+    }];
+  } failure:nil];
 }
 
 - (void)adjustAlphaFromTutorial:(Tutorial *)tutorial
