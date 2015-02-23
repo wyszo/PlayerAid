@@ -3,7 +3,7 @@
 //
 
 #import "CreateTutorialHeaderViewController.h"
-#import "ApplicationViewHierarchyHelper.h"
+#import "TabBarHelper.h"
 #import "AlertFactory.h"
 #import "Section.h"
 

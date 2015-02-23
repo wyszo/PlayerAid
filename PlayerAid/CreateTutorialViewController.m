@@ -11,7 +11,7 @@
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
 #import "CreateTutorialStepButtonsView.h"
-#import "ApplicationViewHierarchyHelper.h"
+#import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 
 

@@ -4,7 +4,7 @@
 
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
-#import "ApplicationViewHierarchyHelper.h"
+#import "TabBarHelper.h"
 #import "FontsHelper.h"
 
 
@@ -96,10 +96,10 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 {
   UIView *createButtonBackgroundView = [self createTutorialBackgroundView];
   
-  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper mainTabBarController];
+  UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
   AssertTrueOrReturn(tabBarController);
   
-  UIView *tabBarBackgroundView = [ApplicationViewHierarchyHelper tabBarControllerBackgroundView];
+  UIView *tabBarBackgroundView = [TabBarHelper tabBarControllerBackgroundView];
   if (tabBarBackgroundView) {
     [tabBarBackgroundView addSubview:createButtonBackgroundView];
   }
@@ -110,7 +110,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (UIView *)createTutorialBackgroundView
 {
-  CGRect frame = [ApplicationViewHierarchyHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  CGRect frame = [TabBarHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
   AssertTrueOrReturnNil(frame.origin.x != 0);
   
   UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:frame];
@@ -122,7 +122,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (void)customizeCreateTutorialTabBarButtonFont
 {
-  UITabBarItem *createTutorialTabBarItem = [ApplicationViewHierarchyHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  UITabBarItem *createTutorialTabBarItem = [TabBarHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
   NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
   
   [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];

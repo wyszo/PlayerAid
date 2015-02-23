@@ -36,7 +36,7 @@
 
 - (void)pingCompletion:(NetworkResponseBlock)completion
 {
-  [self postRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
+  [self getRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
 #pragma mark - Users management
