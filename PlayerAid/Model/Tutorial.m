@@ -1,33 +1,75 @@
 #import "Tutorial.h"
-#import <KZAsserts.h>
+#import <KZPropertyMapper.h>
 
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
-
-
-@interface Tutorial ()
-
-@end
+NSString *const kServerIDPropertyName = @"id";
 
 
 @implementation Tutorial
 
+#pragma mark - Populating with data
+
+- (void)configureFromDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturn(dictionary.count);
+  
+  NSDictionary *mapping = @{
+                            kServerIDPropertyName : KZProperty(serverID),
+                            @"title" : KZProperty(title),
+                            @"createdOn" : KZBox(Date, createdAt),
+                            @"status" : KZCall(stateFromString:, state)
+                            // TODO: section
+                          };
+  
+  [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+  
+  AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
+}
+
+#pragma mark - Auxiliary class methods
+
++ (Tutorial *)tutorialWithServerID:(NSString *)serverID inContext:(NSManagedObjectContext *)localContext
+{
+  return [Tutorial MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"serverID == %@", serverID] inContext:localContext];
+}
+
++ (NSString *)serverIDFromTutorialDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturnNil(dictionary.count);
+  return dictionary[kServerIDPropertyName];
+}
+
 #pragma mark - State
 
+- (NSString *)stateFromString:(NSString *)state
+{
+  if ([self stateIsValid:state]) {
+    return state;
+  }
+  AssertTrueOr(NO, return kTutorialStateUnsaved;);
+  return kTutorialStateUnsaved;
+}
+
 - (void)setState:(NSString *)state
+{
+  if ([self stateIsValid:state]) {
+    self.primitiveState = state;
+  }
+}
+
+- (BOOL)stateIsValid:(NSString *)state
 {
   NSArray *allStates = @[
                          kTutorialStateUnsaved,
                          kTutorialStateDraft,
                          kTutorialStateInReview,
                          kTutorialStatePublished
-                         ];
-  
-  AssertTrueOrReturn([allStates containsObject:state]);
-  self.primitiveState = state;
+                        ];
+  return [allStates containsObject:state];
 }
 
 #pragma mark - Unsaved 

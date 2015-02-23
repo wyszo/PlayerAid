@@ -11,4 +11,10 @@ extern NSString *const kTutorialStatePublished;
 @property (nonatomic, strong) NSNumber *inReview;
 @property (nonatomic, strong) NSNumber *unsaved;
 
+// TODO: helper methods, can be extracted from here
++ (Tutorial *)tutorialWithServerID:(NSString *)serverID inContext:(NSManagedObjectContext *)localContext;
++ (NSString *)serverIDFromTutorialDictionary:(NSDictionary *)dictionary;
+
+- (void)configureFromDictionary:(NSDictionary *)dictionary;
+
 @end

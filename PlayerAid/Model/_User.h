@@ -42,7 +42,11 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePictureURL:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* serverID;
+@property (nonatomic, strong) NSNumber* serverID;
+
+@property (atomic) int64_t serverIDValue;
+- (int64_t)serverIDValue;
+- (void)setServerIDValue:(int64_t)value_;
 
 //- (BOOL)validateServerID:(id*)value_ error:(NSError**)error_;
 
@@ -78,8 +82,11 @@ extern const struct UserRelationships {
 - (NSString*)primitivePictureURL;
 - (void)setPrimitivePictureURL:(NSString*)value;
 
-- (NSString*)primitiveServerID;
-- (void)setPrimitiveServerID:(NSString*)value;
+- (NSNumber*)primitiveServerID;
+- (void)setPrimitiveServerID:(NSNumber*)value;
+
+- (int64_t)primitiveServerIDValue;
+- (void)setPrimitiveServerIDValue:(int64_t)value_;
 
 - (NSString*)primitiveUserDescription;
 - (void)setPrimitiveUserDescription:(NSString*)value;

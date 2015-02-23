@@ -46,6 +46,11 @@ const struct UserRelationships UserRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"serverIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"serverID"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -75,6 +80,24 @@ const struct UserRelationships UserRelationships = {
 @dynamic pictureURL;
 
 @dynamic serverID;
+
+- (int64_t)serverIDValue {
+	NSNumber *result = [self serverID];
+	return [result longLongValue];
+}
+
+- (void)setServerIDValue:(int64_t)value_ {
+	[self setServerID:@(value_)];
+}
+
+- (int64_t)primitiveServerIDValue {
+	NSNumber *result = [self primitiveServerID];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveServerIDValue:(int64_t)value_ {
+	[self setPrimitiveServerID:@(value_)];
+}
 
 @dynamic userDescription;
 
