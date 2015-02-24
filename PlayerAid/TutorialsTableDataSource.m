@@ -94,6 +94,9 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   Tutorial *tutorial = [self.tableViewDataSource objectAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   [tutorialCell configureWithTutorial:tutorial];
+ 
+  BOOL isLastCellInTableView = [indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
+  [tutorialCell showBottomGap:!isLastCellInTableView];
   
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
@@ -159,10 +162,11 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [TutorialCellHelper cellHeightFromNib];
+  BOOL withBottomGap = ![indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
+  return [TutorialTableViewCell cellHeightForCellWithBottomGap:withBottomGap];
 }
 
-#pragma mark - TableView Delegate - Section headers
+#pragma mark - TableView Delegate: Section headers
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

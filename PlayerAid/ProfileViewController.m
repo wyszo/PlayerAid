@@ -46,13 +46,15 @@
 
 - (void)setupTableHeaderView
 {
-  const NSUInteger kPlayerInforViewHeight = 316;
-  const NSUInteger kTutorialsFilterView = 80;
+  const NSUInteger kPlayerInforViewHeight = 310;
+  const NSUInteger kTutorialsFilterView = 54;
+  const NSUInteger kDistanceToFirstTutorial = 18;
+  
   NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
   
   self.playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight)];
   
-  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight + kTutorialsFilterView);
+  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInforViewHeight + kTutorialsFilterView + kDistanceToFirstTutorial);
   UIView *containerView = [self wrapView:self.playerInfoView inAContainerViewWithFrame:containerFrame];
   
   self.tutorialTableView.tableHeaderView = containerView;
@@ -61,7 +63,7 @@
 - (UIView *)wrapView:(UIView *)view inAContainerViewWithFrame:(CGRect)frame
 {
   UIView *containerView = [[UIView alloc] initWithFrame:frame];
-  containerView.backgroundColor = [UIColor grayColor];
+  containerView.backgroundColor = [UIColor whiteColor];
   [containerView addSubview:view];
   return containerView;
 }

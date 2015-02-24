@@ -8,8 +8,10 @@
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"
+#import "TutorialCellHelper.h"
 
 
+static const CGFloat kBottomGapHeight = 18.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 
@@ -28,17 +30,23 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 @property (weak, nonatomic) Tutorial *tutorial;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeight;
+
 @end
 
 
 @implementation TutorialTableViewCell
 
+#pragma mark - Cell setup & skinning
+
 - (void)awakeFromNib
 {
+  self.selectionStyle = UITableViewCellSelectionStyleNone;
   [self.avatarImageView styleAsSmallAvatar];
   [self setupGradientOverlay];
 }
 
+// TODO: extract this somewhere
 - (void)setupGradientOverlay
 {
   if (self.gradientLayer) {
@@ -100,6 +108,13 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.contentView.alpha = alpha;
 }
 
+#pragma mark - Other methods
+
+- (void)showBottomGap:(BOOL)showGap
+{
+  self.bottomGapHeight.constant = (showGap ? kBottomGapHeight : 0.0f);
+}
+
 #pragma mark - Auxiliary methods
 
 - (void)setFavouritedButtonState:(BOOL)favourited
@@ -124,6 +139,25 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   if (self.tutorialFavouritedBlock) {
     self.tutorialFavouritedBlock(newState);
   }
+}
+
+#pragma mark - Class methods
+
++ (CGFloat)cellHeightForCellWithBottomGap:(BOOL)includeBottomGap
+{
+  static CGFloat cellHeightWithGap;
+  if (!cellHeightWithGap)
+  {
+    cellHeightWithGap = [TutorialCellHelper cellHeightFromNib];
+  }
+  
+  static CGFloat cellHeightWithoutGap;
+  if (!cellHeightWithoutGap)
+  {
+    cellHeightWithoutGap = [TutorialCellHelper cellHeightFromNib] - kBottomGapHeight;
+  }
+  
+  return (includeBottomGap ? cellHeightWithGap : cellHeightWithoutGap);
 }
 
 @end

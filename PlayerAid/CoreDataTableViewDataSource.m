@@ -108,4 +108,16 @@
   return sectionInfo.objects[indexPath.row];
 }
 
+- (NSIndexPath *)lastTableViewCellIndexPath
+{
+  NSInteger lastSectionIndex = self.fetchedResultsController.sections.count - 1;
+  AssertTrueOrReturnNil(lastSectionIndex >= 0);
+  
+  NSInteger lastRowInLastSectionIndex = [self sectionInfoForSection:lastSectionIndex].numberOfObjects - 1;
+  AssertTrueOrReturnNil(lastRowInLastSectionIndex >= 0);
+  
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRowInLastSectionIndex inSection:lastSectionIndex];
+  return indexPath;
+}
+
 @end
