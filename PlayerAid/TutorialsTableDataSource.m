@@ -9,6 +9,7 @@
 #import "TutorialCellHelper.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TableViewFetchedResultsControllerBinder.h"
+#import "TutorialSectionHeaderView.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -159,6 +160,39 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TutorialCellHelper cellHeightFromNib];
+}
+
+#pragma mark - TableView Delegate - Section headers
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+  if (self.showSectionHeaders) {
+    return [self sectionHeaderViewForSection:section];
+  }
+  else {
+    return nil;
+  }
+}
+
+- (TutorialSectionHeaderView *)sectionHeaderViewForSection:(NSInteger)section
+{
+  TutorialSectionHeaderView *sectionHeaderView = [[TutorialSectionHeaderView alloc] init];
+  
+  id<NSFetchedResultsSectionInfo> sectionInfo = [self.tableViewDataSource sectionInfoForSection:section];
+  NSString *sectionName = sectionInfo.name;
+  AssertTrueOr(sectionName.length, ;);
+  
+  sectionHeaderView.titleLabel.text = sectionName;
+  return sectionHeaderView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+  if (self.showSectionHeaders) {
+    const CGFloat kSectionHeaderHeight = 32.0f;
+    return kSectionHeaderHeight;
+  }
+  return 0.0;
 }
 
 @end

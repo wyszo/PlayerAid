@@ -41,11 +41,6 @@
   return [self sectionInfoForSection:section].numberOfObjects;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  return [self sectionInfoForSection:section].name;
-}
-
 - (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section
 {
   return self.fetchedResultsController.sections[section];

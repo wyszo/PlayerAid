@@ -29,6 +29,7 @@
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", activeUser, kTutorialStateUnsaved];
   self.tutorialsTableDataSource.groupBy = @"state";
+  self.tutorialsTableDataSource.showSectionHeaders = YES;
   
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
   
