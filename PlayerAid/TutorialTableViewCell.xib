@@ -25,15 +25,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
-                        <rect key="frame" x="16" y="138" width="346" height="36"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
+                        <rect key="frame" x="16" y="138" width="510" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="36" id="2zP-2i-5WL"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="2zP-2i-5WL"/>
                             <constraint firstAttribute="width" constant="346" id="WwR-69-PvA"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="WwR-69-PvA"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
                         <rect key="frame" x="50" y="183" width="193" height="21"/>
@@ -54,9 +59,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Pj-OYA">
-                        <rect key="frame" x="455" y="145" width="129" height="28"/>
+                        <rect key="frame" x="534" y="145" width="50" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="129" id="3sp-gm-Mer"/>
+                            <constraint firstAttribute="width" constant="50" id="3sp-gm-Mer"/>
                             <constraint firstAttribute="height" constant="28" id="x0D-03-GGU"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
@@ -153,6 +158,7 @@
                     <constraint firstItem="hII-NL-LnG" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="-8" id="qRe-5N-gzZ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0Db-YS-DgD" secondAttribute="bottom" constant="-8" id="s12-aK-Ojo"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="8" id="sfi-hL-a9v"/>
+                    <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="8" id="spk-E1-BWH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="exw-H4-PlW" secondAttribute="trailing" constant="-8" id="tSB-lK-PFx"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="top" secondItem="gdZ-L3-4O4" secondAttribute="bottom" constant="8" id="vjF-nl-zHc"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="118" id="xVO-m9-Eem"/>
@@ -171,15 +177,15 @@
                         <exclude reference="UbL-4A-fj9"/>
                         <exclude reference="sfi-hL-a9v"/>
                         <exclude reference="RPb-Vs-vQn"/>
-                        <exclude reference="mBN-kA-uva"/>
-                        <exclude reference="vjF-nl-zHc"/>
-                        <exclude reference="xVO-m9-Eem"/>
                         <exclude reference="0e2-8p-J8j"/>
                         <exclude reference="8YE-iW-ZTL"/>
                         <exclude reference="DBL-6h-hgU"/>
                         <exclude reference="Uqd-o6-yIs"/>
                         <exclude reference="C3n-dZ-Pan"/>
                         <exclude reference="lBj-Gn-3w8"/>
+                        <exclude reference="mBN-kA-uva"/>
+                        <exclude reference="vjF-nl-zHc"/>
+                        <exclude reference="xVO-m9-Eem"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -195,7 +201,7 @@
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>
             </connections>
-            <point key="canvasLocation" x="436" y="104"/>
+            <point key="canvasLocation" x="436" y="102"/>
         </tableViewCell>
     </objects>
     <resources>
