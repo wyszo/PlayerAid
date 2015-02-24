@@ -46,7 +46,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self setupGradientOverlay];
 }
 
-// TODO: extract this somewhere
+// TODO: extract this method somewhere
 - (void)setupGradientOverlay
 {
   if (self.gradientLayer) {
@@ -63,6 +63,33 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.gradientLayer.rasterizationScale = [UIScreen mainScreen].scale;
   
   [self.gradientOverlayView.layer insertSublayer:self.gradientLayer atIndex:0];
+}
+
+- (void)layoutSubviews
+{
+  [super layoutSubviews];
+  self.gradientLayer.frame = self.gradientOverlayView.bounds;
+  
+  if (self.canBeDeletedOnSwipe && self.showingDeleteConfirmation) {
+    [self customiseDeleteButtonHeight];
+  }
+}
+
+- (void)customiseDeleteButtonHeight
+{
+  if (!self.showBottomGap) {
+    return;
+  }
+  
+  for (UIView *subview in self.subviews) {
+    if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) {
+      UIView *deleteButtonView = subview;
+      CGRect frame = deleteButtonView.frame;
+      frame.size.height = self.frame.size.height - kBottomGapHeight;
+      deleteButtonView.frame = frame;
+    }
+  }
+  // TODO: this approach sucks - gaps between tableView cells are implemented as part of cells, instead of dummy sections. That's why we traverse view hierarchy to decrease size of a delete button. Likely to break in future iOS versions.
 }
 
 - (void)configureWithTutorial:(Tutorial *)tutorial
@@ -110,9 +137,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 #pragma mark - Other methods
 
-- (void)showBottomGap:(BOOL)showGap
+- (void)setShowBottomGap:(BOOL)showBottomGap
 {
-  self.bottomGapHeight.constant = (showGap ? kBottomGapHeight : 0.0f);
+  _showBottomGap = showBottomGap;
+  self.bottomGapHeight.constant = (showBottomGap ? kBottomGapHeight : 0.0f);
 }
 
 #pragma mark - Auxiliary methods
@@ -156,7 +184,6 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   {
     cellHeightWithoutGap = [TutorialCellHelper cellHeightFromNib] - kBottomGapHeight;
   }
-  
   return (includeBottomGap ? cellHeightWithGap : cellHeightWithoutGap);
 }
 

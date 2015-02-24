@@ -96,7 +96,8 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   [tutorialCell configureWithTutorial:tutorial];
  
   BOOL isLastCellInTableView = [indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
-  [tutorialCell showBottomGap:!isLastCellInTableView];
+  tutorialCell.showBottomGap = !isLastCellInTableView;
+  tutorialCell.canBeDeletedOnSwipe = self.swipeToDeleteEnabled;
   
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
