@@ -39,9 +39,17 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
  
+  [self setupTableViewHeader];
   [self selectFilterLatest];
   
   // TODO: Filter buttons should be extracted to a separate class
+}
+
+- (void)setupTableViewHeader
+{
+  const CGFloat kHeaderGapHeight = 18.0f;
+  UIView *headerViewGap = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, kHeaderGapHeight)];
+  self.tutorialsTableView.tableHeaderView = headerViewGap;
 }
 
 #pragma mark - latest & following buttons bar
