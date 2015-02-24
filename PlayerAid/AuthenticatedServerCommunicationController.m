@@ -50,11 +50,8 @@
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
-  AssertTrueOrReturn(tutorial);
-  
-  NSString *tutorialID; // TODO: extract ID from Tutorial object
-  AssertTrueOrReturn(tutorialID);
-  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  AssertTrueOrReturn(tutorial.serverID);
+  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) completion(nil);

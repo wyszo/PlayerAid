@@ -7,14 +7,18 @@
 
 + (UIAlertView *)showGenericErrorAlertView;
 
-// Create Tutorial alerts
+// Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
 + (UIAlertView *)showOKCancelAlertViewWithMessage:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 
-// Other errors
+// Delete tutorial alerts
++ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
+
+// Other alerts
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;
++ (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;

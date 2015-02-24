@@ -22,6 +22,7 @@
 		31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */; };
 		31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */; };
 		31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */; };
+		31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -121,6 +122,8 @@
 		31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialsSectionHeaderView.xib; sourceTree = "<group>"; };
 		31014E7E1A9C77B7002F3485 /* TutorialSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialSectionHeaderView.h; sourceTree = "<group>"; };
 		31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialSectionHeaderView.m; sourceTree = "<group>"; };
+		31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+TableViewHelper.h"; sourceTree = "<group>"; };
+		31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TableViewHelper.m"; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 			children = (
 				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
+				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
+				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1062,6 +1067,7 @@
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
+				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,

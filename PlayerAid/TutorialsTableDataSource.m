@@ -10,6 +10,8 @@
 #import "CoreDataTableViewDataSource.h"
 #import "TableViewFetchedResultsControllerBinder.h"
 #import "TutorialSectionHeaderView.h"
+#import "AlertFactory.h"
+#import "UITableView+TableViewHelper.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -125,21 +127,53 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (void)deleteTutorialAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: delete tutorial behaviour should be different on different profile tableView filters - current behaviour is correct only for list of tutorials created by a user
-  
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
+  if (tutorial.draftValue) {
+    [self showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:indexPath];
+    return;
+  }
   
-  // Make a delete tutorial network request
+  // in review or published tutorial - ask for confirmation
+  __weak typeof(self) weakSelf = self;
+  [AlertFactory showDeleteTutorialAlertConfirmationWithOkAction:^{
+    [weakSelf makeDeleteTutorialNetworkRequestForTutorial:tutorial];
+  } cancelAction:^{
+    [weakSelf.tableView reloadRowAtIndexPath:indexPath];
+  }];
+}
+
+- (void)makeDeleteTutorialNetworkRequestForTutorial:(Tutorial *)tutorial
+{
+  // Make a delete tutorial network request for in review/published tutorials
   [AuthenticatedServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
     if (error) {
-      // TODO: delete tutorial request failed, queue it again, retry
+      // TODO: queue and retry delete tutorial reqeust!
+      [AlertFactory showOKAlertViewWithMessage:@"<Delete tutorial request failed, retrying not implemented yet!>"];
+    }
+    else {
+      // Remove tutorial object from CoreData, tableView will automatically pick up the change
+      [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
+        [tutorialInLocalContext MR_deleteInContext:localContext];
+      }];
+      
+      [AlertFactory showOKAlertViewWithMessage:@"<Tutorial removed from server!>"];
     }
   }];
+}
+
+- (void)showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:(NSIndexPath *)indexPath
+{
+  AssertTrueOrReturn(indexPath);
+  Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   
-  // Remove tutorial object from CoreData, tableView will automatically pick up the change
-  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-    Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
-    [tutorialInLocalContext MR_deleteInContext:localContext];
+  __weak typeof(self) weakSelf = self;
+  [AlertFactory showDeleteTutorialAlertConfirmationWithOkAction:^{
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+      [[tutorial MR_inContext:localContext] MR_deleteEntity];
+    }];
+  } cancelAction:^{
+    [weakSelf.tableView reloadRowAtIndexPath:indexPath];
   }];
 }
 
