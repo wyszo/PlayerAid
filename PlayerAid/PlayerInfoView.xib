@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="5Uf-vH-ntY" id="eK0-lG-BN6"/>
                 <outlet property="backgroundImageView" destination="N7w-eu-tkT" id="5cd-ks-DeN"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="MXu-y8-xbg"/>
                 <outlet property="descriptionLabel" destination="m5Q-8A-yvh" id="VUH-cC-98Q"/>
                 <outlet property="usernameLabel" destination="PfR-eQ-h1W" id="efl-6m-oSS"/>
             </connections>
@@ -18,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-eu-tkT" userLabel="Background Image View">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-eu-tkT" userLabel="Background Image View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Uf-vH-ntY" userLabel="Avatar Image View">
@@ -36,7 +37,7 @@
                         <constraint firstAttribute="height" constant="20" id="PDw-77-oCQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-8A-yvh">
@@ -45,8 +46,8 @@
                         <constraint firstAttribute="width" constant="297" id="68Y-ma-yGJ"/>
                         <constraint firstAttribute="height" constant="50" id="v3G-41-lD6"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-jr-YZ4">
@@ -62,7 +63,7 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.2297346491317821" green="1" blue="0.88070040952121365" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="PfR-eQ-h1W" firstAttribute="top" secondItem="5Uf-vH-ntY" secondAttribute="bottom" constant="15" id="6cZ-4k-NqU"/>
                 <constraint firstItem="N7w-eu-tkT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9qt-wu-fik"/>
