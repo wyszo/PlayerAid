@@ -6,6 +6,7 @@
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
 #import "ColorsHelper.h"
+#import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
 
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
@@ -19,6 +20,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
+
+@property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
 
 @end
 
@@ -43,6 +46,9 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   [self setupTableHeaderView];
   self.playerInfoView.user = activeUser;
+  
+  self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
+  self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -53,20 +59,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self updateTableViewNoTutorialsOverlay];
-}
-
-- (void)updateTableViewNoTutorialsOverlay
-{
-  if ([self.tutorialsTableDataSource totalNumberOfCells] == 0) {
-    self.tutorialTableView.scrollEnabled = NO;
-    self.noTutorialsLabel.hidden = NO;
-    self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
-  }
-  else {
-    self.tutorialTableView.scrollEnabled = YES;
-    self.noTutorialsLabel.hidden = YES;
-  }
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
 #pragma mark - Header View initialization
@@ -110,7 +103,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
 {
-  [self updateTableViewNoTutorialsOverlay];
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
 @end
