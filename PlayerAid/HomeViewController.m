@@ -20,6 +20,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialsTableView;
+@property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
@@ -43,13 +44,35 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   [self selectFilterLatest];
   
   // TODO: Filter buttons should be extracted to a separate class
+  
+    self.noTutorialsLabel.text = @"There aren't any tutorials yet";
 }
+
 
 - (void)setupTableViewHeader
 {
   const CGFloat kHeaderGapHeight = 18.0f;
   UIView *headerViewGap = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, kHeaderGapHeight)];
   self.tutorialsTableView.tableHeaderView = headerViewGap;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  [self updateTableViewNoTutorialsOverlay];
+}
+
+- (void)updateTableViewNoTutorialsOverlay
+{
+  if ([self.tutorialsTableDataSource totalNumberOfCells] == 0) {
+    self.tutorialsTableView.scrollEnabled = NO;
+    self.noTutorialsLabel.hidden = NO;
+    self.noTutorialsLabel.text = @"No tutorials to show";
+  }
+  else {
+    self.tutorialsTableView.scrollEnabled = YES;
+    self.noTutorialsLabel.hidden = YES;
+  }
 }
 
 #pragma mark - latest & following buttons bar
@@ -104,6 +127,11 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 {
   self.lastSelectedTutorial = tutorial;
   [self performSegueWithIdentifier:kShowTutorialDetailsSegueName sender:self];
+}
+
+- (void)numberOfRowsDidChange:(NSInteger)numberOfRows
+{
+  [self updateTableViewNoTutorialsOverlay];
 }
 
 #pragma mark - Navigation

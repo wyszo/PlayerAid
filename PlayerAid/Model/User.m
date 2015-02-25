@@ -12,6 +12,8 @@
 - (void)configureFromDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturn(dictionary.count);
+ 
+  [self.createdTutorial makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:self.managedObjectContext]; // so that those which still exist would be recreated and others dropped
   
   NSDictionary *mapping = @{
                             @"id" : KZProperty(serverID),

@@ -13,7 +13,7 @@ static const NSUInteger kPlayerInfoViewHeight = 310;
 static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <TutorialsTableViewDelegate>
 
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
@@ -53,8 +53,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
-  // TODO: this needs to happen also when some cells are added/removed from core data!!
   [self updateTableViewNoTutorialsOverlay];
 }
 

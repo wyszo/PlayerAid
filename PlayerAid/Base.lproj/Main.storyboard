@@ -65,22 +65,32 @@
                                     <constraint firstAttribute="centerY" secondItem="lQR-yQ-A0P" secondAttribute="centerY" id="spe-Bs-OXt"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="186" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UA2-bK-PCk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="186" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UA2-bK-PCk">
                                 <rect key="frame" x="0.0" y="100" width="600" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tutorials" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwP-3F-HWu" userLabel="No Tutorials Label">
+                                <rect key="frame" x="16" y="100" width="568" height="451"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5VS-F2-10W" firstAttribute="leading" secondItem="j3O-XH-GGQ" secondAttribute="trailing" id="AcN-Qz-zwt"/>
+                            <constraint firstItem="DwP-3F-HWu" firstAttribute="top" secondItem="j3O-XH-GGQ" secondAttribute="bottom" id="CdN-hd-7dH"/>
                             <constraint firstItem="UA2-bK-PCk" firstAttribute="top" secondItem="lQR-yQ-A0P" secondAttribute="bottom" id="EXa-mf-goF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UA2-bK-PCk" secondAttribute="trailing" constant="-16" id="Hbc-aF-q2D"/>
+                            <constraint firstItem="DwP-3F-HWu" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="J4w-Fl-YxA"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Oed-IE-YHG"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="DwP-3F-HWu" secondAttribute="bottom" id="Rg1-Ob-Ff5"/>
                             <constraint firstItem="UA2-bK-PCk" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="RhW-uH-i0s"/>
                             <constraint firstItem="5VS-F2-10W" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="16" id="VSF-2P-Qyr"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="bep-FS-yO8"/>
                             <constraint firstItem="5VS-F2-10W" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="cel-5F-ZU8"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="width" secondItem="5VS-F2-10W" secondAttribute="width" id="ckU-tH-OW3"/>
+                            <constraint firstItem="DwP-3F-HWu" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="iDv-Jl-4cb"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="mmJ-e8-az8"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="height" secondItem="5VS-F2-10W" secondAttribute="height" id="nqT-to-aBH"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="UA2-bK-PCk" secondAttribute="bottom" id="yGi-as-Qhi"/>
@@ -97,6 +107,7 @@
                         <outlet property="followingFilterButton" destination="oU6-gr-D1b" id="vgs-S6-hQB"/>
                         <outlet property="latestFilterBackgroundView" destination="j3O-XH-GGQ" id="f0E-8J-IZS"/>
                         <outlet property="latestFilterButton" destination="lQR-yQ-A0P" id="b1N-Kk-UjE"/>
+                        <outlet property="noTutorialsLabel" destination="DwP-3F-HWu" id="wdM-jt-Cqe"/>
                         <outlet property="tutorialsTableView" destination="UA2-bK-PCk" id="qhA-0D-14r"/>
                         <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="WCv-E4-gA0"/>
                     </connections>
