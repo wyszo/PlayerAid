@@ -54,6 +54,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 - (void)setupTableViewHeader
 {
+  // table view header - a white stripe in this case
   const CGFloat kHeaderGapHeight = 18.0f;
   UIView *headerViewGap = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, kHeaderGapHeight)];
   self.tutorialsTableView.tableHeaderView = headerViewGap;

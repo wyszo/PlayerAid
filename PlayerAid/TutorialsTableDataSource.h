@@ -20,6 +20,7 @@
 - (instancetype)new __unavailable;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
+- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName;
 
 @end
 

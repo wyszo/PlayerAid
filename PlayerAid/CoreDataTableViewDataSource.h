@@ -18,6 +18,7 @@
 - (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section;
 
 - (NSInteger)objectCount;
+- (NSInteger)sectionsCount;
 - (NSIndexPath *)lastTableViewCellIndexPath;
 
 @end

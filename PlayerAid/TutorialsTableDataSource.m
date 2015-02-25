@@ -236,6 +236,20 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return sectionHeaderView;
 }
 
+- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName
+{
+  AssertTrueOr(sectionName.length, return 0;);
+  
+  NSInteger sectionsCount = self.tableViewDataSource.sectionsCount;
+  for (int sectionIndex=0; sectionIndex < sectionsCount; sectionIndex++) {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.tableViewDataSource sectionInfoForSection:sectionIndex];
+    if ([sectionInfo.name.lowercaseString isEqual:sectionName.lowercaseString]) {
+      return sectionInfo.numberOfObjects;
+    }
+  }
+  return 0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
   if (self.showSectionHeaders) {

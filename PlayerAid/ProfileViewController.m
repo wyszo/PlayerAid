@@ -7,6 +7,7 @@
 #import "TutorialsTableDataSource.h"
 #import "ColorsHelper.h"
 #import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
+#import "PlayerInfoSegmentedControlButtonView.h"
 
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
@@ -20,6 +21,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
+@property (weak, nonatomic) PlayerInfoSegmentedControlButtonView *tutorialsFilterButtonView;
 
 @property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
 
@@ -59,6 +61,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  [self updateFilterViewTutorialsCount];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
@@ -83,6 +86,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, yOffset, width, kSegmentedControlHeight)];
   view.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
+  
+  PlayerInfoSegmentedControlButtonView *segmentedControlButton = [[PlayerInfoSegmentedControlButtonView alloc] initWithFrame:CGRectMake(0, 0, 80, kSegmentedControlHeight)];
+  [view addSubview:segmentedControlButton];
+  self.tutorialsFilterButtonView = segmentedControlButton;
+  
   return view;
 }
 
@@ -104,6 +112,17 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
 {
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+  [self updateFilterViewTutorialsCount];
+}
+
+- (void)updateFilterViewTutorialsCount
+{
+  NSInteger publishedCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+  NSString *publishedCountString = [@(publishedCount) stringValue];
+  self.tutorialsFilterButtonView.topLabel.text = publishedCountString;
+  
+  NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
+  self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
 }
 
 @end
