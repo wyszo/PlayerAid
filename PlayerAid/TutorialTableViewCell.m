@@ -5,6 +5,7 @@
 #import "TutorialTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIImageView+AFNetworking.h>
+#import <NSDate+TimeAgo.h>
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"
@@ -100,7 +101,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabel.text = tutorial.section.name;
-//  self.timeLabel.text = // tutorial.createdAt -> string // TODO: display creation date
+  
+  NSString *timeAgo = [tutorial.createdAt timeAgoSimple];
+  self.timeLabel.text = timeAgo;
   
   [tutorial.createdBy placeAvatarInImageView:self.avatarImageView];
   [self setFavouritedButtonState:tutorial.favouritedValue];
