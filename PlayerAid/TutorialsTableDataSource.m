@@ -49,6 +49,11 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
+  _fetchedResultsControllerBinder.numberOfObjectsChangedBlock = ^(NSInteger objectCount){
+    if ([(NSObject *)(weakSelf.tutorialTableViewDelegate) respondsToSelector:@selector(numberOfRowsDidChange:)]) {
+      [weakSelf.tutorialTableViewDelegate numberOfRowsDidChange:objectCount];
+    }
+  };
 }
 
 - (void)initTableViewDataSource

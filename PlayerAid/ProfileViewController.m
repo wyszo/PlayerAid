@@ -37,6 +37,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", activeUser, kTutorialStateUnsaved];
   self.tutorialsTableDataSource.groupBy = @"state";
   self.tutorialsTableDataSource.showSectionHeaders = YES;
+  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
   
@@ -100,6 +101,18 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   containerView.backgroundColor = [UIColor whiteColor];
   [containerView addSubview:view];
   return containerView;
+}
+
+#pragma mark - Tutorials Table View Delegate
+
+- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
+{
+  // no action, required method
+}
+
+- (void)numberOfRowsDidChange:(NSInteger)numberOfRows
+{
+  [self updateTableViewNoTutorialsOverlay];
 }
 
 @end

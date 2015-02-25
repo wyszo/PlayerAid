@@ -25,7 +25,10 @@
 
 
 @protocol TutorialsTableViewDelegate
+
 @required
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial;
+
+@optional
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows;
 @end
