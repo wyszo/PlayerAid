@@ -12,8 +12,6 @@
 - (void)configureFromDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturn(dictionary.count);
- 
-  [self.createdTutorial makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:self.managedObjectContext]; // so that those which still exist would be recreated and others dropped
   
   NSDictionary *mapping = @{
                             @"id" : KZProperty(serverID),
@@ -27,7 +25,17 @@
                             // TODO: likes
                            };
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+  
+  [self cleanupTutorialsWithoutParents]; // will delete any tutorial that used to belong to the user but has been removed on another device
 }
+
+- (void)cleanupTutorialsWithoutParents
+{
+  NSArray *tutorialsWithoutParent = [Tutorial MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"createdBy == nil"] inContext:self.managedObjectContext];
+  [tutorialsWithoutParent makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:self.managedObjectContext];
+}
+
+#pragma mark - Styling
 
 - (void)placeAvatarInImageView:(UIImageView *)imageView
 {
@@ -36,6 +44,8 @@
   
   [imageView setImageWithURL:[NSURL URLWithString:self.pictureURL]];
 }
+
+#pragma mark - Data extraction methods
 
 - (NSSet *)setOfObjectsFromDictionariesArray:(id)dictionariesArray
 {
