@@ -120,4 +120,10 @@
   return indexPath;
 }
 
+- (NSInteger)objectCount
+{
+  AssertTrueOr(self.fetchedResultsController, return 0;);
+  return self.fetchedResultsController.fetchedObjects.count;
+}
+
 @end

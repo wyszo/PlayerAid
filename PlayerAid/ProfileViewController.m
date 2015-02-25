@@ -18,6 +18,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
+@property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 
 @end
 
@@ -46,6 +47,27 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   return UIStatusBarStyleLightContent;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  
+  // TODO: this needs to happen also when some cells are added/removed from core data!!
+  [self updateTableViewNoTutorialsOverlay];
+}
+
+- (void)updateTableViewNoTutorialsOverlay
+{
+  if ([self.tutorialsTableDataSource totalNumberOfCells] == 0) {
+    self.tutorialTableView.scrollEnabled = NO;
+    self.noTutorialsLabel.hidden = NO;
+    self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
+  }
+  else {
+    self.tutorialTableView.scrollEnabled = YES;
+    self.noTutorialsLabel.hidden = YES;
+  }
 }
 
 #pragma mark - Header View initialization

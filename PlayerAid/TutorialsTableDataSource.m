@@ -184,6 +184,12 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return [self.tableViewDataSource objectAtIndexPath:indexPath];
 }
 
+- (NSInteger)totalNumberOfCells
+{
+  AssertTrueOr(self.tableViewDataSource, return 0;);
+  return self.tableViewDataSource.objectCount;
+}
+
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
