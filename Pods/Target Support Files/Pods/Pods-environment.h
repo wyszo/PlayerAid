@@ -102,6 +102,12 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// NSDate+TimeAgo
+#define COCOAPODS_POD_AVAILABLE_NSDate_TimeAgo
+#define COCOAPODS_VERSION_MAJOR_NSDate_TimeAgo 1
+#define COCOAPODS_VERSION_MINOR_NSDate_TimeAgo 0
+#define COCOAPODS_VERSION_PATCH_NSDate_TimeAgo 3
+
 // UIAlertView-Blocks
 #define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks
 #define COCOAPODS_VERSION_MAJOR_UIAlertView_Blocks 1
