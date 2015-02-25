@@ -369,20 +369,6 @@
                                     <action selector="termsAndConditionsButtonPressed:" destination="5AG-Cg-YGg" eventType="touchUpInside" id="agb-Uj-Q6Q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6C-2a-0Mv">
-                                <rect key="frame" x="223" y="8" width="154" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="154" id="6SI-Wc-tjr"/>
-                                    <constraint firstAttribute="height" constant="65" id="VmA-vY-12n"/>
-                                </constraints>
-                                <state key="normal" title="[DEBUG] Skip Login">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.010051519906341788" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="debugSkipLoginButtonPressed:" destination="5AG-Cg-YGg" eventType="touchUpInside" id="G38-qn-TdZ"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-y8-ewo" userLabel="Login Button Container">
                                 <rect key="frame" x="16" y="521" width="568" height="37"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -399,9 +385,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KB9-uj-xhL" firstAttribute="top" secondItem="c6C-2a-0Mv" secondAttribute="bottom" constant="64" id="6Qr-oK-Rah"/>
                             <constraint firstItem="5Ws-EI-Edb" firstAttribute="leading" secondItem="6Xd-Vd-sts" secondAttribute="leadingMargin" id="6oL-0e-sF7"/>
-                            <constraint firstAttribute="centerX" secondItem="c6C-2a-0Mv" secondAttribute="centerX" id="A2c-Mp-VXq"/>
                             <constraint firstAttribute="centerX" secondItem="fU2-y8-ewo" secondAttribute="centerX" id="E4O-SF-TKu"/>
                             <constraint firstItem="Uh7-gU-VET" firstAttribute="top" secondItem="IBl-TD-pMK" secondAttribute="bottom" constant="56" id="Jvu-um-Mbk"/>
                             <constraint firstItem="fU2-y8-ewo" firstAttribute="leading" secondItem="6Xd-Vd-sts" secondAttribute="leadingMargin" id="K6f-Mj-RRw"/>
@@ -410,18 +394,12 @@
                             <constraint firstItem="HUn-os-55x" firstAttribute="top" secondItem="fU2-y8-ewo" secondAttribute="bottom" constant="8" id="X1f-5P-Xpg"/>
                             <constraint firstItem="KB9-uj-xhL" firstAttribute="top" secondItem="HUn-os-55x" secondAttribute="bottom" constant="9" id="cfD-Tf-Z1s"/>
                             <constraint firstItem="fU2-y8-ewo" firstAttribute="trailing" secondItem="6Xd-Vd-sts" secondAttribute="trailingMargin" id="oRW-8f-d7s"/>
-                            <constraint firstItem="c6C-2a-0Mv" firstAttribute="top" secondItem="WOx-tK-efn" secondAttribute="bottom" constant="8" id="px6-Jp-TCn"/>
                             <constraint firstItem="Uh7-gU-VET" firstAttribute="leading" secondItem="6Xd-Vd-sts" secondAttribute="leadingMargin" id="s7L-Hk-vJM"/>
                             <constraint firstItem="IBl-TD-pMK" firstAttribute="top" secondItem="WOx-tK-efn" secondAttribute="bottom" constant="68" id="sLf-Yb-vLp"/>
                             <constraint firstAttribute="centerX" secondItem="HUn-os-55x" secondAttribute="centerX" id="vHx-zn-Stb"/>
                             <constraint firstItem="5Ws-EI-Edb" firstAttribute="top" secondItem="Uh7-gU-VET" secondAttribute="bottom" constant="8" id="wGP-BP-fdz"/>
                             <constraint firstItem="Uh7-gU-VET" firstAttribute="trailing" secondItem="6Xd-Vd-sts" secondAttribute="trailingMargin" id="x2X-BY-eHA"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="6Qr-oK-Rah"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="TV7-14-3s8"/>
                     <connections>

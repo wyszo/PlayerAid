@@ -67,12 +67,6 @@
 
 #pragma mark - DEBUG IBActions
 
-- (IBAction)debugSkipLoginButtonPressed:(id)sender
-{
-  [self dismissViewController];
-  [ServerDataFetchController updateUserAndTutorials];
-}
-
 - (IBAction)termsAndConditionsButtonPressed:(id)sender
 {
   [self performSegueWithIdentifier:@"TermsAndConditionsSegue" sender:self];
