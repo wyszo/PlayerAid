@@ -34,6 +34,7 @@
 		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
+		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -48,7 +49,6 @@
 		3177802A1A80975C007057CD /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780221A80975C007057CD /* Section.m */; };
 		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
 		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
-		317780311A80DFAB007057CD /* DataModelMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780301A80DFAB007057CD /* DataModelMock.m */; };
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
@@ -146,6 +146,8 @@
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
 		312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoSegmentedControlButtonView.h; sourceTree = "<group>"; };
 		312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoSegmentedControlButtonView.m; sourceTree = "<group>"; };
+		312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionsDataSource.h; sourceTree = "<group>"; };
+		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionsDataSource.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -173,8 +175,6 @@
 		317780241A80975C007057CD /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		317780251A80975C007057CD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		317780261A80975C007057CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		3177802F1A80DFAB007057CD /* DataModelMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelMock.h; sourceTree = "<group>"; };
-		317780301A80DFAB007057CD /* DataModelMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelMock.m; sourceTree = "<group>"; };
 		317780341A80E557007057CD /* TutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTableViewCell.h; sourceTree = "<group>"; };
 		317780351A80E557007057CD /* TutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTableViewCell.m; sourceTree = "<group>"; };
 		317780381A80ED2C007057CD /* TutorialDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsViewController.h; sourceTree = "<group>"; };
@@ -320,22 +320,14 @@
 			name = Users;
 			sourceTree = "<group>";
 		};
-		31014E591A964213002F3485 /* JSONs */ = {
+		31014E591A964213002F3485 /* Mocked Server responses */ = {
 			isa = PBXGroup;
 			children = (
-				31014E5A1A96422A002F3485 /* user.json */,
-			);
-			name = JSONs;
-			sourceTree = "<group>";
-		};
-		31014E5F1A964354002F3485 /* Mocked Server Responses */ = {
-			isa = PBXGroup;
-			children = (
-				31014E591A964213002F3485 /* JSONs */,
 				31014E5C1A96431C002F3485 /* MockedServerResponses.h */,
 				31014E5D1A96431C002F3485 /* MockedServerResponses.m */,
+				31014E5A1A96422A002F3485 /* user.json */,
 			);
-			name = "Mocked Server Responses";
+			name = "Mocked Server responses";
 			sourceTree = "<group>";
 		};
 		31014E661A99FF42002F3485 /* Settings */ = {
@@ -368,8 +360,8 @@
 		31014E7A1A9BB364002F3485 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				31014E771A9BB35F002F3485 /* ApplicationViewHierarchyHelper.h */,
-				31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */,
+				312FF5FC1A9F1A3800AE3174 /* TabBar */,
+				312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -469,6 +461,62 @@
 			name = PlayerInfo;
 			sourceTree = "<group>";
 		};
+		312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */ = {
+			isa = PBXGroup;
+			children = (
+				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
+				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
+			);
+			name = "Facebook data manipulation";
+			sourceTree = "<group>";
+		};
+		312FF5FC1A9F1A3800AE3174 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
+				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		312FF5FD1A9F1A4400AE3174 /* Dispatch */ = {
+			isa = PBXGroup;
+			children = (
+				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
+				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
+			);
+			name = Dispatch;
+			sourceTree = "<group>";
+		};
+		312FF5FE1A9F1A5100AE3174 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
+				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
+				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
+		312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				31014E771A9BB35F002F3485 /* ApplicationViewHierarchyHelper.h */,
+				31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */,
+			);
+			name = "Application View Hierarchy";
+			sourceTree = "<group>";
+		};
+		312FF6001A9F1A7C00AE3174 /* SectionsDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */,
+				312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */,
+			);
+			name = SectionsDataSource;
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,16 +543,9 @@
 			children = (
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31B735F41A88000B0081AE15 /* Categories */,
-				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
-				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
-				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
-				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
-				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
-				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
-				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
-				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
-				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
-				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
+				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
+				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
+				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -525,6 +566,7 @@
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
 				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				31B736051A8925F80081AE15 /* Tutorials */,
 				31B736061A8926010081AE15 /* TutorialSteps */,
@@ -630,9 +672,7 @@
 		317780321A80E471007057CD /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				3177802F1A80DFAB007057CD /* DataModelMock.h */,
-				317780301A80DFAB007057CD /* DataModelMock.m */,
-				31014E5F1A964354002F3485 /* Mocked Server Responses */,
+				31014E591A964213002F3485 /* Mocked Server responses */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -1094,9 +1134,9 @@
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */,
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
-				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */,
+				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,

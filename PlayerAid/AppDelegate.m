@@ -5,7 +5,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <MagicalRecord+Setup.h>
 #import "AppDelegate.h"
-#import "DataModelMock.h"
 #import "AppearanceCustomizationHelper.h"
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
@@ -15,6 +14,7 @@
 #import "UsersController.h"
 #import "ServerDataFetchController.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "SectionsDataSource.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -30,7 +30,7 @@
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
-//  [self populateCoreDataWithSampleEntities];
+  [SectionsDataSource setupHardcodedSectionsIfNeedded];
   
   [self applicationLaunchDataFetch];
   
@@ -88,15 +88,6 @@
   }];
   
   [TabBarHelper mainTabBarController].delegate = self.tabBarControllerHandler;
-}
-
-#pragma mark - Other
-
-// Obsolete!
-- (void)populateCoreDataWithSampleEntities
-{
-  // TODO: switch to client-server communication to populate database
-  [[DataModelMock new] addDummyTutorialUserAndSectionObjects];
 }
 
 @end
