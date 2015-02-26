@@ -18,7 +18,7 @@
                             @"name" : KZProperty(name),
                             @"picture" : KZProperty(pictureURL),
                             @"description" : KZProperty(userDescription),
-                            @"tutorials" : KZCall(setOfObjectsFromDictionariesArray:, createdTutorial)
+                            @"tutorials" : KZCall(setOfOwnTutorialsFromDictionariesArray:, createdTutorial)
                             
                             // TODO: followers
                             // TODO: following
@@ -47,7 +47,7 @@
 
 #pragma mark - Data extraction methods
 
-- (NSSet *)setOfObjectsFromDictionariesArray:(id)dictionariesArray
+- (NSSet *)setOfOwnTutorialsFromDictionariesArray:(id)dictionariesArray
 {
   AssertTrueOrReturnNil([dictionariesArray isKindOfClass:[NSArray class]]);
   NSMutableArray *tutorialsArray = [NSMutableArray new];
@@ -61,7 +61,7 @@
     if (!tutorial) {
       tutorial = [Tutorial MR_createInContext:self.managedObjectContext];
     }
-    [tutorial configureFromDictionary:dictionary];
+    [tutorial configureFromDictionary:dictionary includeAuthor:NO];
     
     AssertTrueOrReturn(tutorial);
     [tutorialsArray addObject:tutorial];

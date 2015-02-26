@@ -1,6 +1,7 @@
 #import "Tutorial.h"
 #import <KZPropertyMapper.h>
 #import "Section.h"
+#import "User.h"
 
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
@@ -14,7 +15,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 #pragma mark - Populating with data
 
-- (void)configureFromDictionary:(NSDictionary *)dictionary
+- (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor
 {
   AssertTrueOrReturn(dictionary.count);
   
@@ -30,12 +31,27 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
+
+  if (includeAuthor) {
+    NSDictionary *mapping = @{
+                              @"author" : KZCall(authorFromDictionary:, createdBy)
+                             };
+    [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+  }
 }
 
 - (Section *)sectionFromString:(NSString *)sectionName
 {
   AssertTrueOrReturnNil(sectionName.length);
   return [Section MR_findFirstByAttribute:@"name" withValue:sectionName inContext:self.managedObjectContext];
+}
+
+- (User *)authorFromDictionary:(NSDictionary *)authorDictionary
+{
+  AssertTrueOrReturnNil(authorDictionary.count);
+  User *author = [User MR_createInContext:self.managedObjectContext];
+  [author configureFromDictionary:authorDictionary];
+  return author;
 }
 
 #pragma mark - State

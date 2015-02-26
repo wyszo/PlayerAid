@@ -14,6 +14,6 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 @property (nonatomic, strong) NSNumber *inReview;
 @property (nonatomic, strong) NSNumber *unsaved;
 
-- (void)configureFromDictionary:(NSDictionary *)dictionary;
+- (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor;
 
 @end
