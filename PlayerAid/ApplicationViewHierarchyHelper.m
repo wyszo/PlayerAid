@@ -18,12 +18,16 @@
   return navigationController;
 }
 
-+ (void (^)(User *))pushProfileViewControllerFromViewControllerBlock:(UIViewController *)viewController;
++ (void (^)(User *))pushProfileViewControllerFromViewControllerBlock:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
 {
   __weak UIViewController *weakViewController = viewController;
   
   void (^pushProfileViewBlock)(User *) = ^(User *user) {
     AssertTrueOrReturn(user);
+    
+    if (!allowPushingLoggedInUser && user.loggedInUserValue) {
+      return;
+    }
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AssertTrueOrReturn(mainStoryboard);
@@ -32,7 +36,9 @@
     AssertTrueOrReturn(profileViewController);
     profileViewController.user = user;
     
-    [weakViewController.navigationController pushViewController:profileViewController animated:YES];
+    UINavigationController *navigationController = weakViewController.navigationController;
+    AssertTrueOrReturn(navigationController);
+    [navigationController pushViewController:profileViewController animated:YES];
   };
   return pushProfileViewBlock;
 }

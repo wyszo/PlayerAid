@@ -231,7 +231,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="1061"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="58c-xg-3RA">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Uix-Ga-AJb" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -266,11 +266,7 @@
                             <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="knL-tG-Q8f" secondAttribute="bottom" id="mQU-Em-qlE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="9Kc-AF-f7Z"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -281,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9V-94-XeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="1763"/>
+            <point key="canvasLocation" x="1561" y="1763"/>
         </scene>
         <!--Settings-->
         <scene sceneID="vCx-Fh-bQX">
@@ -449,7 +445,7 @@
                         <segue destination="YGX-n7-kf9" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="17Y-Op-qj8" kind="relationship" relationship="viewControllers" id="hYL-1S-FE7"/>
-                        <segue destination="Uix-Ga-AJb" kind="relationship" relationship="viewControllers" id="RHa-ld-hUo"/>
+                        <segue destination="hcs-TP-QxR" kind="relationship" relationship="viewControllers" id="RHa-ld-hUo"/>
                         <segue destination="cVz-5J-wdW" kind="relationship" relationship="viewControllers" id="xGg-tL-Gjc"/>
                         <segue destination="G46-B1-sLw" kind="presentation" identifier="LoginSegue" animates="NO" id="IVE-p5-doI"/>
                     </connections>
@@ -500,6 +496,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B54-32-9zL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-512" y="-4"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="ORk-No-nVo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hcs-TP-QxR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cXj-Kn-Jy4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uix-Ga-AJb" kind="relationship" relationship="rootViewController" id="GvM-Ry-eY3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lfE-Pt-FLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749" y="1763"/>
         </scene>
     </scenes>
     <resources>

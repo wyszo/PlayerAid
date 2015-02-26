@@ -8,6 +8,7 @@
 #import "ColorsHelper.h"
 #import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
 #import "PlayerInfoSegmentedControlButtonView.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
@@ -39,22 +40,27 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   if (!self.user) {
     self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
   }
-  
   AssertTrueOrReturn(self.user);
   
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", self.user, kTutorialStateUnsaved];
-  self.tutorialsTableDataSource.groupBy = @"state";
-  self.tutorialsTableDataSource.showSectionHeaders = YES;
-  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
-  
-  self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
-  
+  [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   self.playerInfoView.user = self.user;
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
   self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+}
+
+- (void)setupTutorialsTableDataSource
+{
+  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", self.user, kTutorialStateUnsaved];
+  self.tutorialsTableDataSource.groupBy = @"state";
+  self.tutorialsTableDataSource.showSectionHeaders = YES;
+  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
+  self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
+  
+  __weak typeof(self) weakSelf = self;
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:weakSelf allowPushingLoggedInUser:NO];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

@@ -44,7 +44,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
-  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self];
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self allowPushingLoggedInUser:NO];
   
   [self setupTableViewHeader];
   [self selectFilterLatest];
