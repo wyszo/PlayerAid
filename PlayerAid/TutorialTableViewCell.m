@@ -174,9 +174,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (IBAction)authorButtonPressed:(id)sender
 {
-  NSLog(@"User avatar button pressed!");
-  
-  // TODO: push user's profile view
+  if (self.userAvatarSelectedBlock) {
+    self.userAvatarSelectedBlock(self.tutorial.createdBy);
+  }
 }
 
 #pragma mark - Class methods

@@ -234,7 +234,7 @@
         <!--Profile-->
         <scene sceneID="58c-xg-3RA">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Uix-Ga-AJb" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Uix-Ga-AJb" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DIJ-1J-d9a"/>
                         <viewControllerLayoutGuide type="bottom" id="aMs-ni-5qO"/>

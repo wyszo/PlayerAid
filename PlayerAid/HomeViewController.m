@@ -7,6 +7,8 @@
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
 #import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
+#import "ProfileViewController.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
@@ -42,7 +44,8 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
- 
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self];
+  
   [self setupTableViewHeader];
   [self selectFilterLatest];
   

@@ -12,6 +12,7 @@
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
+#import "ProfileViewController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -105,6 +106,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   BOOL isLastCellInTableView = [indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
   tutorialCell.showBottomGap = !isLastCellInTableView;
   tutorialCell.canBeDeletedOnSwipe = self.swipeToDeleteEnabled;
+
+  if (self.userAvatarSelectedBlock) {
+    tutorialCell.userAvatarSelectedBlock = self.userAvatarSelectedBlock;
+  }
   
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {

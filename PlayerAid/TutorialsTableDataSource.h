@@ -3,6 +3,7 @@
 //
 
 #import "Tutorial.h"
+#import "User.h"
 
 @protocol TutorialsTableViewDelegate;
 
@@ -15,6 +16,7 @@
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
 @property (nonatomic, assign, readonly) NSInteger totalNumberOfCells;
+@property (nonatomic, copy) void (^userAvatarSelectedBlock)(User *user);
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
