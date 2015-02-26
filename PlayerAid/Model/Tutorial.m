@@ -1,5 +1,6 @@
 #import "Tutorial.h"
 #import <KZPropertyMapper.h>
+#import "Section.h"
 
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
@@ -22,13 +23,19 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
                             @"title" : KZProperty(title),
                             @"createdOn" : KZBox(Date, createdAt),
                             @"status" : KZCall(stateFromString:, state),
-                            @"image" : KZProperty(imageURL)
-                            // TODO: section
+                            @"image" : KZProperty(imageURL),
+                            @"section" : KZCall(sectionFromString:, section)
                           };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
+}
+
+- (Section *)sectionFromString:(NSString *)sectionName
+{
+  AssertTrueOrReturnNil(sectionName.length);
+  return [Section MR_findFirstByAttribute:@"name" withValue:sectionName inContext:self.managedObjectContext];
 }
 
 #pragma mark - State
