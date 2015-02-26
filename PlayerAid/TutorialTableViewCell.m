@@ -172,6 +172,13 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   }
 }
 
+- (IBAction)authorButtonPressed:(id)sender
+{
+  NSLog(@"User avatar button pressed!");
+  
+  // TODO: push user's profile view
+}
+
 #pragma mark - Class methods
 
 + (CGFloat)cellHeightForCellWithBottomGap:(BOOL)includeBottomGap
