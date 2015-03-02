@@ -20,6 +20,10 @@
 
 - (void)updateUsersProfile:(User *)user;
 
+/**
+ * Returns currently logged in user 
+ * @param context   Context in which to fetch User object, Optional
+ */
 - (User *)currentUserInContext:(NSManagedObjectContext *)context;
 
 @end
