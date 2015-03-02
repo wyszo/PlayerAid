@@ -10,6 +10,7 @@
 #import "User.h"
 #import "Section.h"
 #import "TutorialCellHelper.h"
+#import "GradientHelper.h"
 
 
 static const CGFloat kBottomGapHeight = 18.0f;
@@ -36,6 +37,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @end
 
 
+
 @implementation TutorialTableViewCell
 
 #pragma mark - Cell setup & skinning
@@ -47,23 +49,13 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self setupGradientOverlay];
 }
 
-// TODO: extract this method somewhere
 - (void)setupGradientOverlay
 {
   if (self.gradientLayer) {
     return;
   }
-  
   self.gradientOverlayView.alpha = 0.8;
-  
-  self.gradientLayer = [CAGradientLayer layer];
-  self.gradientLayer.frame = self.gradientOverlayView.bounds;
-  UIColor *darkBlue = [UIColor colorWithRed:24.0/255.0 green:45.0/255.0 blue:97.0/255.0 alpha:1.0];
-  self.gradientLayer.colors = @[ (id)[[UIColor colorWithWhite:1.0 alpha:0] CGColor], (id)[darkBlue CGColor] ];
-  self.gradientLayer.shouldRasterize = YES;
-  self.gradientLayer.rasterizationScale = [UIScreen mainScreen].scale;
-  
-  [self.gradientOverlayView.layer insertSublayer:self.gradientLayer atIndex:0];
+  self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
 }
 
 - (void)layoutSubviews

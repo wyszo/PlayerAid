@@ -3,17 +3,23 @@
 //
 
 #import "CreateTutorialHeaderViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "TabBarHelper.h"
 #import "AlertFactory.h"
 #import "Section.h"
+#import "GradientHelper.h"
 
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
+@property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
+@property (strong, nonatomic) CAGradientLayer *gradientLayer;
 
 @property (strong, nonatomic) NSArray *actionSheetSections;
 @property (strong, nonatomic) Section *selectedSection;
+
 @end
 
 
@@ -30,6 +36,22 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupGradientOverlay];
+}
+
+- (void)setupGradientOverlay
+{
+  if (self.gradientLayer) {
+    return;
+  }
+  self.gradientOverlayView.alpha = 0.8;
+  self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
+}
+
+- (void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  self.gradientLayer.frame = self.gradientOverlayView.bounds;
 }
 
 #pragma mark - UITextFieldDelegate

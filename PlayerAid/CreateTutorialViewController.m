@@ -226,7 +226,11 @@
 {
   [picker dismissViewControllerAnimated:YES completion:nil];
   
-  // TODO: update header view cover photo
+  UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+  if (!image) {
+    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+  }
+  self.headerViewController.backgroundImageView.image = image;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

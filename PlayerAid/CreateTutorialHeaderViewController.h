@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate> *imagePickerControllerDelegate;
 @property (weak, nonatomic) id<SaveTutorialDelegate> saveDelegate;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end
 
