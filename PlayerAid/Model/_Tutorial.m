@@ -6,7 +6,6 @@
 const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
-	.favourited = @"favourited",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
 	.serverID = @"serverID",
@@ -53,11 +52,6 @@ const struct TutorialRelationships TutorialRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"favouritedValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"favourited"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"inReviewValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -97,26 +91,6 @@ const struct TutorialRelationships TutorialRelationships = {
 
 - (void)setPrimitiveDraftValue:(BOOL)value_ {
 	[self setPrimitiveDraft:@(value_)];
-}
-
-@dynamic favourited;
-
-- (BOOL)favouritedValue {
-	NSNumber *result = [self favourited];
-	return [result boolValue];
-}
-
-- (void)setFavouritedValue:(BOOL)value_ {
-	[self setFavourited:@(value_)];
-}
-
-- (BOOL)primitiveFavouritedValue {
-	NSNumber *result = [self primitiveFavourited];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveFavouritedValue:(BOOL)value_ {
-	[self setPrimitiveFavourited:@(value_)];
 }
 
 @dynamic imageURL;

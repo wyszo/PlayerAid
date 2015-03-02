@@ -106,7 +106,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.timeLabel.text = timeAgo;
   
   [tutorial.createdBy placeAvatarInImageView:self.avatarImageView];
-  [self setFavouritedButtonState:tutorial.favouritedValue];
+  // TODO: update favourited button state based on User's liked relation
   
   [self adjustAlphaFromTutorial:tutorial];
 }
@@ -164,7 +164,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (IBAction)favouriteButtonPressed:(id)sender
 {
   AssertTrueOrReturn(self.tutorial);
-  BOOL newState = !self.tutorial.favouritedValue;
+  BOOL newState = YES; // TODO: update favourited button state based on User's liked relation
   
   [self setFavouritedButtonState:newState];
   if (self.tutorialFavouritedBlock) {

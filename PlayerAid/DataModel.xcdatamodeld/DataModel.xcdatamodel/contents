@@ -9,7 +9,6 @@
     <entity name="Tutorial" representedClassName="Tutorial" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="draft" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="favourited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -36,7 +35,7 @@
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
     </elements>

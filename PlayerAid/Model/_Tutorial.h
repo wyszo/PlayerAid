@@ -6,7 +6,6 @@
 extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *draft;
-	__unsafe_unretained NSString *favourited;
 	__unsafe_unretained NSString *imageURL;
 	__unsafe_unretained NSString *inReview;
 	__unsafe_unretained NSString *serverID;
@@ -47,14 +46,6 @@ extern const struct TutorialRelationships {
 - (void)setDraftValue:(BOOL)value_;
 
 //- (BOOL)validateDraft:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* favourited;
-
-@property (atomic) BOOL favouritedValue;
-- (BOOL)favouritedValue;
-- (void)setFavouritedValue:(BOOL)value_;
-
-//- (BOOL)validateFavourited:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* imageURL;
 
@@ -143,12 +134,6 @@ extern const struct TutorialRelationships {
 
 - (BOOL)primitiveDraftValue;
 - (void)setPrimitiveDraftValue:(BOOL)value_;
-
-- (NSNumber*)primitiveFavourited;
-- (void)setPrimitiveFavourited:(NSNumber*)value;
-
-- (BOOL)primitiveFavouritedValue;
-- (void)setPrimitiveFavouritedValue:(BOOL)value_;
 
 - (NSString*)primitiveImageURL;
 - (void)setPrimitiveImageURL:(NSString*)value;
