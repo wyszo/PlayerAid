@@ -41,9 +41,16 @@
 
 #pragma mark - Users management
 
-- (void)getUserCompletion:(NetworkResponseBlock)completion
+- (void)getCurrentUserCompletion:(NetworkResponseBlock)completion
 {
   [self getRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
+}
+
+- (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(userID.length);
+  NSString *urlString = [@"user/" stringByAppendingString:userID];
+  [self getRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:YES completion:completion];
 }
 
 #pragma mark - Tutorial management

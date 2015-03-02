@@ -6,6 +6,7 @@
 #import "CreateTutorialViewController.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "ProfileViewController.h"
+#import "UsersController.h"
 
 
 @implementation ApplicationViewHierarchyHelper
@@ -39,6 +40,10 @@
     UINavigationController *navigationController = weakViewController.navigationController;
     AssertTrueOrReturn(navigationController);
     [navigationController pushViewController:profileViewController animated:YES];
+    
+    if (!user.loggedInUserValue) {
+      [[UsersController sharedInstance] updateUsersProfile:user];
+    }
   };
   return pushProfileViewBlock;
 }
