@@ -13,6 +13,7 @@
 #import "CreateTutorialStepButtonsView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
+#import "UsersController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
@@ -86,9 +87,7 @@
 
 - (User *)currentUser
 {
-  User *user = [User MR_findFirstByAttribute:@"loggedInValue" withValue:@(YES)];
-  AssertTrueOrReturnNil(user);
-  return user;
+  return [[UsersController sharedInstance] currentUserInContext:self.createTutorialContext];
 }
 
 #pragma mark - NavigationBar buttons

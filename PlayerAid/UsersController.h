@@ -20,4 +20,6 @@
 
 - (void)updateUsersProfile:(User *)user;
 
+- (User *)currentUserInContext:(NSManagedObjectContext *)context;
+
 @end
