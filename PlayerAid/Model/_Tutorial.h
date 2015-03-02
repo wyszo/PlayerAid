@@ -18,10 +18,12 @@ extern const struct TutorialAttributes {
 extern const struct TutorialRelationships {
 	__unsafe_unretained NSString *consistsOf;
 	__unsafe_unretained NSString *createdBy;
+	__unsafe_unretained NSString *likedBy;
 	__unsafe_unretained NSString *section;
 } TutorialRelationships;
 
 @class TutorialStep;
+@class User;
 @class User;
 @class Section;
 
@@ -98,6 +100,10 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateCreatedBy:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *likedBy;
+
+- (NSMutableSet*)likedBySet;
+
 @property (nonatomic, strong) Section *section;
 
 //- (BOOL)validateSection:(id*)value_ error:(NSError**)error_;
@@ -116,6 +122,14 @@ extern const struct TutorialRelationships {
 - (void)removeConsistsOfAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInConsistsOfAtIndex:(NSUInteger)idx withObject:(TutorialStep*)value;
 - (void)replaceConsistsOfAtIndexes:(NSIndexSet *)indexes withConsistsOf:(NSArray *)values;
+
+@end
+
+@interface _Tutorial (LikedByCoreDataGeneratedAccessors)
+- (void)addLikedBy:(NSSet*)value_;
+- (void)removeLikedBy:(NSSet*)value_;
+- (void)addLikedByObject:(User*)value_;
+- (void)removeLikedByObject:(User*)value_;
 
 @end
 
@@ -168,6 +182,9 @@ extern const struct TutorialRelationships {
 
 - (User*)primitiveCreatedBy;
 - (void)setPrimitiveCreatedBy:(User*)value;
+
+- (NSMutableSet*)primitiveLikedBy;
+- (void)setPrimitiveLikedBy:(NSMutableSet*)value;
 
 - (Section*)primitiveSection;
 - (void)setPrimitiveSection:(Section*)value;

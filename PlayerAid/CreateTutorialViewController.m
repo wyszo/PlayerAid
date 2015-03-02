@@ -86,9 +86,7 @@
 
 - (User *)currentUser
 {
-  // TODO: return correct current user, not the first one find in a database!
-  
-  User *user = [User MR_findFirstInContext:self.createTutorialContext];
+  User *user = [User MR_findFirstByAttribute:@"loggedInValue" withValue:@(YES)];
   AssertTrueOrReturnNil(user);
   return user;
 }

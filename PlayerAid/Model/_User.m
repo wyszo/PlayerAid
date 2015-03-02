@@ -13,6 +13,7 @@ const struct UserAttributes UserAttributes = {
 
 const struct UserRelationships UserRelationships = {
 	.createdTutorial = @"createdTutorial",
+	.likes = @"likes",
 };
 
 @implementation UserID
@@ -109,6 +110,17 @@ const struct UserRelationships UserRelationships = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"createdTutorial"];
 
 	[self didAccessValueForKey:@"createdTutorial"];
+	return result;
+}
+
+@dynamic likes;
+
+- (NSMutableSet*)likesSet {
+	[self willAccessValueForKey:@"likes"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"likes"];
+
+	[self didAccessValueForKey:@"likes"];
 	return result;
 }
 

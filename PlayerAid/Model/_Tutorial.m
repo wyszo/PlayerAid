@@ -18,6 +18,7 @@ const struct TutorialAttributes TutorialAttributes = {
 const struct TutorialRelationships TutorialRelationships = {
 	.consistsOf = @"consistsOf",
 	.createdBy = @"createdBy",
+	.likedBy = @"likedBy",
 	.section = @"section",
 };
 
@@ -196,6 +197,17 @@ const struct TutorialRelationships TutorialRelationships = {
 }
 
 @dynamic createdBy;
+
+@dynamic likedBy;
+
+- (NSMutableSet*)likedBySet {
+	[self willAccessValueForKey:@"likedBy"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"likedBy"];
+
+	[self didAccessValueForKey:@"likedBy"];
+	return result;
+}
 
 @dynamic section;
 

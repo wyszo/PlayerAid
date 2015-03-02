@@ -114,7 +114,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
       Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-      tutorialInContext.favouritedValue = favourited;
+      // TODO: add tutorialInContext to current User's liked relationship (or remove)
     }];
     // TODO: make a network request to favourite/unfavourite on server
   };

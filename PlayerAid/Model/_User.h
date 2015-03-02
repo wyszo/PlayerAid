@@ -13,8 +13,10 @@ extern const struct UserAttributes {
 
 extern const struct UserRelationships {
 	__unsafe_unretained NSString *createdTutorial;
+	__unsafe_unretained NSString *likes;
 } UserRelationships;
 
+@class Tutorial;
 @class Tutorial;
 
 @interface UserID : NSManagedObjectID {}
@@ -58,6 +60,10 @@ extern const struct UserRelationships {
 
 - (NSMutableSet*)createdTutorialSet;
 
+@property (nonatomic, strong) NSSet *likes;
+
+- (NSMutableSet*)likesSet;
+
 @end
 
 @interface _User (CreatedTutorialCoreDataGeneratedAccessors)
@@ -65,6 +71,14 @@ extern const struct UserRelationships {
 - (void)removeCreatedTutorial:(NSSet*)value_;
 - (void)addCreatedTutorialObject:(Tutorial*)value_;
 - (void)removeCreatedTutorialObject:(Tutorial*)value_;
+
+@end
+
+@interface _User (LikesCoreDataGeneratedAccessors)
+- (void)addLikes:(NSSet*)value_;
+- (void)removeLikes:(NSSet*)value_;
+- (void)addLikesObject:(Tutorial*)value_;
+- (void)removeLikesObject:(Tutorial*)value_;
 
 @end
 
@@ -93,5 +107,8 @@ extern const struct UserRelationships {
 
 - (NSMutableSet*)primitiveCreatedTutorial;
 - (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveLikes;
+- (void)setPrimitiveLikes:(NSMutableSet*)value;
 
 @end
