@@ -48,9 +48,9 @@
   return alert;
 }
 
-+ (UIAlertView *)showOKCancelAlertViewWithMessage:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
++ (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
 {
-  AssertTrueOrReturnNil(message.length);
+  AssertTrueOrReturnNil(message.length || title.length);
   
   RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"Cancel" action:^{
     if (cancelAction) {
@@ -67,7 +67,7 @@
     }
   }];
   
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
   [alertView show];
   return alertView;
 }
@@ -94,8 +94,9 @@
 
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
 {
-  NSString *message = @"Are you sure you wish to delete this tutorial? This action cannot be undone!";
-  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithMessage:message okTitle:@"Yes, delete tutorial" okAction:^{
+  NSString *title = @"Delete tutorial?";
+  NSString *message = @"This will permanently delete your tutorial.";
+  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
     if (okAction) {
       okAction();
     }

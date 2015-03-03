@@ -128,7 +128,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
     NSString *message = @"Are you sure you want to delete tutorial step? This action cannot be undone!";
-    [AlertFactory showOKCancelAlertViewWithMessage:message okTitle:@"Yes, delete tutorial step" okAction:^{
+    [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete tutorial step" okAction:^{
       TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
       AssertTrueOrReturn(weakSelf.context);
       [tutorialStep MR_deleteInContext:weakSelf.context];
