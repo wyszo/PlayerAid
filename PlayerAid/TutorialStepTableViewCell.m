@@ -13,6 +13,7 @@ static const CGFloat kContentImageHeight = 270.0f;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *videoPlayLabel;
 
 @end
 
@@ -22,6 +23,7 @@ static const CGFloat kContentImageHeight = 270.0f;
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
   self.textView.text = tutorialStep.text;
+  self.videoPlayLabel.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
 }
 
@@ -38,6 +40,7 @@ static const CGFloat kContentImageHeight = 270.0f;
     }
     else if (videoTutorialStep) {
       self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
+      self.videoPlayLabel.hidden = NO;
     }
   }
   else {
