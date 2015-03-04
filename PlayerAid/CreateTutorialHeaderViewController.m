@@ -8,6 +8,7 @@
 #import "AlertFactory.h"
 #import "Section.h"
 #import "GradientHelper.h"
+#import "ImagePickersHelper.h"
 
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate>
@@ -66,9 +67,7 @@
 
 - (IBAction)editCoverPhoto:(id)sender
 {
-  UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-  imagePicker.allowsEditing = YES;
-  imagePicker.delegate = self.imagePickerControllerDelegate;
+  id imagePicker = [ImagePickersHelper editableImagePickerWithDelegate:self.imagePickerControllerDelegate];
   [self.imagePickerControllerDelegate presentViewController:imagePicker animated:YES completion:nil];
 }
 

@@ -4,6 +4,7 @@
 #import "_TutorialStep.h"
 
 const struct TutorialStepAttributes TutorialStepAttributes = {
+	.imageData = @"imageData",
 	.text = @"text",
 };
 
@@ -39,6 +40,8 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 
 	return keyPaths;
 }
+
+@dynamic imageData;
 
 @dynamic text;
 

@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct TutorialStepAttributes {
+	__unsafe_unretained NSString *imageData;
 	__unsafe_unretained NSString *text;
 } TutorialStepAttributes;
 
@@ -22,6 +23,10 @@ extern const struct TutorialStepRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TutorialStepID* objectID;
 
+@property (nonatomic, strong) NSData* imageData;
+
+//- (BOOL)validateImageData:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* text;
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
@@ -33,6 +38,9 @@ extern const struct TutorialStepRelationships {
 @end
 
 @interface _TutorialStep (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSData*)primitiveImageData;
+- (void)setPrimitiveImageData:(NSData*)value;
 
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;

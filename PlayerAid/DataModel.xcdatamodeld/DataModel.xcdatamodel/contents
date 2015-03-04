@@ -21,6 +21,7 @@
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="containsTutorial" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="TutorialStep" representedClassName="TutorialStep" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="belongsTo" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="consistsOf" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
@@ -36,7 +37,7 @@
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="223"/>
-        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
+        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="90"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
     </elements>
 </model>

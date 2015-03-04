@@ -14,8 +14,8 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jw-k5-OUc" id="A2P-YG-FCl">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(tutorial step text)" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="8" y="8" width="451" height="33"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(tutorial step text)" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
+                        <rect key="frame" x="8" y="9" width="451" height="33"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -24,19 +24,28 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap">
+                        <rect key="frame" x="8" y="11" width="451" height="46"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="46" id="iRg-o4-oLo"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="e2a-64-Bfm"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="trailing" secondItem="A2P-YG-FCl" secondAttribute="trailingMargin" id="eeD-lE-4w8"/>
+                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="egQ-x7-jGF"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="fXH-HS-uQc"/>
+                    <constraint firstItem="VgH-bu-nap" firstAttribute="trailing" secondItem="A2P-YG-FCl" secondAttribute="trailingMargin" id="i2Y-bX-bBe"/>
+                    <constraint firstItem="VgH-bu-nap" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" id="krb-rP-I98"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" id="oSu-2R-s3G"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imageView" destination="VgH-bu-nap" id="rxU-nk-jZ3"/>
                 <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
-                <outlet property="tutorialStepTextViewHeightConstraint" destination="w5F-tw-1pz" id="pK1-HC-C3y"/>
             </connections>
-            <point key="canvasLocation" x="251.5" y="494.5"/>
+            <point key="canvasLocation" x="251.5" y="491.5"/>
         </tableViewCell>
     </objects>
 </document>

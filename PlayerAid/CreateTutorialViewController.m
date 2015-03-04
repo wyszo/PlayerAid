@@ -14,6 +14,7 @@
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
+#import "ImagePickersHelper.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
@@ -27,6 +28,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (weak, nonatomic) UIImagePickerController *imageStepPickerController;
 
 @end
 
@@ -125,7 +127,7 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
-  
+
   [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
 }
 
@@ -143,7 +145,10 @@
 
 - (void)addPhotoStepSelected
 {
+  id imagePicker = [ImagePickersHelper editableImagePickerWithDelegate:self];
+  [self presentViewController:imagePicker animated:YES completion:nil];
   
+  self.imageStepPickerController = imagePicker;
 }
 
 - (void)addVideoStepSelected
@@ -183,7 +188,7 @@
   __weak typeof(self) weakSelf = self;
   viewController.completionBlock = ^(BOOL shouldSaveStep, NSString *text) {
     if (shouldSaveStep) {
-      [weakSelf saveTutorialStepWithText:temporaryText]; // should pass 'text' here
+      [weakSelf saveTutorialStepWithText:temporaryText]; // TODO: should pass 'text' here
     }
   };
   
@@ -192,13 +197,24 @@
   [modalNavigationController pushViewController:viewController animated:YES];
 }
 
+#pragma mark - Save Tutorial Step
+
 - (void)saveTutorialStepWithText:(NSString *)text
 {
-  TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
-  step.text = text;
-  
+  TutorialStep *step = [TutorialStep tutorialStepWithText:text inContext:self.createTutorialContext];
   [self.tutorial addConsistsOfObject:step];
-  
+  [self saveTutorial];
+}
+
+- (void)saveTutorialStepWithImage:(UIImage *)image
+{
+  TutorialStep *step = [TutorialStep tutorialStepWithImage:image inContext:self.createTutorialContext];
+  [self.tutorial addConsistsOfObject:step];
+  [self saveTutorial];
+}
+
+- (void)saveTutorial
+{
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
 }
@@ -230,7 +246,16 @@
   if (!image) {
     image = [info objectForKey:UIImagePickerControllerOriginalImage];
   }
-  self.headerViewController.backgroundImageView.image = image;
+  AssertTrueOrReturn(image);
+  
+  if (picker == self.imageStepPickerController) {
+    [self saveTutorialStepWithImage:image];
+    self.imageStepPickerController = nil;
+  }
+  else {
+    // edit tutorial picture picker controller
+    self.headerViewController.backgroundImageView.image = image;
+  }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
