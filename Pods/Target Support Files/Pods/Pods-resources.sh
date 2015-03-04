@@ -47,7 +47,24 @@ install_resource()
       ;;
   esac
 }
-          install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
+          install_resource "FDTake/FDTakeExample/ar.lproj"
+                    install_resource "FDTake/FDTakeExample/da.lproj"
+                    install_resource "FDTake/FDTakeExample/de.lproj"
+                    install_resource "FDTake/FDTakeExample/el.lproj"
+                    install_resource "FDTake/FDTakeExample/en.lproj"
+                    install_resource "FDTake/FDTakeExample/es.lproj"
+                    install_resource "FDTake/FDTakeExample/fr.lproj"
+                    install_resource "FDTake/FDTakeExample/he.lproj"
+                    install_resource "FDTake/FDTakeExample/nb.lproj"
+                    install_resource "FDTake/FDTakeExample/nl.lproj"
+                    install_resource "FDTake/FDTakeExample/pl.lproj"
+                    install_resource "FDTake/FDTakeExample/pt.lproj"
+                    install_resource "FDTake/FDTakeExample/ru.lproj"
+                    install_resource "FDTake/FDTakeExample/sv.lproj"
+                    install_resource "FDTake/FDTakeExample/tr.lproj"
+                    install_resource "FDTake/FDTakeExample/zh-Hans.lproj"
+                    install_resource "FDTake/FDTakeExample/zh-Hant.lproj"
+                    install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then
