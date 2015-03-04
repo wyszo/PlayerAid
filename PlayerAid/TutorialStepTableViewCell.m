@@ -9,12 +9,11 @@ static const CGFloat kContentImageHeight = 270.0f;
 
 
 @interface TutorialStepTableViewCell ()
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightConstraint;
 
-// obsolete
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewAspectRatioConstraint;
 @end
 
 
@@ -38,8 +37,7 @@ static const CGFloat kContentImageHeight = 270.0f;
       self.contentImageView.image = tutorialStep.image;
     }
     else if (videoTutorialStep) {
-      UIImage *videoThumbnail = nil; // TODO: present real video thumbnail
-      self.contentImageView.image = videoThumbnail;
+      self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
     }
   }
   else {

@@ -39,6 +39,8 @@
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		3173C8151AA71386004CEF1E /* ImagePickersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8141AA71386004CEF1E /* ImagePickersHelper.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
+		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
+		3173C8291AA7C661004CEF1E /* VideoThumbnailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* VideoThumbnailHelper.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -160,6 +162,13 @@
 		3173C8141AA71386004CEF1E /* ImagePickersHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickersHelper.m; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
+		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3173C81D1AA7B078004CEF1E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3173C8221AA7C14F004CEF1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3173C8231AA7C14F004CEF1E /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		3173C8271AA7C661004CEF1E /* VideoThumbnailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThumbnailHelper.h; sourceTree = "<group>"; };
+		3173C8281AA7C661004CEF1E /* VideoThumbnailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThumbnailHelper.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -253,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */,
 				E295213B5CAC5C0FFF53662C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +560,15 @@
 			name = "FDTake Styling";
 			sourceTree = "<group>";
 		};
+		3173C8261AA7C645004CEF1E /* Image/Video */ = {
+			isa = PBXGroup;
+			children = (
+				3173C8271AA7C661004CEF1E /* VideoThumbnailHelper.h */,
+				3173C8281AA7C661004CEF1E /* VideoThumbnailHelper.m */,
+			);
+			name = Image/Video;
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +593,7 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3173C8261AA7C645004CEF1E /* Image/Video */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31B735F41A88000B0081AE15 /* Categories */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
@@ -1007,6 +1027,11 @@
 		9941D48C7CF54B64C92CF46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3173C8221AA7C14F004CEF1E /* AVFoundation.framework */,
+				3173C8231AA7C14F004CEF1E /* AVKit.framework */,
+				3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */,
+				3173C81D1AA7B078004CEF1E /* Photos.framework */,
+				3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */,
 				C4BF40B97ED22C5437512D96 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1178,6 +1203,7 @@
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
+				3173C8291AA7C661004CEF1E /* VideoThumbnailHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,

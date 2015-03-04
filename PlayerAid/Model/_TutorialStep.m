@@ -7,6 +7,7 @@ const struct TutorialStepAttributes TutorialStepAttributes = {
 	.imageData = @"imageData",
 	.text = @"text",
 	.videoPath = @"videoPath",
+	.videoThumbnailData = @"videoThumbnailData",
 };
 
 const struct TutorialStepRelationships TutorialStepRelationships = {
@@ -47,6 +48,8 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 @dynamic text;
 
 @dynamic videoPath;
+
+@dynamic videoThumbnailData;
 
 @dynamic belongsTo;
 

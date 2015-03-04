@@ -1,8 +1,6 @@
 #import "TutorialStep.h"
+#import "VideoThumbnailHelper.h"
 
-@interface TutorialStep ()
-
-@end
 
 @implementation TutorialStep
 
@@ -29,6 +27,11 @@
   AssertTrueOrReturnNil(videoUrl);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.videoPath = videoUrl.absoluteString;
+  
+  UIImage *thumbnail = [VideoThumbnailHelper thumbnailImageFromVideoURL:videoUrl];
+  AssertTrueOr(thumbnail, ;);
+  tutorialStep.videoThumbnailData = UIImagePNGRepresentation(thumbnail);
+  
   return tutorialStep;
 }
 
@@ -43,6 +46,11 @@
 - (UIImage *)image
 {
   return [UIImage imageWithData:self.imageData];
+}
+
+- (UIImage *)thumbnailImage
+{
+  return [UIImage imageWithData:self.videoThumbnailData];
 }
 
 @end

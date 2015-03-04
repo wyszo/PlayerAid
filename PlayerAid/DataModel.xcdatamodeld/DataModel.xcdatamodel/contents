@@ -24,6 +24,7 @@
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoThumbnailData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="belongsTo" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="consistsOf" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -38,7 +39,7 @@
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="223"/>
-        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="105"/>
+        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="120"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
     </elements>
 </model>
