@@ -15,8 +15,6 @@
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
 static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
-static const CGFloat kTutorialStepCellHeight = 120;
-
 
 @interface TutorialStepsDataSource () <UITableViewDelegate>
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
@@ -159,8 +157,20 @@ static const CGFloat kTutorialStepCellHeight = 120;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: read that value from xib (has to be dependent on tutorialStep type though)
-  return kTutorialStepCellHeight;
+  static TutorialStepTableViewCell *templateCell;
+  if (!templateCell) {
+    templateCell = [self.tableView dequeueReusableCellWithIdentifier:kTutorialStepCellReuseIdentifier];
+    AssertTrueOr(templateCell, return 0;);
+  }
+  
+  TutorialStep *tutorialStep = [_tableViewDataSource objectAtIndexPath:indexPath];
+  AssertTrueOr(tutorialStep, return 0;);
+  [templateCell configureWithTutorialStep:tutorialStep];
+  [templateCell layoutIfNeeded];
+  
+  CGFloat height = [templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+  
+  return height;
 }
 
 @end

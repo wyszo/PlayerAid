@@ -15,6 +15,9 @@
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
   self.textView.text = tutorialStep.text;
+  
+  // TODO: configure image tutorial step
+  // TODO: configure video tutorial step
 }
 
 @end
