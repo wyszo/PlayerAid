@@ -23,37 +23,29 @@ static const CGFloat kContentImageHeight = 270.0f;
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
   self.textView.text = tutorialStep.text;
-  [self updateImageViewWithImage:tutorialStep.image];
-  
-  // TODO: configure video tutorial step
+  [self updateImageViewWithTutorialStep:tutorialStep];
 }
 
-- (void)updateImageViewWithImage:(UIImage *)image
+- (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep
 {
-  self.contentImageView.image = image;
-  self.contentImageHeightConstraint.constant = (image ? kContentImageHeight : 0.0f);
-}
-
-// OBSOLETE, not used
-- (void)updateImageAspectRatioConstraintFromImage:(UIImage *)image
-{
-  AssertTrueOrReturn(image);
+  BOOL imageTutorialStep = (tutorialStep.image != nil);
+  BOOL videoTutorialStep = (tutorialStep.videoPath.length != 0);
   
-  if (self.imageViewAspectRatioConstraint) {
-    [self.imageView removeConstraint:self.imageViewAspectRatioConstraint];
+  if (imageTutorialStep || videoTutorialStep) {
+    self.contentImageHeightConstraint.constant = kContentImageHeight;
+    
+    if (imageTutorialStep) {
+      self.contentImageView.image = tutorialStep.image;
+    }
+    else if (videoTutorialStep) {
+      UIImage *videoThumbnail = nil; // TODO: present real video thumbnail
+      self.contentImageView.image = videoThumbnail;
+    }
   }
-  CGFloat aspectRatio = image.size.height / image.size.width;
-  AssertTrueOrReturn(aspectRatio != 0);
-  
-  NSLayoutConstraint *aspectConstraint = [NSLayoutConstraint constraintWithItem:self.imageView
-                                                                     attribute:NSLayoutAttributeHeight
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.imageView
-                                                                     attribute:NSLayoutAttributeWidth
-                                                                    multiplier:aspectRatio
-                                                                      constant:0.f];
-  [self.imageView addConstraint:aspectConstraint];
-  self.imageViewAspectRatioConstraint = aspectConstraint;
+  else {
+    self.contentImageHeightConstraint.constant = 0.0f;
+    self.contentImageView.image = nil;
+  }
 }
 
 @end
