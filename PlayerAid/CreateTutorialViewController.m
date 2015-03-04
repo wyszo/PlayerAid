@@ -3,6 +3,7 @@
 //
 
 #import "CreateTutorialViewController.h"
+#import <FDTakeController.h>
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -17,7 +18,7 @@
 #import "ImagePickersHelper.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
+@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
@@ -28,12 +29,16 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
+
 @property (weak, nonatomic) UIImagePickerController *imageStepPickerController;
+@property (strong, nonatomic) FDTakeController *mediaController;
 
 @end
 
 
 @implementation CreateTutorialViewController
+
+#pragma mark - Initialization
 
 - (void)viewDidLoad
 {
@@ -41,16 +46,30 @@
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
-  self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
-  self.headerViewController.imagePickerControllerDelegate = self;
-  self.headerViewController.saveDelegate = self;
-  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  self.mediaController = [[FDTakeController alloc] init];
+  self.mediaController.delegate = self;
+  self.mediaController.viewControllerForPresentingImagePickerController = self;
   
+  [self setupHeaderViewController];
+  
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
   self.createTutoriaStepButtonsView.delegate = self;
   
   // Where should we do that? This doesn't seem to be a correct place...
   [self initializeContextAndNewTutorialObject];
   
+  [self setupTutorialStepsDataSource];
+}
+
+- (void)setupHeaderViewController
+{
+  self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
+  self.headerViewController.imagePickerControllerDelegate = self;
+  self.headerViewController.saveDelegate = self;
+}
+
+- (void)setupTutorialStepsDataSource
+{
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
@@ -153,7 +172,8 @@
 
 - (void)addVideoStepSelected
 {
-  
+  AssertTrueOrReturn(self.mediaController);
+  [self.mediaController takeVideoOrChooseFromLibrary];
 }
 
 - (void)addTextStepSelected
@@ -173,6 +193,19 @@
   if (!tutorial.createdAt) {
     tutorial.createdAt = [NSDate new];
   }
+}
+
+#pragma mark - FDTakeDelegate
+
+- (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
+{
+  // TODO: not used yet
+}
+
+- (void)takeController:(FDTakeController *)controller gotVideo:(NSURL *)video withInfo:(NSDictionary *)info
+{
+  AssertTrueOrReturn(video);
+  [self saveTutorialStepWithVideoURL:video];
 }
 
 #pragma mark - Push views
@@ -202,14 +235,24 @@
 - (void)saveTutorialStepWithText:(NSString *)text
 {
   TutorialStep *step = [TutorialStep tutorialStepWithText:text inContext:self.createTutorialContext];
-  [self.tutorial addConsistsOfObject:step];
-  [self saveTutorial];
+  [self addTutorialStepAndSave:step];
 }
 
 - (void)saveTutorialStepWithImage:(UIImage *)image
 {
   TutorialStep *step = [TutorialStep tutorialStepWithImage:image inContext:self.createTutorialContext];
-  [self.tutorial addConsistsOfObject:step];
+  [self addTutorialStepAndSave:step];
+}
+
+- (void)saveTutorialStepWithVideoURL:(NSURL *)url
+{
+  TutorialStep *step = [TutorialStep tutorialStepWithVideoURL:url inContext:self.createTutorialContext];
+  [self addTutorialStepAndSave:step];
+}
+
+- (void)addTutorialStepAndSave:(TutorialStep *)tutorialStep
+{
+  [self.tutorial addConsistsOfObject:tutorialStep];
   [self saveTutorial];
 }
 

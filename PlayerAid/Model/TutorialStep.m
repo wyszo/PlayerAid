@@ -10,6 +10,7 @@
 
 + (TutorialStep *)tutorialStepWithText:(NSString *)text inContext:(NSManagedObjectContext *)context
 {
+  AssertTrueOrReturnNil(text.length);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.text = text;
   return tutorialStep;
@@ -17,8 +18,17 @@
 
 + (TutorialStep *)tutorialStepWithImage:(UIImage *)image inContext:(NSManagedObjectContext *)context
 {
+  AssertTrueOrReturnNil(image);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.imageData = UIImagePNGRepresentation(image);
+  return tutorialStep;
+}
+
++ (TutorialStep *)tutorialStepWithVideoURL:(NSURL *)videoUrl inContext:(NSManagedObjectContext *)context
+{
+  AssertTrueOrReturnNil(videoUrl);
+  TutorialStep *tutorialStep = [self tutorialStepInContext:context];
+  tutorialStep.videoPath = videoUrl.absoluteString;
   return tutorialStep;
 }
 

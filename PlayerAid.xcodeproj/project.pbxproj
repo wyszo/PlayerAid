@@ -38,6 +38,7 @@
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		3173C8151AA71386004CEF1E /* ImagePickersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8141AA71386004CEF1E /* ImagePickersHelper.m */; };
+		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -157,6 +158,8 @@
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		3173C8131AA71386004CEF1E /* ImagePickersHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickersHelper.h; sourceTree = "<group>"; };
 		3173C8141AA71386004CEF1E /* ImagePickersHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickersHelper.m; sourceTree = "<group>"; };
+		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
+		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -538,6 +541,15 @@
 			name = ImagePickers;
 			sourceTree = "<group>";
 		};
+		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
+			isa = PBXGroup;
+			children = (
+				3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */,
+				3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */,
+			);
+			name = "FDTake Styling";
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +751,7 @@
 		318EEAAB1A82DBC100B79E73 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				3173C8171AA79AE2004CEF1E /* FDTake Styling */,
 				310308BA1A84D8E400B7F921 /* NavigationBar */,
 				310308A91A83DE7900B7F921 /* AvatarStyling */,
 				310308AD1A83DF7C00B7F921 /* Colors */,
@@ -1213,6 +1226,7 @@
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
+				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,
 				317780271A80975C007057CD /* _Section.m in Sources */,
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
