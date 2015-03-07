@@ -17,7 +17,7 @@ static NSString *const kServerIDKey = @"serverID";
 - (void)configureFromDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturn(dictionary.count);
-  NSSet *oldCreatedTutorialsIDs = [self.createdTutorialSet valueForKey:kServerIDKey];
+  NSSet *oldCreatedTutorialsIDs = [self.createdTutorialsStoredOnServerSet valueForKey:kServerIDKey];
   
   NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:@{
                             kServerIDJSONAttributeName : KZProperty(serverID),
@@ -58,13 +58,19 @@ static NSString *const kServerIDKey = @"serverID";
   // TODO: if tutorial was liked before but is not liked anymore it might be worth refreshing it (by making an additional request) - it might have been deleted
 }
 
+- (NSSet *)createdTutorialsStoredOnServerSet
+{
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"storedOnServer == YES"];
+  return [self.createdTutorialSet filteredSetUsingPredicate:predicate];
+}
+
 - (void)removeDeletedTutorialsWithOldTutorialIDsSet:(NSSet *)oldTutorialIDsSet
 {
   if (oldTutorialIDsSet.count == 0) {
     return;
   }
   
-  // Removing tutorials that used to belong to the user but don't anymore (meaning they have been deleted)
+  // Removing tutorials that used to belong to the user but don't anymore (meaning they have been deleted server-side)
   NSSet *currentTutorialIDs = [self.createdTutorialSet valueForKey:kServerIDKey];
   NSSet *tutorialIDsToRemove = [oldTutorialIDsSet setByRemovingObjectsInSet:currentTutorialIDs];
   if (tutorialIDsToRemove.count) {
@@ -76,7 +82,6 @@ static NSString *const kServerIDKey = @"serverID";
 {
   AssertTrueOrReturn(tutorialIDs.count);
   AssertTrueOrReturn(context);
-  
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K in %@", kServerIDKey, tutorialIDs];
   NSArray *tutorialsToRemove = [Tutorial MR_findAllWithPredicate:predicate inContext:context];
   [tutorialsToRemove makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:context];
