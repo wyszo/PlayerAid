@@ -97,6 +97,10 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 {
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
+    if (fromIndexPath == toIndexPath) {
+      return; // user didn't change the order after all
+    }
+    
     id objectFrom = [weakSelf.tableViewDataSource objectAtIndexPath:fromIndexPath];
     id objectTo = [weakSelf.tableViewDataSource objectAtIndexPath:toIndexPath];
     AssertTrueOrReturn([objectFrom isKindOfClass:[TutorialStep class]]);
@@ -105,22 +109,25 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     TutorialStep *tutorialStepFrom = objectFrom;
     TutorialStep *tutorialStepTo = objectTo;
     
+    AssertTrueOrReturn(tutorialStepFrom.belongsTo == tutorialStepTo.belongsTo);
     Tutorial *parentTutorial = tutorialStepFrom.belongsTo;
     AssertTrueOrReturn(parentTutorial);
-    AssertTrueOrReturn(parentTutorial == tutorialStepTo.belongsTo);
     
     NSInteger fromIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepFrom];
     NSInteger toIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepTo];
     
-    TutorialStep *temporaryStep = [TutorialStep MR_createInContext:weakSelf.context];
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == tutorialStepTo.managedObjectContext);
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == weakSelf.context);
     
-    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:temporaryStep];
-    [parentTutorial replaceObjectInConsistsOfAtIndex:toIndex withObject:tutorialStepFrom];
-    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:tutorialStepTo];
+    NSMutableIndexSet *indexesOfObjectsToReplace = [NSMutableIndexSet indexSetWithIndex:fromIndex];
+    [indexesOfObjectsToReplace addIndex:toIndex];
+
+    // UI changed, just need to update the model without invoking NSFetchedResultsController methods. That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
+    NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
+    [allObjects replaceObjectsAtIndexes:indexesOfObjectsToReplace withObjects:@[tutorialStepTo, tutorialStepFrom]];
+    [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
     
-    [temporaryStep MR_deleteInContext:parentTutorial.managedObjectContext];
-    
-//    [weakSelf.context MR_saveOnlySelfAndWait];
+    [weakSelf.context MR_saveOnlySelfAndWait];
   };
 }
 
@@ -172,6 +179,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   [templateCell layoutIfNeeded];
   
   CGFloat height = [templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+  AssertTrueOr(height > 0, return 0;);
   
   return height;
 }
