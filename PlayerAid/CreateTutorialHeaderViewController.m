@@ -12,6 +12,9 @@
 #import "MediaPickerHelper.h"
 
 
+static const CGSize originalViewSize = { 320.0f, 226.0f };
+
+
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -52,9 +55,9 @@
   self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
-  [super viewWillLayoutSubviews];
+  [super viewDidLayoutSubviews];
   self.gradientLayer.frame = self.gradientOverlayView.bounds;
 }
 
@@ -131,6 +134,13 @@
     _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.imagePickerPresentingViewController];
   }
   return _mediaController;
+}
+
+#pragma mark - Size calculations 
+
+- (CGFloat)headerViewHeightForWidth:(CGFloat)width
+{
+  return width * originalViewSize.height / originalViewSize.width;
 }
 
 @end

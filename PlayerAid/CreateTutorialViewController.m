@@ -62,6 +62,21 @@
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
 }
 
+- (void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  [self updateTableHeaderViewSize];
+}
+
+- (void)updateTableHeaderViewSize
+{
+  CGFloat viewWidth = self.view.frame.size.width;
+  CGFloat proportionalHeight = [self.headerViewController headerViewHeightForWidth:viewWidth];
+  
+  self.headerViewController.view.frame = CGRectMake(0, 0, viewWidth, proportionalHeight);
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+}
+
 - (void)setupTutorialStepsDataSource
 {
   AssertTrueOrReturn(self.tutorial);

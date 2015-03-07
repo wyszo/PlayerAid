@@ -22,11 +22,11 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UBT-wl-gE3" userLabel="Background image view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="226"/>
                 </imageView>
-                <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z21-cp-33O" userLabel="Overlay view">
+                <view userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z21-cp-33O" userLabel="Overlay view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="226"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iC-e8-bwe" userLabel="Gradient overlay view">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iC-e8-bwe" userLabel="Gradient overlay view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="226"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -79,7 +79,7 @@
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="4SZ-aF-cO2"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-vS-dew" userLabel="Bottom Separator">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-vS-dew" userLabel="Bottom Separator">
                     <rect key="frame" x="0.0" y="225" width="320" height="1"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

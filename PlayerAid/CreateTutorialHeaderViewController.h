@@ -14,6 +14,8 @@
 @property (weak, nonatomic) id<SaveTutorialDelegate> saveDelegate;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
+- (CGFloat)headerViewHeightForWidth:(CGFloat)width;
+
 @end
 
 
