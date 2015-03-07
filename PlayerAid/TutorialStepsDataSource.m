@@ -78,7 +78,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
+    return [TutorialStep MR_fetchAllSortedBy:@"order" ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
   };
   _tableView.dataSource = _tableViewDataSource;
 }
@@ -121,10 +121,13 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     
     NSMutableIndexSet *indexesOfObjectsToReplace = [NSMutableIndexSet indexSetWithIndex:fromIndex];
     [indexesOfObjectsToReplace addIndex:toIndex];
-
+    
     // UI changed, just need to update the model without invoking NSFetchedResultsController methods. That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
     NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
     [allObjects replaceObjectsAtIndexes:indexesOfObjectsToReplace withObjects:@[tutorialStepTo, tutorialStepFrom]];
+    [allObjects enumerateObjectsUsingBlock:^(TutorialStep *step, NSUInteger idx, BOOL *stop) {
+      step.primitiveOrderValue = idx + 1; // to fix sorting
+    }];
     [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
     
     [weakSelf.context MR_saveOnlySelfAndWait];

@@ -260,7 +260,10 @@
 
 - (void)addTutorialStepAndSave:(TutorialStep *)tutorialStep
 {
+  NSInteger maxOrderValue = [[self.tutorial.consistsOf valueForKeyPath:@"@max.orderValue"] integerValue];
+  tutorialStep.primitiveOrderValue = maxOrderValue + 1;
   [self.tutorial addConsistsOfObject:tutorialStep];
+  
   [self saveTutorial];
 }
 
