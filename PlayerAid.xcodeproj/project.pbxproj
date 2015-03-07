@@ -37,11 +37,11 @@
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
-		3173C8151AA71386004CEF1E /* ImagePickersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8141AA71386004CEF1E /* ImagePickersHelper.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
 		3173C82A1AA7CB62004CEF1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */; };
+		3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -159,8 +159,6 @@
 		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
-		3173C8131AA71386004CEF1E /* ImagePickersHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickersHelper.h; sourceTree = "<group>"; };
-		3173C8141AA71386004CEF1E /* ImagePickersHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickersHelper.m; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -170,6 +168,8 @@
 		3173C8231AA7C14F004CEF1E /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		3173C8271AA7C661004CEF1E /* MediaPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerHelper.h; sourceTree = "<group>"; };
 		3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerHelper.m; sourceTree = "<group>"; };
+		3173C82B1AAB650C004CEF1E /* MediaPickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerHelper.h; sourceTree = "<group>"; };
+		3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerHelper.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -386,7 +386,6 @@
 			children = (
 				312FF5FC1A9F1A3800AE3174 /* TabBar */,
 				312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */,
-				3173C8161AA7138A004CEF1E /* ImagePickers */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -544,15 +543,6 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
-		3173C8161AA7138A004CEF1E /* ImagePickers */ = {
-			isa = PBXGroup;
-			children = (
-				3173C8131AA71386004CEF1E /* ImagePickersHelper.h */,
-				3173C8141AA71386004CEF1E /* ImagePickersHelper.m */,
-			);
-			name = ImagePickers;
-			sourceTree = "<group>";
-		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +557,8 @@
 			children = (
 				3173C8271AA7C661004CEF1E /* MediaPlayerHelper.h */,
 				3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */,
+				3173C82B1AAB650C004CEF1E /* MediaPickerHelper.h */,
+				3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */,
 			);
 			name = Image/Video;
 			sourceTree = "<group>";
@@ -1230,7 +1222,6 @@
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
-				3173C8151AA71386004CEF1E /* ImagePickersHelper.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
@@ -1243,6 +1234,7 @@
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
+				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,

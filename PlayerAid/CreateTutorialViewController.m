@@ -15,23 +15,20 @@
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
-#import "ImagePickersHelper.h"
+#import "MediaPickerHelper.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
+@property (strong, nonatomic) FDTakeController *mediaController;
 
-
+@property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
-
-@property (weak, nonatomic) UIImagePickerController *imageStepPickerController;
-@property (strong, nonatomic) FDTakeController *mediaController;
 
 @end
 
@@ -46,13 +43,7 @@
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
-  self.mediaController = [[FDTakeController alloc] init];
-  self.mediaController.delegate = self;
-  self.mediaController.viewControllerForPresentingImagePickerController = self;
-  
-  [self setupHeaderViewController];
-  
-  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  [self setupAndAttachHeaderViewController];
   self.createTutoriaStepButtonsView.delegate = self;
   
   // Where should we do that? This doesn't seem to be a correct place...
@@ -61,11 +52,14 @@
   [self setupTutorialStepsDataSource];
 }
 
-- (void)setupHeaderViewController
+- (void)setupAndAttachHeaderViewController
 {
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
-  self.headerViewController.imagePickerControllerDelegate = self;
+  self.headerViewController.imagePickerPresentingViewController = self;
   self.headerViewController.saveDelegate = self;
+  
+  AssertTrueOrReturn(self.tutorialTableView);
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
 }
 
 - (void)setupTutorialStepsDataSource
@@ -92,6 +86,7 @@
   [self assignTutorialToCurrentUser];
 }
 
+// This is a temporary method, need to be either fixed or extracted from here
 - (void)deleteUserUnsavedTutorials
 {
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ && unsaved = YES", [self currentUser]];
@@ -147,7 +142,7 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
-
+  
   [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
 }
 
@@ -165,10 +160,8 @@
 
 - (void)addPhotoStepSelected
 {
-  id imagePicker = [ImagePickersHelper editableImagePickerWithDelegate:self];
-  [self presentViewController:imagePicker animated:YES completion:nil];
-  
-  self.imageStepPickerController = imagePicker;
+  AssertTrueOrReturn(self.mediaController);
+  [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
 - (void)addVideoStepSelected
@@ -200,7 +193,8 @@
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
-  // TODO: not used yet
+  AssertTrueOrReturn(photo);
+  [self saveTutorialStepWithImage:photo];
 }
 
 - (void)takeController:(FDTakeController *)controller gotVideo:(NSURL *)video withInfo:(NSDictionary *)info
@@ -280,36 +274,14 @@
   [self dismissViewController];
 }
 
-#pragma mark - UIImagePickerControllerDelegate
+#pragma mark - Lazy initalization
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (FDTakeController *)mediaController
 {
-  [picker dismissViewControllerAnimated:YES completion:nil];
-  
-  UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-  if (!image) {
-    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+  if (!_mediaController) {
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self];
   }
-  AssertTrueOrReturn(image);
-  
-  if (picker == self.imageStepPickerController) {
-    [self saveTutorialStepWithImage:image];
-    self.imageStepPickerController = nil;
-  }
-  else {
-    // edit tutorial picture picker controller
-    self.headerViewController.backgroundImageView.image = image;
-  }
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-  [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-  [[[viewController navigationController] navigationBar] setBarStyle:UIBarStyleBlack]; // enforces white image picker statusbar
+  return _mediaController;
 }
 
 @end

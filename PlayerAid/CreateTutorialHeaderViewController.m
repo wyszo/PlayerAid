@@ -8,10 +8,11 @@
 #import "AlertFactory.h"
 #import "Section.h"
 #import "GradientHelper.h"
-#import "ImagePickersHelper.h"
+#import "FDTakeController+WhiteStatusbar.h"
+#import "MediaPickerHelper.h"
 
 
-@interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate>
+@interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
@@ -20,6 +21,8 @@
 
 @property (strong, nonatomic) NSArray *actionSheetSections;
 @property (strong, nonatomic) Section *selectedSection;
+
+@property (strong, nonatomic) FDTakeController *mediaController;
 
 @end
 
@@ -49,9 +52,9 @@
   self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
 }
 
-- (void)viewDidLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
-  [super viewDidLayoutSubviews];
+  [super viewWillLayoutSubviews];
   self.gradientLayer.frame = self.gradientOverlayView.bounds;
 }
 
@@ -67,8 +70,8 @@
 
 - (IBAction)editCoverPhoto:(id)sender
 {
-  id imagePicker = [ImagePickersHelper editableImagePickerWithDelegate:self.imagePickerControllerDelegate];
-  [self.imagePickerControllerDelegate presentViewController:imagePicker animated:YES completion:nil];
+  AssertTrueOrReturn(self.mediaController);
+  [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
 - (IBAction)pickACategory:(id)sender
@@ -101,6 +104,14 @@
   }
 }
 
+#pragma mark - FDTakeController
+
+- (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
+{
+  AssertTrueOrReturn(photo);
+  self.backgroundImageView.image = photo;
+}
+
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -110,6 +121,16 @@
     self.selectedSection = self.actionSheetSections[buttonIndex];
     [self.pickACategoryButton setTitle:self.selectedSection.name forState:UIControlStateNormal];
   }
+}
+
+#pragma mark - Lazy initalization
+
+- (FDTakeController *)mediaController
+{
+  if (!_mediaController) {
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.imagePickerPresentingViewController];
+  }
+  return _mediaController;
 }
 
 @end
