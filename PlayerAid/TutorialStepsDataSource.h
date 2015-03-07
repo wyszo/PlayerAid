@@ -7,6 +7,8 @@
 
 @interface TutorialStepsDataSource : NSObject 
 
+@property (nonatomic, weak) UIViewController *moviePlayerParentViewController;
+
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
 

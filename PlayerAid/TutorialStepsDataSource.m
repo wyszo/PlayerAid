@@ -3,6 +3,7 @@
 //
 
 #import "TutorialStepsDataSource.h"
+#import "MediaPlayerHelper.h"
 #import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "Tutorial.h"
@@ -17,12 +18,14 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 
 @interface TutorialStepsDataSource () <UITableViewDelegate>
+
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, assign) BOOL allowsEditing;
+
 @end
 
 
@@ -171,6 +174,18 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   CGFloat height = [templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
   
   return height;
+}
+
+#pragma mark - Playing a video
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  TutorialStep *tutorialStep = [_tableViewDataSource objectAtIndexPath:indexPath];
+
+  if (tutorialStep.videoPath) {
+    NSURL *url = [NSURL URLWithString:tutorialStep.videoPath];
+    [MediaPlayerHelper playVideoWithURL:url fromViewController:self.moviePlayerParentViewController];
+  }
 }
 
 @end

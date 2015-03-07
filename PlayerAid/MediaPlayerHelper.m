@@ -2,11 +2,22 @@
 //  PlayerAid
 //
 
-#import "VideoThumbnailHelper.h"
+#import "MediaPlayerHelper.h"
 #import <AVFoundation/AVFoundation.h>
 
 
-@implementation VideoThumbnailHelper
+@implementation MediaPlayerHelper
+
++ (void)playVideoWithURL:(NSURL *)url fromViewController:(UIViewController *)viewController
+{
+  AssertTrueOrReturn(url);
+  AssertTrueOrReturn(viewController);
+  
+  MPMoviePlayerViewController *moviePlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+  [viewController presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
+}
+
+#pragma mark - Video Thumbnails
 
 + (UIImage *)thumbnailImageFromVideoURL:(NSURL *)videoURL
 {

@@ -73,6 +73,7 @@
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
+  self.tutorialStepsDataSource.moviePlayerParentViewController = self;
 }
 
 #pragma mark - Context and Tutorial object initialization

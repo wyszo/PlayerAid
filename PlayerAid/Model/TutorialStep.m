@@ -1,5 +1,5 @@
 #import "TutorialStep.h"
-#import "VideoThumbnailHelper.h"
+#import "MediaPlayerHelper.h"
 
 
 @implementation TutorialStep
@@ -28,7 +28,7 @@
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.videoPath = videoUrl.absoluteString;
   
-  UIImage *thumbnail = [VideoThumbnailHelper thumbnailImageFromVideoURL:videoUrl];
+  UIImage *thumbnail = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
   AssertTrueOr(thumbnail, ;);
   tutorialStep.videoThumbnailData = UIImagePNGRepresentation(thumbnail);
   
