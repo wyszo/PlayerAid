@@ -49,9 +49,9 @@
   self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
-  [super viewWillLayoutSubviews];
+  [super viewDidLayoutSubviews];
   self.gradientLayer.frame = self.gradientOverlayView.bounds;
 }
 
