@@ -40,6 +40,11 @@
   return [self showAlertViewWithMessage:@"You need to select tutorial category first"];
 }
 
++ (UIAlertView *)showCreateTutorialNoTutorialStepsAlertView
+{
+  return [self showAlertViewWithMessage:@"You need to add at least one tutorial step first!"];
+}
+
 + (UIAlertView *)showAlertViewWithMessage:(NSString *)message
 {
   AssertTrueOrReturnNil(message.length);

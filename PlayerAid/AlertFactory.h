@@ -11,6 +11,7 @@
 // Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
++ (UIAlertView *)showCreateTutorialNoTutorialStepsAlertView;
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 

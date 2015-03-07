@@ -16,6 +16,7 @@
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
 #import "MediaPickerHelper.h"
+#import "AlertFactory.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -278,6 +279,9 @@
 {
   AssertTrueOrReturn(title.length);
   AssertTrueOrReturn(section);
+  
+  // TODO: get rid of this
+  [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> DRAFT user's tutorial saved (in fact this whole 'Save' button is just a temporary debug functionality, saving should probably happen automatically)"];
   
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];

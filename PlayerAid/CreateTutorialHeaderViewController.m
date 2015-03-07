@@ -46,6 +46,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [self setupGradientOverlay];
 }
 
+// this should be part of UIView, not a view controller..
 - (void)setupGradientOverlay
 {
   if (self.gradientLayer) {
