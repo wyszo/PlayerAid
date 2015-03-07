@@ -203,6 +203,9 @@
   if (!tutorial.createdAt) {
     tutorial.createdAt = [NSDate new];
   }
+  if (!tutorial.createdBy) {
+    tutorial.createdBy = [self currentUser];
+  }
 }
 
 #pragma mark - FDTakeDelegate
@@ -223,18 +226,12 @@
 
 - (void)pushCreateTutorialTextStepViewController
 {
-  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
-  
-  static NSInteger tutorialStepsCounter;
-  tutorialStepsCounter++;
-  NSString *temporaryText = [NSString stringWithFormat:@"Sample tutorial step %li", (long)tutorialStepsCounter];
-  
   __weak typeof(self) weakSelf = self;
-  viewController.completionBlock = ^(BOOL shouldSaveStep, NSString *text) {
-    if (shouldSaveStep) {
-      [weakSelf saveTutorialStepWithText:temporaryText]; // TODO: should pass 'text' here
+  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:^(NSString *text, NSError *error) {
+    if (!error) {
+      [weakSelf saveTutorialStepWithText:text];
     }
-  };
+  }];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);

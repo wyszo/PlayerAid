@@ -3,8 +3,12 @@
 //
 
 
+typedef void (^CreateTextStepCompletion)(NSString *text, NSError *error);
+
+
 @interface CreateTutorialTextStepViewController : UIViewController
 
-@property (copy, nonatomic) void (^completionBlock)(BOOL shouldSaveStep, NSString *textStep);
+- (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle __unavailable;
+- (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock;
 
 @end

@@ -7,6 +7,7 @@
 
 
 @interface CreateTutorialTextStepViewController ()
+@property (copy, nonatomic) CreateTextStepCompletion completionBlock;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @end
 
@@ -14,6 +15,15 @@
 @implementation CreateTutorialTextStepViewController
 
 #pragma mark - Initialization
+
+- (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock
+{
+  self = [super initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
+  if (self) {
+    _completionBlock = completionBlock;
+  }
+  return self;
+}
 
 - (void)viewDidLoad
 {
@@ -37,7 +47,7 @@
 {
   [self dismissViewController];
   if (self.completionBlock) {
-    self.completionBlock(YES, self.textView.text);
+    self.completionBlock(self.textView.text, nil);
   }
 }
 
@@ -52,7 +62,9 @@
 
 - (void)dismissViewController
 {
-  self.completionBlock(NO, self.textView.text);
+  const NSInteger kTextStepDismissedError = 1;
+  NSError *error = [NSError errorWithDomain:@"CreateTutorialDomain" code:kTextStepDismissedError userInfo:nil];
+  self.completionBlock(nil, error);
   [self.navigationController popViewControllerAnimated:YES];
 }
 
