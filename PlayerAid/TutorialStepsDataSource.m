@@ -9,7 +9,7 @@
 #import "Tutorial.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
 
 
@@ -124,7 +124,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     [allObjects replaceObjectAtIndex:fromIndex withObject:tutorialStepTo];
     [allObjects replaceObjectAtIndex:toIndex withObject:tutorialStepFrom];
     
-    [weakSelf.fetchedResultsControllerBinder registerUserDrivenChangesCount:2 forObjectType:TutorialStep.class];
+    weakSelf.fetchedResultsControllerBinder.disabled = YES;
+    
     NSNumber *toOrder = tutorialStepTo.order;
     tutorialStepTo.order = tutorialStepFrom.order;
     tutorialStepFrom.order = toOrder;
@@ -133,6 +134,9 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
     
     [weakSelf.context MR_saveOnlySelfAndWait];
+    weakSelf.fetchedResultsControllerBinder.disabled = NO;
+    
+    [weakSelf.tableView reloadData]; // that doesn't really help, just hides the problem temporarily.. (the assertion above will be thrown sooner or later)..
   };
 }
 

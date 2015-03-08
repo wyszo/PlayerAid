@@ -2,13 +2,12 @@
 //  PlayerAid
 //
 
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TableViewFetchedResultsControllerBinder+Private.h"
 
 
 @interface TableViewFetchedResultsControllerBinder ()
 @property (weak, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
-@property (strong, nonatomic) NSMutableDictionary *numberOfClassInstanceChangesToBypass;
 @end
 
 
@@ -26,37 +25,6 @@
   return self;
 }
 
-#pragma mark - Ignoring user-driven changes
-
-- (void)registerUserDrivenChangesCount:(NSInteger)changesCount forObjectType:(Class)aClass
-{
-  NSString *key = NSStringFromClass(aClass);
-  NSNumber *changesToBypass = @([self.numberOfClassInstanceChangesToBypass[key] integerValue] + changesCount);
-  if (changesToBypass.integerValue < 0) {
-    changesToBypass = @0;
-  }
-  self.numberOfClassInstanceChangesToBypass[NSStringFromClass(aClass)] = changesToBypass;
-}
-
-- (void)decrementUserDrivenChangesCountForObject:(NSObject *)object
-{
-  [self registerUserDrivenChangesCount:-1 forObjectType:object.class];
-}
-
-- (BOOL)shouldBypassObjectChange:(NSObject *)anObject
-{
-  NSString *key = NSStringFromClass(anObject.class);
-  return ([self.numberOfClassInstanceChangesToBypass[key] integerValue] > 0);
-}
-
-- (NSMutableDictionary *)numberOfClassInstanceChangesToBypass
-{
-  if (!_numberOfClassInstanceChangesToBypass) {
-    _numberOfClassInstanceChangesToBypass = [NSMutableDictionary dictionary];
-  }
-  return _numberOfClassInstanceChangesToBypass;
-}
-
 #pragma mark - NSFetchedResultsControllerDelegate
 
 // source: http://samwize.com/2014/03/29/implementing-nsfetchedresultscontroller-with-magicalrecord/
@@ -64,11 +32,10 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-  if ([self shouldBypassObjectChange:anObject]) {
-    [self decrementUserDrivenChangesCountForObject:anObject];
+  if (self.disabled) {
     return;
   }
-
+  
   UITableView *tableView = self.tableView;
   AssertTrueOrReturn(tableView);
   
@@ -115,6 +82,10 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
+  if (self.disabled) {
+    return;
+  }
+  
   UITableView *tableView = self.tableView;
   AssertTrueOrReturn(tableView);
   
@@ -137,11 +108,19 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
+  if (self.disabled) {
+    return;
+  }
+  
   [self.tableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+  if (self.disabled) {
+    return;
+  }
+  
   [self.tableView endUpdates];
 }
 
