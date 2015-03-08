@@ -119,15 +119,17 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == tutorialStepTo.managedObjectContext);
     AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == weakSelf.context);
     
-    NSMutableIndexSet *indexesOfObjectsToReplace = [NSMutableIndexSet indexSetWithIndex:fromIndex];
-    [indexesOfObjectsToReplace addIndex:toIndex];
-    
     // UI changed, just need to update the model without invoking NSFetchedResultsController methods. That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
     NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
-    [allObjects replaceObjectsAtIndexes:indexesOfObjectsToReplace withObjects:@[tutorialStepTo, tutorialStepFrom]];
-    [allObjects enumerateObjectsUsingBlock:^(TutorialStep *step, NSUInteger idx, BOOL *stop) {
-      step.primitiveOrderValue = idx + 1; // to fix sorting
-    }];
+    [allObjects replaceObjectAtIndex:fromIndex withObject:tutorialStepTo];
+    [allObjects replaceObjectAtIndex:toIndex withObject:tutorialStepFrom];
+    
+    [weakSelf.fetchedResultsControllerBinder registerUserDrivenChangesCount:2 forObjectType:TutorialStep.class];
+    NSNumber *toOrder = tutorialStepTo.order;
+    tutorialStepTo.order = tutorialStepFrom.order;
+    tutorialStepFrom.order = toOrder;
+    
+    AssertTrueOrReturn(![allObjects isEqualToArray:parentTutorial.consistsOf.array]);
     [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
     
     [weakSelf.context MR_saveOnlySelfAndWait];

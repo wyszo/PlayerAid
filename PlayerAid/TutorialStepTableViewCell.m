@@ -44,9 +44,23 @@ static const CGFloat kContentImageHeight = 270.0f;
     }
   }
   else {
-    self.contentImageHeightConstraint.constant = 0.0f;
-    self.contentImageView.image = nil;
+    [self hideImageView];
   }
+}
+
+- (void)prepareForReuse
+{
+  [super prepareForReuse];
+  [self hideImageView];
+  self.videoPlayLabel.hidden = YES;
+  self.textView.text = @"";
+}
+
+- (void)hideImageView
+{
+  self.contentImageHeightConstraint.constant = 0.0f;
+  self.contentImageView.image = nil;
+  [self layoutIfNeeded];
 }
 
 @end
