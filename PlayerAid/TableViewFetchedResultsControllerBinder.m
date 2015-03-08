@@ -8,6 +8,7 @@
 @interface TableViewFetchedResultsControllerBinder ()
 @property (weak, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
+@property (nonatomic, assign) BOOL disabled;
 @end
 
 
