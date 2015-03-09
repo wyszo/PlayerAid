@@ -40,12 +40,6 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   return self;
 }
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-  [self setupGradientOverlay];
-}
-
 // this should be part of UIView, not a view controller..
 - (void)setupGradientOverlay
 {
@@ -80,7 +74,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (IBAction)pickACategory:(id)sender
 {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a category" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
   
   self.actionSheetSections = [Section MR_findAll];
   for (Section *section in self.actionSheetSections) {
@@ -114,6 +108,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   AssertTrueOrReturn(photo);
   self.backgroundImageView.image = photo;
+  [self setupGradientOverlay];
 }
 
 #pragma mark - UIActionSheetDelegate
