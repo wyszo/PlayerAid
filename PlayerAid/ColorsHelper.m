@@ -19,6 +19,7 @@ UIColorMethodMake(tabBarCreateTutorialTextColor, 255, 255, 255)
 
 UIColorMethodMake(navigationBarColor, 42, 70, 136)
 UIColorMethodMake(navigationBarButtonsColor, 255, 255, 255)
+UIColorMethodMake(navigationBarDisabledButtonsColor, 93, 110, 162)
 
 UIColorMethodMake(tutorialsSelectedFilterButtonColor, 20, 35, 66)
 UIColorMethodMake(tutorialsSelectedFilterButtonTextColor, 255, 255, 255)

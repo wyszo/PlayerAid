@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
+@property (weak, nonatomic) UIBarButtonItem *publishButton;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -146,6 +147,7 @@
 {
   UIBarButtonItem *publishButton = [[UIBarButtonItem alloc] initWithTitle:@"Publish" style:UIBarButtonItemStylePlain target:self action:@selector(publishButtonPressed)];
   self.navigationItem.rightBarButtonItem = publishButton;
+  self.publishButton = publishButton;
 }
 
 - (void)addNavigationBarEditButton

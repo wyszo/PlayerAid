@@ -13,6 +13,7 @@
 
 + (UIColor *)navigationBarColor;
 + (UIColor *)navigationBarButtonsColor;
++ (UIColor *)navigationBarDisabledButtonsColor;
 
 + (UIColor *)tutorialsSelectedFilterButtonColor;
 + (UIColor *)tutorialsSelectedFilterButtonTextColor;
