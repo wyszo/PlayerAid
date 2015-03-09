@@ -133,8 +133,8 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="4Ug-8d-OGh"/>
-                            <exclude reference="TKd-La-iiJ"/>
                             <exclude reference="NXk-Ul-MJb"/>
+                            <exclude reference="TKd-La-iiJ"/>
                             <exclude reference="1EN-hZ-8a9"/>
                             <exclude reference="Ua3-U1-tZn"/>
                         </mask>
