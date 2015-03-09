@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialViewController">
             <connections>
                 <outlet property="createTutoriaStepButtonsView" destination="YKJ-v8-qVW" id="gda-TQ-fQe"/>
+                <outlet property="popoverView" destination="Sff-dq-Qar" id="MDy-IE-JUh"/>
                 <outlet property="tutorialTableView" destination="TdO-uS-8Rm" id="qrv-Mq-Dej"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RJH-Gf-pw9"/>
             </connections>
@@ -29,24 +30,24 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sff-dq-Qar" userLabel="Popover" customClass="PopoverView">
-                    <rect key="frame" x="0.0" y="355" width="600" height="121"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="16" y="391" width="568" height="85"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="121" id="Y6h-Fy-nMb"/>
+                        <constraint firstAttribute="height" constant="85" id="Y6h-Fy-nMb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="titleLabel.text" value="@&quot;Add a step to your tutorial&quot;"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="titleLabel.text" value="Add a step to your tutorial"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YKJ-v8-qVW" secondAttribute="trailing" id="7UJ-Ob-mco"/>
-                <constraint firstAttribute="trailing" secondItem="Sff-dq-Qar" secondAttribute="trailing" id="8tn-Oy-NZv"/>
+                <constraint firstAttribute="trailing" secondItem="Sff-dq-Qar" secondAttribute="trailing" constant="16" id="8tn-Oy-NZv"/>
                 <constraint firstAttribute="trailing" secondItem="Sff-dq-Qar" secondAttribute="trailing" constant="75" id="9ky-te-sAG"/>
                 <constraint firstItem="TdO-uS-8Rm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FLb-1h-wtd"/>
                 <constraint firstItem="YKJ-v8-qVW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H2z-gE-069"/>
-                <constraint firstItem="Sff-dq-Qar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jo2-hU-oOP"/>
+                <constraint firstItem="Sff-dq-Qar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Jo2-hU-oOP"/>
                 <constraint firstItem="Sff-dq-Qar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="75" id="MYw-Mw-RZD"/>
                 <constraint firstItem="Sff-dq-Qar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="N90-w7-u2a"/>
                 <constraint firstAttribute="bottom" secondItem="YKJ-v8-qVW" secondAttribute="bottom" id="NZh-hs-kr0"/>

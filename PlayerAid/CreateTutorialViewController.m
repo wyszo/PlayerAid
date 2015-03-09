@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
+@property (weak, nonatomic) IBOutlet UIView *popoverView;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -176,23 +177,39 @@
 
 - (void)addPhotoStepSelected
 {
+  [self hideAddStepPopoverView];
+  
   AssertTrueOrReturn(self.mediaController);
   [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
 - (void)addVideoStepSelected
 {
+  [self hideAddStepPopoverView];
+  
   AssertTrueOrReturn(self.mediaController);
   [self.mediaController takeVideoOrChooseFromLibrary];
 }
 
 - (void)addTextStepSelected
 {
+  [self hideAddStepPopoverView];
+  
   if (self.tutorialTableView.isEditing) {
     [self.tutorialTableView setEditing:NO animated:YES];
     return;
   }
   [self pushCreateTutorialTextStepViewController];
+}
+
+- (void)hideAddStepPopoverView
+{
+  // TODO: extract this to a category!
+  [UIView animateWithDuration:0.5f animations:^{
+    self.popoverView.alpha = 0.0f;
+  } completion:^(BOOL finished) {
+      self.popoverView.hidden = YES;
+  }];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial
