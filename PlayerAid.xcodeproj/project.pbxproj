@@ -91,6 +91,7 @@
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
 		31F116941A790F680022BD74 /* PlayerAidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116931A790F680022BD74 /* PlayerAidTests.m */; };
+		31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */; };
 		E295213B5CAC5C0FFF53662C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BF40B97ED22C5437512D96 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -263,6 +264,8 @@
 		31F1168D1A790F680022BD74 /* PlayerAidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayerAidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F116921A790F680022BD74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F116931A790F680022BD74 /* PlayerAidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerAidTests.m; sourceTree = "<group>"; };
+		31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FadeAnimations.h"; sourceTree = "<group>"; };
+		31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FadeAnimations.m"; sourceTree = "<group>"; };
 		C4BF40B97ED22C5437512D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -840,6 +843,8 @@
 				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
 				312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */,
 				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
+				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
+				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1268,6 +1273,7 @@
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
+				31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
 				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,

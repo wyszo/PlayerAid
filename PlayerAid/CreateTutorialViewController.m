@@ -17,6 +17,7 @@
 #import "UsersController.h"
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
+#import "UIView+FadeAnimations.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -204,12 +205,7 @@
 
 - (void)hideAddStepPopoverView
 {
-  // TODO: extract this to a category!
-  [UIView animateWithDuration:0.5f animations:^{
-    self.popoverView.alpha = 0.0f;
-  } completion:^(BOOL finished) {
-      self.popoverView.hidden = YES;
-  }];
+  [self.popoverView fadeOutAnimationWithDuration:0.5f];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial

@@ -74,9 +74,11 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (IBAction)pickACategory:(id)sender
 {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
   
   self.actionSheetSections = [Section MR_findAll];
+  AssertTrueOrReturn(self.actionSheetSections.count);
+  
   for (Section *section in self.actionSheetSections) {
     [actionSheet addButtonWithTitle:section.name];
   }
