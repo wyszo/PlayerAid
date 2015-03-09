@@ -134,7 +134,7 @@
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
-  self.navigationItem.rightBarButtonItem.enabled = NO;
+  self.publishButton.enabled = NO;
 }
 
 - (void)addNavigationBarCancelButton
@@ -280,6 +280,7 @@
   [self.tutorial addConsistsOfObject:tutorialStep];
   
   [self saveTutorial];
+  self.publishButton.enabled = YES;
 }
 
 - (void)saveTutorial
