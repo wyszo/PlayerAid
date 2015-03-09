@@ -95,6 +95,22 @@
   return alert;
 }
 
+#pragma mark - Publish tutorial
+
++ (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction
+{
+  NSString *message = @"Congratulations on creating your first tutorial!\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
+  
+  UIAlertView *alert = [self showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Publish" okAction:okAction cancelAction:nil];
+  return alert;
+}
+
++ (UIAlertView *)showTutorialInReviewInfoAlertView
+{
+  NSString *message = @"Only great tutorials are published on the PlayerAid platform.\nTo maintain that quality, we review every single one.\nYou will hear from the PlayerAid team within two days!  ";
+  return [self showOKAlertViewWithMessage:message okButtonTitle:@"Got it"];
+}
+
 #pragma mark - Delete tutorial
 
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
@@ -132,7 +148,12 @@
 
 + (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message
 {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+  return [self showOKAlertViewWithMessage:message okButtonTitle:@"OK"];
+}
+
++ (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message okButtonTitle:(NSString *)okTitle
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:okTitle otherButtonTitles:nil];
   [alert show];
   return alert;
 }
