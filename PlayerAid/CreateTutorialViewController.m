@@ -327,15 +327,16 @@
 
 - (void)updateTutorialModelFromUI
 {
-  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection];
+  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection image:self.headerViewController.backgroundImageView.image];
 }
 
-- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section
+- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section image:(UIImage *)image
 {
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
+  self.tutorial.pngImageData = UIImagePNGRepresentation(image);
 }
 
 #pragma mark - Lazy initalization

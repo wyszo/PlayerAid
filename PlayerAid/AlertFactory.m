@@ -45,6 +45,11 @@
   return [self showAlertViewWithMessage:@"You need to add at least one tutorial step first!"];
 }
 
++ (UIAlertView *)showCreateTutorialNoImageAlertView
+{
+  return [self showAlertViewWithMessage:@"You need to add tutorial image first!"];
+}
+
 + (UIAlertView *)showAlertViewWithMessage:(NSString *)message
 {
   AssertTrueOrReturnNil(message.length);

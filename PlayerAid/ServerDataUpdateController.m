@@ -31,9 +31,9 @@
           return;
         }
       }
+      tutorial.serverID = [NSNumber numberWithInteger:[tutorialID integerValue]];
       
-      UIImage *tutorialImage; // TODO: attach tutorial image!!
-      [[AuthenticatedServerCommunicationController sharedInstance] submitImage:tutorialImage forTutorialID:tutorialID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      [[AuthenticatedServerCommunicationController sharedInstance] submitImageForTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
         // TODO: implement response handling
       }];
       

@@ -100,17 +100,17 @@
   }];
 }
 
-- (void)submitImage:(UIImage *)image forTutorialID:(NSString *)tutorialID completion:(NetworkResponseBlock)completion
+- (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 {
-  AssertTrueOrReturn(tutorialID.length);
-  AssertTrueOrReturn(image);
-  NSData *pngImage = UIImagePNGRepresentation(image);
-  AssertTrueOrReturn(pngImage);
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(tutorial.pngImageData);
+  NSString *tutorialID = [tutorial.serverID stringValue];
+  AssertTrueOrReturn(tutorialID);
   
   NSDictionary *parameters = @{
                                @"id" : tutorialID,
                                @"contentType" : @"image/png",
-                               @"imageData" : pngImage
+                               @"imageData" : tutorial.pngImageData
                               };
   
   NSString *URLString = [self urlStringForTutorialIDString:tutorialID];

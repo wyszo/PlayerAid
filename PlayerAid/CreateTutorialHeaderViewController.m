@@ -115,6 +115,12 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
     [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
     return NO;
   }
+  
+  if (!self.backgroundImageView.image) {
+    [AlertFactory showCreateTutorialNoImageAlertView];
+    return NO;
+  }
+  
   return YES;
 }
 

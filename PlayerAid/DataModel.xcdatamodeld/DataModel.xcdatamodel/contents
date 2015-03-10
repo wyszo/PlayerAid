@@ -11,6 +11,7 @@
         <attribute name="draft" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="pngImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
@@ -39,7 +40,7 @@
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="223"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="240"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="133"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
     </elements>

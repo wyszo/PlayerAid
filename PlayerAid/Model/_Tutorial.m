@@ -8,6 +8,7 @@ const struct TutorialAttributes TutorialAttributes = {
 	.draft = @"draft",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
+	.pngImageData = @"pngImageData",
 	.serverID = @"serverID",
 	.state = @"state",
 	.title = @"title",
@@ -114,6 +115,8 @@ const struct TutorialRelationships TutorialRelationships = {
 - (void)setPrimitiveInReviewValue:(BOOL)value_ {
 	[self setPrimitiveInReview:@(value_)];
 }
+
+@dynamic pngImageData;
 
 @dynamic serverID;
 
