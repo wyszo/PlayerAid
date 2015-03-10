@@ -170,6 +170,16 @@
 
 - (void)publishButtonPressed
 {
+  [self updateTutorialModelFromUI];
+  
+  BOOL tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  if (tutorialDataComplete) {
+    [self presentPublishingTutorialViewController];
+  }
+}
+
+- (void)presentPublishingTutorialViewController
+{
   PublishingTutorialViewController *publishingViewController = [PublishingTutorialViewController new];
   publishingViewController.tutorial = self.tutorial;
   
@@ -307,15 +317,23 @@
   
   // TODO: get rid of this
   [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> DRAFT user's tutorial saved (in fact this whole 'Save' button is just a temporary debug functionality, saving should probably happen automatically)"];
+  [self updateTutorialModelFromUI];
   
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+  [self dismissViewController];
+}
+
+- (void)updateTutorialModelFromUI
+{
+  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection];
+}
+
+- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section
+{
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
-  
-  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
-  
-  [self dismissViewController];
 }
 
 #pragma mark - Lazy initalization

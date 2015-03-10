@@ -5,6 +5,7 @@
 #import <AFNetworking.h>
 #import "AuthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
+#import "Section.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -66,6 +67,18 @@
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
       completion(error);
+    }
+  }];
+}
+
+- (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial.title.length);
+  AssertTrueOrReturn(tutorial.section.name);
+  
+  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
     }
   }];
 }

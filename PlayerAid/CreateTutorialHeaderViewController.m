@@ -100,8 +100,29 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   }
 
   if (self.saveDelegate) {
-    [self.saveDelegate saveTutorialTitled:self.titleTextField.text section:self.selectedSection];
+    [self.saveDelegate saveTutorialTitled:self.title section:self.selectedSection];
   }
+}
+
+- (BOOL)validateTutorialDataCompleteShowErrorAlerts
+{
+  if (!self.titleTextField.text.length) {
+    [AlertFactory showCreateTutorialNoTitleAlertView];
+    return NO;
+  }
+  
+  if (!self.selectedSection) {
+    [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
+    return NO;
+  }
+  return YES;
+}
+
+#pragma mark - Accessors
+
+- (NSString *)title
+{
+  return self.titleTextField.text;
 }
 
 #pragma mark - FDTakeController

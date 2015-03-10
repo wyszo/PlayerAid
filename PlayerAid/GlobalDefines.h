@@ -8,5 +8,4 @@
 
 #define defineWeakSelf() __weak typeof(self) weakSelf = self
 
-
 #endif
