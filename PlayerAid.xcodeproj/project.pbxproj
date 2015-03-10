@@ -271,7 +271,7 @@
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
-		31FFDE231AAE7367006E4D0E /* GlobalDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalDefines.h; sourceTree = "<group>"; };
+		31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHelperDefines.h; sourceTree = "<group>"; };
 		C4BF40B97ED22C5437512D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -611,7 +611,7 @@
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
-				31FFDE231AAE7367006E4D0E /* GlobalDefines.h */,
+				31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
