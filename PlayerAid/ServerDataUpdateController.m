@@ -32,13 +32,16 @@
         }
       }
       
-      // TODO: make network requests to submit tutorial image step(s)
+      UIImage *tutorialImage; // TODO: attach tutorial image!!
+      [[AuthenticatedServerCommunicationController sharedInstance] submitImage:tutorialImage forTutorialID:tutorialID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+        // TODO: implement response handling
+      }];
       
       // TODO: figure out a nice chaining mechanism for this requests
+      // TODO: figure out if we even need to chain most of those requests (we could fire them all off asynchronously and wait until execution finished)
       
       // TODO: make network requests to submit tutorial video step(s)
       // TODO: make network requests to submit tutorial text step(s)
-      // TODO: make a network request to upload tutorial image
       // TODO: make a network reqeust to submit tutorial to review
       // note all the above have to be atomic operations
     }

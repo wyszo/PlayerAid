@@ -24,5 +24,6 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)submitImage:(UIImage *)image forTutorialID:(NSString *)tutorialID completion:(NetworkResponseBlock)completion;
 
 @end

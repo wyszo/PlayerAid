@@ -59,7 +59,7 @@
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
   AssertTrueOrReturn(tutorial.serverID);
-  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorial.serverID];
+  NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) completion(nil);
@@ -69,6 +69,17 @@
       completion(error);
     }
   }];
+}
+
+- (NSString *)urlStringForTutorialID:(NSNumber *)tutorialID
+{
+  return [self urlStringForTutorialIDString:tutorialID.stringValue];
+}
+
+- (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
+{
+  AssertTrueOrReturnNil(tutorialID.length);
+  return [NSString stringWithFormat:@"tutorial/%@", tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -83,6 +94,27 @@
                               };
   
   [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (void)submitImage:(UIImage *)image forTutorialID:(NSString *)tutorialID completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorialID.length);
+  AssertTrueOrReturn(image);
+  NSData *pngImage = UIImagePNGRepresentation(image);
+  AssertTrueOrReturn(pngImage);
+  
+  NSDictionary *parameters = @{
+                               @"id" : tutorialID,
+                               @"contentType" : @"image/png",
+                               @"imageData" : pngImage
+                              };
+  
+  NSString *URLString = [self urlStringForTutorialIDString:tutorialID];
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
     }
