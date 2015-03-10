@@ -3,8 +3,7 @@
 //
 
 #import "PublishingTutorialViewController.h"
-#import "UIView+XibLoading.h"
-
+#import "ServerDataUpdateController.h"
 
 static NSString *const kNibFileName = @"PublishingTutorialView";
 
@@ -33,21 +32,14 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 {
   AssertTrueOrReturn(self.tutorial);
   
-  // TODO: make a network requests to create a tutorial!
-  // TODO: make a network requests to submit tutorial image step(s)
-  // TODO: make a network requests to submit tutorial video step(s)
-  // TODO: make a network requests to submit tutorial text step(s)
-  // TODO: make a network requests to upload tutorial image
-  // TODO: make a network reqeust to submit tutorial to review
-  // note all the above have to be atomic operations
-  
-  DISPATCH_AFTER(3.0f, ^{
-    [self dismissViewControllerAnimated:YES completion:^{
-      if (self.completionBlock) {
-        self.completionBlock();
+  defineWeakSelf();
+  [ServerDataUpdateController saveTutorial:self.tutorial completion:^(NSError *error) {
+    [weakSelf dismissViewControllerAnimated:YES completion:^{
+      if (weakSelf.completionBlock) {
+        weakSelf.completionBlock();
       }
     }];
-  });
+  }];
 }
 
 @end

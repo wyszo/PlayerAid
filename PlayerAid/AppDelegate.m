@@ -12,7 +12,7 @@
 #import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "UsersController.h"
-#import "ServerDataFetchController.h"
+#import "ServerDataUpdateController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "SectionsDataSource.h"
 
@@ -49,7 +49,7 @@
 {
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (authenticated) {
-      [ServerDataFetchController updateUserAndTutorials];
+      [ServerDataUpdateController updateUserAndTutorials];
     }
     else {
       [self performLoginSegue]; // note this has to be called after setting up core data stack

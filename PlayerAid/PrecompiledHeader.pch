@@ -20,6 +20,7 @@
 #import <UIAlertView+Blocks.h>
 
 #include "DispatchHelper.h"
+#include "GlobalDefines.h"
 
 
 #endif

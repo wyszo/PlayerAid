@@ -163,6 +163,7 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
+  // TODO - it should provide an overlay view which allows reordering steps (or canceling reordering)
   
   [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
 }

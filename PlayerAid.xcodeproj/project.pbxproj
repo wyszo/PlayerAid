@@ -17,7 +17,7 @@
 		31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E621A99EFF1002F3485 /* DispatchHelper.m */; };
 		31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E671A99FF57002F3485 /* GlobalSettings.m */; };
 		31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */; };
-		31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E701A9AA182002F3485 /* ServerDataFetchController.m */; };
+		31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E701A9AA182002F3485 /* ServerDataUpdateController.m */; };
 		31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E731A9B8407002F3485 /* TutorialsHelper.m */; };
 		31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */; };
 		31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */; };
@@ -129,8 +129,8 @@
 		31014E691A99FF6B002F3485 /* GlobalSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSettings.h; sourceTree = "<group>"; };
 		31014E6C1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnauthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
 		31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnauthenticatedServerCommunicationController.m; sourceTree = "<group>"; };
-		31014E6F1A9AA182002F3485 /* ServerDataFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataFetchController.h; sourceTree = "<group>"; };
-		31014E701A9AA182002F3485 /* ServerDataFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerDataFetchController.m; sourceTree = "<group>"; };
+		31014E6F1A9AA182002F3485 /* ServerDataUpdateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataUpdateController.h; sourceTree = "<group>"; };
+		31014E701A9AA182002F3485 /* ServerDataUpdateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerDataUpdateController.m; sourceTree = "<group>"; };
 		31014E721A9B8407002F3485 /* TutorialsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsHelper.h; sourceTree = "<group>"; };
 		31014E731A9B8407002F3485 /* TutorialsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsHelper.m; sourceTree = "<group>"; };
 		31014E771A9BB35F002F3485 /* ApplicationViewHierarchyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationViewHierarchyHelper.h; sourceTree = "<group>"; };
@@ -271,6 +271,7 @@
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
+		31FFDE231AAE7367006E4D0E /* GlobalDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalDefines.h; sourceTree = "<group>"; };
 		C4BF40B97ED22C5437512D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -480,8 +481,8 @@
 			children = (
 				31014E6B1A99FFE6002F3485 /* Unauthenticated */,
 				31014E6A1A99FFE1002F3485 /* Authenticated */,
-				31014E6F1A9AA182002F3485 /* ServerDataFetchController.h */,
-				31014E701A9AA182002F3485 /* ServerDataFetchController.m */,
+				31014E6F1A9AA182002F3485 /* ServerDataUpdateController.h */,
+				31014E701A9AA182002F3485 /* ServerDataUpdateController.m */,
 			);
 			name = ServerCommunication;
 			sourceTree = "<group>";
@@ -610,6 +611,7 @@
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
+				31FFDE231AAE7367006E4D0E /* GlobalDefines.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1273,7 +1275,7 @@
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
-				31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */,
+				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
