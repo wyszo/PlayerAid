@@ -5,6 +5,8 @@
 #import "ServerDataUpdateController.h"
 #import "UsersController.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "NSError+PlayerAidErrors.h"
+#import "ServerResponseParsing.h"
 
 
 @implementation ServerDataUpdateController
@@ -22,11 +24,18 @@
   // TODO: make a network request to create a tutorial!
   [[AuthenticatedServerCommunicationController sharedInstance] createTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (!error) {
-      // TODO: grab tutorial ID for further requests
+      NSString *tutorialID = [ServerResponseParsing tutorialIDFromResponseObject:responseObject];
+      if (!tutorialID.length) {
+        if (completion) {
+          completion([NSError incorrectServerResponseError]);
+          return;
+        }
+      }
+      
+      // TODO: make network requests to submit tutorial image step(s)
       
       // TODO: figure out a nice chaining mechanism for this requests
       
-      // TODO: make network requests to submit tutorial image step(s)
       // TODO: make network requests to submit tutorial video step(s)
       // TODO: make network requests to submit tutorial text step(s)
       // TODO: make a network request to upload tutorial image

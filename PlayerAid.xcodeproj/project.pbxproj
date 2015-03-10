@@ -61,6 +61,8 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
+		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
+		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
@@ -213,6 +215,10 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
+		3193ACB41AAF1ACF006B5952 /* NSError+PlayerAidErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+PlayerAidErrors.h"; sourceTree = "<group>"; };
+		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
+		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
+		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
@@ -605,6 +611,7 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31B735F41A88000B0081AE15 /* Categories */,
@@ -793,6 +800,24 @@
 			name = Styling;
 			sourceTree = "<group>";
 		};
+		3193ACB21AAF1AA4006B5952 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				3193ACB41AAF1ACF006B5952 /* NSError+PlayerAidErrors.h */,
+				3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */,
+			);
+			name = NSError;
+			sourceTree = "<group>";
+		};
+		3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */ = {
+			isa = PBXGroup;
+			children = (
+				3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */,
+				3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */,
+			);
+			name = ServerResponseParsing;
+			sourceTree = "<group>";
+		};
 		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +871,7 @@
 		31B735F41A88000B0081AE15 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3193ACB21AAF1AA4006B5952 /* NSError */,
 				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
@@ -1232,6 +1258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
+				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */,
@@ -1257,6 +1284,7 @@
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
+				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
