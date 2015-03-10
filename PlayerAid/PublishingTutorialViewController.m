@@ -4,6 +4,7 @@
 
 #import "PublishingTutorialViewController.h"
 #import "ServerDataUpdateController.h"
+#import "AlertFactory.h"
 
 static NSString *const kNibFileName = @"PublishingTutorialView";
 
@@ -35,8 +36,12 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
   defineWeakSelf();
   [ServerDataUpdateController saveTutorial:self.tutorial completion:^(NSError *error) {
     [weakSelf dismissViewControllerAnimated:YES completion:^{
+      if (error) {
+        [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Publishing tutorial network error!!!"];
+      }
+      
       if (weakSelf.completionBlock) {
-        weakSelf.completionBlock();
+        weakSelf.completionBlock(error);
       }
     }];
   }];

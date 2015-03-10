@@ -184,8 +184,10 @@
   publishingViewController.tutorial = self.tutorial;
   
   __weak typeof (self) weakSelf = self;
-  publishingViewController.completionBlock = ^() {
-    [weakSelf dismissViewController];
+  publishingViewController.completionBlock = ^(NSError *error) {
+    if (!error) {
+      [weakSelf dismissViewController];
+    }
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
 }

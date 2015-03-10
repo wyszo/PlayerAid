@@ -34,7 +34,9 @@
       // note all the above have to be atomic operations
     }
     else {
-      // TODO: implement error handling...
+      if (completion) {
+        completion(error);
+      }
     }
   }];
 }
