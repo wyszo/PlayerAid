@@ -92,6 +92,8 @@
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
 		31F116941A790F680022BD74 /* PlayerAidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116931A790F680022BD74 /* PlayerAidTests.m */; };
 		31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */; };
+		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
+		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		E295213B5CAC5C0FFF53662C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BF40B97ED22C5437512D96 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -266,6 +268,9 @@
 		31F116931A790F680022BD74 /* PlayerAidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerAidTests.m; sourceTree = "<group>"; };
 		31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FadeAnimations.h"; sourceTree = "<group>"; };
 		31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FadeAnimations.m"; sourceTree = "<group>"; };
+		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
+		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
+		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
 		C4BF40B97ED22C5437512D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -333,6 +338,7 @@
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				317780151A80061A007057CD /* Intro */,
 				31014E521A948686002F3485 /* Terms and Conditions */,
+				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
 			);
 			name = "Other View Controllers";
 			sourceTree = "<group>";
@@ -819,6 +825,7 @@
 				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
 				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
 				31E1F8F51AADA853005EB35B /* PopoverView.xib */,
+				31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */,
 			);
 			name = "Create Tutorial";
 			sourceTree = "<group>";
@@ -1044,6 +1051,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */,
+				31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */,
+			);
+			name = PublishingTutorial;
+			sourceTree = "<group>";
+		};
 		9941D48C7CF54B64C92CF46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1150,6 +1166,7 @@
 			files = (
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
 				312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */,
+				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
@@ -1254,6 +1271,7 @@
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
 				31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,

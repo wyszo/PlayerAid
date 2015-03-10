@@ -18,6 +18,7 @@
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
 #import "UIView+FadeAnimations.h"
+#import "PublishingTutorialViewController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -168,7 +169,14 @@
 
 - (void)publishButtonPressed
 {
-  // TODO: publish tutorial
+  PublishingTutorialViewController *publishingViewController = [PublishingTutorialViewController new];
+  publishingViewController.tutorial = self.tutorial;
+  
+  __weak typeof (self) weakSelf = self;
+  publishingViewController.completionBlock = ^() {
+    [weakSelf dismissViewController];
+  };
+  [self presentViewController:publishingViewController animated:YES completion:nil];
 }
 
 - (void)dismissViewController
