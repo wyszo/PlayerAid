@@ -6,5 +6,6 @@
 
 + (NSError *)genericServerResponseError;
 + (NSError *)incorrectServerResponseError;
++ (NSError *)tutorialStepSubmissionError;
 
 @end

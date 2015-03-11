@@ -41,12 +41,20 @@
         }
         else
         {
-          // TODO: pack all those tutorial steps upload in a dispatch_group
+
           [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
-            // TODO: make network requests to submit tutorial video step(s)
-            // TODO: make network requests to submit tutorial image step(s)
-            // TODO: make network requests to submit tutorial text step(s)
+            
+            [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+              // TODO: this has to be part of a dispatch group!!!
+              if (error) {
+                InvokeCompletionBlockAndReturn([NSError tutorialStepSubmissionError]);
+              } else {
+                NSLog(@"temp log - success");
+              }
+            }];
           }];
+          
+          // TODO: don't proceed after this point until dispatch group tasks have finished!!!
           
           [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
             if (error) {

@@ -121,6 +121,15 @@
   }];
 }
 
+- (void)submitTutorialStep:(TutorialStep *)tutorialStep completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+  
+  // TODO: make network requests to submit tutorial text step(s)
+  // TODO: make network requests to submit tutorial video step(s)
+  // TODO: make network requests to submit tutorial image step(s)
+}
+
 - (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(tutorial);
