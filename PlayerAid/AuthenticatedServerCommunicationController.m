@@ -113,7 +113,7 @@
                                @"imageData" : tutorial.pngImageData
                               };
   
-  NSString *URLString = [self urlStringForTutorialIDString:tutorialID];
+  NSString *URLString = [[self urlStringForTutorialIDString:tutorialID] stringByAppendingString:@"/image"];
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);

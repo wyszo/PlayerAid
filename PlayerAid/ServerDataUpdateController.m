@@ -9,6 +9,9 @@
 #import "ServerResponseParsing.h"
 
 
+#define InvokeCompletionBlockAndReturn(error) if (completion) { completion(error); return; }
+
+
 @implementation ServerDataUpdateController
 
 + (void)updateUserAndTutorials
@@ -26,24 +29,26 @@
     if (!error) {
       NSString *tutorialID = [ServerResponseParsing tutorialIDFromResponseObject:responseObject];
       if (!tutorialID.length) {
-        if (completion) {
-          completion([NSError incorrectServerResponseError]);
-          return;
-        }
+        InvokeCompletionBlockAndReturn([NSError incorrectServerResponseError]);
       }
       tutorial.serverID = [NSNumber numberWithInteger:[tutorialID integerValue]];
       
       [[AuthenticatedServerCommunicationController sharedInstance] submitImageForTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-        // TODO: implement response handling
+        if (error) {
+          InvokeCompletionBlockAndReturn([NSError genericServerResponseError]);
+        }
+        else
+        {
+          // TODO: figure out a nice chaining mechanism for this requests
+          // TODO: figure out if we even need to chain most of those requests (we could fire them all off asynchronously and wait until execution finished)
+          
+          // TODO: make network requests to submit tutorial video step(s)
+          // TODO: make network requests to submit tutorial image step(s)
+          // TODO: make network requests to submit tutorial text step(s)
+          // TODO: make a network reqeust to submit tutorial to review
+          // note all the above have to be atomic operations
+        }
       }];
-      
-      // TODO: figure out a nice chaining mechanism for this requests
-      // TODO: figure out if we even need to chain most of those requests (we could fire them all off asynchronously and wait until execution finished)
-      
-      // TODO: make network requests to submit tutorial video step(s)
-      // TODO: make network requests to submit tutorial text step(s)
-      // TODO: make a network reqeust to submit tutorial to review
-      // note all the above have to be atomic operations
     }
     else {
       if (completion) {
