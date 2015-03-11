@@ -128,7 +128,7 @@
   NSDictionary *parameters = @{
                                @"id" : tutorial.serverID.stringValue
                               };
-  NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
+  NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);

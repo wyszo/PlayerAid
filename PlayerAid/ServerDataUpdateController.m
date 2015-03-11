@@ -53,7 +53,9 @@
               InvokeCompletionBlockAndReturn([NSError genericServerResponseError]);
             }
             else {
-              // TODO: handle success - tutorial published
+              if (completion) {
+                completion(nil);
+              }
             }
           }];
         }
