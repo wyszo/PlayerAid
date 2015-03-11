@@ -79,7 +79,7 @@
 - (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
 {
   AssertTrueOrReturnNil(tutorialID.length);
-  return [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  return [NSString stringWithFormat:@"v1/tutorial/%@", tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -93,7 +93,7 @@
                                @"CreatedOn" : [NSDate new]
                               };
   
-  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
     }
@@ -113,8 +113,23 @@
                                @"imageData" : tutorial.pngImageData
                               };
   
-  NSString *URLString = [[self urlStringForTutorialIDString:tutorialID] stringByAppendingString:@"/image"];
-  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial);
+  
+  NSDictionary *parameters = @{
+                               @"id" : tutorial.serverID.stringValue
+                              };
+  NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
     }
@@ -128,9 +143,9 @@
   [self requestWithType:@"GET" apiToken:apiToken urlString:urlString parameters:nil useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:useCache completion:completion];
+  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
 
 - (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion

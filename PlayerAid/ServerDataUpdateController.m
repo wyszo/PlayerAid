@@ -24,7 +24,9 @@
 
 + (void)saveTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
 {
-  // TODO: make a network request to create a tutorial!
+  // TODO: figure out a nice chaining mechanism for this requests
+  // TODO: figure out if we even need to chain most of those requests (we could fire them all off asynchronously and wait until execution finished)
+  
   [[AuthenticatedServerCommunicationController sharedInstance] createTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (!error) {
       NSString *tutorialID = [ServerResponseParsing tutorialIDFromResponseObject:responseObject];
@@ -39,14 +41,21 @@
         }
         else
         {
-          // TODO: figure out a nice chaining mechanism for this requests
-          // TODO: figure out if we even need to chain most of those requests (we could fire them all off asynchronously and wait until execution finished)
+          // TODO: pack all those tutorial steps upload in a dispatch_group
+          [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
+            // TODO: make network requests to submit tutorial video step(s)
+            // TODO: make network requests to submit tutorial image step(s)
+            // TODO: make network requests to submit tutorial text step(s)
+          }];
           
-          // TODO: make network requests to submit tutorial video step(s)
-          // TODO: make network requests to submit tutorial image step(s)
-          // TODO: make network requests to submit tutorial text step(s)
-          // TODO: make a network reqeust to submit tutorial to review
-          // note all the above have to be atomic operations
+          [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+            if (error) {
+              InvokeCompletionBlockAndReturn([NSError genericServerResponseError]);
+            }
+            else {
+              // TODO: handle success - tutorial published
+            }
+          }];
         }
       }];
     }
