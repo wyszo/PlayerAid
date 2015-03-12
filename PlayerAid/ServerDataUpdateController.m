@@ -9,7 +9,7 @@
 #import "ServerResponseParsing.h"
 
 
-#define ReturnIfBooleanFalse(boolValue) if (!boolValue) { return; }
+#define InvokeCompletionBlockIfErrorAndReturn(error) if(error) { if(completion) { completion(error); } return; }
 
 
 @implementation ServerDataUpdateController
@@ -33,13 +33,17 @@
 {
   NSCondition *condition = [[NSCondition alloc] init];
   [condition lock];
-  __block BOOL allRequestsSucceeded = YES;
+  __block NSError *topLevelError = nil; 
   
   [[AuthenticatedServerCommunicationController sharedInstance] createTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (!error) {
+    if (error) {
+      topLevelError = [NSError genericServerResponseError];
+    }
+    else {
       NSString *tutorialID = [ServerResponseParsing tutorialIDFromResponseObject:responseObject];
       if (!tutorialID.length) {
-        [self setBoolReferenceToNo:&allRequestsSucceeded andSignalCondition:condition];
+        topLevelError = [NSError incorrectServerResponseError];
+        [self lockSignalAndUnlockCondition:condition];
         return;
       }
       tutorial.serverID = [NSNumber numberWithInteger:[tutorialID integerValue]];
@@ -47,30 +51,28 @@
     [self lockSignalAndUnlockCondition:condition];
   }];
   
-  [self waitOnCondition:condition andInvokeCompletionBlockWithGenericError:completion ifBooleanValueIsTrue:(!allRequestsSucceeded)];
-  ReturnIfBooleanFalse(allRequestsSucceeded);
+  [condition wait];
+  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
 
   [[AuthenticatedServerCommunicationController sharedInstance] submitImageForTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
-      [self setBoolReferenceToNo:&allRequestsSucceeded andSignalCondition:condition];
-      return;
+      topLevelError = [NSError genericServerResponseError];
     }
     [self lockSignalAndUnlockCondition:condition];
   }];
 
-  [self waitOnCondition:condition andInvokeCompletionBlockWithGenericError:completion ifBooleanValueIsTrue:(!allRequestsSucceeded)];
-  ReturnIfBooleanFalse(allRequestsSucceeded);
+  [condition wait];
+  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
   
   [self saveStepsForTutorial:tutorial completion:^(NSError *error) {
     if (error) {
-      [self setBoolReferenceToNo:&allRequestsSucceeded andSignalCondition:condition];
-      return;
+      topLevelError = [NSError genericServerResponseError];
     }
     [self lockSignalAndUnlockCondition:condition];
   }];
   
-  [self waitOnCondition:condition andInvokeCompletionBlockWithGenericError:completion ifBooleanValueIsTrue:(!allRequestsSucceeded)];
-  ReturnIfBooleanFalse(allRequestsSucceeded);
+  [condition wait];
+  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
   
   [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
@@ -85,23 +87,6 @@
       }
     }
   }];
-}
-
-+ (void)waitOnCondition:(NSCondition *)condition andInvokeCompletionBlockWithGenericError:(SaveCompletionBlock)completion ifBooleanValueIsTrue:(BOOL)invokeCompletionBlockWithError
-{
-  [condition wait];
-  
-  if (invokeCompletionBlockWithError) {
-    if(completion) {
-      completion([NSError genericServerResponseError]);
-    }
-  }
-}
-
-+ (void)setBoolReferenceToNo:(BOOL *)boolValue andSignalCondition:(NSCondition *)condition
-{
-  *boolValue = NO;
-  [self lockSignalAndUnlockCondition:condition];
 }
 
 + (void)lockSignalAndUnlockCondition:(NSCondition *)condition
