@@ -24,7 +24,7 @@
 
 + (void)saveTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
 {
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+  DISPATCH_ASYNC(QueuePriorityHigh, ^{
     [self privateSaveTutorial:tutorial completion:completion];
   });
 }
@@ -33,7 +33,7 @@
 {
   NSCondition *condition = [[NSCondition alloc] init];
   [condition lock];
-  __block NSError *topLevelError = nil; 
+  __block NSError *topLevelError = nil;
   
   [[AuthenticatedServerCommunicationController sharedInstance] createTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
@@ -76,10 +76,8 @@
   
   [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
-      if (completion) {
-        completion([NSError genericServerResponseError]);
-        return;
-      }
+      topLevelError = [NSError genericServerResponseError];
+      InvokeCompletionBlockIfErrorAndReturn(topLevelError)
     }
     else {
       if (completion) {
@@ -99,31 +97,47 @@
 
 + (void)saveStepsForTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
 {
+  DISPATCH_ASYNC(QueuePriorityHigh, ^{
+    [self privateSaveStepsForTutorial:tutorial completion:completion];
+  });
+}
+
++ (void)privateSaveStepsForTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
+{
   AssertTrueOr(tutorial, if(completion) { completion([NSError incorrectParameterError]); } return;);
+  
+  dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+  __block NSInteger requestsToComplete = tutorial.consistsOfSet.count;
   
   NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
   operationQueue.maxConcurrentOperationCount = 2;
-  __block BOOL allRequestsSucceded = YES;
+  __block NSError *topLevelError;
   
   [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
     [operationQueue addOperationWithBlock:^{
-      [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-          allRequestsSucceded = NO;
-          [operationQueue cancelAllOperations];
-        }
-      }];
+      
+        NSCondition *condition = [[NSCondition alloc] init];
+        [condition lock];
+        
+        [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+          if (error) {
+            topLevelError = [NSError genericServerResponseError];
+            [operationQueue cancelAllOperations];
+            dispatch_semaphore_signal(semaphore);
+          }
+          
+          requestsToComplete--;
+          if (requestsToComplete == 0) {
+            dispatch_semaphore_signal(semaphore);
+          }
+        }];
     }];
   }];
   
-  [operationQueue waitUntilAllOperationsAreFinished];
+  dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
   
   if (completion) {
-    NSError *error = nil;
-    if (!allRequestsSucceded) {
-      error = [NSError genericServerResponseError];
-    }
-    completion(error);
+    completion(topLevelError);
   }
 }
 
