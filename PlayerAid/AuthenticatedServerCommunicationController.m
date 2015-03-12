@@ -133,11 +133,19 @@
     [self submitImageTutorialStep:tutorialStep withPosition:position completion:completion];
   }
   else if ([tutorialStep isVideoStep]) {
-    AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+    [self submitVideoTutorialStep:tutorialStep withPosition:position completion:completion];
   }
   else {
     AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
   }
+}
+
+- (NSString *)URLStringForTutorialStep:(TutorialStep *)tutorialStep
+{
+  AssertTrueOrReturnNil(tutorialStep);
+  NSNumber *serverID = tutorialStep.belongsTo.serverID;
+  AssertTrueOrReturnNil(serverID);
+  return [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
 }
 
 - (void)submitTextTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -156,25 +164,39 @@
   }];
 }
 
-- (NSString *)URLStringForTutorialStep:(TutorialStep *)tutorialStep
-{
-  AssertTrueOrReturnNil(tutorialStep);
-  NSNumber *serverID = tutorialStep.belongsTo.serverID;
-  AssertTrueOrReturnNil(serverID);
-  return [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
-}
-
 - (void)submitImageTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn([tutorialStep isImageStep]);
   
-  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" completionBlock:completion];
+}
+
+- (void)submitVideoTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isVideoStep]);
+  AssertTrueOrReturn(tutorialStep.videoPath);
+  
+  NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:tutorialStep.videoPath]];
+  AssertTrueOrReturn(videoData);
+  
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" completionBlock:completion];
+}
+
+- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSInteger)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype completionBlock:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(URLString);
+  AssertTrueOrReturn(data);
+  AssertTrueOrReturn(name);
+  AssertTrueOrReturn(mimetype.length);
+  
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   
   [operationManager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     NSData *positionData = [NSData dataWithBytes:&position length:sizeof(position)];
     [formData appendPartWithFormData:positionData name:@"position"];
-    [formData appendPartWithFileData:tutorialStep.imageData name:@"image" fileName:@"" mimeType:@"image/png"];
+    [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {

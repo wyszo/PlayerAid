@@ -115,22 +115,18 @@
   
   [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
     [operationQueue addOperationWithBlock:^{
-      
-        NSCondition *condition = [[NSCondition alloc] init];
-        [condition lock];
+      [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+          topLevelError = [NSError genericServerResponseError];
+          [operationQueue cancelAllOperations];
+          dispatch_semaphore_signal(semaphore);
+        }
         
-        [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-          if (error) {
-            topLevelError = [NSError genericServerResponseError];
-            [operationQueue cancelAllOperations];
-            dispatch_semaphore_signal(semaphore);
-          }
-          
-          requestsToComplete--;
-          if (requestsToComplete == 0) {
-            dispatch_semaphore_signal(semaphore);
-          }
-        }];
+        requestsToComplete--;
+        if (requestsToComplete == 0) {
+          dispatch_semaphore_signal(semaphore);
+        }
+      }];
     }];
   }];
   

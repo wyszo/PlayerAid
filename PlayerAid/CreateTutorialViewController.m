@@ -216,6 +216,11 @@
   
   TutorialStep *imageStep1 = [TutorialStep tutorialStepWithImage:[UIImage imageNamed:@"bubble"] inContext:self.createTutorialContext];
   [self.tutorial.consistsOfSet addObject:imageStep1];
+  
+  NSURL *videoURL = [[NSBundle mainBundle] URLForResource:@"TestVideo" withExtension:@"mp4"];
+  AssertTrueOrReturn(videoURL);
+  TutorialStep *videoStep1 = [TutorialStep tutorialStepWithVideoURL:videoURL inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:videoStep1];
 }
 
 - (void)presentPublishingTutorialViewController
