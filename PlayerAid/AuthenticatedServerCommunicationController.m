@@ -129,11 +129,14 @@
   if ([tutorialStep isTextStep]) {
     [self submitTextTutorialStep:tutorialStep withPosition:position completion:completion];
   }
+  else if ([tutorialStep isImageStep]) {
+    [self submitImageTutorialStep:tutorialStep withPosition:position completion:completion];
+  }
+  else if ([tutorialStep isVideoStep]) {
+    AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+  }
   else {
     AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
-    
-    // TODO: make network requests to submit tutorial video step(s)
-    // TODO: make network requests to submit tutorial image step(s)
   }
 }
 
@@ -141,10 +144,7 @@
 {
   AssertTrueOrReturn([tutorialStep isTextStep]);
   
-  // TODO: make network requests to submit tutorial text step(s)
-  
-  NSNumber *serverID = tutorialStep.belongsTo.serverID;
-  NSString *URLString = [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
   NSDictionary *parameters = @{
                                @"position" : @(position),
                                @"value" : tutorialStep.text
@@ -152,6 +152,37 @@
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (NSString *)URLStringForTutorialStep:(TutorialStep *)tutorialStep
+{
+  AssertTrueOrReturnNil(tutorialStep);
+  NSNumber *serverID = tutorialStep.belongsTo.serverID;
+  AssertTrueOrReturnNil(serverID);
+  return [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
+}
+
+- (void)submitImageTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isImageStep]);
+  
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  
+  [operationManager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSData *positionData = [NSData dataWithBytes:&position length:sizeof(position)];
+    [formData appendPartWithFormData:positionData name:@"position"];
+    [formData appendPartWithFileData:tutorialStep.imageData name:@"image" fileName:@"" mimeType:@"image/png"];
+    
+  } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (completion) {
+      completion(nil, responseObject, nil);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(nil, nil, error);
     }
   }];
 }

@@ -213,6 +213,9 @@
   
   TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
   [self.tutorial.consistsOfSet addObject:step2];
+  
+  TutorialStep *imageStep1 = [TutorialStep tutorialStepWithImage:[UIImage imageNamed:@"bubble"] inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:imageStep1];
 }
 
 - (void)presentPublishingTutorialViewController
