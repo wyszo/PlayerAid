@@ -9,7 +9,7 @@
 #import "ServerResponseParsing.h"
 
 
-#define InvokeCompletionBlockIfErrorAndReturn(error) if(error) { if(completion) { completion(error); } return; }
+#define InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, error) if(error) { [condition unlock]; if(completion) { completion(error); } return; }
 
 
 @implementation ServerDataUpdateController
@@ -52,7 +52,7 @@
   }];
   
   [condition wait];
-  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
+  InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
 
   [[AuthenticatedServerCommunicationController sharedInstance] submitImageForTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
@@ -62,7 +62,7 @@
   }];
 
   [condition wait];
-  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
+  InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
   
   [self saveStepsForTutorial:tutorial completion:^(NSError *error) {
     if (error) {
@@ -72,12 +72,13 @@
   }];
   
   [condition wait];
-  InvokeCompletionBlockIfErrorAndReturn(topLevelError);
+  InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
+  [condition unlock];
   
   [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       topLevelError = [NSError genericServerResponseError];
-      InvokeCompletionBlockIfErrorAndReturn(topLevelError)
+      InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError) ;
     }
     else {
       if (completion) {
