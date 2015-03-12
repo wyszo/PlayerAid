@@ -101,7 +101,7 @@
 + (void)setBoolReferenceToNo:(BOOL *)boolValue andSignalCondition:(NSCondition *)condition
 {
   *boolValue = NO;
-  [condition signal];
+  [self lockSignalAndUnlockCondition:condition];
 }
 
 + (void)lockSignalAndUnlockCondition:(NSCondition *)condition
@@ -122,7 +122,7 @@
   
   [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
     [operationQueue addOperationWithBlock:^{
-      [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
         if (error) {
           allRequestsSucceded = NO;
           [operationQueue cancelAllOperations];

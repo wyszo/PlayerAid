@@ -6,6 +6,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "Section.h"
+#import "TutorialStep.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -121,13 +122,38 @@
   }];
 }
 
-- (void)submitTutorialStep:(TutorialStep *)tutorialStep completion:(NetworkResponseBlock)completion
+- (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
 {
-  AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+  AssertTrueOrReturn(tutorialStep);
+  
+  if ([tutorialStep isTextStep]) {
+    [self submitTextTutorialStep:tutorialStep withPosition:position completion:completion];
+  }
+  else {
+    AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+    
+    // TODO: make network requests to submit tutorial video step(s)
+    // TODO: make network requests to submit tutorial image step(s)
+  }
+}
+
+- (void)submitTextTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isTextStep]);
   
   // TODO: make network requests to submit tutorial text step(s)
-  // TODO: make network requests to submit tutorial video step(s)
-  // TODO: make network requests to submit tutorial image step(s)
+  
+  NSNumber *serverID = tutorialStep.belongsTo.serverID;
+  NSString *URLString = [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
+  NSDictionary *parameters = @{
+                               @"position" : @(position),
+                               @"value" : tutorialStep.text
+                              };
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
 }
 
 - (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
