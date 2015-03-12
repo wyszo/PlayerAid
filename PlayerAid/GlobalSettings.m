@@ -17,3 +17,9 @@
 
 // My Internal Mock Server
 NSString const* kServerBaseURL = @"http://demo6914797.mockable.io/";
+
+
+/**
+ REMEMBER TO DISABLE THIS FOR PREPARING A BUILD AS THIS DRIVES THE APP FLOW AUTOMATICALLY!!
+ */
+BOOL DEBUG_MODE_FLOW = YES;

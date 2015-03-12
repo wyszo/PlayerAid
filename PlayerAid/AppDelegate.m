@@ -55,6 +55,18 @@
       [self performLoginSegue]; // note this has to be called after setting up core data stack
     }
   }];
+  
+  if (DEBUG_MODE_FLOW) {
+    [self DEBUG_presentCreateTutorialViewController];
+  }
+}
+
+- (void)DEBUG_presentCreateTutorialViewController
+{
+  defineWeakSelf();
+  DISPATCH_AFTER(0.1, ^{
+    [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
+  });
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

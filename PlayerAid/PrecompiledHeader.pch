@@ -19,8 +19,9 @@
 #import <KZAsserts.h>
 #import <UIAlertView+Blocks.h>
 
+#import "GlobalSettings.h"
+
 #include "DispatchHelper.h"
 #include "GlobalHelperDefines.h"
-
 
 #endif

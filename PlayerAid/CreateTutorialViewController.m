@@ -55,6 +55,18 @@
   [self initializeContextAndNewTutorialObject];
   
   [self setupTutorialStepsDataSource];
+  
+  if (DEBUG_MODE_FLOW) {
+    [self DEBUG_pressPublishButton];
+  }
+}
+
+- (void)DEBUG_pressPublishButton
+{
+  defineWeakSelf();
+  DISPATCH_AFTER(0.1, ^{
+    [weakSelf publishButtonPressed];
+  });
 }
 
 - (void)setupAndAttachHeaderViewController
@@ -135,7 +147,9 @@
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
-  self.publishButton.enabled = NO;
+  if (!DEBUG_MODE_FLOW) {
+    self.publishButton.enabled = NO;
+  }
 }
 
 - (void)addNavigationBarCancelButton
@@ -172,10 +186,33 @@
 {
   [self updateTutorialModelFromUI];
   
-  BOOL tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  if (DEBUG_MODE_FLOW) {
+    [self DEBUG_publishTutorial];
+  }
+  
+  BOOL tutorialDataComplete = YES;
+  if (!DEBUG_MODE_FLOW) {
+    tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  }
   if (tutorialDataComplete) {
     [self presentPublishingTutorialViewController];
   }
+}
+
+// TODO: extract this method from here!! (introduce a separate class) 
+- (void)DEBUG_publishTutorial
+{
+  // fill in empty fields with debug data
+  self.tutorial.title = @"test_title";
+  self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
+  self.tutorial.pngImageData = UIImagePNGRepresentation([UIImage imageNamed:@"bubble"]);
+  
+  // add dummy tutorial step
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"debug text!" inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:step1];
+  
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:step2];
 }
 
 - (void)presentPublishingTutorialViewController
