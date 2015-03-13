@@ -56,7 +56,7 @@
     }
   }];
   
-  if (DEBUG_MODE_FLOW) {
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_presentCreateTutorialViewController];
   }
 }
