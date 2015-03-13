@@ -19,6 +19,7 @@
 #import "AlertFactory.h"
 #import "UIView+FadeAnimations.h"
 #import "PublishingTutorialViewController.h"
+#import "EditTutorialStepsViewController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -195,9 +196,12 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
-  // TODO - it should provide an overlay view which allows reordering steps (or canceling reordering)
+  // TODO - show an overlay view which allows reordering steps (or canceling reordering)
   
-  [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
+  EditTutorialStepsViewController *viewController = [EditTutorialStepsViewController new];
+  
+  UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  [window addSubview:viewController.view];
 }
 
 - (void)publishButtonPressed
@@ -278,7 +282,6 @@
   [self hideAddStepPopoverView];
   
   if (self.tutorialTableView.isEditing) {
-    [self.tutorialTableView setEditing:NO animated:YES];
     return;
   }
   [self pushCreateTutorialTextStepViewController];
