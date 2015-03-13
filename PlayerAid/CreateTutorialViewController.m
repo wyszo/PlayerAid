@@ -201,6 +201,7 @@
   EditTutorialStepsViewController *viewController = [EditTutorialStepsViewController new];
   
   UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  viewController.view.frame = window.frame;
   [window addSubview:viewController.view];
 }
 

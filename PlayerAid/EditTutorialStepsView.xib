@@ -6,15 +6,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTutorialStepsViewController">
             <connections>
-                <outlet property="cancelButton" destination="J9N-91-ANq" id="oWp-aS-5Ls"/>
+                <outlet property="cancelButton" destination="J9N-91-ANq" id="ojz-p3-kT6"/>
+                <outlet property="saveButton" destination="zS5-DS-GgJ" id="QaC-HR-dZQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="3V1-5D-Vra"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view alpha="0.5" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-ba-fex" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.0039215688589999999" green="0.0" blue="0.97647064920000004" alpha="1" colorSpace="deviceRGB"/>
+                </view>
                 <button opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9N-91-ANq" userLabel="Cancel button">
                     <rect key="frame" x="0.0" y="23" width="66" height="40"/>
                     <constraints>
@@ -29,11 +34,25 @@
                         <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="qmu-Bu-4i5"/>
                     </connections>
                 </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-DS-GgJ" userLabel="Save button">
+                    <rect key="frame" x="552" y="23" width="44" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="arj-YO-Wrn"/>
+                        <constraint firstAttribute="height" constant="40" id="q2g-yf-WSQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Save"/>
+                    <connections>
+                        <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="nM9-ao-8qI"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.0039215688593685627" green="0.0" blue="0.97647064924240112" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="zS5-DS-GgJ" secondAttribute="trailing" constant="4" id="1kD-jO-xIz"/>
                 <constraint firstItem="J9N-91-ANq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="43f-kr-XAS"/>
                 <constraint firstItem="J9N-91-ANq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="5fc-Xy-Qni"/>
+                <constraint firstItem="zS5-DS-GgJ" firstAttribute="baseline" secondItem="J9N-91-ANq" secondAttribute="baseline" id="gJa-jE-wfD"/>
             </constraints>
         </view>
     </objects>

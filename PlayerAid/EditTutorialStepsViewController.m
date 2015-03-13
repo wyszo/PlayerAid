@@ -8,7 +8,8 @@
 static NSString *kNibName = @"EditTutorialStepsView";
 
 @interface EditTutorialStepsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @end
 
 @implementation EditTutorialStepsViewController
@@ -24,10 +25,22 @@ static NSString *kNibName = @"EditTutorialStepsView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.cancelButton.font = [FontsHelper navbarButtonsFont];
+  [self customizeNavbarButton:self.saveButton];
+  [self customizeNavbarButton:self.cancelButton];
+}
+
+- (void)customizeNavbarButton:(UIButton *)button
+{
+  AssertTrueOrReturn(button);
+  button.titleLabel.font = [FontsHelper navbarButtonsFont];
 }
 
 #pragma mark IBActions
+
+- (IBAction)saveButtonPressed:(id)sender
+{
+  
+}
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
