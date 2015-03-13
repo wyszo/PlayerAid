@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTutorialStepsViewController">
             <connections>
-                <outlet property="cancelButton" destination="J9N-91-ANq" id="ojz-p3-kT6"/>
-                <outlet property="saveButton" destination="zS5-DS-GgJ" id="QaC-HR-dZQ"/>
+                <outlet property="cancelButton" destination="3X1-r8-ZuH" id="hSQ-PX-yxB"/>
+                <outlet property="saveButton" destination="JPH-XH-UTm" id="14G-SD-mpM"/>
                 <outlet property="view" destination="iN0-l3-epB" id="3V1-5D-Vra"/>
             </connections>
         </placeholder>
@@ -20,39 +20,41 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.0039215688589999999" green="0.0" blue="0.97647064920000004" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <button opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9N-91-ANq" userLabel="Cancel button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X1-r8-ZuH" userLabel="Cancel">
                     <rect key="frame" x="0.0" y="23" width="66" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="7aM-x6-yrO"/>
-                        <constraint firstAttribute="width" constant="66" id="C65-EF-aST"/>
+                        <constraint firstAttribute="width" constant="66" id="aoP-tf-ERg"/>
+                        <constraint firstAttribute="height" constant="40" id="bGA-gN-CII"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Cancel">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="qmu-Bu-4i5"/>
+                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="99E-Fc-yP3"/>
                     </connections>
                 </button>
-                <button opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-DS-GgJ" userLabel="Save button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPH-XH-UTm" userLabel="Save">
                     <rect key="frame" x="552" y="23" width="44" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="arj-YO-Wrn"/>
-                        <constraint firstAttribute="height" constant="40" id="q2g-yf-WSQ"/>
+                        <constraint firstAttribute="width" constant="44" id="2ro-Ql-jEA"/>
+                        <constraint firstAttribute="height" constant="40" id="yyS-qH-WsS"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Save"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="nM9-ao-8qI"/>
+                        <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="6pS-dM-xOS"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="zS5-DS-GgJ" secondAttribute="trailing" constant="4" id="1kD-jO-xIz"/>
-                <constraint firstItem="J9N-91-ANq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="43f-kr-XAS"/>
-                <constraint firstItem="J9N-91-ANq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="5fc-Xy-Qni"/>
-                <constraint firstItem="zS5-DS-GgJ" firstAttribute="baseline" secondItem="J9N-91-ANq" secondAttribute="baseline" id="gJa-jE-wfD"/>
+                <constraint firstItem="3X1-r8-ZuH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7m5-Ub-pGw"/>
+                <constraint firstItem="3X1-r8-ZuH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="GvQ-5s-fIT"/>
+                <constraint firstItem="JPH-XH-UTm" firstAttribute="baseline" secondItem="3X1-r8-ZuH" secondAttribute="baseline" id="SpN-gQ-fyd"/>
+                <constraint firstAttribute="trailing" secondItem="JPH-XH-UTm" secondAttribute="trailing" constant="4" id="o4v-Zx-pS2"/>
             </constraints>
         </view>
     </objects>

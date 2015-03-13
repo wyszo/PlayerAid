@@ -35,6 +35,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 
 @end
 
@@ -198,11 +199,11 @@
   // TODO: edit tutorial steps
   // TODO - show an overlay view which allows reordering steps (or canceling reordering)
   
-  EditTutorialStepsViewController *viewController = [EditTutorialStepsViewController new];
+  self.editTutorialStepsViewController = [EditTutorialStepsViewController new];
   
   UIWindow *window = [UIApplication sharedApplication].keyWindow;
-  viewController.view.frame = window.frame;
-  [window addSubview:viewController.view];
+  self.editTutorialStepsViewController.view.frame = window.frame;
+  [window addSubview:self.editTutorialStepsViewController.view];
 }
 
 - (void)publishButtonPressed

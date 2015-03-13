@@ -4,6 +4,7 @@
 
 #import "EditTutorialStepsViewController.h"
 #import "FontsHelper.h"
+#import "AlertFactory.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 
@@ -25,11 +26,11 @@ static NSString *kNibName = @"EditTutorialStepsView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self customizeNavbarButton:self.saveButton];
-  [self customizeNavbarButton:self.cancelButton];
+  [self customizeButton:self.saveButton];
+  [self customizeButton:self.cancelButton];
 }
 
-- (void)customizeNavbarButton:(UIButton *)button
+- (void)customizeButton:(UIButton *)button
 {
   AssertTrueOrReturn(button);
   button.titleLabel.font = [FontsHelper navbarButtonsFont];
@@ -44,7 +45,9 @@ static NSString *kNibName = @"EditTutorialStepsView";
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
-  
+  [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Discard changes?" okTitle:@"Yes" okAction:^{
+    // TODO: should dismiss here
+  } cancelAction:nil];
 }
 
 @end
