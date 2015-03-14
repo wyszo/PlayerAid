@@ -9,18 +9,23 @@
 static NSString *kNibName = @"EditTutorialStepsView";
 
 @interface EditTutorialStepsViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) NSMutableOrderedSet *tutorialSteps;
+@property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
+
 @end
 
 @implementation EditTutorialStepsViewController
 
-- (instancetype)init
+- (instancetype)initWithTutorialSteps:(NSOrderedSet *)tutorialSteps
 {
-    self = [super initWithNibName:kNibName bundle:nil];
-    if (self) {
-    }
-    return self;
+  self = [super initWithNibName:kNibName bundle:nil];
+  if (self) {
+    _tutorialSteps = [tutorialSteps mutableCopy];
+  }
+  return self;
 }
 
 - (void)viewDidLoad
@@ -46,7 +51,9 @@ static NSString *kNibName = @"EditTutorialStepsView";
 - (IBAction)cancelButtonPressed:(id)sender
 {
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Discard changes?" okTitle:@"Yes" okAction:^{
-    // TODO: should dismiss here
+    if (self.dismissBlock) {
+      self.dismissBlock();
+    }
   } cancelAction:nil];
 }
 

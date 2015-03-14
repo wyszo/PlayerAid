@@ -196,10 +196,16 @@
 
 - (void)editButtonPressed
 {
-  // TODO: edit tutorial steps
-  // TODO - show an overlay view which allows reordering steps (or canceling reordering)
+  NSOrderedSet *tutorialSteps = self.tutorial.consistsOf;
+  if (tutorialSteps.count == 0) {
+    return;
+  }
+  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps];
   
-  self.editTutorialStepsViewController = [EditTutorialStepsViewController new];
+  defineWeakSelf();
+  self.editTutorialStepsViewController.dismissBlock = ^{
+    [weakSelf.editTutorialStepsViewController.view removeFromSuperview];
+  };
   
   UIWindow *window = [UIApplication sharedApplication].keyWindow;
   self.editTutorialStepsViewController.view.frame = window.frame;
