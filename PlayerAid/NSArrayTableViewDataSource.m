@@ -60,11 +60,24 @@ static NSString *const kCellDequeueIdentifier = @"cell";
   return cell;
 }
 
+#pragma mark - retrieving objects
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+  AssertTrueOrReturnNil(self.array.count > indexPath.row);
+  return self.array[indexPath.row];
+}
+
+- (NSInteger)objectCount
+{
+  return self.array.count;
+}
+
 #pragma mark - moving cells
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return NO; // TOOD: parametrize this!!
+  return YES; 
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath

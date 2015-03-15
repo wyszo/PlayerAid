@@ -7,6 +7,7 @@
 #import "AlertFactory.h"
 #import "NSArrayTableViewDataSource.h"
 #import "TableViewBasicDelegateObject.h"
+#import "EditTutorialTableViewCell.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
@@ -43,13 +44,15 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   
   self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:60.0f];
   [self setupTableView];
+  [self.tutorialStepsTableView setEditing:YES];
 }
 
 - (void)setupTableView
 {
   self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView tableViewCellNibName:kTutorialCellName];
+  defineWeakSelf();
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
-      // TODO: configure cell
+    [weakSelf configureCell:cell atIndexPath:indexPath];
   };
   self.tutorialStepsTableView.dataSource = self.tableViewDataSource;
   self.tutorialStepsTableView.delegate = self.delegateObject;
@@ -59,6 +62,21 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 {
   AssertTrueOrReturn(button);
   button.titleLabel.font = [FontsHelper navbarButtonsFont];
+}
+
+#pragma mark - Cell configuration
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+  AssertTrueOrReturn(cell);
+  AssertTrueOrReturn([cell isKindOfClass:[EditTutorialTableViewCell class]]);
+  EditTutorialTableViewCell *editTutorialCell = (EditTutorialTableViewCell *)cell;
+  
+  id objectAtIndexPath = [self.tableViewDataSource objectAtIndexPath:indexPath];
+  AssertTrueOrReturn([objectAtIndexPath isKindOfClass:[TutorialStep class]]);
+  TutorialStep *step = (TutorialStep *)objectAtIndexPath;
+  
+  [editTutorialCell configureWithTutorialStep:step];
 }
 
 #pragma mark IBActions

@@ -11,7 +11,7 @@
 
 
 - (instancetype)initWithCellreuseIdentifier:(NSString *)cellReuseIdentifier
-                         configureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock;
+                         configureCellBlock:(CellAtIndexPathBlock)configureCellBlock;
 - (void)resetFetchedResultsController;
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;

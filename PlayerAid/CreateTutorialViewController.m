@@ -59,7 +59,7 @@
   [self setupTutorialStepsDataSource];
   
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextTutorialSteps];
+    [self DEBUG_addTwoTextOneImageAndVideoStep];
     
     defineWeakSelf();
     DISPATCH_AFTER(0.2, ^{
@@ -238,10 +238,25 @@
   self.tutorial.pngImageData = UIImagePNGRepresentation([UIImage imageNamed:@"bubble"]);
   
   [self DEBUG_addTwoTextTutorialSteps];
-  
+  [self DEBUG_addImageStep];
+  [self DEBUG_addVideoStep];
+}
+
+- (void)DEBUG_addTwoTextOneImageAndVideoStep
+{
+  [self DEBUG_addTwoTextTutorialSteps];
+  [self DEBUG_addImageStep];
+  [self DEBUG_addVideoStep];
+}
+
+- (void)DEBUG_addImageStep
+{
   TutorialStep *imageStep1 = [TutorialStep tutorialStepWithImage:[UIImage imageNamed:@"bubble"] inContext:self.createTutorialContext];
   [self.tutorial.consistsOfSet addObject:imageStep1];
-  
+}
+
+- (void)DEBUG_addVideoStep
+{
   NSURL *videoURL = [[NSBundle mainBundle] URLForResource:@"TestVideo" withExtension:@"mp4"];
   AssertTrueOrReturn(videoURL);
   TutorialStep *videoStep1 = [TutorialStep tutorialStepWithVideoURL:videoURL inContext:self.createTutorialContext];

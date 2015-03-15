@@ -2,11 +2,13 @@
 //  PlayerAid
 //
 
-
 @interface NSArrayTableViewDataSource : NSObject <UITableViewDataSource>
 
-@property (copy, nonatomic) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
+@property (copy, nonatomic) CellAtIndexPathBlock configureCellBlock;
 
 - (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView tableViewCellNibName:(NSString *)cellNibName;
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)objectCount;
 
 @end
