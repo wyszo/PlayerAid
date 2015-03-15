@@ -6,8 +6,10 @@
 #import "FontsHelper.h"
 #import "AlertFactory.h"
 #import "NSArrayTableViewDataSource.h"
+#import "TableViewBasicDelegateObject.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
+static NSString *kTutorialCellName = @"EditTutorialCell";
 
 
 @interface EditTutorialStepsViewController ()
@@ -17,12 +19,12 @@ static NSString *kNibName = @"EditTutorialStepsView";
 @property (strong, nonatomic) NSMutableArray *tutorialSteps;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
 @property (strong, nonatomic) NSArrayTableViewDataSource *tableViewDataSource;
+@property (strong, nonatomic) TableViewBasicDelegateObject *delegateObject;
 
 @end
 
-@implementation EditTutorialStepsViewController
 
-// TODO: implement heightForRowAtIndexPath (and possibly other delegate methods)
+@implementation EditTutorialStepsViewController
 
 - (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps
 {
@@ -39,8 +41,18 @@ static NSString *kNibName = @"EditTutorialStepsView";
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
   
-  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView tableViewCellNibName:@"EditTutorialCell"];
+  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:60.0f];
+  [self setupTableView];
+}
+
+- (void)setupTableView
+{
+  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView tableViewCellNibName:kTutorialCellName];
+  self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
+      // TODO: configure cell
+  };
   self.tutorialStepsTableView.dataSource = self.tableViewDataSource;
+  self.tutorialStepsTableView.delegate = self.delegateObject;
 }
 
 - (void)customizeButton:(UIButton *)button

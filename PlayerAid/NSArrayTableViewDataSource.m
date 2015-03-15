@@ -36,7 +36,9 @@ static NSString *const kCellDequeueIdentifier = @"cell";
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-//  AssertTrueOrReturn(NO); // NOT IMPELEMENTED YET!
+  if (self.configureCellBlock) {
+    self.configureCellBlock(cell, indexPath);
+  }
 }
 
 #pragma mark - UITableViewDataSource

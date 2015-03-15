@@ -71,6 +71,7 @@
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
 		31B5485C1AB5E9960010FC83 /* NSArrayTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */; };
+		31B548601AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -224,6 +225,8 @@
 		31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialTableViewCell.m; sourceTree = "<group>"; };
 		31B5485A1AB5E9960010FC83 /* NSArrayTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayTableViewDataSource.h; sourceTree = "<group>"; };
 		31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTableViewDataSource.m; sourceTree = "<group>"; };
+		31B5485E1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewBasicDelegateObject.h; sourceTree = "<group>"; };
+		31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewBasicDelegateObject.m; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -603,6 +606,7 @@
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
+				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */,
@@ -840,6 +844,15 @@
 				31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */,
 			);
 			name = NSArrayTableViewDataSource;
+			sourceTree = "<group>";
+		};
+		31B5485D1AB5EDB10010FC83 /* TableView delegate */ = {
+			isa = PBXGroup;
+			children = (
+				31B5485E1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.h */,
+				31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */,
+			);
+			name = "TableView delegate";
 			sourceTree = "<group>";
 		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
@@ -1275,6 +1288,7 @@
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
 				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,
+				31B548601AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m in Sources */,
 				317780271A80975C007057CD /* _Section.m in Sources */,
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
