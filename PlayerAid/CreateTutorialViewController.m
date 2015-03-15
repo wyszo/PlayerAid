@@ -203,8 +203,12 @@
   self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps.array];
   
   defineWeakSelf();
-  self.editTutorialStepsViewController.dismissBlock = ^{
+  self.editTutorialStepsViewController.dismissBlock = ^(BOOL saveChanges, NSArray *steps){
     [weakSelf.editTutorialStepsViewController.view removeFromSuperview];
+    
+    if (saveChanges && steps) {
+      // TODO: save changes and ensure they propagate through UI
+    }
   };
   
   UIWindow *window = [UIApplication sharedApplication].keyWindow;

@@ -81,6 +81,11 @@ static NSString *const kCellDequeueIdentifier = @"cell";
   return self.array.count;
 }
 
+- (NSArray *)allSteps
+{
+  return [self.array copy];
+}
+
 #pragma mark - moving cells
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath

@@ -92,14 +92,18 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 
 - (IBAction)saveButtonPressed:(id)sender
 {
-  
+  [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Save changes?" okTitle:@"Yes" okAction:^{
+    if (self.dismissBlock) {
+      self.dismissBlock(YES, self.tableViewDataSource.allSteps);
+    }
+  } cancelAction:nil];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Discard changes?" okTitle:@"Yes" okAction:^{
     if (self.dismissBlock) {
-      self.dismissBlock();
+      self.dismissBlock(NO, nil);
     }
   } cancelAction:nil];
 }

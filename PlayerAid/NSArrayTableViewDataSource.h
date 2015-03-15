@@ -11,5 +11,6 @@
 - (void)removeObjectAtIndex:(NSUInteger)index;
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)objectCount;
+- (NSArray *)allSteps;
 
 @end
