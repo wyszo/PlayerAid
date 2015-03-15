@@ -200,7 +200,7 @@
   if (tutorialSteps.count == 0) {
     return;
   }
-  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps];
+  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps.array];
   
   defineWeakSelf();
   self.editTutorialStepsViewController.dismissBlock = ^{

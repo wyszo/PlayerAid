@@ -70,6 +70,7 @@
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
+		31B5485C1AB5E9960010FC83 /* NSArrayTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -221,6 +222,8 @@
 		31B548541AB48AC20010FC83 /* EditTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialCell.xib; sourceTree = "<group>"; };
 		31B548561AB48B160010FC83 /* EditTutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialTableViewCell.h; sourceTree = "<group>"; };
 		31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialTableViewCell.m; sourceTree = "<group>"; };
+		31B5485A1AB5E9960010FC83 /* NSArrayTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayTableViewDataSource.h; sourceTree = "<group>"; };
+		31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTableViewDataSource.m; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -623,6 +626,7 @@
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				31B548591AB5E97E0010FC83 /* NSArrayTableViewDataSource */,
 				31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */,
 				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
@@ -827,6 +831,15 @@
 				31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */,
 			);
 			name = EditTutorial;
+			sourceTree = "<group>";
+		};
+		31B548591AB5E97E0010FC83 /* NSArrayTableViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				31B5485A1AB5E9960010FC83 /* NSArrayTableViewDataSource.h */,
+				31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */,
+			);
+			name = NSArrayTableViewDataSource;
 			sourceTree = "<group>";
 		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
@@ -1201,6 +1214,7 @@
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
+				31B5485C1AB5E9960010FC83 /* NSArrayTableViewDataSource.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,

@@ -5,21 +5,26 @@
 #import "EditTutorialStepsViewController.h"
 #import "FontsHelper.h"
 #import "AlertFactory.h"
+#import "NSArrayTableViewDataSource.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
+
 
 @interface EditTutorialStepsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) NSMutableOrderedSet *tutorialSteps;
+@property (strong, nonatomic) NSMutableArray *tutorialSteps;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
+@property (strong, nonatomic) NSArrayTableViewDataSource *tableViewDataSource;
 
 @end
 
 @implementation EditTutorialStepsViewController
 
-- (instancetype)initWithTutorialSteps:(NSOrderedSet *)tutorialSteps
+// TODO: implement heightForRowAtIndexPath (and possibly other delegate methods)
+
+- (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps
 {
   self = [super initWithNibName:kNibName bundle:nil];
   if (self) {
@@ -33,6 +38,9 @@ static NSString *kNibName = @"EditTutorialStepsView";
   [super viewDidLoad];
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
+  
+  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView tableViewCellNibName:@"EditTutorialCell"];
+  self.tutorialStepsTableView.dataSource = self.tableViewDataSource;
 }
 
 - (void)customizeButton:(UIButton *)button
