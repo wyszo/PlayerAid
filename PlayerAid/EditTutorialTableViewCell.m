@@ -4,6 +4,7 @@
 
 #import "EditTutorialTableViewCell.h"
 
+
 @implementation EditTutorialTableViewCell
 
 #pragma mark - Configuring cell
@@ -57,6 +58,15 @@
 - (BOOL)shouldIndentWhileEditing
 {
   return NO;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)deleteAction:(id)sender
+{
+  if (self.deleteCellBlock) {
+    self.deleteCellBlock();
+  }
 }
 
 @end

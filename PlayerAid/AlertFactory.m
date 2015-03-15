@@ -134,6 +134,18 @@
   return alert;
 }
 
++ (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction
+{
+  NSString *title = @"Delete tutorial step?";
+  NSString *message = @"This will permanently delete your tutorial step.";
+  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
+    if (okAction) {
+      okAction();
+    }
+  } cancelAction:nil];
+  return alert;
+}
+
 #pragma mark - Other alerts
 
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView

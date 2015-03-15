@@ -60,6 +60,14 @@ static NSString *const kCellDequeueIdentifier = @"cell";
   return cell;
 }
 
+#pragma mark - deleting objects
+
+- (void)removeObjectAtIndex:(NSUInteger)index
+{
+  AssertTrueOrReturn(self.array.count > index);
+  [self.array removeObjectAtIndex:index];
+}
+
 #pragma mark - retrieving objects
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath

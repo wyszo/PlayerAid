@@ -25,6 +25,7 @@ typedef void (^ActionBlock)() ;
 
 // Delete tutorial alerts
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;
++ (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction;
 
 // Other alerts
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;

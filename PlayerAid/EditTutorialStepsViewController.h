@@ -6,7 +6,7 @@
 
 @property (nonatomic, copy) VoidBlock dismissBlock;
 
-- (instancetype)initWithTutorialSteps:(NSOrderedSet *)tutorialSteps;
+- (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps;
 - (instancetype)init __unavailable;
 + (instancetype)new __unavailable;
 

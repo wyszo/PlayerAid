@@ -8,6 +8,7 @@
 #import "NSArrayTableViewDataSource.h"
 #import "TableViewBasicDelegateObject.h"
 #import "EditTutorialTableViewCell.h"
+#import "AlertFactory.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
@@ -77,6 +78,14 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   TutorialStep *step = (TutorialStep *)objectAtIndexPath;
   
   [editTutorialCell configureWithTutorialStep:step];
+  
+  defineWeakSelf();
+  editTutorialCell.deleteCellBlock = ^() {
+    [AlertFactory showDeleteTutorialStepAlertConfirmationWithOKAction:^{
+      [weakSelf.tableViewDataSource removeObjectAtIndex:indexPath.row];
+      [weakSelf.tutorialStepsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+  };
 }
 
 #pragma mark IBActions
