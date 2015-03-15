@@ -32,9 +32,16 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 {
   self = [super initWithNibName:kNibName bundle:nil];
   if (self) {
-    _tutorialSteps = [tutorialSteps mutableCopy];
+    _tutorialSteps = [self mutableTutorialStepsArraySortedByOrder:tutorialSteps];
   }
   return self;
+}
+
+- (NSMutableArray *)mutableTutorialStepsArraySortedByOrder:(NSArray *)tutorialSteps
+{
+  AssertTrueOrReturnNil(tutorialSteps);
+  NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"order" ascending:YES];
+  return [[tutorialSteps sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
 }
 
 - (void)viewDidLoad
@@ -65,6 +72,14 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   button.titleLabel.font = [FontsHelper navbarButtonsFont];
 }
 
+- (void)tutorialStepsUpdateOrderValuesByOrder:(NSArray *)tutorialSteps
+{
+  AssertTrueOrReturn(tutorialSteps);
+  [tutorialSteps enumerateObjectsUsingBlock:^(TutorialStep *step, NSUInteger idx, BOOL *stop) {
+    step.orderValue = idx;
+  }];
+}
+
 #pragma mark - Cell configuration
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -92,18 +107,22 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 
 - (IBAction)saveButtonPressed:(id)sender
 {
+  defineWeakSelf();
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Save changes?" okTitle:@"Yes" okAction:^{
-    if (self.dismissBlock) {
-      self.dismissBlock(YES, self.tableViewDataSource.allSteps);
+    if (weakSelf.dismissBlock) {
+      NSArray *allSteps = weakSelf.tableViewDataSource.allSteps;
+      [weakSelf tutorialStepsUpdateOrderValuesByOrder:allSteps];
+      weakSelf.dismissBlock(YES, weakSelf.tableViewDataSource.allSteps);
     }
   } cancelAction:nil];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
+  defineWeakSelf();
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Discard changes?" okTitle:@"Yes" okAction:^{
-    if (self.dismissBlock) {
-      self.dismissBlock(NO, nil);
+    if (weakSelf.dismissBlock) {
+      weakSelf.dismissBlock(NO, nil);
     }
   } cancelAction:nil];
 }
