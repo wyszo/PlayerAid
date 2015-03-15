@@ -6,18 +6,7 @@
 
 @implementation EditTutorialTableViewCell
 
-- (UITableViewCellEditingStyle)editingStyle
-{
-  return UITableViewCellEditingStyleNone;
-}
-
-- (void)prepareForReuse
-{
-  [super prepareForReuse];
-  
-  self.thumbnailImageView.image = nil;
-  self.titleLabel.text = @"";
-}
+#pragma mark - Configuring cell
 
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
@@ -48,6 +37,26 @@
   } else if ([tutorialStep isVideoStep]) {
     self.thumbnailImageView.image = tutorialStep.thumbnailImage;
   }
+}
+
+- (void)prepareForReuse
+{
+  [super prepareForReuse];
+  
+  self.thumbnailImageView.image = nil;
+  self.titleLabel.text = @"";
+}
+
+#pragma mark - Properties
+
+- (UITableViewCellEditingStyle)editingStyle
+{
+  return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)shouldIndentWhileEditing
+{
+  return NO;
 }
 
 @end
