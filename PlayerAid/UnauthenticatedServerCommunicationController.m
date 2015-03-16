@@ -84,8 +84,7 @@
   AssertTrueOrReturnNil(path.length);
   AssertTrueOrReturnNil(baseURL);
   
-  NSString *URLPath = [NSString stringWithFormat:@"%@/%@", [self serverApiVersionPrefix], path];
-  return [[NSURL URLWithString:URLPath relativeToURL:baseURL] absoluteString];
+  return [[NSURL URLWithString:path relativeToURL:baseURL] absoluteString];
 }
 
 - (void)addHttpHeadersFromDictionary:(NSDictionary *)httpHeaders toMutableRequest:(NSMutableURLRequest *)mutableRequest
@@ -97,11 +96,6 @@
     NSString *value = httpHeaders[key];
     [mutableRequest addValue:value forHTTPHeaderField:key];
   }];
-}
-
-- (NSString *)serverApiVersionPrefix
-{
-  return [NSString stringWithFormat:@"v%@", ServerAPIVersion];
 }
 
 #pragma mark - Lazy initialization

@@ -80,7 +80,7 @@
 - (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
 {
   AssertTrueOrReturnNil(tutorialID.length);
-  return [NSString stringWithFormat:@"v1/tutorial/%@", tutorialID];
+  return [NSString stringWithFormat:@"tutorial/%@", tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
