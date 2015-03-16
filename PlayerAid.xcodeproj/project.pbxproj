@@ -72,6 +72,7 @@
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
 		31B5485C1AB5E9960010FC83 /* NSArrayTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */; };
 		31B548601AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */; };
+		31B548641AB7032D0010FC83 /* Environments.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548631AB7032D0010FC83 /* Environments.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -227,6 +228,8 @@
 		31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTableViewDataSource.m; sourceTree = "<group>"; };
 		31B5485E1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewBasicDelegateObject.h; sourceTree = "<group>"; };
 		31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewBasicDelegateObject.m; sourceTree = "<group>"; };
+		31B548621AB7032D0010FC83 /* Environments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environments.h; sourceTree = "<group>"; };
+		31B548631AB7032D0010FC83 /* Environments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environments.m; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 			children = (
 				31014E691A99FF6B002F3485 /* GlobalSettings.h */,
 				31014E671A99FF57002F3485 /* GlobalSettings.m */,
+				31B548621AB7032D0010FC83 /* Environments.h */,
+				31B548631AB7032D0010FC83 /* Environments.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -855,6 +860,13 @@
 			name = "TableView delegate";
 			sourceTree = "<group>";
 		};
+		31B548611AB703000010FC83 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,6 +1049,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				31B548611AB703000010FC83 /* Settings */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				312FF5F11A9E212200AE3174 /* Behaviours */,
 				31777FF71A7F9426007057CD /* Controllers */,
@@ -1232,6 +1245,7 @@
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
+				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
