@@ -2,5 +2,4 @@
 //  PlayerAid
 //
 
-extern BOOL DEBUG_MODE_FLOW_EDIT_TUTORIAL;
-extern BOOL DEBUG_MODE_FLOW_PUBLISH_TUTORIAL;
+extern NSString *const ServerAPIVersion;
