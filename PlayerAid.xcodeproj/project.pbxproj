@@ -33,6 +33,8 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
+		312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */; };
+		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
 		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
@@ -155,6 +157,10 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		312E191C1AB712C800CB5707 /* DebugSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSettings.h; sourceTree = "<group>"; };
 		312E191D1AB712C900CB5707 /* DebugSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSettings.m; sourceTree = "<group>"; };
+		312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+HttpHeaders.h"; sourceTree = "<group>"; };
+		312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+HttpHeaders.m"; sourceTree = "<group>"; };
+		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
+		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
 		312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h; sourceTree = "<group>"; };
 		312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m; sourceTree = "<group>"; };
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
@@ -909,6 +915,10 @@
 				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
 				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
 				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
+				312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */,
+				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
+				312E19221AB85D1E00CB5707 /* NSURL+URLString.h */,
+				312E19231AB85D1E00CB5707 /* NSURL+URLString.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1273,12 +1283,14 @@
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
+				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
+				312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,

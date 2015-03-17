@@ -7,6 +7,8 @@
 #import "GlobalSettings.h"
 #import "Section.h"
 #import "TutorialStep.h"
+#import "NSMutableURLRequest+HttpHeaders.h"
+#import "NSURL+URLString.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -108,18 +110,28 @@
   NSString *tutorialID = [tutorial.serverID stringValue];
   AssertTrueOrReturn(tutorialID);
   
-  NSDictionary *parameters = @{
-                               @"id" : tutorialID,
-                               @"contentType" : @"image/png",
-                               @"imageData" : tutorial.pngImageData
-                              };
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   
   NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
-  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  URLString = [NSURL URLStringWithPath:URLString baseURL:operationManager.baseURL];
+  
+  NSMutableURLRequest *request = [operationManager.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:nil error:nil];
+  AssertTrueOrReturn(request);
+  
+  [request setHTTPBody:tutorial.pngImageData];
+  [request setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+  
+  AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
-      completion(response, responseObject, error);
+      completion(operation.response, responseObject, nil);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(nil, nil, error);
     }
   }];
+  
+  [operationManager.operationQueue addOperation:operation];
 }
 
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion

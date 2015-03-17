@@ -5,6 +5,8 @@
 #import <AFNetworking.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
+#import "NSMutableURLRequest+HttpHeaders.h"
+#import "NSURL+URLString.h"
 
 
 @implementation AuthenticationRequestData
@@ -49,14 +51,14 @@
   
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
-  NSString *URLString = [self URLStringWithPath:@"auth" baseURL:operationManagerNoCache.baseURL];
+  NSString *URLString = [NSURL URLStringWithPath:@"auth" baseURL:operationManagerNoCache.baseURL];
   
   NSMutableURLRequest *request = [operationManagerNoCache.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
   AssertTrueOrReturn(request);
   
-  [self addHttpHeadersFromDictionary:@{
+  [request addHttpHeadersFromDictionary:@{
     @"X-Provider" : @"Facebook"
-  } toMutableRequest:request];
+  }];
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
@@ -77,25 +79,6 @@
   requestOperationManagerBypassingCache.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
   AssertTrueOrReturnNil(requestOperationManagerBypassingCache);
   return requestOperationManagerBypassingCache;
-}
-
-- (NSString *)URLStringWithPath:(NSString *)path baseURL:(NSURL *)baseURL
-{
-  AssertTrueOrReturnNil(path.length);
-  AssertTrueOrReturnNil(baseURL);
-  
-  return [[NSURL URLWithString:path relativeToURL:baseURL] absoluteString];
-}
-
-- (void)addHttpHeadersFromDictionary:(NSDictionary *)httpHeaders toMutableRequest:(NSMutableURLRequest *)mutableRequest
-{
-  AssertTrueOrReturn(httpHeaders.count);
-  AssertTrueOrReturn(mutableRequest);
-  
-  [httpHeaders enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-    NSString *value = httpHeaders[key];
-    [mutableRequest addValue:value forHTTPHeaderField:key];
-  }];
 }
 
 #pragma mark - Lazy initialization
