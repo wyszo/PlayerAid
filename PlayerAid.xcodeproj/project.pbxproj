@@ -42,6 +42,8 @@
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */; };
+		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
+		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -175,6 +177,10 @@
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObjectLifetime.h"; sourceTree = "<group>"; };
 		315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObjectLifetime.m"; sourceTree = "<group>"; };
+		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
+		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
+		315148A71AB9DF5F008934AE /* NSString+Trimming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trimming.h"; sourceTree = "<group>"; };
+		315148A81AB9DF5F008934AE /* NSString+Trimming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trimming.m"; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -629,11 +635,11 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				315148A01AB9B441008934AE /* ObjectLifetime */,
 				31B735F41A88000B0081AE15 /* Categories */,
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
+				315148A01AB9B441008934AE /* ObjectLifetime */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
@@ -932,6 +938,10 @@
 				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
 				312E19221AB85D1E00CB5707 /* NSURL+URLString.h */,
 				312E19231AB85D1E00CB5707 /* NSURL+URLString.m */,
+				315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */,
+				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
+				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
+				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1284,6 +1294,7 @@
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
+				315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
@@ -1315,6 +1326,7 @@
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
+				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,

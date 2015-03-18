@@ -71,7 +71,7 @@ static const CGFloat kRetryLongDelay = 10.0;
       [weakSelf dismissBlockingAlertView];
       
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
-      [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject]; // TODO: pass responseObject here
+      [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject];
     }
   }];
 }
