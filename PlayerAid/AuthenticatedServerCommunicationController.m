@@ -9,7 +9,6 @@
 #import "TutorialStep.h"
 #import "NSMutableURLRequest+HttpHeaders.h"
 #import "NSURL+URLString.h"
-#import "NSObject+ObjectLifetime.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -190,30 +189,19 @@
   
   AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   
-  NSData *positionData;
-  if (position) {
-    NSInteger integerPosition = [position integerValue];
-    positionData = [NSData dataWithBytes:&integerPosition length:sizeof(integerPosition)];
-    [positionData bindLifetimeTo:self];
-    AssertTrueOr(positionData, ;);
-  }
-  
-  defineWeakSelf();
   [operationManager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    if (positionData) {
+    if (position) {
+      NSData *positionData = [[position stringValue] dataUsingEncoding:NSUTF8StringEncoding];
+      AssertTrueOr(positionData, ;);
       [formData appendPartWithFormData:positionData name:@"position"];
     }
     [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    [positionData releaseLifetimeDependencyFrom:weakSelf];
-    
     if (completion) {
       completion(nil, responseObject, nil);
     }
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    [positionData releaseLifetimeDependencyFrom:weakSelf];
-    
     if (completion) {
       completion(nil, nil, error);
     }
