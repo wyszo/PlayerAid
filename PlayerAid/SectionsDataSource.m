@@ -6,7 +6,8 @@
 #import "Section.h"
 
 
-static NSString *const kGameKnowledgeSectionName = @"Game knowledge";
+// Those have to be same as on server, TODO: introduce a mapping to display them!
+static NSString *const kGameKnowledgeSectionName = @"GameKnowledge";
 static NSString *const kMentalitySectionName = @"Mentality";
 static NSString *const kTechniqueSectionName = @"Technique";
 static NSString *const kPhysicalSectionName = @"Physical";
