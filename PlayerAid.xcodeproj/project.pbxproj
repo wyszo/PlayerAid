@@ -41,6 +41,7 @@
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
+		315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -172,6 +173,8 @@
 		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
+		315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObjectLifetime.h"; sourceTree = "<group>"; };
+		315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObjectLifetime.m"; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -575,6 +578,15 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
+		315148A01AB9B441008934AE /* ObjectLifetime */ = {
+			isa = PBXGroup;
+			children = (
+				315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */,
+				315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */,
+			);
+			name = ObjectLifetime;
+			sourceTree = "<group>";
+		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +629,7 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				315148A01AB9B441008934AE /* ObjectLifetime */,
 				31B735F41A88000B0081AE15 /* Categories */,
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
@@ -1293,6 +1306,7 @@
 				312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
+				315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
