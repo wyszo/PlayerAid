@@ -6,6 +6,11 @@
 
 @implementation NSString (Trimming)
 
+- (NSString *)stringByTrimmingWhitespaceAndNewline
+{
+  return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 - (NSString *)stringByRemovingLastOccurrenceOfString:(NSString *)stringToReplace fromLastNumberOfCharacters:(NSInteger)characterRange
 {
   AssertTrueOrReturnNil(stringToReplace.length);
