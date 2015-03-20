@@ -93,7 +93,7 @@
   NSDictionary *parameters = @{
                                @"title" : tutorial.title,
                                @"section" : tutorial.section.name,
-                               @"CreatedOn" : [NSDate new]
+                               // Optionally we could send CreatedOn date here
                               };
   
   [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -282,6 +282,7 @@
 {
   AssertTrueOrReturnNil(apiToken.length);
   AFHTTPRequestOperationManager *operationManager = self.requestOperationManager;
+  
   NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
   [operationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
   
@@ -297,6 +298,7 @@
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+    _requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer];
   }
   _requestOperationManager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy; // reset to default cache
   return _requestOperationManager;
