@@ -51,7 +51,7 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-RJ-Tmc" userLabel="Avatar Image View">
                         <rect key="frame" x="16" y="179" width="30" height="30"/>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="DH6-7m-fNO"/>
                             <constraint firstAttribute="width" constant="30" id="ZqS-Vu-gUO"/>
