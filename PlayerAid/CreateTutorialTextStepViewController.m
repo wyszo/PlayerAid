@@ -4,6 +4,7 @@
 
 #import "CreateTutorialTextStepViewController.h"
 #import "AlertFactory.h"
+#import "NSString+Trimming.h"
 
 
 @interface CreateTutorialTextStepViewController ()
@@ -41,19 +42,26 @@
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Confirm" style:UIBarButtonItemStylePlain target:self action:@selector(addTextButtonPressed)];
 }
 
+#pragma mark - Text transformation
+
+- (NSString *)processedText
+{
+  return [self.textView.text stringByTrimmingWhitespaceAndNewline];
+}
+
 #pragma mark - Actions
 
 - (void)addTextButtonPressed
 {
   [self dismissViewController];
   if (self.completionBlock) {
-    self.completionBlock(self.textView.text, nil);
+    self.completionBlock(self.processedText, nil);
   }
 }
 
 - (void)cancelButtonPressed
 {
-  if (!self.textView.text.length) {
+  if (!self.processedText.length) {
     [self dismissViewController];
     return;
   }
