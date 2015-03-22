@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -45,10 +44,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
-                    <rect key="frame" x="191" y="188" width="121" height="30"/>
+                    <rect key="frame" x="205" y="188" width="107" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Wdw-Y7-i0P"/>
-                        <constraint firstAttribute="width" constant="121" id="evB-k4-Ypj"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="evB-k4-Ypj"/>
                     </constraints>
                     <state key="normal" title="Pick a category">
                         <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,6 +89,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="oWw-mY-93Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L30-P5-aYz" secondAttribute="trailing" constant="5" id="0Aw-8Y-WVM"/>
                 <constraint firstItem="5Dc-OW-RT8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="4BO-HE-g2n"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="width" secondItem="UBT-wl-gE3" secondAttribute="width" id="6AN-sC-3qV"/>
                 <constraint firstItem="7wF-vS-dew" firstAttribute="top" secondItem="L30-P5-aYz" secondAttribute="bottom" constant="7" id="9yR-hF-n03"/>

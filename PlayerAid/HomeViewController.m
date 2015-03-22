@@ -52,6 +52,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
 
   // TODO: Technical debt - we definitely shouldn't delay UI skinning like that!
+  [self selectFilterLatest]; // intentional
   defineWeakSelf();
   DISPATCH_AFTER(0.01, ^{
     [weakSelf selectFilterLatest];
