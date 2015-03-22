@@ -84,18 +84,18 @@
 
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
-  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"No" action:^{
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"No, continue editing" action:^{
     if (completionBlock) {
       completionBlock(NO);
     }
   }];
-  RIButtonItem *confirmButtonItem = [RIButtonItem itemWithLabel:@"YES, remove it" action:^{
+  RIButtonItem *confirmButtonItem = [RIButtonItem itemWithLabel:@"Yes, cancel" action:^{
     if (completionBlock) {
       completionBlock(YES);
     }
   }];
   
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Remove tutorial step?" cancelButtonItem:cancelButtonItem otherButtonItems:confirmButtonItem, nil];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Cancel tutorial step?" cancelButtonItem:cancelButtonItem otherButtonItems:confirmButtonItem, nil];
   [alert show];
   return alert;
 }
