@@ -80,7 +80,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   AssertTrueOrReturn(self.actionSheetSections.count);
   
   for (Section *section in self.actionSheetSections) {
-    [actionSheet addButtonWithTitle:section.name];
+    [actionSheet addButtonWithTitle:section.displayName];
   }
 
   UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
@@ -147,7 +147,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex) {
     AssertTrueOrReturn(buttonIndex >= 0);
     self.selectedSection = self.actionSheetSections[buttonIndex];
-    [self.pickACategoryButton setTitle:self.selectedSection.name forState:UIControlStateNormal];
+    [self.pickACategoryButton setTitle:self.selectedSection.displayName forState:UIControlStateNormal];
   }
 }
 

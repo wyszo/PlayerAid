@@ -1,13 +1,22 @@
 #import "Section.h"
+#import "SectionsDataSource.h"
+
 
 @interface Section ()
-
-// Private interface goes here.
-
 @end
 
 @implementation Section
 
-// Custom logic goes here.
+- (NSString *)displayName
+{
+  NSDictionary *displayNameMapping = @{
+                            kServerSectionNameGameKnowledge : @"Game Knowledge"
+                          };
+  NSString *displayName = displayNameMapping[self.name];
+  if (!displayName.length) {
+    displayName = self.name;
+  }
+  return displayName;
+}
 
 @end

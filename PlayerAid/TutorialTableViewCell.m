@@ -92,7 +92,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self updateBackgroundImageView];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
-  self.sectionLabel.text = tutorial.section.name;
+  self.sectionLabel.text = tutorial.section.displayName;
   
   NSString *timeAgo = [tutorial.createdAt timeAgoSimple];
   self.timeLabel.text = timeAgo;
