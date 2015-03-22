@@ -360,7 +360,7 @@
 {
   __weak typeof(self) weakSelf = self;
   CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:^(NSString *text, NSError *error) {
-    if (!error) {
+    if (!error && text.length) {
       [weakSelf saveTutorialStepWithText:text];
     }
   }];
