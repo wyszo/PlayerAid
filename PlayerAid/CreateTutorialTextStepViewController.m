@@ -53,6 +53,11 @@
 
 - (void)cancelButtonPressed
 {
+  if (!self.textView.text.length) {
+    [self dismissViewController];
+    return;
+  }
+  
   [AlertFactory showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:^(BOOL discard) {
     if (discard) {
       [self dismissViewController];
