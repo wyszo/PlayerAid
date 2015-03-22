@@ -49,21 +49,26 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self setupGradientOverlay];
 }
 
+- (void)prepareForReuse
+{
+  [super prepareForReuse];
+  self.backgroundImageView.image = nil;
+}
+
 - (void)setupGradientOverlay
 {
   if (self.gradientLayer) {
     return;
   }
-  self.gradientOverlayView.alpha = 0.8;
   self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
 }
 
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  self.gradientLayer.frame = self.gradientOverlayView.bounds;
   
   if (self.canBeDeletedOnSwipe && self.showingDeleteConfirmation) {
+    self.gradientLayer.frame = self.gradientOverlayView.bounds;
     [self customiseDeleteButtonHeight];
   }
 }
