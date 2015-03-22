@@ -194,6 +194,13 @@
   self.navigationItem.titleView = buttonContainer;
 }
 
+- (void)removeNavigationBarButtons
+{
+  self.navigationItem.leftBarButtonItem = nil;
+  self.navigationItem.rightBarButtonItem = nil;
+  self.navigationItem.titleView = nil;
+}
+
 #pragma mark - Actions
 
 - (void)editButtonPressed
@@ -202,11 +209,31 @@
   if (tutorialSteps.count == 0) {
     return;
   }
-  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps.array];
+  
+  self.editTutorialStepsViewController = [self createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps];
+  [self presentInKeyWindowViewController:self.editTutorialStepsViewController];
+  
+  [self removeNavigationBarButtons];
+}
+
+// TODO: move this method away from this class
+- (void)presentInKeyWindowViewController:(UIViewController *)viewController
+{
+  UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  viewController.view.frame = window.frame;
+  [window addSubview:viewController.view];
+}
+
+- (EditTutorialStepsViewController *)createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps
+{
+  AssertTrueOrReturnNil(tutorialSteps.count);
+  
+  EditTutorialStepsViewController *editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps.array];
   
   defineWeakSelf();
-  self.editTutorialStepsViewController.dismissBlock = ^(BOOL saveChanges, NSArray *steps){
+  editTutorialStepsViewController.dismissBlock = ^(BOOL saveChanges, NSArray *steps){
     [weakSelf.editTutorialStepsViewController.view removeFromSuperview];
+    [weakSelf setupNavigationBarButtons];
     
     if (saveChanges && steps) {
       [weakSelf.tutorial removeConsistsOf:weakSelf.tutorial.consistsOf];
@@ -216,10 +243,7 @@
       [weakSelf.tutorialTableView reloadData];
     }
   };
-  
-  UIWindow *window = [UIApplication sharedApplication].keyWindow;
-  self.editTutorialStepsViewController.view.frame = window.frame;
-  [window addSubview:self.editTutorialStepsViewController.view];
+  return editTutorialStepsViewController;
 }
 
 - (void)publishButtonPressed
