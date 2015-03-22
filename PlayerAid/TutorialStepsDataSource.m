@@ -144,8 +144,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 {
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
-    NSString *message = @"Are you sure you want to delete tutorial step? This action cannot be undone!";
-    [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete tutorial step" okAction:^{
+    NSString *message = @"Are you sure you want to delete this tutorial step? This action cannot be undone.";
+    [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete" okAction:^{
       TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
       AssertTrueOrReturn(weakSelf.context);
       [tutorialStep MR_deleteInContext:weakSelf.context];
