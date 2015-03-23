@@ -52,6 +52,7 @@
   [super viewDidLoad];
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
+  self.tutorialTableView.backgroundColor = [UIColor whiteColor];
   
   [self setupAndAttachHeaderViewController];
   self.createTutoriaStepButtonsView.delegate = self;
