@@ -14,13 +14,13 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ywC-dg-HSJ" id="TGa-o5-c9P">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-pd-SdG" userLabel="Delete Cell Button">
-                        <rect key="frame" x="8" y="18" width="30" height="30"/>
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-pd-SdG" userLabel="Delete Cell Button">
+                        <rect key="frame" x="0.0" y="11" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="rBx-6F-M1o"/>
-                            <constraint firstAttribute="height" constant="30" id="u0v-W3-wzH"/>
+                            <constraint firstAttribute="width" constant="44" id="rBx-6F-M1o"/>
+                            <constraint firstAttribute="height" constant="44" id="u0v-W3-wzH"/>
                         </constraints>
-                        <state key="normal" title="X">
+                        <state key="normal" image="deleteicon">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -28,18 +28,19 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u0X-vb-gKg" userLabel="Thumbnail Image View">
-                        <rect key="frame" x="46" y="8" width="50" height="50"/>
+                        <rect key="frame" x="44" y="8" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="u0X-vb-gKg" secondAttribute="height" multiplier="1:1" id="9Q6-Bg-b66"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-ER-y4o" userLabel="titleLabel">
-                        <rect key="frame" x="104" y="23" width="197" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="102" y="22" width="199" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="oVM-ER-y4o" secondAttribute="trailing" constant="8" id="3yG-E2-qL9"/>
                     <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" constant="-1" id="6Aj-cB-r5e"/>
@@ -50,12 +51,12 @@
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="trailing" secondItem="TGa-o5-c9P" secondAttribute="trailingMargin" id="PJz-mM-zmT"/>
                     <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" id="TPq-7r-kWe"/>
                     <constraint firstItem="u0X-vb-gKg" firstAttribute="top" secondItem="TGa-o5-c9P" secondAttribute="topMargin" id="ZOb-Ch-wfm"/>
-                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" id="bPo-mS-wMI"/>
+                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" constant="-8" id="bPo-mS-wMI"/>
                     <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" id="cEK-q2-Jgb"/>
                     <constraint firstAttribute="centerY" secondItem="Bgx-pd-SdG" secondAttribute="centerY" constant="-2" id="f0H-FT-6K4"/>
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="leading" secondItem="u0X-vb-gKg" secondAttribute="trailing" constant="8" id="gWp-LC-ePY"/>
                     <constraint firstAttribute="centerY" secondItem="Bgx-pd-SdG" secondAttribute="centerY" id="hnR-A3-u8J"/>
-                    <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" constant="8" id="rCS-07-Qnf"/>
+                    <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" id="rCS-07-Qnf"/>
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" constant="8" id="yPf-2n-gXm"/>
                 </constraints>
                 <variation key="default">
@@ -70,6 +71,11 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="thumbnailImageView" destination="u0X-vb-gKg" id="iuP-81-JdU"/>
                 <outlet property="titleLabel" destination="oVM-ER-y4o" id="RHF-0K-Dg2"/>
@@ -77,4 +83,7 @@
             <point key="canvasLocation" x="198.5" y="383.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="deleteicon" width="16" height="16"/>
+    </resources>
 </document>
