@@ -11,7 +11,7 @@
 #import "TutorialStepsDataSource.h"
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
-#import "CreateTutorialStepButtonsView.h"
+#import "CreateTutorialStepButtonsContainerView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
@@ -30,7 +30,7 @@
 @property (strong, nonatomic) FDTakeController *mediaController;
 
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
-@property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsContainerView *createTutoriaStepButtonsView;
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
 
 @property (weak, nonatomic) UIBarButtonItem *publishButton;

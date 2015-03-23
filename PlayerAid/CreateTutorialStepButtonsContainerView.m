@@ -2,19 +2,19 @@
 //  PlayerAid
 //
 
-#import "CreateTutorialStepButtonsView.h"
+#import "CreateTutorialStepButtonsContainerView.h"
 #import "UIView+XibLoading.h"
 
 
 static NSString *const kNibFileName = @"CreateTutorialStepButtonsView";
 
 
-@interface CreateTutorialStepButtonsView ()
+@interface CreateTutorialStepButtonsContainerView ()
 @property (strong, nonatomic) UIView *view;
 @end
 
 
-@implementation CreateTutorialStepButtonsView
+@implementation CreateTutorialStepButtonsContainerView
 
 #pragma mark - View Initialization
 
