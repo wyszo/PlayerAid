@@ -100,7 +100,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   defineWeakSelf();
   editTutorialCell.deleteCellBlock = ^() {
     [AlertFactory showDeleteTutorialStepAlertConfirmationWithOKAction:^{
-      [weakSelf.tableViewDataSource removeObjectAtIndex:indexPath.row];
+      [weakSelf.tableViewDataSource removeObject:objectAtIndexPath];
       [weakSelf.tutorialStepsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
   };
