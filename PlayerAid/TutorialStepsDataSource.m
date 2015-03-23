@@ -150,6 +150,10 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
       AssertTrueOrReturn(weakSelf.context);
       [tutorialStep MR_deleteInContext:weakSelf.context];
       [weakSelf.context MR_saveOnlySelfAndWait];
+      
+      if (weakSelf.cellDeletionCompletionBlock) {
+        weakSelf.cellDeletionCompletionBlock();
+      }
     } cancelAction:^{
       [weakSelf.tableView reloadRowAtIndexPath:indexPath];
     }];

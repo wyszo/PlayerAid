@@ -20,6 +20,7 @@
 #import "UIView+FadeAnimations.h"
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
+#import "ColorsHelper.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -31,7 +32,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
+
 @property (weak, nonatomic) UIBarButtonItem *publishButton;
+@property (weak, nonatomic) UIButton *editButton;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -70,6 +73,12 @@
   if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_pressPublishButton];
   }
+  
+  // TODO: Technical debt! We shouldn't delay it like that!!
+  defineWeakSelf();
+  DISPATCH_AFTER(0.01, ^{
+    [weakSelf disableEditButton];
+  });
 }
 
 - (void)DEBUG_pressPublishButton
@@ -122,6 +131,11 @@
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
+  
+  defineWeakSelf();
+  self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {
+    [weakSelf updateEditButtonEnabled];
+  };
 }
 
 #pragma mark - Context and Tutorial object initialization
@@ -190,7 +204,11 @@
 - (void)addNavigationBarEditButton
 {
   CGRect buttonRect = CGRectMake(0, 0, 60, 30);
-  UIView *buttonContainer = [NavigationBarCustomizationHelper titleViewhWithButtonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
+  
+  UIView *buttonContainer = [[UIView alloc] initWithFrame:buttonRect];
+  self.editButton = [NavigationBarCustomizationHelper buttonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
+  [buttonContainer addSubview:self.editButton];
+  
   self.navigationItem.titleView = buttonContainer;
 }
 
@@ -201,12 +219,38 @@
   self.navigationItem.titleView = nil;
 }
 
+
+#pragma mark - Edit button manipulation
+// TODO: extract this away from this class!
+
+- (void)updateEditButtonEnabled
+{
+  ([self tutorialHasAnySteps] ? [self enabledEditButton] : [self disableEditButton]);
+}
+
+- (void)enabledEditButton
+{
+  self.editButton.titleLabel.textColor = [ColorsHelper navigationBarButtonsColor];
+  self.editButton.userInteractionEnabled = YES;
+}
+
+- (void)disableEditButton
+{
+  self.editButton.titleLabel.textColor = [ColorsHelper navigationBarDisabledButtonsColor];
+  self.editButton.userInteractionEnabled = NO;
+}
+
+- (BOOL)tutorialHasAnySteps
+{
+  return (self.tutorial.consistsOf.count);
+}
+
 #pragma mark - Actions
 
 - (void)editButtonPressed
 {
   NSOrderedSet *tutorialSteps = self.tutorial.consistsOf;
-  if (tutorialSteps.count == 0) {
+  if (![self tutorialHasAnySteps]) {
     return;
   }
   
@@ -422,6 +466,7 @@
   
   [self saveTutorial];
   self.publishButton.enabled = YES;
+  [self updateEditButtonEnabled];
 }
 
 - (void)saveTutorial
