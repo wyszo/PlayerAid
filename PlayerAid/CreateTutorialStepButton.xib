@@ -20,11 +20,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEg-Tc-veC" userLabel="imageView">
-                            <rect key="frame" x="0.0" y="0.0" width="291" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="291" height="94"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0C-ly-H95" userLabel="titleLabel">
-                            <rect key="frame" x="0.0" y="60" width="291" height="162"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
+                            <rect key="frame" x="0.0" y="84" width="291" height="138"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                             <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -35,17 +35,11 @@
                         <constraint firstItem="iEg-Tc-veC" firstAttribute="leading" secondItem="icv-Av-574" secondAttribute="leading" id="1lR-Oe-H5h"/>
                         <constraint firstAttribute="trailing" secondItem="Z0C-ly-H95" secondAttribute="trailing" id="7YP-Dv-Afd"/>
                         <constraint firstItem="iEg-Tc-veC" firstAttribute="top" secondItem="icv-Av-574" secondAttribute="top" id="D57-fi-Cdr"/>
-                        <constraint firstItem="Z0C-ly-H95" firstAttribute="width" secondItem="iEg-Tc-veC" secondAttribute="height" multiplier="697:144" id="TMd-1z-ZyU"/>
-                        <constraint firstItem="Z0C-ly-H95" firstAttribute="top" secondItem="iEg-Tc-veC" secondAttribute="bottom" id="aY2-ro-NeR"/>
-                        <constraint firstItem="Z0C-ly-H95" firstAttribute="top" secondItem="iEg-Tc-veC" secondAttribute="bottom" id="ocB-HT-SfZ"/>
+                        <constraint firstItem="Z0C-ly-H95" firstAttribute="top" secondItem="iEg-Tc-veC" secondAttribute="bottom" constant="-10" id="ocB-HT-SfZ"/>
                         <constraint firstItem="Z0C-ly-H95" firstAttribute="leading" secondItem="icv-Av-574" secondAttribute="leading" id="q8b-0t-NzD"/>
                         <constraint firstAttribute="bottom" secondItem="Z0C-ly-H95" secondAttribute="bottom" id="tQH-tT-nJV"/>
+                        <constraint firstItem="Z0C-ly-H95" firstAttribute="width" secondItem="iEg-Tc-veC" secondAttribute="height" multiplier="291:94" id="wsj-3R-UCM"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="aY2-ro-NeR"/>
-                        </mask>
-                    </variation>
                 </view>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc5-2j-iCu">
                     <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
