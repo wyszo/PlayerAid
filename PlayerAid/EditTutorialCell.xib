@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -28,13 +27,14 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u0X-vb-gKg" userLabel="Thumbnail Image View">
-                        <rect key="frame" x="44" y="8" width="50" height="50"/>
+                        <rect key="frame" x="44" y="12" width="42" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="u0X-vb-gKg" secondAttribute="height" multiplier="1:1" id="9Q6-Bg-b66"/>
+                            <constraint firstAttribute="height" constant="42" id="P6H-av-Yin"/>
+                            <constraint firstAttribute="width" constant="42" id="fju-Ia-dTY"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-ER-y4o" userLabel="titleLabel">
-                        <rect key="frame" x="102" y="22" width="199" height="22"/>
+                        <rect key="frame" x="94" y="22" width="207" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -42,34 +42,15 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="oVM-ER-y4o" secondAttribute="trailing" constant="8" id="3yG-E2-qL9"/>
-                    <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" constant="-1" id="6Aj-cB-r5e"/>
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="leading" secondItem="u0X-vb-gKg" secondAttribute="trailing" constant="8" id="6cC-NO-SPr"/>
-                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="trailing" secondItem="TGa-o5-c9P" secondAttribute="trailingMargin" id="8Qi-7S-fUU"/>
-                    <constraint firstItem="u0X-vb-gKg" firstAttribute="bottom" secondItem="TGa-o5-c9P" secondAttribute="bottomMargin" id="DPO-y3-SSr"/>
+                    <constraint firstAttribute="centerY" secondItem="u0X-vb-gKg" secondAttribute="centerY" id="9a4-DC-tOI"/>
                     <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" id="Gis-6F-VjC"/>
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="trailing" secondItem="TGa-o5-c9P" secondAttribute="trailingMargin" id="PJz-mM-zmT"/>
-                    <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" id="TPq-7r-kWe"/>
-                    <constraint firstItem="u0X-vb-gKg" firstAttribute="top" secondItem="TGa-o5-c9P" secondAttribute="topMargin" id="ZOb-Ch-wfm"/>
                     <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" constant="-8" id="bPo-mS-wMI"/>
                     <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" id="cEK-q2-Jgb"/>
-                    <constraint firstAttribute="centerY" secondItem="Bgx-pd-SdG" secondAttribute="centerY" constant="-2" id="f0H-FT-6K4"/>
-                    <constraint firstItem="oVM-ER-y4o" firstAttribute="leading" secondItem="u0X-vb-gKg" secondAttribute="trailing" constant="8" id="gWp-LC-ePY"/>
                     <constraint firstAttribute="centerY" secondItem="Bgx-pd-SdG" secondAttribute="centerY" id="hnR-A3-u8J"/>
                     <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" id="rCS-07-Qnf"/>
-                    <constraint firstItem="oVM-ER-y4o" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" constant="8" id="yPf-2n-gXm"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="3yG-E2-qL9"/>
-                        <exclude reference="8Qi-7S-fUU"/>
-                        <exclude reference="f0H-FT-6K4"/>
-                        <exclude reference="TPq-7r-kWe"/>
-                        <exclude reference="6Aj-cB-r5e"/>
-                        <exclude reference="gWp-LC-ePY"/>
-                        <exclude reference="yPf-2n-gXm"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
