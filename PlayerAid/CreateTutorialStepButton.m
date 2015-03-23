@@ -13,7 +13,9 @@ static NSString *const kNibFileName = @"CreateTutorialStepButton";
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (strong, nonatomic) UIView *view;
+@property (copy, nonatomic) VoidBlock actionBlock;
 
 @end
 
@@ -40,10 +42,28 @@ static NSString *const kNibFileName = @"CreateTutorialStepButton";
   return self;
 }
 
+#pragma mark - View Customization
+
+- (void)configureWithTitle:(NSString *)title imageNamed:(NSString *)imageName actionBlock:(VoidBlock)action
+{
+  self.titleLabel.text = title;
+  self.imageView.image = [UIImage imageNamed:imageName];
+  self.actionBlock = action;
+}
+
+- (void)setSeparatorHidden:(BOOL)separatorHidden
+{
+  _separatorHidden = separatorHidden;
+  self.separatorView.hidden = _separatorHidden;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)buttonPressed:(id)sender
 {
+  if (self.actionBlock) {
+    self.actionBlock();
+  }
 }
 
 @end

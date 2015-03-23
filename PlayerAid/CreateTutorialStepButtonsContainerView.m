@@ -4,13 +4,20 @@
 
 #import "CreateTutorialStepButtonsContainerView.h"
 #import "UIView+XibLoading.h"
+#import "CreateTutorialStepButton.h"
 
 
-static NSString *const kNibFileName = @"CreateTutorialStepButtonsView";
+static NSString *const kNibFileName = @"CreateTutorialStepButtonsContainerView";
 
 
 @interface CreateTutorialStepButtonsContainerView ()
+
 @property (strong, nonatomic) UIView *view;
+
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButton *photoStepButton;
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButton *videoStepButton;
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButton *textStepButton;
+
 @end
 
 
@@ -23,6 +30,7 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsView";
   self = [super initWithFrame:frame];
   if (self) {
     [self loadView:self.view fromNibNamed:kNibFileName];
+    [self setupButtons];
   }
   return self;
 }
@@ -32,25 +40,29 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsView";
   self = [super initWithCoder:aDecoder];
   if (self) {
     [self loadView:self.view fromNibNamed:kNibFileName];
+    [self setupButtons];
   }
   return self;
 }
 
-#pragma mark - IBActions
+#pragma mark - View Customization 
 
-- (IBAction)photoButtonPressed:(id)sender
+- (void)setupButtons
 {
-  [self.delegate addPhotoStepSelected];
-}
-
-- (IBAction)videoButtonPressed:(id)sender
-{
-  [self.delegate addVideoStepSelected];
-}
-
-- (IBAction)textButtonPressed:(id)sender
-{
-  [self.delegate addTextStepSelected];
+  defineWeakSelf();
+  
+  [self.photoStepButton configureWithTitle:@"Add Photo" imageNamed:@"camerabtn" actionBlock:^{
+    [weakSelf.delegate addPhotoStepSelected];
+  }];
+  
+  [self.videoStepButton configureWithTitle:@"Add Video" imageNamed:@"videobtn" actionBlock:^{
+    [weakSelf.delegate addVideoStepSelected];
+  }];
+  
+  [self.textStepButton configureWithTitle:@"Add Text" imageNamed:@"textbtn" actionBlock:^{
+    [weakSelf.delegate addTextStepSelected];
+  }];
+  self.textStepButton.separatorHidden = YES;
 }
 
 @end
