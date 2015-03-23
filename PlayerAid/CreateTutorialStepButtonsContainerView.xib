@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yyu-qe-YwT" userLabel="Photo Step Button" customClass="CreateTutorialStepButton">
-                    <rect key="frame" x="0.0" y="0.0" width="187" height="261"/>
+                    <rect key="frame" x="0.0" y="0.0" width="186" height="261"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0l7-Yh-d6a" userLabel="Video Step Button" customClass="CreateTutorialStepButton">
@@ -25,14 +25,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUQ-Da-ukM" userLabel="Text Step Button" customClass="CreateTutorialStepButton">
-                    <rect key="frame" x="374" y="0.0" width="187" height="261"/>
+                    <rect key="frame" x="375" y="0.0" width="186" height="261"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Yyu-qe-YwT" secondAttribute="bottom" id="22I-Mq-1QN"/>
-                <constraint firstItem="WUQ-Da-ukM" firstAttribute="leading" secondItem="0l7-Yh-d6a" secondAttribute="trailing" id="4xS-22-gdZ"/>
+                <constraint firstItem="WUQ-Da-ukM" firstAttribute="leading" secondItem="0l7-Yh-d6a" secondAttribute="trailing" constant="1" id="4xS-22-gdZ"/>
                 <constraint firstItem="WUQ-Da-ukM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ekp-dX-Ee2"/>
                 <constraint firstAttribute="bottom" secondItem="0l7-Yh-d6a" secondAttribute="bottom" id="J4P-uU-Pw7"/>
                 <constraint firstItem="0l7-Yh-d6a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N0G-iF-0Mw"/>
@@ -41,7 +41,7 @@
                 <constraint firstItem="Yyu-qe-YwT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XSA-Fz-tbk"/>
                 <constraint firstItem="0l7-Yh-d6a" firstAttribute="width" secondItem="WUQ-Da-ukM" secondAttribute="width" id="cWb-3V-YlJ"/>
                 <constraint firstAttribute="bottom" secondItem="WUQ-Da-ukM" secondAttribute="bottom" id="irp-a4-u6T"/>
-                <constraint firstItem="0l7-Yh-d6a" firstAttribute="leading" secondItem="Yyu-qe-YwT" secondAttribute="trailing" id="kyu-gc-9Rn"/>
+                <constraint firstItem="0l7-Yh-d6a" firstAttribute="leading" secondItem="Yyu-qe-YwT" secondAttribute="trailing" constant="1" id="kyu-gc-9Rn"/>
                 <constraint firstItem="Yyu-qe-YwT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mEu-zA-s1r"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

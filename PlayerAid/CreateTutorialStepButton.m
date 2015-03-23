@@ -51,12 +51,6 @@ static NSString *const kNibFileName = @"CreateTutorialStepButton";
   self.actionBlock = action;
 }
 
-- (void)setSeparatorHidden:(BOOL)separatorHidden
-{
-  _separatorHidden = separatorHidden;
-  self.separatorView.hidden = _separatorHidden;
-}
-
 #pragma mark - IBActions
 
 - (IBAction)buttonPressed:(id)sender

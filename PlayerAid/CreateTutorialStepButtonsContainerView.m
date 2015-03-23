@@ -62,7 +62,6 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsContainerView";
   [self.textStepButton configureWithTitle:@"Add Text" imageNamed:@"textbtn" actionBlock:^{
     [weakSelf.delegate addTextStepSelected];
   }];
-  self.textStepButton.separatorHidden = YES;
 }
 
 @end

@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialStepButton">
             <connections>
                 <outlet property="imageView" destination="iEg-Tc-veC" id="693-4I-WnO"/>
-                <outlet property="separatorView" destination="E1K-8L-00k" id="9sm-Ou-b8K"/>
                 <outlet property="titleLabel" destination="Z0C-ly-H95" id="tLR-1f-h4Z"/>
             </connections>
         </placeholder>
@@ -48,13 +47,6 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1K-8L-00k" userLabel="Separator View">
-                    <rect key="frame" x="290" y="0.0" width="1" height="222"/>
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="BQW-0p-C04"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc5-2j-iCu">
                     <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
                     <connections>
@@ -62,18 +54,15 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="vc5-2j-iCu" secondAttribute="trailing" id="3nw-kJ-0kJ"/>
                 <constraint firstAttribute="trailing" secondItem="vc5-2j-iCu" secondAttribute="trailing" id="4WF-Pc-5kz"/>
                 <constraint firstItem="vc5-2j-iCu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4v9-KM-QeA"/>
                 <constraint firstAttribute="bottom" secondItem="icv-Av-574" secondAttribute="bottom" id="55f-Rt-VZ0"/>
                 <constraint firstItem="vc5-2j-iCu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CGU-sg-GgJ"/>
-                <constraint firstItem="E1K-8L-00k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CSN-yM-3hJ"/>
                 <constraint firstAttribute="trailing" secondItem="icv-Av-574" secondAttribute="trailing" id="For-c9-Mat"/>
-                <constraint firstAttribute="trailing" secondItem="E1K-8L-00k" secondAttribute="trailing" id="PuY-c5-ooW"/>
                 <constraint firstItem="icv-Av-574" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qyz-0i-8bx"/>
-                <constraint firstAttribute="bottom" secondItem="E1K-8L-00k" secondAttribute="bottom" id="eDj-iw-Y9o"/>
                 <constraint firstAttribute="bottom" secondItem="vc5-2j-iCu" secondAttribute="bottom" id="fNk-i6-Akq"/>
                 <constraint firstItem="icv-Av-574" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mti-1Q-zOf"/>
                 <constraint firstAttribute="bottom" secondItem="vc5-2j-iCu" secondAttribute="bottom" id="qPY-dg-6OI"/>
