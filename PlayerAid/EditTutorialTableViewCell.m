@@ -32,7 +32,7 @@
 - (void)configureThumbnailWithTutorialStep:(TutorialStep *)tutorialStep
 {
   if ([tutorialStep isTextStep]) {
-    // TODO: apply default text thumbnail!
+    self.thumbnailImageView.image = [UIImage imageNamed:@"typebtn_edit"];
   } else if ([tutorialStep isImageStep]) {
     self.thumbnailImageView.image = tutorialStep.image;
   } else if ([tutorialStep isVideoStep]) {
