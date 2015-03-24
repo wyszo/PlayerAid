@@ -54,6 +54,9 @@
   self.edgesForExtendedLayout = UIRectEdgeNone;
   self.tutorialTableView.backgroundColor = [UIColor whiteColor];
   
+  self.tutorialTableView.rowHeight = UITableViewAutomaticDimension;
+  self.tutorialTableView.estimatedRowHeight = 100.f;
+  
   [self setupAndAttachHeaderViewController];
   self.createTutoriaStepButtonsView.delegate = self;
   

@@ -176,27 +176,6 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   return _context;
 }
 
-#pragma mark - UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  static TutorialStepTableViewCell *templateCell;
-  if (!templateCell) {
-    templateCell = [self.tableView dequeueReusableCellWithIdentifier:kTutorialStepCellReuseIdentifier];
-    AssertTrueOr(templateCell, return 0;);
-  }
-  
-  TutorialStep *tutorialStep = [_tableViewDataSource objectAtIndexPath:indexPath];
-  AssertTrueOr(tutorialStep, return 0;);
-  [templateCell configureWithTutorialStep:tutorialStep];
-  [templateCell layoutIfNeeded];
-  
-  CGFloat height = [templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-  AssertTrueOr(height > 0, return 0;);
-  
-  return height;
-}
-
 #pragma mark - Playing a video
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
