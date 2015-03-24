@@ -62,6 +62,10 @@
   
   [self setupTutorialStepsDataSource];
   
+  if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
+    [self DEBUG_addTextTutorialStep];
+  }
+  
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
     [self DEBUG_addTwoTextOneImageAndVideoStep];
     
@@ -90,11 +94,16 @@
   });
 }
 
-- (void)DEBUG_addTwoTextTutorialSteps
+- (void)DEBUG_addTextTutorialStep
 {
-  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"debug text!" inContext:self.createTutorialContext];
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
   step1.orderValue = 1;
   [self.tutorial.consistsOfSet addObject:step1];
+}
+
+- (void)DEBUG_addTwoTextTutorialSteps
+{
+  [self DEBUG_addTextTutorialStep];
   
   TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
   step2.orderValue = 2;
