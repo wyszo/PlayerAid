@@ -5,7 +5,8 @@
 #import "TutorialStepTableViewCell.h"
 
 
-static const CGFloat kContentImageHeight = 270.0f;
+// TODO: this should be read from xib file, not set programatically, confusing!!
+static const CGFloat kContentImageHeight = 180.0f;
 
 
 @interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
@@ -19,6 +20,14 @@ static const CGFloat kContentImageHeight = 270.0f;
 
 
 @implementation TutorialStepTableViewCell
+
+#pragma mark - View Customization
+
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
 
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
