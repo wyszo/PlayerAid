@@ -8,7 +8,7 @@
 static const CGFloat kContentImageHeight = 270.0f;
 
 
-@interface TutorialStepTableViewCell ()
+@interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
@@ -22,6 +22,7 @@ static const CGFloat kContentImageHeight = 270.0f;
 
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
+  self.textView.layoutManager.delegate = self;
   self.textView.text = tutorialStep.text;
   self.videoPlayLabel.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
@@ -61,6 +62,13 @@ static const CGFloat kContentImageHeight = 270.0f;
   self.contentImageHeightConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
+}
+
+#pragma mark - NSLayoutManagerDelegate
+
+- (CGFloat)layoutManager:(NSLayoutManager *)layoutManager lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(CGRect)rect
+{
+  return 10.0f;
 }
 
 @end

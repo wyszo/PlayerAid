@@ -219,8 +219,9 @@
   CGRect buttonRect = CGRectMake(0, 0, 60, 30);
   
   UIView *buttonContainer = [[UIView alloc] initWithFrame:buttonRect];
-  self.editButton = [NavigationBarCustomizationHelper buttonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
-  [buttonContainer addSubview:self.editButton];
+  UIButton *editButton = [NavigationBarCustomizationHelper buttonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
+  [buttonContainer addSubview:editButton];
+  self.editButton = editButton;
   
   self.navigationItem.titleView = buttonContainer;
 }

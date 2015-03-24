@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(tutorial step text)" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="24" y="8" width="456" height="38"/>
+                        <rect key="frame" x="24" y="8" width="462" height="38"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -47,7 +47,7 @@
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" id="9Ap-b6-gby"/>
                     <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="GZw-g5-7we"/>
                     <constraint firstItem="VgH-bu-nap" firstAttribute="centerX" secondItem="G2S-qZ-FCX" secondAttribute="centerX" id="J2d-HF-cg6"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="16" id="KbA-BT-3SM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
                     <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="gMU-LR-OHg"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" constant="16" id="kTB-OF-PgU"/>
