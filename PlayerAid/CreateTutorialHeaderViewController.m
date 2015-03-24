@@ -87,23 +87,6 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [actionSheet showInView:window];
 }
 
-- (IBAction)save:(id)sender
-{
-  if (!self.titleTextField.text.length) {
-    [AlertFactory showCreateTutorialNoTitleAlertView];
-    return;
-  }
-  
-  if (!self.selectedSection) {
-    [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
-    return;
-  }
-
-  if (self.saveDelegate) {
-    [self.saveDelegate saveTutorialTitled:self.title section:self.selectedSection];
-  }
-}
-
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
   if (!self.titleTextField.text.length) {

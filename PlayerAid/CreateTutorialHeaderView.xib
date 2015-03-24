@@ -35,7 +35,7 @@
                         <constraint firstAttribute="height" constant="30" id="fOp-00-kLh"/>
                         <constraint firstAttribute="width" constant="135" id="mEz-oi-D5U"/>
                     </constraints>
-                    <state key="normal" title="Edit Cover Photo">
+                    <state key="normal" title="Edit cover photo">
                         <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -43,13 +43,13 @@
                         <action selector="editCoverPhoto:" destination="-1" eventType="touchUpInside" id="HCL-AZ-brB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
                     <rect key="frame" x="205" y="188" width="107" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Wdw-Y7-i0P"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="evB-k4-Ypj"/>
                     </constraints>
-                    <state key="normal" title="Pick a category">
+                    <state key="normal" title="Pick a Category">
                         <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -65,23 +65,9 @@
                         <outlet property="delegate" destination="-1" id="pTR-lg-aKf"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L30-P5-aYz">
-                    <rect key="frame" x="8" y="188" width="63" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="RFy-P9-hKe"/>
-                        <constraint firstAttribute="width" constant="63" id="tIq-K7-Ncz"/>
-                    </constraints>
-                    <state key="normal" title="SAVE">
-                        <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="save:" destination="-1" eventType="touchUpInside" id="4SZ-aF-cO2"/>
-                    </connections>
-                </button>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-vS-dew" userLabel="Bottom Separator">
                     <rect key="frame" x="0.0" y="225" width="320" height="1"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.094117647058823528" green="0.1764705882352941" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="XIN-WQ-gg0"/>
                     </constraints>
@@ -89,10 +75,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="oWw-mY-93Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L30-P5-aYz" secondAttribute="trailing" constant="5" id="0Aw-8Y-WVM"/>
                 <constraint firstItem="5Dc-OW-RT8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="4BO-HE-g2n"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="width" secondItem="UBT-wl-gE3" secondAttribute="width" id="6AN-sC-3qV"/>
-                <constraint firstItem="7wF-vS-dew" firstAttribute="top" secondItem="L30-P5-aYz" secondAttribute="bottom" constant="7" id="9yR-hF-n03"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerY" secondItem="5iC-e8-bwe" secondAttribute="centerY" id="BlD-zb-cON"/>
                 <constraint firstItem="Jog-sS-tJk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="CVP-mJ-hHh"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="height" secondItem="UBT-wl-gE3" secondAttribute="height" id="FJ0-dk-huX"/>
@@ -104,7 +88,6 @@
                 <constraint firstItem="z21-cp-33O" firstAttribute="centerY" secondItem="UBT-wl-gE3" secondAttribute="centerY" id="aNo-Sr-C1Z"/>
                 <constraint firstAttribute="bottom" secondItem="oWw-mY-93Q" secondAttribute="bottom" constant="8" id="ach-v7-jh1"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="width" secondItem="UBT-wl-gE3" secondAttribute="width" id="b1h-Ze-t0b"/>
-                <constraint firstItem="L30-P5-aYz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cL2-mP-qEr"/>
                 <constraint firstItem="7wF-vS-dew" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dKe-tz-JhR"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerX" secondItem="5iC-e8-bwe" secondAttribute="centerX" id="dZz-mK-6FE"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="db5-K7-qhc"/>
