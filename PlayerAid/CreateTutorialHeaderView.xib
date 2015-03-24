@@ -30,25 +30,27 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jog-sS-tJk">
-                    <rect key="frame" x="8" y="8" width="135" height="30"/>
+                    <rect key="frame" x="8" y="8" width="110" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="fOp-00-kLh"/>
-                        <constraint firstAttribute="width" constant="135" id="mEz-oi-D5U"/>
+                        <constraint firstAttribute="width" constant="110" id="mEz-oi-D5U"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                     <state key="normal" title="Edit cover photo">
-                        <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="editCoverPhoto:" destination="-1" eventType="touchUpInside" id="HCL-AZ-brB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
-                    <rect key="frame" x="205" y="188" width="107" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
+                    <rect key="frame" x="231" y="188" width="81" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Wdw-Y7-i0P"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="evB-k4-Ypj"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                     <state key="normal" title="Pick a Category">
                         <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,7 +61,7 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-OW-RT8" userLabel="title textField">
                     <rect key="frame" x="8" y="150" width="304" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="pTR-lg-aKf"/>
