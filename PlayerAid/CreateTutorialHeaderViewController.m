@@ -17,6 +17,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
@@ -38,6 +39,19 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   if (self) {
   }
   return self;
+}
+
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  [self setupEditCoverPhotoBackgroundImage];
+}
+
+- (void)setupEditCoverPhotoBackgroundImage
+{
+  CGFloat inset = 15.0f;
+  UIImage *image = [[UIImage imageNamed:@"RoundedRectangle"] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+  [self.editCoverPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 // this should be part of UIView, not a view controller..
@@ -149,7 +163,8 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (CGFloat)headerViewHeightForWidth:(CGFloat)width
 {
-  return width * originalViewSize.height / originalViewSize.width;
+  CGFloat offset = 32.0f;
+  return width * (originalViewSize.height + offset) / originalViewSize.width;
 }
 
 @end
