@@ -52,35 +52,14 @@
   [super viewDidLoad];
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
-  self.tutorialTableView.backgroundColor = [UIColor whiteColor];
   
-  self.tutorialTableView.rowHeight = UITableViewAutomaticDimension;
-  self.tutorialTableView.estimatedRowHeight = 100.f;
-  
-  [self setupAndAttachHeaderViewController];
+  [self setupTableView];
   self.createTutoriaStepButtonsView.delegate = self;
-  
-  // Where should we do that? This doesn't seem to be a correct place...
-  [self initializeContextAndNewTutorialObject];
+
+  [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
   
   [self setupTutorialStepsDataSource];
-  
-  if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
-    [self DEBUG_addTextTutorialStep];
-  }
-  
-  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextOneImageAndVideoStep];
-    
-    defineWeakSelf();
-    DISPATCH_AFTER(0.2, ^{
-      [weakSelf editButtonPressed];
-    });
-  }
-  
-  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
-    [self DEBUG_pressPublishButton];
-  }
+  [self performDebugActions];
   
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
@@ -89,29 +68,25 @@
   });
 }
 
-- (void)DEBUG_pressPublishButton
+- (void)setupTableView
 {
-  defineWeakSelf();
-  DISPATCH_AFTER(0.1, ^{
-    [weakSelf publishButtonPressed];
-  });
-}
-
-- (void)DEBUG_addTextTutorialStep
-{
-  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
-  step1.orderValue = 1;
-  [self.tutorial.consistsOfSet addObject:step1];
-}
-
-- (void)DEBUG_addTwoTextTutorialSteps
-{
-  [self DEBUG_addTextTutorialStep];
+  self.tutorialTableView.backgroundColor = [UIColor whiteColor];
   
-  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
-  step2.orderValue = 2;
-  [self.tutorial.consistsOfSet addObject:step2];
+  self.tutorialTableView.rowHeight = UITableViewAutomaticDimension;
+  self.tutorialTableView.estimatedRowHeight = 100.f;
+  
+  [self setupAndAttachHeaderViewController];
+  self.tutorialTableView.tableFooterView = [self smallTransparentFooterView];
 }
+
+- (UIView *)smallTransparentFooterView
+{
+  UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
+  footer.backgroundColor = [UIColor clearColor];
+  return footer;
+}
+
+#pragma mark - View layout and setup
 
 - (void)setupAndAttachHeaderViewController
 {
@@ -149,6 +124,53 @@
   self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {
     [weakSelf updateEditButtonEnabled];
   };
+}
+
+#pragma mark - DEBUG
+
+- (void)performDebugActions
+{
+  if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
+    //    [self DEBUG_addTextTutorialStep];
+    [self DEBUG_addImageStep];
+  }
+  
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
+    [self DEBUG_addTwoTextOneImageAndVideoStep];
+    
+    defineWeakSelf();
+    DISPATCH_AFTER(0.2, ^{
+      [weakSelf editButtonPressed];
+    });
+  }
+  
+  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    [self DEBUG_pressPublishButton];
+  }
+}
+
+- (void)DEBUG_pressPublishButton
+{
+  defineWeakSelf();
+  DISPATCH_AFTER(0.1, ^{
+    [weakSelf publishButtonPressed];
+  });
+}
+
+- (void)DEBUG_addTextTutorialStep
+{
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
+  step1.orderValue = 1;
+  [self.tutorial.consistsOfSet addObject:step1];
+}
+
+- (void)DEBUG_addTwoTextTutorialSteps
+{
+  [self DEBUG_addTextTutorialStep];
+  
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  step2.orderValue = 2;
+  [self.tutorial.consistsOfSet addObject:step2];
 }
 
 #pragma mark - Context and Tutorial object initialization
