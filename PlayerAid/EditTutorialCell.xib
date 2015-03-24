@@ -34,7 +34,11 @@
                         </constraints>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play-icon" translatesAutoresizingMaskIntoConstraints="NO" id="XC7-Fp-BVd" userLabel="Play Icon Image View">
-                        <rect key="frame" x="44" y="14" width="40" height="40"/>
+                        <rect key="frame" x="46" y="16" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="b9t-c7-cDV"/>
+                            <constraint firstAttribute="width" constant="36" id="za8-Lr-2a8"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-ER-y4o" userLabel="titleLabel">
                         <rect key="frame" x="92" y="22" width="209" height="22"/>
@@ -58,6 +62,12 @@
                     <constraint firstItem="XC7-Fp-BVd" firstAttribute="centerY" secondItem="u0X-vb-gKg" secondAttribute="centerY" constant="0.5" id="nj2-1g-cax"/>
                     <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" id="rCS-07-Qnf"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Uqn-fN-RDn"/>
+                        <exclude reference="h4r-5W-sZl"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -73,7 +83,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Play-icon" width="40" height="40"/>
+        <image name="Play-icon" width="36" height="36"/>
         <image name="deleteicon" width="16" height="16"/>
     </resources>
 </document>
