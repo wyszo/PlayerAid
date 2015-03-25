@@ -10,6 +10,12 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 
 
 @interface PublishingTutorialViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *progressBarImageView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *progressBarBackgroundWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *progressBarWidthConstraint;
+
 @end
 
 
@@ -26,7 +32,13 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self publishTutorial];
+  [self initializeProgressBarImageView];
+}
+
+- (void)initializeProgressBarImageView
+{
+  CGFloat inset = 4.5f;
+  self.progressBarImageView.image = [[UIImage imageNamed:@"ProgressBarBlue"] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
 }
 
 - (void)publishTutorial

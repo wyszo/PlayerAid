@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PublishingTutorialViewController">
             <connections>
+                <outlet property="progressBarBackgroundWidthConstraint" destination="Bqs-dN-EOY" id="JLf-me-9lX"/>
+                <outlet property="progressBarImageView" destination="Pfr-8K-GRX" id="FbS-Ap-XJi"/>
+                <outlet property="progressBarWidthConstraint" destination="XjF-3Y-0ku" id="7qa-ux-6ss"/>
                 <outlet property="view" destination="iN0-l3-epB" id="XTz-pY-MZC"/>
             </connections>
         </placeholder>
@@ -20,11 +23,19 @@
                     <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProgressBarGray" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-jF-mzk">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProgressBarGray" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-jF-mzk" userLabel="ProgressBar background">
                     <rect key="frame" x="208" y="291" width="185" height="5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="185" id="Bqs-dN-EOY"/>
                         <constraint firstAttribute="height" constant="5" id="h6O-eS-gwP"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProgressBarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="Pfr-8K-GRX" userLabel="ProgressBar imageView">
+                    <rect key="frame" x="207" y="291" width="185" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="185" id="BC4-jp-Yjv"/>
+                        <constraint firstAttribute="width" constant="185" id="XjF-3Y-0ku"/>
+                        <constraint firstAttribute="height" constant="5" id="aiX-vJ-l2U"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -32,6 +43,7 @@
             <constraints>
                 <constraint firstItem="pZT-xF-eff" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="3WT-6e-wrK"/>
                 <constraint firstItem="Mfl-jF-mzk" firstAttribute="top" secondItem="pZT-xF-eff" secondAttribute="bottom" constant="12" id="Rfg-yf-q4c"/>
+                <constraint firstItem="Mfl-jF-mzk" firstAttribute="top" secondItem="Pfr-8K-GRX" secondAttribute="top" id="aLx-fm-8wp"/>
                 <constraint firstItem="pZT-xF-eff" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="257" id="dOT-nx-HDe"/>
                 <constraint firstAttribute="bottom" secondItem="pZT-xF-eff" secondAttribute="bottom" constant="38" id="env-WO-Kvo"/>
                 <constraint firstAttribute="centerX" secondItem="Mfl-jF-mzk" secondAttribute="centerX" id="i0u-kQ-d5K"/>
@@ -39,6 +51,8 @@
                 <constraint firstItem="pZT-xF-eff" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="rAX-zK-cjP"/>
                 <constraint firstAttribute="trailing" secondItem="pZT-xF-eff" secondAttribute="trailing" constant="8" id="xdk-lZ-N3A"/>
                 <constraint firstItem="pZT-xF-eff" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="y2W-Wj-L90"/>
+                <constraint firstItem="Mfl-jF-mzk" firstAttribute="height" secondItem="Pfr-8K-GRX" secondAttribute="height" id="yLL-fK-Wsx"/>
+                <constraint firstItem="Mfl-jF-mzk" firstAttribute="leading" secondItem="Pfr-8K-GRX" secondAttribute="leading" constant="1" id="yY2-3I-uzB"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
@@ -51,6 +65,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ProgressBarBlue" width="220" height="9"/>
         <image name="ProgressBarGray" width="370" height="9"/>
     </resources>
 </document>
