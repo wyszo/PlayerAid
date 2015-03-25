@@ -33,6 +33,9 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 {
   [super viewDidLoad];
   [self initializeProgressBarImageView];
+  self.progressBarWidthConstraint.constant = 0.0f;
+  
+  [self publishTutorial];
 }
 
 - (void)initializeProgressBarImageView
@@ -46,7 +49,14 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
   AssertTrueOrReturn(self.tutorial);
   
   defineWeakSelf();
-  [ServerDataUpdateController saveTutorial:self.tutorial completion:^(NSError *error) {
+  [ServerDataUpdateController saveTutorial:self.tutorial progressChanged:^(CGFloat progress) {
+    AssertTrueOr(progress >= 0 && progress <= 1.0, ;);
+    weakSelf.progressBarWidthConstraint.constant = progress * weakSelf.progressBarBackgroundWidthConstraint.constant;
+    
+    DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+      [weakSelf.view setNeedsLayout];
+    });
+  } completion:^(NSError *error) {
     [weakSelf dismissViewControllerAnimated:YES completion:^{
       if (error) {
         [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Publishing tutorial network error!!!"];

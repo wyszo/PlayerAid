@@ -11,6 +11,6 @@ typedef void (^SaveCompletionBlock)(NSError *error);
 
 + (void)updateUserAndTutorials;
 
-+ (void)saveTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion;
++ (void)saveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion;
 
 @end
