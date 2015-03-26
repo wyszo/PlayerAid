@@ -11,6 +11,7 @@
                 <outlet property="gradientOverlayView" destination="5iC-e8-bwe" id="asg-0A-puo"/>
                 <outlet property="grayOverlayView" destination="z21-cp-33O" id="W8A-tm-AG0"/>
                 <outlet property="pickACategoryButton" destination="oWw-mY-93Q" id="GrP-uo-7nA"/>
+                <outlet property="sectionLabelContainer" destination="bw4-pe-dGk" id="1EW-VW-FMf"/>
                 <outlet property="titleTextField" destination="5Dc-OW-RT8" id="LSc-zL-qPc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="hNF-RB-SdF"/>
             </connections>
@@ -82,6 +83,10 @@
                         <constraint firstAttribute="height" constant="1" id="XIN-WQ-gg0"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw4-pe-dGk" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
+                    <rect key="frame" x="236" y="176" width="69" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -89,9 +94,11 @@
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerY" secondItem="5iC-e8-bwe" secondAttribute="centerY" id="BlD-zb-cON"/>
                 <constraint firstItem="Jog-sS-tJk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="CVP-mJ-hHh"/>
                 <constraint firstAttribute="bottom" secondItem="Ozu-C7-4ZJ" secondAttribute="bottom" id="Fhf-Br-Xvy"/>
+                <constraint firstAttribute="trailing" secondItem="bw4-pe-dGk" secondAttribute="trailing" constant="15" id="Kh5-wW-kJr"/>
                 <constraint firstItem="Ozu-C7-4ZJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LAa-O5-Vmi"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="centerX" secondItem="UBT-wl-gE3" secondAttribute="centerX" id="NJ5-PC-d8J"/>
                 <constraint firstItem="Jog-sS-tJk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="PR3-dU-bug"/>
+                <constraint firstItem="7wF-vS-dew" firstAttribute="top" secondItem="bw4-pe-dGk" secondAttribute="bottom" constant="19" id="QdX-Jz-x2g"/>
                 <constraint firstAttribute="trailing" secondItem="5Dc-OW-RT8" secondAttribute="trailing" constant="15" id="QgA-fk-cvR"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="centerY" secondItem="UBT-wl-gE3" secondAttribute="centerY" id="aNo-Sr-C1Z"/>
                 <constraint firstAttribute="bottom" secondItem="oWw-mY-93Q" secondAttribute="bottom" constant="20" id="ach-v7-jh1"/>
@@ -106,6 +113,7 @@
                 <constraint firstAttribute="trailing" secondItem="UBT-wl-gE3" secondAttribute="trailing" id="hBF-9I-JEP"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="height" secondItem="5iC-e8-bwe" secondAttribute="height" id="knH-B8-Qfd"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="width" secondItem="5iC-e8-bwe" secondAttribute="width" id="lCl-mQ-Cxt"/>
+                <constraint firstItem="oWw-mY-93Q" firstAttribute="centerY" secondItem="bw4-pe-dGk" secondAttribute="centerY" id="lid-jF-wrm"/>
                 <constraint firstAttribute="bottom" secondItem="UBT-wl-gE3" secondAttribute="bottom" id="q9o-vm-6ek"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tIw-ra-eoW"/>
                 <constraint firstItem="oWw-mY-93Q" firstAttribute="top" secondItem="5Dc-OW-RT8" secondAttribute="bottom" constant="25" id="wlv-O4-Lu3"/>

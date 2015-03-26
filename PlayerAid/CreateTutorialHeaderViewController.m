@@ -10,6 +10,7 @@
 #import "GradientHelper.h"
 #import "FDTakeController+WhiteStatusbar.h"
 #import "MediaPickerHelper.h"
+#import "SectionLabelContainer.h"
 
 
 static const CGSize originalViewSize = { 320.0f, 226.0f };
@@ -23,6 +24,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 @property (weak, nonatomic) IBOutlet UIView *grayOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
 
 @property (strong, nonatomic) NSArray *actionSheetSections;
 @property (strong, nonatomic) Section *selectedSection;
@@ -48,6 +50,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
+  self.sectionLabelContainer.hidden = YES;
 }
 
 - (void)setupEditCoverPhotoBackgroundImageWhite
@@ -118,6 +121,12 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   [super viewDidLayoutSubviews];
   self.gradientLayer.frame = self.gradientOverlayView.bounds;
+}
+
+- (void)hidePickACategoryButtonShowSectionLabel
+{
+  self.sectionLabelContainer.hidden = NO;
+  self.pickACategoryButton.hidden = YES;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -199,6 +208,10 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   self.backgroundImageView.image = photo;
   [self setupAndShowOverlays];
   [self updateSubviewsColoursToWhite];
+  
+  if (self.selectedSection) {
+    [self hidePickACategoryButtonShowSectionLabel];
+  }
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -209,7 +222,14 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
     AssertTrueOrReturn(buttonIndex > 0);
     NSInteger actionSheetSectionIndex = buttonIndex - 1; // cancelButtonIndex equals 0
     self.selectedSection = self.actionSheetSections[actionSheetSectionIndex];
-    [self.pickACategoryButton setTitle:self.selectedSection.displayName forState:UIControlStateNormal];
+
+    NSString *title = self.selectedSection.displayName;
+    [self.pickACategoryButton setTitle:title forState:UIControlStateNormal];
+    self.sectionLabelContainer.titleLabel.text = title;
+    
+    if (self.backgroundImageView.image) {
+      [self hidePickACategoryButtonShowSectionLabel];
+    }
   }
 }
 

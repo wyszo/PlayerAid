@@ -11,6 +11,7 @@
 #import "Section.h"
 #import "TutorialCellHelper.h"
 #import "GradientHelper.h"
+#import "SectionLabelContainer.h"
 
 
 static const CGFloat kBottomGapHeight = 18.0f;
@@ -24,7 +25,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
+@property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
 @property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
@@ -97,7 +98,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self updateBackgroundImageView];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
-  self.sectionLabel.text = tutorial.section.displayName;
+  self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
   
   NSString *timeAgo = [tutorial.createdAt timeAgoSimple];
   self.timeLabel.text = timeAgo;
