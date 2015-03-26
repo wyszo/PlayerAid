@@ -20,6 +20,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 @property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
+@property (weak, nonatomic) IBOutlet UIView *grayOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
 
@@ -44,14 +45,41 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self setupEditCoverPhotoBackgroundImage];
+  [self setupEditCoverPhotoBackgroundImageGray];
+  self.grayOverlayView.hidden = YES;
 }
 
-- (void)setupEditCoverPhotoBackgroundImage
+- (void)setupEditCoverPhotoBackgroundImageWhite
 {
+  return [self setupEditCoverPhotoBackgroundImageNamed:@"RoundedRectangleWhite"];
+}
+
+- (void)setupEditCoverPhotoBackgroundImageGray
+{
+    return [self setupEditCoverPhotoBackgroundImageNamed:@"RoundedRectangleGray"];
+}
+
+- (void)setupEditCoverPhotoBackgroundImageNamed:(NSString *)imageName
+{
+  AssertTrueOrReturn(imageName.length);
   CGFloat inset = 15.0f;
-  UIImage *image = [[UIImage imageNamed:@"RoundedRectangle"] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+  
+  UIImage *image = [[UIImage imageNamed:imageName] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
   [self.editCoverPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
+}
+
+- (void)setupAndShowOverlays
+{
+  [self setupGradientOverlay];
+  self.grayOverlayView.hidden = NO;
+}
+
+- (void)updateSubviewsColoursToWhite
+{
+  [self setupEditCoverPhotoBackgroundImageWhite];
+  [self.editCoverPhotoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  
+  // TODO: make other views border and font white
 }
 
 // this should be part of UIView, not a view controller..
@@ -134,7 +162,8 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   AssertTrueOrReturn(photo);
   self.backgroundImageView.image = photo;
-  [self setupGradientOverlay];
+  [self setupAndShowOverlays];
+  [self updateSubviewsColoursToWhite];
 }
 
 #pragma mark - UIActionSheetDelegate
