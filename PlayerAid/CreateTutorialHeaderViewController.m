@@ -46,26 +46,43 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   [super viewDidLoad];
   [self setupEditCoverPhotoBackgroundImageGray];
+  [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
 }
 
 - (void)setupEditCoverPhotoBackgroundImageWhite
 {
-  return [self setupEditCoverPhotoBackgroundImageNamed:@"RoundedRectangleWhite"];
+  return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.editCoverPhotoButton];
 }
 
 - (void)setupEditCoverPhotoBackgroundImageGray
 {
-    return [self setupEditCoverPhotoBackgroundImageNamed:@"RoundedRectangleGray"];
+  return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.editCoverPhotoButton];
 }
 
-- (void)setupEditCoverPhotoBackgroundImageNamed:(NSString *)imageName
+- (void)setupPickACategoryButtonBackgroundImageWhite
 {
+    return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.pickACategoryButton];
+}
+
+- (void)setupPickACategoryButtonBackgroundImageGray
+{
+  return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.pickACategoryButton];
+}
+
+- (void)setupTitleTextFieldWhiteText
+{
+  self.titleTextField.textColor = [UIColor whiteColor];
+}
+
+- (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button
+{
+  AssertTrueOrReturn(button);
   AssertTrueOrReturn(imageName.length);
   CGFloat inset = 15.0f;
   
   UIImage *image = [[UIImage imageNamed:imageName] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
-  [self.editCoverPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
+  [button setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 - (void)setupAndShowOverlays
@@ -79,7 +96,12 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [self setupEditCoverPhotoBackgroundImageWhite];
   [self.editCoverPhotoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   
-  // TODO: make other views border and font white
+  [self setupPickACategoryButtonBackgroundImageWhite];
+  [self.pickACategoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  
+  [self setupTitleTextFieldWhiteText];
+  
+  // TODO: make textfield border white
 }
 
 // this should be part of UIView, not a view controller..
@@ -104,6 +126,19 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   [textField resignFirstResponder];
   return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  // Prevent crashing undo bug – see note below.
+  if(range.length + range.location > textField.text.length)
+  {
+    return NO;
+  }
+  
+  NSUInteger newLength = [textField.text length] + [string length] - range.length;
+  const NSInteger maxTextFieldLength = 60;
+  return (newLength > maxTextFieldLength) ? NO : YES;
 }
 
 #pragma mark - IBActions

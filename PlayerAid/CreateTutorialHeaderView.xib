@@ -51,7 +51,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-mY-93Q">
-                    <rect key="frame" x="231" y="188" width="81" height="30"/>
+                    <rect key="frame" x="225" y="176" width="81" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Wdw-Y7-i0P"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="evB-k4-Ypj"/>
@@ -66,9 +66,9 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-OW-RT8" userLabel="title textField">
-                    <rect key="frame" x="15" y="120" width="290" height="30"/>
+                    <rect key="frame" x="15" y="121" width="290" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -94,7 +94,7 @@
                 <constraint firstItem="Jog-sS-tJk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="PR3-dU-bug"/>
                 <constraint firstAttribute="trailing" secondItem="5Dc-OW-RT8" secondAttribute="trailing" constant="15" id="QgA-fk-cvR"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="centerY" secondItem="UBT-wl-gE3" secondAttribute="centerY" id="aNo-Sr-C1Z"/>
-                <constraint firstAttribute="bottom" secondItem="oWw-mY-93Q" secondAttribute="bottom" constant="8" id="ach-v7-jh1"/>
+                <constraint firstAttribute="bottom" secondItem="oWw-mY-93Q" secondAttribute="bottom" constant="20" id="ach-v7-jh1"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="width" secondItem="UBT-wl-gE3" secondAttribute="width" id="b1h-Ze-t0b"/>
                 <constraint firstItem="7wF-vS-dew" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dKe-tz-JhR"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerX" secondItem="5iC-e8-bwe" secondAttribute="centerX" id="dZz-mK-6FE"/>
@@ -108,9 +108,9 @@
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="width" secondItem="5iC-e8-bwe" secondAttribute="width" id="lCl-mQ-Cxt"/>
                 <constraint firstAttribute="bottom" secondItem="UBT-wl-gE3" secondAttribute="bottom" id="q9o-vm-6ek"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tIw-ra-eoW"/>
-                <constraint firstItem="oWw-mY-93Q" firstAttribute="top" secondItem="5Dc-OW-RT8" secondAttribute="bottom" constant="38" id="wlv-O4-Lu3"/>
+                <constraint firstItem="oWw-mY-93Q" firstAttribute="top" secondItem="5Dc-OW-RT8" secondAttribute="bottom" constant="25" id="wlv-O4-Lu3"/>
                 <constraint firstAttribute="bottom" secondItem="7wF-vS-dew" secondAttribute="bottom" id="xQV-p6-TCk"/>
-                <constraint firstAttribute="trailing" secondItem="oWw-mY-93Q" secondAttribute="trailing" constant="8" id="yw0-ck-DdD"/>
+                <constraint firstAttribute="trailing" secondItem="oWw-mY-93Q" secondAttribute="trailing" constant="14" id="yw0-ck-DdD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
