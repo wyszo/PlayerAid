@@ -902,13 +902,6 @@
 			name = "TableView delegate";
 			sourceTree = "<group>";
 		};
-		31B548611AB703000010FC83 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,7 +1112,6 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
-				31B548611AB703000010FC83 /* Settings */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				312FF5F11A9E212200AE3174 /* Behaviours */,
 				31777FF71A7F9426007057CD /* Controllers */,
