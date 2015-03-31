@@ -39,6 +39,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
+@property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -60,12 +61,25 @@
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
+  [self addGestureRecognizer];
   
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
   DISPATCH_AFTER(0.01, ^{
     [weakSelf disableEditButton];
   });
+}
+
+- (void)addGestureRecognizer
+{
+  self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+  self.tapGestureRecognizer.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+  [self.view endEditing:YES];
 }
 
 - (void)setupTableView
