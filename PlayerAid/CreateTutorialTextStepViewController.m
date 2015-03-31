@@ -46,6 +46,7 @@ const NSInteger kTextStepDismissedError = 1;
   
   self.edgesForExtendedLayout = UIRectEdgeNone;
   [self setupCharactersCount];
+  self.textView.keyboardType = UIKeyboardTypeASCIICapable;
 }
 
 - (void)setupCharactersCount
@@ -66,7 +67,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)updateCharactersCountLabel
 {
-  self.characterLimitLabel.text = [NSString stringWithFormat:@"%ld", self.remainingCharactersCount];
+  self.characterLimitLabel.text = [NSString stringWithFormat:@"%ld", (long)self.remainingCharactersCount];
   
   UIColor *labelColor;
   if ([self overCharacterLimit]) {
@@ -118,9 +119,6 @@ const NSInteger kTextStepDismissedError = 1;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
   if (text.isIncludingEmoji) {
-    return NO;
-  } else if (text.length == 2) {
-    // this strips non-ascii characters other than emojis (emoij can have length of 1)
     return NO;
   }
   return YES;
