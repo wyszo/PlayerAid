@@ -25,6 +25,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
 @property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
+@property (weak, nonatomic) IBOutlet UIButton *sectionLabelContainerButton;
 
 @property (strong, nonatomic) NSArray *actionSheetSections;
 @property (strong, nonatomic) Section *selectedSection;
@@ -50,7 +51,9 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
-  self.sectionLabelContainer.hidden = YES;
+  self.sectionLabelContainer.titleLabel.text = @"Pick a Category";
+  
+  self.sectionLabelContainer.hidden = YES;  
 }
 
 - (void)setupEditCoverPhotoBackgroundImageWhite
@@ -126,6 +129,8 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 - (void)hidePickACategoryButtonShowSectionLabel
 {
   self.sectionLabelContainer.hidden = NO;
+  self.sectionLabelContainerButton.hidden = NO;
+  
   self.pickACategoryButton.hidden = YES;
 }
 

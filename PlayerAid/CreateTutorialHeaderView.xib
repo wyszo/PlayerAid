@@ -12,6 +12,7 @@
                 <outlet property="grayOverlayView" destination="z21-cp-33O" id="W8A-tm-AG0"/>
                 <outlet property="pickACategoryButton" destination="oWw-mY-93Q" id="GrP-uo-7nA"/>
                 <outlet property="sectionLabelContainer" destination="bw4-pe-dGk" id="1EW-VW-FMf"/>
+                <outlet property="sectionLabelContainerButton" destination="c74-tR-DYh" id="EKz-ZX-b4z"/>
                 <outlet property="titleTextField" destination="5Dc-OW-RT8" id="LSc-zL-qPc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="hNF-RB-SdF"/>
             </connections>
@@ -83,14 +84,25 @@
                         <constraint firstAttribute="height" constant="1" id="XIN-WQ-gg0"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bw4-pe-dGk" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw4-pe-dGk" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
                     <rect key="frame" x="236" y="176" width="69" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c74-tR-DYh" userLabel="SectionLabelContainerButton">
+                    <rect key="frame" x="236" y="176" width="69" height="30"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pickACategory:" destination="-1" eventType="touchUpInside" id="MUS-b4-HKJ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="c74-tR-DYh" firstAttribute="width" secondItem="bw4-pe-dGk" secondAttribute="width" id="2Lz-tW-BcD"/>
                 <constraint firstItem="5Dc-OW-RT8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="4BO-HE-g2n"/>
+                <constraint firstItem="c74-tR-DYh" firstAttribute="centerX" secondItem="bw4-pe-dGk" secondAttribute="centerX" id="99G-Gn-Fgl"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerY" secondItem="5iC-e8-bwe" secondAttribute="centerY" id="BlD-zb-cON"/>
                 <constraint firstItem="Jog-sS-tJk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="CVP-mJ-hHh"/>
                 <constraint firstAttribute="bottom" secondItem="Ozu-C7-4ZJ" secondAttribute="bottom" id="Fhf-Br-Xvy"/>
@@ -103,6 +115,7 @@
                 <constraint firstItem="z21-cp-33O" firstAttribute="centerY" secondItem="UBT-wl-gE3" secondAttribute="centerY" id="aNo-Sr-C1Z"/>
                 <constraint firstAttribute="bottom" secondItem="oWw-mY-93Q" secondAttribute="bottom" constant="20" id="ach-v7-jh1"/>
                 <constraint firstItem="z21-cp-33O" firstAttribute="width" secondItem="UBT-wl-gE3" secondAttribute="width" id="b1h-Ze-t0b"/>
+                <constraint firstItem="c74-tR-DYh" firstAttribute="height" secondItem="bw4-pe-dGk" secondAttribute="height" id="cuo-pp-rfJ"/>
                 <constraint firstItem="7wF-vS-dew" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dKe-tz-JhR"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="centerX" secondItem="5iC-e8-bwe" secondAttribute="centerX" id="dZz-mK-6FE"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="db5-K7-qhc"/>
@@ -114,6 +127,7 @@
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="height" secondItem="5iC-e8-bwe" secondAttribute="height" id="knH-B8-Qfd"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="width" secondItem="5iC-e8-bwe" secondAttribute="width" id="lCl-mQ-Cxt"/>
                 <constraint firstItem="oWw-mY-93Q" firstAttribute="centerY" secondItem="bw4-pe-dGk" secondAttribute="centerY" id="lid-jF-wrm"/>
+                <constraint firstItem="c74-tR-DYh" firstAttribute="centerY" secondItem="bw4-pe-dGk" secondAttribute="centerY" id="nSF-HB-8Z4"/>
                 <constraint firstAttribute="bottom" secondItem="UBT-wl-gE3" secondAttribute="bottom" id="q9o-vm-6ek"/>
                 <constraint firstItem="UBT-wl-gE3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tIw-ra-eoW"/>
                 <constraint firstItem="oWw-mY-93Q" firstAttribute="top" secondItem="5Dc-OW-RT8" secondAttribute="bottom" constant="25" id="wlv-O4-Lu3"/>
