@@ -81,6 +81,17 @@ const NSInteger kTextStepDismissedError = 1;
   self.confirmNavbarButton.enabled = !([self overCharacterLimit]);
 }
 
+- (void)updateTextColor
+{
+  UIColor *textColor;
+  if ([self overCharacterLimit]) {
+    textColor = [UIColor redColor];
+  } else {
+    textColor = [UIColor blackColor];
+  }
+  self.textView.textColor = textColor;
+}
+
 - (BOOL)overCharacterLimit
 {
   return (self.remainingCharactersCount < 0);
@@ -100,6 +111,7 @@ const NSInteger kTextStepDismissedError = 1;
   self.remainingCharactersCount = (kMaxTextStepCharactersCount - textView.text.length);
   [self updateCharactersCountLabel];
   [self updateConfirmButtonState];
+  [self updateTextColor];
 }
 
 #pragma mark - Actions
