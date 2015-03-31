@@ -3,6 +3,7 @@
 //
 
 #import "CreateTutorialTextStepViewController.h"
+#import <NSString+RemoveEmoji.h>
 #import "AlertFactory.h"
 #import "NSString+Trimming.h"
 #import "GlobalSettings.h"
@@ -112,6 +113,17 @@ const NSInteger kTextStepDismissedError = 1;
   [self updateCharactersCountLabel];
   [self updateConfirmButtonState];
   [self updateTextColor];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+  if (text.isIncludingEmoji) {
+    return NO;
+  } else if (text.length == 2) {
+    // this strips non-ascii characters other than emojis (emoij can have length of 1)
+    return NO;
+  }
+  return YES;
 }
 
 #pragma mark - Actions
