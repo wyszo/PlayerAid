@@ -175,17 +175,28 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
-  if (!self.titleTextField.text.length) {
+  BOOL titleSet = (self.titleTextField.text.length);
+  BOOL sectionSet = (self.selectedSection);
+  BOOL backgroundImageSet = (self.backgroundImageView.image);
+  
+  int numberOfFilledPiecesOfInfo = (int)titleSet + (int)sectionSet + (int)backgroundImageSet;
+  
+  if (numberOfFilledPiecesOfInfo < 2) {
+    [AlertFactory showCreateTutorialFillTutorialDetails];
+    return NO;
+  }
+  
+  if (!titleSet) {
     [AlertFactory showCreateTutorialNoTitleAlertView];
     return NO;
   }
   
-  if (!self.selectedSection) {
+  if (!sectionSet) {
     [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
     return NO;
   }
   
-  if (!self.backgroundImageView.image) {
+  if (!backgroundImageSet) {
     [AlertFactory showCreateTutorialNoImageAlertView];
     return NO;
   }
