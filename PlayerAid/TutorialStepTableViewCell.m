@@ -6,7 +6,7 @@
 
 
 // TODO: this should be read from xib file, not set programatically, confusing!!
-static const CGFloat kContentImageHeight = 180.0f;
+static const CGFloat kContentImageHeight = 280.0f;
 
 
 @interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
