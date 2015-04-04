@@ -2,6 +2,9 @@
 #import "MediaPlayerHelper.h"
 
 
+static const kJPEGCompression = 1.0f; // 1.0f - less optimised, best quality
+
+
 @implementation TutorialStep
 
 #pragma mark - Initialization
@@ -18,7 +21,7 @@
 {
   AssertTrueOrReturnNil(image);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
-  tutorialStep.imageData = UIImagePNGRepresentation(image);
+  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompression); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
   return tutorialStep;
 }
 
@@ -30,7 +33,7 @@
   
   UIImage *thumbnail = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
   AssertTrueOr(thumbnail, ;);
-  tutorialStep.videoThumbnailData = UIImagePNGRepresentation(thumbnail);
+  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnail, kJPEGCompression);
   
   return tutorialStep;
 }
