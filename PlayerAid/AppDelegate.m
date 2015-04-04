@@ -47,20 +47,18 @@
 
 - (void)applicationLaunchDataFetch
 {
-  if (DEBUG_OFFLINE_MODE) {
-    return;
+  if (!DEBUG_OFFLINE_MODE) {
+    [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
+      if (authenticated) {
+        [ServerDataUpdateController updateUserAndTutorials];
+      }
+      else {
+        [self performLoginSegue]; // note this has to be called after setting up core data stack
+      }
+    }];
   }
   
-  [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
-    if (authenticated) {
-      [ServerDataUpdateController updateUserAndTutorials];
-    }
-    else {
-      [self performLoginSegue]; // note this has to be called after setting up core data stack
-    }
-  }];
-  
-  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS) {
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
     [self DEBUG_presentCreateTutorialViewController];
   }
 }

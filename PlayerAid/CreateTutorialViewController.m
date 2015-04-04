@@ -161,6 +161,13 @@
   if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_pressPublishButton];
   }
+  
+  if (DEBUG_MODE_ADD_PHOTO) {
+    defineWeakSelf();
+    DISPATCH_AFTER(0.5, ^{
+      [weakSelf addPhotoStepSelected];
+    });
+  }
 }
 
 - (void)DEBUG_pressPublishButton
