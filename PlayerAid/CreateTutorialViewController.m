@@ -24,7 +24,7 @@
 #import "ColorsHelper.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -107,7 +107,6 @@
 {
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
   self.headerViewController.imagePickerPresentingViewController = self;
-  self.headerViewController.saveDelegate = self;
   
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
@@ -542,25 +541,12 @@
   [self updateEditButtonEnabled];
 }
 
+#pragma mark - Saving tutorial
+
 - (void)saveTutorial
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
-}
-
-#pragma mark - SaveTutorialDelegate
-
-- (void)saveTutorialTitled:(NSString *)title section:(Section *)section
-{
-  AssertTrueOrReturn(title.length);
-  AssertTrueOrReturn(section);
-  
-  // TODO: get rid of this
-  [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> DRAFT user's tutorial saved (in fact this whole 'Save' button is just a temporary debug functionality, saving should probably happen automatically)"];
-  [self updateTutorialModelFromUI];
-  
-  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
-  [self dismissViewController];
 }
 
 - (void)updateTutorialModelFromUI
