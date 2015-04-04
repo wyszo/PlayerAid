@@ -437,6 +437,7 @@
 {
   YCameraViewController *controller = [YCameraViewController new];
   controller.prefersStatusBarHidden = YES;
+  controller.gridInitiallyHidden = YES;
   controller.delegate = self;
   [self presentViewController:controller animated:YES completion:nil];
   
