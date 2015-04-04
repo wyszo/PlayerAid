@@ -429,6 +429,7 @@
 - (void)takeOrSelectPhotoUsingYCameraView
 {
   YCameraViewController *controller = [YCameraViewController new];
+  controller.prefersStatusBarHidden = YES;
   controller.delegate = self;
   [self presentViewController:controller animated:YES completion:nil];
   
