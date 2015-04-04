@@ -126,3 +126,9 @@
 #define COCOAPODS_VERSION_MINOR_UIAlertView_Blocks 0
 #define COCOAPODS_VERSION_PATCH_UIAlertView_Blocks 0
 
+// YCameraView
+#define COCOAPODS_POD_AVAILABLE_YCameraView
+#define COCOAPODS_VERSION_MAJOR_YCameraView 0
+#define COCOAPODS_VERSION_MINOR_YCameraView 2
+#define COCOAPODS_VERSION_PATCH_YCameraView 0
+
