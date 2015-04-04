@@ -47,6 +47,10 @@
 
 - (void)applicationLaunchDataFetch
 {
+  if (DEBUG_OFFLINE_MODE) {
+    return;
+  }
+  
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (authenticated) {
       [ServerDataUpdateController updateUserAndTutorials];

@@ -4,6 +4,7 @@
 
 #import "CreateTutorialViewController.h"
 #import <FDTakeController.h>
+#import <YCameraViewController.h>
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -23,7 +24,7 @@
 #import "ColorsHelper.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
+@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -417,9 +418,23 @@
 - (void)addPhotoStepSelected
 {
   [self hideAddStepPopoverView];
-  
+  [self takeOrSelectPhotoUsingYCameraView];
+}
+
+- (void)takeOrSelectPhotoUsingFDTake
+{
   AssertTrueOrReturn(self.mediaController);
   [self.mediaController takePhotoOrChooseFromLibrary];
+}
+
+- (void)takeOrSelectPhotoUsingYCameraView
+{
+  YCameraViewController *controller = [YCameraViewController new];
+  controller.delegate = self;
+  [self presentViewController:controller animated:YES completion:nil];
+  
+  controller.cameraToggleButton.hidden = YES;
+  controller.cancelButton.hidden = YES;
 }
 
 - (void)addVideoStepSelected
@@ -456,6 +471,14 @@
   if (!tutorial.createdBy) {
     tutorial.createdBy = [self currentUser];
   }
+}
+
+#pragma mark - YCameraViewControllerDelegate
+
+- (void)yCameraControllerDidFinishPickingImage:(UIImage *)image
+{
+  AssertTrueOrReturn(image);
+  [self saveTutorialStepWithImage:image];
 }
 
 #pragma mark - FDTakeDelegate
