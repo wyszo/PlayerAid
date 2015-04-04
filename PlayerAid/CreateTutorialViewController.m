@@ -22,6 +22,10 @@
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
+#import "UserDefaultsHelper.h"
+
+
+static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
@@ -437,7 +441,7 @@
 {
   YCameraViewController *controller = [YCameraViewController new];
   controller.prefersStatusBarHidden = YES;
-  controller.gridInitiallyHidden = YES;
+  controller.gridInitiallyHidden = ![self getUserDefaultsGridEnabled];
   controller.delegate = self;
   [self presentViewController:controller animated:YES completion:nil];
   
@@ -483,10 +487,37 @@
 
 #pragma mark - YCameraViewControllerDelegate
 
-- (void)yCameraControllerDidFinishPickingImage:(UIImage *)image
+- (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
 {
   AssertTrueOrReturn(image);
   [self saveTutorialStepWithImage:image];
+  
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+- (void)yCameraControllerDidCancel:(YCameraViewController *)cameraController
+{
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+- (void)yCameraControllerdidSkipped:(YCameraViewController *)cameraController
+{
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+#pragma mark - UserDefaults
+
+- (void)saveInUserDefaultsGridEnabled:(BOOL)gridEnabled
+{
+  [[UserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
+}
+
+- (BOOL)getUserDefaultsGridEnabled
+{
+  return [[[UserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
 }
 
 #pragma mark - FDTakeDelegate

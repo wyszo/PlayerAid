@@ -72,6 +72,7 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
+		31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
@@ -240,6 +241,8 @@
 		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
 		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
+		31A0FD371AD034DB00B94CBE /* UserDefaultsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsHelper.h; sourceTree = "<group>"; };
+		31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsHelper.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
@@ -653,6 +656,7 @@
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
+				31A0FD361AD034BA00B94CBE /* UserDefaults */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */,
 			);
@@ -845,6 +849,15 @@
 				3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */,
 			);
 			name = ServerResponseParsing;
+			sourceTree = "<group>";
+		};
+		31A0FD361AD034BA00B94CBE /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				31A0FD371AD034DB00B94CBE /* UserDefaultsHelper.h */,
+				31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */,
+			);
+			name = UserDefaults;
 			sourceTree = "<group>";
 		};
 		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
@@ -1345,6 +1358,7 @@
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
