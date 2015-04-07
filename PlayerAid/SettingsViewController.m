@@ -6,6 +6,7 @@
 #import "NSArrayTableViewDataSource.h"
 #import "NSSimpleTableViewDelegate.h"
 #import "JourneyController.h"
+#import "AlertFactory.h"
 
 
 static NSString *const kSettingsCellReuseIdentifier = @"SettingsCell";
@@ -54,8 +55,11 @@ static NSString *const kSettingsLogoutItem = @"Log out";
   
   defineWeakSelf();
   self.delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    if ([weakSelf isIndexPath:indexPath forObject:kSettingsLogoutItem]) {      
-      [[JourneyController new] clearAppDataAndPerformLoginSegueAnimated:YES];
+    if ([weakSelf isIndexPath:indexPath forObject:kSettingsLogoutItem]) {
+      
+      [AlertFactory showLogoutConfirmationAlertViewWithOKAction:^{
+        [[JourneyController new] clearAppDataAndPerformLoginSegueAnimated:YES];
+      }];
     }
   };
 }
