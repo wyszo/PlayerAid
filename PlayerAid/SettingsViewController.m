@@ -5,6 +5,7 @@
 #import "SettingsViewController.h"
 #import "NSArrayTableViewDataSource.h"
 #import "NSSimpleTableViewDelegate.h"
+#import "JourneyController.h"
 
 
 static NSString *const kSettingsCellReuseIdentifier = @"SettingsCell";
@@ -53,8 +54,8 @@ static NSString *const kSettingsLogoutItem = @"Log out";
   
   defineWeakSelf();
   self.delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    if ([weakSelf isIndexPath:indexPath forObject:kSettingsLogoutItem]) {
-      // TODO: implement facebook logout logic
+    if ([weakSelf isIndexPath:indexPath forObject:kSettingsLogoutItem]) {      
+      [[JourneyController new] clearAppDataAndPerformLoginSegueAnimated:YES];
     }
   };
 }

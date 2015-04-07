@@ -23,15 +23,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
   self.view.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
-  [self addFacebookLoginButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:YES animated:YES];
+  
+  [self recreateFacebookLoginButton];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -41,7 +41,7 @@
 
 #pragma mark - Facebook login
 
-- (void)addFacebookLoginButton
+- (void)recreateFacebookLoginButton
 {
   __weak typeof(self) weakSelf = self;
   FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
@@ -54,10 +54,26 @@
     // standard facebook errors and behaviour when apiToken is empty is already handled internally
   }];
   
-  AssertTrueOrReturn(self.loginButtonContainer);
+  [self assertZeroOrOneLoginButtonSubviews];
+  [self removeLoginButtonContainerSubviews];
   [self.loginButtonContainer addSubview:loginView];
   
   [loginView alignCenterWithView:self.loginButtonContainer];
+}
+
+#pragma mark - Helper methods
+
+- (void)assertZeroOrOneLoginButtonSubviews
+{
+  AssertTrueOrReturn(self.loginButtonContainer);
+  
+  NSInteger loginButtonContainerSubviews = self.loginButtonContainer.subviews.count;
+  AssertTrueOrReturn(loginButtonContainerSubviews == 0 || loginButtonContainerSubviews == 1);
+}
+
+- (void)removeLoginButtonContainerSubviews
+{
+  [self.loginButtonContainer.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
 - (void)dismissViewController

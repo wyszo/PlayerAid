@@ -12,4 +12,6 @@
 
 + (FBLoginView *)facebookLoginViewWithLoginCompletion:(void (^)(id<FBGraphUser> user, NSError *error))completion;
 
++ (void)logout;
+
 @end

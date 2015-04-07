@@ -473,6 +473,7 @@
                         <segue destination="hcs-TP-QxR" kind="relationship" relationship="viewControllers" id="RHa-ld-hUo"/>
                         <segue destination="O7t-Od-SGE" kind="relationship" relationship="viewControllers" id="xGg-tL-Gjc"/>
                         <segue destination="G46-B1-sLw" kind="presentation" identifier="LoginSegue" animates="NO" id="IVE-p5-doI"/>
+                        <segue destination="G46-B1-sLw" kind="presentation" identifier="LoginSegueAnimated" id="FzJ-wj-RX8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -581,4 +582,7 @@
         <image name="settings-selected" width="16" height="16"/>
         <image name="settings-unselected" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FzJ-wj-RX8"/>
+    </inferredMetricsTieBreakers>
 </document>
