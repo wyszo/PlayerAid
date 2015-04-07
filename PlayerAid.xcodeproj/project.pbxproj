@@ -31,6 +31,7 @@
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
 		3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */; };
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
+		310DDD8F1AD44628008C9EB5 /* NSSimpleTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 310DDD8E1AD44628008C9EB5 /* NSSimpleTableViewDelegate.m */; };
 		31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
@@ -162,6 +163,8 @@
 		3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButton.xib; sourceTree = "<group>"; };
 		3106D7621AC0857D0076F571 /* CreateTutorialStepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButton.h; sourceTree = "<group>"; };
 		3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButton.m; sourceTree = "<group>"; };
+		310DDD8D1AD44628008C9EB5 /* NSSimpleTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSimpleTableViewDelegate.h; sourceTree = "<group>"; };
+		310DDD8E1AD44628008C9EB5 /* NSSimpleTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSimpleTableViewDelegate.m; sourceTree = "<group>"; };
 		31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = TestVideo.mp4; path = PlayerAid/TestVideo.mp4; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 			children = (
 				31B5485E1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.h */,
 				31B5485F1AB5EDCD0010FC83 /* TableViewBasicDelegateObject.m */,
+				310DDD8D1AD44628008C9EB5 /* NSSimpleTableViewDelegate.h */,
+				310DDD8E1AD44628008C9EB5 /* NSSimpleTableViewDelegate.m */,
 			);
 			name = "TableView delegate";
 			sourceTree = "<group>";
@@ -1309,6 +1314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
+				310DDD8F1AD44628008C9EB5 /* NSSimpleTableViewDelegate.m in Sources */,
 				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
