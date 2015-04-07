@@ -16,12 +16,12 @@
 
 @implementation NSArrayTableViewDataSource
 
-- (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView tableViewCellNibName:(NSString *)cellNibName
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellNibName:(NSString *)cellNibName
 {
   AssertTrueOrReturnNil(cellNibName);
   
   if (self = [super init]) {
-    [self initializeWithArray:array tableView:tableView];
+    [self initializeWithArray:array attachToTableView:tableView];
     
     _cellDequeueIdentifier = @"cell";
     
@@ -31,24 +31,25 @@
   return self;
 }
 
-- (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView cellDequeueIdentifier:(NSString *)cellDequeueIdentifier
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellDequeueIdentifier:(NSString *)cellDequeueIdentifier
 {
   AssertTrueOrReturnNil(cellDequeueIdentifier.length);
   
   if (self = [super init]) {
-    [self initializeWithArray:array tableView:tableView];
+    [self initializeWithArray:array attachToTableView:tableView];
     _cellDequeueIdentifier = cellDequeueIdentifier;
   }
   return self;
 }
 
-- (void)initializeWithArray:(NSArray *)array tableView:(UITableView *)tableView
+- (void)initializeWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView
 {
   AssertTrueOrReturn(array);
   AssertTrueOrReturn(tableView);
   
   _array = [array mutableCopy];
   _tableView = tableView;
+  _tableView.dataSource = self;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath

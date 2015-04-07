@@ -19,6 +19,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  self.title = @"Settings";
   [self setupTableView];
 }
 
@@ -30,7 +32,12 @@
                         @"Privacy Policy",
                         @"Log out"
                         ];
-  self.dataSource = [[NSArrayTableViewDataSource alloc] initWithArray:settings tableView:self.settingsTableView cellDequeueIdentifier:@"SettingsCell"];
+  self.dataSource = [[NSArrayTableViewDataSource alloc] initWithArray:settings attachToTableView:self.settingsTableView cellDequeueIdentifier:@"SettingsCell"];
+  
+  self.dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    AssertTrueOrReturn(indexPath.row < settings.count);
+    cell.textLabel.text = settings[indexPath.row];
+  };
 }
 
 @end

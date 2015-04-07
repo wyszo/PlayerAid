@@ -60,12 +60,12 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 
 - (void)setupTableView
 {
-  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView tableViewCellNibName:kTutorialCellName];
+  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps attachToTableView:self.tutorialStepsTableView cellNibName:kTutorialCellName];
+  
   defineWeakSelf();
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   };
-  self.tutorialStepsTableView.dataSource = self.tableViewDataSource;
   self.tutorialStepsTableView.delegate = self.delegateObject;
 }
 

@@ -11,12 +11,12 @@
 /**
  For tableViews with cells from xib
  */
-- (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView tableViewCellNibName:(NSString *)cellNibName;
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellNibName:(NSString *)cellNibName;
 
 /**
  For tableViews with prototype cells from Storyboard
  */
-- (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView cellDequeueIdentifier:(NSString *)cellDequeueIdentifier;
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellDequeueIdentifier:(NSString *)cellDequeueIdentifier;
 
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
