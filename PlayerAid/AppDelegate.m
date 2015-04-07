@@ -61,6 +61,10 @@
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
     [self DEBUG_presentCreateTutorialViewController];
   }
+  
+  if (DEBUG_MODE_PUSH_SETTINGS) {
+    [self DEBUG_presentSettings];
+  }
 }
 
 - (void)DEBUG_presentCreateTutorialViewController
@@ -69,6 +73,12 @@
   DISPATCH_AFTER(0.1, ^{
     [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
   });
+}
+
+- (void)DEBUG_presentSettings
+{
+  UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
+  tabBarController.selectedViewController = tabBarController.viewControllers.lastObject;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
