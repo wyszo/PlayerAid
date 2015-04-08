@@ -93,7 +93,10 @@ const NSInteger kTextStepDismissedError = 1;
   } else {
     textColor = [UIColor blackColor];
   }
-  self.textView.textColor = textColor;
+  
+  if (self.textView.textColor != textColor) {
+    self.textView.textColor = textColor;
+  }
 }
 
 - (BOOL)overCharacterLimit
