@@ -47,6 +47,8 @@ const NSInteger kTextStepDismissedError = 1;
   self.edgesForExtendedLayout = UIRectEdgeNone;
   [self setupCharactersCount];
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
+  
+  [self updateTextStepRemainingCharactersCount];
 }
 
 - (void)setupCharactersCount
@@ -107,6 +109,11 @@ const NSInteger kTextStepDismissedError = 1;
 }
 
 #pragma UITextViewDelegate
+
+- (void)updateTextStepRemainingCharactersCount
+{
+  [self textViewDidChange:self.textView];
+}
 
 - (void)textViewDidChange:(UITextView *)textView
 {
