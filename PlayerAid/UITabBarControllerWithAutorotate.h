@@ -2,8 +2,7 @@
 //  PlayerAid
 //
 
-
-@interface NavigationControllerWhiteStatusbar : UINavigationController
+@interface UITabBarControllerWithAutorotate : UITabBarController
 
 @property (nonatomic, assign) BOOL shouldAutorotate;
 

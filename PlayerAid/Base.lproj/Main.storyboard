@@ -454,10 +454,10 @@
             </objects>
             <point key="canvasLocation" x="223" y="-4"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller With Autorotate-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="UITabBarControllerWithAutorotate" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="m9A-2D-DBX"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>

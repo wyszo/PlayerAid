@@ -35,6 +35,7 @@
 		31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
+		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
 		312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AAE1AD473AD00D96C19 /* JourneyController.m */; };
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
@@ -172,6 +173,8 @@
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
+		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
+		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
 		312C6AAE1AD473AD00D96C19 /* JourneyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyController.m; sourceTree = "<group>"; };
 		312C6AB01AD4750B00D96C19 /* JourneyController_Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JourneyController_Debug.h; sourceTree = "<group>"; };
@@ -1007,6 +1010,8 @@
 				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
 				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
 				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
+				3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */,
+				3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1386,6 +1391,7 @@
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
+				311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
