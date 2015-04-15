@@ -36,6 +36,7 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
+		311486581ADE3C8100A644CD /* OrientationChangeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486571ADE3C8100A644CD /* OrientationChangeHelper.m */; };
 		312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AAE1AD473AD00D96C19 /* JourneyController.m */; };
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
@@ -175,6 +176,8 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
+		311486561ADE3C8100A644CD /* OrientationChangeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrientationChangeHelper.h; sourceTree = "<group>"; };
+		311486571ADE3C8100A644CD /* OrientationChangeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrientationChangeHelper.m; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
 		312C6AAE1AD473AD00D96C19 /* JourneyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyController.m; sourceTree = "<group>"; };
 		312C6AB01AD4750B00D96C19 /* JourneyController_Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JourneyController_Debug.h; sourceTree = "<group>"; };
@@ -539,6 +542,15 @@
 			name = EditTutorialSteps;
 			sourceTree = "<group>";
 		};
+		311486551ADE3C6C00A644CD /* OrientationChange */ = {
+			isa = PBXGroup;
+			children = (
+				311486561ADE3C8100A644CD /* OrientationChangeHelper.h */,
+				311486571ADE3C8100A644CD /* OrientationChangeHelper.m */,
+			);
+			name = OrientationChange;
+			sourceTree = "<group>";
+		};
 		312C6AAC1AD4735600D96C19 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +712,7 @@
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
 				315148A01AB9B441008934AE /* ObjectLifetime */,
+				311486551ADE3C6C00A644CD /* OrientationChange */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
@@ -1377,6 +1390,7 @@
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
+				311486581ADE3C8100A644CD /* OrientationChangeHelper.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,

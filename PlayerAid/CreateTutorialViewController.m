@@ -46,6 +46,10 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
+
+@property (nonatomic, strong) UIAlertView *portraitOrientationAlert;
+@property (nonatomic, strong) id imageDidCaptureNotificationObserver;
+
 @end
 
 
@@ -454,8 +458,86 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self hideAddStepPopoverView];
   
   AssertTrueOrReturn(self.mediaController);
+  
+  // TODO: need to modify FDTake to make it work... (need a callback about selecting video)
+  
+  // For now just registering orientation changes always...
+  [self registerForOrientationChangeNotification];
+  [self registerforImagePickerControllerDidCaptureNotification];
+  
+  
   [self.mediaController takeVideoOrChooseFromLibrary];
+  
+  // need to do that after dismissed
+  //[self resignFromOrientationChangeNotification];
+  
+  
+  // force check orientation
+  [self orientationChanged:nil];
 }
+
+
+
+- (void)registerforImagePickerControllerDidCaptureNotification
+{
+  defineWeakSelf();
+  self.imageDidCaptureNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"_UIImagePickerControllerUserDidCaptureItem" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    [weakSelf resignFromOrientationChangeNotification];
+  }];
+}
+
+- (void)resignFromImagePickerControllerDidCaptureNotification
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self.imageDidCaptureNotificationObserver];
+  self.imageDidCaptureNotificationObserver = nil;
+}
+
+
+
+- (void)registerForOrientationChangeNotification
+{
+  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)resignFromOrientationChangeNotification
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+  [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+  UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+  
+  // TODO: incorporate FaceUp and FaceDown orientations support!!!
+  
+  if (UIInterfaceOrientationIsPortrait(orientation)) {
+    [self presentPortraitOrientationAlert];
+  } else {
+    [self hidePortraitOrientationAlert];
+  }
+}
+
+
+- (void)presentPortraitOrientationAlert
+{
+//  AssertTrueOrReturn - orientationAlert empty!!
+  
+  // TODO: use AlertFactory
+  UIAlertView *orientationAlert = [[UIAlertView alloc] initWithTitle:nil message:@"<DEBUG> Landscape videos look waay better - turn your phone!!!" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+  [orientationAlert show];
+  self.portraitOrientationAlert = orientationAlert;
+}
+
+- (void)hidePortraitOrientationAlert
+{
+  [self.portraitOrientationAlert dismissWithClickedButtonIndex:0 animated:YES];
+  self.portraitOrientationAlert = nil;
+}
+
+
 
 - (void)addTextStepSelected
 {
@@ -609,6 +691,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 {
   if (!_mediaController) {
     _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self];
+    _mediaController.allowsEditingVideo = NO; // otherwise - alert..
   }
   return _mediaController;
 }
