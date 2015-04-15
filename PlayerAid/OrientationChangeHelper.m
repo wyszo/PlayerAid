@@ -5,7 +5,38 @@
 #import "OrientationChangeHelper.h"
 
 
+@interface OrientationChangeHelper ()
+@property (nonatomic, assign) UIInterfaceOrientation lastInterfaceOrientation;
+@end
+
+
 @implementation OrientationChangeHelper
+
+- (id)init
+{
+  self = [super init];
+  if (self) {
+    _lastInterfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self updateInterfaceOrientation];
+  }
+  return self;
+}
+
+- (void)updateInterfaceOrientation
+{
+  self.lastInterfaceOrientation = [self interfaceOrientation];
+}
+
+- (UIInterfaceOrientation)interfaceOrientation
+{
+  UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+  if (deviceOrientation != UIDeviceOrientationUnknown && deviceOrientation != UIDeviceOrientationFaceUp && deviceOrientation != UIDeviceOrientationFaceDown) {
+    // TODO: Technical debt: make this casting safer!
+    return (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
+  }
+  
+  return self.lastInterfaceOrientation;
+}
 
 #pragma mark - Public interface
 
@@ -19,22 +50,22 @@
   [self resignFromOrientationChangeNotification];
 }
 
-- (UIInterfaceOrientation)interfaceOrientation
-{
-  return [[UIApplication sharedApplication] statusBarOrientation];
-}
-
 #pragma mark - Notification handling
+
+- (NSString *)orientationChangeNotificationName
+{
+  return UIDeviceOrientationDidChangeNotification;
+}
 
 - (void)registerForOrientationChangeNotification
 {
   [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:self.orientationChangeNotificationName object:nil];
 }
 
 - (void)resignFromOrientationChangeNotification
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:self.orientationChangeNotificationName object:nil];
   [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
@@ -48,6 +79,11 @@
 - (void)orientationChanged:(NSNotification *)notification
 {
   UIInterfaceOrientation orientation = [self interfaceOrientation];
+  if (orientation == self.lastInterfaceOrientation) {
+    return;
+  }
+  
+  self.lastInterfaceOrientation = orientation;
   
   if (UIInterfaceOrientationIsPortrait(orientation)) {
     if ([self.delegate respondsToSelector:@selector(orientationDidChangeToPortrait)]) {
