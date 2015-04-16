@@ -459,14 +459,9 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)addVideoStepSelected
 {
   [self hideAddStepPopoverView];
+  
   AssertTrueOrReturn(self.mediaController);
-  
-  // TODO: This should happen from FDTake missing delegate method!!! (when video step selected)
-  [self.orientationChangeHelper startDetectingOrientationChanges];
-  self.imagePickerEventsObserver = [[UIImagePickerExtendedEventsObserver alloc] initWithDelegate:self];
-  
   [self.mediaController takeVideoOrChooseFromLibrary];
-  [self checkOrientationPresentAlertForPortrait];
 }
 
 - (void)addTextStepSelected
@@ -599,6 +594,14 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 {
   [self.orientationChangeHelper stopDetectingOrientationChanges];
   self.imagePickerEventsObserver = nil;
+}
+
+- (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller
+{
+  [self.orientationChangeHelper startDetectingOrientationChanges];
+  self.imagePickerEventsObserver = [[UIImagePickerExtendedEventsObserver alloc] initWithDelegate:self];
+  
+  [self checkOrientationPresentAlertForPortrait];
 }
 
 #pragma mark - Push views
