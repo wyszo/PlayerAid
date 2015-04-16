@@ -461,11 +461,12 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self hideAddStepPopoverView];
   AssertTrueOrReturn(self.mediaController);
   
+  // TODO: This should happen from FDTake missing delegate method!!! (when video step selected)
   [self.orientationChangeHelper startDetectingOrientationChanges];
   self.imagePickerEventsObserver = [[UIImagePickerExtendedEventsObserver alloc] initWithDelegate:self];
   
   [self.mediaController takeVideoOrChooseFromLibrary];
-  [self checkOrientationPresentAlertForProtrait];
+  [self checkOrientationPresentAlertForPortrait];
 }
 
 - (void)addTextStepSelected
@@ -499,7 +500,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 #pragma mark - Video orientation alerts
 
-- (void)checkOrientationPresentAlertForProtrait
+- (void)checkOrientationPresentAlertForPortrait
 {
   AssertTrueOrReturn(self.orientationChangeHelper);
   if (UIInterfaceOrientationIsPortrait(self.orientationChangeHelper.lastInterfaceOrientation)) {
@@ -528,7 +529,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)imagePickerControllerUserDidPressRetake
 {
   [self.orientationChangeHelper startDetectingOrientationChanges];
-  [self checkOrientationPresentAlertForProtrait];
+  [self checkOrientationPresentAlertForPortrait];
 }
 
 #pragma mark - OrientationChangeHelper
