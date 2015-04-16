@@ -678,7 +678,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (FDTakeController *)mediaController
 {
   if (!_mediaController) {
-    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self];
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.navigationController];
     _mediaController.allowsEditingVideo = NO; // otherwise - alert..
   }
   return _mediaController;

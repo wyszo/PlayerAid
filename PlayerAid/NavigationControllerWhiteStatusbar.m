@@ -3,28 +3,19 @@
 //
 
 #import "NavigationControllerWhiteStatusbar.h"
+#import "InterfaceOrientationViewControllerDecorator.h"
 
 
 @implementation NavigationControllerWhiteStatusbar
 
++ (void)initialize
+{
+  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   return UIStatusBarStyleLightContent;
-}
-
-- (BOOL)shouldAutorotate
-{
-  return _shouldAutorotate;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-  if (self.shouldAutorotate) {
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-  }
-  else {
-    return UIInterfaceOrientationMaskPortrait;
-  }
 }
 
 @end
