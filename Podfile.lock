@@ -41,7 +41,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - Facebook-iOS-SDK (= 3.22.0)
-  - FDTake (from `https://github.com/wyszo/FDTake.git`)
+  - FDTake (from `../FDTake`)
   - FLKAutolayout (= 0.2.1)
   - GoogleAnalytics-iOS-SDK (= 3.10)
   - KZAsserts (= 1.0)
@@ -54,7 +54,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   FDTake:
-    :git: https://github.com/wyszo/FDTake.git
+    :path: ../FDTake
   YCameraView:
     :path: ../YCameraView-master
 
