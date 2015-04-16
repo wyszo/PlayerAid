@@ -182,10 +182,10 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
   BOOL titleSet = (self.title.length > 0);
-  BOOL sectionSet = (self.selectedSection);
-  BOOL backgroundImageSet = (self.backgroundImageView.image);
+  BOOL sectionSet = (self.selectedSection != nil);
+  BOOL backgroundImageSet = (self.backgroundImageView.image != nil);
   
-  int numberOfFilledPiecesOfInfo = (int)titleSet + (int)sectionSet + (int)backgroundImageSet;
+  int numberOfFilledPiecesOfInfo = (titleSet ? 1 : 0) + (sectionSet ? 1 : 0) + (backgroundImageSet ? 1 : 0);
   
   if (numberOfFilledPiecesOfInfo < 2) {
     [AlertFactory showCreateTutorialFillTutorialDetails];

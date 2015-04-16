@@ -1,13 +1,16 @@
 //
-//  YCameraViewController+InterfaceOrientation.m
 //  PlayerAid
-//
-//  Created by Wyszo on 16/04/15.
-//
 //
 
 #import "YCameraViewController+InterfaceOrientation.h"
+#import "InterfaceOrientationViewControllerDecorator.h"
+
 
 @implementation YCameraViewController (InterfaceOrientation)
+
++ (void)initialize
+{
+  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
 
 @end

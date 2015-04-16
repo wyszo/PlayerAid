@@ -25,6 +25,7 @@
 #import "UserDefaultsHelper.h"
 #import "OrientationChangeDetector.h"
 #import "UIImagePickerExtendedEventsObserver.h"
+#import "InterfaceOrientationViewControllerDecorator.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
@@ -59,6 +60,11 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 @implementation CreateTutorialViewController
 
 #pragma mark - Initialization
+
++ (void)initialize
+{
+  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
 
 - (void)viewDidLoad
 {
