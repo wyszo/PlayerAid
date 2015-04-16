@@ -2,12 +2,12 @@
 //  PlayerAid
 //
 
-@protocol OrientationHelperDelegate;
+@protocol OrientationChangeDelegate;
 
 
-@interface OrientationChangeHelper : NSObject
+@interface OrientationChangeDetector : NSObject
 
-@property (nonatomic, weak) id<OrientationHelperDelegate> delegate;
+@property (nonatomic, weak) id<OrientationChangeDelegate> delegate;
 
 @property (nonatomic, assign, readonly) UIInterfaceOrientation lastInterfaceOrientation;
 
@@ -17,7 +17,7 @@
 @end
 
 
-@protocol OrientationHelperDelegate <NSObject>
+@protocol OrientationChangeDelegate <NSObject>
 
 - (void)orientationDidChangeToPortrait;
 - (void)orientationDidChangeToLandscape;

@@ -2,15 +2,15 @@
 //  PlayerAid
 //
 
-#import "OrientationChangeHelper.h"
+#import "OrientationChangeDetector.h"
 
 
-@interface OrientationChangeHelper ()
+@interface OrientationChangeDetector ()
 @property (nonatomic, assign) UIInterfaceOrientation lastInterfaceOrientation;
 @end
 
 
-@implementation OrientationChangeHelper
+@implementation OrientationChangeDetector
 
 - (id)init
 {
