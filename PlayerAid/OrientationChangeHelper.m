@@ -42,6 +42,7 @@
 
 - (void)startDetectingOrientationChanges
 {
+  [self updateInterfaceOrientation];
   [self registerForOrientationChangeNotification];
 }
 
