@@ -40,6 +40,7 @@
 		3114865C1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */; };
 		311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */; };
 		311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */; };
+		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
 		312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AAE1AD473AD00D96C19 /* JourneyController.m */; };
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
@@ -187,6 +188,8 @@
 		311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceOrientationViewControllerDecorator.m; sourceTree = "<group>"; };
 		311486641ADFC1F400A644CD /* InterfaceOrientationClassStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationClassStubs.h; sourceTree = "<group>"; };
 		311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceOrientationClassStubs.m; sourceTree = "<group>"; };
+		311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCameraViewController+InterfaceOrientation.h"; sourceTree = "<group>"; };
+		311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCameraViewController+InterfaceOrientation.m"; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
 		312C6AAE1AD473AD00D96C19 /* JourneyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyController.m; sourceTree = "<group>"; };
 		312C6AB01AD4750B00D96C19 /* JourneyController_Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JourneyController_Debug.h; sourceTree = "<group>"; };
@@ -400,6 +403,7 @@
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
 				31014E521A948686002F3485 /* Terms and Conditions */,
+				311486671ADFC4CA00A644CD /* UITabBarControllerWithAutorotate */,
 			);
 			name = "Other View Controllers";
 			sourceTree = "<group>";
@@ -603,6 +607,15 @@
 				311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */,
 			);
 			name = Private;
+			sourceTree = "<group>";
+		};
+		311486671ADFC4CA00A644CD /* UITabBarControllerWithAutorotate */ = {
+			isa = PBXGroup;
+			children = (
+				3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */,
+				3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */,
+			);
+			name = UITabBarControllerWithAutorotate;
 			sourceTree = "<group>";
 		};
 		312C6AAC1AD4735600D96C19 /* Journey */ = {
@@ -1076,8 +1089,8 @@
 				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
 				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
 				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
-				3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */,
-				3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */,
+				311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */,
+				311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1483,6 +1496,7 @@
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
+				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
