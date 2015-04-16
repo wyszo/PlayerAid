@@ -17,4 +17,14 @@
   return _shouldAutorotate;
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+  if (self.shouldAutorotate) {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+  }
+  else {
+    return UIInterfaceOrientationMaskPortrait;
+  }
+}
+
 @end
