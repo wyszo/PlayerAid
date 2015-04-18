@@ -26,6 +26,7 @@
 #import "OrientationChangeDetector.h"
 #import "UIImagePickerExtendedEventsObserver.h"
 #import "InterfaceOrientationViewControllerDecorator.h"
+#import "ViewControllerPresentationHelper.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
@@ -329,17 +330,9 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   }
   
   self.editTutorialStepsViewController = [self createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps];
-  [self presentInKeyWindowViewController:self.editTutorialStepsViewController];
+  [[ViewControllerPresentationHelper new] presentViewControllerInKeyWindow:self.editTutorialStepsViewController];
   
   [self removeNavigationBarButtons];
-}
-
-// TODO: move this method away from this class
-- (void)presentInKeyWindowViewController:(UIViewController *)viewController
-{
-  UIWindow *window = [UIApplication sharedApplication].keyWindow;
-  viewController.view.frame = window.frame;
-  [window addSubview:viewController.view];
 }
 
 - (EditTutorialStepsViewController *)createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps

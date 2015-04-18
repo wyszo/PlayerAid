@@ -78,6 +78,7 @@
 		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
+		317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
@@ -264,6 +265,8 @@
 		317780351A80E557007057CD /* TutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTableViewCell.m; sourceTree = "<group>"; };
 		317780381A80ED2C007057CD /* TutorialDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsViewController.h; sourceTree = "<group>"; };
 		317780391A80ED2C007057CD /* TutorialDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsViewController.m; sourceTree = "<group>"; };
+		317E63191AE267C100652AE1 /* ViewControllerPresentationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerPresentationHelper.h; sourceTree = "<group>"; };
+		317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerPresentationHelper.m; sourceTree = "<group>"; };
 		318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceCustomizationHelper.h; sourceTree = "<group>"; };
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
@@ -460,8 +463,9 @@
 		31014E7A1A9BB364002F3485 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				312FF5FC1A9F1A3800AE3174 /* TabBar */,
+				317E63181AE267B100652AE1 /* ViewControllerPresentation */,
 				312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */,
+				312FF5FC1A9F1A3800AE3174 /* TabBar */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -927,6 +931,15 @@
 				317780391A80ED2C007057CD /* TutorialDetailsViewController.m */,
 			);
 			name = TutorialDetails;
+			sourceTree = "<group>";
+		};
+		317E63181AE267B100652AE1 /* ViewControllerPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				317E63191AE267C100652AE1 /* ViewControllerPresentationHelper.h */,
+				317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */,
+			);
+			name = ViewControllerPresentation;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -1463,6 +1476,7 @@
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,
+				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */,
