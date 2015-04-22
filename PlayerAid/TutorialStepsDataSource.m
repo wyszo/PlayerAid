@@ -96,6 +96,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)setupTableViewDataSourceCellMoveRowBlock
 {
   __weak typeof(self) weakSelf = self;
+  // TODO: this block implementation should be made more generic and extracted from here to a separate class!!
   _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
     if (fromIndexPath == toIndexPath) {
       return; // user didn't change the order after all

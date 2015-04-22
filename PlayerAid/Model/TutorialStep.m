@@ -2,7 +2,7 @@
 #import "MediaPlayerHelper.h"
 
 
-static const kJPEGCompression = 1.0f; // 1.0f - less optimised, best quality
+static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best quality
 
 
 @implementation TutorialStep

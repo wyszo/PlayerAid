@@ -195,6 +195,7 @@
 }
 
 #pragma mark - Facebook
+// TODO: this should be extracted to a separate class
 
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error
