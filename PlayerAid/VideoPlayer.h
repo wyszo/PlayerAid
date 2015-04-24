@@ -5,6 +5,8 @@
 
 @interface VideoPlayer : NSObject
 
+@property (nonatomic, assign) BOOL presentInLandscapeOrientation;
+
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
 

@@ -3,16 +3,17 @@
 //
 
 #import "VideoPlayer.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "ExtendedMPMoviePlayerViewController.h"
 
 
+// TODO: migrate to AVPlayerViewController as MPMoviePlayerPlaybackDidFinishNotification is not handled correctly on iOS8 (not invoked in case of URL resource error)
 // TODO: test error and dismiss view controller
 // TODO: test loss of internet connection
 
 
 @interface VideoPlayer()
 
-@property (nonatomic, strong) MPMoviePlayerViewController *videoPlayerController;
+@property (nonatomic, strong) ExtendedMPMoviePlayerViewController *videoPlayerController;
 @property (nonatomic, weak) UIViewController *parent;
 
 @end
@@ -32,7 +33,8 @@
 - (void)presentMoviePlayerAndPlayVideoURL:(NSURL *)videoURL
 {
   AssertTrueOrReturn(videoURL);
-  self.videoPlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+  self.videoPlayerController = [[ExtendedMPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+  self.videoPlayerController.presentInLandscapeOrientation = YES;
   
   MPMoviePlayerController *moviePlayer = self.videoPlayerController.moviePlayer;
   moviePlayer.shouldAutoplay = YES;
