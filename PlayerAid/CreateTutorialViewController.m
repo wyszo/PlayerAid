@@ -27,6 +27,7 @@
 #import "UIImagePickerExtendedEventsObserver.h"
 #import "InterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
+#import "ImagePickerOverlayController.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
@@ -52,8 +53,9 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
 @property (nonatomic, strong) OrientationChangeDetector *orientationChangeDetector;
-@property (nonatomic, strong) UIAlertView *portraitOrientationAlertView;
 @property (nonatomic, strong) UIImagePickerExtendedEventsObserver *imagePickerEventsObserver;
+@property (nonatomic, weak) UIImagePickerController *videoCaptureImagePicker;
+@property (nonatomic, strong) ImagePickerOverlayController *showImagePickerOverlayBehaviour;
 
 @end
 
@@ -494,23 +496,22 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 #pragma mark - Video orientation alerts
 
-- (void)checkOrientationPresentAlertForPortrait
+- (void)checkOrientationPresentOverlayForPortrait
 {
   AssertTrueOrReturn(self.orientationChangeHelper);
   if (UIInterfaceOrientationIsPortrait(self.orientationChangeHelper.lastInterfaceOrientation)) {
-    [self presentPortraitOrientationAlert];
+    [self presentPortraitOrientationOverlay];
   }
 }
 
-- (void)presentPortraitOrientationAlert
+- (void)presentPortraitOrientationOverlay
 {
-  self.portraitOrientationAlertView = [AlertFactory showOnlyLandscapeVideoSupportedAlertView];
+  [self.showImagePickerOverlayBehaviour showOverlay];
 }
 
-- (void)hidePortraitOrientationAlert
+- (void)hidePortraitOrientationOverlay
 {
-  [self.portraitOrientationAlertView dismissWithClickedButtonIndex:0 animated:YES];
-  self.portraitOrientationAlertView = nil;
+  [self.showImagePickerOverlayBehaviour hideOverlay];
 }
 
 #pragma mark - ExtendedUIImagePickerControllerDelegate
@@ -523,19 +524,19 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)imagePickerControllerUserDidPressRetake
 {
   [self.orientationChangeHelper startDetectingOrientationChanges];
-  [self checkOrientationPresentAlertForPortrait];
+  [self checkOrientationPresentOverlayForPortrait];
 }
 
 #pragma mark - OrientationChangeHelper
 
 - (void)orientationDidChangeToPortrait
 {
-  [self presentPortraitOrientationAlert];
+  [self presentPortraitOrientationOverlay];
 }
 
 - (void)orientationDidChangeToLandscape
 {
-  [self hidePortraitOrientationAlert];
+  [self hidePortraitOrientationOverlay];
 }
 
 #pragma mark - YCameraViewControllerDelegate
@@ -595,12 +596,13 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.imagePickerEventsObserver = nil;
 }
 
-- (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller
+- (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController
 {
   [self.orientationChangeHelper startDetectingOrientationChanges];
   self.imagePickerEventsObserver = [[UIImagePickerExtendedEventsObserver alloc] initWithDelegate:self];
-  
-  [self checkOrientationPresentAlertForPortrait];
+ 
+  self.videoCaptureImagePicker = imagePickerController;
+  [self checkOrientationPresentOverlayForPortrait];
 }
 
 #pragma mark - Push views
@@ -670,6 +672,20 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
   self.tutorial.pngImageData = UIImagePNGRepresentation(image);
+}
+
+#pragma mark - Setters
+
+- (void)setVideoCaptureImagePicker:(UIImagePickerController *)videoCaptureImagePicker
+{
+  _videoCaptureImagePicker = videoCaptureImagePicker;
+  
+  if (videoCaptureImagePicker == nil) {
+    self.showImagePickerOverlayBehaviour = nil;
+    return;
+  }
+  
+  self.showImagePickerOverlayBehaviour = [[ImagePickerOverlayController alloc] initWithImagePickerController:videoCaptureImagePicker];
 }
 
 #pragma mark - Lazy initalization

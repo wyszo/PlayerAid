@@ -100,13 +100,6 @@
   return alert;
 }
 
-+ (UIAlertView *)showOnlyLandscapeVideoSupportedAlertView
-{
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"<DEBUG - this will be replaced with a nice overlay> Landscape videos look waay better - go ahead, rotate your phone!!!" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-  [alert show];
-  return alert;
-}
-
 #pragma mark - Publish tutorial
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction

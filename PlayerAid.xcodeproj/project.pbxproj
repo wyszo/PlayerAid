@@ -56,6 +56,7 @@
 		315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
+		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -223,6 +224,8 @@
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315148A71AB9DF5F008934AE /* NSString+Trimming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trimming.h"; sourceTree = "<group>"; };
 		315148A81AB9DF5F008934AE /* NSString+Trimming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trimming.m"; sourceTree = "<group>"; };
+		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
+		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -739,6 +742,15 @@
 			name = ObjectLifetime;
 			sourceTree = "<group>";
 		};
+		315822241AEBD83000DA6CCE /* ImagePickerOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */,
+				315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */,
+			);
+			name = ImagePickerOverlay;
+			sourceTree = "<group>";
+		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				31777FFE1A7FBF84007057CD /* Authentication */,
+				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
 				31014E531A961084002F3485 /* Users */,
@@ -1576,6 +1589,7 @@
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
+				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
 				311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
