@@ -434,16 +434,16 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)addPhotoStepSelected
 {
   [self hideAddStepPopoverView];
-  [self takeOrSelectPhotoUsingYCameraView];
+  [self takeOrSelectPhotoUsingFDTake];
 }
 
 - (void)takeOrSelectPhotoUsingFDTake
 {
   AssertTrueOrReturn(self.mediaController);
-  [self.mediaController takePhotoOrChooseFromLibrary];
+  [self.mediaController takePhotoOrChooseFromLibrary]; /* TODO: This should use YCameraViewController!! */
 }
 
-- (void)takeOrSelectPhotoUsingYCameraView
+- (void)takeAPictureWithYCameraView
 {
   YCameraViewController *controller = [YCameraViewController new];
   controller.prefersStatusBarHidden = YES;
@@ -679,6 +679,11 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   if (!_mediaController) {
     _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.navigationController];
     _mediaController.allowsEditingVideo = NO; // otherwise - alert..
+    
+    defineWeakSelf();
+    _mediaController.presentCustomPhotoCaptureViewBlock = ^(){
+      [weakSelf takeAPictureWithYCameraView];
+    };
   }
   return _mediaController;
 }
