@@ -20,7 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.4)
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
   - Facebook-iOS-SDK (3.22.0):
     - Bolts (~> 1.0)
   - FDTake (0.2.4)
@@ -50,13 +55,15 @@ DEPENDENCIES:
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
   - UIAlertView-Blocks (= 1.0)
-  - YCameraView (from `../YCameraView-master`)
+  - YCameraView (from `../YCameraView`)
 
 EXTERNAL SOURCES:
   FDTake:
+    :branch: ThomasChanges
     :path: ../FDTake
   YCameraView:
-    :path: ../YCameraView-master
+    :branch: PlayerAidChanges
+    :path: ../YCameraView
 
 CHECKOUT OPTIONS:
   FDTake:
@@ -65,7 +72,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
-  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
   FDTake: 9b4d2049bd3e32bd05d119542be30785b9dc0d44
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
