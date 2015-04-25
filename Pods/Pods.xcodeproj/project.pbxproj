@@ -96,6 +96,7 @@
 		2EF09FC83092372A06251E14 /* MagicalRecord+iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B469A6888DCD9C2F34198D /* MagicalRecord+iCloud.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-checker -Xanalyzer deadcode"; }; };
 		2F601FE1398A613129A94E35 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C3BA9437C3CB69AD4B74 /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker -Xanalyzer deadcode"; }; };
 		2FE190A92BE65B198B30250B /* FBLikeBoxBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC4EF8B6509A1C4CA1AD1BB /* FBLikeBoxBorderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker -Xanalyzer deadcode"; }; };
+		31A3121C1AEB8678002E6B5C /* FlashButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3121B1AEB8678002E6B5C /* FlashButtonController.m */; };
 		32962D9E7BF783C9FBB89855 /* FBTaggableFriendPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D130A7678EB0728FD61D81C /* FBTaggableFriendPickerViewController.h */; };
 		33025F44A128417EE036BF1A /* FBSession+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FA37523322D36E888F2CF16 /* FBSession+Internal.h */; };
 		347BCDD7DC94F29A8957B0AA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F158EC5592B8FBEBDE9980 /* SystemConfiguration.framework */; };
@@ -686,6 +687,8 @@
 		2EFEEF737F3ABB61811F6A3C /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ar.lproj; path = FDTakeExample/ar.lproj; sourceTree = "<group>"; };
 		2FE1EF3C25E80B3F83669001 /* NSEntityDescription+MagicalDataImport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSEntityDescription+MagicalDataImport.h"; path = "MagicalRecord/Categories/DataImport/NSEntityDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
 		310EE5D269642BA2D1B2A71E /* FBSessionFacebookAppWebLoginStategy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSessionFacebookAppWebLoginStategy.m; path = src/Login/FBSessionFacebookAppWebLoginStategy.m; sourceTree = "<group>"; };
+		31A3121A1AEB8678002E6B5C /* FlashButtonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashButtonController.h; path = YCameraViewController/FlashButtonController.h; sourceTree = "<group>"; };
+		31A3121B1AEB8678002E6B5C /* FlashButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlashButtonController.m; path = YCameraViewController/FlashButtonController.m; sourceTree = "<group>"; };
 		31BA09E8B3D5311D635EDB38 /* FBGraphUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBGraphUser.h; path = src/FBGraphUser.h; sourceTree = "<group>"; };
 		323EBDD3CBEF635F803C49C4 /* FBOpenGraphActionParams.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBOpenGraphActionParams.h; path = src/FBOpenGraphActionParams.h; sourceTree = "<group>"; };
 		32B17B1627BF3E12C0DCD605 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = FDTakeExample/en.lproj; sourceTree = "<group>"; };
@@ -1469,11 +1472,29 @@
 			path = ../../FDTake;
 			sourceTree = "<group>";
 		};
-		32B7955E94092BBF663CF049 /* YCameraView */ = {
+		31A312181AEB8645002E6B5C /* YCameraViewController */ = {
 			isa = PBXGroup;
 			children = (
 				08A629DC1AE9F27F06D4F454 /* YCameraViewController.h */,
 				D46EC70ADA86A74D9A83418C /* YCameraViewController.m */,
+			);
+			name = YCameraViewController;
+			sourceTree = "<group>";
+		};
+		31A312191AEB8655002E6B5C /* FlashButtonController */ = {
+			isa = PBXGroup;
+			children = (
+				31A3121A1AEB8678002E6B5C /* FlashButtonController.h */,
+				31A3121B1AEB8678002E6B5C /* FlashButtonController.m */,
+			);
+			name = FlashButtonController;
+			sourceTree = "<group>";
+		};
+		32B7955E94092BBF663CF049 /* YCameraView */ = {
+			isa = PBXGroup;
+			children = (
+				31A312181AEB8645002E6B5C /* YCameraViewController */,
+				31A312191AEB8655002E6B5C /* FlashButtonController */,
 				D4D98B140139535C68716736 /* Resources */,
 				45813D5895E9A5D4BB75382A /* Support Files */,
 			);
@@ -3106,6 +3127,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A3121C1AEB8678002E6B5C /* FlashButtonController.m in Sources */,
 				7755C66BBFD9D6569705F0DC /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

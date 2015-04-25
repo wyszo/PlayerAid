@@ -451,7 +451,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   controller.delegate = self;
   [self presentViewController:controller animated:YES completion:nil];
   
-  controller.cameraToggleButton.hidden = YES;
+  controller.libraryToggleButton.hidden = YES;
   controller.cancelButton.hidden = YES;
 }
 
