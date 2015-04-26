@@ -22,7 +22,7 @@ static NSString *const kServerIDKey = @"serverID";
   NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:@{
                             kServerIDJSONAttributeName : KZProperty(serverID),
                             @"name" : KZProperty(name),
-                            @"picture" : KZProperty(pictureURL),
+                            @"pictureUri" : KZProperty(pictureURL),
                             @"description" : KZProperty(userDescription)
                            }];
   
