@@ -5,7 +5,7 @@
 #import "EditTutorialStepsViewController.h"
 #import "FontsHelper.h"
 #import "AlertFactory.h"
-#import "NSArrayTableViewDataSource.h"
+#import "TWArrayTableViewDataSource.h"
 #import "TableViewBasicDelegateObject.h"
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
@@ -22,7 +22,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 @property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) NSMutableArray *tutorialSteps;
-@property (strong, nonatomic) NSArrayTableViewDataSource *tableViewDataSource;
+@property (strong, nonatomic) TWArrayTableViewDataSource *tableViewDataSource;
 @property (strong, nonatomic) TableViewBasicDelegateObject *delegateObject;
 
 @end
@@ -60,7 +60,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 
 - (void)setupTableView
 {
-  self.tableViewDataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps attachToTableView:self.tutorialStepsTableView cellNibName:kTutorialCellName];
+  self.tableViewDataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps attachToTableView:self.tutorialStepsTableView cellNibName:kTutorialCellName];
   
   defineWeakSelf();
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {

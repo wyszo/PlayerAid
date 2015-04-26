@@ -23,7 +23,7 @@
 #import "DebugSettings.h"
 #import "Environments.h"
 
-#include "DispatchHelper.h"
-#include "GlobalHelperDefines.h"
+#include "DispatchMacros.h"
+#include "CommonTypes.h"
 
 #endif
