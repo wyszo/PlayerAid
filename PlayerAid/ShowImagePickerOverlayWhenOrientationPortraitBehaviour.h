@@ -2,15 +2,13 @@
 //  PlayerAid
 //
 
-
-@interface ImagePickerOverlayController : NSObject
+@interface ShowImagePickerOverlayWhenOrientationPortraitBehaviour : NSObject
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
 
 - (instancetype)initWithImagePickerController:(UIImagePickerController *)imagePickerController;
 
-- (void)showOverlay;
-- (void)hideOverlay;
+- (void)activateBehaviour;
 
 @end

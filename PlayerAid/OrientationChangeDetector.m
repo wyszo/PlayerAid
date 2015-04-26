@@ -12,6 +12,8 @@
 
 @implementation OrientationChangeDetector
 
+#pragma mark - Initialization
+
 - (id)init
 {
   self = [super init];
@@ -21,6 +23,13 @@
   }
   return self;
 }
+
+- (void)dealloc
+{
+  [self resignFromOrientationChangeNotification];
+}
+
+#pragma mark - Orientation
 
 - (void)updateInterfaceOrientation
 {
@@ -68,11 +77,6 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:self.orientationChangeNotificationName object:nil];
   [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-}
-
-- (void)dealloc
-{
-  [self resignFromOrientationChangeNotification];
 }
 
 #pragma mark - processing notifications

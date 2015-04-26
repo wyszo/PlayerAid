@@ -3,6 +3,12 @@
 //
 
 #import "ImagePickerOverlayController.h"
+#import "OrientationChangeDetector.h"
+#import "UIView+FadeAnimations.h"
+#import "UIImagePickerExtendedEventsObserver.h"
+
+
+static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 
 
 @interface ImagePickerOverlayController()
@@ -27,23 +33,35 @@
 - (void)showOverlay
 {
   AssertTrueOrReturn(self.imagePickerController);
-  [self.imagePickerController.cameraOverlayView addSubview:self.overlayViewController.view];
+  [self.overlayViewController.view removeFromSuperview];
+  
+  [self.overlayViewController.view setFrame:self.imagePickerController.view.frame];
+  [self.imagePickerController setCameraOverlayView:self.overlayViewController.view];
+  [self.overlayViewController.view fadeInAnimationWithDuration:kOverlayFadeAnimationDuration];
 }
 
 - (void)hideOverlay
 {
+  
   AssertTrueOrReturn(self.imagePickerController);
-  [self.overlayViewController.view removeFromSuperview];
+  
+  defineWeakSelf();
+  [self.overlayViewController.view fadeOutAnimationWithDuration:kOverlayFadeAnimationDuration completion:^(BOOL finished) {
+  
+    weakSelf.overlayViewController.view.alpha = 0.0f;
+    weakSelf.overlayViewController.view.hidden = NO;
+    
+    weakSelf.imagePickerController.cameraOverlayView = nil;
+  
+  }];
 }
+
+#pragma mark - Lazy initialization
 
 - (UIViewController *)overlayViewController
 {
-  // TODO: read an overlay view interface from xib!
-  
   if (!_overlayViewController) {
-    _overlayViewController = [[UIViewController alloc] init];
-    _overlayViewController.view.backgroundColor = [UIColor blackColor];
-    _overlayViewController.view.alpha = 0.7f;
+    _overlayViewController = [[UIViewController alloc] initWithNibName:@"CameraPortraitBlockingOverlay" bundle:nil];
   }
   return _overlayViewController;
 }

@@ -23,17 +23,16 @@
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
 #import "UserDefaultsHelper.h"
-#import "OrientationChangeDetector.h"
-#import "UIImagePickerExtendedEventsObserver.h"
 #import "InterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
-#import "ImagePickerOverlayController.h"
+#import "CommonViews.h"
+#import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
-@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate, OrientationChangeDelegate, ExtendedUIImagePickerControllerDelegate>
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -51,11 +50,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
-
-@property (nonatomic, strong) OrientationChangeDetector *orientationChangeDetector;
-@property (nonatomic, strong) UIImagePickerExtendedEventsObserver *imagePickerEventsObserver;
-@property (nonatomic, weak) UIImagePickerController *videoCaptureImagePicker;
-@property (nonatomic, strong) ImagePickerOverlayController *showImagePickerOverlayBehaviour;
+@property (nonatomic, strong) ShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
 
 @end
 
@@ -111,14 +106,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.tutorialTableView.estimatedRowHeight = 100.f;
   
   [self setupAndAttachHeaderViewController];
-  self.tutorialTableView.tableFooterView = [self smallTransparentFooterView];
-}
-
-- (UIView *)smallTransparentFooterView
-{
-  UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
-  footer.backgroundColor = [UIColor clearColor];
-  return footer;
+  self.tutorialTableView.tableFooterView = [CommonViews smallTransparentTableFooterView];
 }
 
 #pragma mark - View layout and setup
@@ -253,6 +241,8 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 #pragma mark - NavigationBar buttons
 
+// TODO: extract this to a decorator class!
+
 - (void)setupNavigationBarButtons
 {
   [self addNavigationBarCancelButton];
@@ -298,6 +288,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
 #pragma mark - Edit button manipulation
+
 // TODO: extract this away from this class!
 
 - (void)updateEditButtonEnabled
@@ -442,7 +433,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)takeOrSelectPhotoUsingFDTake
 {
   AssertTrueOrReturn(self.mediaController);
-  [self.mediaController takePhotoOrChooseFromLibrary]; /* TODO: This should use YCameraViewController!! */
+  [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
 - (void)takeAPictureWithYCameraView
@@ -475,7 +466,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self pushCreateTutorialTextStepViewController];
 }
 
-// TODO: change this to an overlay view!!!
 - (void)hideAddStepPopoverView
 {
   [self.popoverView fadeOutAnimationWithDuration:0.5f];
@@ -492,51 +482,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   if (!tutorial.createdBy) {
     tutorial.createdBy = [self currentUser];
   }
-}
-
-#pragma mark - Video orientation alerts
-
-- (void)checkOrientationPresentOverlayForPortrait
-{
-  AssertTrueOrReturn(self.orientationChangeHelper);
-  if (UIInterfaceOrientationIsPortrait(self.orientationChangeHelper.lastInterfaceOrientation)) {
-    [self presentPortraitOrientationOverlay];
-  }
-}
-
-- (void)presentPortraitOrientationOverlay
-{
-  [self.showImagePickerOverlayBehaviour showOverlay];
-}
-
-- (void)hidePortraitOrientationOverlay
-{
-  [self.showImagePickerOverlayBehaviour hideOverlay];
-}
-
-#pragma mark - ExtendedUIImagePickerControllerDelegate
-
-- (void)imagePickerControllerUserDidCaptureItem
-{
-  [self.orientationChangeHelper stopDetectingOrientationChanges];
-}
-
-- (void)imagePickerControllerUserDidPressRetake
-{
-  [self.orientationChangeHelper startDetectingOrientationChanges];
-  [self checkOrientationPresentOverlayForPortrait];
-}
-
-#pragma mark - OrientationChangeHelper
-
-- (void)orientationDidChangeToPortrait
-{
-  [self presentPortraitOrientationOverlay];
-}
-
-- (void)orientationDidChangeToLandscape
-{
-  [self hidePortraitOrientationOverlay];
 }
 
 #pragma mark - YCameraViewControllerDelegate
@@ -584,7 +529,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)takeController:(FDTakeController *)controller gotVideo:(NSURL *)video withInfo:(NSDictionary *)info
 {
-  self.imagePickerEventsObserver = nil;
+  self.showImagePickerOverlayInPortraitBehaviour = nil;
   
   AssertTrueOrReturn(video);
   [self saveTutorialStepWithVideoURL:video];
@@ -592,17 +537,13 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
 {
-  [self.orientationChangeHelper stopDetectingOrientationChanges];
-  self.imagePickerEventsObserver = nil;
+  self.showImagePickerOverlayInPortraitBehaviour = nil;
 }
 
 - (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController
 {
-  [self.orientationChangeHelper startDetectingOrientationChanges];
-  self.imagePickerEventsObserver = [[UIImagePickerExtendedEventsObserver alloc] initWithDelegate:self];
- 
-  self.videoCaptureImagePicker = imagePickerController;
-  [self checkOrientationPresentOverlayForPortrait];
+  self.showImagePickerOverlayInPortraitBehaviour = [[ShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController];
+  [self.showImagePickerOverlayInPortraitBehaviour activateBehaviour];
 }
 
 #pragma mark - Push views
@@ -674,20 +615,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.tutorial.pngImageData = UIImagePNGRepresentation(image);
 }
 
-#pragma mark - Setters
-
-- (void)setVideoCaptureImagePicker:(UIImagePickerController *)videoCaptureImagePicker
-{
-  _videoCaptureImagePicker = videoCaptureImagePicker;
-  
-  if (videoCaptureImagePicker == nil) {
-    self.showImagePickerOverlayBehaviour = nil;
-    return;
-  }
-  
-  self.showImagePickerOverlayBehaviour = [[ImagePickerOverlayController alloc] initWithImagePickerController:videoCaptureImagePicker];
-}
-
 #pragma mark - Lazy initalization
 
 - (FDTakeController *)mediaController
@@ -702,15 +629,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
     };
   }
   return _mediaController;
-}
-
-- (OrientationChangeDetector *)orientationChangeHelper
-{
-  if (!_orientationChangeDetector) {
-    _orientationChangeDetector = [OrientationChangeDetector new];
-    _orientationChangeDetector.delegate = self;
-  }
-  return _orientationChangeDetector;
 }
 
 @end
