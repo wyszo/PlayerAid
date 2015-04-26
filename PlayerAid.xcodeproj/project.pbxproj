@@ -117,6 +117,7 @@
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1E1901AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */; };
+		31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E19D1AECCBB30091ED01 /* UIImage+Cropping.m */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
 		31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1F8F91AADA948005EB35B /* PopoverView.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -341,6 +342,8 @@
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
 		31E1E18E1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h; sourceTree = "<group>"; };
 		31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m; sourceTree = "<group>"; };
+		31E1E19C1AECCBB30091ED01 /* UIImage+Cropping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
+		31E1E19D1AECCBB30091ED01 /* UIImage+Cropping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
 		31E1F8F51AADA853005EB35B /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
 		31E1F8F81AADA948005EB35B /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		31E1F8F91AADA948005EB35B /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
@@ -1148,25 +1151,16 @@
 		31B735F41A88000B0081AE15 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
-				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
-				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
-				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
-				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
-				312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */,
-				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
-				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
-				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
-				312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */,
-				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
-				312E19221AB85D1E00CB5707 /* NSURL+URLString.h */,
-				312E19231AB85D1E00CB5707 /* NSURL+URLString.m */,
-				315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */,
-				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
-				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
-				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
-				311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */,
-				311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */,
+				31E1E1971AECCB290091ED01 /* NSMutableURLRequest */,
+				31E1E1961AECCB1F0091ED01 /* NSSet */,
+				31E1E19A1AECCB4C0091ED01 /* NSString */,
+				31E1E1981AECCB370091ED01 /* NSURL */,
+				31E1E1921AECCAE50091ED01 /* UIView */,
+				31E1E1911AECCADE0091ED01 /* UIImage */,
+				31E1E1951AECCB110091ED01 /* UITableView */,
+				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1327,6 +1321,105 @@
 				31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */,
 			);
 			name = ShowImagePickerOverlayOrientationPortrait;
+			sourceTree = "<group>";
+		};
+		31E1E1911AECCADE0091ED01 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				31E1E19C1AECCBB30091ED01 /* UIImage+Cropping.h */,
+				31E1E19D1AECCBB30091ED01 /* UIImage+Cropping.m */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
+		31E1E1921AECCAE50091ED01 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				31E1E1941AECCAF70091ED01 /* FadeAnimations */,
+				31E1E1931AECCAED0091ED01 /* XibLoading */,
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
+		31E1E1931AECCAED0091ED01 /* XibLoading */ = {
+			isa = PBXGroup;
+			children = (
+				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
+				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
+			);
+			name = XibLoading;
+			sourceTree = "<group>";
+		};
+		31E1E1941AECCAF70091ED01 /* FadeAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
+				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
+			);
+			name = FadeAnimations;
+			sourceTree = "<group>";
+		};
+		31E1E1951AECCB110091ED01 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
+				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
+			);
+			name = UITableView;
+			sourceTree = "<group>";
+		};
+		31E1E1961AECCB1F0091ED01 /* NSSet */ = {
+			isa = PBXGroup;
+			children = (
+				312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */,
+				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
+			);
+			name = NSSet;
+			sourceTree = "<group>";
+		};
+		31E1E1971AECCB290091ED01 /* NSMutableURLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */,
+				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
+			);
+			name = NSMutableURLRequest;
+			sourceTree = "<group>";
+		};
+		31E1E1981AECCB370091ED01 /* NSURL */ = {
+			isa = PBXGroup;
+			children = (
+				312E19221AB85D1E00CB5707 /* NSURL+URLString.h */,
+				312E19231AB85D1E00CB5707 /* NSURL+URLString.m */,
+			);
+			name = NSURL;
+			sourceTree = "<group>";
+		};
+		31E1E1991AECCB420091ED01 /* KZPropertyMapper */ = {
+			isa = PBXGroup;
+			children = (
+				315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */,
+				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
+			);
+			name = KZPropertyMapper;
+			sourceTree = "<group>";
+		};
+		31E1E19A1AECCB4C0091ED01 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
+				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
+		31E1E19B1AECCB560091ED01 /* YCameraViewController */ = {
+			isa = PBXGroup;
+			children = (
+				311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */,
+				311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */,
+			);
+			name = YCameraViewController;
 			sourceTree = "<group>";
 		};
 		31E1F8F71AADA931005EB35B /* PopoverView */ = {
@@ -1649,6 +1742,7 @@
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
+				31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */,
 				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */,
