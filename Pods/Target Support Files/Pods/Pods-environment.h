@@ -132,6 +132,12 @@
 #define COCOAPODS_VERSION_MINOR_NSString_RemoveEmoji 0
 #define COCOAPODS_VERSION_PATCH_NSString_RemoveEmoji 1
 
+// TWCommonLib
+#define COCOAPODS_POD_AVAILABLE_TWCommonLib
+#define COCOAPODS_VERSION_MAJOR_TWCommonLib 0
+#define COCOAPODS_VERSION_MINOR_TWCommonLib 1
+#define COCOAPODS_VERSION_PATCH_TWCommonLib 0
+
 // UIAlertView-Blocks
 #define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks
 #define COCOAPODS_VERSION_MAJOR_UIAlertView_Blocks 1
