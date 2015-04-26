@@ -27,12 +27,13 @@
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
+#import "VideoPlayer.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
-@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate, TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -51,6 +52,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
 @property (nonatomic, strong) ShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
+@property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
 
@@ -139,7 +141,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 {
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   
   defineWeakSelf();
@@ -422,6 +424,14 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - TutorialStepTableViewCellDelegate
+
+- (void)didPressPlayVideoWithURL:(NSURL *)url
+{
+  AssertTrueOrReturn(url);
+  [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
+}
+
 #pragma mark - CreateTutorialStepButtonsDelegate
 
 - (void)addPhotoStepSelected
@@ -629,6 +639,14 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
     };
   }
   return _mediaController;
+}
+   
+- (VideoPlayer *)videoPlayer
+{
+  if (!_videoPlayer) {
+    _videoPlayer = [[VideoPlayer alloc] initWithParentViewController:self.navigationController];
+  }
+  return _videoPlayer;
 }
 
 @end

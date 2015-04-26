@@ -38,15 +38,28 @@
                             <constraint firstAttribute="width" constant="72" id="aWT-tP-gNl"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
+                        <rect key="frame" x="62" y="18" width="288" height="288"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="videoPlayButtonPressed:" destination="1Jw-k5-OUc" eventType="touchUpInside" id="nYF-HF-ZhF"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="4Tm-m2-JEa"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="9" id="9Ap-b6-gby"/>
+                    <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="DPZ-rs-Sof"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="GZX-if-46X"/>
                     <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="9" id="GZw-g5-7we"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
                     <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
+                    <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>
+                    <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="eyB-m9-ILx"/>
+                    <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="fYi-2p-a7u"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="gMU-LR-OHg"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" constant="16" id="kTB-OF-PgU"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="y0s-iP-8ic"/>
@@ -63,9 +76,10 @@
                 <outlet property="contentImageHeightConstraint" destination="tzi-SG-WEi" id="a7J-za-Aco"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
                 <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
+                <outlet property="videoPlayButton" destination="glc-HU-D2Y" id="ajJ-M1-jf6"/>
                 <outlet property="videoPlayImage" destination="eac-Sp-Jwl" id="1pd-1n-XGd"/>
             </connections>
-            <point key="canvasLocation" x="224" y="546"/>
+            <point key="canvasLocation" x="224" y="542"/>
         </tableViewCell>
     </objects>
     <resources>
