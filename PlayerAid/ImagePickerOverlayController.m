@@ -42,17 +42,14 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 
 - (void)hideOverlay
 {
-  
   AssertTrueOrReturn(self.imagePickerController);
   
   defineWeakSelf();
   [self.overlayViewController.view fadeOutAnimationWithDuration:kOverlayFadeAnimationDuration completion:^(BOOL finished) {
-  
     weakSelf.overlayViewController.view.alpha = 0.0f;
     weakSelf.overlayViewController.view.hidden = NO;
     
     weakSelf.imagePickerController.cameraOverlayView = nil;
-  
   }];
 }
 
