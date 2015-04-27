@@ -13,6 +13,7 @@
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
+static const CGFloat kEditTutorialCellHeight = 76.0f;
 
 
 @interface EditTutorialStepsViewController ()
@@ -52,7 +53,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
   
-  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:52.0f];
+  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:kEditTutorialCellHeight];
   [self setupTableView];
   self.backgroundView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
   [self.tutorialStepsTableView setEditing:YES];
