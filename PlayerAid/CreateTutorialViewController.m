@@ -500,9 +500,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 {
   AssertTrueOrReturn(image);
   [self saveTutorialStepWithImage:image];
-  
-  AssertTrueOrReturn(cameraController);
-  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
 }
 
 - (void)yCameraControllerDidCancel:(YCameraViewController *)cameraController
@@ -512,6 +509,12 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 }
 
 - (void)yCameraControllerDidSkip:(YCameraViewController *)cameraController
+{
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+- (void)yCameraController:(YCameraViewController *)cameraController didToggleGridEnabled:(BOOL)gridEnabled
 {
   AssertTrueOrReturn(cameraController);
   [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
