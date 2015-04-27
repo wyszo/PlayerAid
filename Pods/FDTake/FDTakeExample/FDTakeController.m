@@ -24,7 +24,7 @@ static NSString * const kStringsTableName = @"FDTake";
 @interface FDTakeController() <UIActionSheetDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) NSMutableArray *sources;
 @property (strong, nonatomic) NSMutableArray *buttonTitles;
-@property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) UIAlertController *alertController;
 @property (strong, nonatomic) UIPopoverController *popover;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 
@@ -39,7 +39,7 @@ static NSString * const kStringsTableName = @"FDTake";
 @implementation FDTakeController
 @synthesize sources = _sources;
 @synthesize buttonTitles = _buttonTitles;
-@synthesize actionSheet = _actionSheet;
+@synthesize alertController = _alertController;
 @synthesize imagePicker = _imagePicker;
 @synthesize popover = _popover;
 @synthesize viewControllerForPresentingImagePickerController = _viewControllerForPresenting;
@@ -98,7 +98,7 @@ static NSString * const kStringsTableName = @"FDTake";
         [self.buttonTitles addObject:[self textForButtonWithTitle:kChooseFromPhotoRollKey]];
     }
     [self _setUpActionSheet];
-    [self.actionSheet setTag:kPhotosActionSheetTag];
+    [self.alertController.view setTag:kPhotosActionSheetTag];
 }
 
 - (void)takeVideoOrChooseFromLibrary
@@ -118,7 +118,7 @@ static NSString * const kStringsTableName = @"FDTake";
         [self.buttonTitles addObject:[self textForButtonWithTitle:kChooseFromPhotoRollKey]];
     }
     [self _setUpActionSheet];
-    [self.actionSheet setTag:kVideosActionSheetTag];
+    [self.alertController.view setTag:kVideosActionSheetTag];
 }
 
 - (void)takePhotoOrVideoOrChooseFromLibrary
@@ -139,62 +139,7 @@ static NSString * const kStringsTableName = @"FDTake";
         [self.buttonTitles addObject:[self textForButtonWithTitle:kChooseFromPhotoRollKey]];
     }
     [self _setUpActionSheet];
-    [self.actionSheet setTag:kVideosOrPhotosActionSheetTag];
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    UIViewController *aViewController = [self _topViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] ];
-    if (buttonIndex == self.actionSheet.cancelButtonIndex) {
-        if ([self.delegate respondsToSelector:@selector(takeController:didCancelAfterAttempting:)])
-            [self.delegate takeController:self didCancelAfterAttempting:NO];
-    } else {
-        self.imagePicker.sourceType = [[self.sources objectAtIndex:buttonIndex] integerValue];
-        
-        if ((self.imagePicker.sourceType==UIImagePickerControllerSourceTypeCamera) || (self.imagePicker.sourceType==UIImagePickerControllerSourceTypeCamera)) {
-            if (self.defaultToFrontCamera && [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
-                [self.imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
-            }
-        }
-        // set the media type: photo or video
-        if (actionSheet.tag == kPhotosActionSheetTag) {
-            self.imagePicker.allowsEditing = self.allowsEditingPhoto;
-            self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-        } else if (actionSheet.tag == kVideosActionSheetTag) {
-            self.imagePicker.allowsEditing = self.allowsEditingVideo;
-            self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-        } else if (actionSheet.tag == kVideosOrPhotosActionSheetTag) {
-            if ([self.sources count] == 1) {
-                if (buttonIndex == 0) {
-                    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie];
-                }
-            } else {
-                if (buttonIndex == 0) {
-                    self.imagePicker.allowsEditing = self.allowsEditingPhoto;
-                    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-                } else if (buttonIndex == 1) {
-                    self.imagePicker.allowsEditing = self.allowsEditingVideo;
-                    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeMovie];
-                } else if (buttonIndex == 2) {
-                    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie];
-                }
-            }
-        }
-        
-        // On iPad use pop-overs.
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            [self.popover presentPopoverFromRect:self.popOverPresentRect
-                                          inView:aViewController.view
-                        permittedArrowDirections:UIPopoverArrowDirectionAny
-                                        animated:YES];
-        }
-        else {
-            // On iPhone use full screen presentation.
-            [[self presentingViewController] presentViewController:self.imagePicker animated:YES completion:nil];
-        }
-    }
+    [self.alertController.view setTag:kVideosOrPhotosActionSheetTag];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -209,7 +154,6 @@ static NSString * const kStringsTableName = @"FDTake";
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
@@ -253,7 +197,6 @@ static NSString * const kStringsTableName = @"FDTake";
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.imagePicker = nil;
@@ -278,7 +221,6 @@ static NSString * const kStringsTableName = @"FDTake";
     return presentingViewController;
 }
 
-//Added by me
 - (UIViewController *)topViewController:(UIViewController *)rootViewController
 {
     if (rootViewController.presentedViewController == nil) {
@@ -297,42 +239,118 @@ static NSString * const kStringsTableName = @"FDTake";
 
 - (void)_setUpActionSheet
 {
-    if ([self.sources count]) {
-        self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:nil];
-        for (NSString *title in self.buttonTitles)
-            [self.actionSheet addButtonWithTitle:title];
-        [self.actionSheet addButtonWithTitle:[self textForButtonWithTitle:kCancelKey]];
-        self.actionSheet.cancelButtonIndex = self.sources.count;
-        
-        // If on iPad use the present rect and pop over style.
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            [self.actionSheet showFromRect:self.popOverPresentRect inView:[self presentingViewController].view animated:YES];
-        }
-        else if(self.tabBar) {
-            [self.actionSheet showFromTabBar:self.tabBar];
-        }
-        else {
-            // Otherwise use iPhone style action sheet presentation.
-            UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
-            if ([window.subviews containsObject:[self presentingViewController].view]) {
-                [self.actionSheet showInView:[self presentingViewController].view];
-            } else {
-                [self.actionSheet showInView:window];
-            }
-        }
-    } else {
-        NSString *str = [self textForButtonWithTitle:kNoSourcesKey];
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:str
-                                   delegate:self
-                          cancelButtonTitle:nil
-                          otherButtonTitles:nil] show];
-    }
+  if (self.sources.count) {
+    self.alertController = [self constructAlertControllerFromButtonTitles];
+    [self.presentingViewController presentViewController:self.alertController animated:YES completion:nil];
+  }
+  else {
+    NSString *message = [self textForButtonWithTitle:kNoSourcesKey];
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:message
+                               delegate:self
+                      cancelButtonTitle:nil
+                      otherButtonTitles:nil] show];
+  }
 }
+
+- (UIAlertController *)constructAlertControllerFromButtonTitles
+{
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  
+  for (int i=0; i < self.buttonTitles.count; i++) {
+    NSString *title = self.buttonTitles[i];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+      [self actionSheetDidDismissWithButtonIndex:i cancelButton:NO];
+    }];
+    [alertController addAction:alertAction];
+  }
+  
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    [self.delegate takeController:self didCancelAfterAttempting:NO];
+  }];
+  [alertController addAction:cancelAction];
+  
+  return alertController;
+}
+
+#pragma mark - ActionSheet handling
+
+- (void)actionSheetDidDismissWithButtonIndex:(NSInteger)buttonIndex cancelButton:(BOOL)cancelButton
+{
+  UIViewController *aViewController = [self _topViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController] ];
+  
+  if (!cancelButton) {
+    self.imagePicker.sourceType = [[self.sources objectAtIndex:buttonIndex] integerValue];
+    
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+      if (self.defaultToFrontCamera && [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
+        [self.imagePicker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
+      }
+    }
+    
+    // set the media type: photo or video
+    if (self.alertController.view.tag == kPhotosActionSheetTag) {
+      self.imagePicker.allowsEditing = self.allowsEditingPhoto;
+      self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    } else if (self.alertController.view.tag == kVideosActionSheetTag) {
+      self.imagePicker.allowsEditing = self.allowsEditingVideo;
+      self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+    } else if (self.alertController.view.tag == kVideosOrPhotosActionSheetTag) {
+      if ([self.sources count] == 1) {
+        if (buttonIndex == 0) {
+          self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie];
+        }
+      } else {
+        if (buttonIndex == 0) {
+          self.imagePicker.allowsEditing = self.allowsEditingPhoto;
+          self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
+        } else if (buttonIndex == 1) {
+          self.imagePicker.allowsEditing = self.allowsEditingVideo;
+          self.imagePicker.mediaTypes = @[(NSString *)kUTTypeMovie];
+        } else if (buttonIndex == 2) {
+          self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie];
+        }
+      }
+    }
+    
+    if (self.isInPhotoCaptureMode) {
+      if (self.presentCustomPhotoCaptureViewBlock) {
+        self.presentCustomPhotoCaptureViewBlock();
+        return;
+      }
+    }
+    
+    // On iPad use pop-overs.
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+      [self.popover presentPopoverFromRect:self.popOverPresentRect
+                                    inView:aViewController.view
+                  permittedArrowDirections:UIPopoverArrowDirectionAny
+                                  animated:YES];
+    }
+    else {
+      // On iPhone use full screen presentation.
+      [[self presentingViewController] presentViewController:self.imagePicker animated:YES completion:nil];
+    }
+    
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera && [self imagePickerSupportsOnlyMovieMediaType]) {
+      if ([self.delegate respondsToSelector:@selector(takeControllerDidStartTakingVideo:withImagePickerController:)]) {
+        [self.delegate takeControllerDidStartTakingVideo:self withImagePickerController:self.imagePicker];
+      }
+    }
+  }
+}
+
+- (BOOL)isInPhotoCaptureMode
+{
+  return (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera && [self.imagePicker.mediaTypes containsObject:(NSString *)kUTTypeImage]);
+}
+
+- (BOOL)imagePickerSupportsOnlyMovieMediaType
+{
+  return ([self.imagePicker.mediaTypes containsObject:kUTTypeMovie] && ![self.imagePicker.mediaTypes containsObject:kUTTypeImage]);
+}
+
+#pragma mark - Auxiliary methods
 
 // This is a hack required on iPad if you want to select a photo and you already have a popup on the screen
 // see: http://stackoverflow.com/questions/11748845/present-more-than-one-modalview-in-appdelegate
