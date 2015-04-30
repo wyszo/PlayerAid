@@ -49,7 +49,6 @@
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
-		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
@@ -209,8 +208,6 @@
 		312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoSegmentedControlButtonView.m; sourceTree = "<group>"; };
 		312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionsDataSource.h; sourceTree = "<group>"; };
 		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionsDataSource.m; sourceTree = "<group>"; };
-		312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+SetByRemoving.h"; sourceTree = "<group>"; };
-		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
@@ -1105,7 +1102,6 @@
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
 				31E1E1971AECCB290091ED01 /* NSMutableURLRequest */,
-				31E1E1961AECCB1F0091ED01 /* NSSet */,
 				31E1E19A1AECCB4C0091ED01 /* NSString */,
 				31E1E1981AECCB370091ED01 /* NSURL */,
 				31E1E1921AECCAE50091ED01 /* UIView */,
@@ -1307,15 +1303,6 @@
 				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
 			);
 			name = UITableView;
-			sourceTree = "<group>";
-		};
-		31E1E1961AECCB1F0091ED01 /* NSSet */ = {
-			isa = PBXGroup;
-			children = (
-				312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */,
-				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
-			);
-			name = NSSet;
 			sourceTree = "<group>";
 		};
 		31E1E1971AECCB290091ED01 /* NSMutableURLRequest */ = {
@@ -1632,7 +1619,6 @@
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
-				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
