@@ -18,7 +18,6 @@
 #import "UsersController.h"
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
-#import "UIView+FadeAnimations.h"
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
@@ -288,7 +287,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.navigationItem.titleView = nil;
 }
 
-
 #pragma mark - Edit button manipulation
 
 // TODO: extract this away from this class!
@@ -478,7 +476,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)hideAddStepPopoverView
 {
-  [self.popoverView fadeOutAnimationWithDuration:0.5f];
+  [self.popoverView tw_fadeOutAnimationWithDuration:0.5f];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial

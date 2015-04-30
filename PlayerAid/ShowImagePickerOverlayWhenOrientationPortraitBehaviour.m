@@ -5,7 +5,6 @@
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "ImagePickerOverlayController.h"
 #import "OrientationChangeDetector.h"
-#import "UIView+FadeAnimations.h"
 #import "UIImagePickerExtendedEventsObserver.h"
 
 

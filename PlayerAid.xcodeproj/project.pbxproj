@@ -51,7 +51,6 @@
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
-		315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
@@ -124,7 +123,6 @@
 		31F116831A790F680022BD74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31F116811A790F680022BD74 /* Main.storyboard */; };
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
-		31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */; };
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		E295213B5CAC5C0FFF53662C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BF40B97ED22C5437512D96 /* libPods.a */; };
@@ -215,8 +213,6 @@
 		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
-		315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObjectLifetime.h"; sourceTree = "<group>"; };
-		315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObjectLifetime.m"; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315148A71AB9DF5F008934AE /* NSString+Trimming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trimming.h"; sourceTree = "<group>"; };
@@ -350,8 +346,6 @@
 		31F116821A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31F116841A790F680022BD74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31F116871A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FadeAnimations.h"; sourceTree = "<group>"; };
-		31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FadeAnimations.m"; sourceTree = "<group>"; };
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
@@ -725,15 +719,6 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
-		315148A01AB9B441008934AE /* ObjectLifetime */ = {
-			isa = PBXGroup;
-			children = (
-				315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */,
-				315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */,
-			);
-			name = ObjectLifetime;
-			sourceTree = "<group>";
-		};
 		315822241AEBD83000DA6CCE /* ImagePickerOverlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,7 +777,6 @@
 				312C6AB41AD4801200D96C19 /* DataCleanupHelper */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
-				315148A01AB9B441008934AE /* ObjectLifetime */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
@@ -1302,7 +1286,6 @@
 		31E1E1921AECCAE50091ED01 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				31E1E1941AECCAF70091ED01 /* FadeAnimations */,
 				31E1E1931AECCAED0091ED01 /* XibLoading */,
 			);
 			name = UIView;
@@ -1315,15 +1298,6 @@
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 			);
 			name = XibLoading;
-			sourceTree = "<group>";
-		};
-		31E1E1941AECCAF70091ED01 /* FadeAnimations */ = {
-			isa = PBXGroup;
-			children = (
-				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
-				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
-			);
-			name = FadeAnimations;
 			sourceTree = "<group>";
 		};
 		31E1E1951AECCB110091ED01 /* UITableView */ = {
@@ -1677,7 +1651,6 @@
 				312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
-				315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
@@ -1709,7 +1682,6 @@
 				31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */,
 				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
-				31FFDE1A1AADDAF4006E4D0E /* UIView+FadeAnimations.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
 				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,
