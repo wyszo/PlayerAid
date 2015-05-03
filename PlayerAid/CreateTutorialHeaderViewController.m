@@ -14,7 +14,8 @@
 #import "NSString+Trimming.h"
 
 
-static const CGSize originalViewSize = { 320.0f, 226.0f };
+// Technical debt! This should be read from the xib file!! Otherwise it's VERY confusing!!
+static const CGSize originalViewSize = { 320.0f, 320.0f };
 
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
