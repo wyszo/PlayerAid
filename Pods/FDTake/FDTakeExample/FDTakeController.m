@@ -266,7 +266,9 @@ static NSString * const kStringsTableName = @"FDTake";
   }
   
   UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    [self.delegate takeController:self didCancelAfterAttempting:NO];
+    if ([self.delegate respondsToSelector:@selector(takeController:didCancelAfterAttempting:)]) {
+      [self.delegate takeController:self didCancelAfterAttempting:NO];
+    }
   }];
   [alertController addAction:cancelAction];
   
