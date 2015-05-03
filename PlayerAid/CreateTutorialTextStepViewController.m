@@ -159,6 +159,18 @@ const NSInteger kTextStepDismissedError = 1;
   }];
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [self deselectAllText];
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)deselectAllText
+{
+  self.textView.selectedTextRange = nil;
+}
+
 - (void)dismissViewController
 {
   NSError *error = [NSError errorWithDomain:kCreateTutorialErrorDomain code:kTextStepDismissedError userInfo:nil];
