@@ -3,7 +3,6 @@
 //
 
 #import "ImagePickerOverlayController.h"
-#import "OrientationChangeDetector.h"
 #import "UIImagePickerExtendedEventsObserver.h"
 
 
