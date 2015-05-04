@@ -261,12 +261,4 @@ static const CGSize originalViewSize = { 320.0f, 320.0f };
   return _mediaController;
 }
 
-#pragma mark - Size calculations 
-
-- (CGFloat)headerViewHeightForWidth:(CGFloat)width
-{
-  CGFloat offset = 32.0f;
-  return width * (originalViewSize.height + offset) / originalViewSize.width;
-}
-
 @end
