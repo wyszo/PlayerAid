@@ -47,7 +47,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - Facebook-iOS-SDK (= 3.22.0)
-  - FDTake (from `../FDTake`)
+  - FDTake (from `../FDTake`, branch `ThomasChanges`)
   - FLKAutolayout (= 0.2.1)
   - GoogleAnalytics-iOS-SDK (= 3.10)
   - KZAsserts (= 1.0)
@@ -61,6 +61,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   FDTake:
+    :branch: ThomasChanges
     :git: ../FDTake
   TWCommonLib:
     :branch: TableViews

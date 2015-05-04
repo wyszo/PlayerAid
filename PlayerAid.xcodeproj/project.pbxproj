@@ -36,7 +36,6 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
-		311486581ADE3C8100A644CD /* OrientationChangeDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486571ADE3C8100A644CD /* OrientationChangeDetector.m */; };
 		3114865C1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */; };
 		311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */; };
 		311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */; };
@@ -184,8 +183,6 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
-		311486561ADE3C8100A644CD /* OrientationChangeDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrientationChangeDetector.h; sourceTree = "<group>"; };
-		311486571ADE3C8100A644CD /* OrientationChangeDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrientationChangeDetector.m; sourceTree = "<group>"; };
 		3114865A1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePickerExtendedEventsObserver.h; sourceTree = "<group>"; };
 		3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerExtendedEventsObserver.m; sourceTree = "<group>"; };
 		311486601ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationViewControllerDecorator.h; sourceTree = "<group>"; };
@@ -584,20 +581,10 @@
 			name = EditTutorialSteps;
 			sourceTree = "<group>";
 		};
-		311486551ADE3C6C00A644CD /* OrientationChange */ = {
-			isa = PBXGroup;
-			children = (
-				311486561ADE3C8100A644CD /* OrientationChangeDetector.h */,
-				311486571ADE3C8100A644CD /* OrientationChangeDetector.m */,
-			);
-			name = OrientationChange;
-			sourceTree = "<group>";
-		};
 		311486591ADF37AB00A644CD /* Observers */ = {
 			isa = PBXGroup;
 			children = (
 				3114865D1ADFC12E00A644CD /* ImagePickerEvents */,
-				311486551ADE3C6C00A644CD /* OrientationChange */,
 			);
 			name = Observers;
 			sourceTree = "<group>";
@@ -1627,7 +1614,6 @@
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
 				31E1E1901AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m in Sources */,
-				311486581ADE3C8100A644CD /* OrientationChangeDetector.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
