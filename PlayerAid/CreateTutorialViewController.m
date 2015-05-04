@@ -119,6 +119,8 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  
+  [self updateTableHeaderViewSize];
 }
 
 - (void)viewWillLayoutSubviews
@@ -130,10 +132,13 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)updateTableHeaderViewSize
 {
   CGFloat viewWidth = self.view.frame.size.width;
-  CGFloat proportionalHeight = [self.headerViewController headerViewHeightForWidth:viewWidth];
+  UIView *headerContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewWidth)];
+
+  UIView *view = self.headerViewController.view;
+  view.frame = CGRectMake(0, 0, viewWidth, viewWidth);
+  [headerContainer addSubview:view];
   
-  self.headerViewController.view.frame = CGRectMake(0, 0, viewWidth, proportionalHeight);
-  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  self.tutorialTableView.tableHeaderView = headerContainer;
 }
 
 - (void)setupTutorialStepsDataSource
