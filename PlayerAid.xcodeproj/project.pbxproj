@@ -1563,7 +1563,7 @@
 		};
 		FF29C1B0B295D708BE1FA8B6 /* Find unused imports */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1571,7 +1571,7 @@
 			name = "Find unused imports";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"/Users/wyszo/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Volumes/OS X Mavericks/Users/wyszo/Documents/Devel/PlayerAid/PlayerAid\"";
 		};
