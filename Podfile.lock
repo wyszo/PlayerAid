@@ -87,7 +87,7 @@ SPEC CHECKSUMS:
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
-  TWCommonLib: 2a0461a7fb6345735c0cee44bac9f9989c567b09
+  TWCommonLib: 79e865825df992f42eaff258e95424adf8a327c5
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   YCameraView: f13abd86a3115daffe1d76c9ae3d6af87abc7f67
 
