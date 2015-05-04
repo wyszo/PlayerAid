@@ -3,6 +3,7 @@
 //
 
 #import "MediaPickerHelper.h"
+#import "PersistedUsersProperties.h"
 
 
 @implementation MediaPickerHelper
@@ -19,6 +20,21 @@
   mediaController.allowsEditingVideo = YES;
   
   return mediaController;
+}
+
++ (void)takePictureUsingYCameraViewWithDelegate:(id<YCameraViewControllerDelegate>)delegate fromViewController:(UIViewController *)parentViewController
+{
+  AssertTrueOrReturn(delegate);
+  AssertTrueOrReturn(parentViewController);
+  
+  YCameraViewController *controller = [YCameraViewController new];
+  controller.prefersStatusBarHidden = YES;
+  controller.gridInitiallyHidden = !([PersistedUsersProperties sharedInstance].gridEnabled);
+  controller.delegate = delegate;
+  [parentViewController presentViewController:controller animated:YES completion:nil];
+  
+  controller.libraryToggleButton.hidden = YES;
+  controller.cancelButton.hidden = YES;
 }
 
 @end
