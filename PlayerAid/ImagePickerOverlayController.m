@@ -30,6 +30,10 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 
 - (void)showOverlay
 {
+  if ([self overlayVisible]) {
+    return;
+  }
+  
   AssertTrueOrReturn(self.imagePickerController);
   [self.overlayViewController.view removeFromSuperview];
   
@@ -49,6 +53,12 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
     
     weakSelf.imagePickerController.cameraOverlayView = nil;
   }];
+}
+
+- (BOOL)overlayVisible
+{
+  UIView *overlayView = self.overlayViewController.view;
+  return (overlayView.superview != nil && overlayView.alpha > 0 && overlayView.hidden == NO);
 }
 
 #pragma mark - Lazy initialization
