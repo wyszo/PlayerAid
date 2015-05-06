@@ -5,7 +5,6 @@
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "ImagePickerOverlayController.h"
 #import "UIImagePickerExtendedEventsObserver.h"
-#import "TWOrientationChangeDetector.h"
 
 
 @interface ShowImagePickerOverlayWhenOrientationPortraitBehaviour() <TWOrientationChangeDelegate, ExtendedUIImagePickerControllerDelegate>
