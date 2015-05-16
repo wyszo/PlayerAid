@@ -15,10 +15,15 @@
 #import "YCameraViewStandardDelegateObject.h"
 
 
-@interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
+static const NSInteger kMaxTitleLength = 60;
+
+
+@interface CreateTutorialHeaderViewController () <UIActionSheetDelegate, FDTakeDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextView *titleTextView;
+@property (strong, nonatomic) TWTextViewWithMaxLengthDelegate *titleTextViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
 @property (weak, nonatomic) IBOutlet UIView *grayOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
@@ -48,11 +53,20 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupTitleTextView];
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
   [self setupSectionLabelContainer];
   [self setupCustomCamera];
+}
+
+- (void)setupTitleTextView
+{
+  // TODO: setup border!
+  
+  self.titleTextViewDelegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:kMaxTitleLength attachToTextView:self.titleTextView];
+  self.titleTextViewDelegate.resignsFirstResponderOnPressingReturn = YES;
 }
 
 - (void)setupCustomCamera
@@ -90,9 +104,9 @@
   return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.pickACategoryButton];
 }
 
-- (void)setupTitleTextFieldWhiteText
+- (void)setupTitleTextViewWhiteText
 {
-  self.titleTextField.textColor = [UIColor whiteColor];
+  self.titleTextView.textColor = [UIColor whiteColor];
 }
 
 - (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button
@@ -119,7 +133,7 @@
   [self setupPickACategoryButtonBackgroundImageWhite];
   [self.pickACategoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   
-  [self setupTitleTextFieldWhiteText];
+  [self setupTitleTextViewWhiteText];
   
   // TODO: make textfield border white
 }
@@ -146,27 +160,6 @@
   self.sectionLabelContainerButton.hidden = NO;
   
   self.pickACategoryButton.hidden = YES;
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-  [textField resignFirstResponder];
-  return YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-  // Prevent crashing undo bug – see note below.
-  if(range.length + range.location > textField.text.length)
-  {
-    return NO;
-  }
-  
-  NSUInteger newLength = [textField.text length] + [string length] - range.length;
-  const NSInteger maxTextFieldLength = 60;
-  return (newLength > maxTextFieldLength) ? NO : YES;
 }
 
 #pragma mark - IBActions
@@ -227,7 +220,7 @@
 
 - (NSString *)title
 {
-  return [self.titleTextField.text stringByTrimmingWhitespaceAndNewline];
+  return [self.titleTextView.text stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma mark - Edit Cover photo handling
