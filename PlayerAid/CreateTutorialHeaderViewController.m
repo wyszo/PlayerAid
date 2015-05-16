@@ -24,6 +24,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 @interface CreateTutorialHeaderViewController () <UIActionSheetDelegate, FDTakeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *titleTextView;
+@property (weak, nonatomic) IBOutlet UITextField *titlePlaceholderTextView;
 @property (strong, nonatomic) TWTextViewWithMaxLengthDelegate *titleTextViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
@@ -68,8 +69,15 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 - (void)setupTitleTextViewDelegate
 {
-  self.titleTextViewDelegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:kMaxTitleLength attachToTextView:self.titleTextView];
-  self.titleTextViewDelegate.resignsFirstResponderOnPressingReturn = YES;
+  TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:kMaxTitleLength attachToTextView:self.titleTextView];
+  delegate.resignsFirstResponderOnPressingReturn = YES;
+  
+  defineWeakSelf();
+  delegate.textDidChange = ^(NSString *text) {
+    weakSelf.titlePlaceholderTextView.hidden = (text.length > 0);
+  };
+  
+  self.titleTextViewDelegate = delegate;
 }
 
 - (void)styleTitleTextView
