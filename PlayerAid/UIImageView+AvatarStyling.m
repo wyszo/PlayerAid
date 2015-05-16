@@ -13,25 +13,24 @@ static const CGFloat kLargeAvatarBorderWidth = 2.25f;
 - (void)styleAsSmallAvatar
 {
   [self makeCircular];
-  [self addBorderWithWidth:kSmallAvatarBorderWidth];
+  [self addBorderWithWidth:kSmallAvatarBorderWidth color:self.borderColor];
 }
 
 - (void)styleAsLargeAvatar
 {
   [self makeCircular];
-  [self addBorderWithWidth:kLargeAvatarBorderWidth];
+  [self addBorderWithWidth:kLargeAvatarBorderWidth color:self.borderColor];
+}
+
+- (UIColor *)borderColor
+{
+  return [UIColor whiteColor];
 }
 
 - (void)makeCircular
 {
-  self.layer.cornerRadius = self.self.frame.size.width / 2.0f;
+  [self setCornerRadius:(self.self.frame.size.width / 2.0f) ];
   self.clipsToBounds = YES;
-}
-
-- (void)addBorderWithWidth:(CGFloat)borderWidth
-{
-  self.layer.borderWidth = borderWidth;
-  self.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 @end
