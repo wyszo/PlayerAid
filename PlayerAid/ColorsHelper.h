@@ -22,4 +22,6 @@
 
 + (UIColor *)loginAndPlayerInfoViewBackgroundColor;
 
++ (UIColor *)createTutorialHeaderElementsBorderColor;
+
 @end

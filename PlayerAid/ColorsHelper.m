@@ -4,8 +4,6 @@
 
 #import "ColorsHelper.h"
 
-
-#define UIColorMake(r,g,b) [UIColor colorWithRed:((CGFloat)r)/255.0 green:((CGFloat)g)/255.0 blue:((CGFloat)b)/255 alpha:1.0];
 #define UIColorMethodMake(name,r,g,b) +(UIColor *)name { return UIColorMake(r,g,b) }
 
 
@@ -27,5 +25,7 @@ UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 
 UIColorMethodMake(loginAndPlayerInfoViewBackgroundColor, 44, 72, 134)
+
+UIColorMethodMake(createTutorialHeaderElementsBorderColor, 141, 141, 141)
 
 @end

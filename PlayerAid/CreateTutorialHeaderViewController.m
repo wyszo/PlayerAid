@@ -13,9 +13,12 @@
 #import "SectionLabelContainer.h"
 #import "NSString+Trimming.h"
 #import "YCameraViewStandardDelegateObject.h"
+#import "ColorsHelper.h"
 
 
 static const NSInteger kMaxTitleLength = 60;
+static const NSInteger kLeftRightContentInset = 10;
+static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 
 @interface CreateTutorialHeaderViewController () <UIActionSheetDelegate, FDTakeDelegate>
@@ -53,7 +56,9 @@ static const NSInteger kMaxTitleLength = 60;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self setupTitleTextView];
+  
+  [self setupTitleTextViewDelegate];
+  [self styleTitleTextView];
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
@@ -61,12 +66,23 @@ static const NSInteger kMaxTitleLength = 60;
   [self setupCustomCamera];
 }
 
-- (void)setupTitleTextView
+- (void)setupTitleTextViewDelegate
 {
-  // TODO: setup border!
-  
   self.titleTextViewDelegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:kMaxTitleLength attachToTextView:self.titleTextView];
   self.titleTextViewDelegate.resignsFirstResponderOnPressingReturn = YES;
+}
+
+- (void)styleTitleTextView
+{
+  [self setTitleTextViewLeftAndRightContentInsets:kLeftRightContentInset];
+  [self.titleTextView setCornerRadius:kTitleTextViewCornerRadius];
+  [self setTitleTextViewBorderColor:[ColorsHelper createTutorialHeaderElementsBorderColor]];
+}
+
+- (void)setTitleTextViewLeftAndRightContentInsets:(NSInteger)leftRightInset
+{
+  UIEdgeInsets insets = self.titleTextView.textContainerInset;
+  self.titleTextView.textContainerInset = UIEdgeInsetsMake(insets.top, leftRightInset, insets.bottom, leftRightInset);
 }
 
 - (void)setupCustomCamera
@@ -104,9 +120,16 @@ static const NSInteger kMaxTitleLength = 60;
   return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.pickACategoryButton];
 }
 
-- (void)setupTitleTextViewWhiteText
+- (void)setupTitleTextViewTextAndBorderWhite
 {
   self.titleTextView.textColor = [UIColor whiteColor];
+  [self setTitleTextViewBorderColor:[UIColor whiteColor]];
+}
+
+- (void)setTitleTextViewBorderColor:(UIColor *)color
+{
+  AssertTrueOrReturn(color);
+  [self.titleTextView addBorderWithWidth:1.0f color:color];
 }
 
 - (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button
@@ -133,9 +156,7 @@ static const NSInteger kMaxTitleLength = 60;
   [self setupPickACategoryButtonBackgroundImageWhite];
   [self.pickACategoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   
-  [self setupTitleTextViewWhiteText];
-  
-  // TODO: make textfield border white
+  [self setupTitleTextViewTextAndBorderWhite];
 }
 
 // this should be part of UIView, not a view controller..
