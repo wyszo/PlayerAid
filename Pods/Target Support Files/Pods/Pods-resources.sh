@@ -88,6 +88,7 @@ install_resource()
                     install_resource "../../YCameraView/YCameraViewController/UI/micro_carbon@2x.png"
                     install_resource "../../YCameraView/YCameraViewController/UI/take-snap.png"
                     install_resource "../../YCameraView/YCameraViewController/UI/take-snap@2x.png"
+                    install_resource "../../YCameraView/YCameraViewController/UI/take-snap@3x.png"
                     install_resource "../../YCameraView/YCameraViewController/YCameraViewController.xib"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
