@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31777FFA1A7F9445007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* AuthenticationController.m */; };
+		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
+		31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */; };
+		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
+		317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* DataExtractionHelper.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -34,8 +37,14 @@
 /* Begin PBXFileReference section */
 		2250F9FBF5E8C664F2A00ECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		31777FF81A7F9445007057CD /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
-		31777FF91A7F9445007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
+		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
+		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
+		31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
+		31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicationController.m; sourceTree = "<group>"; };
+		31777FFF1A7FBFBC007057CD /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
+		317780001A7FBFBC007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
+		317780031A7FC6B6007057CD /* DataExtractionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExtractionHelper.h; sourceTree = "<group>"; };
+		317780041A7FC6B6007057CD /* DataExtractionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataExtractionHelper.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -80,10 +89,31 @@
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				31777FF81A7F9445007057CD /* AuthenticationController.h */,
-				31777FF91A7F9445007057CD /* AuthenticationController.m */,
+				31777FFE1A7FBF84007057CD /* Authentication */,
+				31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */,
+				31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		31777FFE1A7FBF84007057CD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */,
+				31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */,
+				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
+				317780001A7FBFBC007057CD /* AuthenticationController.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		317780021A7FC6A7007057CD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
+				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -140,6 +170,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				317780021A7FC6A7007057CD /* Helpers */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
@@ -330,9 +361,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F116801A790F680022BD74 /* SecondViewController.m in Sources */,
-				31777FFA1A7F9445007057CD /* AuthenticationController.m in Sources */,
+				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
+				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
+				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* FirstViewController.m in Sources */,
+				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,

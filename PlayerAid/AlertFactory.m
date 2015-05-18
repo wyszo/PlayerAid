@@ -8,9 +8,19 @@
 
 @implementation AlertFactory
 
-// error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2
-+ (UIAlertView *)showAlertFromFacebookError:(NSError *)error {
++ (UIAlertView *)showGenericErrorAlertView
+{
+  NSString *title = @"Communication Error";
+  NSString *message = @"Unable to contact PlayerAid cloud. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection. The app will continue to try to connect.";
   
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+  [alert show];
+  return alert;
+}
+
+// error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2
++ (UIAlertView *)showAlertFromFacebookError:(NSError *)error
+{
   NSString *alertMessage, *alertTitle;
   UIAlertView *alertView;
   
