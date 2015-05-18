@@ -8,6 +8,7 @@ extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *draft;
 	__unsafe_unretained NSString *favourited;
 	__unsafe_unretained NSString *inReview;
+	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *title;
 } TutorialAttributes;
 
@@ -56,6 +57,10 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateInReview:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* state;
+
+//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -92,6 +97,9 @@ extern const struct TutorialRelationships {
 
 - (BOOL)primitiveInReviewValue;
 - (void)setPrimitiveInReviewValue:(BOOL)value_;
+
+- (NSString*)primitiveState;
+- (void)setPrimitiveState:(NSString*)value;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

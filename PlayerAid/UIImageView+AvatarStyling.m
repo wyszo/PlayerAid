@@ -24,7 +24,7 @@ static const CGFloat kLargeAvatarBorderWidth = 2.25f;
 
 - (void)makeCircular
 {
-  self.layer.cornerRadius = self.self.frame.size.width / 2;
+  self.layer.cornerRadius = self.self.frame.size.width / 2.0f;
   self.clipsToBounds = YES;
 }
 

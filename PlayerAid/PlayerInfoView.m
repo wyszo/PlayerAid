@@ -49,6 +49,12 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   [self.avatarImageView styleAsLargeAvatar];
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+  [self.avatarImageView styleAsLargeAvatar];
+  [super willMoveToSuperview:newSuperview];
+}
+
 - (void)xibSetup
 {
   self.view = [UIView viewFromNibNamed:kNibFileName withOwner:self];
