@@ -8,8 +8,8 @@
 
 @interface AuthenticationController : NSObject
 
-- (id)init __unavailable;
-+ (id)new __unavailable;
+- (instancetype)init __unavailable;
++ (instancetype)new __unavailable;
 
 /** 
  Returns a Facebook login button, which when user authenticates, triggers internal PlayerAid authentication. Network traffic and error handling are done automatically, you don't need to perform any additional error checking.

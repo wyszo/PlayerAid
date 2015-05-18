@@ -7,8 +7,8 @@
 
 @interface FacebookAuthenticationController : NSObject
 
-- (id)init __unavailable;
-+ (id)new __unavailable;
+- (instancetype)init __unavailable;
++ (instancetype)new __unavailable;
 
 + (FBLoginView *)facebookLoginViewWithLoginCompletion:(void (^)(id<FBGraphUser> user, NSError *error))completion;
 
