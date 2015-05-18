@@ -48,6 +48,8 @@
 	<string>438801752955361</string>
 	<key>FacebookDisplayName</key>
 	<string>TestProject</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

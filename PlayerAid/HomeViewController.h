@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface HomeViewController : UIViewController
 
 
 @end
