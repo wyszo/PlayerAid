@@ -13,10 +13,12 @@ extern const struct TutorialAttributes {
 } TutorialAttributes;
 
 extern const struct TutorialRelationships {
+	__unsafe_unretained NSString *consistsOf;
 	__unsafe_unretained NSString *createdBy;
 	__unsafe_unretained NSString *section;
 } TutorialRelationships;
 
+@class TutorialStep;
 @class User;
 @class Section;
 
@@ -65,6 +67,10 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSOrderedSet *consistsOf;
+
+- (NSMutableOrderedSet*)consistsOfSet;
+
 @property (nonatomic, strong) User *createdBy;
 
 //- (BOOL)validateCreatedBy:(id*)value_ error:(NSError**)error_;
@@ -72,6 +78,21 @@ extern const struct TutorialRelationships {
 @property (nonatomic, strong) Section *section;
 
 //- (BOOL)validateSection:(id*)value_ error:(NSError**)error_;
+
+@end
+
+@interface _Tutorial (ConsistsOfCoreDataGeneratedAccessors)
+- (void)addConsistsOf:(NSOrderedSet*)value_;
+- (void)removeConsistsOf:(NSOrderedSet*)value_;
+- (void)addConsistsOfObject:(TutorialStep*)value_;
+- (void)removeConsistsOfObject:(TutorialStep*)value_;
+
+- (void)insertObject:(TutorialStep*)value inConsistsOfAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromConsistsOfAtIndex:(NSUInteger)idx;
+- (void)insertConsistsOf:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeConsistsOfAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInConsistsOfAtIndex:(NSUInteger)idx withObject:(TutorialStep*)value;
+- (void)replaceConsistsOfAtIndexes:(NSIndexSet *)indexes withConsistsOf:(NSArray *)values;
 
 @end
 
@@ -103,6 +124,9 @@ extern const struct TutorialRelationships {
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
+
+- (NSMutableOrderedSet*)primitiveConsistsOf;
+- (void)setPrimitiveConsistsOf:(NSMutableOrderedSet*)value;
 
 - (User*)primitiveCreatedBy;
 - (void)setPrimitiveCreatedBy:(User*)value;

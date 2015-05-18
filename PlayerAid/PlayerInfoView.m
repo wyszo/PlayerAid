@@ -30,7 +30,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self xibSetup];
+    [self loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }
@@ -39,7 +39,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self xibSetup];
+    [self loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }
@@ -53,14 +53,6 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 {
   [self.avatarImageView styleAsLargeAvatar];
   [super willMoveToSuperview:newSuperview];
-}
-
-- (void)xibSetup
-{
-  self.view = [UIView viewFromNibNamed:kNibFileName withOwner:self];
-  self.view.frame = self.bounds;
-  self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  [self addSubview:self.view];
 }
 
 #pragma mark - UI Customization

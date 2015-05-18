@@ -10,6 +10,8 @@
 #import "Tutorial.h"
 #import "User.h"
 #import "Section.h"
+#import "TutorialStep.h"
+
 
 @implementation DataModelMock
 
@@ -24,7 +26,9 @@
     
     User *user = [User MR_findFirstInContext:localContext];
     
-    [self tutorialInContext:localContext title:@"Dummy tutorial title" forUser:user];
+    Tutorial *tutorial = [self tutorialInContext:localContext title:@"Dummy tutorial title" forUser:user];
+    TutorialStep *step = [self tutorialStepInContext:localContext];
+    [tutorial addConsistsOfObject:step];
     
     Tutorial *dummyTutorial2 = [self tutorialInContext:localContext title:@"Dummy tutorial title 2" forUser:nil];
     
@@ -64,6 +68,15 @@
     [user addCreatedTutorialObject:tutorial];
   }
   return tutorial;
+}
+
+#pragma mark - Mocking Tutorial Steps
+
+- (TutorialStep *)tutorialStepInContext:(NSManagedObjectContext *)localContext
+{
+  TutorialStep *step = [TutorialStep MR_createInContext:localContext];
+  step.text = @"Text tutorial step";
+  return step;
 }
 
 
