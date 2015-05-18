@@ -4,18 +4,22 @@
 
 #import "UIImageView+AvatarStyling.h"
 
+static const CGFloat kSmallAvatarBorderWidth = 1.5f;
+static const CGFloat kLargeAvatarBorderWidth = 2.25f;
+
+
 @implementation UIImageView (AvatarStyling)
 
 - (void)styleAsSmallAvatar
 {
   [self makeCircular];
-  [self addBorderWithWidth:1.5f];
+  [self addBorderWithWidth:kSmallAvatarBorderWidth];
 }
 
 - (void)styleAsLargeAvatar
 {
   [self makeCircular];
-  [self addBorderWithWidth:2.25f];
+  [self addBorderWithWidth:kLargeAvatarBorderWidth];
 }
 
 - (void)makeCircular

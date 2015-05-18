@@ -7,6 +7,6 @@
 
 @interface DataExtractionHelper : NSObject
 
-+ (NSString *)emailFromUser:(id<FBGraphUser>)user;
++ (NSString *)emailFromFBGraphUser:(id<FBGraphUser>)user;
 
 @end

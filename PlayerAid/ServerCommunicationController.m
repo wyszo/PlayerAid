@@ -31,6 +31,8 @@ static NSString* kServerBaseURL = @"http://api.playeraid.co.uk/api/v1/";
   return sharedInstance;
 }
 
+#pragma mark - Authentication
+
 - (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
                                           completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion
 {

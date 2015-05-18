@@ -40,7 +40,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 10;
     }
     else {
       AuthenticationRequestData *authRequestData = [AuthenticationRequestData new];
-      authRequestData.email = [DataExtractionHelper emailFromUser:user];
+      authRequestData.email = [DataExtractionHelper emailFromFBGraphUser:user];
       NSLog(@"email: %@", authRequestData.email);
       
       AssertTrueOrReturn(FBSession.activeSession.isOpen);

@@ -13,7 +13,7 @@
 
 @implementation DataModelMock
 
-- (void)addDummyTutorialAndUserObjects
+- (void)addDummyTutorialUserAndSectionObjects
 {
   [self addDummyUserObject];
   [self addDummySections];
