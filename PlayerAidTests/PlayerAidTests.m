@@ -1,9 +1,5 @@
 //
-//  PlayerAidTests.m
-//  PlayerAidTests
-//
-//  Created by Wyszo on 28/01/15.
-//
+//  PlayerAid
 //
 
 #import <UIKit/UIKit.h>
