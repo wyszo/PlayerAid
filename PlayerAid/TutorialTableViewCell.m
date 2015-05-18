@@ -36,6 +36,21 @@
   
   self.avatarImageView.image = tutorial.createdBy.avatarImage;
 //  self.favouriteButton // TODO: turn favourite button on/off
+  
+  [self adjustAlphaFromTutorial:tutorial];
+}
+
+-(void)adjustAlphaFromTutorial:(Tutorial *)tutorial
+{
+  CGFloat alpha = 1.0f;
+  
+  if (tutorial.draft) {
+    alpha = 0.5f;
+  }
+  else if (tutorial.inReview) {
+    alpha = 0.75f;
+  }
+  self.contentView.alpha = alpha;
 }
 
 @end
