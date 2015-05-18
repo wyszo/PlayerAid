@@ -24,6 +24,8 @@
 		317780311A80DFAB007057CD /* DataModelMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780301A80DFAB007057CD /* DataModelMock.m */; };
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
+		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
+		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
@@ -83,6 +85,10 @@
 		317780351A80E557007057CD /* TutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTableViewCell.m; sourceTree = "<group>"; };
 		317780381A80ED2C007057CD /* TutorialDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsViewController.h; sourceTree = "<group>"; };
 		317780391A80ED2C007057CD /* TutorialDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsViewController.m; sourceTree = "<group>"; };
+		318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceCustomizationHelper.h; sourceTree = "<group>"; };
+		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
+		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
+		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -311,6 +317,17 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		318EEAAB1A82DBC100B79E73 /* Skinning */ = {
+			isa = PBXGroup;
+			children = (
+				318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */,
+				318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */,
+				318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */,
+				318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */,
+			);
+			name = Skinning;
+			sourceTree = "<group>";
+		};
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +362,7 @@
 			children = (
 				3177801A1A80975C007057CD /* DataModel */,
 				317780321A80E471007057CD /* Mocks */,
+				318EEAAB1A82DBC100B79E73 /* Skinning */,
 				317780021A7FC6A7007057CD /* Helpers */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
@@ -548,6 +566,7 @@
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
+				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
@@ -555,6 +574,7 @@
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
+				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,

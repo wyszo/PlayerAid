@@ -4,8 +4,11 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <MagicalRecord+Setup.h>
+#import <KZAsserts.h>
 #import "AppDelegate.h"
 #import "DataModelMock.h"
+#import "AppearanceCustomizationHelper.h"
+
 
 @interface AppDelegate ()
 @end
@@ -19,7 +22,7 @@
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
-  [self customiseAppearance];
+  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self populateCoreDataWithSampleEntities];
   return YES;
 }
@@ -37,14 +40,7 @@
   return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication]; // attempt to extract a token from the url
 }
 
-#pragma mark - Other 
-
-- (void)customiseAppearance
-{
-  // White fonts in statusbar and Navigation bars
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-  [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
-}
+#pragma mark - Other
 
 - (void)populateCoreDataWithSampleEntities
 {
