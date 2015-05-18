@@ -4,16 +4,14 @@
 
 #import "TutorialStepTableViewCell.h"
 
-
-// TODO: this should be read from xib file, not set programatically, confusing!!
-static const CGFloat kContentImageHeight = 280.0f;
+static const CGFloat kContentImageMargin = 18.0f;
 
 
 @interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
 @property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
@@ -46,7 +44,9 @@ static const CGFloat kContentImageHeight = 280.0f;
   BOOL videoTutorialStep = (tutorialStep.videoPath.length != 0);
   
   if (imageTutorialStep || videoTutorialStep) {
-    self.contentImageHeightConstraint.constant = kContentImageHeight;
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.contentImageHeightAndWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
     
     if (imageTutorialStep) {
       self.contentImageView.image = tutorialStep.image;
@@ -75,7 +75,7 @@ static const CGFloat kContentImageHeight = 280.0f;
 
 - (void)hideImageView
 {
-  self.contentImageHeightConstraint.constant = 0.0f;
+  self.contentImageHeightAndWidthConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
 }

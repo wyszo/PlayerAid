@@ -80,7 +80,7 @@
                             <action selector="favouriteButtonPressed:" destination="jBq-6U-qF8" eventType="touchUpInside" id="IVh-H1-I4A"/>
                         </connections>
                     </button>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
                         <rect key="frame" x="515" y="179" width="69" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,7 +99,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
                         <rect key="frame" x="515" y="179" width="69" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
