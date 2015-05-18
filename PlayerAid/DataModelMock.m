@@ -75,7 +75,7 @@
 - (TutorialStep *)tutorialStepInContext:(NSManagedObjectContext *)localContext
 {
   TutorialStep *step = [TutorialStep MR_createInContext:localContext];
-  step.text = @"Text tutorial step";
+  step.text = @"Sample text tutorial step. Football is all about scoring!";
   return step;
 }
 
