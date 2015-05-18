@@ -8,9 +8,12 @@
 #import "AppDelegate.h"
 #import "DataModelMock.h"
 #import "AppearanceCustomizationHelper.h"
+#import "TabBarControllerHandler.h"
+#import "CreateTutorialViewController.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
+@property (strong, nonatomic) TabBarControllerHandler *tabBarControllerHandler;
 @end
 
 
@@ -24,7 +27,24 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
   [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self populateCoreDataWithSampleEntities];
+  [self setupTabBarActionHandling];
   return YES;
+}
+
+- (void)setupTabBarActionHandling
+{
+  __weak typeof(self) weakSelf = self;
+  self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
+    
+    CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createTutorialViewController];
+    
+    [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
+  }];
+  
+  UIViewController *rootViewController = self.window.rootViewController;
+  AssertTrueOrReturn([rootViewController isKindOfClass:[UITabBarController class]]);
+  ((UITabBarController *)rootViewController).delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

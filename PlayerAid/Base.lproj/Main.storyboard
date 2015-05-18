@@ -194,7 +194,7 @@
         <!--Create-->
         <scene sceneID="lfC-Ck-9hu">
             <objects>
-                <viewController id="17Y-Op-qj8" sceneMemberID="viewController">
+                <viewController id="17Y-Op-qj8" customClass="CreateTutorialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BDt-Ic-RRn"/>
                         <viewControllerLayoutGuide type="bottom" id="8dd-DG-xwi"/>

@@ -7,7 +7,7 @@
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
 
-static NSString *const kNibFileName = @"PlayerInfo";
+static NSString *const kNibFileName = @"PlayerInfoView";
 
 
 @interface PlayerInfoView ()

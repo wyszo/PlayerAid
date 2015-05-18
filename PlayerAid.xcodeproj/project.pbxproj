@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
+		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
+		310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B41A84C94400B7F921 /* TabBarControllerHandler.m */; };
+		310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */; };
+		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -28,7 +32,7 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
-		31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfo.xib */; };
+		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
@@ -59,6 +63,13 @@
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
+		310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialViewController.h; sourceTree = "<group>"; };
+		310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialViewController.m; sourceTree = "<group>"; };
+		310308B31A84C94400B7F921 /* TabBarControllerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarControllerHandler.h; sourceTree = "<group>"; };
+		310308B41A84C94400B7F921 /* TabBarControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarControllerHandler.m; sourceTree = "<group>"; };
+		310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialView.xib; sourceTree = "<group>"; };
+		310308BB1A84D90B00B7F921 /* NavigationBarCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomizationHelper.h; sourceTree = "<group>"; };
+		310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomizationHelper.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
@@ -96,7 +107,7 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
-		31C122601A8388EB0069D49A /* PlayerInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfo.xib; sourceTree = "<group>"; };
+		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
@@ -158,6 +169,42 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
+		310308AE1A83FA7600B7F921 /* Dummy Create tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */,
+				310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */,
+			);
+			name = "Dummy Create tutorial";
+			sourceTree = "<group>";
+		};
+		310308B21A84C92F00B7F921 /* TabBarControllerHandler */ = {
+			isa = PBXGroup;
+			children = (
+				310308B31A84C94400B7F921 /* TabBarControllerHandler.h */,
+				310308B41A84C94400B7F921 /* TabBarControllerHandler.m */,
+			);
+			name = TabBarControllerHandler;
+			sourceTree = "<group>";
+		};
+		310308B91A84D8DD00B7F921 /* ApplicationAppearance */ = {
+			isa = PBXGroup;
+			children = (
+				318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */,
+				318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */,
+			);
+			name = ApplicationAppearance;
+			sourceTree = "<group>";
+		};
+		310308BA1A84D8E400B7F921 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				310308BB1A84D90B00B7F921 /* NavigationBarCustomizationHelper.h */,
+				310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */,
+			);
+			name = NavigationBar;
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,8 +238,10 @@
 		317780061A7FED38007057CD /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 				317780111A8005F9007057CD /* Home */,
 				317780141A80060A007057CD /* Tutorials */,
+				310308AE1A83FA7600B7F921 /* Dummy Create tutorial */,
 				317780121A8005FE007057CD /* Profile */,
 				317780131A800604007057CD /* Settings */,
 			);
@@ -349,10 +398,10 @@
 		318EEAAB1A82DBC100B79E73 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				310308BA1A84D8E400B7F921 /* NavigationBar */,
 				310308A91A83DE7900B7F921 /* AvatarStyling */,
 				310308AD1A83DF7C00B7F921 /* Colors */,
-				318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */,
-				318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */,
+				310308B91A84D8DD00B7F921 /* ApplicationAppearance */,
 			);
 			name = Styling;
 			sourceTree = "<group>";
@@ -360,8 +409,9 @@
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				31C122601A8388EB0069D49A /* PlayerInfo.xib */,
+				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
 				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
+				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -558,7 +608,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C122611A8388EB0069D49A /* PlayerInfo.xib in Resources */,
+				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
+				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
@@ -620,6 +671,7 @@
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
+				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
@@ -633,6 +685,8 @@
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
+				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
+				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
