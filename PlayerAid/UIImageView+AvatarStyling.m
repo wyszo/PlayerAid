@@ -6,10 +6,16 @@
 
 @implementation UIImageView (AvatarStyling)
 
-- (void)styleAsAvatar
+- (void)styleAsSmallAvatar
 {
   [self makeCircular];
-  [self addBorder];
+  [self addBorderWithWidth:1.5f];
+}
+
+- (void)styleAsLargeAvatar
+{
+  [self makeCircular];
+  [self addBorderWithWidth:2.25f];
 }
 
 - (void)makeCircular
@@ -18,10 +24,10 @@
   self.clipsToBounds = YES;
 }
 
-- (void)addBorder
+- (void)addBorderWithWidth:(CGFloat)borderWidth
 {
-  self.layer.borderWidth = 5.0f;
-  self.layer.borderColor = [UIColor greenColor].CGColor;
+  self.layer.borderWidth = borderWidth;
+  self.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 @end

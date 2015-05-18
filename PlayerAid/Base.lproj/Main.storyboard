@@ -147,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="2337" y="-325"/>
         </scene>
-        <!--Tutorials-->
+        <!--Browse-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="TutorialsViewController" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="BrowseTutorialsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -159,33 +159,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Sections:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="16" y="20" width="149" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="rXy-5K-ISG"/>
+                                    <constraint firstAttribute="height" constant="42" id="ri3-gU-o9s"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="329" width="216" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtC-7j-Xcd" userLabel="AllSectionsLabel">
+                                <rect key="frame" x="16" y="65" width="568" height="486"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
+                            <constraint firstItem="jtC-7j-Xcd" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="HWA-it-i5P"/>
+                            <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="RfG-ne-gbT"/>
+                            <constraint firstItem="jtC-7j-Xcd" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="UWF-GS-Gvw"/>
+                            <constraint firstItem="jtC-7j-Xcd" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="3" id="XN6-8e-fMa"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="jtC-7j-Xcd" secondAttribute="bottom" id="oq1-aq-4jV"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="uaU-la-v3C"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qqM-NS-xev"/>
+                                <exclude reference="qzY-Ky-pLD"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tutorials" image="tutorials-unselected" selectedImage="tutorials-selected" id="cPa-gy-q4n">
+                    <tabBarItem key="tabBarItem" title="Browse" image="browse-unselected" id="cPa-gy-q4n">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tutorials-selected"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="browse-selected"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="allSectionsLabel" destination="jtC-7j-Xcd" id="fkY-B2-jsc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,21 +241,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJ4-MB-BR6" customClass="PlayerInfoView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="316"/>
                                 <color key="backgroundColor" red="0.52179554210654944" green="1" blue="0.99167531656916763" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="280" id="TIz-47-b0u"/>
+                                    <constraint firstAttribute="height" constant="316" id="TIz-47-b0u"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yp-EQ-XxJ" userLabel="Filter Selection View">
-                                <rect key="frame" x="0.0" y="306" width="600" height="43"/>
+                                <rect key="frame" x="0.0" y="342" width="600" height="43"/>
                                 <color key="backgroundColor" red="0.98239486098345485" green="0.80630179763458509" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Bpt-5I-AJI"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="knL-tG-Q8f">
-                                <rect key="frame" x="0.0" y="357" width="600" height="194"/>
+                                <rect key="frame" x="0.0" y="393" width="600" height="158"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -361,6 +378,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="browse-selected" width="16" height="16"/>
+        <image name="browse-unselected" width="16" height="16"/>
         <image name="createtutorial" width="15" height="15"/>
         <image name="home-selected" width="16" height="16"/>
         <image name="home-unselected" width="16" height="16"/>
@@ -368,7 +387,5 @@
         <image name="profile-unselected" width="16" height="16"/>
         <image name="settings-selected" width="16" height="16"/>
         <image name="settings-unselected" width="16" height="16"/>
-        <image name="tutorials-selected" width="16" height="16"/>
-        <image name="tutorials-unselected" width="16" height="16"/>
     </resources>
 </document>

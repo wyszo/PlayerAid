@@ -24,7 +24,7 @@
 
 - (void)awakeFromNib
 {
-  [self.avatarImageView styleAsAvatar];
+  [self.avatarImageView styleAsSmallAvatar];
 }
 
 - (void)configureWithTutorial:(Tutorial *)tutorial

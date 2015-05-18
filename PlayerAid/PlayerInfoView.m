@@ -45,7 +45,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)awakeFromNib
 {
-  [self.avatarImageView styleAsAvatar];
+  [self.avatarImageView styleAsLargeAvatar];
 }
 
 - (void)xibSetup

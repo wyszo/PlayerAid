@@ -39,7 +39,7 @@
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
 		31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116791A790F680022BD74 /* AppDelegate.m */; };
 		31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* HomeViewController.m */; };
-		31F116801A790F680022BD74 /* TutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167F1A790F680022BD74 /* TutorialsViewController.m */; };
+		31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167F1A790F680022BD74 /* BrowseTutorialsViewController.m */; };
 		31F116831A790F680022BD74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31F116811A790F680022BD74 /* Main.storyboard */; };
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
@@ -121,8 +121,8 @@
 		31F116791A790F680022BD74 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		31F1167B1A790F680022BD74 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		31F1167C1A790F680022BD74 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		31F1167E1A790F680022BD74 /* TutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TutorialsViewController.h; sourceTree = "<group>"; };
-		31F1167F1A790F680022BD74 /* TutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TutorialsViewController.m; sourceTree = "<group>"; };
+		31F1167E1A790F680022BD74 /* BrowseTutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowseTutorialsViewController.h; sourceTree = "<group>"; };
+		31F1167F1A790F680022BD74 /* BrowseTutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowseTutorialsViewController.m; sourceTree = "<group>"; };
 		31F116821A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31F116841A790F680022BD74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31F116871A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 			children = (
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 				317780111A8005F9007057CD /* Home */,
-				317780141A80060A007057CD /* Tutorials */,
+				317780141A80060A007057CD /* Browse */,
 				310308AE1A83FA7600B7F921 /* Dummy Create tutorial */,
 				317780121A8005FE007057CD /* Profile */,
 				317780131A800604007057CD /* Settings */,
@@ -285,13 +285,13 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		317780141A80060A007057CD /* Tutorials */ = {
+		317780141A80060A007057CD /* Browse */ = {
 			isa = PBXGroup;
 			children = (
-				31F1167E1A790F680022BD74 /* TutorialsViewController.h */,
-				31F1167F1A790F680022BD74 /* TutorialsViewController.m */,
+				31F1167E1A790F680022BD74 /* BrowseTutorialsViewController.h */,
+				31F1167F1A790F680022BD74 /* BrowseTutorialsViewController.m */,
 			);
-			name = Tutorials;
+			name = Browse;
 			sourceTree = "<group>";
 		};
 		317780151A80061A007057CD /* Intro */ = {
@@ -665,7 +665,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
-				31F116801A790F680022BD74 /* TutorialsViewController.m in Sources */,
+				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,

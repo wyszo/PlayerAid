@@ -7,6 +7,7 @@
 
 @interface UIImageView (AvatarStyling)
 
-- (void)styleAsAvatar;
+- (void)styleAsSmallAvatar;
+- (void)styleAsLargeAvatar;
 
 @end
