@@ -5,6 +5,7 @@
 
 const struct UserAttributes UserAttributes = {
 	.avatar = @"avatar",
+	.userDescription = @"userDescription",
 	.username = @"username",
 };
 
@@ -43,9 +44,20 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic avatar;
 
+@dynamic userDescription;
+
 @dynamic username;
 
 @dynamic createdTutorial;
+
+- (NSMutableSet*)createdTutorialSet {
+	[self willAccessValueForKey:@"createdTutorial"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"createdTutorial"];
+
+	[self didAccessValueForKey:@"createdTutorial"];
+	return result;
+}
 
 @end
 

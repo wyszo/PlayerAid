@@ -3,17 +3,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tutorial.h"
 
 @class AuthenticationRequestData;
 
 // A wrapper to network requests to our server
 @interface ServerCommunicationController : NSObject
 
++ (ServerCommunicationController *)sharedInstance;
+
 /**
  Requests an API token that can be used in all communication with our PlayerAid server.
  */
-+ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
+- (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
                                           completion:(void (^)(NSHTTPURLResponse *response, NSError *error))completion;
+
+- (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end
 

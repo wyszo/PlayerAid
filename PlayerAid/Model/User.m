@@ -1,13 +1,16 @@
 #import "User.h"
 
-@interface User ()
 
-// Private interface goes here.
+@interface User ()
 
 @end
 
+
 @implementation User
 
-// Custom logic goes here.
+- (UIImage *)avatarImage
+{
+  return [UIImage imageWithData:self.avatar];
+}
 
 @end

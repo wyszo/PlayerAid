@@ -1,5 +1,8 @@
 #import "_User.h"
+#import <UIKit/UIKit.h>
 
 @interface User : _User {}
-// Custom logic goes here.
+
+- (UIImage *)avatarImage;
+
 @end

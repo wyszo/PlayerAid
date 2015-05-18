@@ -23,6 +23,8 @@
   [super viewDidLoad];
   
   self.headerTableView.allowsSelection = NO;
+  self.headerTableView.scrollEnabled = NO;
+  
   self.headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
   AssertTrueOrReturn(self.tutorial.objectID);
   self.headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self IN %@", @[ self.tutorial ]];

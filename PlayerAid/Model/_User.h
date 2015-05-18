@@ -5,6 +5,7 @@
 
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *avatar;
+	__unsafe_unretained NSString *userDescription;
 	__unsafe_unretained NSString *username;
 } UserAttributes;
 
@@ -29,13 +30,25 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateAvatar:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* userDescription;
+
+//- (BOOL)validateUserDescription:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* username;
 
 //- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) Tutorial *createdTutorial;
+@property (nonatomic, strong) NSSet *createdTutorial;
 
-//- (BOOL)validateCreatedTutorial:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)createdTutorialSet;
+
+@end
+
+@interface _User (CreatedTutorialCoreDataGeneratedAccessors)
+- (void)addCreatedTutorial:(NSSet*)value_;
+- (void)removeCreatedTutorial:(NSSet*)value_;
+- (void)addCreatedTutorialObject:(Tutorial*)value_;
+- (void)removeCreatedTutorialObject:(Tutorial*)value_;
 
 @end
 
@@ -44,10 +57,13 @@ extern const struct UserRelationships {
 - (id)primitiveAvatar;
 - (void)setPrimitiveAvatar:(id)value;
 
+- (NSString*)primitiveUserDescription;
+- (void)setPrimitiveUserDescription:(NSString*)value;
+
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;
 
-- (Tutorial*)primitiveCreatedTutorial;
-- (void)setPrimitiveCreatedTutorial:(Tutorial*)value;
+- (NSMutableSet*)primitiveCreatedTutorial;
+- (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;
 
 @end

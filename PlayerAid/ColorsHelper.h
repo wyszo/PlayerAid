@@ -13,6 +13,7 @@
 + (UIColor *)tabBarCreateTutorialBackgroundColor;
 
 + (UIColor *)navigationBarColor;
++ (UIColor *)navigationBarButtonsColor;
 
 + (UIColor *)tutorialsSelectedFilterButtonColor;
 + (UIColor *)tutorialsSelectedFilterButtonTextColor;

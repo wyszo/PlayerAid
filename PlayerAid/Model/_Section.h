@@ -38,9 +38,17 @@ extern const struct SectionRelationships {
 
 //- (BOOL)validateSectionDescription:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) Tutorial *containsTutorial;
+@property (nonatomic, strong) NSSet *containsTutorial;
 
-//- (BOOL)validateContainsTutorial:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)containsTutorialSet;
+
+@end
+
+@interface _Section (ContainsTutorialCoreDataGeneratedAccessors)
+- (void)addContainsTutorial:(NSSet*)value_;
+- (void)removeContainsTutorial:(NSSet*)value_;
+- (void)addContainsTutorialObject:(Tutorial*)value_;
+- (void)removeContainsTutorialObject:(Tutorial*)value_;
 
 @end
 
@@ -55,7 +63,7 @@ extern const struct SectionRelationships {
 - (NSString*)primitiveSectionDescription;
 - (void)setPrimitiveSectionDescription:(NSString*)value;
 
-- (Tutorial*)primitiveContainsTutorial;
-- (void)setPrimitiveContainsTutorial:(Tutorial*)value;
+- (NSMutableSet*)primitiveContainsTutorial;
+- (void)setPrimitiveContainsTutorial:(NSMutableSet*)value;
 
 @end

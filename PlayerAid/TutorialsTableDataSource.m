@@ -4,10 +4,18 @@
 
 #import <CoreData/CoreData.h>
 #import <NSManagedObject+MagicalFinders.h>
+#import <MagicalRecord+Actions.h>
+#import <NSManagedObject+MagicalRecord.h>
 #import <KZAsserts.h>
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
+#import "ServerCommunicationController.h"
+
+
+static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
+static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
+
 
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -26,6 +34,9 @@
     _tableView = tableView;
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    
+    UINib *tableViewCellNib = [self nibForTutorialCell];
+    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
   }
   return self;
 }
@@ -59,7 +70,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TutorialCell"];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTutorialCellReuseIdentifier];
   [self configureCell:cell atIndexPath:indexPath];
   return cell;
 }
@@ -73,15 +84,65 @@
   [tutorialCell configureWithTutorial:tutorial];
 }
 
+#pragma mark - DataSource - deleting cells
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return self.swipeToDeleteEnabled;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.swipeToDeleteEnabled) {
+    // TODO: delete tutorial behaviour should be different on different profile tableView filters - current behaviour is correct only for list of tutorials created by a user
+    
+    Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
+    
+    // Make a delete tutorial network request
+    [ServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
+      if (error) {
+        // TODO: delete tutorial request failed, queue it again, retry
+      }
+    }];
+    
+    // Remove tutorial object from CoreData, tableView will automatically pick up the change
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+      Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
+      [tutorialInLocalContext MR_deleteInContext:localContext];
+    }];
+  }
+}
+
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  Tutorial *tutorial = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static UITableViewCell *sampleCell;
+  if (!sampleCell) {
+    sampleCell = [[[self nibForTutorialCell] instantiateWithOwner:nil options:nil] lastObject];
+  }
+  return sampleCell.frame.size.height;
+}
+
+#pragma mark - Auxiliary methods
+
+- (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (UINib *)nibForTutorialCell
+{
+  return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

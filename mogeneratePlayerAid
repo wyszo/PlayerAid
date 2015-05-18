@@ -1,0 +1,1 @@
+mogenerator --v2 --model PlayerAid/DataModel.xcdatamodeld/ --output-dir PlayerAid/Model

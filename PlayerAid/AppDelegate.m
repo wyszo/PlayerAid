@@ -45,7 +45,7 @@
 - (void)populateCoreDataWithSampleEntities
 {
   // TODO: switch to client-server communication to populate database
-  [[DataModelMock new] addDummyTutorialObjects];
+  [[DataModelMock new] addDummyTutorialAndUserObjects];
 }
 
 @end
