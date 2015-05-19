@@ -64,7 +64,6 @@ EXTERNAL SOURCES:
     :branch: ThomasChanges
     :git: ../FDTake
   TWCommonLib:
-    :branch: MoreHelpers
     :path: ../TWCommonLib
   YCameraView:
     :branch: PlayerAidChanges
