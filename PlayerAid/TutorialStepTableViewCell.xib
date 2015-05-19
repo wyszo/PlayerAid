@@ -65,6 +65,7 @@
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="contentImageHeightAndWidthConstraint" destination="fL7-0C-JUo" id="S71-lK-2bD"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>

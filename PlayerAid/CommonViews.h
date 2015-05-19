@@ -4,6 +4,6 @@
 
 @interface CommonViews : NSObject
 
-+ (UIView *)smallTransparentTableFooterView;
++ (UIView *)smallTableFooterView;
 
 @end
