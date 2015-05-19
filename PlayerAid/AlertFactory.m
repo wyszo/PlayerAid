@@ -100,6 +100,25 @@
   return alert;
 }
 
++ (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"Dismiss" action:^{
+    if (completionBlock) {
+      completionBlock(YES);
+    }
+  }];
+  RIButtonItem *saveButtonItem = [RIButtonItem itemWithLabel:@"Save as draft" action:^{
+    if (completionBlock) {
+      completionBlock(NO);
+    }
+  }];
+  
+  NSString *message = @"<DEBUG> Save tutorial or dismiss it??";
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message cancelButtonItem:cancelButtonItem otherButtonItems:saveButtonItem, nil];
+  [alert show];
+  return alert;
+}
+
 #pragma mark - Publish tutorial
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction

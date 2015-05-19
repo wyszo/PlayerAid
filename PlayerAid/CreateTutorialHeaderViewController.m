@@ -252,6 +252,13 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
   return [self.titleTextView.text stringByTrimmingWhitespaceAndNewline];
 }
 
+#pragma mark - Auxiliary methods
+
+- (BOOL)hasAnyData
+{
+  return (self.title.length || self.selectedSection || self.backgroundImageView.image);
+}
+
 #pragma mark - Edit Cover photo handling
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info

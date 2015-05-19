@@ -327,6 +327,11 @@
   return (self.tutorial.consistsOf.count);
 }
 
+- (BOOL)tutorialHasAnyData
+{
+  return (self.tutorialHasAnySteps || self.headerViewController.hasAnyData);
+}
+
 #pragma mark - Actions
 
 - (void)editButtonPressed
@@ -433,7 +438,22 @@
 
 - (void)dismissViewController
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  if (!self.tutorialHasAnyData) {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return;
+  }
+  
+  [AlertFactory showRemoveNewTutorialConfirmationAlertViewWithCompletion:^(BOOL discard) {
+    if (!discard) {
+      [self saveTutorialAsDraft];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+  }];
+}
+
+- (void)saveTutorialAsDraft
+{
+  NOT_IMPLEMENTED_YET_RETURN
 }
 
 #pragma mark - TutorialStepTableViewCellDelegate
