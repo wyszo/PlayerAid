@@ -26,21 +26,21 @@
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
-                        <rect key="frame" x="62" y="17" width="288" height="288"/>
+                        <rect key="frame" x="62" y="13" width="288" height="288"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
                             <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
-                        <rect key="frame" x="170" y="125" width="72" height="72"/>
+                        <rect key="frame" x="170" y="121" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72" id="DQr-Rt-pfh"/>
                             <constraint firstAttribute="width" constant="72" id="aWT-tP-gNl"/>
                         </constraints>
                     </imageView>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
-                        <rect key="frame" x="62" y="18" width="288" height="288"/>
+                        <rect key="frame" x="62" y="14" width="288" height="288"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -51,10 +51,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="4Tm-m2-JEa"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="9" id="9Ap-b6-gby"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="5" id="9Ap-b6-gby"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="GZX-if-46X"/>
-                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="9" id="GZw-g5-7we"/>
+                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="5" id="GZw-g5-7we"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
                     <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>

@@ -4,7 +4,7 @@
 
 #import "TutorialStepTableViewCell.h"
 
-static const CGFloat kContentImageMargin = 18.0f;
+static const CGFloat kContentImageMargin = 10.0f;
 
 
 @interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
