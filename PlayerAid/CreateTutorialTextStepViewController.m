@@ -16,6 +16,7 @@ const NSInteger kTextStepDismissedError = 1;
 @interface CreateTutorialTextStepViewController () <UITextViewDelegate>
 
 @property (copy, nonatomic) CreateTextStepCompletion completionBlock;
+@property (strong, nonatomic) TutorialStep *tutorialTextStep;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *characterLimitLabel;
 @property (weak, nonatomic) UIBarButtonItem *confirmNavbarButton;
@@ -30,9 +31,15 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock
 {
+  return [self initWithCompletion:completionBlock tutorialTextStep:nil];
+}
+
+- (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock tutorialTextStep:(TutorialStep *)tutorialStep
+{
   self = [super initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
   if (self) {
     _completionBlock = completionBlock;
+    _tutorialTextStep = tutorialStep;
   }
   return self;
 }
@@ -48,8 +55,16 @@ const NSInteger kTextStepDismissedError = 1;
   [self setupCharactersCount];
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
   
+  [self prepopulateTextViewText];
   [self installSwipeRightGestureRecognizer];
   [self updateTextStepRemainingCharactersCount];
+}
+
+- (void)prepopulateTextViewText
+{
+  if (self.tutorialTextStep) {
+    self.textView.text = self.tutorialTextStep.text;
+  }
 }
 
 - (void)installSwipeRightGestureRecognizer

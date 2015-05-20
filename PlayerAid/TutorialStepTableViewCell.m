@@ -9,6 +9,8 @@ static const CGFloat kContentImageMargin = 10.0f;
 
 @interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
 
+@property (strong, nonatomic) TutorialStep *tutorialStep;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
@@ -28,10 +30,19 @@ static const CGFloat kContentImageMargin = 10.0f;
 {
   [super awakeFromNib];
   self.selectionStyle = UITableViewCellSelectionStyleNone;
+  [self setupGestureRecognizers];
+}
+
+- (void)setupGestureRecognizers
+{
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
+  [self.textView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
+  self.tutorialStep = tutorialStep;
+  
   self.textView.layoutManager.delegate = self;
   self.textView.text = tutorialStep.text;
   self.videoPlayImage.hidden = YES;
@@ -92,6 +103,23 @@ static const CGFloat kContentImageMargin = 10.0f;
   if ([self.delegate respondsToSelector:@selector(didPressPlayVideoWithURL:)]) {
     [self.delegate didPressPlayVideoWithURL:self.videoURL];
   }
+}
+
+#pragma mark - Actions
+
+- (void)textViewTapped:(id)sender
+{
+  if ([self isTextType]) {
+    AssertTrueOrReturn(self.tutorialStep);
+    if ([self.delegate respondsToSelector:@selector(didPressTextViewWithStep:)]) {
+      [self.delegate didPressTextViewWithStep:self.tutorialStep];
+    }
+  }
+}
+
+- (BOOL)isTextType
+{
+  return (self.textView.text.length > 0);
 }
 
 @end

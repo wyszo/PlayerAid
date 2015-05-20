@@ -459,6 +459,11 @@
   [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
 }
 
+- (void)didPressTextViewWithStep:(TutorialStep *)tutorialTextStep
+{
+  [self pushEditTextStepViewControllerWithTextStep:tutorialTextStep];
+}
+
 #pragma mark - CreateTutorialStepButtonsDelegate
 
 - (void)addPhotoStepSelected
@@ -488,7 +493,7 @@
   if (self.tutorialTableView.isEditing) {
     return;
   }
-  [self pushCreateTutorialTextStepViewController];
+  [self pushCreateNewTutorialTextStepViewController];
 }
 
 - (void)hideAddStepPopoverView
@@ -538,14 +543,29 @@
 
 #pragma mark - Push views
 
-- (void)pushCreateTutorialTextStepViewController
+- (void)pushCreateNewTutorialTextStepViewController
 {
-  __weak typeof(self) weakSelf = self;
-  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:^(NSString *text, NSError *error) {
+  defineWeakSelf();
+  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       [weakSelf saveTutorialStepWithText:text];
     }
-  }];
+  } tutorialTextStep:nil];
+}
+
+- (void)pushEditTextStepViewControllerWithTextStep:(TutorialStep *)tutorialStep
+{
+  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+    if (!error && text.length) {
+      tutorialStep.text = text;
+      [self saveTutorial];
+    }
+   } tutorialTextStep:tutorialStep];
+}
+
+- (void)pushCreatetutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
+{
+  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:completion tutorialTextStep:tutorialTextStep];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);
