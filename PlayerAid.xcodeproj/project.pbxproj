@@ -793,7 +793,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		317780061A7FED38007057CD /* Tabbar */ = {
+		317780061A7FED38007057CD /* FromTabbar */ = {
 			isa = PBXGroup;
 			children = (
 				317780111A8005F9007057CD /* Home */,
@@ -803,7 +803,7 @@
 				317780131A800604007057CD /* Settings */,
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 			);
-			name = Tabbar;
+			name = FromTabbar;
 			sourceTree = "<group>";
 		};
 		3177800D1A80047C007057CD /* DataSources */ = {
@@ -953,7 +953,7 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				317780061A7FED38007057CD /* Tabbar */,
+				317780061A7FED38007057CD /* FromTabbar */,
 				31014E4E1A948623002F3485 /* Other View Controllers */,
 			);
 			name = ViewControllers;

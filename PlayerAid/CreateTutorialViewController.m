@@ -451,11 +451,6 @@
   }];
 }
 
-- (void)saveTutorialAsDraft
-{
-  NOT_IMPLEMENTED_YET_RETURN
-}
-
 #pragma mark - TutorialStepTableViewCellDelegate
 
 - (void)didPressPlayVideoWithURL:(NSURL *)url
@@ -594,6 +589,15 @@
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
+}
+
+- (void)saveTutorialAsDraft
+{
+  [self fillRequiredFieldsForTutorial:self.tutorial];
+  [self updateTutorialModelFromUI];
+  [self.tutorial setStateToDraft];
+  
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)updateTutorialModelFromUI

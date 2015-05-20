@@ -100,6 +100,11 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   return [statesStoredOnServer containsObject:self.primitiveState];
 }
 
+- (void)setStateToDraft
+{
+  self.primitiveState = kTutorialStateDraft;
+}
+
 #pragma mark - Unsaved 
 
 - (NSNumber *)unsaved
@@ -119,7 +124,12 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 - (void)setPrimitiveUnsavedValue:(BOOL)value
 {
-  self.state = kTutorialStateUnsaved;
+  if (value) {
+    self.state = kTutorialStateUnsaved;
+  }
+  else {
+    self.state = kTutorialStateDraft;
+  }
 }
 
 #pragma mark - Draft
