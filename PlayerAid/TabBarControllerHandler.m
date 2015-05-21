@@ -17,32 +17,12 @@
 
 - (instancetype)initWithCreateTutorialItemAction:(void (^)())createTutorialAction
 {
+  AssertTrueOrReturnNil(createTutorialAction);
   self = [super init];
   if (self) {
     _createTutorialAction = createTutorialAction;
   }
   return self;
-}
-
-#pragma mark - Public interface
-
-- (void)showProfileTabBarItemBadge
-{
-  // grab Profile tab
-  
-  
-  // set badge
-  
-  UITabBarItem *profileTabBarItem;
-  AssertTrueOrReturn(profileTabBarItem);
-  profileTabBarItem.badgeValue = @"1";
-  
-  // TODO: update badgeValue number when saving multiple drafts
-}
-
-- (void)hideProfileTabBarItemBadge
-{
-  NOT_IMPLEMENTED_YET_RETURN
 }
 
 #pragma mark - UITabBarControllerDelegate
@@ -62,7 +42,7 @@
   return YES;
 }
 
-#pragma mark - Other methods
+#pragma mark - Auxiliary methods
 
 - (void)popViewControllerToRoot:(UIViewController *)viewController
 {

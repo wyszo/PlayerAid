@@ -84,6 +84,7 @@
 		31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */; };
+		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
@@ -279,6 +280,8 @@
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		31A312151AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedMPMoviePlayerViewController.h; sourceTree = "<group>"; };
 		31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedMPMoviePlayerViewController.m; sourceTree = "<group>"; };
+		31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBadgeHelper.h; sourceTree = "<group>"; };
+		31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeHelper.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
@@ -694,6 +697,8 @@
 			children = (
 				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
 				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
+				31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */,
+				31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -1641,6 +1646,7 @@
 				31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
+				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,
 				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,

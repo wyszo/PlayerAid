@@ -9,7 +9,5 @@
 - (instancetype)init __unavailable;
 
 - (instancetype)initWithCreateTutorialItemAction:(void (^)())createTutorialAction;
-- (void)showProfileTabBarItemBadge;
-- (void)hideProfileTabBarItemBadge;
 
 @end

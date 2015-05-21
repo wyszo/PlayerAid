@@ -84,7 +84,7 @@
 
 - (void)setupTabBarActionHandling
 {
-  __weak typeof(self) weakSelf = self;
+  defineWeakSelf();
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
     [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
   }];
