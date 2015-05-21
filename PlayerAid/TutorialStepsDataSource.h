@@ -11,8 +11,7 @@
 @property (nonatomic, weak) UIViewController *moviePlayerParentViewController;
 @property (nonatomic, copy) VoidBlock cellDeletionCompletionBlock;
 
-- (instancetype)init __unavailable;
-- (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 /**
  @param tableView

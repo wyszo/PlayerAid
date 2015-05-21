@@ -5,8 +5,7 @@
 
 @interface AuthenticationController : NSObject
 
-- (instancetype)init __unavailable;
-+ (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 + (void)checkIsUserAuthenticatedPingServerCompletion:(void (^)(BOOL authenticated))completion;
 

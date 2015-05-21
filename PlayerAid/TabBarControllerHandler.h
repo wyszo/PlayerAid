@@ -5,8 +5,7 @@
 
 @interface TabBarControllerHandler : NSObject <UITabBarControllerDelegate>
 
-- (instancetype)new __unavailable;
-- (instancetype)init __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 - (instancetype)initWithCreateTutorialItemAction:(void (^)())createTutorialAction;
 
