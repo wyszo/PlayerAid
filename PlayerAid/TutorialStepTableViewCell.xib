@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(tutorial step text)" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="24" y="6" width="370" height="38"/>
+                        <rect key="frame" x="8" y="6" width="396" height="38"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -55,13 +55,13 @@
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="GZX-if-46X"/>
                     <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-1" id="GZw-g5-7we"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" id="KbA-BT-3SM"/>
                     <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="eyB-m9-ILx"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="fYi-2p-a7u"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-2" id="gMU-LR-OHg"/>
-                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" constant="16" id="kTB-OF-PgU"/>
+                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" id="kTB-OF-PgU"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
