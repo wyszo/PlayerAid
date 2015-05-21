@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
-#import "CreateTutorialViewController.h"
 #import <FDTakeController.h>
 #import <YCameraViewController.h>
+#import "CreateTutorialViewController.h"
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -25,10 +25,10 @@
 #import "InterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
-#import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "VideoPlayer.h"
 #import "YCameraViewStandardDelegateObject.h"
 #import "TabBarBadgeHelper.h"
+#import "ImagePickerOverlayController.h"
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
@@ -50,7 +50,7 @@
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
-@property (nonatomic, strong) ShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
+@property (nonatomic, strong) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
@@ -546,7 +546,8 @@
 
 - (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController
 {
-  self.showImagePickerOverlayInPortraitBehaviour = [[ShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController];
+  ImagePickerOverlayController *overlayController = [[ImagePickerOverlayController alloc] initWithImagePickerController:imagePickerController];
+  self.showImagePickerOverlayInPortraitBehaviour = [[TWShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController imagePickerOverlayController:overlayController];
   [self.showImagePickerOverlayInPortraitBehaviour activateBehaviour];
 }
 

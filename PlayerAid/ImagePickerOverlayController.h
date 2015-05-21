@@ -5,8 +5,7 @@
 
 @interface ImagePickerOverlayController : NSObject
 
-- (instancetype)init __unavailable;
-- (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 - (instancetype)initWithImagePickerController:(UIImagePickerController *)imagePickerController;
 
