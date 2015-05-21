@@ -13,6 +13,8 @@
 
 @implementation TabBarControllerHandler
 
+#pragma mark - Initialization
+
 - (instancetype)initWithCreateTutorialItemAction:(void (^)())createTutorialAction
 {
   self = [super init];
@@ -21,6 +23,29 @@
   }
   return self;
 }
+
+#pragma mark - Public interface
+
+- (void)showProfileTabBarItemBadge
+{
+  // grab Profile tab
+  
+  
+  // set badge
+  
+  UITabBarItem *profileTabBarItem;
+  AssertTrueOrReturn(profileTabBarItem);
+  profileTabBarItem.badgeValue = @"1";
+  
+  // TODO: update badgeValue number when saving multiple drafts
+}
+
+- (void)hideProfileTabBarItemBadge
+{
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
@@ -36,6 +61,8 @@
   }
   return YES;
 }
+
+#pragma mark - Other methods
 
 - (void)popViewControllerToRoot:(UIViewController *)viewController
 {

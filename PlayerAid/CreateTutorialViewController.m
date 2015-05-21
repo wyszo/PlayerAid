@@ -28,6 +28,7 @@
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "VideoPlayer.h"
 #import "YCameraViewStandardDelegateObject.h"
+#import "AppDelegate.h"
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
@@ -453,9 +454,16 @@
       }];
     } else {
       [weakSelf saveTutorialAsDraft];
+      [weakSelf showProfileTabBarItemBadge];
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
+}
+
+- (void)showProfileTabBarItemBadge
+{
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  [appDelegate.tabBarControllerHandler showProfileTabBarItemBadge];
 }
 
 #pragma mark - TutorialStepTableViewCellDelegate

@@ -5,7 +5,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "AppearanceCustomizationHelper.h"
-#import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
 #import "AuthenticationController.h"
