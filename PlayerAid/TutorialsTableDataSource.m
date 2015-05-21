@@ -7,7 +7,7 @@
 #import "TutorialTableViewCell.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialCellHelper.h"
-#import "CoreDataTableViewDataSource.h"
+#import "TWCoreDataTableViewDataSource.h"
 #import "TableViewFetchedResultsControllerBinder.h"
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
@@ -20,7 +20,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
@@ -61,7 +61,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 {
   __weak typeof(self) weakSelf = self;
   
-  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  _tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {

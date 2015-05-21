@@ -99,7 +99,6 @@
 		31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735EF1A87FADE0081AE15 /* TutorialStep.m */; };
 		31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */; };
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
-		31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */; };
 		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */; };
 		31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */; };
@@ -303,8 +302,6 @@
 		31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCellHelper.m; sourceTree = "<group>"; };
 		31B735F51A88009A0081AE15 /* TutorialStepsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepsDataSource.h; sourceTree = "<group>"; };
 		31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepsDataSource.m; sourceTree = "<group>"; };
-		31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewDataSource.h; sourceTree = "<group>"; };
-		31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewDataSource.m; sourceTree = "<group>"; };
 		31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStepTableViewCell.xib; sourceTree = "<group>"; };
 		31B736001A88EB3A0081AE15 /* TutorialStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepTableViewCell.h; sourceTree = "<group>"; };
 		31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepTableViewCell.m; sourceTree = "<group>"; };
@@ -779,7 +776,6 @@
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */,
 				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
 				31B736051A8925F80081AE15 /* Tutorials */,
@@ -1092,15 +1088,6 @@
 				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */,
-				31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */,
-			);
-			name = CoreDataTableViewDataSource;
 			sourceTree = "<group>";
 		};
 		31B735FF1A88D9780081AE15 /* Tutorial Cells */ = {
@@ -1566,7 +1553,6 @@
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
-				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,

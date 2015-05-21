@@ -7,7 +7,7 @@
 #import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "Tutorial.h"
-#import "CoreDataTableViewDataSource.h"
+#import "TWCoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
 #import "TableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
@@ -19,7 +19,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 @interface TutorialStepsDataSource () <UITableViewDelegate>
 
-@property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
@@ -70,7 +70,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 {
   __weak typeof(self) weakSelf = self;
   
-  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  _tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
