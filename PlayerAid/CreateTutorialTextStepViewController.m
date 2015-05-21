@@ -58,6 +58,7 @@ const NSInteger kTextStepDismissedError = 1;
   [self prepopulateTextViewText];
   [self installSwipeRightGestureRecognizer];
   [self updateTextStepRemainingCharactersCount];
+  [self updateConfirmButtonState];
 }
 
 - (void)prepopulateTextViewText
@@ -110,7 +111,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)updateConfirmButtonState
 {
-  self.confirmNavbarButton.enabled = !([self overCharacterLimit]);
+  self.confirmNavbarButton.enabled = !([self overCharacterLimit]) && (self.processedText.length > 0);
 }
 
 - (void)updateTextColor
