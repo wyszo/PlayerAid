@@ -443,11 +443,18 @@
     return;
   }
   
+  defineWeakSelf();
   [AlertFactory showRemoveNewTutorialConfirmationAlertViewWithCompletion:^(BOOL discard) {
-    if (!discard) {
-      [self saveTutorialAsDraft];
+    if (discard) {
+      [AlertFactory showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:^(BOOL delete) {
+        if (delete) {
+          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }
+      }];
+    } else {
+      [weakSelf saveTutorialAsDraft];
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
   }];
 }
 
