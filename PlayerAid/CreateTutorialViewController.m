@@ -169,12 +169,13 @@
 - (void)performDebugActions
 {
   if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
-    //    [self DEBUG_addTextTutorialStep];
+//    [self DEBUG_addTextTutorialStep];
+    [self DEBUG_addTwoTextTutorialSteps];
     [self DEBUG_addImageStep];
   }
   
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextOneImageAndVideoStep];
+//    [self DEBUG_addTwoTextOneImageAndVideoStep];
     
     defineWeakSelf();
     DISPATCH_AFTER(0.2, ^{
@@ -204,7 +205,7 @@
 
 - (void)DEBUG_addTextTutorialStep
 {
-  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"[t1] This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
   step1.orderValue = 1;
   [self.tutorial.consistsOfSet addObject:step1];
 }
@@ -213,7 +214,7 @@
 {
   [self DEBUG_addTextTutorialStep];
   
-  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"[t2] debug text 2!" inContext:self.createTutorialContext];
   step2.orderValue = 2;
   [self.tutorial.consistsOfSet addObject:step2];
 }
