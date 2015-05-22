@@ -186,11 +186,24 @@ const NSInteger kTextStepDismissedError = 1;
     return;
   }
   
-  [AlertFactory showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:^(BOOL discard) {
+  defineWeakSelf();
+  void (^confirmationAlertCompletionBlock)(BOOL) = ^(BOOL discard) {
     if (discard) {
-      [self forceDismissViewController];
+      [weakSelf forceDismissViewController];
     }
-  }];
+  };
+  
+  if ([self isEditingExistingTutorialTextStep]) {
+    [AlertFactory showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:confirmationAlertCompletionBlock];
+  }
+  else {
+    [AlertFactory showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:confirmationAlertCompletionBlock];
+  }
+}
+
+- (BOOL)isEditingExistingTutorialTextStep
+{
+  return (self.tutorialTextStep != nil);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

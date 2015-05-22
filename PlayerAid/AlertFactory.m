@@ -98,6 +98,16 @@
   }];
 }
 
++ (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  NSString *message = @"Cancel editing tutorial step?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Yes, cancel" defaultButtonAction:^{
+    CallBlock(completionBlock, YES);
+  } secondaryButtonTitle:@"No, continue editing" secondaryButtonAction:^{
+    CallBlock(completionBlock, NO);
+  }];
+}
+
 + (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Do you want to keep your tutorial?";
