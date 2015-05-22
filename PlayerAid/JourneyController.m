@@ -45,9 +45,11 @@
 
 - (void)DEBUG_presentCreateTutorialViewController
 {
-  defineWeakSelf();
+  __strong typeof(self) strongSelf = self; // explicitly extending whole object's lifetime
   DISPATCH_AFTER(0.1, ^{
-    [weakSelf.appDelegate.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
+    UIViewController *viewController = [ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController];
+    AssertTrueOrReturn(viewController);
+    [strongSelf.appDelegate.window.rootViewController presentViewController:viewController animated:YES completion:nil];
   });
 }
 
