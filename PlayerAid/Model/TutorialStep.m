@@ -53,4 +53,19 @@
   return [UIImage imageWithData:self.videoThumbnailData];
 }
 
+- (BOOL)isTextStep
+{
+  return (self.text.length != 0);
+}
+
+- (BOOL)isImageStep
+{
+  return (self.imageData != nil);
+}
+
+- (BOOL)isVideoStep
+{
+  return (self.videoPath.length != 0);
+}
+
 @end

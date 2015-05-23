@@ -31,6 +31,9 @@
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
 		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
+		31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */; };
+		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
+		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
@@ -61,6 +64,8 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
+		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
+		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
@@ -154,6 +159,10 @@
 		310308C01A863F6300B7F921 /* UIView+XibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLoading.m"; sourceTree = "<group>"; };
 		3103B6BD1A92377D0097FE00 /* FontsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontsHelper.h; sourceTree = "<group>"; };
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
+		31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = TestVideo.mp4; path = PlayerAid/TestVideo.mp4; sourceTree = "<group>"; };
+		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
+		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
+		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h; sourceTree = "<group>"; };
 		312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m; sourceTree = "<group>"; };
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
@@ -213,6 +222,10 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
+		3193ACB41AAF1ACF006B5952 /* NSError+PlayerAidErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+PlayerAidErrors.h"; sourceTree = "<group>"; };
+		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
+		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
+		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
@@ -271,7 +284,7 @@
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
-		31FFDE231AAE7367006E4D0E /* GlobalDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalDefines.h; sourceTree = "<group>"; };
+		31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHelperDefines.h; sourceTree = "<group>"; };
 		C4BF40B97ED22C5437512D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -442,6 +455,7 @@
 		310308AE1A83FA7600B7F921 /* Create tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */,
 				31A621511A92AFCF00A77878 /* CreateTutorialTextStep */,
 				310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */,
 				310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */,
@@ -485,6 +499,15 @@
 				31014E701A9AA182002F3485 /* ServerDataUpdateController.m */,
 			);
 			name = ServerCommunication;
+			sourceTree = "<group>";
+		};
+		31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */ = {
+			isa = PBXGroup;
+			children = (
+				31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */,
+				31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */,
+			);
+			name = EditTutorialSteps;
 			sourceTree = "<group>";
 		};
 		312FF5F11A9E212200AE3174 /* Behaviours */ = {
@@ -605,13 +628,14 @@
 		317780021A7FC6A7007057CD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31B735F41A88000B0081AE15 /* Categories */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
-				31FFDE231AAE7367006E4D0E /* GlobalDefines.h */,
+				31FFDE231AAE7367006E4D0E /* GlobalHelperDefines.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -793,6 +817,24 @@
 			name = Styling;
 			sourceTree = "<group>";
 		};
+		3193ACB21AAF1AA4006B5952 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				3193ACB41AAF1ACF006B5952 /* NSError+PlayerAidErrors.h */,
+				3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */,
+			);
+			name = NSError;
+			sourceTree = "<group>";
+		};
+		3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */ = {
+			isa = PBXGroup;
+			children = (
+				3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */,
+				3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */,
+			);
+			name = ServerResponseParsing;
+			sourceTree = "<group>";
+		};
 		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +868,7 @@
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
 				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
 				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
+				31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */,
 				31E1F8F51AADA853005EB35B /* PopoverView.xib */,
 				31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */,
 			);
@@ -846,6 +889,7 @@
 		31B735F41A88000B0081AE15 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3193ACB21AAF1AA4006B5952 /* NSError */,
 				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
@@ -986,6 +1030,7 @@
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
+				31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */,
 				31F116731A790F680022BD74 /* PlayerAid */,
 				31F116901A790F680022BD74 /* PlayerAidTests */,
 				31F116721A790F680022BD74 /* Products */,
@@ -1169,6 +1214,7 @@
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
 				312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
+				31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
@@ -1177,6 +1223,7 @@
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
+				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31014E5B1A96422A002F3485 /* user.json in Resources */,
@@ -1232,6 +1279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
+				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
 				312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */,
@@ -1257,6 +1305,7 @@
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
+				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
@@ -1289,6 +1338,7 @@
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */,
+				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
@@ -1427,7 +1477,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1442,7 +1492,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

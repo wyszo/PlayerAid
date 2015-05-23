@@ -6,6 +6,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "Section.h"
+#import "TutorialStep.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -59,7 +60,7 @@
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
   AssertTrueOrReturn(tutorial.serverID);
-  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorial.serverID];
+  NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) completion(nil);
@@ -69,6 +70,17 @@
       completion(error);
     }
   }];
+}
+
+- (NSString *)urlStringForTutorialID:(NSNumber *)tutorialID
+{
+  return [self urlStringForTutorialIDString:tutorialID.stringValue];
+}
+
+- (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
+{
+  AssertTrueOrReturnNil(tutorialID.length);
+  return [NSString stringWithFormat:@"v1/tutorial/%@", tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -82,7 +94,130 @@
                                @"CreatedOn" : [NSDate new]
                               };
   
-  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+{
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(tutorial.pngImageData);
+  NSString *tutorialID = [tutorial.serverID stringValue];
+  AssertTrueOrReturn(tutorialID);
+  
+  NSDictionary *parameters = @{
+                               @"id" : tutorialID,
+                               @"contentType" : @"image/png",
+                               @"imageData" : tutorial.pngImageData
+                              };
+  
+  NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorialStep);
+  
+  if ([tutorialStep isTextStep]) {
+    [self submitTextTutorialStep:tutorialStep withPosition:position completion:completion];
+  }
+  else if ([tutorialStep isImageStep]) {
+    [self submitImageTutorialStep:tutorialStep withPosition:position completion:completion];
+  }
+  else if ([tutorialStep isVideoStep]) {
+    [self submitVideoTutorialStep:tutorialStep withPosition:position completion:completion];
+  }
+  else {
+    AssertTrueOrReturn(false); // NOT IMPLEMENTED YET
+  }
+}
+
+- (NSString *)URLStringForTutorialStep:(TutorialStep *)tutorialStep
+{
+  AssertTrueOrReturnNil(tutorialStep);
+  NSNumber *serverID = tutorialStep.belongsTo.serverID;
+  AssertTrueOrReturnNil(serverID);
+  return [NSString stringWithFormat:@"%@/step", [self urlStringForTutorialID:serverID]];
+}
+
+- (void)submitTextTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isTextStep]);
+  
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  NSDictionary *parameters = @{
+                               @"position" : @(position),
+                               @"value" : tutorialStep.text
+                              };
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
+- (void)submitImageTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isImageStep]);
+  
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" completionBlock:completion];
+}
+
+- (void)submitVideoTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn([tutorialStep isVideoStep]);
+  AssertTrueOrReturn(tutorialStep.videoPath);
+  
+  NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:tutorialStep.videoPath]];
+  AssertTrueOrReturn(videoData);
+  
+  NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
+  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" completionBlock:completion];
+}
+
+- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSInteger)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype completionBlock:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(URLString);
+  AssertTrueOrReturn(data);
+  AssertTrueOrReturn(name);
+  AssertTrueOrReturn(mimetype.length);
+  
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  
+  [operationManager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSData *positionData = [NSData dataWithBytes:&position length:sizeof(position)];
+    [formData appendPartWithFormData:positionData name:@"position"];
+    [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
+    
+  } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (completion) {
+      completion(nil, responseObject, nil);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (completion) {
+      completion(nil, nil, error);
+    }
+  }];
+}
+
+- (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial);
+  
+  NSDictionary *parameters = @{
+                               @"id" : tutorial.serverID.stringValue
+                              };
+  NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
+  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
     }
@@ -96,9 +231,9 @@
   [self requestWithType:@"GET" apiToken:apiToken urlString:urlString parameters:nil useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:useCache completion:completion];
+  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
 
 - (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion

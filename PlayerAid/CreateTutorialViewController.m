@@ -19,6 +19,7 @@
 #import "AlertFactory.h"
 #import "UIView+FadeAnimations.h"
 #import "PublishingTutorialViewController.h"
+#import "EditTutorialStepsViewController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
@@ -34,6 +35,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 
 @end
 
@@ -55,6 +57,36 @@
   [self initializeContextAndNewTutorialObject];
   
   [self setupTutorialStepsDataSource];
+  
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
+    [self DEBUG_addTwoTextTutorialSteps];
+    
+    defineWeakSelf();
+    DISPATCH_AFTER(0.2, ^{
+      [weakSelf editButtonPressed];
+    });
+  }
+  
+  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    [self DEBUG_pressPublishButton];
+  }
+}
+
+- (void)DEBUG_pressPublishButton
+{
+  defineWeakSelf();
+  DISPATCH_AFTER(0.1, ^{
+    [weakSelf publishButtonPressed];
+  });
+}
+
+- (void)DEBUG_addTwoTextTutorialSteps
+{
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"debug text!" inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:step1];
+  
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:step2];
 }
 
 - (void)setupAndAttachHeaderViewController
@@ -135,7 +167,9 @@
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
-  self.publishButton.enabled = NO;
+  if (!DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    self.publishButton.enabled = NO;
+  }
 }
 
 - (void)addNavigationBarCancelButton
@@ -162,20 +196,56 @@
 
 - (void)editButtonPressed
 {
-  // TODO: edit tutorial steps
-  // TODO - it should provide an overlay view which allows reordering steps (or canceling reordering)
+  NSOrderedSet *tutorialSteps = self.tutorial.consistsOf;
+  if (tutorialSteps.count == 0) {
+    return;
+  }
+  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps];
   
-  [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
+  defineWeakSelf();
+  self.editTutorialStepsViewController.dismissBlock = ^{
+    [weakSelf.editTutorialStepsViewController.view removeFromSuperview];
+  };
+  
+  UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  self.editTutorialStepsViewController.view.frame = window.frame;
+  [window addSubview:self.editTutorialStepsViewController.view];
 }
 
 - (void)publishButtonPressed
 {
   [self updateTutorialModelFromUI];
   
-  BOOL tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    [self DEBUG_publishTutorial];
+  }
+  
+  BOOL tutorialDataComplete = YES;
+  if (!DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  }
   if (tutorialDataComplete) {
     [self presentPublishingTutorialViewController];
   }
+}
+
+// TODO: extract this method from here!! (introduce a separate class) 
+- (void)DEBUG_publishTutorial
+{
+  // fill in empty fields with debug data
+  self.tutorial.title = @"test_title";
+  self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
+  self.tutorial.pngImageData = UIImagePNGRepresentation([UIImage imageNamed:@"bubble"]);
+  
+  [self DEBUG_addTwoTextTutorialSteps];
+  
+  TutorialStep *imageStep1 = [TutorialStep tutorialStepWithImage:[UIImage imageNamed:@"bubble"] inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:imageStep1];
+  
+  NSURL *videoURL = [[NSBundle mainBundle] URLForResource:@"TestVideo" withExtension:@"mp4"];
+  AssertTrueOrReturn(videoURL);
+  TutorialStep *videoStep1 = [TutorialStep tutorialStepWithVideoURL:videoURL inContext:self.createTutorialContext];
+  [self.tutorial.consistsOfSet addObject:videoStep1];
 }
 
 - (void)presentPublishingTutorialViewController
@@ -220,7 +290,6 @@
   [self hideAddStepPopoverView];
   
   if (self.tutorialTableView.isEditing) {
-    [self.tutorialTableView setEditing:NO animated:YES];
     return;
   }
   [self pushCreateTutorialTextStepViewController];
@@ -327,15 +396,16 @@
 
 - (void)updateTutorialModelFromUI
 {
-  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection];
+  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection image:self.headerViewController.backgroundImageView.image];
 }
 
-- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section
+- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section image:(UIImage *)image
 {
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
+  self.tutorial.pngImageData = UIImagePNGRepresentation(image);
 }
 
 #pragma mark - Lazy initalization

@@ -38,6 +38,8 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
     [weakSelf dismissViewControllerAnimated:YES completion:^{
       if (error) {
         [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Publishing tutorial network error!!!"];
+      } else {
+        [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Publishing success, tutorial in review!! :D"];
       }
       
       if (weakSelf.completionBlock) {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTutorialStepsViewController">
+            <connections>
+                <outlet property="cancelButton" destination="3X1-r8-ZuH" id="hSQ-PX-yxB"/>
+                <outlet property="saveButton" destination="JPH-XH-UTm" id="14G-SD-mpM"/>
+                <outlet property="tutorialStepsTableView" destination="KHl-ya-y3u" id="3n1-eb-O2I"/>
+                <outlet property="view" destination="iN0-l3-epB" id="3V1-5D-Vra"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-ba-fex" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.0039215688589999999" green="0.0" blue="0.97647064920000004" alpha="1" colorSpace="deviceRGB"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KHl-ya-y3u" userLabel="Tutorial Steps Table View">
+                    <rect key="frame" x="0.0" y="76" width="600" height="524"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X1-r8-ZuH" userLabel="Cancel">
+                    <rect key="frame" x="0.0" y="23" width="66" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="aoP-tf-ERg"/>
+                        <constraint firstAttribute="height" constant="40" id="bGA-gN-CII"/>
+                    </constraints>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="99E-Fc-yP3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPH-XH-UTm" userLabel="Save">
+                    <rect key="frame" x="552" y="23" width="44" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="2ro-Ql-jEA"/>
+                        <constraint firstAttribute="height" constant="40" id="yyS-qH-WsS"/>
+                    </constraints>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="6pS-dM-xOS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3X1-r8-ZuH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7m5-Ub-pGw"/>
+                <constraint firstAttribute="trailing" secondItem="KHl-ya-y3u" secondAttribute="trailing" id="Die-i7-77T"/>
+                <constraint firstItem="KHl-ya-y3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="76" id="EeU-xE-DJr"/>
+                <constraint firstItem="3X1-r8-ZuH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="GvQ-5s-fIT"/>
+                <constraint firstItem="JPH-XH-UTm" firstAttribute="baseline" secondItem="3X1-r8-ZuH" secondAttribute="baseline" id="SpN-gQ-fyd"/>
+                <constraint firstItem="KHl-ya-y3u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lJE-qy-HDL"/>
+                <constraint firstAttribute="bottom" secondItem="KHl-ya-y3u" secondAttribute="bottom" id="mjx-AZ-pz3"/>
+                <constraint firstAttribute="trailing" secondItem="JPH-XH-UTm" secondAttribute="trailing" constant="4" id="o4v-Zx-pS2"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
