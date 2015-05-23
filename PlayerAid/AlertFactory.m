@@ -20,6 +20,16 @@
   return alert;
 }
 
++ (UIAlertView *)showGenericErrorAlertViewNoRetry
+{
+  NSString *title = @"Communication Error";
+  NSString *message = @"Unable to contact PlayerAid cloud. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection.";
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+  [alert show];
+  return alert;
+}
+
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
 {
   return [self showAlertViewWithMessage:@"Tutorial needs to have a title"];

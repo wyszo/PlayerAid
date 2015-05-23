@@ -1,5 +1,7 @@
 #import "Tutorial.h"
 #import <KZPropertyMapper.h>
+#import "Section.h"
+#import "User.h"
 
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
@@ -13,22 +15,48 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 #pragma mark - Populating with data
 
-- (void)configureFromDictionary:(NSDictionary *)dictionary
+- (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor
 {
   AssertTrueOrReturn(dictionary.count);
   
-  NSDictionary *mapping = @{
+  NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary: @{
                             kTutorialDictionaryServerIDPropertyName : KZProperty(serverID),
                             @"title" : KZProperty(title),
                             @"createdOn" : KZBox(Date, createdAt),
                             @"status" : KZCall(stateFromString:, state),
-                            @"image" : KZProperty(imageURL)
-                            // TODO: section
-                          };
+                            @"image" : KZProperty(imageURL),
+                            @"section" : KZCall(sectionFromString:, section)
+                          }];
   
+  if (includeAuthor) {
+    [mapping addEntriesFromDictionary:@{
+                                       @"author" : KZCall(authorFromDictionary:, createdBy)
+                                       }];
+  }
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
+}
+
+- (Section *)sectionFromString:(NSString *)sectionName
+{
+  AssertTrueOrReturnNil(sectionName.length);
+  Section *section = [Section MR_findFirstByAttribute:@"name" withValue:sectionName inContext:self.managedObjectContext];
+  AssertTrueOrReturnNil(section);
+  return section;
+}
+
+- (User *)authorFromDictionary:(NSDictionary *)authorDictionary
+{
+  AssertTrueOrReturnNil(authorDictionary.count);
+  NSString *authorID = [User serverIDFromUserDictionary:authorDictionary];
+  
+  User *author = [User MR_findFirstByAttribute:@"serverID" withValue:authorID inContext:self.managedObjectContext];
+  if (!author) {
+    author = [User MR_createInContext:self.managedObjectContext];
+  }
+  [author configureFromDictionary:authorDictionary];
+  return author;
 }
 
 #pragma mark - State

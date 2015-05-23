@@ -17,10 +17,12 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @property (strong, nonatomic) UIView *view;
 
 @end
+
 
 @implementation PlayerInfoView
 
@@ -71,6 +73,13 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   
   self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
+  
+  self.editButton.hidden = !user.loggedInUserValue;
+}
+
+- (IBAction)editButtonPressed:(id)sender
+{
+  // TODO: push edit view
 }
 
 @end

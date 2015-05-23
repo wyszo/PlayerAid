@@ -40,10 +40,10 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
-                        <rect key="frame" x="50" y="183" width="193" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
+                        <rect key="frame" x="50" y="183" width="90" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="193" id="cm6-Tz-0Ie"/>
+                            <constraint firstAttribute="width" priority="100" constant="193" id="cm6-Tz-0Ie"/>
                             <constraint firstAttribute="height" constant="21" id="gXA-w8-yvP"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
@@ -111,6 +111,24 @@
                             <constraint firstAttribute="height" constant="18" id="h9Q-zf-hux"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCI-Ek-nfe" userLabel="Author Button">
+                        <rect key="frame" x="0.0" y="172" width="150" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="8PI-av-Y79"/>
+                            <constraint firstAttribute="height" constant="45" id="cTq-6c-Hsx"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8PI-av-Y79"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <action selector="authorButtonPressed:" destination="jBq-6U-qF8" eventType="touchUpInside" id="RW8-GE-aFw"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LDd-oO-kzN" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="8" id="0e2-8p-J8j"/>
@@ -120,6 +138,7 @@
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerX" secondItem="LDd-oO-kzN" secondAttribute="centerX" id="6lO-w1-NoL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hII-NL-LnG" secondAttribute="bottom" constant="-8" id="7X9-yU-YVq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LDd-oO-kzN" secondAttribute="trailing" constant="18" id="8YE-iW-ZTL"/>
+                    <constraint firstItem="PCI-Ek-nfe" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="A5I-F9-ofO"/>
                     <constraint firstItem="hII-NL-LnG" firstAttribute="centerY" secondItem="0Db-YS-DgD" secondAttribute="centerY" id="AYI-ZJ-WbY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="l9K-RJ-Tmc" secondAttribute="bottom" constant="8" id="BX6-oa-Vd4"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="5" id="BgC-VH-a8f"/>
@@ -148,6 +167,7 @@
                     <constraint firstItem="gdZ-L3-4O4" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" id="daU-3J-uFW"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="e10-KV-CyY"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="hII-NL-LnG" secondAttribute="bottom" id="hwS-ef-t93"/>
+                    <constraint firstItem="RTe-nH-zxI" firstAttribute="trailing" secondItem="PCI-Ek-nfe" secondAttribute="trailing" constant="-20" id="kPG-nb-ZjW"/>
                     <constraint firstItem="gdZ-L3-4O4" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="445" id="lBj-Gn-3w8"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="top" secondItem="gdZ-L3-4O4" secondAttribute="bottom" constant="8" id="mBN-kA-uva"/>
                     <constraint firstItem="hII-NL-LnG" firstAttribute="centerX" secondItem="0Db-YS-DgD" secondAttribute="centerX" id="mDY-j0-rQZ"/>
@@ -160,6 +180,7 @@
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="8" id="sfi-hL-a9v"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="8" id="spk-E1-BWH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="exw-H4-PlW" secondAttribute="trailing" constant="-8" id="tSB-lK-PFx"/>
+                    <constraint firstItem="PCI-Ek-nfe" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" id="tvQ-Lc-Wzs"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="top" secondItem="gdZ-L3-4O4" secondAttribute="bottom" constant="8" id="vjF-nl-zHc"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="118" id="xVO-m9-Eem"/>
                     <constraint firstAttribute="bottomMargin" secondItem="OOG-mE-GJc" secondAttribute="bottom" constant="-8" id="xVk-AJ-JoL"/>

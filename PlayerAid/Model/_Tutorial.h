@@ -6,7 +6,6 @@
 extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *draft;
-	__unsafe_unretained NSString *favourited;
 	__unsafe_unretained NSString *imageURL;
 	__unsafe_unretained NSString *inReview;
 	__unsafe_unretained NSString *serverID;
@@ -18,10 +17,12 @@ extern const struct TutorialAttributes {
 extern const struct TutorialRelationships {
 	__unsafe_unretained NSString *consistsOf;
 	__unsafe_unretained NSString *createdBy;
+	__unsafe_unretained NSString *likedBy;
 	__unsafe_unretained NSString *section;
 } TutorialRelationships;
 
 @class TutorialStep;
+@class User;
 @class User;
 @class Section;
 
@@ -45,14 +46,6 @@ extern const struct TutorialRelationships {
 - (void)setDraftValue:(BOOL)value_;
 
 //- (BOOL)validateDraft:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* favourited;
-
-@property (atomic) BOOL favouritedValue;
-- (BOOL)favouritedValue;
-- (void)setFavouritedValue:(BOOL)value_;
-
-//- (BOOL)validateFavourited:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* imageURL;
 
@@ -98,6 +91,10 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateCreatedBy:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *likedBy;
+
+- (NSMutableSet*)likedBySet;
+
 @property (nonatomic, strong) Section *section;
 
 //- (BOOL)validateSection:(id*)value_ error:(NSError**)error_;
@@ -119,6 +116,14 @@ extern const struct TutorialRelationships {
 
 @end
 
+@interface _Tutorial (LikedByCoreDataGeneratedAccessors)
+- (void)addLikedBy:(NSSet*)value_;
+- (void)removeLikedBy:(NSSet*)value_;
+- (void)addLikedByObject:(User*)value_;
+- (void)removeLikedByObject:(User*)value_;
+
+@end
+
 @interface _Tutorial (CoreDataGeneratedPrimitiveAccessors)
 
 - (NSDate*)primitiveCreatedAt;
@@ -129,12 +134,6 @@ extern const struct TutorialRelationships {
 
 - (BOOL)primitiveDraftValue;
 - (void)setPrimitiveDraftValue:(BOOL)value_;
-
-- (NSNumber*)primitiveFavourited;
-- (void)setPrimitiveFavourited:(NSNumber*)value;
-
-- (BOOL)primitiveFavouritedValue;
-- (void)setPrimitiveFavouritedValue:(BOOL)value_;
 
 - (NSString*)primitiveImageURL;
 - (void)setPrimitiveImageURL:(NSString*)value;
@@ -168,6 +167,9 @@ extern const struct TutorialRelationships {
 
 - (User*)primitiveCreatedBy;
 - (void)setPrimitiveCreatedBy:(User*)value;
+
+- (NSMutableSet*)primitiveLikedBy;
+- (void)setPrimitiveLikedBy:(NSMutableSet*)value;
 
 - (Section*)primitiveSection;
 - (void)setPrimitiveSection:(Section*)value;

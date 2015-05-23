@@ -46,6 +46,12 @@
   return self.fetchedResultsController.sections[section];
 }
 
+- (NSInteger)sectionsCount
+{
+  AssertTrueOr(self.fetchedResultsController, return 0;);
+  return self.fetchedResultsController.sections.count;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellReuseIdentifier];
@@ -118,6 +124,12 @@
   
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRowInLastSectionIndex inSection:lastSectionIndex];
   return indexPath;
+}
+
+- (NSInteger)objectCount
+{
+  AssertTrueOr(self.fetchedResultsController, return 0;);
+  return self.fetchedResultsController.fetchedObjects.count;
 }
 
 @end

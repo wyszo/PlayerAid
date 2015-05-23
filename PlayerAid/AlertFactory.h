@@ -6,6 +6,7 @@
 @interface AlertFactory : NSObject
 
 + (UIAlertView *)showGenericErrorAlertView;
++ (UIAlertView *)showGenericErrorAlertViewNoRetry;
 
 // Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;

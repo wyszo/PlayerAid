@@ -13,6 +13,7 @@
 #import "CreateTutorialStepButtonsView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
+#import "UsersController.h"
 
 
 @interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
@@ -86,11 +87,7 @@
 
 - (User *)currentUser
 {
-  // TODO: return correct current user, not the first one find in a database!
-  
-  User *user = [User MR_findFirstInContext:self.createTutorialContext];
-  AssertTrueOrReturnNil(user);
-  return user;
+  return [[UsersController sharedInstance] currentUserInContext:self.createTutorialContext];
 }
 
 #pragma mark - NavigationBar buttons
@@ -229,12 +226,21 @@
 {
   [picker dismissViewControllerAnimated:YES completion:nil];
   
-  // TODO: update header view cover photo
+  UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+  if (!image) {
+    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+  }
+  self.headerViewController.backgroundImageView.image = image;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
   [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+  [[[viewController navigationController] navigationBar] setBarStyle:UIBarStyleBlack]; // enforces white image picker statusbar
 }
 
 @end

@@ -5,6 +5,8 @@
 
 @interface TableViewFetchedResultsControllerBinder : NSObject <NSFetchedResultsControllerDelegate>
 
+@property (copy, nonatomic) void (^numberOfObjectsChangedBlock)(NSInteger objectCount);
+
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
 

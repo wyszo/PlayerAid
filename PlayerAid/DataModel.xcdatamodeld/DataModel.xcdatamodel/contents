@@ -9,7 +9,6 @@
     <entity name="Tutorial" representedClassName="Tutorial" syncable="YES">
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="draft" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="favourited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -17,7 +16,8 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="unsaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="consistsOf" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TutorialStep" inverseName="belongsTo" inverseEntity="TutorialStep" syncable="YES"/>
-        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTutorial" inverseEntity="User" syncable="YES"/>
+        <relationship name="createdBy" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTutorial" inverseEntity="User" syncable="YES"/>
+        <relationship name="likedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="likes" inverseEntity="User" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="containsTutorial" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="TutorialStep" representedClassName="TutorialStep" syncable="YES">
@@ -28,14 +28,15 @@
         <attribute name="loggedInUser" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="createdTutorial" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="likedBy" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="133"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
     </elements>
 </model>

@@ -6,6 +6,9 @@
 #import "TutorialsTableDataSource.h"
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
+#import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
+#import "ProfileViewController.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
@@ -20,8 +23,11 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialsTableView;
+@property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
+
+@property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
 
 @end
 
@@ -38,18 +44,29 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
- 
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self allowPushingLoggedInUser:NO];
+  
   [self setupTableViewHeader];
   [self selectFilterLatest];
+  
+  self.noTutorialsLabel.text = @"No tutorials to show yet";
+  self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
   
   // TODO: Filter buttons should be extracted to a separate class
 }
 
 - (void)setupTableViewHeader
 {
+  // table view header - a white stripe in this case
   const CGFloat kHeaderGapHeight = 18.0f;
   UIView *headerViewGap = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, kHeaderGapHeight)];
   self.tutorialsTableView.tableHeaderView = headerViewGap;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
 #pragma mark - latest & following buttons bar
@@ -104,6 +121,11 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 {
   self.lastSelectedTutorial = tutorial;
   [self performSegueWithIdentifier:kShowTutorialDetailsSegueName sender:self];
+}
+
+- (void)numberOfRowsDidChange:(NSInteger)numberOfRows
+{
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
 #pragma mark - Navigation

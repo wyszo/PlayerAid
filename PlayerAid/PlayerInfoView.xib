@@ -11,6 +11,7 @@
                 <outlet property="backgroundImageView" destination="N7w-eu-tkT" id="5cd-ks-DeN"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="MXu-y8-xbg"/>
                 <outlet property="descriptionLabel" destination="m5Q-8A-yvh" id="VUH-cC-98Q"/>
+                <outlet property="editButton" destination="cxW-jr-YZ4" id="3Nj-3a-dME"/>
                 <outlet property="usernameLabel" destination="PfR-eQ-h1W" id="efl-6m-oSS"/>
             </connections>
         </placeholder>
@@ -19,10 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-eu-tkT" userLabel="Background Image View">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-eu-tkT" userLabel="Background">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Uf-vH-ntY" userLabel="Avatar Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Uf-vH-ntY" userLabel="Avatar">
                     <rect key="frame" x="252" y="78" width="96" height="96"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -61,6 +62,9 @@
                         <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="editButtonPressed:" destination="-1" eventType="touchUpInside" id="Bo9-RA-s7s"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

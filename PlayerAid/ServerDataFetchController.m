@@ -10,7 +10,7 @@
 
 + (void)updateUserAndTutorials
 {
-  [[UsersController sharedInstance] updateUserProfile];
+  [[UsersController sharedInstance] updateCurrentUserProfile];
   
   // [[TutorialsController sharedInstance] updateTutorialsList];
   // if this is the first time we fetch tutorials - show blocking alert view on failure (and retry)!

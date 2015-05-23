@@ -12,6 +12,7 @@
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
+#import "ProfileViewController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -49,6 +50,11 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
+  _fetchedResultsControllerBinder.numberOfObjectsChangedBlock = ^(NSInteger objectCount){
+    if ([(NSObject *)(weakSelf.tutorialTableViewDelegate) respondsToSelector:@selector(numberOfRowsDidChange:)]) {
+      [weakSelf.tutorialTableViewDelegate numberOfRowsDidChange:objectCount];
+    }
+  };
 }
 
 - (void)initTableViewDataSource
@@ -100,11 +106,15 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   BOOL isLastCellInTableView = [indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
   tutorialCell.showBottomGap = !isLastCellInTableView;
   tutorialCell.canBeDeletedOnSwipe = self.swipeToDeleteEnabled;
+
+  if (self.userAvatarSelectedBlock) {
+    tutorialCell.userAvatarSelectedBlock = self.userAvatarSelectedBlock;
+  }
   
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
       Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-      tutorialInContext.favouritedValue = favourited;
+      // TODO: add tutorialInContext to current User's liked relationship (or remove)
     }];
     // TODO: make a network request to favourite/unfavourite on server
   };
@@ -184,6 +194,12 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return [self.tableViewDataSource objectAtIndexPath:indexPath];
 }
 
+- (NSInteger)totalNumberOfCells
+{
+  AssertTrueOr(self.tableViewDataSource, return 0;);
+  return self.tableViewDataSource.objectCount;
+}
+
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,6 +239,20 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   
   sectionHeaderView.titleLabel.text = sectionName;
   return sectionHeaderView;
+}
+
+- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName
+{
+  AssertTrueOr(sectionName.length, return 0;);
+  
+  NSInteger sectionsCount = self.tableViewDataSource.sectionsCount;
+  for (int sectionIndex=0; sectionIndex < sectionsCount; sectionIndex++) {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.tableViewDataSource sectionInfoForSection:sectionIndex];
+    if ([sectionInfo.name.lowercaseString isEqual:sectionName.lowercaseString]) {
+      return sectionInfo.numberOfObjects;
+    }
+  }
+  return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

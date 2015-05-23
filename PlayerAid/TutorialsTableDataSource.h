@@ -3,6 +3,7 @@
 //
 
 #import "Tutorial.h"
+#import "User.h"
 
 @protocol TutorialsTableViewDelegate;
 
@@ -14,17 +15,23 @@
 @property (nonatomic, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
-
+@property (nonatomic, assign, readonly) NSInteger totalNumberOfCells;
+@property (nonatomic, copy) void (^userAvatarSelectedBlock)(User *user);
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
+- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName;
 
 @end
 
 
 @protocol TutorialsTableViewDelegate
+
 @required
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial;
+
+@optional
+- (void)numberOfRowsDidChange:(NSInteger)numberOfRows;
 @end

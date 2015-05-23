@@ -37,17 +37,19 @@
   
   switch(type) {
       
-    case NSFetchedResultsChangeInsert:
+    case NSFetchedResultsChangeInsert: {
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
-      break;
+      [self invokeNumberOfObjectsChangedCallbackForController:controller];
+    } break;
       
-    case NSFetchedResultsChangeDelete:
+    case NSFetchedResultsChangeDelete: {
       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
-      break;
+      [self invokeNumberOfObjectsChangedCallbackForController:controller];
+    } break;
       
-    case NSFetchedResultsChangeUpdate:
+    case NSFetchedResultsChangeUpdate: {
       if (self.configureCellBlock) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell) {
@@ -56,14 +58,21 @@
           // FetchedResultsController of a tableView from other tabBar item (now invisible) got the update, but didn't return a new cell when asked (since it's invisible). Expected case, don't worry.
         }
       }
-      break;
+    } break;
       
-    case NSFetchedResultsChangeMove:
+    case NSFetchedResultsChangeMove: {
       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
-      break;
+    } break;
+  }
+}
+
+- (void)invokeNumberOfObjectsChangedCallbackForController:(NSFetchedResultsController *)fetchedResultsController
+{
+  if (self.numberOfObjectsChangedBlock) {
+    self.numberOfObjectsChangedBlock(fetchedResultsController.fetchedObjects.count);
   }
 }
 
@@ -73,15 +82,16 @@
   AssertTrueOrReturn(tableView);
   
   switch(type) {
-    case NSFetchedResultsChangeInsert:
+    case NSFetchedResultsChangeInsert: {
       [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                withRowAnimation:UITableViewRowAnimationFade];
-      break;
+    } break;
       
-    case NSFetchedResultsChangeDelete:
+    case NSFetchedResultsChangeDelete: {
       [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                withRowAnimation:UITableViewRowAnimationFade];
-      break;
+    } break;
+      
     case NSFetchedResultsChangeMove:
     case NSFetchedResultsChangeUpdate:
       break;

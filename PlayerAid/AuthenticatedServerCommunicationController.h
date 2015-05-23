@@ -18,7 +18,8 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 
 
 - (void)pingCompletion:(NetworkResponseBlock)completion;
-- (void)getUserCompletion:(NetworkResponseBlock)completion;
+- (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
+- (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
 @end

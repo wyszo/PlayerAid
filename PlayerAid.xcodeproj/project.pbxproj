@@ -31,6 +31,12 @@
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
 		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
+		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
+		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
+		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
+		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
+		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
+		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -45,7 +51,6 @@
 		3177802A1A80975C007057CD /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780221A80975C007057CD /* Section.m */; };
 		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
 		3177802C1A80975C007057CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780261A80975C007057CD /* User.m */; };
-		317780311A80DFAB007057CD /* DataModelMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780301A80DFAB007057CD /* DataModelMock.m */; };
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
@@ -138,6 +143,17 @@
 		310308C01A863F6300B7F921 /* UIView+XibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLoading.m"; sourceTree = "<group>"; };
 		3103B6BD1A92377D0097FE00 /* FontsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontsHelper.h; sourceTree = "<group>"; };
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
+		312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h; sourceTree = "<group>"; };
+		312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m; sourceTree = "<group>"; };
+		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
+		312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoSegmentedControlButtonView.h; sourceTree = "<group>"; };
+		312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoSegmentedControlButtonView.m; sourceTree = "<group>"; };
+		312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionsDataSource.h; sourceTree = "<group>"; };
+		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionsDataSource.m; sourceTree = "<group>"; };
+		312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+SetByRemoving.h"; sourceTree = "<group>"; };
+		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
+		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
+		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -165,8 +181,6 @@
 		317780241A80975C007057CD /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		317780251A80975C007057CD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		317780261A80975C007057CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		3177802F1A80DFAB007057CD /* DataModelMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelMock.h; sourceTree = "<group>"; };
-		317780301A80DFAB007057CD /* DataModelMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelMock.m; sourceTree = "<group>"; };
 		317780341A80E557007057CD /* TutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTableViewCell.h; sourceTree = "<group>"; };
 		317780351A80E557007057CD /* TutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTableViewCell.m; sourceTree = "<group>"; };
 		317780381A80ED2C007057CD /* TutorialDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsViewController.h; sourceTree = "<group>"; };
@@ -312,22 +326,14 @@
 			name = Users;
 			sourceTree = "<group>";
 		};
-		31014E591A964213002F3485 /* JSONs */ = {
+		31014E591A964213002F3485 /* Mocked Server responses */ = {
 			isa = PBXGroup;
 			children = (
-				31014E5A1A96422A002F3485 /* user.json */,
-			);
-			name = JSONs;
-			sourceTree = "<group>";
-		};
-		31014E5F1A964354002F3485 /* Mocked Server Responses */ = {
-			isa = PBXGroup;
-			children = (
-				31014E591A964213002F3485 /* JSONs */,
 				31014E5C1A96431C002F3485 /* MockedServerResponses.h */,
 				31014E5D1A96431C002F3485 /* MockedServerResponses.m */,
+				31014E5A1A96422A002F3485 /* user.json */,
 			);
-			name = "Mocked Server Responses";
+			name = "Mocked Server responses";
 			sourceTree = "<group>";
 		};
 		31014E661A99FF42002F3485 /* Settings */ = {
@@ -360,8 +366,8 @@
 		31014E7A1A9BB364002F3485 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				31014E771A9BB35F002F3485 /* ApplicationViewHierarchyHelper.h */,
-				31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */,
+				312FF5FC1A9F1A3800AE3174 /* TabBar */,
+				312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -391,6 +397,8 @@
 				318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */,
 				3103B6BD1A92377D0097FE00 /* FontsHelper.h */,
 				3103B6BE1A92377D0097FE00 /* FontsHelper.m */,
+				312FF6071AA4807300AE3174 /* GradientHelper.h */,
+				312FF6081AA4807300AE3174 /* GradientHelper.m */,
 			);
 			name = Colors;
 			sourceTree = "<group>";
@@ -443,6 +451,80 @@
 			name = ServerCommunication;
 			sourceTree = "<group>";
 		};
+		312FF5F11A9E212200AE3174 /* Behaviours */ = {
+			isa = PBXGroup;
+			children = (
+				312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */,
+				312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */,
+			);
+			name = Behaviours;
+			sourceTree = "<group>";
+		};
+		312FF5F51A9E8F9A00AE3174 /* PlayerInfo */ = {
+			isa = PBXGroup;
+			children = (
+				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
+				312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */,
+			);
+			name = PlayerInfo;
+			sourceTree = "<group>";
+		};
+		312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */ = {
+			isa = PBXGroup;
+			children = (
+				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
+				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
+			);
+			name = "Facebook data manipulation";
+			sourceTree = "<group>";
+		};
+		312FF5FC1A9F1A3800AE3174 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
+				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		312FF5FD1A9F1A4400AE3174 /* Dispatch */ = {
+			isa = PBXGroup;
+			children = (
+				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
+				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
+			);
+			name = Dispatch;
+			sourceTree = "<group>";
+		};
+		312FF5FE1A9F1A5100AE3174 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
+				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
+				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
+		312FF5FF1A9F1A5F00AE3174 /* Application View Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				31014E771A9BB35F002F3485 /* ApplicationViewHierarchyHelper.h */,
+				31014E781A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m */,
+			);
+			name = "Application View Hierarchy";
+			sourceTree = "<group>";
+		};
+		312FF6001A9F1A7C00AE3174 /* SectionsDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */,
+				312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */,
+			);
+			name = SectionsDataSource;
+			sourceTree = "<group>";
+		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,16 +551,9 @@
 			children = (
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				31B735F41A88000B0081AE15 /* Categories */,
-				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
-				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
-				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
-				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
-				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
-				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
-				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
-				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
-				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
-				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
+				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
+				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
+				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -499,6 +574,7 @@
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
 				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				31B736051A8925F80081AE15 /* Tutorials */,
 				31B736061A8926010081AE15 /* TutorialSteps */,
@@ -604,9 +680,7 @@
 		317780321A80E471007057CD /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				3177802F1A80DFAB007057CD /* DataModelMock.h */,
-				317780301A80DFAB007057CD /* DataModelMock.m */,
-				31014E5F1A964354002F3485 /* Mocked Server Responses */,
+				31014E591A964213002F3485 /* Mocked Server responses */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -715,6 +789,8 @@
 				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
 				31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */,
 				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
+				312FF6041AA3E4AD00AE3174 /* NSSet+SetByRemoving.h */,
+				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -794,7 +870,7 @@
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
+				312FF5F51A9E8F9A00AE3174 /* PlayerInfo */,
 				31B735FF1A88D9780081AE15 /* Tutorial Cells */,
 				31B735E01A87B4350081AE15 /* Create Tutorial */,
 			);
@@ -817,6 +893,8 @@
 			children = (
 				31C122631A838A530069D49A /* PlayerInfoView.h */,
 				31C122641A838A530069D49A /* PlayerInfoView.m */,
+				312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */,
+				312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */,
 			);
 			name = PlayerInfo;
 			sourceTree = "<group>";
@@ -858,6 +936,7 @@
 				317780321A80E471007057CD /* Mocks */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
 				317780021A7FC6A7007057CD /* Helpers */,
+				312FF5F11A9E212200AE3174 /* Behaviours */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
@@ -998,6 +1077,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
@@ -1062,10 +1142,11 @@
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
+				312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */,
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
-				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */,
+				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
@@ -1077,11 +1158,13 @@
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
+				312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
+				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
@@ -1090,6 +1173,7 @@
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
+				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
