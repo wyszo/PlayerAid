@@ -3,8 +3,7 @@
 //
 
 #import "UIView+XibLoading.h"
-#import <Foundation/Foundation.h>
-#import <KZAsserts.h>
+
 
 @implementation UIView (XibLoading)
 

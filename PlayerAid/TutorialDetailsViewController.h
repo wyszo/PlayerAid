@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <UIKit/UIKit.h>
 #import "Tutorial.h"
 
 @interface TutorialDetailsViewController : UIViewController

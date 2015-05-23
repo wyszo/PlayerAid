@@ -3,14 +3,13 @@
 //
 
 #import "BrowseTutorialsViewController.h"
-#import <NSManagedObject+MagicalFinders.h>
 #import "Section.h"
 
+
 @interface BrowseTutorialsViewController ()
-
 @property (weak, nonatomic) IBOutlet UILabel *allSectionsLabel;
-
 @end
+
 
 @implementation BrowseTutorialsViewController
 

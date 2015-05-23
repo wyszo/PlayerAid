@@ -3,31 +3,28 @@
 //
 
 #import "ApplicationViewHierarchyHelper.h"
-#import <KZAsserts.h>
 
 
 @implementation ApplicationViewHierarchyHelper
 
-+ (UITabBarController *)applicationTabBarController
++ (UITabBarController *)mainTabBarController
 {
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
   UIViewController *rootViewController = appDelegate.window.rootViewController;
-  
   AssertTrueOrReturnNil([rootViewController isKindOfClass:[UITabBarController class]]);
-  UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-  return tabBarController;
+  return (UITabBarController *)rootViewController;
 }
 
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex
 {
-  UITabBarController *tabBarController = [self.class applicationTabBarController];
+  UITabBarController *tabBarController = [self.class mainTabBarController];
   AssertTrueOrReturnNil(tabBarController.tabBar.items.count > itemIndex);
   return tabBarController.tabBar.items[itemIndex];
 }
 
 + (CGRect)frameForTabBarItemAtIndex:(NSUInteger)itemIndex
 {
-  UITabBarController *tabBarController = [self.class applicationTabBarController];
+  UITabBarController *tabBarController = [self.class mainTabBarController];
   AssertTrueOr(tabBarController.tabBar.items.count > itemIndex, return CGRectZero;);
   
   NSMutableArray *allTabBarButtons = [NSMutableArray new];
@@ -53,12 +50,30 @@
   // at this point frame is not correct on iPhone 6 and 6+, recalculating (based on item width)
   
   CGRect screenSize = [UIScreen mainScreen].bounds;
-  frame = CGRectMake((screenSize.size.width - frame.size.width) / 2.0, frame.origin.y, frame.size.width, frame.size.height);
+  CGFloat yPos = 0; // frame.origin.y returns 1 which is not what we want
+  CGFloat originalYOffset = frame.origin.y;
+  frame = CGRectMake((screenSize.size.width - frame.size.width) / 2.0, yPos, frame.size.width, frame.size.height + originalYOffset);
   
   return frame;
   
   AssertTrueOr(NO, return CGRectZero;); // error, couldn't find tabBar item frame!
   return CGRectZero;
+}
+
+#pragma mark - Traversing TabBar view hierarchy
+
++ (UIView *)tabBarControllerBackgroundView
+{
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper mainTabBarController];
+  AssertTrueOrReturnNil(tabBarController);
+  
+  UIView *tabBarBackgroundView;
+  for (UIView *subview in tabBarController.tabBar.subviews) {
+    if ([subview isKindOfClass:NSClassFromString(@"_UITabBarBackgroundView")]) {
+      tabBarBackgroundView = subview;
+    }
+  }
+  return tabBarBackgroundView; // can be nil
 }
 
 @end

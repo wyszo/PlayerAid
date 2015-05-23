@@ -2,8 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-#import <KZAsserts.h>
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
 #import "UIView+XibLoading.h"
@@ -60,8 +58,10 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 - (void)setUser:(User *)user
 {
 // TODO: self.backgroundImageView.image =
-  self.avatarImageView.image = user.avatarImage;
-  self.usernameLabel.text = user.username;
+  
+  [user placeAvatarInImageView:self.avatarImageView];
+  
+  self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
 }
 

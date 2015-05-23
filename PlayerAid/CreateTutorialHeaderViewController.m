@@ -3,8 +3,6 @@
 //
 
 #import "CreateTutorialHeaderViewController.h"
-#import <NSManagedObject+MagicalFinders.h>
-#import <KZAsserts.h>
 #import "ApplicationViewHierarchyHelper.h"
 #import "AlertFactory.h"
 #import "Section.h"

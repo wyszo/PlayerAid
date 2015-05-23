@@ -4,12 +4,16 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <MagicalRecord+Setup.h>
-#import <KZAsserts.h>
 #import "AppDelegate.h"
 #import "DataModelMock.h"
 #import "AppearanceCustomizationHelper.h"
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
+#import "ApplicationViewHierarchyHelper.h"
+#import "AuthenticationController.h"
+#import "NavigationControllerWhiteStatusbar.h"
+#import "UsersController.h"
+#import "ServerDataFetchController.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -25,10 +29,29 @@
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
+//  [self populateCoreDataWithSampleEntities];
+  
+  [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
+    if (authenticated) {
+      [ServerDataFetchController updateUserAndTutorials];
+    }
+    else {
+      [self performLoginSegue]; // note this has to be called after setting up core data stack
+    }
+  }];
+  
   [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
-  [self populateCoreDataWithSampleEntities];
   [self setupTabBarActionHandling];
+  
   return YES;
+}
+
+- (void)performLoginSegue
+{
+  if (!self.window.keyWindow) {
+    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
+  }
+  [[ApplicationViewHierarchyHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
 }
 
 - (void)setupTabBarActionHandling
@@ -37,14 +60,12 @@
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
     
     CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createTutorialViewController];
+    NavigationControllerWhiteStatusbar *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:createTutorialViewController];
     
     [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   }];
   
-  UIViewController *rootViewController = self.window.rootViewController;
-  AssertTrueOrReturn([rootViewController isKindOfClass:[UITabBarController class]]);
-  ((UITabBarController *)rootViewController).delegate = self.tabBarControllerHandler;
+  [ApplicationViewHierarchyHelper mainTabBarController].delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

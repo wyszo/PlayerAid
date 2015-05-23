@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+
 
 @interface FacebookAuthenticationController : NSObject
 

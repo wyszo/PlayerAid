@@ -4,9 +4,11 @@
 @import CoreData;
 
 extern const struct UserAttributes {
-	__unsafe_unretained NSString *avatar;
+	__unsafe_unretained NSString *loggedInUser;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *pictureURL;
+	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *userDescription;
-	__unsafe_unretained NSString *username;
 } UserAttributes;
 
 extern const struct UserRelationships {
@@ -14,8 +16,6 @@ extern const struct UserRelationships {
 } UserRelationships;
 
 @class Tutorial;
-
-@class NSObject;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -26,17 +26,29 @@ extern const struct UserRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) UserID* objectID;
 
-@property (nonatomic, strong) id avatar;
+@property (nonatomic, strong) NSNumber* loggedInUser;
 
-//- (BOOL)validateAvatar:(id*)value_ error:(NSError**)error_;
+@property (atomic) BOOL loggedInUserValue;
+- (BOOL)loggedInUserValue;
+- (void)setLoggedInUserValue:(BOOL)value_;
+
+//- (BOOL)validateLoggedInUser:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* name;
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* pictureURL;
+
+//- (BOOL)validatePictureURL:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* serverID;
+
+//- (BOOL)validateServerID:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* userDescription;
 
 //- (BOOL)validateUserDescription:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* username;
-
-//- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSSet *createdTutorial;
 
@@ -54,14 +66,23 @@ extern const struct UserRelationships {
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
 
-- (id)primitiveAvatar;
-- (void)setPrimitiveAvatar:(id)value;
+- (NSNumber*)primitiveLoggedInUser;
+- (void)setPrimitiveLoggedInUser:(NSNumber*)value;
+
+- (BOOL)primitiveLoggedInUserValue;
+- (void)setPrimitiveLoggedInUserValue:(BOOL)value_;
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+- (NSString*)primitivePictureURL;
+- (void)setPrimitivePictureURL:(NSString*)value;
+
+- (NSString*)primitiveServerID;
+- (void)setPrimitiveServerID:(NSString*)value;
 
 - (NSString*)primitiveUserDescription;
 - (void)setPrimitiveUserDescription:(NSString*)value;
-
-- (NSString*)primitiveUsername;
-- (void)setPrimitiveUsername:(NSString*)value;
 
 - (NSMutableSet*)primitiveCreatedTutorial;
 - (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;

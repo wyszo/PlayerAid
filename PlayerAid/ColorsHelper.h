@@ -2,8 +2,6 @@
 //  PlayerAid
 //
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
 @interface ColorsHelper : NSObject
 
@@ -20,5 +18,7 @@
 + (UIColor *)tutorialsSelectedFilterButtonTextColor;
 + (UIColor *)tutorialsUnselectedFilterButtonColor;
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
+
++ (UIColor *)loginViewBackgroundColor;
 
 @end

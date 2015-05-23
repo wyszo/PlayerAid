@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <NSManagedObject+MagicalFinders.h>
 #import "ProfileViewController.h"
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
@@ -35,6 +34,11 @@
   
   [self setupTableHeaderView];
   self.playerInfoView.user = activeUser;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+  return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Header View initialization

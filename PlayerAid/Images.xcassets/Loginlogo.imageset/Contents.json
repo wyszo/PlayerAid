@@ -2,17 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Loginlogo.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "BulldogAvatar@2x.png"
+      "filename" : "Loginlogo@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "BulldogAvatar@3x.png"
+      "filename" : "Loginlogo@3x.png"
     }
   ],
   "info" : {

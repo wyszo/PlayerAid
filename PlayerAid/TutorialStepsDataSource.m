@@ -3,12 +3,6 @@
 //
 
 #import "TutorialStepsDataSource.h"
-#import <CoreData/CoreData.h>
-#import <KZAsserts.h>
-#import <NSManagedObject+MagicalFinders.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <NSManagedObjectContext+MagicalRecord.h>
-#import <NSManagedObjectContext+MagicalSaves.h>
 #import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "Tutorial.h"

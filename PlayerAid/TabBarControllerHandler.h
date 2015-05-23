@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
 
 @interface TabBarControllerHandler : NSObject <UITabBarControllerDelegate>
 

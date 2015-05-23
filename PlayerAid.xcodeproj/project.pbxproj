@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */; };
+		31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */ = {isa = PBXBuildFile; fileRef = 31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */; };
+		31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */; };
+		31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */; };
+		31014E561A9610ED002F3485 /* UsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E551A9610ED002F3485 /* UsersController.m */; };
+		31014E5B1A96422A002F3485 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 31014E5A1A96422A002F3485 /* user.json */; };
+		31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E5D1A96431C002F3485 /* MockedServerResponses.m */; };
+		31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E621A99EFF1002F3485 /* DispatchHelper.m */; };
+		31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E671A99FF57002F3485 /* GlobalSettings.m */; };
+		31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */; };
+		31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E701A9AA182002F3485 /* ServerDataFetchController.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -16,7 +27,7 @@
 		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
-		31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */; };
+		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
 		317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* DataExtractionHelper.m */; };
 		317780091A7FED4F007057CD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780081A7FED4F007057CD /* ProfileViewController.m */; };
@@ -34,6 +45,8 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
+		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
+		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
@@ -76,6 +89,27 @@
 /* Begin PBXFileReference section */
 		2250F9FBF5E8C664F2A00ECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		27B874C80D61AAD736127BBC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		31014E421A9352FA002F3485 /* FacebookLoginControlsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginControlsFactory.h; sourceTree = "<group>"; };
+		31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginControlsFactory.m; sourceTree = "<group>"; };
+		31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController_SavingToken.h; sourceTree = "<group>"; };
+		31014E4B1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerWhiteStatusbar.h; sourceTree = "<group>"; };
+		31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerWhiteStatusbar.m; sourceTree = "<group>"; };
+		31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
+		31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
+		31014E541A9610ED002F3485 /* UsersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersController.h; sourceTree = "<group>"; };
+		31014E551A9610ED002F3485 /* UsersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersController.m; sourceTree = "<group>"; };
+		31014E5A1A96422A002F3485 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		31014E5C1A96431C002F3485 /* MockedServerResponses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockedServerResponses.h; sourceTree = "<group>"; };
+		31014E5D1A96431C002F3485 /* MockedServerResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockedServerResponses.m; sourceTree = "<group>"; };
+		31014E621A99EFF1002F3485 /* DispatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchHelper.m; sourceTree = "<group>"; };
+		31014E631A99EFF1002F3485 /* DispatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchHelper.h; sourceTree = "<group>"; };
+		31014E651A99F241002F3485 /* PrecompiledHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrecompiledHeader.pch; sourceTree = "<group>"; };
+		31014E671A99FF57002F3485 /* GlobalSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalSettings.m; sourceTree = "<group>"; };
+		31014E691A99FF6B002F3485 /* GlobalSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSettings.h; sourceTree = "<group>"; };
+		31014E6C1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnauthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
+		31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnauthenticatedServerCommunicationController.m; sourceTree = "<group>"; };
+		31014E6F1A9AA182002F3485 /* ServerDataFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataFetchController.h; sourceTree = "<group>"; };
+		31014E701A9AA182002F3485 /* ServerDataFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerDataFetchController.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -92,8 +126,8 @@
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
-		31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
-		31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicationController.m; sourceTree = "<group>"; };
+		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
+		31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticatedServerCommunicationController.m; sourceTree = "<group>"; };
 		31777FFF1A7FBFBC007057CD /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
 		317780001A7FBFBC007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
 		317780031A7FC6B6007057CD /* DataExtractionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExtractionHelper.h; sourceTree = "<group>"; };
@@ -127,6 +161,9 @@
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
 		318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsHelper.m; sourceTree = "<group>"; };
+		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
+		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
+		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsView.m; sourceTree = "<group>"; };
@@ -196,6 +233,116 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31014E451A93530F002F3485 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				31DBC1931A7F150F00740A97 /* AlertFactory.h */,
+				31DBC1941A7F150F00740A97 /* AlertFactory.m */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		31014E461A935315002F3485 /* FacebookLoginControls */ = {
+			isa = PBXGroup;
+			children = (
+				31014E421A9352FA002F3485 /* FacebookLoginControlsFactory.h */,
+				31014E431A9352FA002F3485 /* FacebookLoginControlsFactory.m */,
+			);
+			name = FacebookLoginControls;
+			sourceTree = "<group>";
+		};
+		31014E491A93926B002F3485 /* AuthenticationController */ = {
+			isa = PBXGroup;
+			children = (
+				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
+				317780001A7FBFBC007057CD /* AuthenticationController.m */,
+				31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */,
+			);
+			name = AuthenticationController;
+			sourceTree = "<group>";
+		};
+		31014E4A1A93EA75002F3485 /* MainNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				31014E4B1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.h */,
+				31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */,
+			);
+			name = MainNavigationController;
+			sourceTree = "<group>";
+		};
+		31014E4E1A948623002F3485 /* Other View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31014E4A1A93EA75002F3485 /* MainNavigationController */,
+				317780151A80061A007057CD /* Intro */,
+				31014E521A948686002F3485 /* Terms and Conditions */,
+			);
+			name = "Other View Controllers";
+			sourceTree = "<group>";
+		};
+		31014E521A948686002F3485 /* Terms and Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */,
+				31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */,
+			);
+			name = "Terms and Conditions";
+			sourceTree = "<group>";
+		};
+		31014E531A961084002F3485 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				31014E541A9610ED002F3485 /* UsersController.h */,
+				31014E551A9610ED002F3485 /* UsersController.m */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		31014E591A964213002F3485 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				31014E5A1A96422A002F3485 /* user.json */,
+			);
+			name = JSONs;
+			sourceTree = "<group>";
+		};
+		31014E5F1A964354002F3485 /* Mocked Server Responses */ = {
+			isa = PBXGroup;
+			children = (
+				31014E591A964213002F3485 /* JSONs */,
+				31014E5C1A96431C002F3485 /* MockedServerResponses.h */,
+				31014E5D1A96431C002F3485 /* MockedServerResponses.m */,
+			);
+			name = "Mocked Server Responses";
+			sourceTree = "<group>";
+		};
+		31014E661A99FF42002F3485 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				31014E671A99FF57002F3485 /* GlobalSettings.m */,
+				31014E691A99FF6B002F3485 /* GlobalSettings.h */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		31014E6A1A99FFE1002F3485 /* Authenticated */ = {
+			isa = PBXGroup;
+			children = (
+				31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */,
+				31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */,
+			);
+			name = Authenticated;
+			sourceTree = "<group>";
+		};
+		31014E6B1A99FFE6002F3485 /* Unauthenticated */ = {
+			isa = PBXGroup;
+			children = (
+				31014E6C1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.h */,
+				31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */,
+			);
+			name = Unauthenticated;
+			sourceTree = "<group>";
+		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,13 +363,14 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
-		310308AE1A83FA7600B7F921 /* Dummy Create tutorial */ = {
+		310308AE1A83FA7600B7F921 /* Create tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				31A621511A92AFCF00A77878 /* CreateTutorialTextStep */,
 				310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */,
 				310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */,
 			);
-			name = "Dummy Create tutorial";
+			name = "Create tutorial";
 			sourceTree = "<group>";
 		};
 		310308B21A84C92F00B7F921 /* TabBarControllerHandler */ = {
@@ -255,8 +403,10 @@
 		310308BE1A86354F00B7F921 /* ServerCommunication */ = {
 			isa = PBXGroup;
 			children = (
-				31777FFB1A7FA5FE007057CD /* ServerCommunicationController.h */,
-				31777FFC1A7FA5FE007057CD /* ServerCommunicationController.m */,
+				31014E6B1A99FFE6002F3485 /* Unauthenticated */,
+				31014E6A1A99FFE1002F3485 /* Authenticated */,
+				31014E6F1A9AA182002F3485 /* ServerDataFetchController.h */,
+				31014E701A9AA182002F3485 /* ServerDataFetchController.m */,
 			);
 			name = ServerCommunication;
 			sourceTree = "<group>";
@@ -264,6 +414,7 @@
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				31014E531A961084002F3485 /* Users */,
 				31B735F81A88D3B00081AE15 /* TableView */,
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				3177800D1A80047C007057CD /* DataSources */,
@@ -276,8 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				317780161A800630007057CD /* FacebookAuthentication */,
-				31777FFF1A7FBFBC007057CD /* AuthenticationController.h */,
-				317780001A7FBFBC007057CD /* AuthenticationController.m */,
+				31014E491A93926B002F3485 /* AuthenticationController */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -292,6 +442,8 @@
 				31B735E91A87D8160081AE15 /* ApplicationViewHierarchyHelper.m */,
 				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
 				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+				31014E621A99EFF1002F3485 /* DispatchHelper.m */,
+				31014E631A99EFF1002F3485 /* DispatchHelper.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -302,7 +454,7 @@
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 				317780111A8005F9007057CD /* Home */,
 				317780141A80060A007057CD /* Browse */,
-				310308AE1A83FA7600B7F921 /* Dummy Create tutorial */,
+				310308AE1A83FA7600B7F921 /* Create tutorial */,
 				317780121A8005FE007057CD /* Profile */,
 				317780131A800604007057CD /* Settings */,
 			);
@@ -419,6 +571,7 @@
 			children = (
 				3177802F1A80DFAB007057CD /* DataModelMock.h */,
 				317780301A80DFAB007057CD /* DataModelMock.m */,
+				31014E5F1A964354002F3485 /* Mocked Server Responses */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -456,7 +609,7 @@
 				31C122621A838A340069D49A /* UI Components */,
 				317780331A80E532007057CD /* Cells */,
 				317780061A7FED38007057CD /* Tabbar */,
-				317780151A80061A007057CD /* Intro */,
+				31014E4E1A948623002F3485 /* Other View Controllers */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -470,6 +623,15 @@
 				310308B91A84D8DD00B7F921 /* ApplicationAppearance */,
 			);
 			name = Styling;
+			sourceTree = "<group>";
+		};
+		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
+			isa = PBXGroup;
+			children = (
+				31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */,
+				31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */,
+			);
+			name = CreateTutorialTextStep;
 			sourceTree = "<group>";
 		};
 		31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */ = {
@@ -495,6 +657,7 @@
 				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
 				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
+				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
 			);
 			name = "Create Tutorial";
 			sourceTree = "<group>";
@@ -622,8 +785,8 @@
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				31DBC1931A7F150F00740A97 /* AlertFactory.h */,
-				31DBC1941A7F150F00740A97 /* AlertFactory.m */,
+				31014E451A93530F002F3485 /* Alert */,
+				31014E461A935315002F3485 /* FacebookLoginControls */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -651,6 +814,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				31014E661A99FF42002F3485 /* Settings */,
 				3177801A1A80975C007057CD /* DataModel */,
 				317780321A80E471007057CD /* Mocks */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
@@ -665,6 +829,7 @@
 				31F116861A790F680022BD74 /* LaunchScreen.xib */,
 				31F116741A790F680022BD74 /* Supporting Files */,
 				317780171A80076C007057CD /* DataModel.xcdatamodeld */,
+				31014E651A99F241002F3485 /* PrecompiledHeader.pch */,
 			);
 			path = PlayerAid;
 			sourceTree = "<group>";
@@ -801,7 +966,9 @@
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
+				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
+				31014E5B1A96422A002F3485 /* user.json in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,7 +1022,10 @@
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
+				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
 				317780311A80DFAB007057CD /* DataModelMock.m in Sources */,
+				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
+				31014E5E1A96431C002F3485 /* MockedServerResponses.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
@@ -866,6 +1036,8 @@
 				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
+				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
+				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
@@ -873,7 +1045,7 @@
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
-				31777FFD1A7FA5FE007057CD /* ServerCommunicationController.m in Sources */,
+				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
@@ -881,15 +1053,21 @@
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				31014E711A9AA182002F3485 /* ServerDataFetchController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
+				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
+				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
+				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
+				31014E641A99EFF1002F3485 /* DispatchHelper.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
+				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
@@ -1020,6 +1198,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tomasz Wyszomirski (992458E4DU)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1033,6 +1213,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

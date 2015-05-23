@@ -3,8 +3,6 @@
 //
 
 #import <FacebookSDK.h>
-#import <KZAsserts.h>
-#import <UIAlertView+Blocks.h>
 #import "AlertFactory.h"
 
 
@@ -62,6 +60,42 @@
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
   [alertView show];
   return alertView;
+}
+
++ (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"No" action:^{
+    if (completionBlock) {
+      completionBlock(NO);
+    }
+  }];
+  RIButtonItem *confirmButtonItem = [RIButtonItem itemWithLabel:@"YES, remove it" action:^{
+    if (completionBlock) {
+      completionBlock(YES);
+    }
+  }];
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Remove tutorial step?" cancelButtonItem:cancelButtonItem otherButtonItems:confirmButtonItem, nil];
+  [alert show];
+  return alert;
+}
+
+#pragma mark - Other alerts
+
++ (UIAlertView *)showBlockingFirstSyncFailedAlertView
+{
+  NSString *title = @"Communication Error";
+  NSString *message = @"\nUnable to contact PlayerAid cloud. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection. The app will continue to try to connect. \n\nThe data has never been sync with PlayerAid cloud, can't continue until synchronisation succeeds! Retrying...";
+
+  return [self blockingAlertWithTitle:title message:message];
+}
+
+
++ (UIAlertView *)blockingAlertWithTitle:(NSString *)title message:(NSString *)message
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:nil];
+  [alert show];
+  return alert;
 }
 
 #pragma mark - Facebook

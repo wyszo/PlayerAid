@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import <UIKit/UIKit.h>
 #import "User.h"
+
 
 IB_DESIGNABLE @interface PlayerInfoView : UIView
 

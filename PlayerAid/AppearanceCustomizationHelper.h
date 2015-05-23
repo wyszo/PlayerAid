@@ -2,8 +2,6 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-
 
 @interface AppearanceCustomizationHelper : NSObject
 

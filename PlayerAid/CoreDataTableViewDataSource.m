@@ -3,8 +3,6 @@
 //
 
 #import "CoreDataTableViewDataSource.h"
-#import <NSManagedObject+MagicalFinders.h>
-#import <KZAsserts.h>
 
 
 @interface CoreDataTableViewDataSource ()

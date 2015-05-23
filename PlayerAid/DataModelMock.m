@@ -2,15 +2,12 @@
 //  PlayerAid
 //
 
-#import <NSManagedObject+MagicalFinders.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <MagicalRecord/MagicalRecord+Actions.h>
-#import <UIKit/UIKit.h>
 #import "DataModelMock.h"
 #import "Tutorial.h"
 #import "User.h"
 #import "Section.h"
 #import "TutorialStep.h"
+#import "MockedServerResponses.h"
 
 
 @implementation DataModelMock
@@ -79,20 +76,18 @@
   return step;
 }
 
-
 #pragma mark - Mocking Users
 
 - (void)addDummyUserObject
 {
+  NSDictionary *mockedUserDictionary = [MockedServerResponses postUserResponse];
+  AssertTrueOrReturn(mockedUserDictionary.count);
+  
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
     [User MR_truncateAllInContext:localContext];
     
     User *user = [User MR_createInContext:localContext];
-    user.username = @"Test user";
-    user.userDescription = @"The greatest football player of all time!!";
-    
-    UIImage *userAvatar = [UIImage imageNamed:@"SampleUserAvatar"];
-    [user setAvatar:UIImagePNGRepresentation(userAvatar)];
+    [user configureFromDictionary:mockedUserDictionary];
   }];
 }
 

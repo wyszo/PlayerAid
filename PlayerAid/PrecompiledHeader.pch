@@ -1,0 +1,25 @@
+//
+//  PlayerAid
+//
+
+#ifndef PlayerAid_PrecompiledHeader_pch
+#define PlayerAid_PrecompiledHeader_pch
+
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
+
+#import <MagicalRecord+Actions.h>
+#import <NSManagedObject+MagicalFinders.h>
+#import <NSManagedObject+MagicalRecord.h>
+#import <NSManagedObjectContext+MagicalRecord.h>
+#import <NSManagedObjectContext+MagicalSaves.h>
+
+#import <KZAsserts.h>
+#import <UIAlertView+Blocks.h>
+
+#include "DispatchHelper.h"
+
+
+#endif

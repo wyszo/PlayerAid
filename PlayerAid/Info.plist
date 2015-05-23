@@ -23,16 +23,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb438801752955361</string>
+				<string>fb780973405320737</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.3</string>
+	<string>0.5</string>
 	<key>FacebookAppID</key>
-	<string>438801752955361</string>
+	<string>780973405320737</string>
 	<key>FacebookDisplayName</key>
-	<string>TestProject</string>
+	<string>PlayerAid</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -58,6 +58,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

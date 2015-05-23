@@ -2,15 +2,10 @@
 //  PlayerAid
 //
 
-#import <CoreData/CoreData.h>
-#import <NSManagedObject+MagicalFinders.h>
-#import <MagicalRecord+Actions.h>
-#import <NSManagedObject+MagicalRecord.h>
-#import <KZAsserts.h>
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
-#import "ServerCommunicationController.h"
+#import "AuthenticatedServerCommunicationController.h"
 #import "TutorialCellHelper.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TableViewFetchedResultsControllerBinder.h"
@@ -130,7 +125,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   
   // Make a delete tutorial network request
-  [ServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
+  [AuthenticatedServerCommunicationController.sharedInstance deleteTutorial:tutorial completion:^(NSError *error) {
     if (error) {
       // TODO: delete tutorial request failed, queue it again, retry
     }
