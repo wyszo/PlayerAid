@@ -55,7 +55,7 @@ DEPENDENCIES:
   - MagicalRecord (= 2.2)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
-  - TWCommonLib (from `../TWCommonLib`)
+  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`, tag `CommonLib_0_3_1`)
   - UIAlertView-Blocks (= 1.0)
   - YCameraView (from `../YCameraView`)
 
@@ -64,7 +64,8 @@ EXTERNAL SOURCES:
     :branch: ThomasChanges
     :git: ../FDTake
   TWCommonLib:
-    :path: ../TWCommonLib
+    :git: https://github.com/wyszo/TWCommonLib.git
+    :tag: CommonLib_0_3_1
   YCameraView:
     :branch: PlayerAidChanges
     :path: ../YCameraView
@@ -73,6 +74,9 @@ CHECKOUT OPTIONS:
   FDTake:
     :commit: 10b5e9605e67255794e369f4c11baf7f62e61199
     :git: ../FDTake
+  TWCommonLib:
+    :git: https://github.com/wyszo/TWCommonLib.git
+    :tag: CommonLib_0_3_1
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
