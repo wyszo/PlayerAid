@@ -5,7 +5,6 @@
 #import <AFNetworking.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
-#import "NSMutableURLRequest+HttpHeaders.h"
 #import "NSURL+URLString.h"
 
 

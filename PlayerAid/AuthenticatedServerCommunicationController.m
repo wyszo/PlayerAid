@@ -7,7 +7,6 @@
 #import "GlobalSettings.h"
 #import "Section.h"
 #import "TutorialStep.h"
-#import "NSMutableURLRequest+HttpHeaders.h"
 #import "NSURL+URLString.h"
 
 

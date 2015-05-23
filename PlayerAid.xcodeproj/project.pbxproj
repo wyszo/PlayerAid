@@ -43,7 +43,6 @@
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
-		312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */; };
 		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
@@ -194,8 +193,6 @@
 		312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackHelper.m; sourceTree = "<group>"; };
 		312E191C1AB712C800CB5707 /* DebugSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSettings.h; sourceTree = "<group>"; };
 		312E191D1AB712C900CB5707 /* DebugSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSettings.m; sourceTree = "<group>"; };
-		312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+HttpHeaders.h"; sourceTree = "<group>"; };
-		312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+HttpHeaders.m"; sourceTree = "<group>"; };
 		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
 		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
@@ -1076,7 +1073,6 @@
 			children = (
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
-				31E1E1971AECCB290091ED01 /* NSMutableURLRequest */,
 				31E1E19A1AECCB4C0091ED01 /* NSString */,
 				31E1E1981AECCB370091ED01 /* NSURL */,
 				31E1E1921AECCAE50091ED01 /* UIView */,
@@ -1240,15 +1236,6 @@
 				31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */,
 			);
 			name = UITableView;
-			sourceTree = "<group>";
-		};
-		31E1E1971AECCB290091ED01 /* NSMutableURLRequest */ = {
-			isa = PBXGroup;
-			children = (
-				312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */,
-				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
-			);
-			name = NSMutableURLRequest;
 			sourceTree = "<group>";
 		};
 		31E1E1981AECCB370091ED01 /* NSURL */ = {
@@ -1578,7 +1565,6 @@
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
-				312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
