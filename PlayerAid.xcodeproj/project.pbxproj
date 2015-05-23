@@ -29,6 +29,8 @@
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
 		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
+		3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */; };
+		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
 		31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
@@ -72,8 +74,8 @@
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
-		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */; };
-		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */; };
+		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
+		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
 		31B5485C1AB5E9960010FC83 /* NSArrayTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B5485B1AB5E9960010FC83 /* NSArrayTableViewDataSource.m */; };
@@ -93,6 +95,8 @@
 		31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
+		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
+		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
@@ -154,6 +158,9 @@
 		310308C01A863F6300B7F921 /* UIView+XibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLoading.m"; sourceTree = "<group>"; };
 		3103B6BD1A92377D0097FE00 /* FontsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontsHelper.h; sourceTree = "<group>"; };
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
+		3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButton.xib; sourceTree = "<group>"; };
+		3106D7621AC0857D0076F571 /* CreateTutorialStepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButton.h; sourceTree = "<group>"; };
+		3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButton.m; sourceTree = "<group>"; };
 		31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = TestVideo.mp4; path = PlayerAid/TestVideo.mp4; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
@@ -236,9 +243,9 @@
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
-		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsView.xib; sourceTree = "<group>"; };
-		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsView.h; sourceTree = "<group>"; };
-		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsView.m; sourceTree = "<group>"; };
+		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsContainerView.xib; sourceTree = "<group>"; };
+		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsContainerView.h; sourceTree = "<group>"; };
+		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsContainerView.m; sourceTree = "<group>"; };
 		31B548541AB48AC20010FC83 /* EditTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialCell.xib; sourceTree = "<group>"; };
 		31B548561AB48B160010FC83 /* EditTutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialTableViewCell.h; sourceTree = "<group>"; };
 		31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialTableViewCell.m; sourceTree = "<group>"; };
@@ -273,6 +280,9 @@
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
+		31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionLabelContainerView.xib; sourceTree = "<group>"; };
+		31CA3CD51AC4A36D0044A13D /* SectionLabelContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionLabelContainer.h; sourceTree = "<group>"; };
+		31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionLabelContainer.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -849,8 +859,10 @@
 		31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */ = {
 			isa = PBXGroup;
 			children = (
-				31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsView.h */,
-				31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsView.m */,
+				31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.h */,
+				31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */,
+				3106D7621AC0857D0076F571 /* CreateTutorialStepButton.h */,
+				3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */,
 			);
 			name = CreateTutorialButtons;
 			sourceTree = "<group>";
@@ -890,19 +902,13 @@
 			name = "TableView delegate";
 			sourceTree = "<group>";
 		};
-		31B548611AB703000010FC83 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
 			isa = PBXGroup;
 			children = (
 				310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */,
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
-				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib */,
+				3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */,
+				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */,
 				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
 				31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */,
 				31E1F8F51AADA853005EB35B /* PopoverView.xib */,
@@ -1016,6 +1022,7 @@
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				31CA3CD11AC4A2E00044A13D /* UI Components */,
 				31B735E01A87B4350081AE15 /* Create Tutorial */,
 				312FF5F51A9E8F9A00AE3174 /* PlayerInfo */,
 				31B735FF1A88D9780081AE15 /* Tutorial Cells */,
@@ -1026,6 +1033,7 @@
 		31C122621A838A340069D49A /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				31CA3CD41AC4A3500044A13D /* SectionLabelContainer */,
 				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
 				31C122661A838A590069D49A /* PlayerInfo */,
@@ -1045,6 +1053,23 @@
 				312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */,
 			);
 			name = PlayerInfo;
+			sourceTree = "<group>";
+		};
+		31CA3CD11AC4A2E00044A13D /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */,
+			);
+			name = "UI Components";
+			sourceTree = "<group>";
+		};
+		31CA3CD41AC4A3500044A13D /* SectionLabelContainer */ = {
+			isa = PBXGroup;
+			children = (
+				31CA3CD51AC4A36D0044A13D /* SectionLabelContainer.h */,
+				31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */,
+			);
+			name = SectionLabelContainer;
 			sourceTree = "<group>";
 		};
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
@@ -1087,7 +1112,6 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
-				31B548611AB703000010FC83 /* Settings */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				312FF5F11A9E212200AE3174 /* Behaviours */,
 				31777FF71A7F9426007057CD /* Controllers */,
@@ -1218,10 +1242,12 @@
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
-				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsView.xib in Resources */,
+				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
+				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
+				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
@@ -1297,7 +1323,7 @@
 				315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
-				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
+				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */,
@@ -1330,6 +1356,7 @@
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
+				31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */,
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
@@ -1350,6 +1377,7 @@
 				317780271A80975C007057CD /* _Section.m in Sources */,
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
+				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

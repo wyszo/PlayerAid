@@ -52,7 +52,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
   
-  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:60.0f];
+  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:52.0f];
   [self setupTableView];
   self.backgroundView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
   [self.tutorialStepsTableView setEditing:YES];
@@ -100,7 +100,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   defineWeakSelf();
   editTutorialCell.deleteCellBlock = ^() {
     [AlertFactory showDeleteTutorialStepAlertConfirmationWithOKAction:^{
-      [weakSelf.tableViewDataSource removeObjectAtIndex:indexPath.row];
+      [weakSelf.tableViewDataSource removeObject:objectAtIndexPath];
       [weakSelf.tutorialStepsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
   };

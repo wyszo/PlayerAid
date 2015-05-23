@@ -3,13 +3,24 @@
 //
 
 #import "CreateTutorialTextStepViewController.h"
+#import <NSString+RemoveEmoji.h>
 #import "AlertFactory.h"
 #import "NSString+Trimming.h"
+#import "GlobalSettings.h"
 
 
-@interface CreateTutorialTextStepViewController ()
+NSString *const kCreateTutorialErrorDomain = @"CreateTutorialDomain";
+const NSInteger kTextStepDismissedError = 1;
+
+
+@interface CreateTutorialTextStepViewController () <UITextViewDelegate>
+
 @property (copy, nonatomic) CreateTextStepCompletion completionBlock;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *characterLimitLabel;
+@property (weak, nonatomic) UIBarButtonItem *confirmNavbarButton;
+@property (assign, nonatomic) NSInteger remainingCharactersCount;
+
 @end
 
 
@@ -32,6 +43,16 @@
 
   [self customizeNavigationBarButtons];
   [self.textView becomeFirstResponder];
+  
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+  [self setupCharactersCount];
+  self.textView.keyboardType = UIKeyboardTypeASCIICapable;
+}
+
+- (void)setupCharactersCount
+{
+  self.textView.delegate = self;
+  [self updateCharactersCountLabel];
 }
 
 - (void)customizeNavigationBarButtons
@@ -39,7 +60,43 @@
   UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed)];
   self.navigationItem.leftBarButtonItem = cancelButton;
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Confirm" style:UIBarButtonItemStylePlain target:self action:@selector(addTextButtonPressed)];
+  UIBarButtonItem *confirmNavbarButton = [[UIBarButtonItem alloc] initWithTitle:@"Confirm" style:UIBarButtonItemStylePlain target:self action:@selector(addTextButtonPressed)];
+  self.navigationItem.rightBarButtonItem = confirmNavbarButton;
+  self.confirmNavbarButton = confirmNavbarButton;
+}
+
+- (void)updateCharactersCountLabel
+{
+  self.characterLimitLabel.text = [NSString stringWithFormat:@"%ld", (long)self.remainingCharactersCount];
+  
+  UIColor *labelColor;
+  if ([self overCharacterLimit]) {
+    labelColor = [UIColor redColor];
+  } else {
+    labelColor = [UIColor grayColor];
+  }
+  self.characterLimitLabel.textColor = labelColor;
+}
+
+- (void)updateConfirmButtonState
+{
+  self.confirmNavbarButton.enabled = !([self overCharacterLimit]);
+}
+
+- (void)updateTextColor
+{
+  UIColor *textColor;
+  if ([self overCharacterLimit]) {
+    textColor = [UIColor redColor];
+  } else {
+    textColor = [UIColor blackColor];
+  }
+  self.textView.textColor = textColor;
+}
+
+- (BOOL)overCharacterLimit
+{
+  return (self.remainingCharactersCount < 0);
 }
 
 #pragma mark - Text transformation
@@ -49,11 +106,30 @@
   return [self.textView.text stringByTrimmingWhitespaceAndNewline];
 }
 
+#pragma UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+  self.remainingCharactersCount = (kMaxTextStepCharactersCount - textView.text.length);
+  [self updateCharactersCountLabel];
+  [self updateConfirmButtonState];
+  [self updateTextColor];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+  if (text.isIncludingEmoji) {
+    return NO;
+  }
+  return YES;
+}
+
 #pragma mark - Actions
 
 - (void)addTextButtonPressed
 {
   [self dismissViewController];
+  
   if (self.completionBlock) {
     self.completionBlock(self.processedText, nil);
   }
@@ -75,8 +151,7 @@
 
 - (void)dismissViewController
 {
-  const NSInteger kTextStepDismissedError = 1;
-  NSError *error = [NSError errorWithDomain:@"CreateTutorialDomain" code:kTextStepDismissedError userInfo:nil];
+  NSError *error = [NSError errorWithDomain:kCreateTutorialErrorDomain code:kTextStepDismissedError userInfo:nil];
   self.completionBlock(nil, error);
   [self.navigationController popViewControllerAnimated:YES];
 }

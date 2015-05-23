@@ -10,6 +10,7 @@
 #import "GradientHelper.h"
 #import "FDTakeController+WhiteStatusbar.h"
 #import "MediaPickerHelper.h"
+#import "SectionLabelContainer.h"
 
 
 static const CGSize originalViewSize = { 320.0f, 226.0f };
@@ -17,10 +18,14 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
+@property (weak, nonatomic) IBOutlet UIView *grayOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
+@property (weak, nonatomic) IBOutlet UIButton *sectionLabelContainerButton;
 
 @property (strong, nonatomic) NSArray *actionSheetSections;
 @property (strong, nonatomic) Section *selectedSection;
@@ -40,6 +45,71 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   return self;
 }
 
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  [self setupEditCoverPhotoBackgroundImageGray];
+  [self setupPickACategoryButtonBackgroundImageGray];
+  self.grayOverlayView.hidden = YES;
+  self.sectionLabelContainer.titleLabel.text = @"Pick a Category";
+  
+  self.sectionLabelContainer.hidden = YES;  
+}
+
+- (void)setupEditCoverPhotoBackgroundImageWhite
+{
+  return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.editCoverPhotoButton];
+}
+
+- (void)setupEditCoverPhotoBackgroundImageGray
+{
+  return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.editCoverPhotoButton];
+}
+
+- (void)setupPickACategoryButtonBackgroundImageWhite
+{
+    return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.pickACategoryButton];
+}
+
+- (void)setupPickACategoryButtonBackgroundImageGray
+{
+  return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.pickACategoryButton];
+}
+
+- (void)setupTitleTextFieldWhiteText
+{
+  self.titleTextField.textColor = [UIColor whiteColor];
+}
+
+- (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button
+{
+  AssertTrueOrReturn(button);
+  AssertTrueOrReturn(imageName.length);
+  CGFloat inset = 15.0f;
+  
+  UIImage *image = [[UIImage imageNamed:imageName] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+  [button setBackgroundImage:image forState:UIControlStateNormal];
+}
+
+- (void)setupAndShowOverlays
+{
+  [self setupGradientOverlay];
+  self.grayOverlayView.hidden = NO;
+}
+
+- (void)updateSubviewsColoursToWhite
+{
+  [self setupEditCoverPhotoBackgroundImageWhite];
+  [self.editCoverPhotoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  
+  [self setupPickACategoryButtonBackgroundImageWhite];
+  [self.pickACategoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  
+  [self setupTitleTextFieldWhiteText];
+  
+  // TODO: make textfield border white
+}
+
 // this should be part of UIView, not a view controller..
 - (void)setupGradientOverlay
 {
@@ -56,12 +126,33 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   self.gradientLayer.frame = self.gradientOverlayView.bounds;
 }
 
+- (void)hidePickACategoryButtonShowSectionLabel
+{
+  self.sectionLabelContainer.hidden = NO;
+  self.sectionLabelContainerButton.hidden = NO;
+  
+  self.pickACategoryButton.hidden = YES;
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [textField resignFirstResponder];
   return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  // Prevent crashing undo bug – see note below.
+  if(range.length + range.location > textField.text.length)
+  {
+    return NO;
+  }
+  
+  NSUInteger newLength = [textField.text length] + [string length] - range.length;
+  const NSInteger maxTextFieldLength = 60;
+  return (newLength > maxTextFieldLength) ? NO : YES;
 }
 
 #pragma mark - IBActions
@@ -87,36 +178,30 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [actionSheet showInView:window];
 }
 
-- (IBAction)save:(id)sender
-{
-  if (!self.titleTextField.text.length) {
-    [AlertFactory showCreateTutorialNoTitleAlertView];
-    return;
-  }
-  
-  if (!self.selectedSection) {
-    [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
-    return;
-  }
-
-  if (self.saveDelegate) {
-    [self.saveDelegate saveTutorialTitled:self.title section:self.selectedSection];
-  }
-}
-
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
-  if (!self.titleTextField.text.length) {
+  BOOL titleSet = (self.titleTextField.text.length);
+  BOOL sectionSet = (self.selectedSection);
+  BOOL backgroundImageSet = (self.backgroundImageView.image);
+  
+  int numberOfFilledPiecesOfInfo = (int)titleSet + (int)sectionSet + (int)backgroundImageSet;
+  
+  if (numberOfFilledPiecesOfInfo < 2) {
+    [AlertFactory showCreateTutorialFillTutorialDetails];
+    return NO;
+  }
+  
+  if (!titleSet) {
     [AlertFactory showCreateTutorialNoTitleAlertView];
     return NO;
   }
   
-  if (!self.selectedSection) {
+  if (!sectionSet) {
     [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
     return NO;
   }
   
-  if (!self.backgroundImageView.image) {
+  if (!backgroundImageSet) {
     [AlertFactory showCreateTutorialNoImageAlertView];
     return NO;
   }
@@ -137,7 +222,12 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   AssertTrueOrReturn(photo);
   self.backgroundImageView.image = photo;
-  [self setupGradientOverlay];
+  [self setupAndShowOverlays];
+  [self updateSubviewsColoursToWhite];
+  
+  if (self.selectedSection) {
+    [self hidePickACategoryButtonShowSectionLabel];
+  }
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -148,7 +238,14 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
     AssertTrueOrReturn(buttonIndex > 0);
     NSInteger actionSheetSectionIndex = buttonIndex - 1; // cancelButtonIndex equals 0
     self.selectedSection = self.actionSheetSections[actionSheetSectionIndex];
-    [self.pickACategoryButton setTitle:self.selectedSection.displayName forState:UIControlStateNormal];
+
+    NSString *title = self.selectedSection.displayName;
+    [self.pickACategoryButton setTitle:title forState:UIControlStateNormal];
+    self.sectionLabelContainer.titleLabel.text = title;
+    
+    if (self.backgroundImageView.image) {
+      [self hidePickACategoryButtonShowSectionLabel];
+    }
   }
 }
 
@@ -166,7 +263,8 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (CGFloat)headerViewHeightForWidth:(CGFloat)width
 {
-  return width * originalViewSize.height / originalViewSize.width;
+  CGFloat offset = 32.0f;
+  return width * (originalViewSize.height + offset) / originalViewSize.width;
 }
 
 @end

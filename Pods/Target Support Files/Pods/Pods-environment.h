@@ -114,6 +114,12 @@
 #define COCOAPODS_VERSION_MINOR_NSDate_TimeAgo 0
 #define COCOAPODS_VERSION_PATCH_NSDate_TimeAgo 3
 
+// NSString+RemoveEmoji
+#define COCOAPODS_POD_AVAILABLE_NSString_RemoveEmoji
+#define COCOAPODS_VERSION_MAJOR_NSString_RemoveEmoji 0
+#define COCOAPODS_VERSION_MINOR_NSString_RemoveEmoji 0
+#define COCOAPODS_VERSION_PATCH_NSString_RemoveEmoji 1
+
 // UIAlertView-Blocks
 #define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks
 #define COCOAPODS_VERSION_MAJOR_UIAlertView_Blocks 1

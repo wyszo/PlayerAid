@@ -22,8 +22,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="419" height="505"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KHl-ya-y3u" userLabel="Tutorial Steps Table View">
-                    <rect key="frame" x="0.0" y="76" width="419" height="429"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KHl-ya-y3u" userLabel="Tutorial Steps Table View">
+                    <rect key="frame" x="0.0" y="43" width="419" height="462"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X1-r8-ZuH" userLabel="Cancel">
@@ -60,7 +60,7 @@
                 <constraint firstItem="3X1-r8-ZuH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7m5-Ub-pGw"/>
                 <constraint firstAttribute="trailing" secondItem="Y3u-ba-fex" secondAttribute="trailing" id="8Ud-qY-k4U"/>
                 <constraint firstAttribute="trailing" secondItem="KHl-ya-y3u" secondAttribute="trailing" id="Die-i7-77T"/>
-                <constraint firstItem="KHl-ya-y3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="76" id="EeU-xE-DJr"/>
+                <constraint firstItem="KHl-ya-y3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="43" id="EeU-xE-DJr"/>
                 <constraint firstItem="3X1-r8-ZuH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="GvQ-5s-fIT"/>
                 <constraint firstItem="JPH-XH-UTm" firstAttribute="baseline" secondItem="3X1-r8-ZuH" secondAttribute="baseline" id="SpN-gQ-fyd"/>
                 <constraint firstItem="Y3u-ba-fex" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="agy-L8-dda"/>

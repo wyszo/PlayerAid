@@ -99,39 +99,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
                         <rect key="frame" x="515" y="179" width="69" height="30"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDd-oO-kzN">
-                                <rect key="frame" x="15" y="0.0" width="39" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="EOA-l5-oc0"/>
-                                    <constraint firstAttribute="height" constant="30" id="Piq-qG-20h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="EOA-l5-oc0"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="LDd-oO-kzN" firstAttribute="leading" secondItem="n6d-ft-6nn" secondAttribute="leading" constant="15" id="7aJ-Vc-Rjd"/>
-                            <constraint firstAttribute="centerY" secondItem="LDd-oO-kzN" secondAttribute="centerY" id="7qO-Jr-Ccm"/>
-                            <constraint firstItem="LDd-oO-kzN" firstAttribute="leading" secondItem="n6d-ft-6nn" secondAttribute="leading" constant="20" id="Qmt-ff-9Qv"/>
-                            <constraint firstAttribute="trailing" secondItem="LDd-oO-kzN" secondAttribute="trailing" constant="15" id="Ukh-Yt-8He"/>
-                            <constraint firstAttribute="trailing" secondItem="LDd-oO-kzN" secondAttribute="trailing" constant="10" id="tX2-m9-K5H"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Qmt-ff-9Qv"/>
-                                <exclude reference="tX2-m9-K5H"/>
-                            </mask>
-                        </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exw-H4-PlW" userLabel="BottomGapView">
                         <rect key="frame" x="0.0" y="223" width="600" height="18"/>
@@ -241,7 +211,7 @@
                 <outlet property="bottomGapHeight" destination="h9Q-zf-hux" id="1X3-NB-eig"/>
                 <outlet property="favouriteButton" destination="gdZ-L3-4O4" id="nCJ-zW-1Be"/>
                 <outlet property="gradientOverlayView" destination="0Db-YS-DgD" id="B0i-mM-1vw"/>
-                <outlet property="sectionLabel" destination="LDd-oO-kzN" id="Gki-J3-XJz"/>
+                <outlet property="sectionLabelContainer" destination="n6d-ft-6nn" id="hif-gN-0pk"/>
                 <outlet property="sectionTitleBackground" destination="S8t-lE-vVW" id="orA-1S-j70"/>
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>

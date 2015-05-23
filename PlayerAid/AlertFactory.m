@@ -30,24 +30,24 @@
   return alert;
 }
 
++ (UIAlertView *)showCreateTutorialFillTutorialDetails
+{
+  return [self showOKAlertViewWithMessage:@"Please complete tutorial details"];
+}
+
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
 {
-  return [self showAlertViewWithMessage:@"Tutorial needs to have a title"];
+  return [self showOKAlertViewWithMessage:@"Please name the tutorial"];
 }
 
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView
 {
-  return [self showAlertViewWithMessage:@"You need to select tutorial category first"];
-}
-
-+ (UIAlertView *)showCreateTutorialNoTutorialStepsAlertView
-{
-  return [self showAlertViewWithMessage:@"You need to add at least one tutorial step first!"];
+  return [self showOKAlertViewWithMessage:@"Please choose a tutorial category"];
 }
 
 + (UIAlertView *)showCreateTutorialNoImageAlertView
 {
-  return [self showAlertViewWithMessage:@"You need to add tutorial image first!"];
+  return [self showOKAlertViewWithMessage:@"Please add a tutorial cover photo"];
 }
 
 + (UIAlertView *)showAlertViewWithMessage:(NSString *)message

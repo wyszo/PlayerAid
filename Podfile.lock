@@ -34,6 +34,7 @@ PODS:
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
   - NSDate+TimeAgo (1.0.3)
+  - NSString+RemoveEmoji (0.0.1)
   - UIAlertView-Blocks (1.0)
 
 DEPENDENCIES:
@@ -46,19 +47,21 @@ DEPENDENCIES:
   - KZPropertyMapper (= 2.5.1)
   - MagicalRecord (= 2.2)
   - NSDate+TimeAgo (= 1.0.3)
+  - NSString+RemoveEmoji (= 0.0.1)
   - UIAlertView-Blocks (= 1.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
-  Facebook-iOS-SDK: 0eda8ff7120aada0a9c5f98552f7625da6c3440a
-  FDTake: caea3b794995e04d70696212970a85155107815e
-  FLKAutoLayout: 8a973ab83832a8527626127193643f3c8ea157d5
-  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  KZAsserts: 008f2f37ba7dcb4ce87bb262a7f91406812a66e5
-  KZPropertyMapper: f06b00ff0c114bf8db45754a694b57278a628b5b
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
-  NSDate+TimeAgo: f3533e0198fab05b716368b19f8c2185d53d6f3b
-  UIAlertView-Blocks: f3271e84372beb97aea115cd1fb26ae66457f12f
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
+  FDTake: 6ff34778a1d0b5d5a1883fc6773e158ed89bd473
+  FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7
+  KZPropertyMapper: e80e83aa3bc6d37a6dd55e3d04a01afcb8c23d3c
+  MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
+  NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
+  NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
+  UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
 
 COCOAPODS: 0.35.0

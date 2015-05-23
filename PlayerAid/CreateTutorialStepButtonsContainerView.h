@@ -6,7 +6,7 @@
 
 
 IB_DESIGNABLE
-@interface CreateTutorialStepButtonsView : UIView
+@interface CreateTutorialStepButtonsContainerView : UIView
 
 @property (nonatomic, weak) id<CreateTutorialStepButtonsDelegate> delegate;
 

@@ -11,6 +11,9 @@
 
 #define InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, error) if(error) { [condition unlock]; if(completion) { completion(error); } return; }
 
+#define InvokeProgressChangedBlockForStepWithSelf(self, stepNumber) [self invokeProgressChagnedBlock:progressChangedBlock withCurrentStepNumber:stepNumber andTotalNumberOfSteps:totalNumberOfProgressSteps];
+#define InvokeProgressChangedBlockForStepAndIncrementStepCounter(stepNumber) InvokeProgressChangedBlockForStepWithSelf(self, stepNumber); currentStep++;
+
 
 @implementation ServerDataUpdateController
 
@@ -22,18 +25,24 @@
   // if this is the first time we fetch tutorials - show blocking alert view on failure (and retry)!
 }
 
-+ (void)saveTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
++ (void)saveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion
 {
   DISPATCH_ASYNC(QueuePriorityHigh, ^{
-    [self privateSaveTutorial:tutorial completion:completion];
+    [self privateSaveTutorial:tutorial progressChanged:progressChangedBlock completion:completion];
   });
 }
 
-+ (void)privateSaveTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
++ (void)privateSaveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion
 {
   NSCondition *condition = [[NSCondition alloc] init];
   [condition lock];
   __block NSError *topLevelError = nil;
+  
+  NSInteger currentStep = 0;
+  const NSInteger numberOfStandardRequests = 3;
+  NSInteger totalNumberOfProgressSteps = numberOfStandardRequests + tutorial.consistsOf.count;
+  
+  InvokeProgressChangedBlockForStepWithSelf(self, currentStep)
   
   [[AuthenticatedServerCommunicationController sharedInstance] createTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
@@ -52,6 +61,8 @@
   }];
   
   [condition wait];
+  
+  InvokeProgressChangedBlockForStepAndIncrementStepCounter(currentStep);
   InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
 
   [[AuthenticatedServerCommunicationController sharedInstance] submitImageForTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -62,20 +73,28 @@
   }];
 
   [condition wait];
+  InvokeProgressChangedBlockForStepAndIncrementStepCounter(currentStep);
   InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
   
-  [self saveStepsForTutorial:tutorial completion:^(NSError *error) {
+  [self saveStepsForTutorial:tutorial progressChanged:progressChangedBlock startFromProgressStep:currentStep totalNumberOfProgressSteps:totalNumberOfProgressSteps completion:^(NSError *error) {
     if (error) {
       topLevelError = [NSError genericServerResponseError];
     }
     [self lockSignalAndUnlockCondition:condition];
   }];
   
+  currentStep += tutorial.consistsOf.count;
+  
   [condition wait];
+  InvokeProgressChangedBlockForStepAndIncrementStepCounter(currentStep);
   InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError);
+
   [condition unlock];
   
+  defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialForReview:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    InvokeProgressChangedBlockForStepWithSelf(weakSelf, currentStep);
+    
     if (error) {
       topLevelError = [NSError genericServerResponseError];
       InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError) ;
@@ -88,6 +107,18 @@
   }];
 }
 
++ (void)invokeProgressChagnedBlock:(BlockWithFloatParameter)progressChangedBlock withCurrentStepNumber:(NSInteger)currentStepNumber andTotalNumberOfSteps:(NSInteger)totalNumberOfSteps
+{
+  AssertTrueOrReturn(progressChangedBlock);
+  AssertTrueOrReturn(totalNumberOfSteps > 0);
+  AssertTrueOrReturn(currentStepNumber <= totalNumberOfSteps);
+  
+  if (progressChangedBlock) {
+    CGFloat progress = 1.0f / totalNumberOfSteps * currentStepNumber;
+    progressChangedBlock(progress);
+  }
+}
+
 + (void)lockSignalAndUnlockCondition:(NSCondition *)condition
 {
   AssertTrueOrReturn(condition);
@@ -96,14 +127,14 @@
   [condition unlock];
 }
 
-+ (void)saveStepsForTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
++ (void)saveStepsForTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock startFromProgressStep:(NSInteger)currentProgressStep totalNumberOfProgressSteps:(NSInteger)totalNumberOfProgressSteps completion:(SaveCompletionBlock)completion
 {
   DISPATCH_ASYNC(QueuePriorityHigh, ^{
-    [self privateSaveStepsForTutorial:tutorial completion:completion];
+    [self privateSaveStepsForTutorial:tutorial progressChanged:progressChangedBlock startFromProgressStep:currentProgressStep totalNumberOfProgressSteps:totalNumberOfProgressSteps completion:completion];
   });
 }
 
-+ (void)privateSaveStepsForTutorial:(Tutorial *)tutorial completion:(SaveCompletionBlock)completion
++ (void)privateSaveStepsForTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock startFromProgressStep:(NSInteger)currentProgressStep totalNumberOfProgressSteps:(NSInteger)totalNumberOfProgressSteps completion:(SaveCompletionBlock)completion
 {
   AssertTrueOr(tutorial, if(completion) { completion([NSError incorrectParameterError]); } return;);
   
@@ -113,10 +144,16 @@
   NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
   operationQueue.maxConcurrentOperationCount = 2;
   __block NSError *topLevelError;
+  __block NSInteger progressStep = currentProgressStep;
   
+  defineWeakSelf();
   [tutorial.consistsOf enumerateObjectsUsingBlock:^(TutorialStep* step, NSUInteger idx, BOOL *stop) {
     [operationQueue addOperationWithBlock:^{
       [[AuthenticatedServerCommunicationController sharedInstance] submitTutorialStep:step withPosition:(idx+1) completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+        
+        [weakSelf invokeProgressChagnedBlock:progressChangedBlock withCurrentStepNumber:progressStep andTotalNumberOfSteps:totalNumberOfProgressSteps];
+        progressStep++;
+        
         if (error) {
           topLevelError = [NSError genericServerResponseError];
           [operationQueue cancelAllOperations];

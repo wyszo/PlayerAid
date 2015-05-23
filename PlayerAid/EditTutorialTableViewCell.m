@@ -4,6 +4,10 @@
 
 #import "EditTutorialTableViewCell.h"
 
+@interface EditTutorialTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *playIconImageView;
+@end
+
 
 @implementation EditTutorialTableViewCell
 
@@ -32,11 +36,12 @@
 - (void)configureThumbnailWithTutorialStep:(TutorialStep *)tutorialStep
 {
   if ([tutorialStep isTextStep]) {
-    // TODO: apply default text thumbnail!
+    self.thumbnailImageView.image = [UIImage imageNamed:@"typebtn_edit"];
   } else if ([tutorialStep isImageStep]) {
     self.thumbnailImageView.image = tutorialStep.image;
   } else if ([tutorialStep isVideoStep]) {
     self.thumbnailImageView.image = tutorialStep.thumbnailImage;
+    self.playIconImageView.hidden = NO;
   }
 }
 
@@ -45,6 +50,7 @@
   [super prepareForReuse];
   
   self.thumbnailImageView.image = nil;
+  self.playIconImageView.hidden = YES;
   self.titleLabel.text = @"";
 }
 

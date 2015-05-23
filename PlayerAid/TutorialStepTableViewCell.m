@@ -5,25 +5,35 @@
 #import "TutorialStepTableViewCell.h"
 
 
-static const CGFloat kContentImageHeight = 270.0f;
+// TODO: this should be read from xib file, not set programatically, confusing!!
+static const CGFloat kContentImageHeight = 180.0f;
 
 
-@interface TutorialStepTableViewCell ()
+@interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *videoPlayLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
 
 @end
 
 
 @implementation TutorialStepTableViewCell
 
+#pragma mark - View Customization
+
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
 {
+  self.textView.layoutManager.delegate = self;
   self.textView.text = tutorialStep.text;
-  self.videoPlayLabel.hidden = YES;
+  self.videoPlayImage.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
 }
 
@@ -40,7 +50,7 @@ static const CGFloat kContentImageHeight = 270.0f;
     }
     else if (videoTutorialStep) {
       self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
-      self.videoPlayLabel.hidden = NO;
+      self.videoPlayImage.hidden = NO;
     }
   }
   else {
@@ -52,7 +62,7 @@ static const CGFloat kContentImageHeight = 270.0f;
 {
   [super prepareForReuse];
   [self hideImageView];
-  self.videoPlayLabel.hidden = YES;
+  self.videoPlayImage.hidden = YES;
   self.textView.text = @"";
 }
 
@@ -61,6 +71,13 @@ static const CGFloat kContentImageHeight = 270.0f;
   self.contentImageHeightConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
+}
+
+#pragma mark - NSLayoutManagerDelegate
+
+- (CGFloat)layoutManager:(NSLayoutManager *)layoutManager lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(CGRect)rect
+{
+  return 10.0f;
 }
 
 @end

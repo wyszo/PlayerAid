@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialStepButton">
+            <connections>
+                <outlet property="imageView" destination="iEg-Tc-veC" id="693-4I-WnO"/>
+                <outlet property="titleLabel" destination="Z0C-ly-H95" id="tLR-1f-h4Z"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icv-Av-574" userLabel="Button background">
+                    <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEg-Tc-veC" userLabel="imageView">
+                            <rect key="frame" x="0.0" y="0.0" width="291" height="94"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0C-ly-H95" userLabel="titleLabel">
+                            <rect key="frame" x="0.0" y="84" width="291" height="138"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
+                            <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="iEg-Tc-veC" secondAttribute="trailing" id="1IU-2Z-USA"/>
+                        <constraint firstItem="iEg-Tc-veC" firstAttribute="leading" secondItem="icv-Av-574" secondAttribute="leading" id="1lR-Oe-H5h"/>
+                        <constraint firstAttribute="trailing" secondItem="Z0C-ly-H95" secondAttribute="trailing" id="7YP-Dv-Afd"/>
+                        <constraint firstItem="iEg-Tc-veC" firstAttribute="top" secondItem="icv-Av-574" secondAttribute="top" id="D57-fi-Cdr"/>
+                        <constraint firstItem="Z0C-ly-H95" firstAttribute="top" secondItem="iEg-Tc-veC" secondAttribute="bottom" constant="-10" id="ocB-HT-SfZ"/>
+                        <constraint firstItem="Z0C-ly-H95" firstAttribute="leading" secondItem="icv-Av-574" secondAttribute="leading" id="q8b-0t-NzD"/>
+                        <constraint firstAttribute="bottom" secondItem="Z0C-ly-H95" secondAttribute="bottom" id="tQH-tT-nJV"/>
+                        <constraint firstItem="Z0C-ly-H95" firstAttribute="width" secondItem="iEg-Tc-veC" secondAttribute="height" multiplier="291:94" id="wsj-3R-UCM"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc5-2j-iCu">
+                    <rect key="frame" x="0.0" y="0.0" width="291" height="222"/>
+                    <connections>
+                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="1mY-0f-fgm"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vc5-2j-iCu" secondAttribute="trailing" id="3nw-kJ-0kJ"/>
+                <constraint firstAttribute="trailing" secondItem="vc5-2j-iCu" secondAttribute="trailing" id="4WF-Pc-5kz"/>
+                <constraint firstItem="vc5-2j-iCu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4v9-KM-QeA"/>
+                <constraint firstAttribute="bottom" secondItem="icv-Av-574" secondAttribute="bottom" id="55f-Rt-VZ0"/>
+                <constraint firstItem="vc5-2j-iCu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CGU-sg-GgJ"/>
+                <constraint firstAttribute="trailing" secondItem="icv-Av-574" secondAttribute="trailing" id="For-c9-Mat"/>
+                <constraint firstItem="icv-Av-574" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qyz-0i-8bx"/>
+                <constraint firstAttribute="bottom" secondItem="vc5-2j-iCu" secondAttribute="bottom" id="fNk-i6-Akq"/>
+                <constraint firstItem="icv-Av-574" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mti-1Q-zOf"/>
+                <constraint firstAttribute="bottom" secondItem="vc5-2j-iCu" secondAttribute="bottom" id="qPY-dg-6OI"/>
+                <constraint firstItem="vc5-2j-iCu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r18-hv-FBR"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="411.5" y="202"/>
+        </view>
+    </objects>
+</document>

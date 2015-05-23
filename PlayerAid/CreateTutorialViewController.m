@@ -11,7 +11,7 @@
 #import "TutorialStepsDataSource.h"
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
-#import "CreateTutorialStepButtonsView.h"
+#import "CreateTutorialStepButtonsContainerView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
@@ -30,7 +30,7 @@
 @property (strong, nonatomic) FDTakeController *mediaController;
 
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
-@property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
+@property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsContainerView *createTutoriaStepButtonsView;
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
 
 @property (weak, nonatomic) UIBarButtonItem *publishButton;
@@ -39,6 +39,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
+@property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -53,26 +54,14 @@
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
-  [self setupAndAttachHeaderViewController];
+  [self setupTableView];
   self.createTutoriaStepButtonsView.delegate = self;
-  
-  // Where should we do that? This doesn't seem to be a correct place...
-  [self initializeContextAndNewTutorialObject];
+
+  [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
   
   [self setupTutorialStepsDataSource];
-  
-  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextOneImageAndVideoStep];
-    
-    defineWeakSelf();
-    DISPATCH_AFTER(0.2, ^{
-      [weakSelf editButtonPressed];
-    });
-  }
-  
-  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
-    [self DEBUG_pressPublishButton];
-  }
+  [self performDebugActions];
+  [self addGestureRecognizer];
   
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
@@ -81,24 +70,37 @@
   });
 }
 
-- (void)DEBUG_pressPublishButton
+- (void)addGestureRecognizer
 {
-  defineWeakSelf();
-  DISPATCH_AFTER(0.1, ^{
-    [weakSelf publishButtonPressed];
-  });
+  self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+  self.tapGestureRecognizer.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:self.tapGestureRecognizer];
 }
 
-- (void)DEBUG_addTwoTextTutorialSteps
+- (void)handleTap:(UITapGestureRecognizer *)sender
 {
-  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"debug text!" inContext:self.createTutorialContext];
-  step1.orderValue = 1;
-  [self.tutorial.consistsOfSet addObject:step1];
-  
-  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
-  step2.orderValue = 2;
-  [self.tutorial.consistsOfSet addObject:step2];
+  [self.view endEditing:YES];
 }
+
+- (void)setupTableView
+{
+  self.tutorialTableView.backgroundColor = [UIColor whiteColor];
+  
+  self.tutorialTableView.rowHeight = UITableViewAutomaticDimension;
+  self.tutorialTableView.estimatedRowHeight = 100.f;
+  
+  [self setupAndAttachHeaderViewController];
+  self.tutorialTableView.tableFooterView = [self smallTransparentFooterView];
+}
+
+- (UIView *)smallTransparentFooterView
+{
+  UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
+  footer.backgroundColor = [UIColor clearColor];
+  return footer;
+}
+
+#pragma mark - View layout and setup
 
 - (void)setupAndAttachHeaderViewController
 {
@@ -136,6 +138,53 @@
   self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {
     [weakSelf updateEditButtonEnabled];
   };
+}
+
+#pragma mark - DEBUG
+
+- (void)performDebugActions
+{
+  if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
+    //    [self DEBUG_addTextTutorialStep];
+    [self DEBUG_addImageStep];
+  }
+  
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
+    [self DEBUG_addTwoTextOneImageAndVideoStep];
+    
+    defineWeakSelf();
+    DISPATCH_AFTER(0.2, ^{
+      [weakSelf editButtonPressed];
+    });
+  }
+  
+  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    [self DEBUG_pressPublishButton];
+  }
+}
+
+- (void)DEBUG_pressPublishButton
+{
+  defineWeakSelf();
+  DISPATCH_AFTER(0.1, ^{
+    [weakSelf publishButtonPressed];
+  });
+}
+
+- (void)DEBUG_addTextTutorialStep
+{
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
+  step1.orderValue = 1;
+  [self.tutorial.consistsOfSet addObject:step1];
+}
+
+- (void)DEBUG_addTwoTextTutorialSteps
+{
+  [self DEBUG_addTextTutorialStep];
+  
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  step2.orderValue = 2;
+  [self.tutorial.consistsOfSet addObject:step2];
 }
 
 #pragma mark - Context and Tutorial object initialization
@@ -206,8 +255,9 @@
   CGRect buttonRect = CGRectMake(0, 0, 60, 30);
   
   UIView *buttonContainer = [[UIView alloc] initWithFrame:buttonRect];
-  self.editButton = [NavigationBarCustomizationHelper buttonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
-  [buttonContainer addSubview:self.editButton];
+  UIButton *editButton = [NavigationBarCustomizationHelper buttonWithFrame:buttonRect title:@"Edit" target:self action:@selector(editButtonPressed)];
+  [buttonContainer addSubview:editButton];
+  self.editButton = editButton;
   
   self.navigationItem.titleView = buttonContainer;
 }
