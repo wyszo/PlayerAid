@@ -36,7 +36,7 @@
 
 - (void)pingCompletion:(NetworkResponseBlock)completion
 {
-  [self postRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
+  [self getRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
 #pragma mark - Users management
@@ -50,11 +50,8 @@
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
-  AssertTrueOrReturn(tutorial);
-  
-  NSString *tutorialID; // TODO: extract ID from Tutorial object
-  AssertTrueOrReturn(tutorialID);
-  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  AssertTrueOrReturn(tutorial.serverID);
+  NSString *URLString = [NSString stringWithFormat:@"tutorial/%@", tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) completion(nil);

@@ -5,6 +5,7 @@
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
 #import "UIView+XibLoading.h"
+#import "ColorsHelper.h"
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
@@ -15,6 +16,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (strong, nonatomic) UIView *view;
 
@@ -29,6 +31,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   self = [super initWithFrame:frame];
   if (self) {
     [self loadView:self.view fromNibNamed:kNibFileName];
+    [self setupBackgroundColor];
   }
   return self;
 }
@@ -38,6 +41,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   self = [super initWithCoder:aDecoder];
   if (self) {
     [self loadView:self.view fromNibNamed:kNibFileName];
+    [self setupBackgroundColor];
   }
   return self;
 }
@@ -45,6 +49,12 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 - (void)awakeFromNib
 {
   [self.avatarImageView styleAsLargeAvatar];
+  [self setupBackgroundColor];
+}
+
+- (void)setupBackgroundColor
+{
+  self.contentView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -57,8 +67,6 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setUser:(User *)user
 {
-// TODO: self.backgroundImageView.image =
-  
   [user placeAvatarInImageView:self.avatarImageView];
   
   self.usernameLabel.text = user.name;

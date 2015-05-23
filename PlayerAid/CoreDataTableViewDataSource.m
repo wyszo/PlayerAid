@@ -41,11 +41,6 @@
   return [self sectionInfoForSection:section].numberOfObjects;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  return [self sectionInfoForSection:section].name;
-}
-
 - (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section
 {
   return self.fetchedResultsController.sections[section];
@@ -111,6 +106,18 @@
   id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSection:indexPath.section];
   AssertTrueOrReturnNil(sectionInfo.objects.count > indexPath.row);
   return sectionInfo.objects[indexPath.row];
+}
+
+- (NSIndexPath *)lastTableViewCellIndexPath
+{
+  NSInteger lastSectionIndex = self.fetchedResultsController.sections.count - 1;
+  AssertTrueOrReturnNil(lastSectionIndex >= 0);
+  
+  NSInteger lastRowInLastSectionIndex = [self sectionInfoForSection:lastSectionIndex].numberOfObjects - 1;
+  AssertTrueOrReturnNil(lastRowInLastSectionIndex >= 0);
+  
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRowInLastSectionIndex inSection:lastSectionIndex];
+  return indexPath;
 }
 
 @end

@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
+@property (nonatomic, assign) BOOL showSectionHeaders;
+
 
 - (instancetype)init __unavailable;
 - (instancetype)new __unavailable;

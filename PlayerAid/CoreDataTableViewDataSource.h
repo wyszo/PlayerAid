@@ -15,5 +15,7 @@
 - (void)resetFetchedResultsController;
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (id<NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSInteger)section;
+- (NSIndexPath *)lastTableViewCellIndexPath;
 
 @end

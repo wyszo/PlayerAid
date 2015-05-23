@@ -80,6 +80,23 @@
   return alert;
 }
 
+#pragma mark - Delete tutorial
+
++ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
+{
+  NSString *message = @"Are you sure you wish to delete this tutorial? This action cannot be undone!";
+  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithMessage:message okTitle:@"Yes, delete tutorial" okAction:^{
+    if (okAction) {
+      okAction();
+    }
+  } cancelAction:^{
+    if (cancelAction) {
+      cancelAction();
+    }
+  }];
+  return alert;
+}
+
 #pragma mark - Other alerts
 
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView
@@ -90,10 +107,16 @@
   return [self blockingAlertWithTitle:title message:message];
 }
 
-
 + (UIAlertView *)blockingAlertWithTitle:(NSString *)title message:(NSString *)message
 {
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:nil];
+  [alert show];
+  return alert;
+}
+
++ (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
   [alert show];
   return alert;
 }

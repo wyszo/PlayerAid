@@ -9,11 +9,12 @@
 #import "AppearanceCustomizationHelper.h"
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
-#import "ApplicationViewHierarchyHelper.h"
+#import "TabBarHelper.h"
 #import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "UsersController.h"
 #import "ServerDataFetchController.h"
+#import "ApplicationViewHierarchyHelper.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -31,6 +32,21 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
 //  [self populateCoreDataWithSampleEntities];
   
+  [self applicationLaunchDataFetch];
+  
+  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
+  [self setupTabBarActionHandling];
+  
+  return YES;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+  [self applicationLaunchDataFetch];
+}
+
+- (void)applicationLaunchDataFetch
+{
   [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
     if (authenticated) {
       [ServerDataFetchController updateUserAndTutorials];
@@ -39,33 +55,6 @@
       [self performLoginSegue]; // note this has to be called after setting up core data stack
     }
   }];
-  
-  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
-  [self setupTabBarActionHandling];
-  
-  return YES;
-}
-
-- (void)performLoginSegue
-{
-  if (!self.window.keyWindow) {
-    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
-  }
-  [[ApplicationViewHierarchyHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
-}
-
-- (void)setupTabBarActionHandling
-{
-  __weak typeof(self) weakSelf = self;
-  self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
-    
-    CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
-    NavigationControllerWhiteStatusbar *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:createTutorialViewController];
-    
-    [weakSelf.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
-  }];
-  
-  [ApplicationViewHierarchyHelper mainTabBarController].delegate = self.tabBarControllerHandler;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -81,8 +70,29 @@
   return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication]; // attempt to extract a token from the url
 }
 
+#pragma mark - Auxiliary methods
+
+- (void)performLoginSegue
+{
+  if (!self.window.keyWindow) {
+    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
+  }
+  [[TabBarHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
+}
+
+- (void)setupTabBarActionHandling
+{
+  __weak typeof(self) weakSelf = self;
+  self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
+    [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
+  }];
+  
+  [TabBarHelper mainTabBarController].delegate = self.tabBarControllerHandler;
+}
+
 #pragma mark - Other
 
+// Obsolete!
 - (void)populateCoreDataWithSampleEntities
 {
   // TODO: switch to client-server communication to populate database

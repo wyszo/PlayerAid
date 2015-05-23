@@ -24,7 +24,7 @@
 {
   [super viewDidLoad];
   
-  self.view.backgroundColor = [ColorsHelper loginViewBackgroundColor];
+  self.view.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
   [self addFacebookLoginButton];
 }
 

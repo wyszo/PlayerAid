@@ -7,7 +7,9 @@ const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
 	.favourited = @"favourited",
+	.imageURL = @"imageURL",
 	.inReview = @"inReview",
+	.serverID = @"serverID",
 	.state = @"state",
 	.title = @"title",
 	.unsaved = @"unsaved",
@@ -57,6 +59,11 @@ const struct TutorialRelationships TutorialRelationships = {
 	}
 	if ([key isEqualToString:@"inReviewValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"serverIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"serverID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -111,6 +118,8 @@ const struct TutorialRelationships TutorialRelationships = {
 	[self setPrimitiveFavourited:@(value_)];
 }
 
+@dynamic imageURL;
+
 @dynamic inReview;
 
 - (BOOL)inReviewValue {
@@ -129,6 +138,26 @@ const struct TutorialRelationships TutorialRelationships = {
 
 - (void)setPrimitiveInReviewValue:(BOOL)value_ {
 	[self setPrimitiveInReview:@(value_)];
+}
+
+@dynamic serverID;
+
+- (int64_t)serverIDValue {
+	NSNumber *result = [self serverID];
+	return [result longLongValue];
+}
+
+- (void)setServerIDValue:(int64_t)value_ {
+	[self setServerID:@(value_)];
+}
+
+- (int64_t)primitiveServerIDValue {
+	NSNumber *result = [self primitiveServerID];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveServerIDValue:(int64_t)value_ {
+	[self setPrimitiveServerID:@(value_)];
 }
 
 @dynamic state;
