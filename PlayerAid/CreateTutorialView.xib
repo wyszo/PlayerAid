@@ -17,10 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" keyboardDismissMode="onDrag" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-uS-8Rm" userLabel="Tutorial Steps Table View">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKJ-v8-qVW" customClass="CreateTutorialStepButtonsContainerView">
                     <rect key="frame" x="0.0" y="486" width="600" height="50"/>
                     <color key="backgroundColor" red="0.75592615698115262" green="0.25905553023724526" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,6 +34,10 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="titleLabel.text" value="Add a step to your tutorial"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" keyboardDismissMode="onDrag" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-uS-8Rm" userLabel="Tutorial Steps Table View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(tutorial step text)" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="24" y="8" width="370" height="38"/>
+                        <rect key="frame" x="8" y="4" width="396" height="38"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -26,21 +26,21 @@
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
-                        <rect key="frame" x="62" y="17" width="288" height="288"/>
+                        <rect key="frame" x="62" y="7" width="288" height="288"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
                             <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
-                        <rect key="frame" x="170" y="125" width="72" height="72"/>
+                        <rect key="frame" x="170" y="115" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72" id="DQr-Rt-pfh"/>
                             <constraint firstAttribute="width" constant="72" id="aWT-tP-gNl"/>
                         </constraints>
                     </imageView>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
-                        <rect key="frame" x="62" y="18" width="288" height="288"/>
+                        <rect key="frame" x="62" y="8" width="288" height="288"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -51,20 +51,21 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="4Tm-m2-JEa"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="9" id="9Ap-b6-gby"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="-1" id="9Ap-b6-gby"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="GZX-if-46X"/>
-                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="9" id="GZw-g5-7we"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
+                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-1" id="GZw-g5-7we"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" id="KbA-BT-3SM"/>
                     <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="eyB-m9-ILx"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="fYi-2p-a7u"/>
-                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="gMU-LR-OHg"/>
-                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" constant="16" id="kTB-OF-PgU"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="y0s-iP-8ic"/>
+                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-4" id="gMU-LR-OHg"/>
+                    <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" id="kTB-OF-PgU"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" constant="-12" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="contentImageHeightAndWidthConstraint" destination="fL7-0C-JUo" id="S71-lK-2bD"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
@@ -72,7 +73,7 @@
                 <outlet property="videoPlayButton" destination="glc-HU-D2Y" id="ajJ-M1-jf6"/>
                 <outlet property="videoPlayImage" destination="eac-Sp-Jwl" id="1pd-1n-XGd"/>
             </connections>
-            <point key="canvasLocation" x="224" y="542"/>
+            <point key="canvasLocation" x="15" y="540"/>
         </tableViewCell>
     </objects>
     <resources>

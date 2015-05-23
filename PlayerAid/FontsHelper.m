@@ -4,7 +4,6 @@
 
 #import "FontsHelper.h"
 
-#define UIFontMake(fontName,fontSize) [UIFont fontWithName:fontName size:fontSize];
 #define UIFontMethodMake(name,fontName,fontSize) +(UIFont *)name { return UIFontMake(fontName,fontSize) }
 
 

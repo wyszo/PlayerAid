@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
-#import "CreateTutorialViewController.h"
 #import <FDTakeController.h>
 #import <YCameraViewController.h>
+#import "CreateTutorialViewController.h"
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -25,9 +25,10 @@
 #import "InterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
-#import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "VideoPlayer.h"
 #import "YCameraViewStandardDelegateObject.h"
+#import "TabBarBadgeHelper.h"
+#import "ImagePickerOverlayController.h"
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
@@ -49,7 +50,7 @@
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
-@property (nonatomic, strong) ShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
+@property (nonatomic, strong) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
@@ -116,7 +117,7 @@
   self.tutorialTableView.estimatedRowHeight = 100.f;
   
   [self setupAndAttachHeaderViewController];
-  self.tutorialTableView.tableFooterView = [CommonViews smallTransparentTableFooterView];
+  self.tutorialTableView.tableFooterView = [CommonViews smallTableFooterView];
 }
 
 #pragma mark - View layout and setup
@@ -154,6 +155,7 @@
 {
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
+  AssertTrueOrReturn(self.createTutorialContext);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   
@@ -168,12 +170,13 @@
 - (void)performDebugActions
 {
   if (DEBUG_MODE_ADD_TUTORIAL_STEPS) {
-    //    [self DEBUG_addTextTutorialStep];
+//    [self DEBUG_addTextTutorialStep];
+    [self DEBUG_addTwoTextTutorialSteps];
     [self DEBUG_addImageStep];
   }
   
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextOneImageAndVideoStep];
+//    [self DEBUG_addTwoTextOneImageAndVideoStep];
     
     defineWeakSelf();
     DISPATCH_AFTER(0.2, ^{
@@ -203,7 +206,7 @@
 
 - (void)DEBUG_addTextTutorialStep
 {
-  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
+  TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"\"[t1] This is a comment, Great for talking through key parts of the tutorial!\"" inContext:self.createTutorialContext];
   step1.orderValue = 1;
   [self.tutorial.consistsOfSet addObject:step1];
 }
@@ -212,7 +215,7 @@
 {
   [self DEBUG_addTextTutorialStep];
   
-  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"[t2] debug text 2!" inContext:self.createTutorialContext];
   step2.orderValue = 2;
   [self.tutorial.consistsOfSet addObject:step2];
 }
@@ -327,6 +330,11 @@
   return (self.tutorial.consistsOf.count);
 }
 
+- (BOOL)tutorialHasAnyData
+{
+  return (self.tutorialHasAnySteps || self.headerViewController.hasAnyData);
+}
+
 #pragma mark - Actions
 
 - (void)editButtonPressed
@@ -354,11 +362,10 @@
     [weakSelf setupNavigationBarButtons];
     
     if (saveChanges && steps) {
-      [weakSelf.tutorial removeConsistsOf:weakSelf.tutorial.consistsOf];
-      [weakSelf.tutorial addConsistsOf:[[NSOrderedSet alloc] initWithArray:steps]];
+      NSOrderedSet *stepsSet = [[NSOrderedSet alloc] initWithArray:steps];
+      [weakSelf.tutorial setConsistsOf:stepsSet];
       
       [weakSelf saveTutorial];
-      [weakSelf.tutorialTableView reloadData];
     }
   };
   return editTutorialStepsViewController;
@@ -433,7 +440,25 @@
 
 - (void)dismissViewController
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  if (!self.tutorialHasAnyData) {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return;
+  }
+  
+  defineWeakSelf();
+  [AlertFactory showRemoveNewTutorialConfirmationAlertViewWithCompletion:^(BOOL discard) {
+    if (discard) {
+      [AlertFactory showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:^(BOOL delete) {
+        if (delete) {
+          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }
+      }];
+    } else {
+      [weakSelf saveTutorialAsDraft];
+      [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }
+  }];
 }
 
 #pragma mark - TutorialStepTableViewCellDelegate
@@ -442,6 +467,11 @@
 {
   AssertTrueOrReturn(url);
   [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
+}
+
+- (void)didPressTextViewWithStep:(TutorialStep *)tutorialTextStep
+{
+  [self pushEditTextStepViewControllerWithTextStep:tutorialTextStep];
 }
 
 #pragma mark - CreateTutorialStepButtonsDelegate
@@ -473,7 +503,7 @@
   if (self.tutorialTableView.isEditing) {
     return;
   }
-  [self pushCreateTutorialTextStepViewController];
+  [self pushCreateNewTutorialTextStepViewController];
 }
 
 - (void)hideAddStepPopoverView
@@ -517,20 +547,36 @@
 
 - (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController
 {
-  self.showImagePickerOverlayInPortraitBehaviour = [[ShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController];
+  ImagePickerOverlayController *overlayController = [[ImagePickerOverlayController alloc] initWithImagePickerController:imagePickerController];
+  self.showImagePickerOverlayInPortraitBehaviour = [[TWShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController imagePickerOverlayController:overlayController];
   [self.showImagePickerOverlayInPortraitBehaviour activateBehaviour];
 }
 
 #pragma mark - Push views
 
-- (void)pushCreateTutorialTextStepViewController
+- (void)pushCreateNewTutorialTextStepViewController
 {
-  __weak typeof(self) weakSelf = self;
-  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:^(NSString *text, NSError *error) {
+  defineWeakSelf();
+  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       [weakSelf saveTutorialStepWithText:text];
     }
-  }];
+  } tutorialTextStep:nil];
+}
+
+- (void)pushEditTextStepViewControllerWithTextStep:(TutorialStep *)tutorialStep
+{
+  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+    if (!error && text.length) {
+      tutorialStep.text = text;
+      [self saveTutorial];
+    }
+   } tutorialTextStep:tutorialStep];
+}
+
+- (void)pushCreatetutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
+{
+  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:completion tutorialTextStep:tutorialTextStep];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);
@@ -574,6 +620,15 @@
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
+}
+
+- (void)saveTutorialAsDraft
+{
+  [self fillRequiredFieldsForTutorial:self.tutorial];
+  [self updateTutorialModelFromUI];
+  [self.tutorial setStateToDraft];
+  
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)updateTutorialModelFromUI

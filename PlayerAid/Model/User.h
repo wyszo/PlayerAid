@@ -2,9 +2,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface User : _User {}
+@interface User : _User <TWConfigurableFromDictionary>
 
-- (void)configureFromDictionary:(NSDictionary *)dictionary;
 - (void)placeAvatarInImageView:(UIImageView *)imageView;
 
 + (NSString *)serverIDFromUserDictionary:(NSDictionary *)dictionary;

@@ -16,6 +16,7 @@ const NSInteger kTextStepDismissedError = 1;
 @interface CreateTutorialTextStepViewController () <UITextViewDelegate>
 
 @property (copy, nonatomic) CreateTextStepCompletion completionBlock;
+@property (strong, nonatomic) TutorialStep *tutorialTextStep;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *characterLimitLabel;
 @property (weak, nonatomic) UIBarButtonItem *confirmNavbarButton;
@@ -30,9 +31,15 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock
 {
+  return [self initWithCompletion:completionBlock tutorialTextStep:nil];
+}
+
+- (instancetype)initWithCompletion:(CreateTextStepCompletion)completionBlock tutorialTextStep:(TutorialStep *)tutorialStep
+{
   self = [super initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
   if (self) {
     _completionBlock = completionBlock;
+    _tutorialTextStep = tutorialStep;
   }
   return self;
 }
@@ -48,7 +55,29 @@ const NSInteger kTextStepDismissedError = 1;
   [self setupCharactersCount];
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
   
+  [self prepopulateTextViewText];
+  [self installSwipeRightGestureRecognizer];
   [self updateTextStepRemainingCharactersCount];
+  [self updateConfirmButtonState];
+}
+
+- (void)prepopulateTextViewText
+{
+  if (self.tutorialTextStep) {
+    self.textView.text = self.tutorialTextStep.text;
+  }
+}
+
+- (void)installSwipeRightGestureRecognizer
+{
+  UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognizer:)];
+  gestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+  [self.view addGestureRecognizer:gestureRecognizer];
+}
+
+- (void)swipeGestureRecognizer:(id)sender
+{
+  [self dismissViewControllerShowingConfirmationAlertIfNeeded];
 }
 
 - (void)setupCharactersCount
@@ -82,7 +111,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)updateConfirmButtonState
 {
-  self.confirmNavbarButton.enabled = !([self overCharacterLimit]);
+  self.confirmNavbarButton.enabled = !([self overCharacterLimit]) && (self.processedText.length > 0);
 }
 
 - (void)updateTextColor
@@ -138,7 +167,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)addTextButtonPressed
 {
-  [self dismissViewController];
+  [self forceDismissViewController];
   
   if (self.completionBlock) {
     self.completionBlock(self.processedText, nil);
@@ -147,16 +176,34 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)cancelButtonPressed
 {
+  [self dismissViewControllerShowingConfirmationAlertIfNeeded];
+}
+
+- (void)dismissViewControllerShowingConfirmationAlertIfNeeded
+{
   if (!self.processedText.length) {
-    [self dismissViewController];
+    [self forceDismissViewController];
     return;
   }
   
-  [AlertFactory showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:^(BOOL discard) {
+  defineWeakSelf();
+  void (^confirmationAlertCompletionBlock)(BOOL) = ^(BOOL discard) {
     if (discard) {
-      [self dismissViewController];
+      [weakSelf forceDismissViewController];
     }
-  }];
+  };
+  
+  if ([self isEditingExistingTutorialTextStep]) {
+    [AlertFactory showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:confirmationAlertCompletionBlock];
+  }
+  else {
+    [AlertFactory showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:confirmationAlertCompletionBlock];
+  }
+}
+
+- (BOOL)isEditingExistingTutorialTextStep
+{
+  return (self.tutorialTextStep != nil);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -171,7 +218,7 @@ const NSInteger kTextStepDismissedError = 1;
   self.textView.selectedTextRange = nil;
 }
 
-- (void)dismissViewController
+- (void)forceDismissViewController
 {
   NSError *error = [NSError errorWithDomain:kCreateTutorialErrorDomain code:kTextStepDismissedError userInfo:nil];
   self.completionBlock(nil, error);

@@ -7,8 +7,7 @@
 
 @interface FacebookLoginControlsFactory : NSObject
 
-- (instancetype)init __unavailable;
-+ (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 /**
  Returns a Facebook login button, which when user authenticates, triggers internal PlayerAid authentication. Network traffic and error handling are done automatically, you don't need to perform any additional error checking.

@@ -60,21 +60,27 @@
 
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
 {
+  return [self showTwoButtonsAlertViewWithTitle:title message:message defaultButtonTitle:okTitle defaultButtonAction:okAction secondaryButtonTitle:nil secondaryButtonAction:cancelAction];
+}
+
++ (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message defaultButtonTitle:(NSString *)okTitle defaultButtonAction:(void (^)())okAction secondaryButtonTitle:(NSString *)cancelTitle secondaryButtonAction:(void (^)())cancelAction
+{
   AssertTrueOrReturnNil(message.length || title.length);
   
-  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"Cancel" action:^{
-    if (cancelAction) {
-      cancelAction();
-    }
+  NSString *cancelTitleText = @"Cancel";
+  if (cancelTitle.length) {
+    cancelTitleText = cancelTitle;
+  }
+  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:cancelTitleText action:^{
+    CallBlock(cancelAction);
   }];
   
-  if (okTitle.length == 0) {
-    okTitle = @"OK";
+  NSString *okTitleText = @"OK";
+  if (okTitleText.length) {
+    okTitleText = okTitle;
   }
-  RIButtonItem *okButtonItem = [RIButtonItem itemWithLabel:okTitle action:^{
-    if (okAction) {
-      okAction();
-    }
+  RIButtonItem *okButtonItem = [RIButtonItem itemWithLabel:okTitleText action:^{
+    CallBlock(okAction);
   }];
   
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
@@ -84,20 +90,42 @@
 
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
-  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:@"No, continue editing" action:^{
-    if (completionBlock) {
-      completionBlock(NO);
-    }
+  NSString *message = @"Cancel tutorial step?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Yes, cancel" defaultButtonAction:^{
+    CallBlock(completionBlock, YES);
+  } secondaryButtonTitle:@"No, continue editing" secondaryButtonAction:^{
+    CallBlock(completionBlock, NO);
   }];
-  RIButtonItem *confirmButtonItem = [RIButtonItem itemWithLabel:@"Yes, cancel" action:^{
-    if (completionBlock) {
-      completionBlock(YES);
-    }
+}
+
++ (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  NSString *message = @"Cancel editing tutorial step?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Yes, cancel" defaultButtonAction:^{
+    CallBlock(completionBlock, YES);
+  } secondaryButtonTitle:@"No, continue editing" secondaryButtonAction:^{
+    CallBlock(completionBlock, NO);
   }];
-  
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Cancel tutorial step?" cancelButtonItem:cancelButtonItem otherButtonItems:confirmButtonItem, nil];
-  [alert show];
-  return alert;
+}
+
++ (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
+{
+  NSString *message = @"Do you want to keep your tutorial?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Save as draft" defaultButtonAction:^{
+    CallBlock(completionBlock, NO);
+  } secondaryButtonTitle:@"Delete" secondaryButtonAction:^{
+    CallBlock(completionBlock, YES);
+  }];
+}
+
++ (UIAlertView *)showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:(void (^)(BOOL delete))completionBlock
+{
+  NSString *message = @"This will permanently delete your tutorial. Are you sure?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Cancel" defaultButtonAction:^{
+    CallBlock(completionBlock, NO);
+  } secondaryButtonTitle:@"Yes" secondaryButtonAction:^{
+    CallBlock(completionBlock, YES);
+  }];
 }
 
 #pragma mark - Publish tutorial
@@ -123,13 +151,9 @@
   NSString *title = @"Delete tutorial?";
   NSString *message = @"This will permanently delete your tutorial.";
   UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
-    if (okAction) {
-      okAction();
-    }
+    CallBlock(okAction);
   } cancelAction:^{
-    if (cancelAction) {
-      cancelAction();
-    }
+    CallBlock(cancelAction);
   }];
   return alert;
 }
@@ -139,9 +163,7 @@
   NSString *title = @"Delete tutorial step?";
   NSString *message = @"This will permanently delete your tutorial step.";
   UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
-    if (okAction) {
-      okAction();
-    }
+    CallBlock(okAction);
   } cancelAction:nil];
   return alert;
 }
@@ -180,9 +202,7 @@
   NSString *title = @"<DEBUG> Logout?";
   NSString *message = @"Logging out will permamently delete unsubmitted tutorial drafts [it wipes out all local data]. Continue?";
   UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Logout" okAction:^{
-    if (okAction) {
-      okAction();
-    }
+    CallBlock(okAction);
   } cancelAction:nil];
   return alert;
 }

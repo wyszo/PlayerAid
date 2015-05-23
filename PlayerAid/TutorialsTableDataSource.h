@@ -8,18 +8,16 @@
 @protocol TutorialsTableViewDelegate;
 
 
-@interface TutorialsTableDataSource : NSObject <UITableViewDelegate>
+@interface TutorialsTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
 @property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
-@property (nonatomic, assign, readonly) NSInteger totalNumberOfCells;
 @property (nonatomic, copy) void (^userAvatarSelectedBlock)(User *user);
 
-- (instancetype)init __unavailable;
-- (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
 - (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName;

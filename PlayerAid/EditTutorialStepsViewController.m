@@ -115,8 +115,9 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Save changes?" okTitle:@"Yes" okAction:^{
     if (weakSelf.dismissBlock) {
       NSArray *allSteps = weakSelf.tableViewDataSource.allSteps;
+      AssertTrueOr(allSteps.count, ;);
       [weakSelf tutorialStepsUpdateOrderValuesByOrder:allSteps];
-      weakSelf.dismissBlock(YES, weakSelf.tableViewDataSource.allSteps);
+      weakSelf.dismissBlock(YES, allSteps);
     }
   } cancelAction:nil];
 }
@@ -125,9 +126,7 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
 {
   defineWeakSelf();
   [AlertFactory showOKCancelAlertViewWithTitle:nil message:@"Discard changes?" okTitle:@"Yes" okAction:^{
-    if (weakSelf.dismissBlock) {
-      weakSelf.dismissBlock(NO, nil);
-    }
+    CallBlock(weakSelf.dismissBlock, NO, nil);
   } cancelAction:nil];
 }
 

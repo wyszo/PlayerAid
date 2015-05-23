@@ -13,14 +13,19 @@
 
 @implementation TabBarControllerHandler
 
+#pragma mark - Initialization
+
 - (instancetype)initWithCreateTutorialItemAction:(void (^)())createTutorialAction
 {
+  AssertTrueOrReturnNil(createTutorialAction);
   self = [super init];
   if (self) {
     _createTutorialAction = createTutorialAction;
   }
   return self;
 }
+
+#pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
@@ -36,6 +41,8 @@
   }
   return YES;
 }
+
+#pragma mark - Auxiliary methods
 
 - (void)popViewControllerToRoot:(UIViewController *)viewController
 {

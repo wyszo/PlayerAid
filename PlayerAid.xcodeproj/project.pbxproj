@@ -36,7 +36,6 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
-		3114865C1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */; };
 		311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */; };
 		311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */; };
 		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
@@ -46,7 +45,6 @@
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
 		312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */; };
 		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
-		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
@@ -59,7 +57,6 @@
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
 		3173C82A1AA7CB62004CEF1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */; };
 		3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */; };
-		3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -84,6 +81,7 @@
 		31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */; };
+		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
@@ -100,10 +98,8 @@
 		31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735EF1A87FADE0081AE15 /* TutorialStep.m */; };
 		31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */; };
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
-		31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */; };
 		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */; };
-		31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
@@ -112,7 +108,6 @@
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
-		31E1E1901AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */; };
 		31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E19D1AECCBB30091ED01 /* UIImage+Cropping.m */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
 		31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1F8F91AADA948005EB35B /* PopoverView.m */; };
@@ -183,8 +178,6 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
-		3114865A1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePickerExtendedEventsObserver.h; sourceTree = "<group>"; };
-		3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerExtendedEventsObserver.m; sourceTree = "<group>"; };
 		311486601ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationViewControllerDecorator.h; sourceTree = "<group>"; };
 		311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceOrientationViewControllerDecorator.m; sourceTree = "<group>"; };
 		311486641ADFC1F400A644CD /* InterfaceOrientationClassStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationClassStubs.h; sourceTree = "<group>"; };
@@ -204,8 +197,6 @@
 		312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+HttpHeaders.m"; sourceTree = "<group>"; };
 		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
 		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
-		312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h; sourceTree = "<group>"; };
-		312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m; sourceTree = "<group>"; };
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
 		312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoSegmentedControlButtonView.h; sourceTree = "<group>"; };
 		312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoSegmentedControlButtonView.m; sourceTree = "<group>"; };
@@ -230,8 +221,6 @@
 		3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerHelper.m; sourceTree = "<group>"; };
 		3173C82B1AAB650C004CEF1E /* MediaPickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerHelper.h; sourceTree = "<group>"; };
 		3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerHelper.m; sourceTree = "<group>"; };
-		3173C82E1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableViewFetchedResultsControllerBinder+Private.h"; sourceTree = "<group>"; };
-		3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TableViewFetchedResultsControllerBinder+Private.m"; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -279,6 +268,8 @@
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		31A312151AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedMPMoviePlayerViewController.h; sourceTree = "<group>"; };
 		31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedMPMoviePlayerViewController.m; sourceTree = "<group>"; };
+		31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBadgeHelper.h; sourceTree = "<group>"; };
+		31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeHelper.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
@@ -307,13 +298,9 @@
 		31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCellHelper.m; sourceTree = "<group>"; };
 		31B735F51A88009A0081AE15 /* TutorialStepsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepsDataSource.h; sourceTree = "<group>"; };
 		31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepsDataSource.m; sourceTree = "<group>"; };
-		31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewDataSource.h; sourceTree = "<group>"; };
-		31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewDataSource.m; sourceTree = "<group>"; };
 		31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStepTableViewCell.xib; sourceTree = "<group>"; };
 		31B736001A88EB3A0081AE15 /* TutorialStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepTableViewCell.h; sourceTree = "<group>"; };
 		31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepTableViewCell.m; sourceTree = "<group>"; };
-		31B736081A8926320081AE15 /* TableViewFetchedResultsControllerBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewFetchedResultsControllerBinder.h; sourceTree = "<group>"; };
-		31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewFetchedResultsControllerBinder.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -327,8 +314,6 @@
 		31E1E1871AECAE520091ED01 /* CommonViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		31E1E1881AECAE520091ED01 /* CommonViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViews.m; sourceTree = "<group>"; };
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
-		31E1E18E1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h; sourceTree = "<group>"; };
-		31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m; sourceTree = "<group>"; };
 		31E1E19C1AECCBB30091ED01 /* UIImage+Cropping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
 		31E1E19D1AECCBB30091ED01 /* UIImage+Cropping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
 		31E1F8F51AADA853005EB35B /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
@@ -581,23 +566,6 @@
 			name = EditTutorialSteps;
 			sourceTree = "<group>";
 		};
-		311486591ADF37AB00A644CD /* Observers */ = {
-			isa = PBXGroup;
-			children = (
-				3114865D1ADFC12E00A644CD /* ImagePickerEvents */,
-			);
-			name = Observers;
-			sourceTree = "<group>";
-		};
-		3114865D1ADFC12E00A644CD /* ImagePickerEvents */ = {
-			isa = PBXGroup;
-			children = (
-				3114865A1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.h */,
-				3114865B1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m */,
-			);
-			name = ImagePickerEvents;
-			sourceTree = "<group>";
-		};
 		3114865E1ADFC15300A644CD /* Decorators */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,15 +630,6 @@
 			name = CoreDataStackHelper;
 			sourceTree = "<group>";
 		};
-		312FF5F11A9E212200AE3174 /* Behaviours */ = {
-			isa = PBXGroup;
-			children = (
-				31E1E18D1AECC4670091ED01 /* ShowImagePickerOverlayOrientationPortrait */,
-				31E1E18C1AECC43F0091ED01 /* ShowOverlayTutorialsTableEmpty */,
-			);
-			name = Behaviours;
-			sourceTree = "<group>";
-		};
 		312FF5F51A9E8F9A00AE3174 /* PlayerInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +653,8 @@
 			children = (
 				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
 				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
+				31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */,
+				31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -793,7 +754,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		317780061A7FED38007057CD /* Tabbar */ = {
+		317780061A7FED38007057CD /* FromTabbar */ = {
 			isa = PBXGroup;
 			children = (
 				317780111A8005F9007057CD /* Home */,
@@ -803,14 +764,12 @@
 				317780131A800604007057CD /* Settings */,
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 			);
-			name = Tabbar;
+			name = FromTabbar;
 			sourceTree = "<group>";
 		};
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */,
-				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
 				31B736051A8925F80081AE15 /* Tutorials */,
 				31B736061A8926010081AE15 /* TutorialSteps */,
@@ -953,7 +912,7 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				317780061A7FED38007057CD /* Tabbar */,
+				317780061A7FED38007057CD /* FromTabbar */,
 				31014E4E1A948623002F3485 /* Other View Controllers */,
 			);
 			name = ViewControllers;
@@ -1124,15 +1083,6 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		31B735F91A88D3B90081AE15 /* CoreDataTableViewDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				31B735FA1A88D3CD0081AE15 /* CoreDataTableViewDataSource.h */,
-				31B735FB1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m */,
-			);
-			name = CoreDataTableViewDataSource;
-			sourceTree = "<group>";
-		};
 		31B735FF1A88D9780081AE15 /* Tutorial Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,17 +1128,6 @@
 				31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */,
 			);
 			name = TutorialSteps;
-			sourceTree = "<group>";
-		};
-		31B736071A8926180081AE15 /* FetchedResultsControllerBinder */ = {
-			isa = PBXGroup;
-			children = (
-				31B736081A8926320081AE15 /* TableViewFetchedResultsControllerBinder.h */,
-				31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */,
-				3173C82E1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.h */,
-				3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */,
-			);
-			name = FetchedResultsControllerBinder;
 			sourceTree = "<group>";
 		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
@@ -1262,24 +1201,6 @@
 				31E1E1881AECAE520091ED01 /* CommonViews.m */,
 			);
 			name = CommonViews;
-			sourceTree = "<group>";
-		};
-		31E1E18C1AECC43F0091ED01 /* ShowOverlayTutorialsTableEmpty */ = {
-			isa = PBXGroup;
-			children = (
-				312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */,
-				312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */,
-			);
-			name = ShowOverlayTutorialsTableEmpty;
-			sourceTree = "<group>";
-		};
-		31E1E18D1AECC4670091ED01 /* ShowImagePickerOverlayOrientationPortrait */ = {
-			isa = PBXGroup;
-			children = (
-				31E1E18E1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h */,
-				31E1E18F1AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m */,
-			);
-			name = ShowImagePickerOverlayOrientationPortrait;
 			sourceTree = "<group>";
 		};
 		31E1E1911AECCADE0091ED01 /* UIImage */ = {
@@ -1394,7 +1315,6 @@
 			isa = PBXGroup;
 			children = (
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
-				312FF5F11A9E212200AE3174 /* Behaviours */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				3177801A1A80975C007057CD /* DataModel */,
 				3177800D1A80047C007057CD /* DataSources */,
@@ -1402,7 +1322,6 @@
 				3108E77C1AF7A61B00E02C07 /* Delegates */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				317780021A7FC6A7007057CD /* Helpers */,
-				311486591ADF37AB00A644CD /* Observers */,
 				31014E661A99FF42002F3485 /* Settings */,
 				31B46D431A87AFD1004EEA30 /* Storyboards */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
@@ -1613,17 +1532,13 @@
 				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
-				31E1E1901AECC4850091ED01 /* ShowImagePickerOverlayWhenOrientationPortraitBehaviour.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
-				31B735FC1A88D3CD0081AE15 /* CoreDataTableViewDataSource.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
-				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */,
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
-				312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
@@ -1641,6 +1556,7 @@
 				31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
+				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,
 				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
@@ -1680,7 +1596,6 @@
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */,
-				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
@@ -1690,7 +1605,6 @@
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
 				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
-				3114865C1ADF37CA00A644CD /* UIImagePickerExtendedEventsObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

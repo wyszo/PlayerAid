@@ -3,7 +3,7 @@
 //
 
 #import "ImagePickerOverlayController.h"
-#import "UIImagePickerExtendedEventsObserver.h"
+#import "TWUIImagePickerExtendedEventsObserver.h"
 
 
 static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;

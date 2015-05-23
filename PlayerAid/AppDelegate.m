@@ -5,7 +5,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "AppearanceCustomizationHelper.h"
-#import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
 #import "AuthenticationController.h"
@@ -85,7 +84,7 @@
 
 - (void)setupTabBarActionHandling
 {
-  __weak typeof(self) weakSelf = self;
+  defineWeakSelf();
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
     [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
   }];

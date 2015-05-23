@@ -6,7 +6,6 @@
 #import "TutorialsTableDataSource.h"
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
-#import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
 #import "ProfileViewController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "DebugSettings.h"
@@ -28,7 +27,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
-@property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
+@property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
@@ -51,7 +50,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   [self setupTableViewHeader];
   
   self.noTutorialsLabel.text = @"No tutorials to show yet";
-  self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
 
   // TODO: Technical debt - we definitely shouldn't delay UI skinning like that!
   [self selectFilterLatest]; // intentional

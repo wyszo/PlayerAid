@@ -7,8 +7,7 @@
 
 @property (nonatomic, assign) BOOL presentInLandscapeOrientation;
 
-- (instancetype)init __unavailable;
-- (instancetype)new __unavailable;
+NEW_AND_INIT_UNAVAILABLE
 
 /**
  * @param parentViewController  usually a navigation controller

@@ -11,13 +11,21 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showGenericErrorAlertView;
 + (UIAlertView *)showGenericErrorAlertViewNoRetry;
 
+// Universal alerts
++ (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
++ (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message defaultButtonTitle:(NSString *)okTitle defaultButtonAction:(void (^)())okAction secondaryButtonTitle:(NSString *)cancelTitle secondaryButtonAction:(void (^)())cancelAction;
+
 // Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
 + (UIAlertView *)showCreateTutorialNoImageAlertView;
 + (UIAlertView *)showCreateTutorialFillTutorialDetails;
-+ (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;
+
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
++ (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
+
++ (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
++ (UIAlertView *)showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:(void (^)(BOOL delete))completionBlock;
 
 // Publish tutorial alerts
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction;

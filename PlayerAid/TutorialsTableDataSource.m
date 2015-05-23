@@ -7,8 +7,8 @@
 #import "TutorialTableViewCell.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialCellHelper.h"
-#import "CoreDataTableViewDataSource.h"
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TWCoreDataTableViewDataSource.h"
+#import "TWTableViewFetchedResultsControllerBinder.h"
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
@@ -20,8 +20,8 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
-@property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
+@property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
 
@@ -35,11 +35,11 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   if (self) {
     _tableView = tableView;
     
-    [self initFetchedResultsControllerBinder];
-    [self initTableViewDataSource];
-    
     _tableView.delegate = self;
     [_tableView registerNib:[TutorialCellHelper nibForTutorialCell] forCellReuseIdentifier:kTutorialCellReuseIdentifier];
+    
+    [self initFetchedResultsControllerBinder];
+    [self initTableViewDataSource];
   }
   return self;
 }
@@ -47,10 +47,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (void)initFetchedResultsControllerBinder
 {
   __weak typeof(self) weakSelf = self;
-  _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
-  _fetchedResultsControllerBinder.numberOfObjectsChangedBlock = ^(NSInteger objectCount){
+  self.fetchedResultsControllerBinder.numberOfObjectsChangedBlock = ^(NSInteger objectCount){
     if ([(NSObject *)(weakSelf.tutorialTableViewDelegate) respondsToSelector:@selector(numberOfRowsDidChange:)]) {
       [weakSelf.tutorialTableViewDelegate numberOfRowsDidChange:objectCount];
     }
@@ -61,13 +61,14 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 {
   __weak typeof(self) weakSelf = self;
   
-  _tableViewDataSource = [[CoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
-  _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+  self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    AssertTrueOr(weakSelf.fetchedResultsControllerBinder, );
     return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf.fetchedResultsControllerBinder];
   };
-  _tableView.dataSource = _tableViewDataSource;
+  self.tableView.dataSource = _tableViewDataSource;
 }
 
 #pragma mark - Handling CoreData fetching
@@ -194,7 +195,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return [self.tableViewDataSource objectAtIndexPath:indexPath];
 }
 
-- (NSInteger)totalNumberOfCells
+- (NSInteger)objectCount
 {
   AssertTrueOr(self.tableViewDataSource, return 0;);
   return self.tableViewDataSource.objectCount;

@@ -6,8 +6,8 @@
 
 @property (nonatomic, copy) void (^dismissBlock)(BOOL saveChanges, NSArray *reorderedSteps);
 
+NEW_AND_INIT_UNAVAILABLE
+
 - (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps;
-- (instancetype)init __unavailable;
-+ (instancetype)new __unavailable;
 
 @end

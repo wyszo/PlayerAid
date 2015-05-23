@@ -6,9 +6,9 @@
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
 #import "ColorsHelper.h"
-#import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
 #import "PlayerInfoSegmentedControlButtonView.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "TabBarBadgeHelper.h"
 
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
@@ -24,7 +24,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 @property (weak, nonatomic) PlayerInfoSegmentedControlButtonView *tutorialsFilterButtonView;
 
-@property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
+@property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 
 @end
 
@@ -47,7 +47,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.playerInfoView.user = self.user;
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
-  self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
 }
 
 - (void)setupTutorialsTableDataSource
@@ -71,6 +71,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
   [self updateFilterViewTutorialsCount];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }

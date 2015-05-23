@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+#import "TabBarControllerHandler.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
