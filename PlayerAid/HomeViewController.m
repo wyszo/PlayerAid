@@ -9,7 +9,8 @@
 #import "ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h"
 #import "ProfileViewController.h"
 #import "ApplicationViewHierarchyHelper.h"
-
+#import "DebugSettings.h"
+#import "VideoPlayer.h"
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
@@ -28,6 +29,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
 @property (nonatomic, strong) ShowOverlayViewWhenTutorialsTableEmptyBehaviour *tableViewOverlayBehaviour;
+@property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
 
@@ -58,7 +60,17 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
     [weakSelf selectFilterLatest];
   });
   
-  // TODO: Filter buttons should be extracted to a separate class
+  // TODO: Filter buttons should be extracted to a separate class!!
+
+  if (DEBUG_TEST_ONLINE_VIDEO_PLAYBACK) {
+    DISPATCH_AFTER(1.0, ^{
+      NSString *correctUrlString = @"http://playeraid.streaming.mediaservices.windows.net/08865072-191a-4065-9136-3c5cbf30b228/9da92542-14a6-426f-8605-a1774d9cee27-m3u8-aapl.ism/Manifest%28format=m3u8-aapl%29";
+      NSString *messedUpUrlString = @"http://messed.up.test.url/";
+      
+      NSURL *url = [NSURL URLWithString:correctUrlString];
+      [weakSelf.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
+    });
+  }
 }
 
 - (void)setupTableViewHeader
@@ -144,6 +156,16 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
     TutorialDetailsViewController *tutorialDetailsViewController = (TutorialDetailsViewController *)destinationController;
     tutorialDetailsViewController.tutorial = self.lastSelectedTutorial;
   }
+}
+
+#pragma mark - Lazy initialization
+
+- (VideoPlayer *)videoPlayer
+{
+  if (!_videoPlayer) {
+    _videoPlayer = [[VideoPlayer alloc] initWithParentViewController:self.tabBarController];
+  }
+  return _videoPlayer;
 }
 
 @end

@@ -260,6 +260,13 @@
 
 - (void)invokeAFNetworkingOperationWithReuqestWithSelector:(SEL)selector operationManager:(AFHTTPRequestOperationManager *)operationManager urlString:(NSString *)urlString parameters:(id)parameters successBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
 {
+  /**
+   Technical debt: this method implementation could be simplified by using the following method instead:
+   - (AFHTTPRequestOperation *)HTTPRequestOperationWithRequest:(NSURLRequest *)request
+      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+   */
+  
   AssertTrueOrReturn(selector);
   AssertTrueOrReturn(operationManager);
   AssertTrueOrReturn(urlString.length);

@@ -1,1 +1,1 @@
-../../../../../YCameraView-master/YCameraViewController/YCameraViewController.h
+../../../../../YCameraView/YCameraViewController/YCameraViewController.h

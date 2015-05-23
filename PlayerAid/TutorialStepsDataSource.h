@@ -3,6 +3,7 @@
 //
 
 #import "Tutorial.h"
+#import "TutorialStepTableViewCell.h"
 
 
 @interface TutorialStepsDataSource : NSObject 
@@ -19,6 +20,6 @@
  @param context   Optional, can be nil (nil means default context)
  @param allowsEditing  Determines whether we can delete and reorder rows
  */
-- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing;
+- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDelegate;
 
 @end

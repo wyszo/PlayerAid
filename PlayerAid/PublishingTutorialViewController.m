@@ -5,6 +5,7 @@
 #import "PublishingTutorialViewController.h"
 #import "ServerDataUpdateController.h"
 #import "AlertFactory.h"
+#import "InterfaceOrientationViewControllerDecorator.h"
 
 static NSString *const kNibFileName = @"PublishingTutorialView";
 
@@ -20,6 +21,11 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 
 
 @implementation PublishingTutorialViewController
+
++ (void)initialize
+{
+  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:self.class shouldAutorotate:NO];
+}
 
 - (instancetype)init
 {

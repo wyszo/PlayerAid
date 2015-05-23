@@ -23,12 +23,17 @@
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
 #import "UserDefaultsHelper.h"
+#import "InterfaceOrientationViewControllerDecorator.h"
+#import "ViewControllerPresentationHelper.h"
+#import "CommonViews.h"
+#import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
+#import "VideoPlayer.h"
 
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
-@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate, TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -46,12 +51,20 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 
+@property (nonatomic, strong) ShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
+@property (nonatomic, strong) VideoPlayer *videoPlayer;
+
 @end
 
 
 @implementation CreateTutorialViewController
 
 #pragma mark - Initialization
+
++ (void)initialize
+{
+  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
 
 - (void)viewDidLoad
 {
@@ -95,14 +108,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.tutorialTableView.estimatedRowHeight = 100.f;
   
   [self setupAndAttachHeaderViewController];
-  self.tutorialTableView.tableFooterView = [self smallTransparentFooterView];
-}
-
-- (UIView *)smallTransparentFooterView
-{
-  UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
-  footer.backgroundColor = [UIColor clearColor];
-  return footer;
+  self.tutorialTableView.tableFooterView = [CommonViews smallTransparentTableFooterView];
 }
 
 #pragma mark - View layout and setup
@@ -135,7 +141,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 {
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   
   defineWeakSelf();
@@ -237,6 +243,8 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 #pragma mark - NavigationBar buttons
 
+// TODO: extract this to a decorator class!
+
 - (void)setupNavigationBarButtons
 {
   [self addNavigationBarCancelButton];
@@ -282,6 +290,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
 #pragma mark - Edit button manipulation
+
 // TODO: extract this away from this class!
 
 - (void)updateEditButtonEnabled
@@ -316,17 +325,9 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   }
   
   self.editTutorialStepsViewController = [self createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps];
-  [self presentInKeyWindowViewController:self.editTutorialStepsViewController];
+  [[ViewControllerPresentationHelper new] presentViewControllerInKeyWindow:self.editTutorialStepsViewController];
   
   [self removeNavigationBarButtons];
-}
-
-// TODO: move this method away from this class
-- (void)presentInKeyWindowViewController:(UIViewController *)viewController
-{
-  UIWindow *window = [UIApplication sharedApplication].keyWindow;
-  viewController.view.frame = window.frame;
-  [window addSubview:viewController.view];
 }
 
 - (EditTutorialStepsViewController *)createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps
@@ -423,12 +424,20 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - TutorialStepTableViewCellDelegate
+
+- (void)didPressPlayVideoWithURL:(NSURL *)url
+{
+  AssertTrueOrReturn(url);
+  [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
+}
+
 #pragma mark - CreateTutorialStepButtonsDelegate
 
 - (void)addPhotoStepSelected
 {
   [self hideAddStepPopoverView];
-  [self takeOrSelectPhotoUsingYCameraView];
+  [self takeOrSelectPhotoUsingFDTake];
 }
 
 - (void)takeOrSelectPhotoUsingFDTake
@@ -437,7 +446,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
-- (void)takeOrSelectPhotoUsingYCameraView
+- (void)takeAPictureWithYCameraView
 {
   YCameraViewController *controller = [YCameraViewController new];
   controller.prefersStatusBarHidden = YES;
@@ -445,7 +454,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   controller.delegate = self;
   [self presentViewController:controller animated:YES completion:nil];
   
-  controller.cameraToggleButton.hidden = YES;
+  controller.libraryToggleButton.hidden = YES;
   controller.cancelButton.hidden = YES;
 }
 
@@ -502,7 +511,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
 }
 
-- (void)yCameraControllerdidSkipped:(YCameraViewController *)cameraController
+- (void)yCameraControllerDidSkip:(YCameraViewController *)cameraController
 {
   AssertTrueOrReturn(cameraController);
   [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
@@ -530,8 +539,21 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)takeController:(FDTakeController *)controller gotVideo:(NSURL *)video withInfo:(NSDictionary *)info
 {
+  self.showImagePickerOverlayInPortraitBehaviour = nil;
+  
   AssertTrueOrReturn(video);
   [self saveTutorialStepWithVideoURL:video];
+}
+
+- (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
+{
+  self.showImagePickerOverlayInPortraitBehaviour = nil;
+}
+
+- (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController
+{
+  self.showImagePickerOverlayInPortraitBehaviour = [[ShowImagePickerOverlayWhenOrientationPortraitBehaviour alloc] initWithImagePickerController:imagePickerController];
+  [self.showImagePickerOverlayInPortraitBehaviour activateBehaviour];
 }
 
 #pragma mark - Push views
@@ -608,9 +630,23 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (FDTakeController *)mediaController
 {
   if (!_mediaController) {
-    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self];
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.navigationController];
+    _mediaController.allowsEditingVideo = NO; // otherwise - alert..
+    
+    defineWeakSelf();
+    _mediaController.presentCustomPhotoCaptureViewBlock = ^(){
+      [weakSelf takeAPictureWithYCameraView];
+    };
   }
   return _mediaController;
+}
+   
+- (VideoPlayer *)videoPlayer
+{
+  if (!_videoPlayer) {
+    _videoPlayer = [[VideoPlayer alloc] initWithParentViewController:self.navigationController];
+  }
+  return _videoPlayer;
 }
 
 @end

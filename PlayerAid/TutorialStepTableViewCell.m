@@ -14,7 +14,10 @@ static const CGFloat kContentImageHeight = 280.0f;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightConstraint;
+
 @property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
+@property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
+@property (strong, nonatomic) NSURL *videoURL;
 
 @end
 
@@ -51,6 +54,8 @@ static const CGFloat kContentImageHeight = 280.0f;
     else if (videoTutorialStep) {
       self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
       self.videoPlayImage.hidden = NO;
+      self.videoPlayButton.hidden = NO;
+      self.videoURL = [NSURL URLWithString:tutorialStep.videoPath];
     }
   }
   else {
@@ -64,6 +69,8 @@ static const CGFloat kContentImageHeight = 280.0f;
   [self hideImageView];
   self.videoPlayImage.hidden = YES;
   self.textView.text = @"";
+  self.videoURL = nil;
+  self.videoPlayButton.hidden = YES;
 }
 
 - (void)hideImageView
@@ -78,6 +85,13 @@ static const CGFloat kContentImageHeight = 280.0f;
 - (CGFloat)layoutManager:(NSLayoutManager *)layoutManager lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(CGRect)rect
 {
   return 10.0f;
+}
+
+- (IBAction)videoPlayButtonPressed:(id)sender
+{
+  if ([self.delegate respondsToSelector:@selector(didPressPlayVideoWithURL:)]) {
+    [self.delegate didPressPlayVideoWithURL:self.videoURL];
+  }
 }
 
 @end

@@ -47,6 +47,8 @@ const NSInteger kTextStepDismissedError = 1;
   self.edgesForExtendedLayout = UIRectEdgeNone;
   [self setupCharactersCount];
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
+  
+  [self updateTextStepRemainingCharactersCount];
 }
 
 - (void)setupCharactersCount
@@ -91,7 +93,10 @@ const NSInteger kTextStepDismissedError = 1;
   } else {
     textColor = [UIColor blackColor];
   }
-  self.textView.textColor = textColor;
+  
+  if (self.textView.textColor != textColor) {
+    self.textView.textColor = textColor;
+  }
 }
 
 - (BOOL)overCharacterLimit
@@ -107,6 +112,11 @@ const NSInteger kTextStepDismissedError = 1;
 }
 
 #pragma UITextViewDelegate
+
+- (void)updateTextStepRemainingCharactersCount
+{
+  [self textViewDidChange:self.textView];
+}
 
 - (void)textViewDidChange:(UITextView *)textView
 {

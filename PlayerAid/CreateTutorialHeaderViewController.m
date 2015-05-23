@@ -11,6 +11,7 @@
 #import "FDTakeController+WhiteStatusbar.h"
 #import "MediaPickerHelper.h"
 #import "SectionLabelContainer.h"
+#import "NSString+Trimming.h"
 
 
 static const CGSize originalViewSize = { 320.0f, 226.0f };
@@ -180,11 +181,11 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
-  BOOL titleSet = (self.titleTextField.text.length);
-  BOOL sectionSet = (self.selectedSection);
-  BOOL backgroundImageSet = (self.backgroundImageView.image);
+  BOOL titleSet = (self.title.length > 0);
+  BOOL sectionSet = (self.selectedSection != nil);
+  BOOL backgroundImageSet = (self.backgroundImageView.image != nil);
   
-  int numberOfFilledPiecesOfInfo = (int)titleSet + (int)sectionSet + (int)backgroundImageSet;
+  int numberOfFilledPiecesOfInfo = (titleSet ? 1 : 0) + (sectionSet ? 1 : 0) + (backgroundImageSet ? 1 : 0);
   
   if (numberOfFilledPiecesOfInfo < 2) {
     [AlertFactory showCreateTutorialFillTutorialDetails];
@@ -200,7 +201,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
     [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
     return NO;
   }
-  
+
   if (!backgroundImageSet) {
     [AlertFactory showCreateTutorialNoImageAlertView];
     return NO;
@@ -213,7 +214,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (NSString *)title
 {
-  return self.titleTextField.text;
+  return [self.titleTextField.text stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma mark - FDTakeController

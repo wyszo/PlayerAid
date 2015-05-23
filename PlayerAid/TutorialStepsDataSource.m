@@ -25,6 +25,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, assign) BOOL allowsEditing;
+@property (nonatomic, weak) id<TutorialStepTableViewCellDelegate> cellDelegate; 
 
 @end
 
@@ -34,7 +35,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 #pragma mark - Initilization
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
-- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing
+- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDelegate
 {
   AssertTrueOrReturnNil(tableView);
   AssertTrueOrReturnNil(tutorial);
@@ -46,6 +47,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     _tutorial = tutorial;
     _context = context;
     _allowsEditing = allowsEditing;
+    _cellDelegate = cellDelegate;
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -96,6 +98,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)setupTableViewDataSourceCellMoveRowBlock
 {
   __weak typeof(self) weakSelf = self;
+  // TODO: this block implementation should be made more generic and extracted from here to a separate class!!
   _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
     if (fromIndexPath == toIndexPath) {
       return; // user didn't change the order after all
@@ -164,6 +167,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 {
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
+  tutorialStepCell.delegate = self.cellDelegate;
 }
 
 #pragma mark - Context 

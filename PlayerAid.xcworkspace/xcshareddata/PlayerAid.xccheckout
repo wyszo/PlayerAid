@@ -12,6 +12,10 @@
 	<dict>
 		<key>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</key>
 		<string>bitbucket.org:playeraid/playeraid-ios.git</string>
+		<key>74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D</key>
+		<string>https://github.com/wyszo/FDTake.git</string>
+		<key>8AC7DCC1500A3C980EA9F06651B3B3E046C3714E</key>
+		<string>https://github.com/wyszo/YCameraView.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PlayerAid.xcworkspace</string>
@@ -19,6 +23,10 @@
 	<dict>
 		<key>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</key>
 		<string>..</string>
+		<key>74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D</key>
+		<string>../../FDTake</string>
+		<key>8AC7DCC1500A3C980EA9F06651B3B3E046C3714E</key>
+		<string>../../YCameraView</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>bitbucket.org:playeraid/playeraid-ios.git</string>
@@ -32,9 +40,25 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FDTake</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>3D86EFF9344F139003D9A23F37E0C7553F2D3EF8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PlayerAid</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8AC7DCC1500A3C980EA9F06651B3B3E046C3714E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YCameraView</string>
 		</dict>
 	</array>
 </dict>
