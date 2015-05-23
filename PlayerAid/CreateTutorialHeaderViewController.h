@@ -11,8 +11,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (strong, nonatomic, readonly) Section *selectedSection;
 
-- (CGFloat)headerViewHeightForWidth:(CGFloat)width;
-
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts;
 
 @end

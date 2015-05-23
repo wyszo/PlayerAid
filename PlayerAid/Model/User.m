@@ -5,7 +5,6 @@
 #import <UIImageView+AFNetworking.h>
 #import "Tutorial.h"
 #import "TutorialsHelper.h"
-#import "NSSet+SetByRemoving.h"
 
 
 static NSString *const kServerIDJSONAttributeName = @"id";
@@ -72,7 +71,7 @@ static NSString *const kServerIDKey = @"serverID";
   
   // Removing tutorials that used to belong to the user but don't anymore (meaning they have been deleted server-side)
   NSSet *currentTutorialIDs = [self.createdTutorialSet valueForKey:kServerIDKey];
-  NSSet *tutorialIDsToRemove = [oldTutorialIDsSet setByRemovingObjectsInSet:currentTutorialIDs];
+  NSSet *tutorialIDsToRemove = [oldTutorialIDsSet tw_setByRemovingObjectsInSet:currentTutorialIDs];
   if (tutorialIDsToRemove.count) {
     [self deleteTutorialsWithIDs:tutorialIDsToRemove.allObjects inContext:self.managedObjectContext];
   }

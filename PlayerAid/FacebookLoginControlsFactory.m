@@ -7,7 +7,6 @@
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "DataExtractionHelper.h"
-#import "DispatchHelper.h"
 
 
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;

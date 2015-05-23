@@ -6,7 +6,6 @@
 #import "User.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
-#import "DispatchHelper.h"
 
 static const CGFloat kRetryShortDelay = 3.0;
 static const CGFloat kRetryLongDelay = 10.0;

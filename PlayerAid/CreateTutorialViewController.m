@@ -18,7 +18,6 @@
 #import "UsersController.h"
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
-#import "UIView+FadeAnimations.h"
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
@@ -28,16 +27,15 @@
 #import "CommonViews.h"
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "VideoPlayer.h"
+#import "YCameraViewStandardDelegateObject.h"
 
 
-static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
-
-
-@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate, TutorialStepTableViewCellDelegate>
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) FDTakeController *mediaController;
+@property (strong, nonatomic) YCameraViewStandardDelegateObject *yCameraControllerDelegate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsContainerView *createTutoriaStepButtonsView;
@@ -79,7 +77,8 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
-  [self addGestureRecognizer];
+  [self setupTapGestureRecognizerForResigningEditing];
+  [self setupCustomCamera];
   
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
@@ -88,7 +87,16 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   });
 }
 
-- (void)addGestureRecognizer
+- (void)setupCustomCamera
+{
+  defineWeakSelf();
+  self.yCameraControllerDelegate = [YCameraViewStandardDelegateObject new];
+  self.yCameraControllerDelegate.cameraDidFinishPickingImageBlock = ^(UIImage *image) {
+    [weakSelf saveTutorialStepWithImage:image];
+  };
+}
+
+- (void)setupTapGestureRecognizerForResigningEditing
 {
   self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
   self.tapGestureRecognizer.cancelsTouchesInView = NO;
@@ -120,6 +128,8 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  
+  [self updateTableHeaderViewSize];
 }
 
 - (void)viewWillLayoutSubviews
@@ -131,10 +141,13 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 - (void)updateTableHeaderViewSize
 {
   CGFloat viewWidth = self.view.frame.size.width;
-  CGFloat proportionalHeight = [self.headerViewController headerViewHeightForWidth:viewWidth];
+  UIView *headerContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewWidth)];
+
+  UIView *view = self.headerViewController.view;
+  view.frame = CGRectMake(0, 0, viewWidth, viewWidth);
+  [headerContainer addSubview:view];
   
-  self.headerViewController.view.frame = CGRectMake(0, 0, viewWidth, proportionalHeight);
-  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+  self.tutorialTableView.tableHeaderView = headerContainer;
 }
 
 - (void)setupTutorialStepsDataSource
@@ -287,7 +300,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   self.navigationItem.rightBarButtonItem = nil;
   self.navigationItem.titleView = nil;
 }
-
 
 #pragma mark - Edit button manipulation
 
@@ -446,18 +458,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
-- (void)takeAPictureWithYCameraView
-{
-  YCameraViewController *controller = [YCameraViewController new];
-  controller.prefersStatusBarHidden = YES;
-  controller.gridInitiallyHidden = ![self getUserDefaultsGridEnabled];
-  controller.delegate = self;
-  [self presentViewController:controller animated:YES completion:nil];
-  
-  controller.libraryToggleButton.hidden = YES;
-  controller.cancelButton.hidden = YES;
-}
-
 - (void)addVideoStepSelected
 {
   [self hideAddStepPopoverView];
@@ -478,7 +478,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)hideAddStepPopoverView
 {
-  [self.popoverView fadeOutAnimationWithDuration:0.5f];
+  [self.popoverView tw_fadeOutAnimationWithDuration:0.5f];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial
@@ -492,41 +492,6 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
   if (!tutorial.createdBy) {
     tutorial.createdBy = [self currentUser];
   }
-}
-
-#pragma mark - YCameraViewControllerDelegate
-
-- (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
-{
-  AssertTrueOrReturn(image);
-  [self saveTutorialStepWithImage:image];
-  
-  AssertTrueOrReturn(cameraController);
-  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
-}
-
-- (void)yCameraControllerDidCancel:(YCameraViewController *)cameraController
-{
-  AssertTrueOrReturn(cameraController);
-  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
-}
-
-- (void)yCameraControllerDidSkip:(YCameraViewController *)cameraController
-{
-  AssertTrueOrReturn(cameraController);
-  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
-}
-
-#pragma mark - UserDefaults
-
-- (void)saveInUserDefaultsGridEnabled:(BOOL)gridEnabled
-{
-  [[UserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
-}
-
-- (BOOL)getUserDefaultsGridEnabled
-{
-  return [[[UserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
 }
 
 #pragma mark - FDTakeDelegate
@@ -635,7 +600,7 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
     
     defineWeakSelf();
     _mediaController.presentCustomPhotoCaptureViewBlock = ^(){
-      [weakSelf takeAPictureWithYCameraView];
+      [MediaPickerHelper takePictureUsingYCameraViewWithDelegate:weakSelf.yCameraControllerDelegate fromViewController:weakSelf];
     };
   }
   return _mediaController;

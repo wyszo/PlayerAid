@@ -12,9 +12,7 @@
 #import "MediaPickerHelper.h"
 #import "SectionLabelContainer.h"
 #import "NSString+Trimming.h"
-
-
-static const CGSize originalViewSize = { 320.0f, 226.0f };
+#import "YCameraViewStandardDelegateObject.h"
 
 
 @interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
@@ -32,6 +30,7 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 @property (strong, nonatomic) Section *selectedSection;
 
 @property (strong, nonatomic) FDTakeController *mediaController;
+@property (strong, nonatomic) YCameraViewStandardDelegateObject *yCameraDelegate;
 
 @end
 
@@ -52,9 +51,23 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
+  [self setupSectionLabelContainer];
+  [self setupCustomCamera];
+}
+
+- (void)setupCustomCamera
+{
+  defineWeakSelf();
+  self.yCameraDelegate = [YCameraViewStandardDelegateObject new];
+  self.yCameraDelegate.cameraDidFinishPickingImageBlock = ^(UIImage *image) {
+    [weakSelf setEditCoverPhoto:image];
+  };
+}
+
+- (void)setupSectionLabelContainer
+{
   self.sectionLabelContainer.titleLabel.text = @"Pick a Category";
-  
-  self.sectionLabelContainer.hidden = YES;  
+  self.sectionLabelContainer.hidden = YES;
 }
 
 - (void)setupEditCoverPhotoBackgroundImageWhite
@@ -217,9 +230,14 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
   return [self.titleTextField.text stringByTrimmingWhitespaceAndNewline];
 }
 
-#pragma mark - FDTakeController
+#pragma mark - Edit Cover photo handling
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
+{
+  [self setEditCoverPhoto:photo];
+}
+
+- (void)setEditCoverPhoto:(UIImage *)photo
 {
   AssertTrueOrReturn(photo);
   self.backgroundImageView.image = photo;
@@ -256,16 +274,13 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 {
   if (!_mediaController) {
     _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.imagePickerPresentingViewController];
+    
+    defineWeakSelf();
+    _mediaController.presentCustomPhotoCaptureViewBlock = ^() {
+      [MediaPickerHelper takePictureUsingYCameraViewWithDelegate:weakSelf.yCameraDelegate fromViewController:weakSelf.imagePickerPresentingViewController];
+    };
   }
   return _mediaController;
-}
-
-#pragma mark - Size calculations 
-
-- (CGFloat)headerViewHeightForWidth:(CGFloat)width
-{
-  CGFloat offset = 32.0f;
-  return width * (originalViewSize.height + offset) / originalViewSize.width;
 }
 
 @end

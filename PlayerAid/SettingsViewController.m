@@ -3,8 +3,8 @@
 //
 
 #import "SettingsViewController.h"
-#import "NSArrayTableViewDataSource.h"
-#import "NSSimpleTableViewDelegate.h"
+#import "TWArrayTableViewDataSource.h"
+#import "TWSimpleTableViewDelegate.h"
 #import "JourneyController.h"
 #import "AlertFactory.h"
 
@@ -18,8 +18,8 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 @property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
 
 @property (weak, nonatomic, readonly) NSArray *settings;
-@property (strong, nonatomic) NSArrayTableViewDataSource *dataSource;
-@property (strong, nonatomic) NSSimpleTableViewDelegate *delegate;
+@property (strong, nonatomic) TWArrayTableViewDataSource *dataSource;
+@property (strong, nonatomic) TWSimpleTableViewDelegate *delegate;
 
 @end
 
@@ -39,7 +39,7 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 
 - (void)setupTableViewDataSource
 {
-  self.dataSource = [[NSArrayTableViewDataSource alloc] initWithArray:self.settings attachToTableView:self.settingsTableView cellDequeueIdentifier:kSettingsCellReuseIdentifier];
+  self.dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.settings attachToTableView:self.settingsTableView cellDequeueIdentifier:kSettingsCellReuseIdentifier];
   
   defineWeakSelf();
   self.dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
@@ -50,7 +50,7 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 
 - (void)setupTableViewDelegate
 {
-  self.delegate = [[NSSimpleTableViewDelegate alloc] initAndAttachToTableView:self.settingsTableView];
+  self.delegate = [[TWSimpleTableViewDelegate alloc] initAndAttachToTableView:self.settingsTableView];
   self.delegate.deselectCellOnTouch = YES;
   
   defineWeakSelf();

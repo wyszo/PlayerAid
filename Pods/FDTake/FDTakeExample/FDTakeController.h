@@ -24,6 +24,11 @@
 - (void)takeController:(FDTakeController *)controller didFailAfterAttempting:(BOOL)madeAttempt;
 
 /**
+ * Delegate method after the user choose 'Take Video' operation
+ */
+- (void)takeControllerDidStartTakingVideo:(FDTakeController *)controller withImagePickerController:(UIImagePickerController *)imagePickerController;
+
+/**
  * Delegate method after the user has successfully taken or selected a photo
  */
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info;
@@ -106,5 +111,10 @@
  * Custom UI text (skips localization)
  */
 @property (nonatomic, copy) NSString *noSourcesText;
+
+/**
+ * If you want to use a custom camera implementation instead of a default UIImagePicker, provide the implementation in here
+ */
+@property (nonatomic, copy) void (^presentCustomPhotoCaptureViewBlock)();
 
 @end

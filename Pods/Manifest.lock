@@ -40,13 +40,14 @@ PODS:
   - MagicalRecord/Core (2.2)
   - NSDate+TimeAgo (1.0.3)
   - NSString+RemoveEmoji (0.0.1)
+  - TWCommonLib (0.1)
   - UIAlertView-Blocks (1.0)
   - YCameraView (0.2.0)
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - Facebook-iOS-SDK (= 3.22.0)
-  - FDTake (from `../FDTake`)
+  - FDTake (from `../FDTake`, branch `ThomasChanges`)
   - FLKAutolayout (= 0.2.1)
   - GoogleAnalytics-iOS-SDK (= 3.10)
   - KZAsserts (= 1.0)
@@ -54,21 +55,25 @@ DEPENDENCIES:
   - MagicalRecord (= 2.2)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
+  - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
   - YCameraView (from `../YCameraView`)
 
 EXTERNAL SOURCES:
   FDTake:
     :branch: ThomasChanges
-    :path: ../FDTake
+    :git: ../FDTake
+  TWCommonLib:
+    :branch: TableViews
+    :path: ../TWCommonLib
   YCameraView:
     :branch: PlayerAidChanges
     :path: ../YCameraView
 
 CHECKOUT OPTIONS:
   FDTake:
-    :commit: cd0c0b0c2eecc45f988e631d90c18aad5daae4ba
-    :git: https://github.com/wyszo/FDTake.git
+    :commit: 10b5e9605e67255794e369f4c11baf7f62e61199
+    :git: ../FDTake
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
@@ -82,6 +87,7 @@ SPEC CHECKSUMS:
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
+  TWCommonLib: 79e865825df992f42eaff258e95424adf8a327c5
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   YCameraView: f13abd86a3115daffe1d76c9ae3d6af87abc7f67
 

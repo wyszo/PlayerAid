@@ -1,2 +1,0 @@
-/Users/wyszo/Library/Developer/Xcode/DerivedData/PlayerAid-dafdgirxmwylcgeoalgybrbnrsso/Build/Products/Debug-iphonesimulator/PlayerAid.app
-

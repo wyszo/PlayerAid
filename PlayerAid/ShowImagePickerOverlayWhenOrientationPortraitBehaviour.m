@@ -4,14 +4,13 @@
 
 #import "ShowImagePickerOverlayWhenOrientationPortraitBehaviour.h"
 #import "ImagePickerOverlayController.h"
-#import "OrientationChangeDetector.h"
-#import "UIView+FadeAnimations.h"
 #import "UIImagePickerExtendedEventsObserver.h"
+#import "TWOrientationChangeDetector.h"
 
 
-@interface ShowImagePickerOverlayWhenOrientationPortraitBehaviour() <OrientationChangeDelegate, ExtendedUIImagePickerControllerDelegate>
+@interface ShowImagePickerOverlayWhenOrientationPortraitBehaviour() <TWOrientationChangeDelegate, ExtendedUIImagePickerControllerDelegate>
 
-@property (nonatomic, strong) OrientationChangeDetector *orientationChangeDetector;
+@property (nonatomic, strong) TWOrientationChangeDetector *orientationChangeDetector;
 @property (nonatomic, strong) UIImagePickerExtendedEventsObserver *imagePickerEventsObserver;
 @property (nonatomic, strong) ImagePickerOverlayController *imagePickerOverlayController;
 @property (nonatomic, weak) UIImagePickerController *imagePickerController;
@@ -86,10 +85,10 @@
 
 #pragma mark - Lazy initialization
 
-- (OrientationChangeDetector *)orientationChangeDetector
+- (TWOrientationChangeDetector *)orientationChangeDetector
 {
   if (!_orientationChangeDetector) {
-    _orientationChangeDetector = [OrientationChangeDetector new];
+    _orientationChangeDetector = [TWOrientationChangeDetector new];
     _orientationChangeDetector.delegate = self;
   }
   return _orientationChangeDetector;

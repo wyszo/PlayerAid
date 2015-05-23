@@ -24,7 +24,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
                             @"title" : KZProperty(title),
                             @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
-                            @"image" : KZProperty(imageURL),
+                            @"imageUri" : KZProperty(imageURL),
                             @"section" : KZCall(sectionFromString:, section)
                           }];
   

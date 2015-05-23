@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -7,14 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" rowHeight="67" id="ywC-dg-HSJ" customClass="EditTutorialTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="309" height="67"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" rowHeight="80" id="ywC-dg-HSJ" customClass="EditTutorialTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="79"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ywC-dg-HSJ" id="TGa-o5-c9P">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-pd-SdG" userLabel="Delete Cell Button">
-                        <rect key="frame" x="0.0" y="11" width="44" height="44"/>
+                        <rect key="frame" x="-6" y="17" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="rBx-6F-M1o"/>
                             <constraint firstAttribute="height" constant="44" id="u0v-W3-wzH"/>
@@ -27,21 +27,21 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u0X-vb-gKg" userLabel="Thumbnail Image View">
-                        <rect key="frame" x="44" y="13" width="40" height="40"/>
+                        <rect key="frame" x="32" y="9" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="P6H-av-Yin"/>
-                            <constraint firstAttribute="width" constant="40" id="fju-Ia-dTY"/>
+                            <constraint firstAttribute="height" constant="60" id="P6H-av-Yin"/>
+                            <constraint firstAttribute="width" constant="60" id="fju-Ia-dTY"/>
                         </constraints>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play-icon" translatesAutoresizingMaskIntoConstraints="NO" id="XC7-Fp-BVd" userLabel="Play Icon Image View">
-                        <rect key="frame" x="46" y="16" width="36" height="36"/>
+                        <rect key="frame" x="44" y="22" width="36" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="b9t-c7-cDV"/>
                             <constraint firstAttribute="width" constant="36" id="za8-Lr-2a8"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-ER-y4o" userLabel="titleLabel">
-                        <rect key="frame" x="92" y="22" width="209" height="22"/>
+                        <rect key="frame" x="100" y="28" width="232" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -55,12 +55,12 @@
                     <constraint firstItem="oVM-ER-y4o" firstAttribute="trailing" secondItem="TGa-o5-c9P" secondAttribute="trailingMargin" id="PJz-mM-zmT"/>
                     <constraint firstItem="XC7-Fp-BVd" firstAttribute="centerX" secondItem="u0X-vb-gKg" secondAttribute="centerX" id="PdV-Ys-2mr"/>
                     <constraint firstItem="XC7-Fp-BVd" firstAttribute="height" secondItem="u0X-vb-gKg" secondAttribute="height" id="Uqn-fN-RDn"/>
-                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" constant="-8" id="bPo-mS-wMI"/>
+                    <constraint firstItem="Bgx-pd-SdG" firstAttribute="leading" secondItem="TGa-o5-c9P" secondAttribute="leadingMargin" constant="-14" id="bPo-mS-wMI"/>
                     <constraint firstAttribute="centerY" secondItem="oVM-ER-y4o" secondAttribute="centerY" id="cEK-q2-Jgb"/>
                     <constraint firstItem="XC7-Fp-BVd" firstAttribute="width" secondItem="u0X-vb-gKg" secondAttribute="width" id="h4r-5W-sZl"/>
                     <constraint firstAttribute="centerY" secondItem="Bgx-pd-SdG" secondAttribute="centerY" id="hnR-A3-u8J"/>
                     <constraint firstItem="XC7-Fp-BVd" firstAttribute="centerY" secondItem="u0X-vb-gKg" secondAttribute="centerY" constant="0.5" id="nj2-1g-cax"/>
-                    <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" id="rCS-07-Qnf"/>
+                    <constraint firstItem="u0X-vb-gKg" firstAttribute="leading" secondItem="Bgx-pd-SdG" secondAttribute="trailing" constant="-6" id="rCS-07-Qnf"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -79,7 +79,7 @@
                 <outlet property="thumbnailImageView" destination="u0X-vb-gKg" id="iuP-81-JdU"/>
                 <outlet property="titleLabel" destination="oVM-ER-y4o" id="RHF-0K-Dg2"/>
             </connections>
-            <point key="canvasLocation" x="198.5" y="381.5"/>
+            <point key="canvasLocation" x="214" y="387.5"/>
         </tableViewCell>
     </objects>
     <resources>
