@@ -31,14 +31,16 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
+  - UIAlertView-Blocks (1.0)
 
 DEPENDENCIES:
-  - AFNetworking
-  - Facebook-iOS-SDK
-  - GoogleAnalytics-iOS-SDK
-  - KZAsserts
-  - KZPropertyMapper
-  - MagicalRecord
+  - AFNetworking (= 2.5.0)
+  - Facebook-iOS-SDK (= 3.22.0)
+  - GoogleAnalytics-iOS-SDK (= 3.10)
+  - KZAsserts (= 1.0)
+  - KZPropertyMapper (= 2.5.1)
+  - MagicalRecord (= 2.2)
+  - UIAlertView-Blocks (= 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
@@ -48,5 +50,6 @@ SPEC CHECKSUMS:
   KZAsserts: 008f2f37ba7dcb4ce87bb262a7f91406812a66e5
   KZPropertyMapper: f06b00ff0c114bf8db45754a694b57278a628b5b
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  UIAlertView-Blocks: f3271e84372beb97aea115cd1fb26ae66457f12f
 
 COCOAPODS: 0.35.0

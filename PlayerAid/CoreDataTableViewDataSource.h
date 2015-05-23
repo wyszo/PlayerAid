@@ -11,6 +11,7 @@
 
 @property (copy, nonatomic) NSFetchedResultsController* (^fetchedResultsControllerLazyInitializationBlock)();
 @property (copy, nonatomic) void (^deleteCellOnSwipeBlock)(NSIndexPath *indexPath);
+@property (copy, nonatomic) void (^moveRowAtIndexPathToIndexPathBlock)(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath);
 
 
 - (instancetype)initWithCellreuseIdentifier:(NSString *)cellReuseIdentifier

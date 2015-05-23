@@ -1,5 +1,7 @@
 #import "_Tutorial.h"
 
+
+extern NSString *const kTutorialStateUnsaved;
 extern NSString *const kTutorialStatePublished;
 
 
@@ -7,5 +9,6 @@ extern NSString *const kTutorialStatePublished;
 
 @property (nonatomic, strong) NSNumber *draft;
 @property (nonatomic, strong) NSNumber *inReview;
+@property (nonatomic, strong) NSNumber *unsaved;
 
 @end

@@ -70,6 +70,18 @@
   return (self.deleteCellOnSwipeBlock != nil);
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return (self.moveRowAtIndexPathToIndexPathBlock != nil);
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+  if (self.moveRowAtIndexPathToIndexPathBlock) {
+    self.moveRowAtIndexPathToIndexPathBlock(fromIndexPath, toIndexPath);
+  }
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (self.deleteCellOnSwipeBlock && editingStyle == UITableViewCellEditingStyleDelete) {

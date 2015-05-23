@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTutorialViewController">
             <connections>
+                <outlet property="createTutoriaStepButtonsView" destination="YKJ-v8-qVW" id="gda-TQ-fQe"/>
                 <outlet property="tutorialTableView" destination="TdO-uS-8Rm" id="qrv-Mq-Dej"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RJH-Gf-pw9"/>
             </connections>
@@ -23,9 +24,9 @@
                         <constraint firstAttribute="height" constant="90" id="XzQ-Ix-OtX"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-uS-8Rm">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-uS-8Rm">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="438"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

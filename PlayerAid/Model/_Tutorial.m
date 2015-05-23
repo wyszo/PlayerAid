@@ -10,6 +10,7 @@ const struct TutorialAttributes TutorialAttributes = {
 	.inReview = @"inReview",
 	.state = @"state",
 	.title = @"title",
+	.unsaved = @"unsaved",
 };
 
 const struct TutorialRelationships TutorialRelationships = {
@@ -56,6 +57,11 @@ const struct TutorialRelationships TutorialRelationships = {
 	}
 	if ([key isEqualToString:@"inReviewValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"unsavedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"unsaved"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -128,6 +134,26 @@ const struct TutorialRelationships TutorialRelationships = {
 @dynamic state;
 
 @dynamic title;
+
+@dynamic unsaved;
+
+- (BOOL)unsavedValue {
+	NSNumber *result = [self unsaved];
+	return [result boolValue];
+}
+
+- (void)setUnsavedValue:(BOOL)value_ {
+	[self setUnsaved:@(value_)];
+}
+
+- (BOOL)primitiveUnsavedValue {
+	NSNumber *result = [self primitiveUnsaved];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveUnsavedValue:(BOOL)value_ {
+	[self setPrimitiveUnsaved:@(value_)];
+}
 
 @dynamic consistsOf;
 

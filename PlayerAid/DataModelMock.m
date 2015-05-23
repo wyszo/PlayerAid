@@ -47,7 +47,7 @@
 - (Tutorial *)draftTutorialInContext:(NSManagedObjectContext *)localContext forUser:(User *)user
 {
   Tutorial *tutorial = [self tutorialInContext:localContext title:@"Dummy draft tutorial" forUser:user];
-  [tutorial setDraftValue:YES];
+  tutorial.primitiveDraftValue = YES;
   return tutorial;
 }
 

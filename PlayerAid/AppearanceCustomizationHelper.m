@@ -10,6 +10,9 @@
 #import "ApplicationViewHierarchyHelper.h"
 
 
+static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
+
+
 @implementation AppearanceCustomizationHelper
 
 #pragma mark - public
@@ -40,7 +43,7 @@
   [self customizeTabbarFontColors];
   [self customizeTabbarTintColors];
   [self customizeTabbarItemTitles];
-  [self customiseCreateTutorialTabBarButtonBackground];
+  [self customizeCreateTutorialTabBarButton];
 }
 
 - (void)customizeTabbarFontColors
@@ -68,21 +71,35 @@
 
 #pragma mark - Create Tutorial TabBar button
 
-- (void)customiseCreateTutorialTabBarButtonBackground
+- (void)customizeCreateTutorialTabBarButton
 {
-  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
-  const NSUInteger createItemIndex = 2;
-  
-  AssertTrueOrReturn(tabBarController.tabBar.items.count > createItemIndex);
-  
-  UITabBar *tabBar = tabBarController.tabBar;
-  CGFloat tabbarItemWidth = tabBar.frame.size.width / (CGFloat)tabBar.items.count;
-  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(tabbarItemWidth * createItemIndex, 0, tabbarItemWidth, tabBar.frame.size.height)];
-  
+  [self customizeCreateTutorialTabBarButtonBackground];
+  [self customizeCreateTutorialTabBarButtonFont];
+}
+
+- (void)customizeCreateTutorialTabBarButtonBackground
+{
+  CGRect frame = [ApplicationViewHierarchyHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+
+  UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:frame];
   UIColor *createButtonBackgroundColor = [ColorsHelper tabBarCreateTutorialBackgroundColor];
   createButtonBackgroundView.backgroundColor = createButtonBackgroundColor;
+ 
+  UITabBarController *tabBarController = [ApplicationViewHierarchyHelper applicationTabBarController];
+  [tabBarController.tabBar insertSubview:createButtonBackgroundView atIndex:0];
+}
+
+- (void)customizeCreateTutorialTabBarButtonFont
+{
+  UITabBarItem *createTutorialTabBarItem = [ApplicationViewHierarchyHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
   
-  [tabBar insertSubview:createButtonBackgroundView atIndex:0];
+  [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
+  [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateSelected];
+  
+  UIImage *createTutorialOriginalImage = [[UIImage imageNamed:@"createtutorial"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+  createTutorialTabBarItem.image = createTutorialOriginalImage;
+  createTutorialTabBarItem.selectedImage = createTutorialOriginalImage;
 }
 
 @end

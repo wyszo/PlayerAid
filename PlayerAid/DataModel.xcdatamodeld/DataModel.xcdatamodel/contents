@@ -13,6 +13,7 @@
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="unsaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="consistsOf" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TutorialStep" inverseName="belongsTo" inverseEntity="TutorialStep" syncable="YES"/>
         <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTutorial" inverseEntity="User" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="containsTutorial" inverseEntity="Section" syncable="YES"/>
@@ -29,8 +30,8 @@
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="103"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="73"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="103"/>
     </elements>
 </model>

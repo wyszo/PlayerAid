@@ -92,6 +92,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+  AssertTrueOrReturn(cell);
   AssertTrueOrReturn([cell isKindOfClass:[TutorialTableViewCell class]]);
   TutorialTableViewCell *tutorialCell = (TutorialTableViewCell *)cell;
   Tutorial *tutorial = [self.tableViewDataSource objectAtIndexPath:indexPath];
