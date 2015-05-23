@@ -13,12 +13,21 @@
 #import "SectionLabelContainer.h"
 #import "NSString+Trimming.h"
 #import "YCameraViewStandardDelegateObject.h"
+#import "ColorsHelper.h"
 
 
-@interface CreateTutorialHeaderViewController () <UITextFieldDelegate, UIActionSheetDelegate, FDTakeDelegate>
+static const NSInteger kMaxTitleLength = 60;
+static const NSInteger kLeftRightContentInset = 10;
+static const CGFloat kTitleTextViewCornerRadius = 6.0f;
+
+
+@interface CreateTutorialHeaderViewController () <UIActionSheetDelegate, FDTakeDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextView *titleTextView;
+@property (weak, nonatomic) IBOutlet UITextField *titlePlaceholderTextView;
+@property (strong, nonatomic) TWTextViewWithMaxLengthDelegate *titleTextViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *editCoverPhotoButton;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *pickACategoryButton;
 @property (weak, nonatomic) IBOutlet UIView *grayOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
@@ -48,11 +57,40 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  [self setupTitleTextViewDelegate];
+  [self styleTitleTextView];
   [self setupEditCoverPhotoBackgroundImageGray];
   [self setupPickACategoryButtonBackgroundImageGray];
   self.grayOverlayView.hidden = YES;
   [self setupSectionLabelContainer];
   [self setupCustomCamera];
+}
+
+- (void)setupTitleTextViewDelegate
+{
+  TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:kMaxTitleLength attachToTextView:self.titleTextView];
+  delegate.resignsFirstResponderOnPressingReturn = YES;
+  
+  defineWeakSelf();
+  delegate.textDidChange = ^(NSString *text) {
+    weakSelf.titlePlaceholderTextView.hidden = (text.length > 0);
+  };
+  
+  self.titleTextViewDelegate = delegate;
+}
+
+- (void)styleTitleTextView
+{
+  [self setTitleTextViewLeftAndRightContentInsets:kLeftRightContentInset];
+  [self.titleTextView setCornerRadius:kTitleTextViewCornerRadius];
+  [self setTitleTextViewBorderColor:[ColorsHelper createTutorialHeaderElementsBorderColor]];
+}
+
+- (void)setTitleTextViewLeftAndRightContentInsets:(NSInteger)leftRightInset
+{
+  UIEdgeInsets insets = self.titleTextView.textContainerInset;
+  self.titleTextView.textContainerInset = UIEdgeInsetsMake(insets.top, leftRightInset, insets.bottom, leftRightInset);
 }
 
 - (void)setupCustomCamera
@@ -90,9 +128,16 @@
   return [self setBorderWithImageNamed:@"RoundedRectangleGray" forButton:self.pickACategoryButton];
 }
 
-- (void)setupTitleTextFieldWhiteText
+- (void)setupTitleTextViewTextAndBorderWhite
 {
-  self.titleTextField.textColor = [UIColor whiteColor];
+  self.titleTextView.textColor = [UIColor whiteColor];
+  [self setTitleTextViewBorderColor:[UIColor whiteColor]];
+}
+
+- (void)setTitleTextViewBorderColor:(UIColor *)color
+{
+  AssertTrueOrReturn(color);
+  [self.titleTextView addBorderWithWidth:1.0f color:color];
 }
 
 - (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button
@@ -119,9 +164,7 @@
   [self setupPickACategoryButtonBackgroundImageWhite];
   [self.pickACategoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   
-  [self setupTitleTextFieldWhiteText];
-  
-  // TODO: make textfield border white
+  [self setupTitleTextViewTextAndBorderWhite];
 }
 
 // this should be part of UIView, not a view controller..
@@ -146,27 +189,6 @@
   self.sectionLabelContainerButton.hidden = NO;
   
   self.pickACategoryButton.hidden = YES;
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-  [textField resignFirstResponder];
-  return YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-  // Prevent crashing undo bug – see note below.
-  if(range.length + range.location > textField.text.length)
-  {
-    return NO;
-  }
-  
-  NSUInteger newLength = [textField.text length] + [string length] - range.length;
-  const NSInteger maxTextFieldLength = 60;
-  return (newLength > maxTextFieldLength) ? NO : YES;
 }
 
 #pragma mark - IBActions
@@ -227,7 +249,7 @@
 
 - (NSString *)title
 {
-  return [self.titleTextField.text stringByTrimmingWhitespaceAndNewline];
+  return [self.titleTextView.text stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma mark - Edit Cover photo handling

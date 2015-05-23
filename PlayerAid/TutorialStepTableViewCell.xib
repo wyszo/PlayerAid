@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -27,8 +28,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
                         <rect key="frame" x="62" y="17" width="288" height="288"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="288" id="40W-v7-2kj"/>
-                            <constraint firstAttribute="height" constant="288" id="tzi-SG-WEi"/>
+                            <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
+                            <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
@@ -52,7 +53,6 @@
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="4Tm-m2-JEa"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" constant="9" id="9Ap-b6-gby"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
-                    <constraint firstItem="eac-Sp-Jwl" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="DPZ-rs-Sof"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="GZX-if-46X"/>
                     <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="9" id="GZw-g5-7we"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
@@ -63,17 +63,10 @@
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="gMU-LR-OHg"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leadingMargin" constant="16" id="kTB-OF-PgU"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" id="y0s-iP-8ic"/>
-                    <constraint firstItem="eac-Sp-Jwl" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="yGT-uf-JwU"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="DPZ-rs-Sof"/>
-                        <exclude reference="yGT-uf-JwU"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentImageHeightConstraint" destination="tzi-SG-WEi" id="a7J-za-Aco"/>
+                <outlet property="contentImageHeightAndWidthConstraint" destination="fL7-0C-JUo" id="S71-lK-2bD"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
                 <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
                 <outlet property="videoPlayButton" destination="glc-HU-D2Y" id="ajJ-M1-jf6"/>
