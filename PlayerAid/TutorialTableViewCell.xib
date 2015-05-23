@@ -54,7 +54,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Pj-OYA">
-                        <rect key="frame" x="455" y="133" width="129" height="28"/>
+                        <rect key="frame" x="455" y="145" width="129" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="129" id="3sp-gm-Mer"/>
                             <constraint firstAttribute="height" constant="28" id="x0D-03-GGU"/>
@@ -63,11 +63,11 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4" userLabel="Like button">
-                        <rect key="frame" x="556" y="16" width="28" height="24"/>
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4" userLabel="Like button">
+                        <rect key="frame" x="548" y="8" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="28" id="4Iw-eX-vo2"/>
-                            <constraint firstAttribute="height" constant="24" id="RVP-GF-cK6"/>
+                            <constraint firstAttribute="width" constant="44" id="4Iw-eX-vo2"/>
+                            <constraint firstAttribute="height" constant="44" id="RVP-GF-cK6"/>
                         </constraints>
                         <state key="normal" image="like_button_unpressed">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,7 +102,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="LDd-oO-kzN" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="8" id="0e2-8p-J8j"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gdZ-L3-4O4" secondAttribute="trailing" constant="8" id="1ar-Dq-cZM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gdZ-L3-4O4" secondAttribute="trailing" id="1ar-Dq-cZM"/>
                     <constraint firstItem="hII-NL-LnG" firstAttribute="height" secondItem="0Db-YS-DgD" secondAttribute="height" id="2xw-dl-Ac9"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerX" secondItem="LDd-oO-kzN" secondAttribute="centerX" id="6lO-w1-NoL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hII-NL-LnG" secondAttribute="bottom" constant="-8" id="7X9-yU-YVq"/>
@@ -127,7 +127,7 @@
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="2" id="bd4-ay-fYi"/>
                     <constraint firstItem="0Db-YS-DgD" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="bfC-w0-2XV"/>
                     <constraint firstItem="OOG-mE-GJc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="c41-s8-rar"/>
-                    <constraint firstItem="gdZ-L3-4O4" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="8" id="daU-3J-uFW"/>
+                    <constraint firstItem="gdZ-L3-4O4" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" id="daU-3J-uFW"/>
                     <constraint firstItem="fFb-Ug-2gd" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="topMargin" constant="130" id="dfj-of-nZo"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="e10-KV-CyY"/>
                     <constraint firstItem="gdZ-L3-4O4" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="445" id="lBj-Gn-3w8"/>

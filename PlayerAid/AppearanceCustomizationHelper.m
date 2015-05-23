@@ -8,6 +8,7 @@
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "FontsHelper.h"
 
 
 static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
@@ -21,6 +22,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 {
   [self customizeStatusBarAppearance];
   [self customizeNavigationBarsAppearance];
+  [self customizeNavigationBarButtonsAppearance];
   [self customizeTabbar];
 }
 
@@ -34,8 +36,24 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 - (void)customizeNavigationBarsAppearance
 {
   [[UINavigationBar appearance] setBarTintColor:[ColorsHelper navigationBarColor]];
-  [[UINavigationBar appearance] setTintColor:[ColorsHelper navigationBarButtonsColor]]; 
-  [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+  [[UINavigationBar appearance] setTintColor:[ColorsHelper navigationBarButtonsColor]];
+  
+  UIFont *font = [FontsHelper navbarTitleFont];
+  AssertTrueOrReturn(font);
+  [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                         NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                         NSFontAttributeName : font
+                                                        }];
+}
+
+- (void)customizeNavigationBarButtonsAppearance
+{
+  UIFont *font = [FontsHelper navbarButtonsFont];
+  AssertTrueOrReturn(font);
+  [[UIBarButtonItem appearance] setTitleTextAttributes:@{
+                                                         NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                         NSFontAttributeName : font
+                                                        } forState:UIControlStateNormal];
 }
 
 - (void)customizeTabbar
