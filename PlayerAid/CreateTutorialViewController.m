@@ -4,6 +4,7 @@
 
 #import "CreateTutorialViewController.h"
 #import <FDTakeController.h>
+#import <YCameraViewController.h>
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -21,9 +22,13 @@
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
+#import "UserDefaultsHelper.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
+static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
+
+
+@interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, YCameraViewControllerDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -106,7 +111,6 @@
 {
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
   self.headerViewController.imagePickerPresentingViewController = self;
-  self.headerViewController.saveDelegate = self;
   
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;
@@ -160,6 +164,13 @@
   
   if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_pressPublishButton];
+  }
+  
+  if (DEBUG_MODE_ADD_PHOTO) {
+    defineWeakSelf();
+    DISPATCH_AFTER(0.5, ^{
+      [weakSelf addPhotoStepSelected];
+    });
   }
 }
 
@@ -417,9 +428,25 @@
 - (void)addPhotoStepSelected
 {
   [self hideAddStepPopoverView];
-  
+  [self takeOrSelectPhotoUsingYCameraView];
+}
+
+- (void)takeOrSelectPhotoUsingFDTake
+{
   AssertTrueOrReturn(self.mediaController);
   [self.mediaController takePhotoOrChooseFromLibrary];
+}
+
+- (void)takeOrSelectPhotoUsingYCameraView
+{
+  YCameraViewController *controller = [YCameraViewController new];
+  controller.prefersStatusBarHidden = YES;
+  controller.gridInitiallyHidden = ![self getUserDefaultsGridEnabled];
+  controller.delegate = self;
+  [self presentViewController:controller animated:YES completion:nil];
+  
+  controller.cameraToggleButton.hidden = YES;
+  controller.cancelButton.hidden = YES;
 }
 
 - (void)addVideoStepSelected
@@ -456,6 +483,41 @@
   if (!tutorial.createdBy) {
     tutorial.createdBy = [self currentUser];
   }
+}
+
+#pragma mark - YCameraViewControllerDelegate
+
+- (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
+{
+  AssertTrueOrReturn(image);
+  [self saveTutorialStepWithImage:image];
+  
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+- (void)yCameraControllerDidCancel:(YCameraViewController *)cameraController
+{
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+- (void)yCameraControllerdidSkipped:(YCameraViewController *)cameraController
+{
+  AssertTrueOrReturn(cameraController);
+  [self saveInUserDefaultsGridEnabled:[cameraController gridEnabled]];
+}
+
+#pragma mark - UserDefaults
+
+- (void)saveInUserDefaultsGridEnabled:(BOOL)gridEnabled
+{
+  [[UserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
+}
+
+- (BOOL)getUserDefaultsGridEnabled
+{
+  return [[[UserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
 }
 
 #pragma mark - FDTakeDelegate
@@ -519,25 +581,12 @@
   [self updateEditButtonEnabled];
 }
 
+#pragma mark - Saving tutorial
+
 - (void)saveTutorial
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
-}
-
-#pragma mark - SaveTutorialDelegate
-
-- (void)saveTutorialTitled:(NSString *)title section:(Section *)section
-{
-  AssertTrueOrReturn(title.length);
-  AssertTrueOrReturn(section);
-  
-  // TODO: get rid of this
-  [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> DRAFT user's tutorial saved (in fact this whole 'Save' button is just a temporary debug functionality, saving should probably happen automatically)"];
-  [self updateTutorialModelFromUI];
-  
-  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
-  [self dismissViewController];
 }
 
 - (void)updateTutorialModelFromUI
