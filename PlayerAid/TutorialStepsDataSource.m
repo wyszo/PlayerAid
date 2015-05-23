@@ -49,28 +49,26 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     _allowsEditing = allowsEditing;
     _cellDelegate = cellDelegate;
     
+    [_tableView registerNibWithName:kTutorialStepCellNibName forCellReuseIdentifier:kTutorialStepCellReuseIdentifier];
+    
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
-    
-    UINib *tableViewCellNib =  [UINib nibWithNibName:kTutorialStepCellNibName bundle:[NSBundle bundleForClass:[self class]]];
-    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kTutorialStepCellReuseIdentifier];
   }
   return self;
 }
 
 - (void)initFetchedResultsControllerBinder
 {
-  __weak typeof(self) weakSelf = self;
-  _fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:_tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  defineWeakSelf();
+  self.fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
   }];
 }
 
 - (void)initTableViewDataSource
 {
-  __weak typeof(self) weakSelf = self;
-  
-  _tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  defineWeakSelf();
+  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
@@ -78,11 +76,14 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   
   [self setupTableViewDataSourceCellsEditing];
   
-  _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+  self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    AssertTrueOr(weakSelf.tutorial, ;);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
+    AssertTrueOr(weakSelf.fetchedResultsControllerBinder, ;);
+    AssertTrueOr(weakSelf.context, ;);
     return [TutorialStep MR_fetchAllSortedBy:@"order" ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
   };
-  _tableView.dataSource = _tableViewDataSource;
+  self.tableView.dataSource = _tableViewDataSource;
 }
 
 - (void)setupTableViewDataSourceCellsEditing
@@ -97,9 +98,9 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 - (void)setupTableViewDataSourceCellMoveRowBlock
 {
-  __weak typeof(self) weakSelf = self;
+  defineWeakSelf();
   // TODO: this block implementation should be made more generic and extracted from here to a separate class!!
-  _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
+  self.tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
     if (fromIndexPath == toIndexPath) {
       return; // user didn't change the order after all
     }
@@ -145,8 +146,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 - (void)setupTableViewDataSourceCellDeleteBlock
 {
-  __weak typeof(self) weakSelf = self;
-  _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
+  defineWeakSelf();
+  self.tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
     NSString *message = @"Are you sure you want to delete this tutorial step? This action cannot be undone.";
     [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete" okAction:^{
       TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];

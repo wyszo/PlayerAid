@@ -155,6 +155,7 @@
 {
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
+  AssertTrueOrReturn(self.createTutorialContext);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   
