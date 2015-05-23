@@ -47,18 +47,54 @@
                                @"email" : data.email
                                };
   
-  AFHTTPRequestOperationManager *requestOperationManagerBypassingCache = self.requestOperationManager;
-  requestOperationManagerBypassingCache.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+  AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
-  [requestOperationManagerBypassingCache POST:@"auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  NSString *URLString = [self URLStringWithPath:@"auth" baseURL:operationManagerNoCache.baseURL];
+  
+  NSMutableURLRequest *request = [operationManagerNoCache.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
+  AssertTrueOrReturn(request);
+  
+  [self addHttpHeadersFromDictionary:@{
+    @"X-Provider" : @"Facebook"
+  } toMutableRequest:request];
+  
+  AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
       completion(operation.response, responseObject, nil);
     }
-    
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     if (completion) {
       completion(nil, nil, error);
     }
+  }];
+  
+  [operationManagerNoCache.operationQueue addOperation:operation];
+}
+
+- (AFHTTPRequestOperationManager *)requestOperationManagerBypassignCache
+{
+  AFHTTPRequestOperationManager *requestOperationManagerBypassingCache = self.requestOperationManager;
+  requestOperationManagerBypassingCache.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+  AssertTrueOrReturnNil(requestOperationManagerBypassingCache);
+  return requestOperationManagerBypassingCache;
+}
+
+- (NSString *)URLStringWithPath:(NSString *)path baseURL:(NSURL *)baseURL
+{
+  AssertTrueOrReturnNil(path.length);
+  AssertTrueOrReturnNil(baseURL);
+  
+  return [[NSURL URLWithString:path relativeToURL:baseURL] absoluteString];
+}
+
+- (void)addHttpHeadersFromDictionary:(NSDictionary *)httpHeaders toMutableRequest:(NSMutableURLRequest *)mutableRequest
+{
+  AssertTrueOrReturn(httpHeaders.count);
+  AssertTrueOrReturn(mutableRequest);
+  
+  [httpHeaders enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+    NSString *value = httpHeaders[key];
+    [mutableRequest addValue:value forHTTPHeaderField:key];
   }];
 }
 

@@ -59,7 +59,7 @@
   [self setupTutorialStepsDataSource];
   
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL) {
-    [self DEBUG_addTwoTextTutorialSteps];
+    [self DEBUG_addTwoTextOneImageAndVideoStep];
     
     defineWeakSelf();
     DISPATCH_AFTER(0.2, ^{
@@ -83,9 +83,11 @@
 - (void)DEBUG_addTwoTextTutorialSteps
 {
   TutorialStep *step1 = [TutorialStep tutorialStepWithText:@"debug text!" inContext:self.createTutorialContext];
+  step1.orderValue = 1;
   [self.tutorial.consistsOfSet addObject:step1];
   
   TutorialStep *step2 = [TutorialStep tutorialStepWithText:@"debug text 2!" inContext:self.createTutorialContext];
+  step2.orderValue = 2;
   [self.tutorial.consistsOfSet addObject:step2];
 }
 
@@ -200,11 +202,19 @@
   if (tutorialSteps.count == 0) {
     return;
   }
-  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps];
+  self.editTutorialStepsViewController = [[EditTutorialStepsViewController alloc] initWithTutorialSteps:tutorialSteps.array];
   
   defineWeakSelf();
-  self.editTutorialStepsViewController.dismissBlock = ^{
+  self.editTutorialStepsViewController.dismissBlock = ^(BOOL saveChanges, NSArray *steps){
     [weakSelf.editTutorialStepsViewController.view removeFromSuperview];
+    
+    if (saveChanges && steps) {
+      [weakSelf.tutorial removeConsistsOf:weakSelf.tutorial.consistsOf];
+      [weakSelf.tutorial addConsistsOf:[[NSOrderedSet alloc] initWithArray:steps]];
+      
+      [weakSelf saveTutorial];
+      [weakSelf.tutorialTableView reloadData];
+    }
   };
   
   UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -238,13 +248,30 @@
   self.tutorial.pngImageData = UIImagePNGRepresentation([UIImage imageNamed:@"bubble"]);
   
   [self DEBUG_addTwoTextTutorialSteps];
-  
+  [self DEBUG_addImageStep];
+  [self DEBUG_addVideoStep];
+}
+
+- (void)DEBUG_addTwoTextOneImageAndVideoStep
+{
+  [self DEBUG_addTwoTextTutorialSteps];
+  [self DEBUG_addImageStep];
+  [self DEBUG_addVideoStep];
+}
+
+- (void)DEBUG_addImageStep
+{
   TutorialStep *imageStep1 = [TutorialStep tutorialStepWithImage:[UIImage imageNamed:@"bubble"] inContext:self.createTutorialContext];
+  imageStep1.orderValue = 3;
   [self.tutorial.consistsOfSet addObject:imageStep1];
-  
+}
+
+- (void)DEBUG_addVideoStep
+{
   NSURL *videoURL = [[NSBundle mainBundle] URLForResource:@"TestVideo" withExtension:@"mp4"];
   AssertTrueOrReturn(videoURL);
   TutorialStep *videoStep1 = [TutorialStep tutorialStepWithVideoURL:videoURL inContext:self.createTutorialContext];
+  videoStep1.orderValue = 4;
   [self.tutorial.consistsOfSet addObject:videoStep1];
 }
 

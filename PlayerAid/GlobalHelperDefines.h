@@ -8,5 +8,7 @@
 #define defineWeakSelf() __weak typeof(self) weakSelf = self
 
 typedef void (^VoidBlock)();
+typedef void (^CellAtIndexPathBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
+typedef void (^IndexPathBlock)(NSIndexPath *indexPath);
 
 #endif

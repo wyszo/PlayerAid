@@ -7,6 +7,7 @@
 + (TutorialStep *)tutorialStepWithVideoURL:(NSURL *)videoUrl inContext:(NSManagedObjectContext *)context;
 
 - (UIImage *)image;
+- (UIImage *)thumbnailImage;
 
 - (BOOL)isTextStep;
 - (BOOL)isImageStep;

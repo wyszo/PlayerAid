@@ -90,7 +90,7 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
 {
   AssertTrueOrReturnNil([responseObject isKindOfClass:[NSDictionary class]]);
   NSDictionary *responseDictionary = (NSDictionary *)responseObject;
-  NSString *accessToken = responseDictionary[@"token"];
+  NSString *accessToken = responseDictionary[@"accessToken"];
   AssertTrueOrReturnNil(accessToken.length > 0);
   return accessToken;
 }

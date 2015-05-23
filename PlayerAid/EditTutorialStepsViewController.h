@@ -4,9 +4,9 @@
 
 @interface EditTutorialStepsViewController : UIViewController
 
-@property (nonatomic, copy) VoidBlock dismissBlock;
+@property (nonatomic, copy) void (^dismissBlock)(BOOL saveChanges, NSArray *reorderedSteps);
 
-- (instancetype)initWithTutorialSteps:(NSOrderedSet *)tutorialSteps;
+- (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps;
 - (instancetype)init __unavailable;
 + (instancetype)new __unavailable;
 

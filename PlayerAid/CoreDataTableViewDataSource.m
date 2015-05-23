@@ -19,7 +19,7 @@
 #pragma mark - Initialization
 
 - (instancetype)initWithCellreuseIdentifier:(NSString *)cellReuseIdentifier
-                         configureCellBlock:(void (^)(UITableViewCell *cell, NSIndexPath *indexPath))configureCellBlock;
+                         configureCellBlock:(CellAtIndexPathBlock)configureCellBlock;
 {
   self = [super init];
   if (self) {

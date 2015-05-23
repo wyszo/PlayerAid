@@ -10,7 +10,8 @@
 {
   AssertTrueOrReturnNil([responseObject isKindOfClass:[NSDictionary class]]);
   NSDictionary *dictionary = responseObject;
-  return dictionary[@"id"];
+  NSNumber* idNumber = dictionary[@"id"];
+  return [idNumber stringValue];
 }
 
 @end

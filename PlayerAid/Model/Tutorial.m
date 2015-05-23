@@ -6,7 +6,7 @@
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
-static NSString *const kTutorialStateInReview = @"In Review";
+static NSString *const kTutorialStateInReview = @"Submitted";
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
