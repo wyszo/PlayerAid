@@ -9,7 +9,7 @@
 #import "Tutorial.h"
 #import "TWCoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
-#import "TableViewFetchedResultsControllerBinder+Private.h"
+#import "TWTableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
 
 
@@ -20,7 +20,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 @interface TutorialStepsDataSource () <UITableViewDelegate>
 
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
-@property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
+@property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -60,7 +60,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)initFetchedResultsControllerBinder
 {
   defineWeakSelf();
-  self.fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
   }];
 }

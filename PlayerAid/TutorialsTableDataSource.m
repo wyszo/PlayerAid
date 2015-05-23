@@ -8,7 +8,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialCellHelper.h"
 #import "TWCoreDataTableViewDataSource.h"
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TWTableViewFetchedResultsControllerBinder.h"
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
@@ -21,7 +21,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 @interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
-@property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
+@property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
 
@@ -47,7 +47,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 - (void)initFetchedResultsControllerBinder
 {
   __weak typeof(self) weakSelf = self;
-  self.fetchedResultsControllerBinder = [[TableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
   self.fetchedResultsControllerBinder.numberOfObjectsChangedBlock = ^(NSInteger objectCount){

@@ -57,7 +57,6 @@
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
 		3173C82A1AA7CB62004CEF1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */; };
 		3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */; };
-		3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -101,7 +100,6 @@
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
 		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */; };
-		31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
@@ -223,8 +221,6 @@
 		3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerHelper.m; sourceTree = "<group>"; };
 		3173C82B1AAB650C004CEF1E /* MediaPickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerHelper.h; sourceTree = "<group>"; };
 		3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerHelper.m; sourceTree = "<group>"; };
-		3173C82E1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableViewFetchedResultsControllerBinder+Private.h"; sourceTree = "<group>"; };
-		3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TableViewFetchedResultsControllerBinder+Private.m"; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -305,8 +301,6 @@
 		31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStepTableViewCell.xib; sourceTree = "<group>"; };
 		31B736001A88EB3A0081AE15 /* TutorialStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepTableViewCell.h; sourceTree = "<group>"; };
 		31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepTableViewCell.m; sourceTree = "<group>"; };
-		31B736081A8926320081AE15 /* TableViewFetchedResultsControllerBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewFetchedResultsControllerBinder.h; sourceTree = "<group>"; };
-		31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewFetchedResultsControllerBinder.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -776,7 +770,6 @@
 		3177800D1A80047C007057CD /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				31B736071A8926180081AE15 /* FetchedResultsControllerBinder */,
 				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
 				31B736051A8925F80081AE15 /* Tutorials */,
 				31B736061A8926010081AE15 /* TutorialSteps */,
@@ -1135,17 +1128,6 @@
 				31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */,
 			);
 			name = TutorialSteps;
-			sourceTree = "<group>";
-		};
-		31B736071A8926180081AE15 /* FetchedResultsControllerBinder */ = {
-			isa = PBXGroup;
-			children = (
-				31B736081A8926320081AE15 /* TableViewFetchedResultsControllerBinder.h */,
-				31B736091A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m */,
-				3173C82E1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.h */,
-				3173C82F1AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m */,
-			);
-			name = FetchedResultsControllerBinder;
 			sourceTree = "<group>";
 		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
@@ -1554,7 +1536,6 @@
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
-				31B7360A1A8926320081AE15 /* TableViewFetchedResultsControllerBinder.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
 				312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */,
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
@@ -1615,7 +1596,6 @@
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31E1E19E1AECCBB40091ED01 /* UIImage+Cropping.m in Sources */,
-				3173C8301AAC3E5D004CEF1E /* TableViewFetchedResultsControllerBinder+Private.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
