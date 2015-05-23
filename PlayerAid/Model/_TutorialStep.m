@@ -4,7 +4,11 @@
 #import "_TutorialStep.h"
 
 const struct TutorialStepAttributes TutorialStepAttributes = {
+	.imageData = @"imageData",
+	.order = @"order",
 	.text = @"text",
+	.videoPath = @"videoPath",
+	.videoThumbnailData = @"videoThumbnailData",
 };
 
 const struct TutorialStepRelationships TutorialStepRelationships = {
@@ -37,10 +41,42 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"orderValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"order"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
+@dynamic imageData;
+
+@dynamic order;
+
+- (int16_t)orderValue {
+	NSNumber *result = [self order];
+	return [result shortValue];
+}
+
+- (void)setOrderValue:(int16_t)value_ {
+	[self setOrder:@(value_)];
+}
+
+- (int16_t)primitiveOrderValue {
+	NSNumber *result = [self primitiveOrder];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveOrderValue:(int16_t)value_ {
+	[self setPrimitiveOrder:@(value_)];
+}
+
 @dynamic text;
+
+@dynamic videoPath;
+
+@dynamic videoThumbnailData;
 
 @dynamic belongsTo;
 

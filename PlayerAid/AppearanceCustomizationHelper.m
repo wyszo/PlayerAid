@@ -45,12 +45,25 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (void)customizeNavigationBarButtonsAppearance
 {
+  // enabled buttons
+  NSDictionary *textAttributes = [self barButtonItemsTextAttributesDictionaryWithColor:[UIColor whiteColor]];
+  [[UIBarButtonItem appearance] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
+  
+  // disabled buttons
+  textAttributes = [self barButtonItemsTextAttributesDictionaryWithColor:[ColorsHelper navigationBarDisabledButtonsColor]];
+  [[UIBarButtonItem appearance] setTitleTextAttributes:textAttributes forState:UIControlStateDisabled];
+}
+
+- (NSDictionary *)barButtonItemsTextAttributesDictionaryWithColor:(UIColor *)color
+{
   UIFont *font = [FontsHelper navbarButtonsFont];
-  AssertTrueOrReturn(font);
-  [[UIBarButtonItem appearance] setTitleTextAttributes:@{
-                                                         NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                         NSFontAttributeName : font
-                                                        } forState:UIControlStateNormal];
+  AssertTrueOrReturnNil(color);
+  AssertTrueOrReturnNil(font);
+  
+  return @{
+           NSForegroundColorAttributeName : color,
+           NSFontAttributeName : font
+          };
 }
 
 - (void)customizeTabbar

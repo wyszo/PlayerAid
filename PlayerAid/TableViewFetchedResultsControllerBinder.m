@@ -2,12 +2,13 @@
 //  PlayerAid
 //
 
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TableViewFetchedResultsControllerBinder+Private.h"
 
 
 @interface TableViewFetchedResultsControllerBinder ()
 @property (weak, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
+@property (nonatomic, assign) BOOL disabled;
 @end
 
 
@@ -32,6 +33,10 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
+  if (self.disabled) {
+    return;
+  }
+  
   UITableView *tableView = self.tableView;
   AssertTrueOrReturn(tableView);
   
@@ -78,6 +83,10 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
+  if (self.disabled) {
+    return;
+  }
+  
   UITableView *tableView = self.tableView;
   AssertTrueOrReturn(tableView);
   
@@ -100,11 +109,19 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
+  if (self.disabled) {
+    return;
+  }
+  
   [self.tableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+  if (self.disabled) {
+    return;
+  }
+  
   [self.tableView endUpdates];
 }
 

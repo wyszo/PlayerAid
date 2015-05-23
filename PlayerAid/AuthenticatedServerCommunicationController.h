@@ -22,4 +22,7 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
 
+// publishing tutorial
+- (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+
 @end

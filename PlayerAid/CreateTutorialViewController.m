@@ -3,6 +3,7 @@
 //
 
 #import "CreateTutorialViewController.h"
+#import <FDTakeController.h>
 #import "Tutorial.h"
 #import "TutorialStep.h"
 #import "Section.h"
@@ -14,16 +15,22 @@
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
 #import "UsersController.h"
+#import "MediaPickerHelper.h"
+#import "AlertFactory.h"
+#import "UIView+FadeAnimations.h"
+#import "PublishingTutorialViewController.h"
 
 
-@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate>
+@interface CreateTutorialViewController () <SaveTutorialDelegate, CreateTutorialStepButtonsDelegate, FDTakeDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
+@property (strong, nonatomic) FDTakeController *mediaController;
 
-
+@property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (weak, nonatomic) IBOutlet CreateTutorialStepButtonsView *createTutoriaStepButtonsView;
+@property (weak, nonatomic) IBOutlet UIView *popoverView;
+@property (weak, nonatomic) UIBarButtonItem *publishButton;
 
 @property (strong, nonatomic) NSManagedObjectContext *createTutorialContext;
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -33,25 +40,54 @@
 
 @implementation CreateTutorialViewController
 
+#pragma mark - Initialization
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
-  self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
-  self.headerViewController.imagePickerControllerDelegate = self;
-  self.headerViewController.saveDelegate = self;
-  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
-  
+  [self setupAndAttachHeaderViewController];
   self.createTutoriaStepButtonsView.delegate = self;
   
   // Where should we do that? This doesn't seem to be a correct place...
   [self initializeContextAndNewTutorialObject];
   
+  [self setupTutorialStepsDataSource];
+}
+
+- (void)setupAndAttachHeaderViewController
+{
+  self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
+  self.headerViewController.imagePickerPresentingViewController = self;
+  self.headerViewController.saveDelegate = self;
+  
+  AssertTrueOrReturn(self.tutorialTableView);
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+}
+
+- (void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  [self updateTableHeaderViewSize];
+}
+
+- (void)updateTableHeaderViewSize
+{
+  CGFloat viewWidth = self.view.frame.size.width;
+  CGFloat proportionalHeight = [self.headerViewController headerViewHeightForWidth:viewWidth];
+  
+  self.headerViewController.view.frame = CGRectMake(0, 0, viewWidth, proportionalHeight);
+  self.tutorialTableView.tableHeaderView = self.headerViewController.view;
+}
+
+- (void)setupTutorialStepsDataSource
+{
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES];
+  self.tutorialStepsDataSource.moviePlayerParentViewController = self;
 }
 
 #pragma mark - Context and Tutorial object initialization
@@ -70,6 +106,7 @@
   [self assignTutorialToCurrentUser];
 }
 
+// This is a temporary method, need to be either fixed or extracted from here
 - (void)deleteUserUnsavedTutorials
 {
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ && unsaved = YES", [self currentUser]];
@@ -98,7 +135,7 @@
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
-  self.navigationItem.rightBarButtonItem.enabled = NO;
+  self.publishButton.enabled = NO;
 }
 
 - (void)addNavigationBarCancelButton
@@ -111,6 +148,7 @@
 {
   UIBarButtonItem *publishButton = [[UIBarButtonItem alloc] initWithTitle:@"Publish" style:UIBarButtonItemStylePlain target:self action:@selector(publishButtonPressed)];
   self.navigationItem.rightBarButtonItem = publishButton;
+  self.publishButton = publishButton;
 }
 
 - (void)addNavigationBarEditButton
@@ -125,13 +163,33 @@
 - (void)editButtonPressed
 {
   // TODO: edit tutorial steps
+  // TODO - it should provide an overlay view which allows reordering steps (or canceling reordering)
   
   [self.tutorialTableView setEditing:(!self.tutorialTableView.editing) animated:YES];
 }
 
 - (void)publishButtonPressed
 {
-  // TODO: publish tutorial
+  [self updateTutorialModelFromUI];
+  
+  BOOL tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
+  if (tutorialDataComplete) {
+    [self presentPublishingTutorialViewController];
+  }
+}
+
+- (void)presentPublishingTutorialViewController
+{
+  PublishingTutorialViewController *publishingViewController = [PublishingTutorialViewController new];
+  publishingViewController.tutorial = self.tutorial;
+  
+  __weak typeof (self) weakSelf = self;
+  publishingViewController.completionBlock = ^(NSError *error) {
+    if (!error) {
+      [weakSelf dismissViewController];
+    }
+  };
+  [self presentViewController:publishingViewController animated:YES completion:nil];
 }
 
 - (void)dismissViewController
@@ -143,21 +201,34 @@
 
 - (void)addPhotoStepSelected
 {
+  [self hideAddStepPopoverView];
   
+  AssertTrueOrReturn(self.mediaController);
+  [self.mediaController takePhotoOrChooseFromLibrary];
 }
 
 - (void)addVideoStepSelected
 {
+  [self hideAddStepPopoverView];
   
+  AssertTrueOrReturn(self.mediaController);
+  [self.mediaController takeVideoOrChooseFromLibrary];
 }
 
 - (void)addTextStepSelected
 {
+  [self hideAddStepPopoverView];
+  
   if (self.tutorialTableView.isEditing) {
     [self.tutorialTableView setEditing:NO animated:YES];
     return;
   }
   [self pushCreateTutorialTextStepViewController];
+}
+
+- (void)hideAddStepPopoverView
+{
+  [self.popoverView fadeOutAnimationWithDuration:0.5f];
 }
 
 - (void)fillRequiredFieldsForTutorial:(Tutorial *)tutorial
@@ -168,37 +239,73 @@
   if (!tutorial.createdAt) {
     tutorial.createdAt = [NSDate new];
   }
+  if (!tutorial.createdBy) {
+    tutorial.createdBy = [self currentUser];
+  }
+}
+
+#pragma mark - FDTakeDelegate
+
+- (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
+{
+  AssertTrueOrReturn(photo);
+  [self saveTutorialStepWithImage:photo];
+}
+
+- (void)takeController:(FDTakeController *)controller gotVideo:(NSURL *)video withInfo:(NSDictionary *)info
+{
+  AssertTrueOrReturn(video);
+  [self saveTutorialStepWithVideoURL:video];
 }
 
 #pragma mark - Push views
 
 - (void)pushCreateTutorialTextStepViewController
 {
-  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithNibName:@"CreateTutorialTextStepView" bundle:nil];
-  
-  static NSInteger tutorialStepsCounter;
-  tutorialStepsCounter++;
-  NSString *temporaryText = [NSString stringWithFormat:@"Sample tutorial step %li", (long)tutorialStepsCounter];
-  
   __weak typeof(self) weakSelf = self;
-  viewController.completionBlock = ^(BOOL shouldSaveStep, NSString *text) {
-    if (shouldSaveStep) {
-      [weakSelf saveTutorialStepWithText:temporaryText]; // should pass 'text' here
+  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:^(NSString *text, NSError *error) {
+    if (!error) {
+      [weakSelf saveTutorialStepWithText:text];
     }
-  };
+  }];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);
   [modalNavigationController pushViewController:viewController animated:YES];
 }
 
+#pragma mark - Save Tutorial Step
+
 - (void)saveTutorialStepWithText:(NSString *)text
 {
-  TutorialStep *step = [TutorialStep MR_createInContext:self.createTutorialContext];
-  step.text = text;
+  TutorialStep *step = [TutorialStep tutorialStepWithText:text inContext:self.createTutorialContext];
+  [self addTutorialStepAndSave:step];
+}
+
+- (void)saveTutorialStepWithImage:(UIImage *)image
+{
+  TutorialStep *step = [TutorialStep tutorialStepWithImage:image inContext:self.createTutorialContext];
+  [self addTutorialStepAndSave:step];
+}
+
+- (void)saveTutorialStepWithVideoURL:(NSURL *)url
+{
+  TutorialStep *step = [TutorialStep tutorialStepWithVideoURL:url inContext:self.createTutorialContext];
+  [self addTutorialStepAndSave:step];
+}
+
+- (void)addTutorialStepAndSave:(TutorialStep *)tutorialStep
+{
+  NSInteger maxOrderValue = [[self.tutorial.consistsOf valueForKeyPath:@"@max.orderValue"] integerValue];
+  tutorialStep.primitiveOrderValue = maxOrderValue + 1;
+  [self.tutorial addConsistsOfObject:tutorialStep];
   
-  [self.tutorial addConsistsOfObject:step];
-  
+  [self saveTutorial];
+  self.publishButton.enabled = YES;
+}
+
+- (void)saveTutorial
+{
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
 }
@@ -210,37 +317,35 @@
   AssertTrueOrReturn(title.length);
   AssertTrueOrReturn(section);
   
+  // TODO: get rid of this
+  [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> DRAFT user's tutorial saved (in fact this whole 'Save' button is just a temporary debug functionality, saving should probably happen automatically)"];
+  [self updateTutorialModelFromUI];
+  
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+  [self dismissViewController];
+}
+
+- (void)updateTutorialModelFromUI
+{
+  [self updateTutorialModelWithTitle:self.headerViewController.title section:self.headerViewController.selectedSection];
+}
+
+- (void)updateTutorialModelWithTitle:(NSString *)title section:(Section *)section
+{
   self.tutorial.title = title;
   self.tutorial.createdAt = [NSDate new];
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
-  
-  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
-  
-  [self dismissViewController];
 }
 
-#pragma mark - UIImagePickerControllerDelegate
+#pragma mark - Lazy initalization
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (FDTakeController *)mediaController
 {
-  [picker dismissViewControllerAnimated:YES completion:nil];
-  
-  UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-  if (!image) {
-    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+  if (!_mediaController) {
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self];
   }
-  self.headerViewController.backgroundImageView.image = image;
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-  [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-  [[[viewController navigationController] navigationBar] setBarStyle:UIBarStyleBlack]; // enforces white image picker statusbar
+  return _mediaController;
 }
 
 @end

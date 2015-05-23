@@ -10,7 +10,7 @@
 #import "AuthenticationController_SavingToken.h"
 #import "ColorsHelper.h"
 #import "AuthenticatedServerCommunicationController.h"
-#import "ServerDataFetchController.h"
+#import "ServerDataUpdateController.h"
 
 
 @interface IntroViewController ()
@@ -49,7 +49,7 @@
       [AuthenticationController saveApiAuthenticationTokenToUserDefaults:apiToken];
       [AuthenticatedServerCommunicationController setApiToken:apiToken];
       [weakSelf dismissViewController];
-      [ServerDataFetchController updateUserAndTutorials];
+      [ServerDataUpdateController updateUserAndTutorials];
     }
     // standard facebook errors and behaviour when apiToken is empty is already handled internally
   }];

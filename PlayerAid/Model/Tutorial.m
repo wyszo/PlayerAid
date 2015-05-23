@@ -88,6 +88,16 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   return [allStates containsObject:state];
 }
 
+- (BOOL)storedOnServer
+{
+  NSArray *statesStoredOnServer = @[
+                                   // draft and unsaved tutorials are stored locally, never send to server
+                                   kTutorialStateInReview,
+                                   kTutorialStatePublished
+                                  ];
+  return [statesStoredOnServer containsObject:self.primitiveState];
+}
+
 #pragma mark - Unsaved 
 
 - (NSNumber *)unsaved

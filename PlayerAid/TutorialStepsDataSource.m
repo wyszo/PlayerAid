@@ -3,28 +3,29 @@
 //
 
 #import "TutorialStepsDataSource.h"
+#import "MediaPlayerHelper.h"
 #import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "Tutorial.h"
 #import "CoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
-#import "TableViewFetchedResultsControllerBinder.h"
+#import "TableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
 
 
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
 static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
-static const CGFloat kTutorialStepCellHeight = 120;
-
 
 @interface TutorialStepsDataSource () <UITableViewDelegate>
+
 @property (nonatomic, strong) CoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, assign) BOOL allowsEditing;
+
 @end
 
 
@@ -77,7 +78,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
   
   _tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
-    return [TutorialStep MR_fetchAllSortedBy:nil ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
+    return [TutorialStep MR_fetchAllSortedBy:@"order" ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
   };
   _tableView.dataSource = _tableViewDataSource;
 }
@@ -96,6 +97,10 @@ static const CGFloat kTutorialStepCellHeight = 120;
 {
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
+    if (fromIndexPath == toIndexPath) {
+      return; // user didn't change the order after all
+    }
+    
     id objectFrom = [weakSelf.tableViewDataSource objectAtIndexPath:fromIndexPath];
     id objectTo = [weakSelf.tableViewDataSource objectAtIndexPath:toIndexPath];
     AssertTrueOrReturn([objectFrom isKindOfClass:[TutorialStep class]]);
@@ -104,22 +109,34 @@ static const CGFloat kTutorialStepCellHeight = 120;
     TutorialStep *tutorialStepFrom = objectFrom;
     TutorialStep *tutorialStepTo = objectTo;
     
+    AssertTrueOrReturn(tutorialStepFrom.belongsTo == tutorialStepTo.belongsTo);
     Tutorial *parentTutorial = tutorialStepFrom.belongsTo;
     AssertTrueOrReturn(parentTutorial);
-    AssertTrueOrReturn(parentTutorial == tutorialStepTo.belongsTo);
     
     NSInteger fromIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepFrom];
     NSInteger toIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepTo];
     
-    TutorialStep *temporaryStep = [TutorialStep MR_createInContext:weakSelf.context];
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == tutorialStepTo.managedObjectContext);
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == weakSelf.context);
     
-    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:temporaryStep];
-    [parentTutorial replaceObjectInConsistsOfAtIndex:toIndex withObject:tutorialStepFrom];
-    [parentTutorial replaceObjectInConsistsOfAtIndex:fromIndex withObject:tutorialStepTo];
+    // UI changed, just need to update the model without invoking NSFetchedResultsController methods. That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
+    NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
+    [allObjects replaceObjectAtIndex:fromIndex withObject:tutorialStepTo];
+    [allObjects replaceObjectAtIndex:toIndex withObject:tutorialStepFrom];
     
-    [temporaryStep MR_deleteInContext:parentTutorial.managedObjectContext];
+    weakSelf.fetchedResultsControllerBinder.disabled = YES;
     
-//    [weakSelf.context MR_saveOnlySelfAndWait];
+    NSNumber *toOrder = tutorialStepTo.order;
+    tutorialStepTo.order = tutorialStepFrom.order;
+    tutorialStepFrom.order = toOrder;
+    
+    AssertTrueOrReturn(![allObjects isEqualToArray:parentTutorial.consistsOf.array]);
+    [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
+    
+    [weakSelf.context MR_saveOnlySelfAndWait];
+    weakSelf.fetchedResultsControllerBinder.disabled = NO;
+    
+    [weakSelf.tableView reloadData]; // that doesn't really help, just hides the problem temporarily.. (the assertion above will be thrown sooner or later)..
   };
 }
 
@@ -128,7 +145,7 @@ static const CGFloat kTutorialStepCellHeight = 120;
   __weak typeof(self) weakSelf = self;
   _tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
     NSString *message = @"Are you sure you want to delete tutorial step? This action cannot be undone!";
-    [AlertFactory showOKCancelAlertViewWithMessage:message okTitle:@"Yes, delete tutorial step" okAction:^{
+    [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete tutorial step" okAction:^{
       TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
       AssertTrueOrReturn(weakSelf.context);
       [tutorialStep MR_deleteInContext:weakSelf.context];
@@ -159,8 +176,33 @@ static const CGFloat kTutorialStepCellHeight = 120;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: read that value from xib (has to be dependent on tutorialStep type though)
-  return kTutorialStepCellHeight;
+  static TutorialStepTableViewCell *templateCell;
+  if (!templateCell) {
+    templateCell = [self.tableView dequeueReusableCellWithIdentifier:kTutorialStepCellReuseIdentifier];
+    AssertTrueOr(templateCell, return 0;);
+  }
+  
+  TutorialStep *tutorialStep = [_tableViewDataSource objectAtIndexPath:indexPath];
+  AssertTrueOr(tutorialStep, return 0;);
+  [templateCell configureWithTutorialStep:tutorialStep];
+  [templateCell layoutIfNeeded];
+  
+  CGFloat height = [templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+  AssertTrueOr(height > 0, return 0;);
+  
+  return height;
+}
+
+#pragma mark - Playing a video
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  TutorialStep *tutorialStep = [_tableViewDataSource objectAtIndexPath:indexPath];
+
+  if (tutorialStep.videoPath) {
+    NSURL *url = [NSURL URLWithString:tutorialStep.videoPath];
+    [MediaPlayerHelper playVideoWithURL:url fromViewController:self.moviePlayerParentViewController];
+  }
 }
 
 @end

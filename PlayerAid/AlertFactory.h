@@ -3,6 +3,9 @@
 //
 
 
+typedef void (^ActionBlock)() ;
+
+
 @interface AlertFactory : NSObject
 
 + (UIAlertView *)showGenericErrorAlertView;
@@ -11,11 +14,16 @@
 // Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
-+ (UIAlertView *)showOKCancelAlertViewWithMessage:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
++ (UIAlertView *)showCreateTutorialNoTutorialStepsAlertView;
++ (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 
+// Publish tutorial alerts
++ (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction;
++ (UIAlertView *)showTutorialInReviewInfoAlertView;
+
 // Delete tutorial alerts
-+ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
++ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;
 
 // Other alerts
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;

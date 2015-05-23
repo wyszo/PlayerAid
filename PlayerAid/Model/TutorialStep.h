@@ -1,5 +1,13 @@
 #import "_TutorialStep.h"
 
 @interface TutorialStep : _TutorialStep {}
-// Custom logic goes here.
+
++ (TutorialStep *)tutorialStepWithText:(NSString *)text inContext:(NSManagedObjectContext *)context;
+
++ (TutorialStep *)tutorialStepWithImage:(UIImage *)image inContext:(NSManagedObjectContext *)context;
+
++ (TutorialStep *)tutorialStepWithVideoURL:(NSURL *)videoUrl inContext:(NSManagedObjectContext *)context;
+
+- (UIImage *)image;
+
 @end

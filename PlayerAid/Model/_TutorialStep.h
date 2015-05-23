@@ -4,7 +4,11 @@
 @import CoreData;
 
 extern const struct TutorialStepAttributes {
+	__unsafe_unretained NSString *imageData;
+	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *text;
+	__unsafe_unretained NSString *videoPath;
+	__unsafe_unretained NSString *videoThumbnailData;
 } TutorialStepAttributes;
 
 extern const struct TutorialStepRelationships {
@@ -22,9 +26,29 @@ extern const struct TutorialStepRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TutorialStepID* objectID;
 
+@property (nonatomic, strong) NSData* imageData;
+
+//- (BOOL)validateImageData:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* order;
+
+@property (atomic) int16_t orderValue;
+- (int16_t)orderValue;
+- (void)setOrderValue:(int16_t)value_;
+
+//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* text;
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* videoPath;
+
+//- (BOOL)validateVideoPath:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSData* videoThumbnailData;
+
+//- (BOOL)validateVideoThumbnailData:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) Tutorial *belongsTo;
 
@@ -34,8 +58,23 @@ extern const struct TutorialStepRelationships {
 
 @interface _TutorialStep (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSData*)primitiveImageData;
+- (void)setPrimitiveImageData:(NSData*)value;
+
+- (NSNumber*)primitiveOrder;
+- (void)setPrimitiveOrder:(NSNumber*)value;
+
+- (int16_t)primitiveOrderValue;
+- (void)setPrimitiveOrderValue:(int16_t)value_;
+
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;
+
+- (NSString*)primitiveVideoPath;
+- (void)setPrimitiveVideoPath:(NSString*)value;
+
+- (NSData*)primitiveVideoThumbnailData;
+- (void)setPrimitiveVideoThumbnailData:(NSData*)value;
 
 - (Tutorial*)primitiveBelongsTo;
 - (void)setPrimitiveBelongsTo:(Tutorial*)value;

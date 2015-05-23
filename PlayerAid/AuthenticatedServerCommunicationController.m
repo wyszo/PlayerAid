@@ -5,6 +5,7 @@
 #import <AFNetworking.h>
 #import "AuthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
+#import "Section.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -70,19 +71,37 @@
   }];
 }
 
+- (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial.title.length);
+  AssertTrueOrReturn(tutorial.section.name);
+  
+  NSDictionary *parameters = @{
+                               @"title" : tutorial.title,
+                               @"section" : tutorial.section.name,
+                               @"CreatedOn" : [NSDate new]
+                              };
+  
+  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters useCacheIfAllowed:NO completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (completion) {
+      completion(response, responseObject, error);
+    }
+  }];
+}
+
 #pragma mark - Sending requests
 
 - (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"GET" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
+  [self requestWithType:@"GET" apiToken:apiToken urlString:urlString parameters:nil useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString useCacheIfAllowed:useCache completion:completion];
+  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(requestType.length);
   AssertTrueOrReturn(urlString.length);
@@ -94,7 +113,7 @@
   SEL selector = NSSelectorFromString(selectorString);
   AssertTrueOrReturn([operationManager respondsToSelector:selector]);
   
-  [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString parameters:(id)parameters successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (completion) {
       completion(operation.response, responseObject, nil);
     }
@@ -105,7 +124,7 @@
   }];
 }
 
-- (void)invokeAFNetworkingOperationWithReuqestWithSelector:(SEL)selector operationManager:(AFHTTPRequestOperationManager *)operationManager urlString:(NSString *)urlString successBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
+- (void)invokeAFNetworkingOperationWithReuqestWithSelector:(SEL)selector operationManager:(AFHTTPRequestOperationManager *)operationManager urlString:(NSString *)urlString parameters:(id)parameters successBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
 {
   AssertTrueOrReturn(selector);
   AssertTrueOrReturn(operationManager);
@@ -119,6 +138,7 @@
   [invocation setSelector:selector];
   
   [invocation setArgument:&urlString atIndex:2]; // indexes 0 and 1 are reserved
+  if (parameters) { [invocation setArgument:&parameters atIndex:3]; }
   if (successBlock) { [invocation setArgument:&successBlock atIndex:4]; }
   if (failureBlock) { [invocation setArgument:&failureBlock atIndex:5]; }
   [invocation invoke];

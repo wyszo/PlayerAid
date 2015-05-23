@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PublishingTutorialViewController">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="XTz-pY-MZC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publishing tutorial..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZT-xF-eff">
+                    <rect key="frame" x="8" y="8" width="584" height="584"/>
+                    <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pZT-xF-eff" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="3WT-6e-wrK"/>
+                <constraint firstAttribute="bottom" secondItem="pZT-xF-eff" secondAttribute="bottom" constant="8" id="env-WO-Kvo"/>
+                <constraint firstItem="pZT-xF-eff" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="rAX-zK-cjP"/>
+                <constraint firstAttribute="trailing" secondItem="pZT-xF-eff" secondAttribute="trailing" constant="8" id="xdk-lZ-N3A"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

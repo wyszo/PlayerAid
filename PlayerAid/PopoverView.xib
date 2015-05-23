@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopoverView">
+            <connections>
+                <outlet property="bubbleImageView" destination="37l-h0-DvQ" id="rkB-EX-Pc7"/>
+                <outlet property="titleLabel" destination="4Fp-Mw-A9n" id="Pa6-gE-GOz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tmg-H6-EMh">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="189"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37l-h0-DvQ" userLabel="bubble image">
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="175"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fp-Mw-A9n" userLabel="titleLabel">
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="175"/>
+                    <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubblepoint" translatesAutoresizingMaskIntoConstraints="NO" id="YJJ-DG-Y2D">
+                    <rect key="frame" x="179" y="175" width="17" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="M56-0R-vd1"/>
+                        <constraint firstAttribute="width" constant="17" id="fnS-OL-U9h"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="37l-h0-DvQ" firstAttribute="leading" secondItem="tmg-H6-EMh" secondAttribute="leading" id="38W-WC-RYB"/>
+                <constraint firstAttribute="centerX" secondItem="YJJ-DG-Y2D" secondAttribute="centerX" id="4ux-Bz-7t3"/>
+                <constraint firstItem="YJJ-DG-Y2D" firstAttribute="top" secondItem="4Fp-Mw-A9n" secondAttribute="bottom" constant="41" id="5rs-ND-JYY"/>
+                <constraint firstAttribute="trailing" secondItem="37l-h0-DvQ" secondAttribute="trailing" id="DGJ-WO-haK"/>
+                <constraint firstItem="37l-h0-DvQ" firstAttribute="top" secondItem="tmg-H6-EMh" secondAttribute="top" id="Hko-aC-kAY"/>
+                <constraint firstItem="4Fp-Mw-A9n" firstAttribute="width" secondItem="37l-h0-DvQ" secondAttribute="width" id="OAJ-PB-Oab"/>
+                <constraint firstItem="4Fp-Mw-A9n" firstAttribute="height" secondItem="37l-h0-DvQ" secondAttribute="height" id="Qhg-Pc-YJR"/>
+                <constraint firstAttribute="bottom" secondItem="YJJ-DG-Y2D" secondAttribute="bottom" id="TQe-5f-M8j"/>
+                <constraint firstItem="4Fp-Mw-A9n" firstAttribute="centerY" secondItem="37l-h0-DvQ" secondAttribute="centerY" id="gcU-6Q-A4K"/>
+                <constraint firstItem="4Fp-Mw-A9n" firstAttribute="centerX" secondItem="37l-h0-DvQ" secondAttribute="centerX" id="phO-a4-OHm"/>
+                <constraint firstItem="YJJ-DG-Y2D" firstAttribute="top" secondItem="37l-h0-DvQ" secondAttribute="bottom" id="tgM-rY-gy9"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="5rs-ND-JYY"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="248" y="95.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bubblepoint" width="34" height="28"/>
+    </resources>
+</document>
