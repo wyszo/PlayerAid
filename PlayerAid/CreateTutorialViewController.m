@@ -361,11 +361,10 @@
     [weakSelf setupNavigationBarButtons];
     
     if (saveChanges && steps) {
-      [weakSelf.tutorial removeConsistsOf:weakSelf.tutorial.consistsOf];
-      [weakSelf.tutorial addConsistsOf:[[NSOrderedSet alloc] initWithArray:steps]];
+      NSOrderedSet *stepsSet = [[NSOrderedSet alloc] initWithArray:steps];
+      [weakSelf.tutorial setConsistsOf:stepsSet];
       
       [weakSelf saveTutorial];
-      [weakSelf.tutorialTableView reloadData];
     }
   };
   return editTutorialStepsViewController;
