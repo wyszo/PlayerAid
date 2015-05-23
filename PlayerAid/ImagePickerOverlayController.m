@@ -4,6 +4,7 @@
 
 #import "ImagePickerOverlayController.h"
 #import "TWUIImagePickerExtendedEventsObserver.h"
+#import "CameraPortraitBlockingOverlayViewController.h"
 
 
 static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
@@ -12,7 +13,7 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 @interface ImagePickerOverlayController()
 
 @property (nonatomic, weak) UIImagePickerController* imagePickerController;
-@property (nonatomic, strong) UIViewController *overlayViewController;
+@property (nonatomic, strong) CameraPortraitBlockingOverlayViewController *overlayViewController;
 
 @end
 
@@ -66,7 +67,14 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 - (UIViewController *)overlayViewController
 {
   if (!_overlayViewController) {
-    _overlayViewController = [[UIViewController alloc] initWithNibName:@"CameraPortraitBlockingOverlay" bundle:nil];
+    _overlayViewController = [CameraPortraitBlockingOverlayViewController new];
+    defineWeakSelf();
+    _overlayViewController.didPressCancelBlock = ^() {
+      id<UIImagePickerControllerDelegate> imagePickerDelegate = weakSelf.imagePickerController.delegate;
+      [weakSelf.imagePickerController dismissViewControllerAnimated:YES completion:^{
+        [imagePickerDelegate imagePickerControllerDidCancel:weakSelf.imagePickerController];
+      }];
+    };
   }
   return _overlayViewController;
 }
