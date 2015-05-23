@@ -3,7 +3,6 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
-#import <MagicalRecord+Setup.h>
 #import "AppDelegate.h"
 #import "AppearanceCustomizationHelper.h"
 #import "TabBarControllerHandler.h"
@@ -14,7 +13,8 @@
 #import "UsersController.h"
 #import "ServerDataUpdateController.h"
 #import "ApplicationViewHierarchyHelper.h"
-#import "SectionsDataSource.h"
+#import "JourneyController_Debug.h"
+#import "CoreDataStackHelper.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
@@ -29,8 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
-  [MagicalRecord setupCoreDataStackWithStoreNamed:@"PlayerAidStore"];
-  [SectionsDataSource setupHardcodedSectionsIfNeedded];
+  [CoreDataStackHelper setupCoreDataStack];
   
   [self applicationLaunchDataFetch];
   
@@ -53,22 +52,20 @@
         [ServerDataUpdateController updateUserAndTutorials];
       }
       else {
-        [self performLoginSegue]; // note this has to be called after setting up core data stack
+        [[JourneyController new] performLoginSegueAnimated:NO]; // note this has to be called after setting up core data stack
       }
     }];
   }
   
+  JourneyController *journeyController = [JourneyController new];
+  
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
-    [self DEBUG_presentCreateTutorialViewController];
+    [journeyController DEBUG_presentCreateTutorialViewController];
   }
-}
-
-- (void)DEBUG_presentCreateTutorialViewController
-{
-  defineWeakSelf();
-  DISPATCH_AFTER(0.1, ^{
-    [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
-  });
+  
+  if (DEBUG_MODE_PUSH_SETTINGS) {
+    [journeyController DEBUG_presentSettings];
+  }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -85,14 +82,6 @@
 }
 
 #pragma mark - Auxiliary methods
-
-- (void)performLoginSegue
-{
-  if (!self.window.keyWindow) {
-    [self.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
-  }
-  [[TabBarHelper mainTabBarController] performSegueWithIdentifier:@"LoginSegue" sender:nil];
-}
 
 - (void)setupTabBarActionHandling
 {

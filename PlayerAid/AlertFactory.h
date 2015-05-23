@@ -30,6 +30,7 @@ typedef void (^ActionBlock)() ;
 // Other alerts
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;
 + (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message;
++ (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;

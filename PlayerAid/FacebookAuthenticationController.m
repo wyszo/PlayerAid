@@ -3,6 +3,7 @@
 //
 
 #import "FacebookAuthenticationController.h"
+#import "FBSession.h"
 
 
 @interface FacebookAuthenticationController () <FBLoginViewDelegate>
@@ -26,7 +27,7 @@
   return sharedInstance;
 }
 
-#pragma mark - Create login button
+#pragma mark - Public interface
 
 + (FBLoginView *)facebookLoginViewWithLoginCompletion:(void (^)(id<FBGraphUser> user, NSError *error))completion
 {
@@ -37,6 +38,10 @@
   return loginView;
 }
 
++ (void)logout
+{
+  [FBSession.activeSession closeAndClearTokenInformation];
+}
 
 #pragma mark - FBLoginViewDelegate
 

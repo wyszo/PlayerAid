@@ -175,6 +175,18 @@
   return alert;
 }
 
++ (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction
+{
+  NSString *title = @"<DEBUG> Logout?";
+  NSString *message = @"Logging out will permamently delete unsubmitted tutorial drafts [it wipes out all local data]. Continue?";
+  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Logout" okAction:^{
+    if (okAction) {
+      okAction();
+    }
+  } cancelAction:nil];
+  return alert;
+}
+
 #pragma mark - Facebook
 
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2

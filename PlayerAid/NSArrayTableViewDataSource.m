@@ -5,33 +5,51 @@
 #import "NSArrayTableViewDataSource.h"
 
 
-static NSString *const kCellDequeueIdentifier = @"cell";
-
-
 @interface NSArrayTableViewDataSource ()
 
 @property (strong, nonatomic) NSMutableArray *array;
 @property (weak, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSString *cellDequeueIdentifier;
 
 @end
 
 
 @implementation NSArrayTableViewDataSource
 
-- (instancetype)initWithArray:(NSArray *)array tableView:(UITableView *)tableView tableViewCellNibName:(NSString *)cellNibName
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellNibName:(NSString *)cellNibName
 {
-  AssertTrueOrReturnNil(array);
-  AssertTrueOrReturnNil(tableView);
   AssertTrueOrReturnNil(cellNibName);
   
   if (self = [super init]) {
-    _array = [array mutableCopy];
-    _tableView = tableView;
+    [self initializeWithArray:array attachToTableView:tableView];
+    
+    _cellDequeueIdentifier = @"cell";
     
     UINib *tableViewCellNib = [UINib nibWithNibName:cellNibName bundle:[NSBundle bundleForClass:[self class]]];
-    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:kCellDequeueIdentifier];
+    [_tableView registerNib:tableViewCellNib forCellReuseIdentifier:_cellDequeueIdentifier];
   }
   return self;
+}
+
+- (instancetype)initWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView cellDequeueIdentifier:(NSString *)cellDequeueIdentifier
+{
+  AssertTrueOrReturnNil(cellDequeueIdentifier.length);
+  
+  if (self = [super init]) {
+    [self initializeWithArray:array attachToTableView:tableView];
+    _cellDequeueIdentifier = cellDequeueIdentifier;
+  }
+  return self;
+}
+
+- (void)initializeWithArray:(NSArray *)array attachToTableView:(UITableView *)tableView
+{
+  AssertTrueOrReturn(array);
+  AssertTrueOrReturn(tableView);
+  
+  _array = [array mutableCopy];
+  _tableView = tableView;
+  _tableView.dataSource = self;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -55,7 +73,7 @@ static NSString *const kCellDequeueIdentifier = @"cell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellDequeueIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellDequeueIdentifier];
   [self configureCell:cell atIndexPath:indexPath];
   return cell;
 }
@@ -91,6 +109,12 @@ static NSString *const kCellDequeueIdentifier = @"cell";
 - (NSArray *)allSteps
 {
   return [self.array copy];
+}
+
+- (NSString *)cellDequeueIdentifier
+{
+  AssertTrueOrReturnNil(_cellDequeueIdentifier.length);
+  return _cellDequeueIdentifier;
 }
 
 #pragma mark - moving cells
