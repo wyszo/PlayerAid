@@ -33,12 +33,17 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
+		312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */; };
+		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
 		312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */; };
 		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6061AA3E4AD00AE3174 /* NSSet+SetByRemoving.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
+		315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */; };
+		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
+		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -155,6 +160,10 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		312E191C1AB712C800CB5707 /* DebugSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSettings.h; sourceTree = "<group>"; };
 		312E191D1AB712C900CB5707 /* DebugSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSettings.m; sourceTree = "<group>"; };
+		312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+HttpHeaders.h"; sourceTree = "<group>"; };
+		312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+HttpHeaders.m"; sourceTree = "<group>"; };
+		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
+		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
 		312FF5F21A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.h; sourceTree = "<group>"; };
 		312FF5F31A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m; sourceTree = "<group>"; };
 		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
@@ -166,6 +175,12 @@
 		312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+SetByRemoving.m"; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
+		315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObjectLifetime.h"; sourceTree = "<group>"; };
+		315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObjectLifetime.m"; sourceTree = "<group>"; };
+		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
+		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
+		315148A71AB9DF5F008934AE /* NSString+Trimming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trimming.h"; sourceTree = "<group>"; };
+		315148A81AB9DF5F008934AE /* NSString+Trimming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trimming.m"; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -569,6 +584,15 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
+		315148A01AB9B441008934AE /* ObjectLifetime */ = {
+			isa = PBXGroup;
+			children = (
+				315148A11AB9B507008934AE /* NSObject+ObjectLifetime.h */,
+				315148A21AB9B507008934AE /* NSObject+ObjectLifetime.m */,
+			);
+			name = ObjectLifetime;
+			sourceTree = "<group>";
+		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,6 +639,7 @@
 				312FF5FD1A9F1A4400AE3174 /* Dispatch */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
+				315148A01AB9B441008934AE /* ObjectLifetime */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				31B5485D1AB5EDB10010FC83 /* TableView delegate */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
@@ -909,6 +934,14 @@
 				312FF6051AA3E4AD00AE3174 /* NSSet+SetByRemoving.m */,
 				31FFDE181AADDAF4006E4D0E /* UIView+FadeAnimations.h */,
 				31FFDE191AADDAF4006E4D0E /* UIView+FadeAnimations.m */,
+				312E191F1AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.h */,
+				312E19201AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m */,
+				312E19221AB85D1E00CB5707 /* NSURL+URLString.h */,
+				312E19231AB85D1E00CB5707 /* NSURL+URLString.m */,
+				315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */,
+				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
+				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
+				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1261,6 +1294,7 @@
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				312FF5F41A9E26E300AE3174 /* ShowOverlayViewWhenTutorialsTableEmptyBehaviour.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
+				315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsView.m in Sources */,
@@ -1273,14 +1307,17 @@
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
+				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
+				312E19211AB85BE000CB5707 /* NSMutableURLRequest+HttpHeaders.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
+				315148A31AB9B507008934AE /* NSObject+ObjectLifetime.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
@@ -1289,6 +1326,7 @@
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
+				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,

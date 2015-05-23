@@ -7,6 +7,8 @@
 #import "GlobalSettings.h"
 #import "Section.h"
 #import "TutorialStep.h"
+#import "NSMutableURLRequest+HttpHeaders.h"
+#import "NSURL+URLString.h"
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -91,7 +93,7 @@
   NSDictionary *parameters = @{
                                @"title" : tutorial.title,
                                @"section" : tutorial.section.name,
-                               @"CreatedOn" : [NSDate new]
+                               // Optionally we could send CreatedOn date here
                               };
   
   [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -108,18 +110,12 @@
   NSString *tutorialID = [tutorial.serverID stringValue];
   AssertTrueOrReturn(tutorialID);
   
-  NSDictionary *parameters = @{
-                               @"id" : tutorialID,
-                               @"contentType" : @"image/png",
-                               @"imageData" : tutorial.pngImageData
-                              };
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   
   NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
-  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
-  }];
+  URLString = [NSURL URLStringWithPath:URLString baseURL:operationManager.baseURL];
+  
+  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:tutorial.pngImageData mimeType:@"image/png" completionBlock:completion];
 }
 
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -169,7 +165,7 @@
   AssertTrueOrReturn([tutorialStep isImageStep]);
   
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
-  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" completionBlock:completion];
 }
 
 - (void)submitVideoTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -181,10 +177,10 @@
   AssertTrueOrReturn(videoData);
   
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
-  [self postMultipartFormDataWithURLString:URLString position:position mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" completionBlock:completion];
 }
 
-- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSInteger)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype completionBlock:(NetworkResponseBlock)completion
+- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSNumber *)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype completionBlock:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(URLString);
   AssertTrueOrReturn(data);
@@ -194,8 +190,11 @@
   AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   
   [operationManager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    NSData *positionData = [NSData dataWithBytes:&position length:sizeof(position)];
-    [formData appendPartWithFormData:positionData name:@"position"];
+    if (position) {
+      NSData *positionData = [[position stringValue] dataUsingEncoding:NSUTF8StringEncoding];
+      AssertTrueOr(positionData, ;);
+      [formData appendPartWithFormData:positionData name:@"position"];
+    }
     [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -283,6 +282,7 @@
 {
   AssertTrueOrReturnNil(apiToken.length);
   AFHTTPRequestOperationManager *operationManager = self.requestOperationManager;
+  
   NSString *bearer = [[NSString alloc] initWithFormat:@"Bearer %@", apiToken];
   [operationManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
   
@@ -298,6 +298,7 @@
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+    _requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer];
   }
   _requestOperationManager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy; // reset to default cache
   return _requestOperationManager;

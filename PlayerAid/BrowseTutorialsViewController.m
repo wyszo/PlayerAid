@@ -31,7 +31,7 @@
   
   NSMutableString *mutableString = [NSMutableString new];
   for (Section *section in allSections) {
-    [mutableString appendString:section.name];
+    [mutableString appendString:section.displayName];
     [mutableString appendString:@"\n("];
     [mutableString appendString:section.sectionDescription];
     [mutableString appendString:@")\n\n"];

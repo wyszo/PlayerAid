@@ -47,10 +47,16 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self allowPushingLoggedInUser:NO];
   
   [self setupTableViewHeader];
-  [self selectFilterLatest];
   
   self.noTutorialsLabel.text = @"No tutorials to show yet";
   self.tableViewOverlayBehaviour = [[ShowOverlayViewWhenTutorialsTableEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView tutorialsDataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+
+  // TODO: Technical debt - we definitely shouldn't delay UI skinning like that!
+  [self selectFilterLatest]; // intentional
+  defineWeakSelf();
+  DISPATCH_AFTER(0.01, ^{
+    [weakSelf selectFilterLatest];
+  });
   
   // TODO: Filter buttons should be extracted to a separate class
 }

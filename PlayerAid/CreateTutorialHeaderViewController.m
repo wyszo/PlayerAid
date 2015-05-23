@@ -74,13 +74,13 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 
 - (IBAction)pickACategory:(id)sender
 {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
   
   self.actionSheetSections = [Section MR_findAll];
   AssertTrueOrReturn(self.actionSheetSections.count);
   
   for (Section *section in self.actionSheetSections) {
-    [actionSheet addButtonWithTitle:section.name];
+    [actionSheet addButtonWithTitle:section.displayName];
   }
 
   UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
@@ -145,9 +145,10 @@ static const CGSize originalViewSize = { 320.0f, 226.0f };
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
   if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex) {
-    AssertTrueOrReturn(buttonIndex >= 0);
-    self.selectedSection = self.actionSheetSections[buttonIndex];
-    [self.pickACategoryButton setTitle:self.selectedSection.name forState:UIControlStateNormal];
+    AssertTrueOrReturn(buttonIndex > 0);
+    NSInteger actionSheetSectionIndex = buttonIndex - 1; // cancelButtonIndex equals 0
+    self.selectedSection = self.actionSheetSections[actionSheetSectionIndex];
+    [self.pickACategoryButton setTitle:self.selectedSection.displayName forState:UIControlStateNormal];
   }
 }
 

@@ -1,5 +1,7 @@
 #import "_Section.h"
 
 @interface Section : _Section {}
-// Custom logic goes here.
+
+@property (nonatomic, readonly, strong) NSString *displayName;
+
 @end

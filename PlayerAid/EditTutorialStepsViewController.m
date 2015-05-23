@@ -9,6 +9,7 @@
 #import "TableViewBasicDelegateObject.h"
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
+#import "ColorsHelper.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
@@ -18,8 +19,9 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) NSMutableArray *tutorialSteps;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (strong, nonatomic) NSMutableArray *tutorialSteps;
 @property (strong, nonatomic) NSArrayTableViewDataSource *tableViewDataSource;
 @property (strong, nonatomic) TableViewBasicDelegateObject *delegateObject;
 
@@ -52,6 +54,7 @@ static NSString *kTutorialCellName = @"EditTutorialCell";
   
   self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:60.0f];
   [self setupTableView];
+  self.backgroundView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
   [self.tutorialStepsTableView setEditing:YES];
 }
 

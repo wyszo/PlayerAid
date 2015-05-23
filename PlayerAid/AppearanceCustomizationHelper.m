@@ -83,7 +83,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 - (void)customizeTabbarTintColors
 {
   [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
-  [[UITabBar appearance] setSelectedImageTintColor:[ColorsHelper tabBarSelectedImageTintColor]];
+  [[UITabBar appearance] setTintColor:[ColorsHelper tabBarSelectedImageTintColor]];
 }
 
 - (void)customizeTabbarItemTitles

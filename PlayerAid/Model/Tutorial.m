@@ -22,7 +22,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary: @{
                             kTutorialDictionaryServerIDPropertyName : KZProperty(serverID),
                             @"title" : KZProperty(title),
-                            @"createdOn" : KZBox(Date, createdAt),
+                            @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
                             @"image" : KZProperty(imageURL),
                             @"section" : KZCall(sectionFromString:, section)
@@ -36,6 +36,8 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
+  AssertTrueOr(self.createdAt, self.createdAt = [NSDate new];);
+  AssertTrueOr(self.title.length, self.title = @"";);
 }
 
 - (Section *)sectionFromString:(NSString *)sectionName
