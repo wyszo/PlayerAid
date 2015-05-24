@@ -19,15 +19,7 @@ static const CGFloat kRetryLongDelay = 10.0;
 
 @implementation UsersController
 
-+ (instancetype)sharedInstance
-{
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Profile update
 
