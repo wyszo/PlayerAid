@@ -32,7 +32,7 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.videoPath = videoUrl.absoluteString;
   
-  UIImage *thumbnailLandscape = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
+  UIImage *thumbnailLandscape = [TWVideoThumbnailHelper thumbnailImageFromVideoURL:videoUrl atTimeInSeconds:0];
   UIImage *thumbnailSquare = [thumbnailLandscape tw_imageByCroppingCenterToSquare];
   AssertTrueOr(thumbnailSquare, ;);
   tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionBestQuality);
