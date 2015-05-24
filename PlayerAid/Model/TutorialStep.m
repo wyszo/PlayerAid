@@ -3,7 +3,7 @@
 #import "UIImage+Cropping.h"
 
 
-static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best quality
+static const CGFloat kJPEGCompressionBestQuality = 1.0f;
 
 
 @implementation TutorialStep
@@ -22,7 +22,7 @@ static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best qua
 {
   AssertTrueOrReturnNil(image);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
-  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompression); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
+  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompressionBestQuality); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
   return tutorialStep;
 }
 
@@ -35,7 +35,7 @@ static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best qua
   UIImage *thumbnailLandscape = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
   UIImage *thumbnailSquare = [thumbnailLandscape imageByCroppingCenterToSquare];
   AssertTrueOr(thumbnailSquare, ;);
-  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompression);
+  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionBestQuality);
   
   return tutorialStep;
 }

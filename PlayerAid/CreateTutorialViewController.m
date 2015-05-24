@@ -22,7 +22,7 @@
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
 #import "UserDefaultsHelper.h"
-#import "InterfaceOrientationViewControllerDecorator.h"
+#import "TWInterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
 #import "VideoPlayer.h"
@@ -62,7 +62,7 @@
 
 + (void)initialize
 {
-  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+  [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
 }
 
 - (void)viewDidLoad

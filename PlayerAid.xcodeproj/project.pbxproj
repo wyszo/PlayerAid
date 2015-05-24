@@ -36,8 +36,6 @@
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
-		311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */; };
-		311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */; };
 		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
 		312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AAE1AD473AD00D96C19 /* JourneyController.m */; };
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
@@ -178,10 +176,6 @@
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
-		311486601ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationViewControllerDecorator.h; sourceTree = "<group>"; };
-		311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceOrientationViewControllerDecorator.m; sourceTree = "<group>"; };
-		311486641ADFC1F400A644CD /* InterfaceOrientationClassStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceOrientationClassStubs.h; sourceTree = "<group>"; };
-		311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceOrientationClassStubs.m; sourceTree = "<group>"; };
 		311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCameraViewController+InterfaceOrientation.h"; sourceTree = "<group>"; };
 		311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCameraViewController+InterfaceOrientation.m"; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
@@ -565,33 +559,6 @@
 				31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */,
 			);
 			name = EditTutorialSteps;
-			sourceTree = "<group>";
-		};
-		3114865E1ADFC15300A644CD /* Decorators */ = {
-			isa = PBXGroup;
-			children = (
-				3114865F1ADFC18200A644CD /* InterfaceOrientationDecorator */,
-			);
-			name = Decorators;
-			sourceTree = "<group>";
-		};
-		3114865F1ADFC18200A644CD /* InterfaceOrientationDecorator */ = {
-			isa = PBXGroup;
-			children = (
-				311486631ADFC1DB00A644CD /* Private */,
-				311486601ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.h */,
-				311486611ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m */,
-			);
-			name = InterfaceOrientationDecorator;
-			sourceTree = "<group>";
-		};
-		311486631ADFC1DB00A644CD /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				311486641ADFC1F400A644CD /* InterfaceOrientationClassStubs.h */,
-				311486651ADFC1F400A644CD /* InterfaceOrientationClassStubs.m */,
-			);
-			name = Private;
 			sourceTree = "<group>";
 		};
 		311486671ADFC4CA00A644CD /* UITabBarControllerWithAutorotate */ = {
@@ -1309,7 +1276,6 @@
 				31777FF71A7F9426007057CD /* Controllers */,
 				3177801A1A80975C007057CD /* DataModel */,
 				3177800D1A80047C007057CD /* DataSources */,
-				3114865E1ADFC15300A644CD /* Decorators */,
 				3108E77C1AF7A61B00E02C07 /* Delegates */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				317780021A7FC6A7007057CD /* Helpers */,
@@ -1546,7 +1512,6 @@
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
 				311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
-				311486621ADFC19800A644CD /* InterfaceOrientationViewControllerDecorator.m in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
@@ -1577,7 +1542,6 @@
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
-				311486661ADFC1F400A644CD /* InterfaceOrientationClassStubs.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
