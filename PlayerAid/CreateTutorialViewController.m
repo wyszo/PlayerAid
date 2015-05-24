@@ -68,6 +68,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupLazyInitializers];
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
@@ -86,6 +87,11 @@
   DISPATCH_AFTER(0.01, ^{
     [weakSelf disableEditButton];
   });
+}
+
+- (void)setupLazyInitializers
+{
+  self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];
 }
 
 - (void)setupCustomCamera
@@ -659,14 +665,6 @@
     };
   }
   return _mediaController;
-}
-   
-- (VideoPlayer *)videoPlayer
-{
-  if (!_videoPlayer) {
-    _videoPlayer = [[VideoPlayer alloc] initWithParentViewController:self.navigationController];
-  }
-  return _videoPlayer;
 }
 
 @end
