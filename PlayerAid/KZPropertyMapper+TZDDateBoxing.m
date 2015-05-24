@@ -3,7 +3,6 @@
 //
 
 #import "KZPropertyMapper+TZDDateBoxing.h"
-#import "NSString+Trimming.h"
 
 
 @implementation KZPropertyMapper (TZDDateBoxing)
@@ -15,7 +14,7 @@
   }
   AssertTrueOrReturnNil([value isKindOfClass:NSString.class]);
   NSString *dateString = value;
-  dateString = [dateString stringByRemovingLastOccurrenceOfString:@":" fromLastNumberOfCharacters:3];
+  dateString = [dateString tw_stringByRemovingLastOccurrenceOfString:@":" fromLastNumberOfCharacters:3];
   
   return [[self dateFormatter] dateFromString:dateString];
 }

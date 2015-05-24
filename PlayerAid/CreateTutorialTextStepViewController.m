@@ -5,7 +5,6 @@
 #import "CreateTutorialTextStepViewController.h"
 #import <NSString+RemoveEmoji.h>
 #import "AlertFactory.h"
-#import "NSString+Trimming.h"
 #import "GlobalSettings.h"
 
 
@@ -137,7 +136,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (NSString *)processedText
 {
-  return [self.textView.text stringByTrimmingWhitespaceAndNewline];
+  return [self.textView.text tw_stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma UITextViewDelegate

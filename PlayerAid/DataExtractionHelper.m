@@ -3,7 +3,6 @@
 //
 
 #import "DataExtractionHelper.h"
-#import "NSString+Trimming.h"
 
 
 @implementation DataExtractionHelper
@@ -34,7 +33,7 @@
     name = [user objectForKey:@"name"];
   }
   AssertTrueOrReturnNil(name.length);
-  return [name stringByTrimmingWhitespaceAndNewline];
+  return [name tw_stringByTrimmingWhitespaceAndNewline];
 }
 
 @end

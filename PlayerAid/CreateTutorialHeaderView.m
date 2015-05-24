@@ -3,7 +3,7 @@
 //
 
 #import "CreateTutorialHeaderView.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 
 static NSString *const kNibFileName = @"CreateTutorialHeaderView";
 
@@ -20,7 +20,7 @@ static NSString *const kNibFileName = @"CreateTutorialHeaderView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }
@@ -29,7 +29,7 @@ static NSString *const kNibFileName = @"CreateTutorialHeaderView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }

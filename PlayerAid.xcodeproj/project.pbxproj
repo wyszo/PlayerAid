@@ -26,7 +26,6 @@
 		310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B41A84C94400B7F921 /* TabBarControllerHandler.m */; };
 		310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */; };
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
-		310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308C01A863F6300B7F921 /* UIView+XibLoading.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
 		3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */; };
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
@@ -47,7 +46,6 @@
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
-		315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A81AB9DF5F008934AE /* NSString+Trimming.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
@@ -159,8 +157,6 @@
 		310308B61A84CB8C00B7F921 /* CreateTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialView.xib; sourceTree = "<group>"; };
 		310308BB1A84D90B00B7F921 /* NavigationBarCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomizationHelper.h; sourceTree = "<group>"; };
 		310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomizationHelper.m; sourceTree = "<group>"; };
-		310308BF1A863F6300B7F921 /* UIView+XibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibLoading.h"; sourceTree = "<group>"; };
-		310308C01A863F6300B7F921 /* UIView+XibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLoading.m"; sourceTree = "<group>"; };
 		3103B6BD1A92377D0097FE00 /* FontsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontsHelper.h; sourceTree = "<group>"; };
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
 		3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButton.xib; sourceTree = "<group>"; };
@@ -198,8 +194,6 @@
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
-		315148A71AB9DF5F008934AE /* NSString+Trimming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trimming.h"; sourceTree = "<group>"; };
-		315148A81AB9DF5F008934AE /* NSString+Trimming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trimming.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
@@ -1040,9 +1034,7 @@
 			children = (
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
-				31E1E19A1AECCB4C0091ED01 /* NSString */,
 				31E1E1981AECCB370091ED01 /* NSURL */,
-				31E1E1921AECCAE50091ED01 /* UIView */,
 				31E1E1911AECCADE0091ED01 /* UIImage */,
 				31E1E1951AECCB110091ED01 /* UITableView */,
 				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
@@ -1179,23 +1171,6 @@
 			name = UIImage;
 			sourceTree = "<group>";
 		};
-		31E1E1921AECCAE50091ED01 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				31E1E1931AECCAED0091ED01 /* XibLoading */,
-			);
-			name = UIView;
-			sourceTree = "<group>";
-		};
-		31E1E1931AECCAED0091ED01 /* XibLoading */ = {
-			isa = PBXGroup;
-			children = (
-				310308BF1A863F6300B7F921 /* UIView+XibLoading.h */,
-				310308C01A863F6300B7F921 /* UIView+XibLoading.m */,
-			);
-			name = XibLoading;
-			sourceTree = "<group>";
-		};
 		31E1E1951AECCB110091ED01 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1221,15 +1196,6 @@
 				315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */,
 			);
 			name = KZPropertyMapper;
-			sourceTree = "<group>";
-		};
-		31E1E19A1AECCB4C0091ED01 /* NSString */ = {
-			isa = PBXGroup;
-			children = (
-				315148A71AB9DF5F008934AE /* NSString+Trimming.h */,
-				315148A81AB9DF5F008934AE /* NSString+Trimming.m */,
-			);
-			name = NSString;
 			sourceTree = "<group>";
 		};
 		31E1E19B1AECCB560091ED01 /* YCameraViewController */ = {
@@ -1506,7 +1472,6 @@
 				312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */,
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
-				315148A91AB9DF5F008934AE /* NSString+Trimming.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
@@ -1517,7 +1482,6 @@
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
-				310308C11A863F6300B7F921 /* UIView+XibLoading.m in Sources */,
 				31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,

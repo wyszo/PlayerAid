@@ -11,7 +11,6 @@
 #import "FDTakeController+WhiteStatusbar.h"
 #import "MediaPickerHelper.h"
 #import "SectionLabelContainer.h"
-#import "NSString+Trimming.h"
 #import "YCameraViewStandardDelegateObject.h"
 #import "ColorsHelper.h"
 
@@ -249,7 +248,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 - (NSString *)title
 {
-  return [self.titleTextView.text stringByTrimmingWhitespaceAndNewline];
+  return [self.titleTextView.text tw_stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma mark - Auxiliary methods
