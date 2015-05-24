@@ -1,6 +1,6 @@
 #import "TutorialStep.h"
 #import "MediaPlayerHelper.h"
-#import "UIImage+Cropping.h"
+#import "UIImage+TWCropping.h"
 
 
 static const CGFloat kJPEGCompressionBestQuality = 1.0f;
@@ -33,7 +33,7 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
   tutorialStep.videoPath = videoUrl.absoluteString;
   
   UIImage *thumbnailLandscape = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
-  UIImage *thumbnailSquare = [thumbnailLandscape imageByCroppingCenterToSquare];
+  UIImage *thumbnailSquare = [thumbnailLandscape tw_imageByCroppingCenterToSquare];
   AssertTrueOr(thumbnailSquare, ;);
   tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionBestQuality);
   
