@@ -3,7 +3,7 @@
 //
 
 #import "PersistedUsersProperties.h"
-#import "UserDefaultsHelper.h"
+#import "TWUserDefaultsHelper.h"
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
@@ -26,12 +26,12 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)saveInUserDefaultsGridEnabled:(BOOL)gridEnabled
 {
-  [[UserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
+  [[TWUserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
 }
 
 - (BOOL)getUserDefaultsGridEnabled
 {
-  return [[[UserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
+  return [[[TWUserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
 }
 
 @end

@@ -19,6 +19,7 @@
 
 #pragma mark - Video Thumbnails
 
+// TODO: extract this to a separate class
 + (UIImage *)thumbnailImageFromVideoURL:(NSURL *)videoURL
 {
   AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];

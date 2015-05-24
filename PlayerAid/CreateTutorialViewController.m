@@ -21,7 +21,7 @@
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
-#import "UserDefaultsHelper.h"
+#import "TWUserDefaultsHelper.h"
 #import "TWInterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"

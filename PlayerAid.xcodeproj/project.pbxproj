@@ -73,7 +73,6 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
-		31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
@@ -247,8 +246,6 @@
 		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
 		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
-		31A0FD371AD034DB00B94CBE /* UserDefaultsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsHelper.h; sourceTree = "<group>"; };
-		31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsHelper.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		31A312151AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedMPMoviePlayerViewController.h; sourceTree = "<group>"; };
@@ -910,8 +907,6 @@
 		31A0FD361AD034BA00B94CBE /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				31A0FD371AD034DB00B94CBE /* UserDefaultsHelper.h */,
-				31A0FD381AD034DB00B94CBE /* UserDefaultsHelper.m */,
 				3108E7791AF783D100E02C07 /* PersistedUsersProperties.h */,
 				3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */,
 			);
@@ -1486,7 +1481,6 @@
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
-				31A0FD391AD034DB00B94CBE /* UserDefaultsHelper.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
