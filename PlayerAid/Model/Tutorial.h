@@ -17,5 +17,6 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 
 - (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor;
 - (void)setStateToDraft;
+- (BOOL)isDraft;
 
 @end

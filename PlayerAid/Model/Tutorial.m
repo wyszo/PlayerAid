@@ -139,6 +139,11 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   return @([self primitiveDraftValue]);
 }
 
+- (BOOL)isDraft
+{
+  return self.primitiveDraftValue;
+}
+
 - (BOOL)primitiveDraftValue
 {
   return [self.state isEqualToString:kTutorialStateDraft];

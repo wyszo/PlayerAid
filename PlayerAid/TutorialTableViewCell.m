@@ -111,6 +111,22 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageView
 {
+  if (self.tutorial.isDraft) {
+    [self updateBackgroundImageViewFromTutorialData];
+  }
+  else {
+    [self fetchBackgroundImageViewFromNetwork];
+  }
+}
+
+- (void)updateBackgroundImageViewFromTutorialData
+{
+  AssertTrueOrReturn(self.tutorial.pngImageData);
+  self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
+}
+
+- (void)fetchBackgroundImageViewFromNetwork
+{
   __weak UIImageView *weakBackgroundImageView = self.backgroundImageView;
   NSURLRequest *imageURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.tutorial.imageURL]];
   
