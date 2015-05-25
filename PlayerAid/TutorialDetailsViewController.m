@@ -8,6 +8,7 @@
 #import "TutorialCellHelper.h"
 #import "TutorialStepsDataSource.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "CommonViews.h"
 
 
 @interface TutorialDetailsViewController ()
@@ -41,6 +42,7 @@
 {
   AssertTrueOrReturn(self.tutorial);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:nil];
+  self.tableView.tableFooterView = [CommonViews smallTableFooterView];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource

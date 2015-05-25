@@ -127,17 +127,17 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="507"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ltD-W7-zuV" secondAttribute="trailing" constant="-16" id="1bC-Ln-39e"/>
                             <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="qJp-aI-doM" secondAttribute="bottom" id="BkG-N7-SPh"/>
-                            <constraint firstItem="WHH-tW-RVJ" firstAttribute="top" secondItem="ltD-W7-zuV" secondAttribute="bottom" id="SAl-NB-FO0"/>
                             <constraint firstItem="ltD-W7-zuV" firstAttribute="leading" secondItem="KyB-1G-XAP" secondAttribute="leadingMargin" constant="-16" id="XXi-Gh-LZ6"/>
+                            <constraint firstItem="ltD-W7-zuV" firstAttribute="bottom" secondItem="KyB-1G-XAP" secondAttribute="bottomMargin" id="yjf-cF-mLl"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
