@@ -6,6 +6,7 @@
 
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
+typedef void (^VoidBlockWithError)(NSError *error);
 
 
 /**
@@ -20,7 +21,8 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 - (void)pingCompletion:(NetworkResponseBlock)completion;
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
-- (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
+- (void)deleteTutorial:(Tutorial *)tutorial completion:(VoidBlockWithError)completion;
+- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;

@@ -10,6 +10,10 @@
 #import "NSURL+URLString.h"
 
 
+static NSString *const kTutorialUrlString = @"tutorial";
+static NSString *const kListTutorialsUrlString = @"tutorials";
+
+
 @interface AuthenticatedServerCommunicationController ()
 @property (nonatomic, strong) AFHTTPRequestOperationManager *requestOperationManager;
 @property (nonatomic, strong) NSString *apiToken;
@@ -51,6 +55,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Tutorial management
 
+- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion
+{
+  [self getRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
+}
+
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
   AssertTrueOrReturn(tutorial.serverID);
@@ -74,7 +83,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
 {
   AssertTrueOrReturnNil(tutorialID.length);
-  return [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  return [NSString stringWithFormat:@"%@/%@", kTutorialUrlString, tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -88,7 +97,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                // Optionally we could send CreatedOn date here
                               };
   
-  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self postRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (completion) {
       completion(response, responseObject, error);
     }

@@ -5,7 +5,7 @@
 #import "User.h"
 
 
-@interface UsersController : NSObject
+@interface UsersFetchController : NSObject
 
 NEW_AND_INIT_UNAVAILABLE
 
@@ -15,9 +15,9 @@ NEW_AND_INIT_UNAVAILABLE
  Make /user API request. If request fails retries every 10 seconds.
  If this is the first time we request user data, present non-dismissable alert view until success.
  */
-- (void)updateCurrentUserProfile;
+- (void)fetchCurrentUserProfile;
 
-- (void)updateUsersProfile:(User *)user;
+- (void)fetchUsersProfile:(User *)user;
 
 /**
  * Returns currently logged in user 

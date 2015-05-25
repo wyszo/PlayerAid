@@ -6,7 +6,7 @@
 #import "CreateTutorialViewController.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "ProfileViewController.h"
-#import "UsersController.h"
+#import "UsersFetchController.h"
 #import "TabBarHelper.h"
 
 static const NSInteger kProfileViewControllerTabBarIndex = 3;
@@ -62,7 +62,7 @@ static const NSInteger kProfileViewControllerTabBarIndex = 3;
     [navigationController pushViewController:profileViewController animated:YES];
     
     if (!user.loggedInUserValue) {
-      [[UsersController sharedInstance] updateUsersProfile:user];
+      [[UsersFetchController sharedInstance] fetchUsersProfile:user];
     }
   };
   return pushProfileViewBlock;

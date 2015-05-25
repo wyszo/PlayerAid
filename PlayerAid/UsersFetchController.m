@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import "UsersController.h"
+#import "UsersFetchController.h"
 #import "User.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
@@ -11,22 +11,22 @@ static const CGFloat kRetryShortDelay = 3.0;
 static const CGFloat kRetryLongDelay = 10.0;
 
 
-@interface UsersController ()
+@interface UsersFetchController ()
 @property (nonatomic, strong) UIAlertView *blockingAlertView;
 @property (nonatomic, assign) BOOL hasBlockingAlertAlreadyBeenShown;
 @end
 
 
-@implementation UsersController
+@implementation UsersFetchController
 
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Profile update
 
-- (void)updateUsersProfile:(User *)user
+- (void)fetchUsersProfile:(User *)user
 {
   if (user.serverIDValue == [self currentUser].serverIDValue) {
-    [self updateCurrentUserProfile];
+    [self fetchCurrentUserProfile];
     return;
   }
   else {
@@ -38,7 +38,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }
 }
 
-- (void)updateCurrentUserProfile
+- (void)fetchCurrentUserProfile
 {
   __weak typeof(self) weakSelf = self;
   [[AuthenticatedServerCommunicationController sharedInstance] getCurrentUserCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -48,13 +48,13 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
         
         // this is the first synchronisation, retry api call soon
         DISPATCH_AFTER(kRetryShortDelay, ^{
-          [weakSelf updateCurrentUserProfile];
+          [weakSelf fetchCurrentUserProfile];
         });
       }
       else {
         // subsequent synchronisation, profile is probably up to date anyway, retry api call after longer delay
         DISPATCH_AFTER(kRetryLongDelay, ^{
-          [weakSelf updateCurrentUserProfile];
+          [weakSelf fetchCurrentUserProfile];
         });
       }
     }

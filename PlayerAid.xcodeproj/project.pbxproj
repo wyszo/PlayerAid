@@ -11,7 +11,7 @@
 		31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */ = {isa = PBXBuildFile; fileRef = 31014E471A939232002F3485 /* AuthenticationController_SavingToken.h */; };
 		31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */; };
 		31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */; };
-		31014E561A9610ED002F3485 /* UsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E551A9610ED002F3485 /* UsersController.m */; };
+		31014E561A9610ED002F3485 /* UsersFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E551A9610ED002F3485 /* UsersFetchController.m */; };
 		31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E671A99FF57002F3485 /* GlobalSettings.m */; };
 		31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */; };
 		31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E701A9AA182002F3485 /* ServerDataUpdateController.m */; };
@@ -111,6 +111,7 @@
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
+		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		E295213B5CAC5C0FFF53662C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BF40B97ED22C5437512D96 /* libPods.a */; };
@@ -126,8 +127,8 @@
 		31014E4C1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerWhiteStatusbar.m; sourceTree = "<group>"; };
 		31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
 		31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
-		31014E541A9610ED002F3485 /* UsersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersController.h; sourceTree = "<group>"; };
-		31014E551A9610ED002F3485 /* UsersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersController.m; sourceTree = "<group>"; };
+		31014E541A9610ED002F3485 /* UsersFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersFetchController.h; sourceTree = "<group>"; };
+		31014E551A9610ED002F3485 /* UsersFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersFetchController.m; sourceTree = "<group>"; };
 		31014E651A99F241002F3485 /* PrecompiledHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrecompiledHeader.pch; sourceTree = "<group>"; };
 		31014E671A99FF57002F3485 /* GlobalSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalSettings.m; sourceTree = "<group>"; };
 		31014E691A99FF6B002F3485 /* GlobalSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSettings.h; sourceTree = "<group>"; };
@@ -311,6 +312,8 @@
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
 		31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPortraitBlockingOverlayViewController.m; sourceTree = "<group>"; };
 		31FB6BD01B1329C40042C409 /* TutorialsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableViewDelegate.h; sourceTree = "<group>"; };
+		31FB6BD21B13482F0042C409 /* TutorialListFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialListFetchController.h; sourceTree = "<group>"; };
+		31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialListFetchController.m; sourceTree = "<group>"; };
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
@@ -393,8 +396,8 @@
 		31014E531A961084002F3485 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				31014E541A9610ED002F3485 /* UsersController.h */,
-				31014E551A9610ED002F3485 /* UsersController.m */,
+				31014E541A9610ED002F3485 /* UsersFetchController.h */,
+				31014E551A9610ED002F3485 /* UsersFetchController.m */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				312C6AAC1AD4735600D96C19 /* Journey */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
 				31014E531A961084002F3485 /* Users */,
+				31FB6BD11B1348150042C409 /* Tutorials */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1257,6 +1261,15 @@
 			name = TutorialsTableView;
 			sourceTree = "<group>";
 		};
+		31FB6BD11B1348150042C409 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				31FB6BD21B13482F0042C409 /* TutorialListFetchController.h */,
+				31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
 		31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1484,12 +1497,13 @@
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
-				31014E561A9610ED002F3485 /* UsersController.m in Sources */,
+				31014E561A9610ED002F3485 /* UsersFetchController.m in Sources */,
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
+				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
 				31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */,
 				31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */,
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,

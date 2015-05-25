@@ -15,7 +15,7 @@
 #import "CreateTutorialStepButtonsContainerView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
-#import "UsersController.h"
+#import "UsersFetchController.h"
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
 #import "PublishingTutorialViewController.h"
@@ -260,7 +260,7 @@
 
 - (User *)currentUser
 {
-  return [[UsersController sharedInstance] currentUserInContext:self.createTutorialContext];
+  return [[UsersFetchController sharedInstance] currentUserInContext:self.createTutorialContext];
 }
 
 #pragma mark - NavigationBar buttons

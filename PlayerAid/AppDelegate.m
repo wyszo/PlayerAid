@@ -9,7 +9,6 @@
 #import "TabBarHelper.h"
 #import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
-#import "UsersController.h"
 #import "ServerDataUpdateController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "JourneyController_Debug.h"
