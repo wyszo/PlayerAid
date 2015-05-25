@@ -4,6 +4,7 @@
 
 #import "TutorialListFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "TutorialsHelper.h"
 
 
 @implementation TutorialListFetchController
@@ -19,9 +20,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       NOT_IMPLEMENTED_YET_RETURN
     }
     else {
-      // TODO: pass responseObject for further parsing... (should be an array of Tutorial objects)
-      // can take UsersController for sample implementation
-      NOT_IMPLEMENTED_YET_RETURN
+      [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        [TutorialsHelper setOfTutorialsFromDictionariesArray:responseObject parseAuthors:YES inContext:localContext];
+      }];
     }
   }];
   

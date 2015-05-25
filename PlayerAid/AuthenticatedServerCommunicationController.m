@@ -66,12 +66,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) completion(nil);
+    CallBlock(completion, nil);
     
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(error);
-    }
+    CallBlock(completion, error);
   }];
 }
 
@@ -98,9 +96,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                               };
   
   [self postRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
@@ -155,9 +151,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                @"value" : tutorialStep.text
                               };
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
@@ -199,13 +193,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(nil, responseObject, nil);
-    }
+    CallBlock(completion, nil, responseObject, nil);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(nil, nil, error);
-    }
+    CallBlock(completion, nil, nil, error);
   }];
 }
 
@@ -218,9 +208,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                               };
   NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
@@ -249,13 +237,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn([operationManager respondsToSelector:selector]);
   
   [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString parameters:(id)parameters successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(operation.response, responseObject, nil);
-    }
+      CallBlock(completion, operation.response, responseObject, nil);
   } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(operation.response, nil, error);
-    }
+      CallBlock(completion, operation.response, nil, error);
   }];
 }
 
