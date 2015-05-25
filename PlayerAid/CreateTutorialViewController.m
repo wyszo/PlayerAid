@@ -438,7 +438,7 @@
   __weak typeof (self) weakSelf = self;
   publishingViewController.completionBlock = ^(NSError *error) {
     if (!error) {
-      [weakSelf dismissViewController];
+      [weakSelf forceDismissViewController];
     }
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
@@ -447,7 +447,7 @@
 - (void)dismissViewController
 {
   if (!self.tutorialHasAnyData) {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self forceDismissViewController];
     return;
   }
   
@@ -465,6 +465,11 @@
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
+}
+
+- (void)forceDismissViewController
+{
+  return [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TutorialStepTableViewCellDelegate
