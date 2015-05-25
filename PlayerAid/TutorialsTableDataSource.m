@@ -29,7 +29,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 #pragma mark - Initilization
 
-- (instancetype)initWithTableView:(UITableView *)tableView
+- (instancetype)initAttachingToTableView:(UITableView *)tableView
 {
   self = [super init];
   if (self) {

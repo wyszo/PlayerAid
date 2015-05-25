@@ -41,8 +41,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   self.title = @"Home";
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.tabBarController];
   
-  // TODO: it's not clear that data source attaches itself to a tableView passed as a parameter, rethink this
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialsTableView];
+  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
   
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;

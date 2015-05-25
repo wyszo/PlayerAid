@@ -4,8 +4,7 @@
 
 #import "Tutorial.h"
 #import "User.h"
-
-@protocol TutorialsTableViewDelegate;
+#import "TutorialsTableViewDelegate.h"
 
 
 @interface TutorialsTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
@@ -19,17 +18,7 @@
 
 NEW_AND_INIT_UNAVAILABLE
 
-- (instancetype)initWithTableView:(UITableView *)tableView;
+- (instancetype)initAttachingToTableView:(UITableView *)tableView;
 - (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName;
 
-@end
-
-
-@protocol TutorialsTableViewDelegate
-
-@required
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial;
-
-@optional
-- (void)numberOfRowsDidChange:(NSInteger)numberOfRows;
 @end

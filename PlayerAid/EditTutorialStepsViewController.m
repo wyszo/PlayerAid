@@ -6,7 +6,6 @@
 #import "FontsHelper.h"
 #import "AlertFactory.h"
 #import "TWArrayTableViewDataSource.h"
-#import "TableViewBasicDelegateObject.h"
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
 #import "ColorsHelper.h"
@@ -24,7 +23,6 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) NSMutableArray *tutorialSteps;
 @property (strong, nonatomic) TWArrayTableViewDataSource *tableViewDataSource;
-@property (strong, nonatomic) TableViewBasicDelegateObject *delegateObject;
 
 @end
 
@@ -53,7 +51,7 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
   
-  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:kEditTutorialCellHeight];
+  self.tutorialStepsTableView.rowHeight = kEditTutorialCellHeight;
   [self setupTableView];
   self.backgroundView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
   [self.tutorialStepsTableView setEditing:YES];
@@ -67,7 +65,6 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   };
-  self.tutorialStepsTableView.delegate = self.delegateObject;
 }
 
 - (void)customizeButton:(UIButton *)button
