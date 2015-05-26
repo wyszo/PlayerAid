@@ -7,7 +7,7 @@
 
 @implementation CommonViews
 
-+ (UIView *)smallTableFooterView
++ (UIView *)smallTableHeaderOrFooterView
 {
   return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
 }

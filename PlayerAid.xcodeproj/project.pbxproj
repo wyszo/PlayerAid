@@ -45,6 +45,7 @@
 		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
+		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
@@ -190,6 +191,8 @@
 		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionsDataSource.m; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
+		313868551B14FFFA00C0C245 /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
+		313868561B14FFFA00C0C245 /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
@@ -645,6 +648,15 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
+		313868541B14FFD500C0C245 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				313868551B14FFFA00C0C245 /* SectionCell.h */,
+				313868561B14FFFA00C0C245 /* SectionCell.m */,
+			);
+			name = Section;
+			sourceTree = "<group>";
+		};
 		315822241AEBD83000DA6CCE /* ImagePickerOverlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,6 +845,7 @@
 		317780331A80E532007057CD /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				313868541B14FFD500C0C245 /* Section */,
 				31B548531AB48A7A0010FC83 /* EditTutorial */,
 				31B736031A88EC550081AE15 /* Tutorial */,
 				31B736041A88EC600081AE15 /* TutorialStep */,
@@ -1465,6 +1478,7 @@
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
+				313868571B14FFFA00C0C245 /* SectionCell.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
 				311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */,

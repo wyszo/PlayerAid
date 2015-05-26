@@ -123,7 +123,7 @@
   self.tutorialTableView.estimatedRowHeight = 100.f;
   
   [self setupAndAttachHeaderViewController];
-  self.tutorialTableView.tableFooterView = [CommonViews smallTableFooterView];
+  self.tutorialTableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 #pragma mark - View layout and setup

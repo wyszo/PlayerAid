@@ -42,7 +42,7 @@
 {
   AssertTrueOrReturn(self.tutorial);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:nil];
-  self.tableView.tableFooterView = [CommonViews smallTableFooterView];
+  self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
