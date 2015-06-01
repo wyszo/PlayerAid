@@ -99,6 +99,7 @@
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
 		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
 		31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */; };
+		31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
@@ -293,6 +294,8 @@
 		31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionLabelContainer.m; sourceTree = "<group>"; };
 		31D8CB0E1B1C614A003EE772 /* UserTutorialsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialsController.h; sourceTree = "<group>"; };
 		31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialsController.m; sourceTree = "<group>"; };
+		31D8CB111B1CEA28003EE772 /* PlayerAidTabBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAidTabBarHelper.h; sourceTree = "<group>"; };
+		31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAidTabBarHelper.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -614,6 +617,8 @@
 		312FF5FC1A9F1A3800AE3174 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				31D8CB111B1CEA28003EE772 /* PlayerAidTabBarHelper.h */,
+				31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */,
 				31B735E81A87D8160081AE15 /* TabBarHelper.h */,
 				31B735E91A87D8160081AE15 /* TabBarHelper.m */,
 				31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */,
@@ -1465,6 +1470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3177802C1A80975C007057CD /* User.m in Sources */,
+				31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */,
 				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,

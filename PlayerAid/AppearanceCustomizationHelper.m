@@ -4,12 +4,8 @@
 
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
-#import "TabBarHelper.h"
+#import "PlayerAidTabBarHelper.h"
 #import "FontsHelper.h"
-
-
-static const NSUInteger kTabBarCreateTutorialItemIndex = 1; // index == 1 when there's no 'Browse' tab and 2 when 'Browse' tab is wired up
-static const NSUInteger kTabBarItemCreateTutorialTag = 300;
 
 
 @implementation AppearanceCustomizationHelper
@@ -124,7 +120,7 @@ static const NSUInteger kTabBarItemCreateTutorialTag = 300;
 
 - (UIView *)createTutorialBackgroundView
 {
-  CGRect frame = [TabBarHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  CGRect frame = [PlayerAidTabBarHelper frameForCreateTutorialTabBarItem];
   AssertTrueOrReturnNil(frame.origin.x != 0);
   
   UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:frame];
@@ -136,8 +132,7 @@ static const NSUInteger kTabBarItemCreateTutorialTag = 300;
 
 - (void)customizeCreateTutorialTabBarButtonFont
 {
-  UITabBarItem *createTutorialTabBarItem = [TabBarHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
-  AssertTrueOrReturn(createTutorialTabBarItem.tag == kTabBarItemCreateTutorialTag && @"Ensure kTabBarCreateTutorialItemIndex points to create tutorial tabbar item and that the item has tag equal kTabBarItemCreateTutorialTag in interface builder");
+  UITabBarItem *createTutorialTabBarItem = [PlayerAidTabBarHelper createTutorialTabBarItem];
   
   NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
   
