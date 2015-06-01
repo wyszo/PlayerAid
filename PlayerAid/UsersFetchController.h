@@ -25,4 +25,9 @@ NEW_AND_INIT_UNAVAILABLE
  */
 - (User *)currentUserInContext:(NSManagedObjectContext *)context;
 
+/**
+ * Returns user object using context for current thread
+ */
+- (User *)currentUser;
+
 @end

@@ -98,6 +98,7 @@
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
 		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
+		31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
@@ -290,6 +291,8 @@
 		31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionLabelContainerView.xib; sourceTree = "<group>"; };
 		31CA3CD51AC4A36D0044A13D /* SectionLabelContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionLabelContainer.h; sourceTree = "<group>"; };
 		31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionLabelContainer.m; sourceTree = "<group>"; };
+		31D8CB0E1B1C614A003EE772 /* UserTutorialsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialsController.h; sourceTree = "<group>"; };
+		31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialsController.m; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -693,6 +696,7 @@
 				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
+				31D8CB0D1B1C6097003EE772 /* UserTutorials */,
 				31014E531A961084002F3485 /* Users */,
 				31FB6BD11B1348150042C409 /* Tutorials */,
 			);
@@ -1140,6 +1144,15 @@
 			name = SectionLabelContainer;
 			sourceTree = "<group>";
 		};
+		31D8CB0D1B1C6097003EE772 /* UserTutorials */ = {
+			isa = PBXGroup;
+			children = (
+				31D8CB0E1B1C614A003EE772 /* UserTutorialsController.h */,
+				31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */,
+			);
+			name = UserTutorials;
+			sourceTree = "<group>";
+		};
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1489,6 +1502,7 @@
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */,
+				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
 				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,

@@ -29,6 +29,7 @@
 #import "YCameraViewStandardDelegateObject.h"
 #import "TabBarBadgeHelper.h"
 #import "ImagePickerOverlayController.h"
+#import "UserTutorialsController.h"
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
@@ -389,8 +390,20 @@
   if (!DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
   }
-  if (tutorialDataComplete) {
+  
+  VoidBlock publishTutorial = ^() {
     [self presentPublishingTutorialViewController];
+  };
+  
+  if (tutorialDataComplete) {
+    if (![[UserTutorialsController new] loggedInUserHasPublishedOrInReviewTutorials]) {
+      [AlertFactory showFirstPublishedTutorialAlertViewWithOKAction:^{
+        publishTutorial();
+      }];
+    }
+    else {
+      publishTutorial();
+    }
   }
 }
 
