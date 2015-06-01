@@ -150,12 +150,8 @@
 {
   NSString *title = @"Delete tutorial?";
   NSString *message = @"This will permanently delete your tutorial.";
-  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
-    CallBlock(okAction);
-  } cancelAction:^{
-    CallBlock(cancelAction);
-  }];
-  return alert;
+  
+  return [self showTwoButtonsAlertViewWithTitle:title message:message defaultButtonTitle:@"Cancel" defaultButtonAction:cancelAction secondaryButtonTitle:@"Delete" secondaryButtonAction:okAction];
 }
 
 + (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction
