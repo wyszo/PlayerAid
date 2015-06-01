@@ -96,6 +96,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.tutorial = tutorial;
   
   [self updateBackgroundImageView];
+  [self updateLikeButtonForTutorial];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
@@ -108,6 +109,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   
   [self adjustAlphaFromTutorial:tutorial];
 }
+
+#pragma mark - Update UI to match Tutorial
 
 - (void)updateBackgroundImageView
 {
@@ -140,6 +143,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
       weakBackgroundImageView.alpha = 1.0f;
     }];
   } failure:nil];
+}
+
+- (void)updateLikeButtonForTutorial
+{
+  self.favouriteButton.hidden = (self.tutorial.isDraft);
 }
 
 - (void)adjustAlphaFromTutorial:(Tutorial *)tutorial
