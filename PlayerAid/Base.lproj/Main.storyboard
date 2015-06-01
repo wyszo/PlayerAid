@@ -253,7 +253,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="300" title="Create" image="createtutorial" id="vVL-VC-xZZ"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="createtutorial" id="vVL-VC-xZZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdI-SP-YkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -555,7 +555,7 @@
         <scene sceneID="ORk-No-nVo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hcs-TP-QxR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="301" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
                         </userDefinedRuntimeAttributes>

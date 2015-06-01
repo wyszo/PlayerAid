@@ -3,6 +3,7 @@
 //
 
 #import "TabBarHelper.h"
+#import "ProfileViewController.h"
 
 
 /**
@@ -12,5 +13,10 @@
 
 + (UITabBarItem *)createTutorialTabBarItem;
 + (CGRect)frameForCreateTutorialTabBarItem;
+
+/**
+ Returns ProfileViewController provided it's embeded directly in TabBarController or firstObject of a NavigationController in TabBar
+ */
++ (ProfileViewController *)tabBarProfileViewController;
 
 @end
