@@ -8,7 +8,8 @@
 #import "FontsHelper.h"
 
 
-static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
+static const NSUInteger kTabBarCreateTutorialItemIndex = 1; // index == 1 when there's no 'Browse' tab and 2 when 'Browse' tab is wired up
+static const NSUInteger kTabBarItemCreateTutorialTag = 300;
 
 
 @implementation AppearanceCustomizationHelper
@@ -136,6 +137,8 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 - (void)customizeCreateTutorialTabBarButtonFont
 {
   UITabBarItem *createTutorialTabBarItem = [TabBarHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  AssertTrueOrReturn(createTutorialTabBarItem.tag == kTabBarItemCreateTutorialTag && @"Ensure kTabBarCreateTutorialItemIndex points to create tutorial tabbar item and that the item has tag equal kTabBarItemCreateTutorialTag in interface builder");
+  
   NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
   
   [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];

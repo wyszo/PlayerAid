@@ -9,7 +9,8 @@
 #import "UsersFetchController.h"
 #import "TabBarHelper.h"
 
-static const NSInteger kProfileViewControllerTabBarIndex = 3;
+static const NSInteger kProfileViewControllerTabBarIndex = 2; // index == 2 when there are no 'Browse' and 'Settings' tabs or 3 when they're wired up
+static const NSInteger kProfileTabBarItemTag = 301;
 
 
 @implementation ApplicationViewHierarchyHelper
@@ -28,6 +29,8 @@ static const NSInteger kProfileViewControllerTabBarIndex = 3;
   UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
   NSArray *viewControllers = tabBarController.viewControllers;
   
+  [self.class verifyProfileTabBarIndex];
+  
   AssertTrueOrReturnNil(viewControllers.count > kProfileViewControllerTabBarIndex);
   UIViewController* parentViewController = tabBarController.viewControllers[kProfileViewControllerTabBarIndex];
   AssertTrueOrReturnNil([parentViewController isKindOfClass:[UINavigationController class]]);
@@ -37,6 +40,12 @@ static const NSInteger kProfileViewControllerTabBarIndex = 3;
   AssertTrueOrReturnNil([firstViewController isKindOfClass:[ProfileViewController class]]);
   
   return firstViewController;
+}
+
++ (void)verifyProfileTabBarIndex
+{
+  UITabBarItem *profileTabBarItem = [TabBarHelper tabBarItemAtIndex:kProfileViewControllerTabBarIndex];
+  AssertTrueOrReturn(profileTabBarItem.tag == kProfileTabBarItemTag && @"Ensure kProfileViewControllerTabBarIndex points to profile tabbar item and that the item has tag equal kProfileTabBarItemTag in interface builder");
 }
 
 + (void (^)(User *))pushProfileViewControllerFromViewControllerBlock:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
