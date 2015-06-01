@@ -132,7 +132,7 @@
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction
 {
-  NSString *message = @"Congratulations on creating your first tutorial!\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
+  NSString *message = @"Congratulations on creating your first tutorial!\n\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
   
   UIAlertView *alert = [self showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Publish" okAction:okAction cancelAction:nil];
   return alert;
@@ -140,7 +140,7 @@
 
 + (UIAlertView *)showTutorialInReviewInfoAlertView
 {
-  NSString *message = @"Only great tutorials are published on the PlayerAid platform.\nTo maintain that quality, we review every single one.\nYou will hear from the PlayerAid team within two days!  ";
+  NSString *message = @"Only great tutorials are published on the PlayerAid platform. To maintain that quality, we review every single one. You will hear from the PlayerAid team within two days!";
   return [self showOKAlertViewWithMessage:message okButtonTitle:@"Got it"];
 }
 
