@@ -281,8 +281,8 @@
 
 - (void)addNavigationBarCancelButton
 {
-  UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
-  self.navigationItem.leftBarButtonItem = cancelButton;
+  UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(dismissViewController)];
+  self.navigationItem.leftBarButtonItem = closeButton;
 }
 
 - (void)addNavigationBarPublishButton
