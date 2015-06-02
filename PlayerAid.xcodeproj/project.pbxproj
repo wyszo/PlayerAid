@@ -75,7 +75,6 @@
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
-		31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
@@ -253,8 +252,6 @@
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
-		31A312151AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedMPMoviePlayerViewController.h; sourceTree = "<group>"; };
-		31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedMPMoviePlayerViewController.m; sourceTree = "<group>"; };
 		31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBadgeHelper.h; sourceTree = "<group>"; };
 		31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeHelper.m; sourceTree = "<group>"; };
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
@@ -686,7 +683,6 @@
 		3173C8261AA7C645004CEF1E /* Image/Video */ = {
 			isa = PBXGroup;
 			children = (
-				31A312141AEA7A87002E6B5C /* ExtendedMPMoviePlayer */,
 				31A312121AEA7A62002E6B5C /* MediaPickerHelper */,
 				31A312131AEA7A6F002E6B5C /* MediaPlayerHelper */,
 				31A3120D1AEA5A49002E6B5C /* VideoPlayer */,
@@ -962,15 +958,6 @@
 				3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */,
 			);
 			name = MediaPlayerHelper;
-			sourceTree = "<group>";
-		};
-		31A312141AEA7A87002E6B5C /* ExtendedMPMoviePlayer */ = {
-			isa = PBXGroup;
-			children = (
-				31A312151AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.h */,
-				31A312161AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m */,
-			);
-			name = ExtendedMPMoviePlayer;
 			sourceTree = "<group>";
 		};
 		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
@@ -1507,7 +1494,6 @@
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
-				31A312171AEA7AAA002E6B5C /* ExtendedMPMoviePlayerViewController.m in Sources */,
 				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
