@@ -6,9 +6,11 @@
 #define PlayerAid_PrecompiledHeader_pch
 
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import MediaPlayer;
+@import CoreData;
+@import UIKit;
+@import AVFoundation;
 
 #import <MagicalRecord+Actions.h>
 #import <NSManagedObject+MagicalFinders.h>

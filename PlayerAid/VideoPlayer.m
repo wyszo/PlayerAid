@@ -34,7 +34,6 @@
 {
   AssertTrueOrReturn(videoURL);
   self.videoPlayerController = [[ExtendedMPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-  self.videoPlayerController.presentInLandscapeOrientation = YES;
   
   MPMoviePlayerController *moviePlayer = self.videoPlayerController.moviePlayer;
   moviePlayer.shouldAutoplay = YES;

@@ -3,7 +3,6 @@
 //
 
 #import "MediaPlayerHelper.h"
-#import <AVFoundation/AVFoundation.h>
 
 
 @implementation MediaPlayerHelper
