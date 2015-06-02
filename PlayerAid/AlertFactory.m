@@ -144,6 +144,12 @@
   return [self showOKAlertViewWithMessage:message okButtonTitle:@"Got it"];
 }
 
++ (UIAlertView *)showPublishingTutorialFailedAlertViewWithSaveAction:(VoidBlock)saveAction retryAction:(VoidBlock)retryAction
+{
+  NSString *message = @"Struggling to upload tutorial. Please try again now, or save as a draft and try later.";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Retry" defaultButtonAction:retryAction secondaryButtonTitle:@"Save" secondaryButtonAction:saveAction];
+}
+
 #pragma mark - Delete tutorial
 
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction

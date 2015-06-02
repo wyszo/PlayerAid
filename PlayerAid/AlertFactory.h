@@ -30,6 +30,7 @@ typedef void (^ActionBlock)() ;
 // Publish tutorial alerts
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction;
 + (UIAlertView *)showTutorialInReviewInfoAlertView;
++ (UIAlertView *)showPublishingTutorialFailedAlertViewWithSaveAction:(VoidBlock)saveAction retryAction:(VoidBlock)retryAction;
 
 // Delete tutorial alerts
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;

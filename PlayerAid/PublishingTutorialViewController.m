@@ -22,6 +22,8 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 
 @implementation PublishingTutorialViewController
 
+#pragma mark - Initialization
+
 + (void)initialize
 {
   [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:self.class shouldAutorotate:NO];
@@ -39,7 +41,6 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
 {
   [super viewDidLoad];
   [self initializeProgressBarImageView];
-  self.progressBarWidthConstraint.constant = 0.0f;
   
   [self publishTutorial];
 }
@@ -50,8 +51,11 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
   self.progressBarImageView.image = [[UIImage imageNamed:@"ProgressBarBlue"] resizableImageWithCapInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
 }
 
+#pragma mark - Publishing tutorial logic
+
 - (void)publishTutorial
 {
+  [self resetProgressBar];
   AssertTrueOrReturn(self.tutorial);
   
   defineWeakSelf();
@@ -63,17 +67,48 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
       [weakSelf.view setNeedsLayout];
     });
   } completion:^(NSError *error) {
-    [weakSelf dismissViewControllerAnimated:YES completion:^{
-      if (error) {
-        [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Publishing tutorial network error!!!"];
-      } else {
+    DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+      if (!error) {
         [AlertFactory showTutorialInReviewInfoAlertView];
+        [weakSelf dismissViewControllerInvokingCompletionBlockWithError:error saveAsDraft:NO];
       }
-      
-      if (weakSelf.completionBlock) {
-        weakSelf.completionBlock(error);
+      else {
+        [weakSelf showPublisihngTutorialFailedAlertViewWithError:error];
       }
-    }];
+    });
+  }];
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)resetProgressBar
+{
+  self.progressBarWidthConstraint.constant = 0.0f;
+  [self.view setNeedsLayout];
+}
+
+- (void)showPublisihngTutorialFailedAlertViewWithError:(NSError *)error
+{
+  AssertTrueOrReturn(error);
+  
+  defineWeakSelf();
+  [AlertFactory showPublishingTutorialFailedAlertViewWithSaveAction:^{
+    [self dismissViewControllerInvokingCompletionBlockWithError:error saveAsDraft:YES];
+  } retryAction:^{
+    DISPATCH_ASYNC(QueuePriorityDefault, ^{
+      [weakSelf publishTutorial];
+    });
+  }];
+}
+
+#pragma mark - Dismiss
+
+- (void)dismissViewControllerInvokingCompletionBlockWithError:(NSError *)error saveAsDraft:(BOOL)saveAsDraft
+{
+  [self dismissViewControllerAnimated:YES completion:^{
+    if (self.completionBlock) {
+      self.completionBlock(saveAsDraft, error);
+    }
   }];
 }
 

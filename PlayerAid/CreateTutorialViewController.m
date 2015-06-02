@@ -449,10 +449,11 @@
   publishingViewController.tutorial = self.tutorial;
   
   __weak typeof (self) weakSelf = self;
-  publishingViewController.completionBlock = ^(NSError *error) {
-    if (!error) {
-      [weakSelf forceDismissViewController];
+  publishingViewController.completionBlock = ^(BOOL saveAsDraft, NSError *error) {
+    if (saveAsDraft) {
+      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
     }
+    [weakSelf forceDismissViewController];
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
 }
@@ -473,8 +474,7 @@
         }
       }];
     } else {
-      [weakSelf saveTutorialAsDraft];
-      [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
+      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
@@ -644,6 +644,12 @@
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
   [self.createTutorialContext MR_saveOnlySelfAndWait];
+}
+
+- (void)saveTutorialAsDraftSetProfileTabBadge
+{
+  [self saveTutorialAsDraft];
+  [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
 }
 
 - (void)saveTutorialAsDraft
