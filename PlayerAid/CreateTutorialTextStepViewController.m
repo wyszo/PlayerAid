@@ -166,11 +166,8 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)addTextButtonPressed
 {
-  [self forceDismissViewController];
-  
-  if (self.completionBlock) {
-    self.completionBlock(self.processedText, nil);
-  }
+  [self popViewController];
+  CallBlock(self.completionBlock, self.processedText, nil);
 }
 
 - (void)cancelButtonPressed
@@ -180,15 +177,17 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)dismissViewControllerShowingConfirmationAlertIfNeeded
 {
+  [self.textView resignFirstResponder];
+  
   if (!self.processedText.length) {
-    [self forceDismissViewController];
+    [self forceDismissViewControllerWithError];
     return;
   }
   
   defineWeakSelf();
   void (^confirmationAlertCompletionBlock)(BOOL) = ^(BOOL discard) {
     if (discard) {
-      [weakSelf forceDismissViewController];
+      [weakSelf forceDismissViewControllerWithError];
     }
   };
   
@@ -217,10 +216,16 @@ const NSInteger kTextStepDismissedError = 1;
   self.textView.selectedTextRange = nil;
 }
 
-- (void)forceDismissViewController
+- (void)forceDismissViewControllerWithError
 {
+  [self popViewController];
+  
   NSError *error = [NSError errorWithDomain:kCreateTutorialErrorDomain code:kTextStepDismissedError userInfo:nil];
-  self.completionBlock(nil, error);
+  CallBlock(self.completionBlock, nil, error);
+}
+
+- (void)popViewController
+{
   [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -581,7 +581,7 @@
 - (void)pushCreateNewTutorialTextStepViewController
 {
   defineWeakSelf();
-  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+  [self pushCreateTutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       [weakSelf saveTutorialStepWithText:text];
     }
@@ -590,15 +590,16 @@
 
 - (void)pushEditTextStepViewControllerWithTextStep:(TutorialStep *)tutorialStep
 {
-  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+  defineWeakSelf();
+  [self pushCreateTutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       tutorialStep.text = text;
-      [self saveTutorial];
+      [weakSelf saveTutorial];
     }
    } tutorialTextStep:tutorialStep];
 }
 
-- (void)pushCreatetutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
+- (void)pushCreateTutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
 {
   CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:completion tutorialTextStep:tutorialTextStep];
   
