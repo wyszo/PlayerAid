@@ -9,11 +9,13 @@
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
 #import "ColorsHelper.h"
+#import "CommonViews.h"
 #import "TWTableViewEditingStyleDelegate.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
 static const CGFloat kEditTutorialCellHeight = 76.0f;
+static const CGFloat kTableViewTopInset = 14.0f;
 
 
 @interface EditTutorialStepsViewController ()
@@ -55,6 +57,8 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
 - (void)setupTableView
 {
   self.tutorialStepsTableView.rowHeight = kEditTutorialCellHeight;
+  self.tutorialStepsTableView.tableHeaderView = [CommonViews smallTableHeaderOrFooterView];
+  self.tutorialStepsTableView.contentInset = UIEdgeInsetsMake(kTableViewTopInset, 0, 0, 0);
   [self setupTableViewDataSource];
   
   [self.tutorialStepsTableView setEditing:YES];

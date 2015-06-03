@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTutorialStepsViewController">
@@ -23,7 +23,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KHl-ya-y3u" userLabel="Tutorial Steps Table View">
-                    <rect key="frame" x="0.0" y="43" width="419" height="462"/>
+                    <rect key="frame" x="0.0" y="64" width="419" height="441"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X1-r8-ZuH" userLabel="Cancel">
@@ -60,7 +60,7 @@
                 <constraint firstItem="3X1-r8-ZuH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7m5-Ub-pGw"/>
                 <constraint firstAttribute="trailing" secondItem="Y3u-ba-fex" secondAttribute="trailing" id="8Ud-qY-k4U"/>
                 <constraint firstAttribute="trailing" secondItem="KHl-ya-y3u" secondAttribute="trailing" id="Die-i7-77T"/>
-                <constraint firstItem="KHl-ya-y3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="43" id="EeU-xE-DJr"/>
+                <constraint firstItem="KHl-ya-y3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="EeU-xE-DJr"/>
                 <constraint firstItem="3X1-r8-ZuH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="GvQ-5s-fIT"/>
                 <constraint firstItem="JPH-XH-UTm" firstAttribute="baseline" secondItem="3X1-r8-ZuH" secondAttribute="baseline" id="SpN-gQ-fyd"/>
                 <constraint firstItem="Y3u-ba-fex" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="agy-L8-dda"/>
