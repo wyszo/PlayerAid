@@ -532,8 +532,8 @@
 		3108E77C1AF7A61B00E02C07 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				3108E77D1AF7A63800E02C07 /* YCameraView */,
 				31FB6BCE1B13298B0042C409 /* TutorialsTableView */,
+				3108E77D1AF7A63800E02C07 /* YCameraView */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
