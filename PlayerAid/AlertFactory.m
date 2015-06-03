@@ -170,12 +170,11 @@
 
 #pragma mark - Delete tutorial
 
-+ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
++ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(VoidBlock)okAction cancelAction:(VoidBlock)cancelAction
 {
   NSString *title = @"Delete tutorial?";
   NSString *message = @"This will permanently delete your tutorial.";
-  
-  return [self showTwoButtonsAlertViewWithTitle:title message:message defaultButtonTitle:@"Cancel" defaultButtonAction:cancelAction secondaryButtonTitle:@"Delete" secondaryButtonAction:okAction];
+  return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:@"Delete" firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
 }
 
 + (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction
