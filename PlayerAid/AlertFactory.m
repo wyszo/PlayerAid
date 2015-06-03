@@ -88,6 +88,24 @@
   return alertView;
 }
 
++ (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message firstButtonTitle:(NSString *)firstButtonTitle firstButtonAction:(VoidBlock)firstAction secondButtonTitle:(NSString *)secondButtonTitle secondAction:(VoidBlock)secondAction
+{
+  AssertTrueOrReturnNil(message.length || title.length);
+  AssertTrueOrReturnNil(firstButtonTitle.length);
+  AssertTrueOrReturnNil(secondButtonTitle.length);
+  
+  RIButtonItem *firstButtonItem = [RIButtonItem itemWithLabel:firstButtonTitle action:^{
+    CallBlock(firstAction);
+  }];
+  RIButtonItem *secondButtonItem = [RIButtonItem itemWithLabel:secondButtonTitle action:^{
+    CallBlock(secondAction);
+  }];
+  
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:firstButtonItem, secondButtonItem, nil];
+  [alertView show];
+  return alertView;
+}
+
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Cancel tutorial step?";
@@ -147,7 +165,7 @@
 + (UIAlertView *)showPublishingTutorialFailedAlertViewWithSaveAction:(VoidBlock)saveAction retryAction:(VoidBlock)retryAction
 {
   NSString *message = @"Struggling to upload tutorial. Please try again now, or save as a draft and try later.";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Retry" defaultButtonAction:retryAction secondaryButtonTitle:@"Save" secondaryButtonAction:saveAction];
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Save" firstButtonAction:saveAction secondButtonTitle:@"Retry" secondAction:retryAction];
 }
 
 #pragma mark - Delete tutorial
