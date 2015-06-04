@@ -22,8 +22,9 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
 }
 
 @end

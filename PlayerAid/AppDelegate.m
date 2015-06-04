@@ -61,6 +61,10 @@
     [journeyController DEBUG_presentCreateTutorialViewController];
   }
   
+  if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
+    [journeyController DEBUG_presentProfile];
+  }
+  
   if (DEBUG_MODE_PUSH_SETTINGS) {
     [journeyController DEBUG_presentSettings];
   }

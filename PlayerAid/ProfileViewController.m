@@ -38,18 +38,26 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-  if (!self.user) {
-    self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
-  }
-  AssertTrueOrReturn(self.user);
-  
+
+  [self setupUserIfNotNil];
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  
+  if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
+    [self presentEditProfileViewController];
+  }
+}
+
+- (void)setupUserIfNotNil
+{
+  if (!self.user) {
+    self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
+  }
+  AssertTrueOrReturn(self.user);
 }
 
 - (void)setupTutorialsTableDataSource
@@ -84,10 +92,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   defineWeakSelf();
   self.playerInfoView.editButtonPressed = ^() {
-    
-    EditProfileViewController *editProfileViewController = [EditProfileViewController new];
-    UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
-    [weakSelf presentViewController:navigationController animated:YES completion:nil];
+    [weakSelf presentEditProfileViewController];
   };
   self.playerInfoView.user = self.user;
 }
@@ -148,6 +153,15 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
   self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
+}
+
+#pragma mark - Other methods 
+
+- (void)presentEditProfileViewController
+{
+  EditProfileViewController *editProfileViewController = [EditProfileViewController new];
+  UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

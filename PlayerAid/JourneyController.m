@@ -53,6 +53,13 @@
   });
 }
 
+- (void)DEBUG_presentProfile
+{
+  // right now profile is last tabBar item (no settings)
+  UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
+  tabBarController.selectedViewController = tabBarController.viewControllers.lastObject;
+}
+
 - (void)DEBUG_presentSettings
 {
   UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
