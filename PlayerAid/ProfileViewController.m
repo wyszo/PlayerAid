@@ -10,6 +10,8 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
 
+#import "EditProfileViewController.h"
+
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
@@ -44,7 +46,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
-  self.playerInfoView.user = self.user;
+  [self setupPlayerInfoView];
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
@@ -77,6 +79,18 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 }
 
 #pragma mark - Header View initialization
+
+- (void)setupPlayerInfoView
+{
+  defineWeakSelf();
+  self.playerInfoView.editButtonPressed = ^() {
+    
+    EditProfileViewController *editProfileViewController = [EditProfileViewController new];
+    UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
+    [weakSelf presentViewController:navigationController animated:YES completion:nil];
+  };
+  self.playerInfoView.user = self.user;
+}
 
 - (void)setupTableHeaderView
 {

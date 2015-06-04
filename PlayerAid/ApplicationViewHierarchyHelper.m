@@ -9,16 +9,26 @@
 #import "UsersFetchController.h"
 #import "PlayerAidTabBarHelper.h"
 
-
 @implementation ApplicationViewHierarchyHelper
+
+#pragma mark - Navigation Controllers
 
 + (UINavigationController *)navigationControllerWithCreateTutorialViewController
 {
-  CreateTutorialViewController *createTutorialViewController = [[CreateTutorialViewController alloc] initWithNibName:@"CreateTutorialView" bundle:[NSBundle mainBundle]];
-  UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:createTutorialViewController];
+  CreateTutorialViewController *createTutorialViewController = [CreateTutorialViewController new];
+  return [self navigationControllerWithViewController:createTutorialViewController];
+}
+
++ (UINavigationController *)navigationControllerWithViewController:(UIViewController *)viewController
+{
+  AssertTrueOrReturnNil(viewController);
+  
+  UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:viewController];
   AssertTrueOrReturnNil(navigationController);
   return navigationController;
 }
+
+#pragma mark - Profile
 
 + (void (^)(User *))pushProfileViewControllerFromViewControllerBlock:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
 {

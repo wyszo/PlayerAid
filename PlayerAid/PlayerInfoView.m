@@ -79,7 +79,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (IBAction)editButtonPressed:(id)sender
 {
-  // TODO: push edit view
+  CallBlock(self.editButtonPressed);
 }
 
 @end

@@ -48,6 +48,8 @@
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
+		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
+		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -198,6 +200,9 @@
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
+		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -671,6 +676,23 @@
 			name = ImagePickerOverlay;
 			sourceTree = "<group>";
 		};
+		316D86BF1B205C82003874F4 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				316D86C01B205C93003874F4 /* EditProfileViewController.h */,
+				316D86C11B205C93003874F4 /* EditProfileViewController.m */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
+		316D86C31B205DB7003874F4 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				316D86C41B205DE6003874F4 /* EditProfileView.xib */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -765,6 +787,7 @@
 		317780121A8005FE007057CD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				316D86BF1B205C82003874F4 /* EditProfile */,
 				317780071A7FED4F007057CD /* ProfileViewController.h */,
 				317780081A7FED4F007057CD /* ProfileViewController.m */,
 			);
@@ -1085,10 +1108,11 @@
 		31C1225F1A8388C40069D49A /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				31CA3CD11AC4A2E00044A13D /* UI Components */,
 				31B735E01A87B4350081AE15 /* Create Tutorial */,
+				316D86C31B205DB7003874F4 /* EditProfile */,
 				312FF5F51A9E8F9A00AE3174 /* PlayerInfo */,
 				31B735FF1A88D9780081AE15 /* Tutorial Cells */,
+				31CA3CD11AC4A2E00044A13D /* UI Components */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -1388,6 +1412,7 @@
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
+				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
@@ -1468,6 +1493,7 @@
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */,
 				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
+				316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,

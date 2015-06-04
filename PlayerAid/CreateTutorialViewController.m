@@ -32,6 +32,9 @@
 #import "UserTutorialsController.h"
 
 
+static NSString *const kXibName = @"CreateTutorialView";
+
+
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
@@ -64,6 +67,14 @@
 + (void)initialize
 {
   [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
+
+- (instancetype)init
+{
+  self = [super initWithNibName:kXibName bundle:nil];
+  if (self) {
+  }
+  return self;
 }
 
 - (void)viewDidLoad
