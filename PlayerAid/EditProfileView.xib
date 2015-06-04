@@ -13,7 +13,59 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cT-FQ-Wec">
+                    <rect key="frame" x="213" y="471" width="174" height="30"/>
+                    <state key="normal" title="Refresh Facebook details">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wv-hC-0dM">
+                    <rect key="frame" x="27" y="133" width="46" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti2-vi-GdX">
+                    <rect key="frame" x="27" y="257" width="75" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(name)" translatesAutoresizingMaskIntoConstraints="NO" id="WAG-bR-YgH">
+                    <rect key="frame" x="27" y="162" width="565" height="61"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="61" id="Yhv-N5-dx5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(about me)" translatesAutoresizingMaskIntoConstraints="NO" id="cLL-FW-BoR">
+                    <rect key="frame" x="27" y="297" width="565" height="61"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="61" id="dI4-Pb-e35"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="WAG-bR-YgH" secondAttribute="trailing" constant="8" id="9i7-Gk-FDq"/>
+                <constraint firstItem="cLL-FW-BoR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Hiy-pV-Nl3"/>
+                <constraint firstItem="ti2-vi-GdX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Swt-Pd-DhY"/>
+                <constraint firstItem="cLL-FW-BoR" firstAttribute="top" secondItem="ti2-vi-GdX" secondAttribute="bottom" constant="19" id="W43-w9-ech"/>
+                <constraint firstItem="ti2-vi-GdX" firstAttribute="top" secondItem="WAG-bR-YgH" secondAttribute="bottom" constant="34" id="WXd-Wp-05L"/>
+                <constraint firstItem="WAG-bR-YgH" firstAttribute="top" secondItem="5Wv-hC-0dM" secondAttribute="bottom" constant="8" id="X91-ni-Guc"/>
+                <constraint firstAttribute="bottom" secondItem="9cT-FQ-Wec" secondAttribute="bottom" constant="35" id="agz-c6-Jcn"/>
+                <constraint firstItem="5Wv-hC-0dM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="bTk-bg-y0G"/>
+                <constraint firstItem="5Wv-hC-0dM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="133" id="e7G-zo-XJs"/>
+                <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="8" id="oCj-o5-iSF"/>
+                <constraint firstAttribute="centerX" secondItem="9cT-FQ-Wec" secondAttribute="centerX" id="pvo-F3-J7o"/>
+                <constraint firstItem="WAG-bR-YgH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="zwI-O5-AL0"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
         </view>
