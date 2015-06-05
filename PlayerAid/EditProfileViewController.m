@@ -70,4 +70,11 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   NOT_IMPLEMENTED_YET_RETURN
 }
 
+#pragma mark - IBActions
+
+- (IBAction)avatarOverlayButtonPressed:(id)sender
+{
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
 @end

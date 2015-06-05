@@ -64,12 +64,24 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htV-FC-CVk" userLabel="Avatar Overlay button">
+                    <rect key="frame" x="241" y="0.0" width="121" height="137"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="121" id="iJt-Bx-NB2"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="avatarOverlayButtonPressed:" destination="-1" eventType="touchUpInside" id="l8b-3w-8sr"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WAG-bR-YgH" secondAttribute="trailing" constant="8" id="9i7-Gk-FDq"/>
                 <constraint firstItem="cLL-FW-BoR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Hiy-pV-Nl3"/>
-                <constraint firstItem="gEz-E3-zdy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Jsg-F1-j2v"/>
+                <constraint firstItem="Jux-NX-3lg" firstAttribute="bottom" secondItem="htV-FC-CVk" secondAttribute="bottom" constant="-10" id="Slj-z6-fWG"/>
                 <constraint firstItem="Jux-NX-3lg" firstAttribute="top" secondItem="gEz-E3-zdy" secondAttribute="bottom" constant="8" id="SsY-EN-1gp"/>
                 <constraint firstItem="ti2-vi-GdX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Swt-Pd-DhY"/>
                 <constraint firstItem="cLL-FW-BoR" firstAttribute="top" secondItem="ti2-vi-GdX" secondAttribute="bottom" constant="19" id="W43-w9-ech"/>
@@ -79,7 +91,9 @@
                 <constraint firstAttribute="bottom" secondItem="9cT-FQ-Wec" secondAttribute="bottom" constant="35" id="agz-c6-Jcn"/>
                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="bTk-bg-y0G"/>
                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="133" id="e7G-zo-XJs"/>
+                <constraint firstItem="htV-FC-CVk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nHh-xi-IxM"/>
                 <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="8" id="oCj-o5-iSF"/>
+                <constraint firstItem="gEz-E3-zdy" firstAttribute="centerX" secondItem="htV-FC-CVk" secondAttribute="centerX" constant="-1.5" id="pDL-9n-YCo"/>
                 <constraint firstAttribute="centerX" secondItem="9cT-FQ-Wec" secondAttribute="centerX" id="pvo-F3-J7o"/>
                 <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="u1u-jc-ObB"/>
                 <constraint firstAttribute="centerX" secondItem="Jux-NX-3lg" secondAttribute="centerX" id="zee-62-wPN"/>
@@ -87,11 +101,6 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Jsg-F1-j2v"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
