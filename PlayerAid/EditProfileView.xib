@@ -7,6 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController">
             <connections>
                 <outlet property="avatarImageView" destination="gEz-E3-zdy" id="Rxu-C9-NhK"/>
+                <outlet property="bioTextView" destination="cLL-FW-BoR" id="wrR-hA-1Be"/>
+                <outlet property="nameTextView" destination="WAG-bR-YgH" id="xwQ-jM-gEP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HSE-WV-Scu"/>
             </connections>
         </placeholder>
@@ -33,7 +35,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(name)" translatesAutoresizingMaskIntoConstraints="NO" id="WAG-bR-YgH">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(name)" translatesAutoresizingMaskIntoConstraints="NO" id="WAG-bR-YgH" userLabel="Name Text View">
                     <rect key="frame" x="27" y="162" width="565" height="61"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -42,7 +44,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(about me)" translatesAutoresizingMaskIntoConstraints="NO" id="cLL-FW-BoR">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(about me)" translatesAutoresizingMaskIntoConstraints="NO" id="cLL-FW-BoR" userLabel="Bio Text View">
                     <rect key="frame" x="27" y="297" width="565" height="61"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

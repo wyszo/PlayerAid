@@ -14,6 +14,8 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 
 @property (nonatomic, weak) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UITextView *nameTextView;
+@property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 
 @end
 
