@@ -4,6 +4,7 @@
 
 #import "EditProfileViewController.h"
 #import "NavigationBarButtonsDecorator.h"
+#import "UIImageView+AvatarStyling.h"
 
 
 static NSString *const kEditProfileXibName = @"EditProfileView";
@@ -11,15 +12,21 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 
 @interface EditProfileViewController ()
 
+@property (nonatomic, weak) User *user;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+
 @end
 
 
 @implementation EditProfileViewController
 
-- (instancetype)init
+- (instancetype)initWithUser:(User *)user
 {
+  AssertTrueOrReturnNil(user);
+  
   self = [super initWithNibName:kEditProfileXibName bundle:nil];
   if (self) {
+    _user = user;
   }
   return self;
 }
@@ -27,9 +34,15 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-  self.title = @"Edit Profile";
+  [self setupViewController];
   [self setupNavigationBarButtons];
+  [self setupAvatar];
+}
+
+- (void)setupViewController
+{
+  [self tw_setNavbarDoesNotCoverTheView];
+  self.title = @"Edit Profile";
 }
 
 - (void)setupNavigationBarButtons
@@ -37,6 +50,12 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   NavigationBarButtonsDecorator *navbarDecorator = [NavigationBarButtonsDecorator new];
   [navbarDecorator addCancelButtonToViewController:self withSelector:@selector(dismissViewController)];
   [navbarDecorator addSaveButtonToViewController:self withSelector:@selector(saveProfile)];
+}
+
+- (void)setupAvatar
+{
+  [self.user placeAvatarInImageView:self.avatarImageView];
+  [self.avatarImageView styleAsAvatarNoBorder];
 }
 
 #pragma mark - 

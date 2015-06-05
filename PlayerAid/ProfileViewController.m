@@ -159,7 +159,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)presentEditProfileViewController
 {
-  EditProfileViewController *editProfileViewController = [EditProfileViewController new];
+  EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:self.user];
   UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
   [self presentViewController:navigationController animated:YES completion:nil];
 }

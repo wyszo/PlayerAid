@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController">
             <connections>
+                <outlet property="avatarImageView" destination="gEz-E3-zdy" id="Rxu-C9-NhK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HSE-WV-Scu"/>
             </connections>
         </placeholder>
@@ -50,24 +51,47 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gEz-E3-zdy" userLabel="Avatar Image View">
+                    <rect key="frame" x="255" y="8" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="LWn-Hy-8El"/>
+                        <constraint firstAttribute="width" constant="90" id="YlW-4O-HwD"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jux-NX-3lg">
+                    <rect key="frame" x="285" y="106" width="30" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WAG-bR-YgH" secondAttribute="trailing" constant="8" id="9i7-Gk-FDq"/>
                 <constraint firstItem="cLL-FW-BoR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Hiy-pV-Nl3"/>
+                <constraint firstItem="gEz-E3-zdy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Jsg-F1-j2v"/>
+                <constraint firstItem="Jux-NX-3lg" firstAttribute="top" secondItem="gEz-E3-zdy" secondAttribute="bottom" constant="8" id="SsY-EN-1gp"/>
                 <constraint firstItem="ti2-vi-GdX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Swt-Pd-DhY"/>
                 <constraint firstItem="cLL-FW-BoR" firstAttribute="top" secondItem="ti2-vi-GdX" secondAttribute="bottom" constant="19" id="W43-w9-ech"/>
                 <constraint firstItem="ti2-vi-GdX" firstAttribute="top" secondItem="WAG-bR-YgH" secondAttribute="bottom" constant="34" id="WXd-Wp-05L"/>
                 <constraint firstItem="WAG-bR-YgH" firstAttribute="top" secondItem="5Wv-hC-0dM" secondAttribute="bottom" constant="8" id="X91-ni-Guc"/>
+                <constraint firstAttribute="centerX" secondItem="gEz-E3-zdy" secondAttribute="centerX" id="Y0v-co-YYR"/>
                 <constraint firstAttribute="bottom" secondItem="9cT-FQ-Wec" secondAttribute="bottom" constant="35" id="agz-c6-Jcn"/>
                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="bTk-bg-y0G"/>
                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="133" id="e7G-zo-XJs"/>
                 <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="8" id="oCj-o5-iSF"/>
                 <constraint firstAttribute="centerX" secondItem="9cT-FQ-Wec" secondAttribute="centerX" id="pvo-F3-J7o"/>
+                <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="u1u-jc-ObB"/>
+                <constraint firstAttribute="centerX" secondItem="Jux-NX-3lg" secondAttribute="centerX" id="zee-62-wPN"/>
                 <constraint firstItem="WAG-bR-YgH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="zwI-O5-AL0"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Jsg-F1-j2v"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

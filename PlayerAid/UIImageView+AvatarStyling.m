@@ -22,6 +22,11 @@ static const CGFloat kLargeAvatarBorderWidth = 2.25f;
   [self addBorderWithWidth:kLargeAvatarBorderWidth color:self.borderColor];
 }
 
+- (void)styleAsAvatarNoBorder
+{
+  [self makeCircular];
+}
+
 - (UIColor *)borderColor
 {
   return [UIColor whiteColor];
