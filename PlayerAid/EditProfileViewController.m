@@ -5,6 +5,7 @@
 #import "EditProfileViewController.h"
 #import "NavigationBarButtonsDecorator.h"
 #import "UIImageView+AvatarStyling.h"
+#import "ColorsHelper.h"
 
 
 static NSString *const kEditProfileXibName = @"EditProfileView";
@@ -45,6 +46,7 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 {
   [self tw_setNavbarDoesNotCoverTheView];
   self.title = @"Edit Profile";
+  self.view.backgroundColor = [ColorsHelper editProfileViewBackgroundColor];
 }
 
 - (void)setupNavigationBarButtons
@@ -57,7 +59,7 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 - (void)setupAvatar
 {
   [self.user placeAvatarInImageView:self.avatarImageView];
-  [self.avatarImageView styleAsAvatarNoBorder];
+  [self.avatarImageView styleAsAvatarThinBorder];
 }
 
 #pragma mark - 

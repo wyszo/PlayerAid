@@ -54,20 +54,20 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gEz-E3-zdy" userLabel="Avatar Image View">
-                    <rect key="frame" x="255" y="8" width="90" height="90"/>
+                    <rect key="frame" x="250" y="16" width="100" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="LWn-Hy-8El"/>
-                        <constraint firstAttribute="width" constant="90" id="YlW-4O-HwD"/>
+                        <constraint firstAttribute="height" constant="100" id="LWn-Hy-8El"/>
+                        <constraint firstAttribute="width" constant="100" id="YlW-4O-HwD"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jux-NX-3lg">
-                    <rect key="frame" x="285" y="106" width="30" height="21"/>
+                    <rect key="frame" x="285" y="124" width="30" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htV-FC-CVk" userLabel="Avatar Overlay button">
-                    <rect key="frame" x="241" y="0.0" width="121" height="137"/>
+                    <rect key="frame" x="241" y="0.0" width="121" height="155"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="121" id="iJt-Bx-NB2"/>
                     </constraints>
@@ -97,7 +97,7 @@
                 <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="8" id="oCj-o5-iSF"/>
                 <constraint firstItem="gEz-E3-zdy" firstAttribute="centerX" secondItem="htV-FC-CVk" secondAttribute="centerX" constant="-1.5" id="pDL-9n-YCo"/>
                 <constraint firstAttribute="centerX" secondItem="9cT-FQ-Wec" secondAttribute="centerX" id="pvo-F3-J7o"/>
-                <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="u1u-jc-ObB"/>
+                <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="u1u-jc-ObB"/>
                 <constraint firstAttribute="centerX" secondItem="Jux-NX-3lg" secondAttribute="centerX" id="zee-62-wPN"/>
                 <constraint firstItem="WAG-bR-YgH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="zwI-O5-AL0"/>
             </constraints>

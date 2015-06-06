@@ -21,7 +21,9 @@
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 
 + (UIColor *)loginAndPlayerInfoViewBackgroundColor;
++ (UIColor *)editProfileViewBackgroundColor;
 
 + (UIColor *)createTutorialHeaderElementsBorderColor;
+
 
 @end

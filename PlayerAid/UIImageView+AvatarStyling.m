@@ -6,6 +6,7 @@
 
 static const CGFloat kSmallAvatarBorderWidth = 1.5f;
 static const CGFloat kLargeAvatarBorderWidth = 2.25f;
+static const CGFloat kThinAvatarBorderWidth = 1.0f;
 
 
 @implementation UIImageView (AvatarStyling)
@@ -22,9 +23,10 @@ static const CGFloat kLargeAvatarBorderWidth = 2.25f;
   [self addBorderWithWidth:kLargeAvatarBorderWidth color:self.borderColor];
 }
 
-- (void)styleAsAvatarNoBorder
+- (void)styleAsAvatarThinBorder
 {
   [self makeCircular];
+  [self addBorderWithWidth:kThinAvatarBorderWidth color:self.borderColor];
 }
 
 - (UIColor *)borderColor
