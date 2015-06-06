@@ -22,6 +22,7 @@
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
++ (UIColor *)editProfileSubviewsBorderColor;
 
 + (UIColor *)createTutorialHeaderElementsBorderColor;
 

@@ -82,7 +82,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 - (void)styleTitleTextView
 {
   [self setTitleTextViewLeftAndRightContentInsets:kLeftRightContentInset];
-  [self.titleTextView setCornerRadius:kTitleTextViewCornerRadius];
+  [self.titleTextView tw_setCornerRadius:kTitleTextViewCornerRadius];
   [self setTitleTextViewBorderColor:[ColorsHelper createTutorialHeaderElementsBorderColor]];
 }
 
@@ -136,7 +136,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 - (void)setTitleTextViewBorderColor:(UIColor *)color
 {
   AssertTrueOrReturn(color);
-  [self.titleTextView addBorderWithWidth:1.0f color:color];
+  [self.titleTextView tw_addBorderWithWidth:1.0f color:color];
 }
 
 - (void)setBorderWithImageNamed:(NSString *)imageName forButton:(UIButton *)button

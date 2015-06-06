@@ -9,6 +9,7 @@
 
 
 static NSString *const kEditProfileXibName = @"EditProfileView";
+static const CGFloat kTextViewBorderWidth = 1.0f;
 
 
 @interface EditProfileViewController ()
@@ -41,8 +42,9 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   [super viewDidLoad];
   [self setupViewController];
   [self setupNavigationBarButtons];
-  [self setupAvatar];
-  [self setupLabels];
+  [self styleAvatar];
+  [self styleLabels];
+  [self styleTextViews];
 }
 
 - (void)setupViewController
@@ -59,18 +61,23 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   [navbarDecorator addSaveButtonToViewController:self withSelector:@selector(saveProfile)];
 }
 
-- (void)setupAvatar
+- (void)styleAvatar
 {
   [self.user placeAvatarInImageView:self.avatarImageView];
   [self.avatarImageView styleAsAvatarThinBorder];
 }
 
-- (void)setupLabels
+- (void)styleLabels
 {
   self.editLabel.textColor = [ColorsHelper playerAidBlueColor];
 
   self.nameLabel.textColor = [ColorsHelper playerAidBlueColor];
   self.nameLabel.alpha = 0.8;
+}
+
+- (void)styleTextViews
+{
+  [self.nameTextView tw_addBorderWithWidth:kTextViewBorderWidth color:[ColorsHelper editProfileSubviewsBorderColor]];
 }
 
 #pragma mark - 
