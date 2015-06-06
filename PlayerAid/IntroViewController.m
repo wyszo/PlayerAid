@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.view.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
+  self.view.backgroundColor = [ColorsHelper playerAidBlueColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

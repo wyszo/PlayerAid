@@ -56,7 +56,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setupBackgroundColor
 {
-  self.contentView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
+  self.contentView.backgroundColor = [ColorsHelper playerAidBlueColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview

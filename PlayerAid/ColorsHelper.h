@@ -20,7 +20,7 @@
 + (UIColor *)tutorialsUnselectedFilterButtonColor;
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 
-+ (UIColor *)loginAndPlayerInfoViewBackgroundColor;
++ (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
 
 + (UIColor *)createTutorialHeaderElementsBorderColor;

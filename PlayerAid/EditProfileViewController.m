@@ -15,6 +15,8 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 
 @property (nonatomic, weak) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *editLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *nameTextView;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 
@@ -40,6 +42,7 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
   [self setupViewController];
   [self setupNavigationBarButtons];
   [self setupAvatar];
+  [self setupLabels];
 }
 
 - (void)setupViewController
@@ -60,6 +63,14 @@ static NSString *const kEditProfileXibName = @"EditProfileView";
 {
   [self.user placeAvatarInImageView:self.avatarImageView];
   [self.avatarImageView styleAsAvatarThinBorder];
+}
+
+- (void)setupLabels
+{
+  self.editLabel.textColor = [ColorsHelper playerAidBlueColor];
+
+  self.nameLabel.textColor = [ColorsHelper playerAidBlueColor];
+  self.nameLabel.alpha = 0.8;
 }
 
 #pragma mark - 
