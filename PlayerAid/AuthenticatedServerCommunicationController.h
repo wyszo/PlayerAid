@@ -11,6 +11,7 @@ typedef void (^VoidBlockWithError)(NSError *error);
 
 /**
  A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!
+ TODO: decompose it into a couple of smaller objects!
  */
 @interface AuthenticatedServerCommunicationController : NSObject
 
@@ -29,5 +30,8 @@ typedef void (^VoidBlockWithError)(NSError *error);
 - (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion;
 - (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+
+// edit profile
+- (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion;
 
 @end

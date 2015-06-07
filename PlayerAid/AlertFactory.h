@@ -5,7 +5,9 @@
 
 typedef void (^ActionBlock)() ;
 
-
+/**
+ TODO: Technical debt - using UIAlertViews instead of UIAlertControllers
+ */
 @interface AlertFactory : NSObject
 
 + (UIAlertView *)showGenericErrorAlertView;
@@ -36,6 +38,9 @@ typedef void (^ActionBlock)() ;
 // Delete tutorial alerts
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(ActionBlock)okAction cancelAction:(ActionBlock)cancelAction;
 + (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction;
+
+// Edit profile alerts
++ (UIAlertView *)showUpdateAvatarFromFacebookFailureAlertView;
 
 // Other alerts
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;

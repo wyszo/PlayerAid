@@ -187,6 +187,13 @@
   return alert;
 }
 
+#pragma mark - Edit profile alerts
+
++ (UIAlertView *)showUpdateAvatarFromFacebookFailureAlertView
+{
+  return [self showOKAlertViewWithMessage:@"<DEBUG> Couldn't update profile image from Facebook! Please try again later"];
+}
+
 #pragma mark - Other alerts
 
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView

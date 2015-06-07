@@ -212,6 +212,18 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }];
 }
 
+#pragma mark - Edit profile
+
+- (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion
+{
+  NSDictionary *parameters = @{
+                               @"source" : @"Facebook"
+                              };
+  [self postRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    CallBlock(completion, response, responseObject, error);
+  }];
+}
+  
 #pragma mark - Sending requests
 
 - (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion

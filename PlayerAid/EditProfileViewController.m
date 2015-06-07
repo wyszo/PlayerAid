@@ -7,6 +7,9 @@
 #import "NavigationBarButtonsDecorator.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
+#import "AlertControllerFactory.h"
+#import "AlertFactory.h"
+#import "AuthenticatedServerCommunicationController.h"
 
 
 static NSString *const kEditProfileXibName = @"EditProfileView";
@@ -211,7 +214,23 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (IBAction)avatarOverlayButtonPressed:(id)sender
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  UIViewController *alert = [AlertControllerFactory editProfilePhotoActionControllerFacebookAction:^{
+    [[AuthenticatedServerCommunicationController sharedInstance] updateUserAvatarFromFacebookCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      if (error) {
+        [AlertFactory showUpdateAvatarFromFacebookFailureAlertView];
+      }
+      else {
+        NOT_IMPLEMENTED_YET_RETURN
+      }
+    }];
+  }
+  chooseFromLibraryAction:^{
+    NOT_IMPLEMENTED_YET_RETURN
+  }
+  takePhotoAction:^{
+    NOT_IMPLEMENTED_YET_RETURN
+  }];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)facebookRefreshButtonPressed:(id)sender

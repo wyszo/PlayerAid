@@ -36,6 +36,7 @@
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
 		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
+		3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */; };
 		312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AAE1AD473AD00D96C19 /* JourneyController.m */; };
 		312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB21AD47FA900D96C19 /* DataCleanupHelper.m */; };
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
@@ -177,6 +178,8 @@
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
 		311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCameraViewController+InterfaceOrientation.h"; sourceTree = "<group>"; };
 		311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCameraViewController+InterfaceOrientation.m"; sourceTree = "<group>"; };
+		312903691B24ECBA00C730DA /* AlertControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerFactory.h; sourceTree = "<group>"; };
+		3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerFactory.m; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
 		312C6AAE1AD473AD00D96C19 /* JourneyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyController.m; sourceTree = "<group>"; };
 		312C6AB01AD4750B00D96C19 /* JourneyController_Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JourneyController_Debug.h; sourceTree = "<group>"; };
@@ -571,6 +574,15 @@
 				3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */,
 			);
 			name = UITabBarControllerWithAutorotate;
+			sourceTree = "<group>";
+		};
+		312903681B24ECA600C730DA /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				312903691B24ECBA00C730DA /* AlertControllerFactory.h */,
+				3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */,
+			);
+			name = ActionSheet;
 			sourceTree = "<group>";
 		};
 		312C6AAC1AD4735600D96C19 /* Journey */ = {
@@ -1184,8 +1196,9 @@
 		31DBC1921A7F14DC00740A97 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				31E1E1861AECAE3B0091ED01 /* CommonViews */,
+				312903681B24ECA600C730DA /* ActionSheet */,
 				31014E451A93530F002F3485 /* Alert */,
+				31E1E1861AECAE3B0091ED01 /* CommonViews */,
 				31014E461A935315002F3485 /* FacebookLoginControls */,
 			);
 			name = Factories;
@@ -1514,6 +1527,7 @@
 				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
+				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
