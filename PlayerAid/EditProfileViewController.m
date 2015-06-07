@@ -22,6 +22,7 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *editLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *aboutMeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *nameTextView;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 
@@ -77,8 +78,16 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 {
   self.editLabel.textColor = [ColorsHelper playerAidBlueColor];
 
-  self.nameLabel.textColor = [ColorsHelper playerAidBlueColor];
-  self.nameLabel.alpha = 0.8;
+  [self styleTextViewDescriptionLabel:self.nameLabel];
+  [self styleTextViewDescriptionLabel:self.aboutMeLabel];
+}
+
+- (void)styleTextViewDescriptionLabel:(UILabel *)label
+{
+  AssertTrueOrReturn(label);
+  
+  label.textColor = [ColorsHelper playerAidBlueColor];
+  label.alpha = 0.8f;
 }
 
 - (void)styleTextViews
