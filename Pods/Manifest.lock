@@ -42,6 +42,7 @@ PODS:
   - NSString+RemoveEmoji (0.0.1)
   - TWCommonLib (0.1)
   - UIAlertView-Blocks (1.0)
+  - UITextView+Placeholder (1.0.8)
   - YCameraView (0.2.0)
 
 DEPENDENCIES:
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - NSString+RemoveEmoji (= 0.0.1)
   - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
+  - UITextView+Placeholder (= 1.0.8)
   - YCameraView (from `../YCameraView`)
 
 EXTERNAL SOURCES:
@@ -64,6 +66,7 @@ EXTERNAL SOURCES:
     :branch: ThomasChanges
     :git: ../FDTake
   TWCommonLib:
+    :branch: v0_4
     :path: ../TWCommonLib
   YCameraView:
     :branch: PlayerAidChanges
@@ -91,6 +94,7 @@ SPEC CHECKSUMS:
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TWCommonLib: 67b2669303d79b94c23a630935a5beb0e3371f41
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
+  UITextView+Placeholder: f1de02b7304f2f061ee62fc4ba799afce808f803
   YCameraView: f13abd86a3115daffe1d76c9ae3d6af87abc7f67
 
 COCOAPODS: 0.35.0
