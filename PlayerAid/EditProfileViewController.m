@@ -14,7 +14,7 @@ static const CGFloat kTextViewBorderWidth = 1.0f;
 static const CGFloat kFacebookButtonBorderWidth = 1.0f;
 static const CGFloat kTextViewLeftAndRightPadding = 12.0f;
 static const CGFloat kTextViewTopPadding = 12.0f;
-static const CGFloat kFacebookButtonCornerRadius = 10.0f;
+static const CGFloat kFacebookButtonCornerRadius = 8.0f;
 static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 
 
