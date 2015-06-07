@@ -17,7 +17,7 @@ static const CGFloat kTextViewTopPadding = 12.0f;
 static const CGFloat kFacebookButtonCornerRadius = 8.0f;
 static const CGFloat kAboutMeKeyboardScrollViewOffset = 180.0f;
 static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
-static const NSInteger kAboutMeTextViewMaximumNumberOfCharacters = 150;
+static const NSInteger kAboutMeCharacterLimit = 150;
 
 
 @interface EditProfileViewController ()
@@ -80,7 +80,8 @@ static const NSInteger kAboutMeTextViewMaximumNumberOfCharacters = 150;
 - (void)setupTextViewDelegates
 {
   [self setupNameTextViewDelegateWithTextMaxLength:kPlayerNameMaxNumberOfCharacters];
-  [self setupAboutMeTextViewDelegateWithTextMaxLength:kAboutMeTextViewMaximumNumberOfCharacters];
+  [self setupAboutMeTextViewDelegateWithTextMaxLength:kAboutMeCharacterLimit];
+  [self setupAboutMeCharacterLimitLabelTextViewDelegate];
 }
 
 - (void)setupTapGestureRecognizer
@@ -178,6 +179,15 @@ static const NSInteger kAboutMeTextViewMaximumNumberOfCharacters = 150;
   
   [delegate tw_bindLifetimeTo:textView];
   textView.delegate = delegate;
+}
+
+- (void)setupAboutMeCharacterLimitLabelTextViewDelegate
+{
+  AssertTrueOr(self.bioTextView.delegate != nil && @"This method will chain a new delegate with a previous one", ;);
+  TWTextViewWithCharacterLimitLabelDelegate *delegate = [[TWTextViewWithCharacterLimitLabelDelegate alloc] initWithCharacterLimitLabel:self.aboutMeCharactersLabel maxLength:kAboutMeCharacterLimit attachToTextView:self.bioTextView];
+  delegate.overCharacterLimitValueChanged = ^(BOOL overCharacterLimitValue) {
+    self.navigationItem.rightBarButtonItem.enabled = !overCharacterLimitValue;
+  };
 }
 
 #pragma mark - Other Methods
