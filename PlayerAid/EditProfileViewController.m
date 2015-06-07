@@ -15,7 +15,9 @@ static const CGFloat kFacebookButtonBorderWidth = 1.0f;
 static const CGFloat kTextViewLeftAndRightPadding = 12.0f;
 static const CGFloat kTextViewTopPadding = 12.0f;
 static const CGFloat kFacebookButtonCornerRadius = 8.0f;
+static const CGFloat kAboutMeKeyboardScrollViewOffset = 180.0f;
 static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
+static const NSInteger kAboutMeTextViewMaximumNumberOfCharacters = 150;
 
 
 @interface EditProfileViewController ()
@@ -28,6 +30,7 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 @property (weak, nonatomic) IBOutlet UITextView *nameTextView;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 @property (weak, nonatomic) IBOutlet UIButton *facebookDetailsButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -55,7 +58,8 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
   [self styleFacebookButton];
   [self styleTextViews];
   [self fillTextViews];
-  [self setupTextViewDelegate:self.nameTextView textViewMaxLength:kPlayerNameMaxNumberOfCharacters]; 
+  [self setupTextViewDelegates];
+  [self setupTapGestureRecognizer];
 }
 
 - (void)setupViewController
@@ -70,6 +74,18 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
   NavigationBarButtonsDecorator *navbarDecorator = [NavigationBarButtonsDecorator new];
   [navbarDecorator addCancelButtonToViewController:self withSelector:@selector(dismissViewController)];
   [navbarDecorator addSaveButtonToViewController:self withSelector:@selector(saveProfile)];
+}
+
+- (void)setupTextViewDelegates
+{
+  [self setupNameTextViewDelegateWithTextMaxLength:kPlayerNameMaxNumberOfCharacters];
+  [self setupAboutMeTextViewDelegateWithTextMaxLength:kAboutMeTextViewMaximumNumberOfCharacters];
+}
+
+- (void)setupTapGestureRecognizer
+{
+  UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped)];
+  [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)styleAvatar
@@ -134,9 +150,11 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
   self.bioTextView.text = self.user.userDescription;
 }
 
-- (void)setupTextViewDelegate:(UITextView *)textView textViewMaxLength:(NSInteger)textViewMaxLength
+#pragma mark - TextView Delegates
+
+- (void)setupNameTextViewDelegateWithTextMaxLength:(NSInteger)textViewMaxLength
 {
-  AssertTrueOrReturn(textView);
+  UITextView *textView = self.nameTextView;
   
   TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:textViewMaxLength attachToTextView:textView];
   delegate.resignsFirstResponderOnPressingReturn = YES;
@@ -144,7 +162,24 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
   textView.delegate = delegate;
 }
 
-#pragma mark - 
+- (void)setupAboutMeTextViewDelegateWithTextMaxLength:(NSInteger)textViewMaxLength
+{
+  UITextView *textView = self.bioTextView;
+  TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:textViewMaxLength attachToTextView:textView];
+  
+  defineWeakSelf();
+  delegate.textViewDidBeginEditing = ^() {
+    [weakSelf.scrollView setContentOffset:CGPointMake(0, kAboutMeKeyboardScrollViewOffset) animated:YES];
+  };
+  delegate.textViewDidEndEditing = ^() {
+    [weakSelf.scrollView setContentOffset:CGPointZero animated:YES];
+  };
+  
+  [delegate tw_bindLifetimeTo:textView];
+  textView.delegate = delegate;
+}
+
+#pragma mark - Other Methods
 
 - (void)dismissViewController
 {
@@ -154,6 +189,11 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 - (void)saveProfile
 {
   NOT_IMPLEMENTED_YET_RETURN
+}
+
+- (void)backgroundTapped
+{
+  [self.bioTextView resignFirstResponder];
 }
 
 #pragma mark - IBActions

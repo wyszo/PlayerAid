@@ -13,6 +13,7 @@
                 <outlet property="facebookDetailsButton" destination="9cT-FQ-Wec" id="reG-6Z-LcA"/>
                 <outlet property="nameLabel" destination="5Wv-hC-0dM" id="Rcp-i9-d3R"/>
                 <outlet property="nameTextView" destination="WAG-bR-YgH" id="xwQ-jM-gEP"/>
+                <outlet property="scrollView" destination="4bh-km-OhN" id="y5o-7M-jRJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HSE-WV-Scu"/>
             </connections>
         </placeholder>
