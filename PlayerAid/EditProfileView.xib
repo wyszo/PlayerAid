@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController">
             <connections>
+                <outlet property="aboutMeCharactersLabel" destination="WoR-bp-ZL7" id="NMB-a9-kS8"/>
                 <outlet property="aboutMeLabel" destination="ti2-vi-GdX" id="sEH-q2-i4i"/>
                 <outlet property="avatarImageView" destination="gEz-E3-zdy" id="Rxu-C9-NhK"/>
                 <outlet property="bioTextView" destination="cLL-FW-BoR" id="wrR-hA-1Be"/>
@@ -96,12 +97,19 @@
                                         <action selector="facebookRefreshButtonPressed:" destination="-1" eventType="touchUpInside" id="xQh-Py-Yl2"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoR-bp-ZL7" userLabel="AboutMeCharacters">
+                                    <rect key="frame" x="561" y="380" width="24" height="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="11"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Jux-NX-3lg" firstAttribute="top" secondItem="gEz-E3-zdy" secondAttribute="bottom" constant="10" id="2pX-vj-op8"/>
                                 <constraint firstItem="WAG-bR-YgH" firstAttribute="top" secondItem="5Wv-hC-0dM" secondAttribute="bottom" constant="2" id="6KG-fL-cHa"/>
                                 <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="qep-h0-raK" secondAttribute="top" constant="16" id="6cS-fE-pQT"/>
+                                <constraint firstItem="cLL-FW-BoR" firstAttribute="trailing" secondItem="WoR-bp-ZL7" secondAttribute="trailing" constant="16" id="FcB-ja-WCB"/>
                                 <constraint firstAttribute="centerX" secondItem="Jux-NX-3lg" secondAttribute="centerX" id="GOF-gY-wPf"/>
                                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="top" secondItem="Jux-NX-3lg" secondAttribute="bottom" constant="13" id="Hjz-28-b6C"/>
                                 <constraint firstItem="Jux-NX-3lg" firstAttribute="bottom" secondItem="htV-FC-CVk" secondAttribute="bottom" constant="-10" id="K2A-2h-dRO"/>
@@ -116,6 +124,7 @@
                                 <constraint firstAttribute="trailing" secondItem="ti2-vi-GdX" secondAttribute="trailing" constant="546" id="fZv-HR-mbn"/>
                                 <constraint firstAttribute="centerX" secondItem="gEz-E3-zdy" secondAttribute="centerX" id="gS7-Te-w4P"/>
                                 <constraint firstAttribute="trailing" secondItem="9cT-FQ-Wec" secondAttribute="trailing" constant="16" id="gv8-AU-Usx"/>
+                                <constraint firstItem="cLL-FW-BoR" firstAttribute="bottom" secondItem="WoR-bp-ZL7" secondAttribute="bottom" constant="5" id="nm2-uZ-UQx"/>
                                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="leading" secondItem="qep-h0-raK" secondAttribute="leading" constant="16" id="ojt-Cz-y46"/>
                                 <constraint firstItem="WAG-bR-YgH" firstAttribute="leading" secondItem="qep-h0-raK" secondAttribute="leading" constant="-1" id="svF-9m-69i"/>
                                 <constraint firstItem="9cT-FQ-Wec" firstAttribute="leading" secondItem="qep-h0-raK" secondAttribute="leading" constant="16" id="unR-xp-BsM"/>

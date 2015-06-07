@@ -31,6 +31,7 @@ static const NSInteger kAboutMeTextViewMaximumNumberOfCharacters = 150;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 @property (weak, nonatomic) IBOutlet UIButton *facebookDetailsButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *aboutMeCharactersLabel;
 
 @end
 
