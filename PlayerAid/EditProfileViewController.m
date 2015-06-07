@@ -128,7 +128,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   self.nameTextView.placeholder = @"Player Name";
   
   [self styleTextView:self.bioTextView];
-  self.bioTextView.placeholder = @"Enter Bio";
+  self.bioTextView.placeholder = @"Introduce yourself to the PlayerAid community. Have some fun. 😜 p.s. lots of people like to add their other social media handles!";
 }
 
 - (void)styleTextView:(UITextView *)textView
