@@ -7,6 +7,9 @@
 #import "AlertFactory.h"
 #import "GlobalSettings.h"
 
+/**
+ Technical debt: this class should use TWTextViewWithCharacterLimitLabelDelegate instead of implementing it from scratch. See EditProfileView as an example. 
+ */
 
 NSString *const kCreateTutorialErrorDomain = @"CreateTutorialDomain";
 const NSInteger kTextStepDismissedError = 1;
