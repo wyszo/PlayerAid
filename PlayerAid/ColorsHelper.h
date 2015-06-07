@@ -23,6 +23,7 @@
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;
++ (UIColor *)editProfileFacebookButtonColor;
 
 + (UIColor *)createTutorialHeaderElementsBorderColor;
 

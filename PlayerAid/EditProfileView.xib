@@ -10,6 +10,7 @@
                 <outlet property="avatarImageView" destination="gEz-E3-zdy" id="Rxu-C9-NhK"/>
                 <outlet property="bioTextView" destination="cLL-FW-BoR" id="wrR-hA-1Be"/>
                 <outlet property="editLabel" destination="Jux-NX-3lg" id="zsF-CS-POF"/>
+                <outlet property="facebookDetailsButton" destination="9cT-FQ-Wec" id="reG-6Z-LcA"/>
                 <outlet property="nameLabel" destination="5Wv-hC-0dM" id="Rcp-i9-d3R"/>
                 <outlet property="nameTextView" destination="WAG-bR-YgH" id="xwQ-jM-gEP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HSE-WV-Scu"/>
@@ -21,10 +22,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cT-FQ-Wec">
-                    <rect key="frame" x="213" y="471" width="174" height="30"/>
+                    <rect key="frame" x="16" y="471" width="568" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Pfx-Qo-g1d"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                     <state key="normal" title="Refresh Facebook details">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="facebookRefreshButtonPressed:" destination="-1" eventType="touchUpInside" id="xQh-Py-Yl2"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wv-hC-0dM">
                     <rect key="frame" x="16" y="155" width="36" height="18"/>
@@ -32,8 +40,8 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti2-vi-GdX">
-                    <rect key="frame" x="16" y="257" width="75" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti2-vi-GdX">
+                    <rect key="frame" x="16" y="255" width="59" height="18"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -47,11 +55,11 @@
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="(about me)" translatesAutoresizingMaskIntoConstraints="NO" id="cLL-FW-BoR" userLabel="Bio Text View">
-                    <rect key="frame" x="27" y="297" width="565" height="61"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(about me)" translatesAutoresizingMaskIntoConstraints="NO" id="cLL-FW-BoR" userLabel="Bio Text View">
+                    <rect key="frame" x="-1" y="278" width="602" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="61" id="dI4-Pb-e35"/>
+                        <constraint firstAttribute="height" constant="128" id="dI4-Pb-e35"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -85,22 +93,24 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WAG-bR-YgH" secondAttribute="trailing" constant="-1" id="9i7-Gk-FDq"/>
-                <constraint firstItem="cLL-FW-BoR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="Hiy-pV-Nl3"/>
+                <constraint firstItem="cLL-FW-BoR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-1" id="Hiy-pV-Nl3"/>
                 <constraint firstItem="Jux-NX-3lg" firstAttribute="bottom" secondItem="htV-FC-CVk" secondAttribute="bottom" constant="-10" id="Slj-z6-fWG"/>
                 <constraint firstItem="Jux-NX-3lg" firstAttribute="top" secondItem="gEz-E3-zdy" secondAttribute="bottom" constant="10" id="SsY-EN-1gp"/>
                 <constraint firstItem="ti2-vi-GdX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Swt-Pd-DhY"/>
-                <constraint firstItem="cLL-FW-BoR" firstAttribute="top" secondItem="ti2-vi-GdX" secondAttribute="bottom" constant="19" id="W43-w9-ech"/>
+                <constraint firstItem="cLL-FW-BoR" firstAttribute="top" secondItem="ti2-vi-GdX" secondAttribute="bottom" constant="5" id="W43-w9-ech"/>
                 <constraint firstItem="ti2-vi-GdX" firstAttribute="top" secondItem="WAG-bR-YgH" secondAttribute="bottom" constant="32" id="WXd-Wp-05L"/>
                 <constraint firstItem="WAG-bR-YgH" firstAttribute="top" secondItem="5Wv-hC-0dM" secondAttribute="bottom" constant="2" id="X91-ni-Guc"/>
                 <constraint firstAttribute="centerX" secondItem="gEz-E3-zdy" secondAttribute="centerX" id="Y0v-co-YYR"/>
                 <constraint firstItem="Jux-NX-3lg" firstAttribute="top" secondItem="5Wv-hC-0dM" secondAttribute="top" constant="-29" id="ZCg-yn-aEm"/>
-                <constraint firstAttribute="bottom" secondItem="9cT-FQ-Wec" secondAttribute="bottom" constant="35" id="agz-c6-Jcn"/>
+                <constraint firstItem="9cT-FQ-Wec" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="aGD-FV-T42"/>
+                <constraint firstAttribute="bottom" secondItem="9cT-FQ-Wec" secondAttribute="bottom" constant="15" id="agz-c6-Jcn"/>
                 <constraint firstItem="5Wv-hC-0dM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="bTk-bg-y0G"/>
                 <constraint firstItem="htV-FC-CVk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nHh-xi-IxM"/>
-                <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="8" id="oCj-o5-iSF"/>
+                <constraint firstAttribute="trailing" secondItem="cLL-FW-BoR" secondAttribute="trailing" constant="-1" id="oCj-o5-iSF"/>
                 <constraint firstItem="gEz-E3-zdy" firstAttribute="centerX" secondItem="htV-FC-CVk" secondAttribute="centerX" constant="-1.5" id="pDL-9n-YCo"/>
                 <constraint firstAttribute="centerX" secondItem="9cT-FQ-Wec" secondAttribute="centerX" id="pvo-F3-J7o"/>
                 <constraint firstItem="gEz-E3-zdy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="u1u-jc-ObB"/>
+                <constraint firstAttribute="trailing" secondItem="9cT-FQ-Wec" secondAttribute="trailing" constant="16" id="xY2-TU-Wxu"/>
                 <constraint firstAttribute="centerX" secondItem="Jux-NX-3lg" secondAttribute="centerX" id="zee-62-wPN"/>
                 <constraint firstItem="WAG-bR-YgH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-1" id="zwI-O5-AL0"/>
             </constraints>
