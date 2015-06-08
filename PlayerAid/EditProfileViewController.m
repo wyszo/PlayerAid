@@ -163,8 +163,14 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   UITextView *textView = self.nameTextView;
   
   TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:textViewMaxLength attachToTextView:textView];
+  
+  defineWeakSelf();
+  delegate.textDidChange = ^(NSString *text) {
+    [weakSelf updateNavbarSaveButtonState];
+  };
   delegate.resignsFirstResponderOnPressingReturn = YES;
   [delegate tw_bindLifetimeTo:textView];
+  
   textView.delegate = delegate;
 }
 
@@ -189,8 +195,10 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 {
   AssertTrueOr(self.bioTextView.delegate != nil && @"This method will chain a new delegate with a previous one", ;);
   TWTextViewWithCharacterLimitLabelDelegate *delegate = [[TWTextViewWithCharacterLimitLabelDelegate alloc] initWithCharacterLimitLabel:self.aboutMeCharactersLabel maxLength:kAboutMeCharacterLimit attachToTextView:self.bioTextView];
+  
+  defineWeakSelf();
   delegate.overCharacterLimitValueChanged = ^(BOOL overCharacterLimitValue) {
-    self.navigationItem.rightBarButtonItem.enabled = !overCharacterLimitValue;
+    [weakSelf updateNavbarSaveButtonStateWithOverCharacterLimitValue:overCharacterLimitValue];
   };
 }
 
@@ -216,6 +224,22 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   NOT_IMPLEMENTED_YET_RETURN
 }
 
+#pragma mark - NavigationBar button states
+
+- (void)updateNavbarSaveButtonStateWithOverCharacterLimitValue:(BOOL)overCharacterLimit
+{
+  self.navigationItem.rightBarButtonItem.enabled = (!overCharacterLimit && self.playerNameNotEmpty);
+}
+
+- (void)updateNavbarSaveButtonState
+{
+  id delegate = self.bioTextView.delegate;
+  AssertTrueOrReturn([delegate isKindOfClass:[TWTextViewWithCharacterLimitLabelDelegate class]]);
+  TWTextViewWithCharacterLimitLabelDelegate *textViewDelegate = delegate;
+  
+  [self updateNavbarSaveButtonStateWithOverCharacterLimitValue:textViewDelegate.overCharacterLimit];
+}
+
 #pragma mark - Other Methods
 
 - (void)populateDataFromUserObject
@@ -223,6 +247,11 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   self.nameTextView.text = self.user.name;
   self.bioTextView.text = self.user.userDescription;
   [self.user placeAvatarInImageView:self.avatarImageView];
+}
+
+- (BOOL)playerNameNotEmpty
+{
+  return (self.nameTextView.text.length != 0);
 }
 
 - (void)dismissViewController
