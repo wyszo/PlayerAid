@@ -212,9 +212,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
       [AlertFactory showUpdateAvatarFromFacebookFailureAlertView];
     }
     else {
-      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
-      [[UsersFetchController sharedInstance] updateLoggedInUserObjectWithDictionary:responseObject];
-      [weakSelf populateDataFromUserObject];
+      [weakSelf saveCurrentUserFromUserDictionary:responseObject];
     }
   }];
 }
@@ -240,13 +238,22 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   [self updateNavbarSaveButtonStateWithOverCharacterLimitValue:textViewDelegate.overCharacterLimit];
 }
 
-#pragma mark - Other Methods
+#pragma mark - Populating UI from model
 
 - (void)populateDataFromUserObject
 {
   self.nameTextView.text = self.user.name;
   self.bioTextView.text = self.user.userDescription;
   [self.user placeAvatarInImageView:self.avatarImageView];
+}
+
+#pragma mark - Other Methods
+
+- (void)saveCurrentUserFromUserDictionary:(NSDictionary *)userDictionary
+{
+  AssertTrueOrReturn(userDictionary.count);
+  [[UsersFetchController sharedInstance] updateLoggedInUserObjectWithDictionary:userDictionary];
+  [self populateDataFromUserObject];
 }
 
 - (BOOL)playerNameNotEmpty

@@ -33,5 +33,6 @@ typedef void (^VoidBlockWithError)(NSError *error);
 
 // edit profile
 - (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion;
+- (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion;
 
 @end

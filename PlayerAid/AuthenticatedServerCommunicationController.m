@@ -221,6 +221,22 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                               };
   [self postRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
+
+- (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(userName.length);
+  
+  NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{ @"name" : userName }];
+  if (userDescription.length) {
+    [parameters addEntriesFromDictionary:@{ @"description" : userDescription }];
+  }
+  
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  
+  [operationManager PUT:@"user" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, operation.response, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, operation.response, nil, error);
   }];
 }
   
