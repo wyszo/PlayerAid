@@ -11,9 +11,9 @@
                 <outlet property="avatarImageView" destination="gEz-E3-zdy" id="Rxu-C9-NhK"/>
                 <outlet property="bioTextView" destination="cLL-FW-BoR" id="wrR-hA-1Be"/>
                 <outlet property="editLabel" destination="Jux-NX-3lg" id="zsF-CS-POF"/>
-                <outlet property="facebookDetailsButton" destination="9cT-FQ-Wec" id="reG-6Z-LcA"/>
                 <outlet property="nameLabel" destination="5Wv-hC-0dM" id="Rcp-i9-d3R"/>
                 <outlet property="nameTextView" destination="WAG-bR-YgH" id="xwQ-jM-gEP"/>
+                <outlet property="refreshFacebookDetailsButton" destination="9cT-FQ-Wec" id="glV-bI-pPo"/>
                 <outlet property="scrollView" destination="4bh-km-OhN" id="y5o-7M-jRJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HSE-WV-Scu"/>
             </connections>
@@ -39,7 +39,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jux-NX-3lg">
                                     <rect key="frame" x="289" y="126" width="22" height="16"/>
                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="11"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htV-FC-CVk" userLabel="Avatar Overlay button">
@@ -100,7 +100,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoR-bp-ZL7" userLabel="AboutMeCharacters">
                                     <rect key="frame" x="561" y="380" width="24" height="18"/>
                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="11"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

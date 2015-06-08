@@ -12,6 +12,8 @@
 #import "AuthenticatedServerCommunicationController.h"
 
 
+static const BOOL HideRefreshFromFacebookButton = YES;
+
 static NSString *const kEditProfileXibName = @"EditProfileView";
 static const CGFloat kTextViewBorderWidth = 1.0f;
 static const CGFloat kFacebookButtonBorderWidth = 1.0f;
@@ -32,7 +34,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 @property (weak, nonatomic) IBOutlet UILabel *aboutMeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *nameTextView;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
-@property (weak, nonatomic) IBOutlet UIButton *facebookDetailsButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshFacebookDetailsButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *aboutMeCharactersLabel;
 
@@ -55,6 +57,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
   [self setupViewController];
   [self setupNavigationBarButtons];
   [self styleAvatar];
@@ -64,6 +67,8 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   [self fillTextViews];
   [self setupTextViewDelegates];
   [self setupTapGestureRecognizer];
+  
+  self.refreshFacebookDetailsButton.hidden = HideRefreshFromFacebookButton;
 }
 
 - (void)setupViewController
@@ -111,9 +116,9 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 {
   UIColor *facebookColor = [ColorsHelper editProfileFacebookButtonColor];
 
-  [self.facebookDetailsButton setTitleColor:facebookColor forState:UIControlStateNormal];
-  [self.facebookDetailsButton tw_addBorderWithWidth:kFacebookButtonBorderWidth color:facebookColor];
-  [self.facebookDetailsButton tw_setCornerRadius:kFacebookButtonCornerRadius];
+  [self.refreshFacebookDetailsButton setTitleColor:facebookColor forState:UIControlStateNormal];
+  [self.refreshFacebookDetailsButton tw_addBorderWithWidth:kFacebookButtonBorderWidth color:facebookColor];
+  [self.refreshFacebookDetailsButton tw_setCornerRadius:kFacebookButtonCornerRadius];
 }
 
 - (void)styleTextViewDescriptionLabel:(UILabel *)label
