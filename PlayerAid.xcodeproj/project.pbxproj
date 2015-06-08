@@ -180,6 +180,7 @@
 		311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCameraViewController+InterfaceOrientation.m"; sourceTree = "<group>"; };
 		312903691B24ECBA00C730DA /* AlertControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerFactory.h; sourceTree = "<group>"; };
 		3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerFactory.m; sourceTree = "<group>"; };
+		3129036C1B25DF1400C730DA /* UsersFetchController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsersFetchController_Private.h; sourceTree = "<group>"; };
 		312C6AAD1AD473AD00D96C19 /* JourneyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyController.h; sourceTree = "<group>"; };
 		312C6AAE1AD473AD00D96C19 /* JourneyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyController.m; sourceTree = "<group>"; };
 		312C6AB01AD4750B00D96C19 /* JourneyController_Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JourneyController_Debug.h; sourceTree = "<group>"; };
@@ -415,6 +416,7 @@
 			children = (
 				31014E541A9610ED002F3485 /* UsersFetchController.h */,
 				31014E551A9610ED002F3485 /* UsersFetchController.m */,
+				3129036C1B25DF1400C730DA /* UsersFetchController_Private.h */,
 			);
 			name = Users;
 			sourceTree = "<group>";

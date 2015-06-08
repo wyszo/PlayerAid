@@ -10,6 +10,7 @@
 #import "AlertControllerFactory.h"
 #import "AlertFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "UsersFetchController_Private.h"
 
 
 static const BOOL HideRefreshFromFacebookButton = YES;
@@ -43,6 +44,8 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 @implementation EditProfileViewController
 
+#pragma mark - View Lifecycle and styling
+
 - (instancetype)initWithUser:(User *)user
 {
   AssertTrueOrReturnNil(user);
@@ -64,9 +67,9 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   [self styleLabels];
   [self styleFacebookButton];
   [self styleTextViews];
-  [self fillTextViews];
   [self setupTextViewDelegates];
   [self setupTapGestureRecognizer];
+  [self populateDataFromUserObject];
   
   self.refreshFacebookDetailsButton.hidden = HideRefreshFromFacebookButton;
 }
@@ -100,7 +103,6 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)styleAvatar
 {
-  [self.user placeAvatarInImageView:self.avatarImageView];
   [self.avatarImageView styleAsAvatarThinBorder];
 }
 
@@ -154,12 +156,6 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   self.nameTextView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
-- (void)fillTextViews
-{
-  self.nameTextView.text = self.user.name;
-  self.bioTextView.text = self.user.userDescription;
-}
-
 #pragma mark - TextView Delegates
 
 - (void)setupNameTextViewDelegateWithTextMaxLength:(NSInteger)textViewMaxLength
@@ -198,16 +194,40 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   };
 }
 
-#pragma mark - Other Methods
+#pragma mark - Network communication
 
-- (void)dismissViewController
+- (void)makeUpdateAvatarFromFacebookNetworkRequest
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  defineWeakSelf();
+  [[AuthenticatedServerCommunicationController sharedInstance] updateUserAvatarFromFacebookCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      [AlertFactory showUpdateAvatarFromFacebookFailureAlertView];
+    }
+    else {
+      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+      [[UsersFetchController sharedInstance] updateLoggedInUserObjectWithDictionary:responseObject];
+      [weakSelf populateDataFromUserObject];
+    }
+  }];
 }
 
 - (void)saveProfile
 {
   NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - Other Methods
+
+- (void)populateDataFromUserObject
+{
+  self.nameTextView.text = self.user.name;
+  self.bioTextView.text = self.user.userDescription;
+  [self.user placeAvatarInImageView:self.avatarImageView];
+}
+
+- (void)dismissViewController
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)backgroundTapped
@@ -219,15 +239,9 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (IBAction)avatarOverlayButtonPressed:(id)sender
 {
+  defineWeakSelf();
   UIViewController *alert = [AlertControllerFactory editProfilePhotoActionControllerFacebookAction:^{
-    [[AuthenticatedServerCommunicationController sharedInstance] updateUserAvatarFromFacebookCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-      if (error) {
-        [AlertFactory showUpdateAvatarFromFacebookFailureAlertView];
-      }
-      else {
-        NOT_IMPLEMENTED_YET_RETURN
-      }
-    }];
+    [weakSelf makeUpdateAvatarFromFacebookNetworkRequest];
   }
   chooseFromLibraryAction:^{
     NOT_IMPLEMENTED_YET_RETURN

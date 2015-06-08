@@ -67,19 +67,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }];
 }
 
-- (void)updateLoggedInUserObjectWithDictionary:(NSDictionary *)dictionary
-{
-  AssertTrueOrReturn(dictionary.count);
-  
-  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-    User *user = [self currentUserInContext:localContext];
-    if (!user) {
-      user = [User MR_createInContext:localContext];
-    }
-    [user setLoggedInUserValue:YES];
-    [user configureFromDictionary:dictionary];
-  }];
-}
+#pragma mark - Fetching User Object
 
 - (User *)currentUserInContext:(NSManagedObjectContext *)context
 {
@@ -93,6 +81,22 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (User *)currentUser
 {
   return [self currentUserInContext:nil];
+}
+
+#pragma mark - Updating User Object
+
+- (void)updateLoggedInUserObjectWithDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturn(dictionary.count);
+  
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    User *user = [self currentUserInContext:localContext];
+    if (!user) {
+      user = [User MR_createInContext:localContext];
+    }
+    [user setLoggedInUserValue:YES];
+    [user configureFromDictionary:dictionary];
+  }];
 }
 
 #pragma mark - Blocking alert view handling
