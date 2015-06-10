@@ -219,7 +219,19 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)saveProfile
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  NSString *userName = self.nameTextView.text;
+  AssertTrueOrReturn(userName.length > 0);
+  
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:self.bioTextView.text completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Could not save changes! Try again later!"];
+    }
+    else {
+      // TODO: parse user profile
+      // TODO: update displayed information
+      NOT_IMPLEMENTED_YET_RETURN
+    }
+  }];
 }
 
 #pragma mark - NavigationBar button states

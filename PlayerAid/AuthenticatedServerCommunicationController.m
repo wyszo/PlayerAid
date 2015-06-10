@@ -221,6 +221,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                               };
   [self postRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
+  }];
+}
 
 - (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion
 {
