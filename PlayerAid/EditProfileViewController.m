@@ -222,14 +222,17 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   NSString *userName = self.nameTextView.text;
   AssertTrueOrReturn(userName.length > 0);
   
+  defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:self.bioTextView.text completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Could not save changes! Try again later!"];
     }
     else {
-      // TODO: parse user profile
-      // TODO: update displayed information
-      NOT_IMPLEMENTED_YET_RETURN
+      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+      [weakSelf saveCurrentUserFromUserDictionary:responseObject];
+      
+      CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
 }

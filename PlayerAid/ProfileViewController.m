@@ -55,9 +55,14 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupUserIfNotNil
 {
   if (!self.user) {
-    self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
+    [self forceFetchUser];
   }
   AssertTrueOrReturn(self.user);
+}
+
+- (void)forceFetchUser
+{
+  self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
 - (void)setupTutorialsTableDataSource
@@ -160,6 +165,12 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)presentEditProfileViewController
 {
   EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:self.user];
+
+  defineWeakSelf();
+  editProfileViewController.didUpdateUserProfileBlock = ^() {
+    [weakSelf forceFetchUser];
+    weakSelf.playerInfoView.user = self.user;
+  };
   UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
   [self presentViewController:navigationController animated:YES completion:nil];
 }
