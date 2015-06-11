@@ -129,10 +129,10 @@
 + (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Do you want to keep your tutorial?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Save as draft" defaultButtonAction:^{
-    CallBlock(completionBlock, NO);
-  } secondaryButtonTitle:@"Delete" secondaryButtonAction:^{
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Delete" firstButtonAction:^{
     CallBlock(completionBlock, YES);
+  } secondButtonTitle:@"Save as draft" secondAction:^{
+    CallBlock(completionBlock, NO);
   }];
 }
 
