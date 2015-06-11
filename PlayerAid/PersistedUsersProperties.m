@@ -3,23 +3,14 @@
 //
 
 #import "PersistedUsersProperties.h"
-#import "UserDefaultsHelper.h"
+#import "TWUserDefaultsHelper.h"
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 
 @implementation PersistedUsersProperties
 
-// TODO: move this to CommonMacros!
-+ (instancetype)sharedInstance
-{
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - gridEnabled
 
@@ -35,12 +26,12 @@ static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";
 
 - (void)saveInUserDefaultsGridEnabled:(BOOL)gridEnabled
 {
-  [[UserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
+  [[TWUserDefaultsHelper new] setObject:@(gridEnabled) forKeyAndSave:kTakePhotoGridEnabledKey];
 }
 
 - (BOOL)getUserDefaultsGridEnabled
 {
-  return [[[UserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
+  return [[[TWUserDefaultsHelper new] getObjectForKey:kTakePhotoGridEnabledKey] boolValue];
 }
 
 @end

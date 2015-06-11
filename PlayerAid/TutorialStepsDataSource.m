@@ -171,7 +171,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   tutorialStepCell.delegate = self.cellDelegate;
 }
 
-#pragma mark - Context 
+#pragma mark - Context
 
 - (NSManagedObjectContext *)context
 {

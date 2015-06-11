@@ -16,16 +16,8 @@
 
 #pragma mark - Singleton
 
-+ (instancetype)sharedInstance
-{
-  /* Technical debt: could easily avoid making a singleton here */
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+/* Technical debt: could easily avoid making a singleton here! */
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Public interface
 

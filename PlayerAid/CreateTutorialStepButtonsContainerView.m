@@ -3,7 +3,7 @@
 //
 
 #import "CreateTutorialStepButtonsContainerView.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 #import "CreateTutorialStepButton.h"
 
 
@@ -29,7 +29,7 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsContainerView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self setupButtons];
   }
   return self;
@@ -39,7 +39,7 @@ static NSString *const kNibFileName = @"CreateTutorialStepButtonsContainerView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self setupButtons];
   }
   return self;

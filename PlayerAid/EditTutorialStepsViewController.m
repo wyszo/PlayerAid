@@ -6,14 +6,16 @@
 #import "FontsHelper.h"
 #import "AlertFactory.h"
 #import "TWArrayTableViewDataSource.h"
-#import "TableViewBasicDelegateObject.h"
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
 #import "ColorsHelper.h"
+#import "CommonViews.h"
+#import "TWTableViewEditingStyleDelegate.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";
 static const CGFloat kEditTutorialCellHeight = 76.0f;
+static const CGFloat kTableViewTopInset = 14.0f;
 
 
 @interface EditTutorialStepsViewController ()
@@ -23,13 +25,15 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialStepsTableView;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) NSMutableArray *tutorialSteps;
+@property (strong, nonatomic) TWTableViewEditingStyleDelegate *tableViewDelegate;
 @property (strong, nonatomic) TWArrayTableViewDataSource *tableViewDataSource;
-@property (strong, nonatomic) TableViewBasicDelegateObject *delegateObject;
 
 @end
 
 
 @implementation EditTutorialStepsViewController
+
+#pragma mark - Setup
 
 - (instancetype)initWithTutorialSteps:(NSArray *)tutorialSteps
 {
@@ -40,26 +44,28 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   return self;
 }
 
-- (NSMutableArray *)mutableTutorialStepsArraySortedByOrder:(NSArray *)tutorialSteps
-{
-  AssertTrueOrReturnNil(tutorialSteps);
-  NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"order" ascending:YES];
-  return [[tutorialSteps sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
-}
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
-  
-  self.delegateObject = [[TableViewBasicDelegateObject alloc] initWithCellHeight:kEditTutorialCellHeight];
+
+  self.backgroundView.backgroundColor = [ColorsHelper playerAidBlueColor];
   [self setupTableView];
-  self.backgroundView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
-  [self.tutorialStepsTableView setEditing:YES];
 }
 
 - (void)setupTableView
+{
+  self.tutorialStepsTableView.rowHeight = kEditTutorialCellHeight;
+  self.tutorialStepsTableView.tableHeaderView = [CommonViews smallTableHeaderOrFooterView];
+  self.tutorialStepsTableView.contentInset = UIEdgeInsetsMake(kTableViewTopInset, 0, 0, 0);
+  [self setupTableViewDataSource];
+  
+  [self.tutorialStepsTableView setEditing:YES];
+  self.tableViewDelegate = [[TWTableViewEditingStyleDelegate alloc] initWithUITableViewCellEditingStyle:UITableViewCellEditingStyleNone attachToTableView:self.tutorialStepsTableView];
+}
+
+- (void)setupTableViewDataSource
 {
   self.tableViewDataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps attachToTableView:self.tutorialStepsTableView cellNibName:kTutorialCellName];
   
@@ -67,8 +73,9 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   };
-  self.tutorialStepsTableView.delegate = self.delegateObject;
 }
+
+#pragma mark - Auxiliary methods
 
 - (void)customizeButton:(UIButton *)button
 {
@@ -82,6 +89,13 @@ static const CGFloat kEditTutorialCellHeight = 76.0f;
   [tutorialSteps enumerateObjectsUsingBlock:^(TutorialStep *step, NSUInteger idx, BOOL *stop) {
     step.orderValue = idx;
   }];
+}
+
+- (NSMutableArray *)mutableTutorialStepsArraySortedByOrder:(NSArray *)tutorialSteps
+{
+  AssertTrueOrReturnNil(tutorialSteps);
+  NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"order" ascending:YES];
+  return [[tutorialSteps sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
 }
 
 #pragma mark - Cell configuration

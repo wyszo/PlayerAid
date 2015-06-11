@@ -24,7 +24,10 @@ UIColorMethodMake(tutorialsSelectedFilterButtonTextColor, 255, 255, 255)
 UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 
-UIColorMethodMake(loginAndPlayerInfoViewBackgroundColor, 44, 72, 134)
+UIColorMethodMake(playerAidBlueColor, 44, 72, 134)
+UIColorMethodMake(editProfileViewBackgroundColor, 245, 245, 245)
+UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)
+UIColorMethodMake(editProfileFacebookButtonColor, 81, 101, 157)
 
 UIColorMethodMake(createTutorialHeaderElementsBorderColor, 141, 141, 141)
 

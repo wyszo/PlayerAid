@@ -6,10 +6,12 @@
 
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
+typedef void (^VoidBlockWithError)(NSError *error);
 
 
 /**
  A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!
+ TODO: decompose it into a couple of smaller objects!
  */
 @interface AuthenticatedServerCommunicationController : NSObject
 
@@ -20,12 +22,17 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 - (void)pingCompletion:(NetworkResponseBlock)completion;
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
-- (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion;
+- (void)deleteTutorial:(Tutorial *)tutorial completion:(VoidBlockWithError)completion;
+- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion;
 - (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+
+// edit profile
+- (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion;
+- (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion;
 
 @end

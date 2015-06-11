@@ -119,25 +119,7 @@ static NSString *const kServerIDKey = @"serverID";
 
 - (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors
 {
-  AssertTrueOrReturnNil([dictionariesArray isKindOfClass:[NSArray class]]);
-  NSMutableArray *tutorialsArray = [NSMutableArray new];
-  
-  [dictionariesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    AssertTrueOrReturn([obj isKindOfClass:[NSDictionary class]]);
-    NSDictionary *dictionary = (NSDictionary *)obj;
-    
-    NSString *serverID = [TutorialsHelper serverIDFromTutorialDictionary:dictionary];
-    Tutorial *tutorial = [TutorialsHelper tutorialWithServerID:serverID inContext:self.managedObjectContext];
-    if (!tutorial) {
-      tutorial = [Tutorial MR_createInContext:self.managedObjectContext];
-    }
-    [tutorial configureFromDictionary:dictionary includeAuthor:parseAuthors];
-    
-    AssertTrueOrReturn(tutorial);
-    [tutorialsArray addObject:tutorial];
-  }];
-  
-  return [NSSet setWithArray:tutorialsArray];
+  return [TutorialsHelper setOfTutorialsFromDictionariesArray:dictionariesArray parseAuthors:parseAuthors inContext:self.managedObjectContext];
 }
 
 @end

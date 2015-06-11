@@ -17,7 +17,7 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 
 @property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
 
-@property (weak, nonatomic, readonly) NSArray *settings;
+@property (strong, nonatomic, readonly) NSArray *settings;
 @property (strong, nonatomic) TWArrayTableViewDataSource *dataSource;
 @property (strong, nonatomic) TWSimpleTableViewDelegate *delegate;
 
@@ -31,10 +31,23 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupLazyInitializers];
   
   self.title = @"Settings";
   [self setupTableViewDataSource];
   [self setupTableViewDelegate];
+}
+
+- (void)setupLazyInitializers
+{
+  _settings = [NSArray tw_lazyWithBlock:^{
+    return @[
+             @"Rate this app",
+             @"Terms of Service",
+             @"Privacy Policy",
+             kSettingsLogoutItem
+           ];
+  }];
 }
 
 - (void)setupTableViewDataSource
@@ -71,22 +84,6 @@ static NSString *const kSettingsLogoutItem = @"Log out";
   AssertTrueOrReturnNo(indexPath);
   AssertTrueOrReturnNo(object);
   return (indexPath.row == [self.settings indexOfObject:object]);
-}
-
-#pragma mark - Lazy initialization
-
-- (NSArray *)settings
-{
-  static NSArray *settings;
-  if (!settings) {
-    settings = @[
-                  @"Rate this app",
-                  @"Terms of Service",
-                  @"Privacy Policy",
-                  kSettingsLogoutItem
-                ];
-  }
-  return settings;
 }
 
 @end

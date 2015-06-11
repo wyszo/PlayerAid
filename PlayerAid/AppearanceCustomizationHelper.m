@@ -4,11 +4,8 @@
 
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
-#import "TabBarHelper.h"
+#import "PlayerAidTabBarHelper.h"
 #import "FontsHelper.h"
-
-
-static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 
 @implementation AppearanceCustomizationHelper
@@ -123,7 +120,7 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (UIView *)createTutorialBackgroundView
 {
-  CGRect frame = [TabBarHelper frameForTabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  CGRect frame = [PlayerAidTabBarHelper frameForCreateTutorialTabBarItem];
   AssertTrueOrReturnNil(frame.origin.x != 0);
   
   UIView *createButtonBackgroundView = [[UIView alloc] initWithFrame:frame];
@@ -135,7 +132,8 @@ static const NSUInteger kTabBarCreateTutorialItemIndex = 2;
 
 - (void)customizeCreateTutorialTabBarButtonFont
 {
-  UITabBarItem *createTutorialTabBarItem = [TabBarHelper tabBarItemAtIndex:kTabBarCreateTutorialItemIndex];
+  UITabBarItem *createTutorialTabBarItem = [PlayerAidTabBarHelper createTutorialTabBarItem];
+  
   NSDictionary *attributes = @{ NSForegroundColorAttributeName : [ColorsHelper tabBarCreateTutorialTextColor] };
   
   [createTutorialTabBarItem setTitleTextAttributes:attributes forState:UIControlStateNormal];

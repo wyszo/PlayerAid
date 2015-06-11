@@ -3,14 +3,14 @@
 //
 
 #import "NavigationControllerWhiteStatusbar.h"
-#import "InterfaceOrientationViewControllerDecorator.h"
+#import "TWInterfaceOrientationViewControllerDecorator.h"
 
 
 @implementation NavigationControllerWhiteStatusbar
 
 + (void)initialize
 {
-  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+  [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

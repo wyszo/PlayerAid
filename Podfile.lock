@@ -20,12 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.5):
-    - Bolts/AppLinks (= 1.1.5)
-    - Bolts/Tasks (= 1.1.5)
-  - Bolts/AppLinks (1.1.5):
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.1.5)
+  - Bolts/Tasks (1.2.0)
   - Facebook-iOS-SDK (3.22.0):
     - Bolts (~> 1.0)
   - FDTake (0.2.4)
@@ -42,6 +42,7 @@ PODS:
   - NSString+RemoveEmoji (0.0.1)
   - TWCommonLib (0.1)
   - UIAlertView-Blocks (1.0)
+  - UITextView+Placeholder (1.0.8)
   - YCameraView (0.2.0)
 
 DEPENDENCIES:
@@ -55,8 +56,9 @@ DEPENDENCIES:
   - MagicalRecord (= 2.2)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
-  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`, tag `CommonLib_0_3_1`)
+  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`, tag `CommonLib_0_4`)
   - UIAlertView-Blocks (= 1.0)
+  - UITextView+Placeholder (= 1.0.8)
   - YCameraView (from `../YCameraView`)
 
 EXTERNAL SOURCES:
@@ -65,7 +67,7 @@ EXTERNAL SOURCES:
     :git: ../FDTake
   TWCommonLib:
     :git: https://github.com/wyszo/TWCommonLib.git
-    :tag: CommonLib_0_3_1
+    :tag: CommonLib_0_4
   YCameraView:
     :branch: PlayerAidChanges
     :path: ../YCameraView
@@ -76,11 +78,11 @@ CHECKOUT OPTIONS:
     :git: ../FDTake
   TWCommonLib:
     :git: https://github.com/wyszo/TWCommonLib.git
-    :tag: CommonLib_0_3_1
+    :tag: CommonLib_0_4
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
-  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
   FDTake: 9b4d2049bd3e32bd05d119542be30785b9dc0d44
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
@@ -92,6 +94,7 @@ SPEC CHECKSUMS:
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TWCommonLib: 67b2669303d79b94c23a630935a5beb0e3371f41
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
+  UITextView+Placeholder: f1de02b7304f2f061ee62fc4ba799afce808f803
   YCameraView: f13abd86a3115daffe1d76c9ae3d6af87abc7f67
 
 COCOAPODS: 0.35.0

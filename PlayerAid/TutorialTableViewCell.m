@@ -96,6 +96,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.tutorial = tutorial;
   
   [self updateBackgroundImageView];
+  [self updateLikeButtonForTutorial];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
@@ -109,9 +110,32 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self adjustAlphaFromTutorial:tutorial];
 }
 
+#pragma mark - Update UI to match Tutorial
+
 - (void)updateBackgroundImageView
 {
+  if (self.tutorial.isDraft) {
+    [self updateBackgroundImageViewFromTutorialData];
+  }
+  else {
+    [self fetchBackgroundImageViewFromNetwork];
+  }
+}
+
+- (void)updateBackgroundImageViewFromTutorialData
+{
+  if (!self.tutorial.isDraft) { // drafts don't have to contain imageData
+    AssertTrueOrReturn(self.tutorial.pngImageData);
+  }
+  self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
+}
+
+- (void)fetchBackgroundImageViewFromNetwork
+{
   __weak UIImageView *weakBackgroundImageView = self.backgroundImageView;
+  
+  NSString *imageURLString = self.tutorial.imageURL;
+  AssertTrueOrReturn(imageURLString.length);
   NSURLRequest *imageURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.tutorial.imageURL]];
   
   [self.backgroundImageView setImageWithURLRequest:imageURLRequest placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -121,6 +145,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
       weakBackgroundImageView.alpha = 1.0f;
     }];
   } failure:nil];
+}
+
+- (void)updateLikeButtonForTutorial
+{
+  self.favouriteButton.hidden = (self.tutorial.isDraft);
 }
 
 - (void)adjustAlphaFromTutorial:(Tutorial *)tutorial

@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <MediaPlayer/MediaPlayer.h>
+@import MediaPlayer;
 
 
 @interface MediaPlayerHelper : NSObject
@@ -11,7 +11,5 @@
  Basic implementation - no error handling, etc
  */
 + (void)playVideoWithURL:(NSURL *)url fromViewController:(UIViewController *)viewController;
-
-+ (UIImage *)thumbnailImageFromVideoURL:(NSURL *)videoURL;
 
 @end

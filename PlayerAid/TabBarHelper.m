@@ -15,6 +15,8 @@
   return (UITabBarController *)rootViewController;
 }
 
+#pragma mark - Element at index
+
 + (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex
 {
   UITabBarController *tabBarController = [self.class mainTabBarController];
@@ -34,6 +36,7 @@
       [allTabBarButtons addObject:subview];
     }
   }
+  AssertTrueOr(allTabBarButtons.count > 0 && @"If this assertion fails, internal implementation of TabBar changed and UITabBarButton class is no longer used", return CGRectZero;);
   
   // Subviews don't have to be in order, sort items by x position first
   NSArray *sortedAllTabBarButtons = [allTabBarButtons sortedArrayUsingComparator:^NSComparisonResult(UIView *view1, UIView *view2) {
@@ -58,6 +61,19 @@
   
   AssertTrueOr(NO, return CGRectZero;); // error, couldn't find tabBar item frame!
   return CGRectZero;
+}
+
++ (NSNumber *)tabBarControllerIndexOfViewControllerWithType:(Class)aClass
+{
+  AssertTrueOrReturnNil(aClass);
+  UITabBarController *tabBarController = [self mainTabBarController];
+  
+  NSUInteger createTutorialItemIndex = [tabBarController.viewControllers indexOfObjectPassingTest:^BOOL(id viewController, NSUInteger idx, BOOL *stop) {
+    return [viewController isKindOfClass:aClass];
+  }];
+  
+  AssertTrueOrReturnNil(createTutorialItemIndex != NSNotFound);
+  return @(createTutorialItemIndex);
 }
 
 #pragma mark - Traversing TabBar view hierarchy

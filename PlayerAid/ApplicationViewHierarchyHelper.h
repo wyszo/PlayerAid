@@ -10,8 +10,7 @@
 @interface ApplicationViewHierarchyHelper : NSObject
 
 + (UINavigationController *)navigationControllerWithCreateTutorialViewController;
-
-+ (ProfileViewController *)profileViewControllerFromTabBarController;
++ (UINavigationController *)navigationControllerWithViewController:(UIViewController *)viewController;
 
 /**
  * If user != currentUser, will also make a network request to update other user's data

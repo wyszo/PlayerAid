@@ -3,7 +3,8 @@
 //
 
 #import "ServerDataUpdateController.h"
-#import "UsersController.h"
+#import "UsersFetchController.h"
+#import "TutorialListFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "NSError+PlayerAidErrors.h"
 #import "ServerResponseParsing.h"
@@ -19,10 +20,8 @@
 
 + (void)updateUserAndTutorials
 {
-  [[UsersController sharedInstance] updateCurrentUserProfile];
-  
-  // [[TutorialsController sharedInstance] updateTutorialsList];
-  // if this is the first time we fetch tutorials - show blocking alert view on failure (and retry)!
+  [[UsersFetchController sharedInstance] fetchCurrentUserProfile];
+  [[TutorialListFetchController sharedInstance] fetchTutorials];
 }
 
 + (void)saveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion
@@ -100,9 +99,7 @@
       InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, topLevelError) ;
     }
     else {
-      if (completion) {
-        completion(nil);
-      }
+      CallBlock(completion, nil);
     }
   }];
 }
@@ -169,10 +166,7 @@
   }];
   
   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  
-  if (completion) {
-    completion(topLevelError);
-  }
+  CallBlock(completion, topLevelError);
 }
 
 @end

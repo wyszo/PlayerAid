@@ -3,14 +3,14 @@
 //
 
 #import "UITabBarControllerWithAutorotate.h"
-#import "InterfaceOrientationViewControllerDecorator.h"
+#import "TWInterfaceOrientationViewControllerDecorator.h"
 
 
 @implementation UITabBarControllerWithAutorotate
 
 + (void)initialize
 {
-  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+  [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
 }
 
 @end

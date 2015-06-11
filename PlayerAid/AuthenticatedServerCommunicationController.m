@@ -7,8 +7,11 @@
 #import "GlobalSettings.h"
 #import "Section.h"
 #import "TutorialStep.h"
-#import "NSMutableURLRequest+HttpHeaders.h"
 #import "NSURL+URLString.h"
+
+
+static NSString *const kTutorialUrlString = @"tutorial";
+static NSString *const kListTutorialsUrlString = @"tutorials";
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -19,16 +22,9 @@
 
 @implementation AuthenticatedServerCommunicationController
 
-+ (instancetype)sharedInstance
-{
-  /* Technical debt: could easily avoid making a singleton here */
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+/* Technical debt: could easily avoid making a singleton here */
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
+
 
 + (void)setApiToken:(NSString *)apiToken
 {
@@ -59,18 +55,21 @@
 
 #pragma mark - Tutorial management
 
+- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion
+{
+  [self getRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
+}
+
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
   AssertTrueOrReturn(tutorial.serverID);
   NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
   
   [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) completion(nil);
+    CallBlock(completion, nil);
     
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(error);
-    }
+    CallBlock(completion, error);
   }];
 }
 
@@ -82,7 +81,7 @@
 - (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
 {
   AssertTrueOrReturnNil(tutorialID.length);
-  return [NSString stringWithFormat:@"tutorial/%@", tutorialID];
+  return [NSString stringWithFormat:@"%@/%@", kTutorialUrlString, tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -96,10 +95,8 @@
                                // Optionally we could send CreatedOn date here
                               };
   
-  [self postRequestWithApiToken:self.apiToken urlString:@"tutorial" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+  [self postRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
@@ -154,9 +151,7 @@
                                @"value" : tutorialStep.text
                               };
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
@@ -198,13 +193,9 @@
     [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(nil, responseObject, nil);
-    }
+    CallBlock(completion, nil, responseObject, nil);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(nil, nil, error);
-    }
+    CallBlock(completion, nil, nil, error);
   }];
 }
 
@@ -217,12 +208,40 @@
                               };
   NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
   [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (completion) {
-      completion(response, responseObject, error);
-    }
+    CallBlock(completion, response, responseObject, error);
   }];
 }
 
+#pragma mark - Edit profile
+
+- (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion
+{
+  NSDictionary *parameters = @{
+                               @"source" : @"Facebook"
+                              };
+  [self postRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    CallBlock(completion, response, responseObject, error);
+  }];
+}
+
+- (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(userName.length);
+  
+  NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{ @"name" : userName }];
+  if (userDescription.length) {
+    [parameters addEntriesFromDictionary:@{ @"description" : userDescription }];
+  }
+  
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  
+  [operationManager PUT:@"user" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, operation.response, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, operation.response, nil, error);
+  }];
+}
+  
 #pragma mark - Sending requests
 
 - (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
@@ -248,13 +267,9 @@
   AssertTrueOrReturn([operationManager respondsToSelector:selector]);
   
   [self invokeAFNetworkingOperationWithReuqestWithSelector:selector operationManager:operationManager urlString:urlString parameters:(id)parameters successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(operation.response, responseObject, nil);
-    }
+      CallBlock(completion, operation.response, responseObject, nil);
   } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(operation.response, nil, error);
-    }
+      CallBlock(completion, operation.response, nil, error);
   }];
 }
 

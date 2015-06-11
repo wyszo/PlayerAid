@@ -15,20 +15,24 @@
 #import "CreateTutorialStepButtonsContainerView.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialTextStepViewController.h"
-#import "UsersController.h"
+#import "UsersFetchController.h"
 #import "MediaPickerHelper.h"
 #import "AlertFactory.h"
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
-#import "UserDefaultsHelper.h"
-#import "InterfaceOrientationViewControllerDecorator.h"
+#import "TWUserDefaultsHelper.h"
+#import "TWInterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
 #import "VideoPlayer.h"
 #import "YCameraViewStandardDelegateObject.h"
 #import "TabBarBadgeHelper.h"
 #import "ImagePickerOverlayController.h"
+#import "UserTutorialsController.h"
+
+
+static NSString *const kXibName = @"CreateTutorialView";
 
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
@@ -62,12 +66,21 @@
 
 + (void)initialize
 {
-  [[InterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+  [[TWInterfaceOrientationViewControllerDecorator new] addInterfaceOrientationMethodsToClass:[self class] shouldAutorotate:NO];
+}
+
+- (instancetype)init
+{
+  self = [super initWithNibName:kXibName bundle:nil];
+  if (self) {
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupLazyInitializers];
   [self setupNavigationBarButtons];
   self.edgesForExtendedLayout = UIRectEdgeNone;
   
@@ -86,6 +99,11 @@
   DISPATCH_AFTER(0.01, ^{
     [weakSelf disableEditButton];
   });
+}
+
+- (void)setupLazyInitializers
+{
+  self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];
 }
 
 - (void)setupCustomCamera
@@ -117,7 +135,7 @@
   self.tutorialTableView.estimatedRowHeight = 100.f;
   
   [self setupAndAttachHeaderViewController];
-  self.tutorialTableView.tableFooterView = [CommonViews smallTableFooterView];
+  self.tutorialTableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 #pragma mark - View layout and setup
@@ -254,7 +272,7 @@
 
 - (User *)currentUser
 {
-  return [[UsersController sharedInstance] currentUserInContext:self.createTutorialContext];
+  return [[UsersFetchController sharedInstance] currentUserInContext:self.createTutorialContext];
 }
 
 #pragma mark - NavigationBar buttons
@@ -274,8 +292,8 @@
 
 - (void)addNavigationBarCancelButton
 {
-  UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
-  self.navigationItem.leftBarButtonItem = cancelButton;
+  UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(dismissViewController)];
+  self.navigationItem.leftBarButtonItem = closeButton;
 }
 
 - (void)addNavigationBarPublishButton
@@ -383,8 +401,20 @@
   if (!DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     tutorialDataComplete = [self.headerViewController validateTutorialDataCompleteShowErrorAlerts];
   }
-  if (tutorialDataComplete) {
+  
+  VoidBlock publishTutorial = ^() {
     [self presentPublishingTutorialViewController];
+  };
+  
+  if (tutorialDataComplete) {
+    if (![[UserTutorialsController new] loggedInUserHasPublishedOrInReviewTutorials]) {
+      [AlertFactory showFirstPublishedTutorialAlertViewWithOKAction:^{
+        publishTutorial();
+      }];
+    }
+    else {
+      publishTutorial();
+    }
   }
 }
 
@@ -430,10 +460,11 @@
   publishingViewController.tutorial = self.tutorial;
   
   __weak typeof (self) weakSelf = self;
-  publishingViewController.completionBlock = ^(NSError *error) {
-    if (!error) {
-      [weakSelf dismissViewController];
+  publishingViewController.completionBlock = ^(BOOL saveAsDraft, NSError *error) {
+    if (saveAsDraft) {
+      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
     }
+    [weakSelf forceDismissViewController];
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
 }
@@ -441,7 +472,7 @@
 - (void)dismissViewController
 {
   if (!self.tutorialHasAnyData) {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self forceDismissViewController];
     return;
   }
   
@@ -454,11 +485,15 @@
         }
       }];
     } else {
-      [weakSelf saveTutorialAsDraft];
-      [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
+      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
+}
+
+- (void)forceDismissViewController
+{
+  return [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TutorialStepTableViewCellDelegate
@@ -557,7 +592,7 @@
 - (void)pushCreateNewTutorialTextStepViewController
 {
   defineWeakSelf();
-  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+  [self pushCreateTutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       [weakSelf saveTutorialStepWithText:text];
     }
@@ -566,15 +601,16 @@
 
 - (void)pushEditTextStepViewControllerWithTextStep:(TutorialStep *)tutorialStep
 {
-  [self pushCreatetutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
+  defineWeakSelf();
+  [self pushCreateTutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       tutorialStep.text = text;
-      [self saveTutorial];
+      [weakSelf saveTutorial];
     }
    } tutorialTextStep:tutorialStep];
 }
 
-- (void)pushCreatetutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
+- (void)pushCreateTutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
 {
   CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:completion tutorialTextStep:tutorialTextStep];
   
@@ -622,6 +658,12 @@
   [self.createTutorialContext MR_saveOnlySelfAndWait];
 }
 
+- (void)saveTutorialAsDraftSetProfileTabBadge
+{
+  [self saveTutorialAsDraft];
+  [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
+}
+
 - (void)saveTutorialAsDraft
 {
   [self fillRequiredFieldsForTutorial:self.tutorial];
@@ -659,14 +701,6 @@
     };
   }
   return _mediaController;
-}
-   
-- (VideoPlayer *)videoPlayer
-{
-  if (!_videoPlayer) {
-    _videoPlayer = [[VideoPlayer alloc] initWithParentViewController:self.navigationController];
-  }
-  return _videoPlayer;
 }
 
 @end

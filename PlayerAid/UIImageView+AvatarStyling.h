@@ -7,5 +7,6 @@
 
 - (void)styleAsSmallAvatar;
 - (void)styleAsLargeAvatar;
+- (void)styleAsAvatarThinBorder;
 
 @end

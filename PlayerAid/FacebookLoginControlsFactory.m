@@ -18,15 +18,8 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
 
 @implementation FacebookLoginControlsFactory
 
-+ (instancetype)sharedInstance
-{
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
+
 
 #pragma mark - Creating Facebook login button
 

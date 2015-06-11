@@ -5,9 +5,11 @@
 #import "CreateTutorialTextStepViewController.h"
 #import <NSString+RemoveEmoji.h>
 #import "AlertFactory.h"
-#import "NSString+Trimming.h"
 #import "GlobalSettings.h"
 
+/**
+ Technical debt: this class should use TWTextViewWithCharacterLimitLabelDelegate instead of implementing it from scratch. See EditProfileView as an example. 
+ */
 
 NSString *const kCreateTutorialErrorDomain = @"CreateTutorialDomain";
 const NSInteger kTextStepDismissedError = 1;
@@ -137,7 +139,7 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (NSString *)processedText
 {
-  return [self.textView.text stringByTrimmingWhitespaceAndNewline];
+  return [self.textView.text tw_stringByTrimmingWhitespaceAndNewline];
 }
 
 #pragma UITextViewDelegate
@@ -167,11 +169,8 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)addTextButtonPressed
 {
-  [self forceDismissViewController];
-  
-  if (self.completionBlock) {
-    self.completionBlock(self.processedText, nil);
-  }
+  [self popViewController];
+  CallBlock(self.completionBlock, self.processedText, nil);
 }
 
 - (void)cancelButtonPressed
@@ -181,15 +180,17 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)dismissViewControllerShowingConfirmationAlertIfNeeded
 {
+  [self.textView resignFirstResponder];
+  
   if (!self.processedText.length) {
-    [self forceDismissViewController];
+    [self forceDismissViewControllerWithError];
     return;
   }
   
   defineWeakSelf();
   void (^confirmationAlertCompletionBlock)(BOOL) = ^(BOOL discard) {
     if (discard) {
-      [weakSelf forceDismissViewController];
+      [weakSelf forceDismissViewControllerWithError];
     }
   };
   
@@ -218,10 +219,16 @@ const NSInteger kTextStepDismissedError = 1;
   self.textView.selectedTextRange = nil;
 }
 
-- (void)forceDismissViewController
+- (void)forceDismissViewControllerWithError
 {
+  [self popViewController];
+  
   NSError *error = [NSError errorWithDomain:kCreateTutorialErrorDomain code:kTextStepDismissedError userInfo:nil];
-  self.completionBlock(nil, error);
+  CallBlock(self.completionBlock, nil, error);
+}
+
+- (void)popViewController
+{
   [self.navigationController popViewControllerAnimated:YES];
 }
 

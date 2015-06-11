@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraPortraitBlockingOverlayViewController">
             <connections>
                 <outlet property="view" destination="iN0-l3-epB" id="osN-gO-djJ"/>
             </connections>
@@ -33,12 +33,26 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdb-25-mSb" userLabel="Cancel button">
+                            <rect key="frame" x="8" y="534" width="86" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="58" id="snm-dM-0rc"/>
+                                <constraint firstAttribute="width" constant="86" id="yH9-wH-ZSi"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="2gU-32-Z0e"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                     </accessibility>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Wdb-25-mSb" secondAttribute="bottom" constant="8" id="3gg-1l-Cwm"/>
                         <constraint firstAttribute="centerX" secondItem="ddH-a2-J5M" secondAttribute="centerX" id="4Al-Ed-tlc"/>
                         <constraint firstItem="ddH-a2-J5M" firstAttribute="leading" secondItem="KdS-sB-sB0" secondAttribute="leading" constant="135" id="5f8-Mj-cJX"/>
                         <constraint firstAttribute="centerX" secondItem="dxg-me-3fU" secondAttribute="centerX" id="5zO-HX-czX"/>
@@ -46,6 +60,7 @@
                         <constraint firstItem="ddH-a2-J5M" firstAttribute="top" secondItem="KdS-sB-sB0" secondAttribute="top" constant="8" id="bP5-YE-pBf"/>
                         <constraint firstAttribute="trailing" secondItem="ddH-a2-J5M" secondAttribute="trailing" constant="62" id="gGr-fK-iaW"/>
                         <constraint firstItem="ddH-a2-J5M" firstAttribute="top" secondItem="KdS-sB-sB0" secondAttribute="top" constant="190" id="iTM-Ef-e12"/>
+                        <constraint firstItem="Wdb-25-mSb" firstAttribute="leading" secondItem="KdS-sB-sB0" secondAttribute="leading" constant="8" id="pjd-cT-Ox8"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">

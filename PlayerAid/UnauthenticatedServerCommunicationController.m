@@ -5,7 +5,6 @@
 #import <AFNetworking.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
-#import "NSMutableURLRequest+HttpHeaders.h"
 #import "NSURL+URLString.h"
 
 
@@ -20,15 +19,7 @@
 
 @implementation UnauthenticatedServerCommunicationController
 
-+ (instancetype)sharedInstance
-{
-  static id sharedInstance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
-}
+SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Authentication
 

@@ -8,6 +8,7 @@
 #import "TutorialCellHelper.h"
 #import "TutorialStepsDataSource.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "CommonViews.h"
 
 
 @interface TutorialDetailsViewController ()
@@ -41,12 +42,13 @@
 {
   AssertTrueOrReturn(self.tutorial);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:nil];
+  self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
 {
   if (!_headerTableViewDataSource) {
-    _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.headerTableView];
+    _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.headerTableView];
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
     _headerTableViewDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self allowPushingLoggedInUser:NO];

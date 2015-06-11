@@ -4,6 +4,7 @@
 
 #import "TabBarBadgeHelper.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "PlayerAidTabBarHelper.h"
 
 
 @implementation TabBarBadgeHelper
@@ -31,7 +32,7 @@
 
 - (UITabBarItem *)profileTabBarItem
 {
-  UIViewController *profileViewControler = ApplicationViewHierarchyHelper.profileViewControllerFromTabBarController;
+  UIViewController *profileViewControler = [PlayerAidTabBarHelper tabBarProfileViewController];
   UITabBarItem *profileTabBarItem = profileViewControler.navigationController.tabBarItem;
   AssertTrueOrReturnNil(profileTabBarItem);
   return profileTabBarItem;

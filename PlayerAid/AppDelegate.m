@@ -9,7 +9,6 @@
 #import "TabBarHelper.h"
 #import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
-#import "UsersController.h"
 #import "ServerDataUpdateController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "JourneyController_Debug.h"
@@ -60,6 +59,10 @@
   
   if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
     [journeyController DEBUG_presentCreateTutorialViewController];
+  }
+  
+  if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
+    [journeyController DEBUG_presentProfile];
   }
   
   if (DEBUG_MODE_PUSH_SETTINGS) {

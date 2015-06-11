@@ -4,7 +4,7 @@
 
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 #import "ColorsHelper.h"
 
 static NSString *const kNibFileName = @"PlayerInfoView";
@@ -32,7 +32,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self setupBackgroundColor];
   }
   return self;
@@ -42,7 +42,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self setupBackgroundColor];
   }
   return self;
@@ -56,7 +56,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setupBackgroundColor
 {
-  self.contentView.backgroundColor = [ColorsHelper loginAndPlayerInfoViewBackgroundColor];
+  self.contentView.backgroundColor = [ColorsHelper playerAidBlueColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -79,7 +79,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (IBAction)editButtonPressed:(id)sender
 {
-  // TODO: push edit view
+  CallBlock(self.editButtonPressed);
 }
 
 @end

@@ -3,7 +3,7 @@
 //
 
 #import "PlayerInfoSegmentedControlButtonView.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 
 
 static NSString *const kNibFileName = @"PlayerInfoSegmentedControlButtonView";
@@ -24,7 +24,7 @@ static NSString *const kNibFileName = @"PlayerInfoSegmentedControlButtonView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self customize];
   }
   return self;
@@ -34,7 +34,7 @@ static NSString *const kNibFileName = @"PlayerInfoSegmentedControlButtonView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
     [self customize];
   }
   return self;

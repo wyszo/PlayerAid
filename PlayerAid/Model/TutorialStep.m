@@ -1,9 +1,9 @@
 #import "TutorialStep.h"
 #import "MediaPlayerHelper.h"
-#import "UIImage+Cropping.h"
+#import "UIImage+TWCropping.h"
 
 
-static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best quality
+static const CGFloat kJPEGCompressionBestQuality = 1.0f;
 
 
 @implementation TutorialStep
@@ -22,7 +22,7 @@ static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best qua
 {
   AssertTrueOrReturnNil(image);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
-  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompression); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
+  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompressionBestQuality); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
   return tutorialStep;
 }
 
@@ -32,10 +32,10 @@ static const CGFloat kJPEGCompression = 1.0f; // 1.0f - less optimised, best qua
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.videoPath = videoUrl.absoluteString;
   
-  UIImage *thumbnailLandscape = [MediaPlayerHelper thumbnailImageFromVideoURL:videoUrl];
-  UIImage *thumbnailSquare = [thumbnailLandscape imageByCroppingCenterToSquare];
+  UIImage *thumbnailLandscape = [TWVideoThumbnailHelper thumbnailImageFromVideoURL:videoUrl atTimeInSeconds:0];
+  UIImage *thumbnailSquare = [thumbnailLandscape tw_imageByCroppingCenterToSquare];
   AssertTrueOr(thumbnailSquare, ;);
-  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompression);
+  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionBestQuality);
   
   return tutorialStep;
 }

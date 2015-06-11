@@ -10,6 +10,8 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
 
+#import "EditProfileViewController.h"
+
 
 static const NSUInteger kSegmentedControlHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
@@ -36,23 +38,36 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-  if (!self.user) {
-    self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
-  }
-  AssertTrueOrReturn(self.user);
-  
+
+  [self setupUserIfNotNil];
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
-  self.playerInfoView.user = self.user;
+  [self setupPlayerInfoView];
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  
+  if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
+    [self presentEditProfileViewController];
+  }
+}
+
+- (void)setupUserIfNotNil
+{
+  if (!self.user) {
+    [self forceFetchUser];
+  }
+  AssertTrueOrReturn(self.user);
+}
+
+- (void)forceFetchUser
+{
+  self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
 - (void)setupTutorialsTableDataSource
 {
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initWithTableView:self.tutorialTableView];
+  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", self.user, kTutorialStateUnsaved];
   self.tutorialsTableDataSource.groupBy = @"state";
   self.tutorialsTableDataSource.showSectionHeaders = YES;
@@ -77,6 +92,15 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 }
 
 #pragma mark - Header View initialization
+
+- (void)setupPlayerInfoView
+{
+  defineWeakSelf();
+  self.playerInfoView.editButtonPressed = ^() {
+    [weakSelf presentEditProfileViewController];
+  };
+  self.playerInfoView.user = self.user;
+}
 
 - (void)setupTableHeaderView
 {
@@ -134,6 +158,21 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
   self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
+}
+
+#pragma mark - Other methods 
+
+- (void)presentEditProfileViewController
+{
+  EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:self.user];
+
+  defineWeakSelf();
+  editProfileViewController.didUpdateUserProfileBlock = ^() {
+    [weakSelf forceFetchUser];
+    weakSelf.playerInfoView.user = self.user;
+  };
+  UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

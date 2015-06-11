@@ -3,7 +3,7 @@
 //
 
 #import "SectionLabelContainer.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 
 static NSString *const kNibFileName = @"SectionLabelContainerView";
 
@@ -19,7 +19,7 @@ static NSString *const kNibFileName = @"SectionLabelContainerView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }
@@ -28,7 +28,7 @@ static NSString *const kNibFileName = @"SectionLabelContainerView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self.view fromNibNamed:kNibFileName];
+    [self tw_loadView:self.view fromNibNamed:kNibFileName];
   }
   return self;
 }

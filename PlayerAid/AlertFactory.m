@@ -88,6 +88,24 @@
   return alertView;
 }
 
++ (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message firstButtonTitle:(NSString *)firstButtonTitle firstButtonAction:(VoidBlock)firstAction secondButtonTitle:(NSString *)secondButtonTitle secondAction:(VoidBlock)secondAction
+{
+  AssertTrueOrReturnNil(message.length || title.length);
+  AssertTrueOrReturnNil(firstButtonTitle.length);
+  AssertTrueOrReturnNil(secondButtonTitle.length);
+  
+  RIButtonItem *firstButtonItem = [RIButtonItem itemWithLabel:firstButtonTitle action:^{
+    CallBlock(firstAction);
+  }];
+  RIButtonItem *secondButtonItem = [RIButtonItem itemWithLabel:secondButtonTitle action:^{
+    CallBlock(secondAction);
+  }];
+  
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:firstButtonItem, secondButtonItem, nil];
+  [alertView show];
+  return alertView;
+}
+
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Cancel tutorial step?";
@@ -111,10 +129,10 @@
 + (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Do you want to keep your tutorial?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Save as draft" defaultButtonAction:^{
-    CallBlock(completionBlock, NO);
-  } secondaryButtonTitle:@"Delete" secondaryButtonAction:^{
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Delete" firstButtonAction:^{
     CallBlock(completionBlock, YES);
+  } secondButtonTitle:@"Save as draft" secondAction:^{
+    CallBlock(completionBlock, NO);
   }];
 }
 
@@ -132,7 +150,7 @@
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction
 {
-  NSString *message = @"Congratulations on creating your first tutorial!\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
+  NSString *message = @"Congratulations on creating your first tutorial!\n\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
   
   UIAlertView *alert = [self showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Publish" okAction:okAction cancelAction:nil];
   return alert;
@@ -140,22 +158,23 @@
 
 + (UIAlertView *)showTutorialInReviewInfoAlertView
 {
-  NSString *message = @"Only great tutorials are published on the PlayerAid platform.\nTo maintain that quality, we review every single one.\nYou will hear from the PlayerAid team within two days!  ";
+  NSString *message = @"Only great tutorials are published on the PlayerAid platform. To maintain that quality, we review every single one. You will hear from the PlayerAid team within two days!";
   return [self showOKAlertViewWithMessage:message okButtonTitle:@"Got it"];
+}
+
++ (UIAlertView *)showPublishingTutorialFailedAlertViewWithSaveAction:(VoidBlock)saveAction retryAction:(VoidBlock)retryAction
+{
+  NSString *message = @"Struggling to upload tutorial. Please try again now, or save as a draft and try later.";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Save" firstButtonAction:saveAction secondButtonTitle:@"Retry" secondAction:retryAction];
 }
 
 #pragma mark - Delete tutorial
 
-+ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
++ (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(VoidBlock)okAction cancelAction:(VoidBlock)cancelAction
 {
   NSString *title = @"Delete tutorial?";
   NSString *message = @"This will permanently delete your tutorial.";
-  UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
-    CallBlock(okAction);
-  } cancelAction:^{
-    CallBlock(cancelAction);
-  }];
-  return alert;
+  return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:@"Delete" firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
 }
 
 + (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction
@@ -166,6 +185,13 @@
     CallBlock(okAction);
   } cancelAction:nil];
   return alert;
+}
+
+#pragma mark - Edit profile alerts
+
++ (UIAlertView *)showUpdateAvatarFromFacebookFailureAlertView
+{
+  return [self showOKAlertViewWithMessage:@"<DEBUG> Couldn't update profile image from Facebook! Please try again later"];
 }
 
 #pragma mark - Other alerts

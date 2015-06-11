@@ -3,7 +3,7 @@
 //
 
 #import "TutorialSectionHeaderView.h"
-#import "UIView+XibLoading.h"
+#import "UIView+TWXibLoading.h"
 
 static NSString *const kNibName = @"TutorialsSectionHeaderView";
 
@@ -14,7 +14,7 @@ static NSString *const kNibName = @"TutorialsSectionHeaderView";
 {
   self = [super initWithFrame:CGRectZero];
   if (self) {
-    [self loadView:self fromNibNamed:kNibName];
+    [self tw_loadView:self fromNibNamed:kNibName];
   }
   return self;
 }
@@ -23,7 +23,7 @@ static NSString *const kNibName = @"TutorialsSectionHeaderView";
 {
   self = [super initWithFrame:frame];
   if (self) {
-    [self loadView:self fromNibNamed:kNibName];
+    [self tw_loadView:self fromNibNamed:kNibName];
   }
   return self;
 }
@@ -32,7 +32,7 @@ static NSString *const kNibName = @"TutorialsSectionHeaderView";
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    [self loadView:self fromNibNamed:kNibName];
+    [self tw_loadView:self fromNibNamed:kNibName];
   }
   return self;
 }
