@@ -124,7 +124,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageViewFromTutorialData
 {
-  AssertTrueOrReturn(self.tutorial.pngImageData);
+  if (!self.tutorial.isDraft) { // drafts don't have to contain imageData
+    AssertTrueOrReturn(self.tutorial.pngImageData);
+  }
   self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
 }
 
