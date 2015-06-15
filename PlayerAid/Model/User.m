@@ -17,6 +17,7 @@ static NSString *const kServerIDKey = @"serverID";
 {
   AssertTrueOrReturn(dictionary.count);
   NSSet *oldCreatedTutorialsIDs = [self.createdTutorialsStoredOnServerSet valueForKey:kServerIDKey];
+  NSSet *locallyStoredTutorials = [self tutorialsStoredLocallySet];
   
   NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:@{
                             kServerIDJSONAttributeName : KZProperty(serverID),
@@ -52,6 +53,7 @@ static NSString *const kServerIDKey = @"serverID";
   
   if (tutorialsChanged) {
     [self removeDeletedTutorialsWithOldTutorialIDsSet:oldCreatedTutorialsIDs];
+    [self.createdTutorialSet addObjectsFromArray:locallyStoredTutorials.allObjects]; // draft and unsaved tutorials don't come from server, we have to add them separately
   }
   
   // TODO: if tutorial was liked before but is not liked anymore it might be worth refreshing it (by making an additional request) - it might have been deleted
@@ -60,6 +62,12 @@ static NSString *const kServerIDKey = @"serverID";
 - (NSSet *)createdTutorialsStoredOnServerSet
 {
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"storedOnServer == YES"];
+  return [self.createdTutorialSet filteredSetUsingPredicate:predicate];
+}
+
+- (NSSet *)tutorialsStoredLocallySet
+{
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"storedOnServer == NO"];
   return [self.createdTutorialSet filteredSetUsingPredicate:predicate];
 }
 

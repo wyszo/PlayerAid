@@ -69,6 +69,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setUser:(User *)user
 {
+  _user = user;
   [user placeAvatarInImageView:self.avatarImageView];
   
   self.usernameLabel.text = user.name;
