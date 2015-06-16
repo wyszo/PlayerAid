@@ -209,7 +209,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
-  [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+  
+  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(didSelectRowWithTutorial:)]) {
+    [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

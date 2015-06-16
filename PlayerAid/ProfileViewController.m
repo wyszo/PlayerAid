@@ -13,7 +13,7 @@
 #import "EditProfileViewController.h"
 
 
-static const NSUInteger kSegmentedControlHeight = 54.0f;
+static const NSUInteger kFilterCollectionViewHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
 static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
@@ -108,41 +108,23 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   self.playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight)];
   
-  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kSegmentedControlHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
-  UIView *containerView = [self wrapView:self.playerInfoView inAContainerViewWithFrame:containerFrame];
+  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kFilterCollectionViewHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
+  UIView *containerView = [self.playerInfoView tw_wrapInAContainerViewWithFrame:containerFrame];
   
-  UIView *segmentedControl = [self flatSegmentedControlWithYOffset:kPlayerInfoViewHeight width:windowWidth];
-  [containerView addSubview:segmentedControl];
+  UICollectionView *filterCollectionView = [self collectionViewWithYOffset:kPlayerInfoViewHeight size:CGSizeMake(windowWidth, kFilterCollectionViewHeight)];
+  [containerView addSubview:filterCollectionView];
   
   self.tutorialTableView.tableHeaderView = containerView;
 }
 
-- (UIView *)flatSegmentedControlWithYOffset:(CGFloat)yOffset width:(CGFloat)width
+- (UICollectionView *)collectionViewWithYOffset:(CGFloat)yOffset size:(CGSize)size
 {
-  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, yOffset, width, kSegmentedControlHeight)];
-  view.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
-  
-  PlayerInfoSegmentedControlButtonView *segmentedControlButton = [[PlayerInfoSegmentedControlButtonView alloc] initWithFrame:CGRectMake(0, 0, 80, kSegmentedControlHeight)];
-  [view addSubview:segmentedControlButton];
-  self.tutorialsFilterButtonView = segmentedControlButton;
-  
-  return view;
-}
-
-- (UIView *)wrapView:(UIView *)view inAContainerViewWithFrame:(CGRect)frame
-{
-  UIView *containerView = [[UIView alloc] initWithFrame:frame];
-  containerView.backgroundColor = [UIColor whiteColor];
-  [containerView addSubview:view];
-  return containerView;
+  CGRect frame = CGRectMake(0, yOffset, size.width, size.height);
+  UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:[UICollectionViewFlowLayout new]];
+  return collectionView;
 }
 
 #pragma mark - Tutorials Table View Delegate
-
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
-{
-  // no action, required method
-}
 
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
 {
@@ -158,6 +140,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
   self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
+  
+  AssertTrueOrReturn(self.tutorialsFilterButtonView); // TODO: implementation needs to change for using CollectionView
 }
 
 #pragma mark - Other methods 
