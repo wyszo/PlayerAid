@@ -6,11 +6,10 @@
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
 #import "ColorsHelper.h"
-#import "PlayerInfoSegmentedControlButtonView.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
-
 #import "EditProfileViewController.h"
+#import "EditProfileFilterCollectionViewController.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -24,9 +23,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
-@property (weak, nonatomic) PlayerInfoSegmentedControlButtonView *tutorialsFilterButtonView;
-
-@property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
 
 @end
 
@@ -105,24 +103,35 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupTableHeaderView
 {
   NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
-  
   self.playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight)];
   
   CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kFilterCollectionViewHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
   UIView *containerView = [self.playerInfoView tw_wrapInAContainerViewWithFrame:containerFrame];
   
-  UICollectionView *filterCollectionView = [self collectionViewWithYOffset:kPlayerInfoViewHeight size:CGSizeMake(windowWidth, kFilterCollectionViewHeight)];
-  [containerView addSubview:filterCollectionView];
+  [self addFilterCollectionViewControllerWithSize:CGSizeMake(windowWidth, kFilterCollectionViewHeight) toContainerView:containerView];
   
   self.tutorialTableView.tableHeaderView = containerView;
 }
 
-- (UICollectionView *)collectionViewWithYOffset:(CGFloat)yOffset size:(CGSize)size
+- (void)addFilterCollectionViewControllerWithSize:(CGSize)cellSize toContainerView:(UIView *)containerView
 {
-  CGRect frame = CGRectMake(0, yOffset, size.width, size.height);
-  UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:[UICollectionViewFlowLayout new]];
+  AssertTrueOrReturn(containerView);
+  
+  self.filterCollectionViewController = [self filterCollectionViewControllerWithYOffset:kPlayerInfoViewHeight size:cellSize];
+  [self addChildViewController:self.filterCollectionViewController];
+  [containerView addSubview:self.filterCollectionViewController.collectionView];
+  [self.filterCollectionViewController didMoveToParentViewController:self];
+}
+
+- (EditProfileFilterCollectionViewController *)filterCollectionViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
+{
+  EditProfileFilterCollectionViewController *collectionViewController = [[EditProfileFilterCollectionViewController alloc] init];
+  UICollectionView *collectionView = collectionViewController.collectionView;
+  
+  collectionView.frame = CGRectMake(0, yOffset, size.width, size.height);
   collectionView.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
-  return collectionView;
+  
+  return collectionViewController;
 }
 
 #pragma mark - Tutorials Table View Delegate

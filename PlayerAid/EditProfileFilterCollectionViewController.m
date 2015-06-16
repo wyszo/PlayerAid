@@ -1,0 +1,86 @@
+//
+//  PlayerAid
+//
+
+#import "EditProfileFilterCollectionViewController.h"
+#import "PlayerInfoCollectionViewCell.h"
+#import "ColorsHelper.h"
+
+
+static const CGFloat kCellWidth = 72.0f;
+
+
+@interface EditProfileFilterCollectionViewController ()
+
+@property (strong, nonatomic) NSArray *cellLabels;
+
+@end
+
+
+@implementation EditProfileFilterCollectionViewController
+
+#pragma mark - View Lifecycle
+
+- (instancetype)init
+{
+  self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+  if (self) {
+  }
+  return self;
+}
+
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  
+  self.collectionView.dataSource = nil;
+  self.collectionView.delegate = nil;
+  self.cellLabels = @[ @"Tutorials", @"Liked", @"Following", @"Followers" ];
+  
+  [self setupCollectionView];
+}
+
+- (void)setupCollectionView
+{
+  [self.collectionView registerNib:[PlayerInfoCollectionViewCell nib] forCellWithReuseIdentifier:@"Cell"];
+  
+  [self setupCollectionViewDelegate];
+  [self setupCollectionViewDataSource];
+}
+
+- (id <UICollectionViewDelegate>)setupCollectionViewDelegate
+{
+  CGFloat collectionViewHeight = self.collectionView.frame.size.height;
+  CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
+  
+  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize attachingToCollectionView:self.collectionView];
+  return delegate;
+}
+
+- (void)setupCollectionViewDataSource
+{
+  TWSimpleCollectionViewDataSource *dataSource = [[TWSimpleCollectionViewDataSource alloc] initAttachingToCollectionView:self.collectionView];
+  dataSource.numberOfItems = self.cellLabels.count;
+  
+  dataSource.cellConfigurationBlock = ^(UICollectionViewCell *cell, NSIndexPath *indexPath) {
+    AssertTrueOrReturn([cell isKindOfClass:[PlayerInfoCollectionViewCell class]]);
+    PlayerInfoCollectionViewCell *collectionViewCell = (PlayerInfoCollectionViewCell *)cell;
+    collectionViewCell.selectionBackgroundColor = [ColorsHelper tutorialsSelectedFilterButtonColor];
+    
+    AssertTrueOrReturn(indexPath.row < self.cellLabels.count);
+    NSString *labelString = self.cellLabels[indexPath.row];
+    collectionViewCell.bottomLabel.text = labelString;
+  };
+}
+
+#pragma mark - ViewController Containment
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+  [super didMoveToParentViewController:parent];
+  
+  self.collectionView.delegate = nil;
+  [self setupCollectionViewDelegate];
+}
+
+@end

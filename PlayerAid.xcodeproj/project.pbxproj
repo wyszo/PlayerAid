@@ -42,11 +42,12 @@
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
 		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
-		312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */; };
-		312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
+		314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */; };
+		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
+		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
@@ -192,15 +193,17 @@
 		312E191D1AB712C900CB5707 /* DebugSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSettings.m; sourceTree = "<group>"; };
 		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
 		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
-		312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoSegmentedControlButtonView.xib; sourceTree = "<group>"; };
-		312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoSegmentedControlButtonView.h; sourceTree = "<group>"; };
-		312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoSegmentedControlButtonView.m; sourceTree = "<group>"; };
 		312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionsDataSource.h; sourceTree = "<group>"; };
 		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionsDataSource.m; sourceTree = "<group>"; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		313868551B14FFFA00C0C245 /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
 		313868561B14FFFA00C0C245 /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
+		314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileFilterCollectionViewController.h; sourceTree = "<group>"; };
+		314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileFilterCollectionViewController.m; sourceTree = "<group>"; };
+		314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoCollectionViewCell.h; sourceTree = "<group>"; };
+		314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoCollectionViewCell.m; sourceTree = "<group>"; };
+		314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
@@ -393,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				31FB6B611B1111840042C409 /* CameraPortraitBlockingOverlay */,
+				314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */,
 				317780151A80061A007057CD /* Intro */,
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
@@ -618,8 +622,8 @@
 		312FF5F51A9E8F9A00AE3174 /* PlayerInfo */ = {
 			isa = PBXGroup;
 			children = (
+				314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */,
 				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
-				312FF5F61A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib */,
 			);
 			name = PlayerInfo;
 			sourceTree = "<group>";
@@ -682,6 +686,15 @@
 				313868561B14FFFA00C0C245 /* SectionCell.m */,
 			);
 			name = Section;
+			sourceTree = "<group>";
+		};
+		314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */,
+				314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */,
+			);
+			name = EditProfileFiltersCollectionViewController;
 			sourceTree = "<group>";
 		};
 		315822241AEBD83000DA6CCE /* ImagePickerOverlay */ = {
@@ -1146,11 +1159,11 @@
 		31C122621A838A340069D49A /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				31CA3CD41AC4A3500044A13D /* SectionLabelContainer */,
 				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
 				31C122661A838A590069D49A /* PlayerInfo */,
 				31E1F8F71AADA931005EB35B /* PopoverView */,
+				31CA3CD41AC4A3500044A13D /* SectionLabelContainer */,
 				317780331A80E532007057CD /* TableViewCells */,
 				31014E7D1A9C77A1002F3485 /* TutorialSectionHeaderView */,
 			);
@@ -1160,10 +1173,10 @@
 		31C122661A838A590069D49A /* PlayerInfo */ = {
 			isa = PBXGroup;
 			children = (
+				314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */,
+				314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */,
 				31C122631A838A530069D49A /* PlayerInfoView.h */,
 				31C122641A838A530069D49A /* PlayerInfoView.m */,
-				312FF5F81A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.h */,
-				312FF5F91A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m */,
 			);
 			name = PlayerInfo;
 			sourceTree = "<group>";
@@ -1432,10 +1445,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
-				312FF5F71A9E8FE100AE3174 /* PlayerInfoSegmentedControlButtonView.xib in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
 				31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
+				314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
@@ -1509,12 +1522,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */,
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */,
 				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
-				312FF5FA1A9E912800AE3174 /* PlayerInfoSegmentedControlButtonView.m in Sources */,
 				31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */,
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
 				3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */,
@@ -1562,6 +1575,7 @@
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
+				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
