@@ -19,6 +19,7 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 
 
 @implementation PlayerInfoCollectionViewCell
+@synthesize selectionBackgroundColor = _selectionBackgroundColor;
 
 #pragma mark - View Initialization
 
@@ -58,6 +59,12 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
     _selectionBackgroundColor = [UIColor whiteColor];
   }
   return _selectionBackgroundColor;
+}
+
+- (void)setSelectionBackgroundColor:(UIColor *)selectionBackgroundColor
+{
+  _selectionBackgroundColor = selectionBackgroundColor;
+  [self setSelected:self.selected];
 }
 
 @end

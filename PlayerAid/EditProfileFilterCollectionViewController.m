@@ -49,7 +49,7 @@ static const NSInteger kTutorialsItemIndex = 0;
   [self setupCollectionViewDataSource];
 }
 
-- (id <UICollectionViewDelegate>)setupCollectionViewDelegate
+- (id<UICollectionViewDelegate>)setupCollectionViewDelegate
 {
   CGFloat collectionViewHeight = self.collectionView.frame.size.height;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
@@ -82,9 +82,10 @@ static const NSInteger kTutorialsItemIndex = 0;
   
   self.collectionView.delegate = nil;
   [self setupCollectionViewDelegate];
+  [self selectTutorialCell];
 }
 
-#pragma mark - Updating numbers 
+#pragma mark - Updating counts
 
 - (void)setTutorialsCount:(NSInteger)tutorialsCount
 {
@@ -94,12 +95,27 @@ static const NSInteger kTutorialsItemIndex = 0;
 
 - (void)updateTutorialLabels
 {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kTutorialsItemIndex inSection:0];
-  PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-  AssertTrueOrReturn(cell && @"collection view not visible");
-  
-  cell.topLabel.text = [@(self.tutorialsCount) stringValue];
-  cell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
+  self.tutorialsCell.topLabel.text = [@(self.tutorialsCount) stringValue];
+  self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)selectTutorialCell
+{
+  [self.collectionView selectItemAtIndexPath:self.tutorialsCellIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+}
+
+- (PlayerInfoCollectionViewCell *)tutorialsCell
+{
+  PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.tutorialsCellIndexPath];
+  AssertTrueOrReturnNil(cell && @"collection view not visible");
+  return cell;
+}
+
+- (NSIndexPath *)tutorialsCellIndexPath
+{
+  return [NSIndexPath indexPathForRow:kTutorialsItemIndex inSection:0];
 }
 
 @end
