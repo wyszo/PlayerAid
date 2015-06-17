@@ -38,6 +38,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [super viewDidLoad];
 
   [self setupUserIfNotNil];
+  [self setupTableViewCustomCells];
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
@@ -63,6 +64,12 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
+- (void)setupTableViewCustomCells
+{
+  UINib *nib = [UINib nibWithNibName:@"FollowedUser" bundle:nil];
+  [self.tutorialTableView registerNib:nib forCellReuseIdentifier:@"UserCellIdentifier"];
+}
+
 - (void)setupTutorialsTableDataSource
 {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
@@ -76,6 +83,24 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"%@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
+}
+
+- (void)setupFollowingUsersTableDataSource
+{
+  [self createUserCellDataSourceWithObjects:self.user.follows.allObjects];
+}
+
+- (void)setupFollowersTableDataSource
+{
+  [self createUserCellDataSourceWithObjects:self.user.isFollowedBy.allObjects];
+}
+
+- (TWArrayTableViewDataSource *)createUserCellDataSourceWithObjects:(NSArray *)objects
+{
+  AssertTrueOrReturnNil(objects);
+  TWArrayTableViewDataSource *dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:objects attachToTableView:self.tutorialTableView cellDequeueIdentifier:@"UserCellIdentifier"];
+  [dataSource tw_bindLifetimeTo:self.tutorialTableView];
+  return dataSource;
 }
 
 - (TutorialsTableDataSource *)createTutorialsTableDataSourceNoPredicate
@@ -153,12 +178,14 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.filterCollectionViewController.likedTutorialsCount = self.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
-    NSLog(@"<DEBUG> Following tab selected");
-    NOT_IMPLEMENTED_YET_RETURN
+    [weakSelf setupFollowingUsersTableDataSource];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.followingCount = self.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
-    NSLog(@"<DEBUG> Followers tab selected");
-    NOT_IMPLEMENTED_YET_RETURN
+    [weakSelf setupFollowersTableDataSource];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.followersCount = self.tutorialsTableDataSource.objectCount;
   };
   
   UICollectionView *collectionView = collectionViewController.collectionView;

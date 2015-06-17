@@ -83,6 +83,7 @@
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */; };
+		31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A8DE3C1B31F01900137ACB /* FollowedUser.xib */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
@@ -273,6 +274,7 @@
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
 		31A8DE391B31EC7C00137ACB /* UsersHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersHelper.h; sourceTree = "<group>"; };
 		31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersHelper.m; sourceTree = "<group>"; };
+		31A8DE3C1B31F01900137ACB /* FollowedUser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowedUser.xib; sourceTree = "<group>"; };
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsContainerView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsContainerView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsContainerView.m; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				316D86C41B205DE6003874F4 /* EditProfileView.xib */,
+				31A8DE3C1B31F01900137ACB /* FollowedUser.xib */,
 			);
 			name = EditProfile;
 			sourceTree = "<group>";
@@ -1469,6 +1472,7 @@
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
+				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
