@@ -31,7 +31,6 @@
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
 		3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */; };
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
-		31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
@@ -171,7 +170,6 @@
 		3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistedUsersProperties.m; sourceTree = "<group>"; };
 		3108E77E1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCameraViewStandardDelegateObject.h; sourceTree = "<group>"; };
 		3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCameraViewStandardDelegateObject.m; sourceTree = "<group>"; };
-		31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = TestVideo.mp4; path = PlayerAid/TestVideo.mp4; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
@@ -1276,7 +1274,6 @@
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
-				31115F9A1AB1E7D500836CB1 /* TestVideo.mp4 */,
 				31F116731A790F680022BD74 /* PlayerAid */,
 				31F116721A790F680022BD74 /* Products */,
 				D0249EBA475EA22D67FA6BDF /* Pods */,
@@ -1446,7 +1443,6 @@
 			files = (
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
-				31115F9B1AB1E7D500836CB1 /* TestVideo.mp4 in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
 				314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
