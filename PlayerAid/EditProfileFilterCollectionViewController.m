@@ -8,7 +8,11 @@
 
 
 static const CGFloat kCellWidth = 72.0f;
-static const NSInteger kTutorialsItemIndex = 0;
+
+static const NSInteger kTutorialsCellIndex = 0;
+static const NSInteger kLikedTutorialsCellIndex = 1;
+static const NSInteger kFollowingUsersCellIndex = 2;
+static const NSInteger kFollowersCellIndex = 3;
 
 
 @interface EditProfileFilterCollectionViewController ()
@@ -103,13 +107,37 @@ static const NSInteger kTutorialsItemIndex = 0;
 - (void)setTutorialsCount:(NSInteger)tutorialsCount
 {
   _tutorialsCount = tutorialsCount;
-  [self updateTutorialLabels];
+  [self updateTutorialsCountLabels];
 }
 
-- (void)updateTutorialLabels
+- (void)updateTutorialsCountLabels
 {
-  self.tutorialsCell.topLabel.text = [@(self.tutorialsCount) stringValue];
+  [self setCount:self.tutorialsCount inPlayerInfoCollectionViewCell:self.tutorialsCell];
   self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
+}
+
+- (void)setLikedTutorialsCount:(NSInteger)likedTutorialsCount
+{
+  _likedTutorialsCount = likedTutorialsCount;
+  [self setCount:likedTutorialsCount inPlayerInfoCollectionViewCell:self.likedCell];
+}
+
+- (void)setFollowingCount:(NSInteger)followingCount
+{
+  _followingCount = followingCount;
+  [self setCount:followingCount inPlayerInfoCollectionViewCell:self.followingUsersCell];
+}
+
+- (void)setFollowersCount:(NSInteger)followersCount
+{
+  _followersCount = followersCount;
+  [self setCount:followersCount inPlayerInfoCollectionViewCell:self.followersCell];
+}
+
+- (void)setCount:(NSInteger)count inPlayerInfoCollectionViewCell:(PlayerInfoCollectionViewCell *)cell
+{
+  AssertTrueOrReturn(cell);
+  cell.topLabel.text = [@(count) stringValue];
 }
 
 #pragma mark - Auxiliary methods
@@ -119,16 +147,40 @@ static const NSInteger kTutorialsItemIndex = 0;
   [self.collectionView selectItemAtIndexPath:self.tutorialsCellIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
-- (PlayerInfoCollectionViewCell *)tutorialsCell
+- (PlayerInfoCollectionViewCell *)cellForRow:(NSInteger)row
 {
-  PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.tutorialsCellIndexPath];
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+  
+  PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
   AssertTrueOrReturnNil(cell && @"collection view not visible");
   return cell;
 }
 
 - (NSIndexPath *)tutorialsCellIndexPath
 {
-  return [NSIndexPath indexPathForRow:kTutorialsItemIndex inSection:0];
+  return [NSIndexPath indexPathForRow:kTutorialsCellIndex inSection:0];
+}
+
+#pragma mark - Cells
+
+- (PlayerInfoCollectionViewCell *)tutorialsCell
+{
+  return [self cellForRow:kTutorialsCellIndex];
+}
+
+- (PlayerInfoCollectionViewCell *)likedCell
+{
+  return [self cellForRow:kLikedTutorialsCellIndex];
+}
+
+- (PlayerInfoCollectionViewCell *)followingUsersCell
+{
+  return [self cellForRow:kFollowingUsersCellIndex];
+}
+
+- (PlayerInfoCollectionViewCell *)followersCell
+{
+  return [self cellForRow:kFollowersCellIndex];
 }
 
 @end

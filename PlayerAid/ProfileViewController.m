@@ -65,13 +65,25 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)setupTutorialsTableDataSource
 {
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
+  self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", self.user, kTutorialStateUnsaved];
   self.tutorialsTableDataSource.groupBy = @"state";
   self.tutorialsTableDataSource.showSectionHeaders = YES;
-  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
-  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
+}
+
+- (void)setupLikedTutorialsTableDataSource
+{
+  self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"%@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
+}
+
+- (TutorialsTableDataSource *)createTutorialsTableDataSourceNoPredicate
+{
+  TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
+  dataSource.tutorialTableViewDelegate = self;
+  dataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
+  return dataSource;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -129,18 +141,24 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (EditProfileFilterCollectionViewController *)filterCollectionViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
 {
   EditProfileFilterCollectionViewController *collectionViewController = [[EditProfileFilterCollectionViewController alloc] init];
+  defineWeakSelf();
   
   collectionViewController.tutorialsTabSelectedBlock = ^() {
-    NSLog(@"<DEBUG> Tutorials tab selected");
+    [weakSelf setupTutorialsTableDataSource];
+    [weakSelf reloadTableView];
   };
   collectionViewController.likedTabSelectedBlock = ^() {
-    NSLog(@"<DEBUG> Liked tab selected");
+    [weakSelf setupLikedTutorialsTableDataSource];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.likedTutorialsCount = self.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
     NSLog(@"<DEBUG> Following tab selected");
+    NOT_IMPLEMENTED_YET_RETURN
   };
   collectionViewController.followersTabSelectedBlock = ^() {
     NSLog(@"<DEBUG> Followers tab selected");
+    NOT_IMPLEMENTED_YET_RETURN
   };
   
   UICollectionView *collectionView = collectionViewController.collectionView;
@@ -176,6 +194,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   };
   UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
   [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)reloadTableView
+{
+  [self.tutorialTableView reloadData];
 }
 
 @end
