@@ -85,8 +85,13 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [super viewWillAppear:animated];
   [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
-  [self updateFilterViewTutorialsCount];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [self updateFilterViewTutorialsCount];
 }
 
 #pragma mark - Header View initialization
@@ -144,14 +149,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)updateFilterViewTutorialsCount
 {
-  NSInteger publishedCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
-  NSString *publishedCountString = [@(publishedCount) stringValue];
-  self.tutorialsFilterButtonView.topLabel.text = publishedCountString;
-  
-  NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
-  self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
-  
-  AssertTrueOrReturn(self.tutorialsFilterButtonView); // TODO: implementation needs to change for using CollectionView
+  self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
 }
 
 #pragma mark - Other methods 

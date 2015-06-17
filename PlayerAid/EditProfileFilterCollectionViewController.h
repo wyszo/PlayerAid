@@ -7,4 +7,6 @@
 
 @interface EditProfileFilterCollectionViewController : UICollectionViewController
 
+@property (nonatomic, assign) NSInteger tutorialsCount;
+
 @end

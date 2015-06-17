@@ -8,6 +8,7 @@
 
 
 static const CGFloat kCellWidth = 72.0f;
+static const NSInteger kTutorialsItemIndex = 0;
 
 
 @interface EditProfileFilterCollectionViewController ()
@@ -81,6 +82,24 @@ static const CGFloat kCellWidth = 72.0f;
   
   self.collectionView.delegate = nil;
   [self setupCollectionViewDelegate];
+}
+
+#pragma mark - Updating numbers 
+
+- (void)setTutorialsCount:(NSInteger)tutorialsCount
+{
+  _tutorialsCount = tutorialsCount;
+  [self updateTutorialLabels];
+}
+
+- (void)updateTutorialLabels
+{
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kTutorialsItemIndex inSection:0];
+  PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+  AssertTrueOrReturn(cell && @"collection view not visible");
+  
+  cell.topLabel.text = [@(self.tutorialsCount) stringValue];
+  cell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
 }
 
 @end
