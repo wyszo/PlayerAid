@@ -71,9 +71,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.tutorialsTableDataSource.showSectionHeaders = YES;
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
-  
-  __weak typeof(self) weakSelf = self;
-  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:weakSelf allowPushingLoggedInUser:NO];
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -131,8 +129,21 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (EditProfileFilterCollectionViewController *)filterCollectionViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
 {
   EditProfileFilterCollectionViewController *collectionViewController = [[EditProfileFilterCollectionViewController alloc] init];
-  UICollectionView *collectionView = collectionViewController.collectionView;
   
+  collectionViewController.tutorialsTabSelectedBlock = ^() {
+    NSLog(@"<DEBUG> Tutorials tab selected");
+  };
+  collectionViewController.likedTabSelectedBlock = ^() {
+    NSLog(@"<DEBUG> Liked tab selected");
+  };
+  collectionViewController.followingTabSelectedBlock = ^() {
+    NSLog(@"<DEBUG> Following tab selected");
+  };
+  collectionViewController.followersTabSelectedBlock = ^() {
+    NSLog(@"<DEBUG> Followers tab selected");
+  };
+  
+  UICollectionView *collectionView = collectionViewController.collectionView;
   collectionView.frame = CGRectMake(0, yOffset, size.width, size.height);
   collectionView.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
   

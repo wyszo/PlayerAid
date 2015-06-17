@@ -55,6 +55,19 @@ static const NSInteger kTutorialsItemIndex = 0;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
   
   TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize attachingToCollectionView:self.collectionView];
+  delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
+    
+    AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
+    AssertTrueOrReturn(self.likedTabSelectedBlock);
+    AssertTrueOrReturn(self.followingTabSelectedBlock);
+    AssertTrueOrReturn(self.followersTabSelectedBlock);
+    
+    NSArray *callbacks = @[ self.tutorialsTabSelectedBlock, self.likedTabSelectedBlock, self.followingTabSelectedBlock, self.followersTabSelectedBlock ];
+    
+    AssertTrueOrReturn(indexPath.row < callbacks.count);
+    VoidBlock callback = callbacks[indexPath.row];
+    CallBlock(callback);
+  };
   return delegate;
 }
 

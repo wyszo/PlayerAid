@@ -31,6 +31,9 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (instancetype)initAttachingToTableView:(UITableView *)tableView
 {
+  AssertTrueOrReturnNil(tableView);
+  // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
+  
   self = [super init];
   if (self) {
     _tableView = tableView;

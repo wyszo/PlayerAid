@@ -30,7 +30,7 @@
 
 #pragma mark - Profile
 
-+ (void (^)(User *))pushProfileViewControllerFromViewControllerBlock:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
++ (void (^)(User *))pushProfileViewControllerFromViewController:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
 {
   __weak UIViewController *weakViewController = viewController;
   
