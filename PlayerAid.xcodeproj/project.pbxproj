@@ -82,6 +82,7 @@
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
+		31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
@@ -270,6 +271,8 @@
 		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
+		31A8DE391B31EC7C00137ACB /* UsersHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersHelper.h; sourceTree = "<group>"; };
+		31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersHelper.m; sourceTree = "<group>"; };
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsContainerView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsContainerView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsContainerView.m; sourceTree = "<group>"; };
@@ -783,6 +786,7 @@
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 				31A0FD361AD034BA00B94CBE /* UserDefaults */,
+				31A8DE381B31EB6700137ACB /* Users */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 			);
 			name = Helpers;
@@ -1027,6 +1031,15 @@
 				31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */,
 			);
 			name = CreateTutorialTextStep;
+			sourceTree = "<group>";
+		};
+		31A8DE381B31EB6700137ACB /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				31A8DE391B31EC7C00137ACB /* UsersHelper.h */,
+				31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */,
+			);
+			name = Users;
 			sourceTree = "<group>";
 		};
 		31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */ = {
@@ -1548,6 +1561,7 @@
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
+				31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */,
 				313868571B14FFFA00C0C245 /* SectionCell.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,

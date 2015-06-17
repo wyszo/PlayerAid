@@ -13,6 +13,8 @@ const struct UserAttributes UserAttributes = {
 
 const struct UserRelationships UserRelationships = {
 	.createdTutorial = @"createdTutorial",
+	.follows = @"follows",
+	.isFollowedBy = @"isFollowedBy",
 	.likes = @"likes",
 };
 
@@ -110,6 +112,28 @@ const struct UserRelationships UserRelationships = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"createdTutorial"];
 
 	[self didAccessValueForKey:@"createdTutorial"];
+	return result;
+}
+
+@dynamic follows;
+
+- (NSMutableSet*)followsSet {
+	[self willAccessValueForKey:@"follows"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"follows"];
+
+	[self didAccessValueForKey:@"follows"];
+	return result;
+}
+
+@dynamic isFollowedBy;
+
+- (NSMutableSet*)isFollowedBySet {
+	[self willAccessValueForKey:@"isFollowedBy"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"isFollowedBy"];
+
+	[self didAccessValueForKey:@"isFollowedBy"];
 	return result;
 }
 

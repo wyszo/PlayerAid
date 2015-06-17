@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C1514" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="backgroundImage" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -36,12 +36,14 @@
         <attribute name="serverID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="createdTutorial" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="follows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="isFollowedBy" inverseEntity="User" syncable="YES"/>
+        <relationship name="isFollowedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="follows" inverseEntity="User" syncable="YES"/>
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="likedBy" inverseEntity="Tutorial" syncable="YES"/>
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="240"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="133"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="148"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="180"/>
     </elements>
 </model>
