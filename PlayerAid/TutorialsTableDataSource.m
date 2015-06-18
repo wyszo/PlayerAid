@@ -13,6 +13,7 @@
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
 #import "ProfileViewController.h"
+#import "UsersFetchController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -118,7 +119,14 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
       Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-      // TODO: add tutorialInContext to current User's liked relationship (or remove)
+      User *user = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
+      
+      if (favourited) {
+        [user addLikesObject:tutorialInContext];
+      }
+      else {
+        [user removeLikesObject:tutorialInContext];
+      }
     }];
     // TODO: make a network request to favourite/unfavourite on server
   };
