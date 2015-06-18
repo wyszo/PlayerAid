@@ -10,6 +10,8 @@
 #import "TabBarBadgeHelper.h"
 #import "EditProfileViewController.h"
 #import "EditProfileFilterCollectionViewController.h"
+#import "FollowedUserTableViewCell.h"
+#import "FollowedUserTableViewDelegate.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -22,6 +24,9 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
+@property (strong, nonatomic) TWArrayTableViewDataSource *followingDataSource;
+@property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
+@property (strong, nonatomic) FollowedUserTableViewDelegate *followedUserTableViewDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
@@ -37,8 +42,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [super viewDidLoad];
 
+  self.followedUserTableViewDelegate = [FollowedUserTableViewDelegate new];
+  
   [self setupUserIfNotNil];
-  [self setupTableViewCustomCells];
+  [self setupTableViewUserFollowedCells];
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
@@ -64,7 +71,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
-- (void)setupTableViewCustomCells
+- (void)setupTableViewUserFollowedCells
 {
   UINib *nib = [UINib nibWithNibName:@"FollowedUser" bundle:nil];
   [self.tutorialTableView registerNib:nib forCellReuseIdentifier:@"UserCellIdentifier"];
@@ -87,19 +94,33 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)setupFollowingUsersTableDataSource
 {
-  [self createUserCellDataSourceWithObjects:self.user.follows.allObjects];
+  self.followingDataSource = [self createUserCellDataSourceWithObjects:self.user.follows.allObjects];
 }
 
 - (void)setupFollowersTableDataSource
 {
-  [self createUserCellDataSourceWithObjects:self.user.isFollowedBy.allObjects];
+  self.followersDataSource = [self createUserCellDataSourceWithObjects:self.user.isFollowedBy.allObjects];
 }
 
 - (TWArrayTableViewDataSource *)createUserCellDataSourceWithObjects:(NSArray *)objects
 {
   AssertTrueOrReturnNil(objects);
   TWArrayTableViewDataSource *dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:objects attachToTableView:self.tutorialTableView cellDequeueIdentifier:@"UserCellIdentifier"];
-  [dataSource tw_bindLifetimeTo:self.tutorialTableView];
+  
+  dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    AssertTrueOrReturn([cell isKindOfClass:[FollowedUserTableViewCell class]]);
+    FollowedUserTableViewCell *userCell = (FollowedUserTableViewCell *)cell;
+    
+    AssertTrueOrReturn(indexPath.row < objects.count);
+    id object = objects[indexPath.row];
+    
+    AssertTrueOrReturn([object isKindOfClass:[User class]]);
+    User *user = (User *)object;
+    
+    userCell.nameLabel.text = user.name;
+    userCell.descriptionLabel.text = user.userDescription;
+    [user placeAvatarInImageView:userCell.avatarImageView];
+  };
   return dataSource;
 }
 
@@ -175,17 +196,19 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   collectionViewController.likedTabSelectedBlock = ^() {
     [weakSelf setupLikedTutorialsTableDataSource];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.likedTutorialsCount = self.tutorialsTableDataSource.objectCount;
+    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
+    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowingUsersTableDataSource];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.followingCount = self.tutorialsTableDataSource.objectCount;
+    weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
+    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowersTableDataSource];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.followersCount = self.tutorialsTableDataSource.objectCount;
+    weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
   };
   
   UICollectionView *collectionView = collectionViewController.collectionView;
