@@ -282,12 +282,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;DEBUG&gt; No liked tutorials" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmi-Sj-BRS" userLabel="no liked tutorials label">
+                                <rect key="frame" x="16" y="380" width="568" height="171"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Hyb-hV-U9J" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" id="2ux-Np-cRm"/>
+                            <constraint firstItem="fmi-Sj-BRS" firstAttribute="height" secondItem="Hyb-hV-U9J" secondAttribute="height" id="3cx-iM-tIf"/>
                             <constraint firstItem="Hyb-hV-U9J" firstAttribute="trailing" secondItem="WZN-gV-v0K" secondAttribute="trailingMargin" id="5xj-6y-sXk"/>
+                            <constraint firstItem="fmi-Sj-BRS" firstAttribute="centerY" secondItem="Hyb-hV-U9J" secondAttribute="centerY" id="8ga-9F-JJ9"/>
+                            <constraint firstItem="fmi-Sj-BRS" firstAttribute="width" secondItem="Hyb-hV-U9J" secondAttribute="width" id="GGJ-Z1-bZ4"/>
                             <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="Hyb-hV-U9J" secondAttribute="bottom" id="MGm-Ii-IID"/>
+                            <constraint firstItem="fmi-Sj-BRS" firstAttribute="centerX" secondItem="Hyb-hV-U9J" secondAttribute="centerX" id="OGV-2M-JqH"/>
                             <constraint firstItem="knL-tG-Q8f" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leadingMargin" constant="-16" id="U7B-ni-yiQ"/>
                             <constraint firstItem="knL-tG-Q8f" firstAttribute="top" secondItem="WZN-gV-v0K" secondAttribute="topMargin" id="UbT-0r-oEn"/>
                             <constraint firstItem="Hyb-hV-U9J" firstAttribute="top" secondItem="DIJ-1J-d9a" secondAttribute="bottom" constant="360" id="Xgt-Zb-cxQ"/>
@@ -300,6 +310,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="noLikedTutorialsLabel" destination="fmi-Sj-BRS" id="2oJ-Db-ryP"/>
                         <outlet property="noTutorialsLabel" destination="Hyb-hV-U9J" id="HLU-Te-QZH"/>
                         <outlet property="tutorialTableView" destination="knL-tG-Q8f" id="bDj-7W-8MO"/>
                     </connections>

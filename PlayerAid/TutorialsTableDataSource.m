@@ -138,7 +138,6 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
         }];
       }
     }];
-    // TODO: make a network request to favourite/unfavourite on server
   };
 }
 
