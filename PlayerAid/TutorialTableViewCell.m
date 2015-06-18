@@ -161,6 +161,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (BOOL)loggedInUserLikesTutorial
 {
+  // we should check currentUser's createdTutorial relationship instead! 
   __block BOOL likesTutorial;
   
   [self.tutorial.likedBy enumerateObjectsUsingBlock:^(User *user, BOOL *stop) {
