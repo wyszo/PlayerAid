@@ -123,9 +123,19 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
       
       if (favourited) {
         [user addLikesObject:tutorialInContext];
+        [tutorialInContext addLikedByObject:user];
+        
+        [[AuthenticatedServerCommunicationController sharedInstance] likeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Liking alert request failed"];
+        }];
       }
       else {
         [user removeLikesObject:tutorialInContext];
+        [tutorialInContext removeLikedByObject:user];
+        
+        [[AuthenticatedServerCommunicationController sharedInstance] unlikeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Unliking alert request failed"];
+        }];
       }
     }];
     // TODO: make a network request to favourite/unfavourite on server

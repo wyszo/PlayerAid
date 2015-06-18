@@ -149,10 +149,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateLikeButtonForTutorial
 {
-  self.favouriteButton.hidden = ![self likeButtonEnabled];
+  self.favouriteButton.hidden = self.tutorial.isDraft;
+  [self setFavouritedButtonState:self.likeButtonHighlighted];
 }
 
-- (BOOL)likeButtonEnabled
+- (BOOL)likeButtonHighlighted
 {
   BOOL isDraft = (self.tutorial.isDraft);
   return (!isDraft && self.loggedInUserLikesTutorial);
@@ -210,7 +211,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (IBAction)favouriteButtonPressed:(id)sender
 {
   AssertTrueOrReturn(self.tutorial);
-  BOOL newState = !self.likeButtonEnabled;
+  BOOL newState = !self.likeButtonHighlighted;
   
   [self setFavouritedButtonState:newState];
   if (self.tutorialFavouritedBlock) {

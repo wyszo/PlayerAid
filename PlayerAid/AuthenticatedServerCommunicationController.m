@@ -212,6 +212,36 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }];
 }
 
+- (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  NSString *urlString = [self likeUrlStringForTutorial:tutorial];
+  
+  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, nil, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, nil, error);
+  }];
+}
+
+- (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  NSString *urlString = [self likeUrlStringForTutorial:tutorial];
+  
+  [operationManager DELETE:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, nil, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, nil, error);
+  }];
+}
+
+- (NSString *)likeUrlStringForTutorial:(Tutorial *)tutorial
+{
+  AssertTrueOrReturnNil(tutorial);
+  return [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/like"];
+}
+
 #pragma mark - Edit profile
 
 - (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion

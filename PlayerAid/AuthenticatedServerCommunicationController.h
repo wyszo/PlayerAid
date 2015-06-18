@@ -24,6 +24,8 @@ typedef void (^VoidBlockWithError)(NSError *error);
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(VoidBlockWithError)completion;
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
+- (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;;
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
