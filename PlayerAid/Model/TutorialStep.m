@@ -4,6 +4,7 @@
 
 
 static const CGFloat kJPEGCompressionBestQuality = 1.0f;
+static NSString *const kTutorialStepServerIDAttributeName = @"id";
 
 
 @implementation TutorialStep
@@ -46,6 +47,15 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
   return [TutorialStep MR_createInContext:context];
 }
 
+#pragma mark - Configuration
+
+- (void)configureFromDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturn(dictionary);
+  
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
 #pragma mark - Methods
 
 - (UIImage *)image
@@ -71,6 +81,16 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
 - (BOOL)isVideoStep
 {
   return (self.videoPath.length != 0);
+}
+
+#pragma mark - Class methods
+
++ (NSString *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturnNil(dictionary);
+  NSString *serverID = dictionary[kTutorialStepServerIDAttributeName];
+  AssertTrueOrReturnNil(serverID);
+  return serverID;
 }
 
 @end

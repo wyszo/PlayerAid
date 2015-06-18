@@ -86,6 +86,7 @@
 		31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A8DE3C1B31F01900137ACB /* FollowedUser.xib */; };
 		31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE401B32363900137ACB /* FollowedUserTableViewCell.m */; };
 		31A8DE451B32B4C900137ACB /* FollowedUserTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE441B32B4C900137ACB /* FollowedUserTableViewDelegate.m */; };
+		31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE471B331C3100137ACB /* TutorialStepHelper.m */; };
 		31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */; };
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
@@ -281,6 +282,8 @@
 		31A8DE401B32363900137ACB /* FollowedUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowedUserTableViewCell.m; sourceTree = "<group>"; };
 		31A8DE431B32B4C800137ACB /* FollowedUserTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowedUserTableViewDelegate.h; sourceTree = "<group>"; };
 		31A8DE441B32B4C900137ACB /* FollowedUserTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowedUserTableViewDelegate.m; sourceTree = "<group>"; };
+		31A8DE461B331C3100137ACB /* TutorialStepHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepHelper.h; sourceTree = "<group>"; };
+		31A8DE471B331C3100137ACB /* TutorialStepHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepHelper.m; sourceTree = "<group>"; };
 		31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButtonsContainerView.xib; sourceTree = "<group>"; };
 		31B46D401A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButtonsContainerView.h; sourceTree = "<group>"; };
 		31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButtonsContainerView.m; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
 				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
 				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
+				31A8DE461B331C3100137ACB /* TutorialStepHelper.h */,
+				31A8DE471B331C3100137ACB /* TutorialStepHelper.m */,
 			);
 			name = Tutorials;
 			sourceTree = "<group>";
@@ -1610,6 +1615,7 @@
 				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
+				31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,

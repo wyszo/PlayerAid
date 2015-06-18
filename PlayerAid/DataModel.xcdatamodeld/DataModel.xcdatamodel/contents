@@ -24,6 +24,7 @@
     <entity name="TutorialStep" representedClassName="TutorialStep" syncable="YES">
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoThumbnailData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -43,7 +44,7 @@
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="133"/>
+        <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="150"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="180"/>
     </elements>
 </model>
