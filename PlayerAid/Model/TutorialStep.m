@@ -1,6 +1,7 @@
 #import "TutorialStep.h"
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
+#import "KZPropertyMapper.h"
 
 
 static const CGFloat kJPEGCompressionBestQuality = 1.0f;
@@ -53,7 +54,22 @@ static NSString *const kTutorialStepServerIDAttributeName = @"id";
 {
   AssertTrueOrReturn(dictionary);
   
+  NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                   @"id" : KZProperty(serverID),
+                                                                                   @"position" : KZProperty(order),
+                                                                                   //  data = "test test test";
+                                                                                   //  type = Text;
+                                                                                  }];
+  
+  if ([dictionary[@"type"] isEqualToString:@"Text"]) {
+    [mapping addEntriesFromDictionary:@{ @"data" : KZProperty(text) }];
+  }
+  
+  // TODO: image step
+  // TODO: video step
   NOT_IMPLEMENTED_YET_RETURN
+  
+  [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
 }
 
 #pragma mark - Methods
@@ -75,7 +91,7 @@ static NSString *const kTutorialStepServerIDAttributeName = @"id";
 
 - (BOOL)isImageStep
 {
-  return (self.imageData != nil);
+  return (self.imageData != nil || self.imagePath.length);
 }
 
 - (BOOL)isVideoStep

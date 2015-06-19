@@ -5,6 +5,7 @@
 
 const struct TutorialStepAttributes TutorialStepAttributes = {
 	.imageData = @"imageData",
+	.imagePath = @"imagePath",
 	.order = @"order",
 	.serverID = @"serverID",
 	.text = @"text",
@@ -57,6 +58,8 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 }
 
 @dynamic imageData;
+
+@dynamic imagePath;
 
 @dynamic order;
 
