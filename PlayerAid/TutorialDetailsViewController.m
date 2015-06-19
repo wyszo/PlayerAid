@@ -9,14 +9,16 @@
 #import "TutorialStepsDataSource.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "CommonViews.h"
+#import "VideoPlayer.h"
 
 
-@interface TutorialDetailsViewController ()
+@interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) VideoPlayer *videoPlayer;
 
 @end
 
@@ -28,9 +30,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupLazyInitializers];
   [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
+}
+
+- (void)setupLazyInitializers
+{
+  self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];
 }
 
 - (void)setupTableView
@@ -48,7 +56,8 @@
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:nil];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
@@ -75,6 +84,14 @@
     _headerTableView.scrollEnabled = NO;
   }
   return _headerTableView;
+}
+
+#pragma mark - TutorialStepTableViewCellDelegate
+
+- (void)didPressPlayVideoWithURL:(NSURL *)url
+{
+  AssertTrueOrReturn(url);
+  [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
 }
 
 @end
