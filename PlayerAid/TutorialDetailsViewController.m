@@ -28,8 +28,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
+}
+
+- (void)setupTableView
+{
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 100.f;
 }
 
 - (void)setupTableViewHeader
