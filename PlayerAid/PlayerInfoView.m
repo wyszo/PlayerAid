@@ -86,16 +86,21 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
   self.editButton.hidden = !isCurrentUser;
   self.addFriendButton.hidden = isCurrentUser;
   
-  [self updateAddFriendButtonIconForUser:user];
+  [self updateAddFriendButtonIconForProfileUser];
 }
 
-- (void)updateAddFriendButtonIconForUser:(User *)user
+- (void)updateAddFriendButtonIconForProfileUser
 {
-  if (!user.loggedInUserValue) {
-    BOOL following = [[UserManipulationController new] currentUserFollowsUser:user];
+  if (!self.user.loggedInUserValue) {
+    BOOL following = [self loggedInUserFollowsProfileUser];
     NSString *imageName = (following ? kUnfollowImageFilename : kFollowImageFilename);
     [self.addFriendButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
   }
+}
+
+- (BOOL)loggedInUserFollowsProfileUser
+{
+  return [[UserManipulationController new] currentUserFollowsUser:self.user];
 }
 
 #pragma mark - IBActions
@@ -105,10 +110,16 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
   CallBlock(self.editButtonPressed);
 }
 
-- (IBAction)addFriendButtonPressed:(id)sender
+- (IBAction)toggleFriendButtonPressed:(id)sender
 {
   AssertTrueOrReturn(!self.user.loggedInUserValue);
-  [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user];
+  
+  if (!self.loggedInUserFollowsProfileUser) {
+    [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user];
+  }
+  else {
+    [[UserManipulationController new] sendUnfollowUserNetworkRequestAndUpdateDataModel:self.user];
+  }
 }
 
 @end

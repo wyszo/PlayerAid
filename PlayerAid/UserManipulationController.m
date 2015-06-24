@@ -7,7 +7,8 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 
-static NSString *const kLifetimeStaticString = @"static";
+static NSString *const kLifetimeFollowString = @"follow";
+static NSString *const kLifetimeUnfollowString = @"unfollow";
 
 
 @implementation UserManipulationController
@@ -25,10 +26,10 @@ static NSString *const kLifetimeStaticString = @"static";
 - (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user
 {
   AssertTrueOrReturn(user);
-  [self tw_bindLifetimeTo:kLifetimeStaticString]; // ensuring the object exists until the request returns
+  [self tw_bindLifetimeTo:kLifetimeFollowString]; // ensuring the object exists until the request returns
   
   [[AuthenticatedServerCommunicationController sharedInstance] followUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    [self tw_releaseLifetimeDependencyFrom:kLifetimeStaticString];
+    [self tw_releaseLifetimeDependencyFrom:kLifetimeFollowString];
     
     if (error) {
       // TODO: check if we want a generic alert or a custom one here
@@ -40,16 +41,47 @@ static NSString *const kLifetimeStaticString = @"static";
   }];
 }
 
+- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user
+{
+  AssertTrueOrReturn(user);
+  [self tw_bindLifetimeTo:kLifetimeUnfollowString]; // ensuring the object exists until the request returns
+  
+  [[AuthenticatedServerCommunicationController sharedInstance] unfollowUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    [self tw_releaseLifetimeDependencyFrom:kLifetimeUnfollowString];
+    
+    if (error) {
+      // TODO: check if we want a generic alert or a custom one here
+      [AlertFactory showGenericErrorAlertView];
+    }
+    else {
+      [self updateCurrentUserModelRemoveFollowedUser:user];
+    }
+  }];
+}
+
 #pragma mark - Private
 
 - (void)updateCurrentUserModelAddFollowedUser:(User *)user
+{
+  [self performSelectorAndSaveOnLoggedInUser:@selector(addFollowsObject:) withUserObject:user];
+}
+
+- (void)updateCurrentUserModelRemoveFollowedUser:(User *)user
+{
+  [self performSelectorAndSaveOnLoggedInUser:@selector(removeFollowsObject:) withUserObject:user];
+}
+
+- (void)performSelectorAndSaveOnLoggedInUser:(SEL)selector withUserObject:(User *)user
 {
   AssertTrueOrReturn(user);
   
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
     User *loggedInUserInContext = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
     User *followedUserInContext = [user MR_inContext:localContext];
-    [loggedInUserInContext addFollowsObject:followedUserInContext];
+    
+    SuppressPerformSelectorLeakWarning(
+      [loggedInUserInContext performSelector:selector withObject:followedUserInContext];
+    );
   }];
 }
 
