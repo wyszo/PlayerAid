@@ -14,6 +14,14 @@ static NSString *const kLifetimeStaticString = @"static";
 
 #pragma mark - Public
 
+- (BOOL)currentUserFollowsUser:(User *)user
+{
+  AssertTrueOrReturnNil(user);
+  
+  User *currentUser = [UsersFetchController sharedInstance].currentUser;
+  return [currentUser.follows containsObject:user];
+}
+
 - (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user
 {
   AssertTrueOrReturn(user);

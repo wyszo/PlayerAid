@@ -12,6 +12,9 @@
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
+static NSString *const kFollowImageFilename = @"addfriend";
+static NSString *const kUnfollowImageFilename = @"addfriend_on";
+
 
 @interface PlayerInfoView ()
 
@@ -78,10 +81,21 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   
   self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
-  
+
   BOOL isCurrentUser = user.loggedInUserValue;
   self.editButton.hidden = !isCurrentUser;
   self.addFriendButton.hidden = isCurrentUser;
+  
+  [self updateAddFriendButtonIconForUser:user];
+}
+
+- (void)updateAddFriendButtonIconForUser:(User *)user
+{
+  if (!user.loggedInUserValue) {
+    BOOL following = [[UserManipulationController new] currentUserFollowsUser:user];
+    NSString *imageName = (following ? kUnfollowImageFilename : kFollowImageFilename);
+    [self.addFriendButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+  }
 }
 
 #pragma mark - IBActions
