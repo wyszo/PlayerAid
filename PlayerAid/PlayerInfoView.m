@@ -18,6 +18,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
 
 @property (strong, nonatomic) UIView *view;
 
@@ -75,12 +76,21 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
   
-  self.editButton.hidden = !user.loggedInUserValue;
+  BOOL isCurrentUser = user.loggedInUserValue;
+  self.editButton.hidden = !isCurrentUser;
+  self.addFriendButton.hidden = isCurrentUser;
 }
+
+#pragma mark - IBActions
 
 - (IBAction)editButtonPressed:(id)sender
 {
   CallBlock(self.editButtonPressed);
+}
+
+- (IBAction)addFriendButtonPressed:(id)sender
+{
+  NOT_IMPLEMENTED_YET_RETURN
 }
 
 @end
