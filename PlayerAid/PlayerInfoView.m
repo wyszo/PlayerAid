@@ -6,6 +6,9 @@
 #import "UIImageView+AvatarStyling.h"
 #import "UIView+TWXibLoading.h"
 #import "ColorsHelper.h"
+#import "AuthenticatedServerCommunicationController.h"
+#import "UserManipulationController.h"
+
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
@@ -90,7 +93,8 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (IBAction)addFriendButtonPressed:(id)sender
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  AssertTrueOrReturn(!self.user.loggedInUserValue);
+  [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user];
 }
 
 @end

@@ -3,6 +3,7 @@
 //
 
 #import "Tutorial.h"
+#import "User.h"
 
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
@@ -36,5 +37,9 @@ typedef void (^VoidBlockWithError)(NSError *error);
 // edit profile
 - (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion;
 - (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion;
+
+// users
+- (void)followUser:(User *)user completion:(NetworkResponseBlock)completion;
+- (void)unfollowUser:(User *)user completion:(NetworkResponseBlock)completion;
 
 @end

@@ -11,6 +11,7 @@
 
 
 static NSString *const kTutorialUrlString = @"tutorial";
+static NSString *const kUserUrlString = @"user";
 static NSString *const kListTutorialsUrlString = @"tutorials";
 
 
@@ -340,6 +341,33 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   operationManager.requestSerializer.cachePolicy = (useCache ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData);
   return operationManager;
+}
+
+#pragma mark - Users
+
+- (void)followUser:(User *)user completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(user);
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  NSString *urlString = [[self urlStringForUser:user] stringByAppendingString:@"/follow"];
+  
+  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, nil, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, nil, error);
+  }];
+}
+
+- (void)unfollowUser:(User *)user completion:(NetworkResponseBlock)completion
+{
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
+- (NSString *)urlStringForUser:(User *)user
+{
+  AssertTrueOrReturnNil(user);
+  NSString *userID = [user.serverID stringValue];
+  return [NSString stringWithFormat:@"%@/%@", kUserUrlString, userID];
 }
 
 #pragma mark - Lazy initialization

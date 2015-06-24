@@ -44,6 +44,7 @@
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
+		313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63F61B3A901300E16D23 /* UserManipulationController.m */; };
 		314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */; };
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
@@ -202,6 +203,8 @@
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
 		313868551B14FFFA00C0C245 /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
 		313868561B14FFFA00C0C245 /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
+		313B63F51B3A901300E16D23 /* UserManipulationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManipulationController.h; sourceTree = "<group>"; };
+		313B63F61B3A901300E16D23 /* UserManipulationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManipulationController.m; sourceTree = "<group>"; };
 		314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileFilterCollectionViewController.h; sourceTree = "<group>"; };
 		314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileFilterCollectionViewController.m; sourceTree = "<group>"; };
 		314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoCollectionViewCell.h; sourceTree = "<group>"; };
@@ -430,9 +433,8 @@
 		31014E531A961084002F3485 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				31014E541A9610ED002F3485 /* UsersFetchController.h */,
-				31014E551A9610ED002F3485 /* UsersFetchController.m */,
-				3129036C1B25DF1400C730DA /* UsersFetchController_Private.h */,
+				313B63F41B3A8FD500E16D23 /* FetchingUsers */,
+				313B63F81B3A902500E16D23 /* UpdatingUsers */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -701,6 +703,25 @@
 				313868561B14FFFA00C0C245 /* SectionCell.m */,
 			);
 			name = Section;
+			sourceTree = "<group>";
+		};
+		313B63F41B3A8FD500E16D23 /* FetchingUsers */ = {
+			isa = PBXGroup;
+			children = (
+				31014E541A9610ED002F3485 /* UsersFetchController.h */,
+				31014E551A9610ED002F3485 /* UsersFetchController.m */,
+				3129036C1B25DF1400C730DA /* UsersFetchController_Private.h */,
+			);
+			name = FetchingUsers;
+			sourceTree = "<group>";
+		};
+		313B63F81B3A902500E16D23 /* UpdatingUsers */ = {
+			isa = PBXGroup;
+			children = (
+				313B63F51B3A901300E16D23 /* UserManipulationController.h */,
+				313B63F61B3A901300E16D23 /* UserManipulationController.m */,
+			);
+			name = UpdatingUsers;
 			sourceTree = "<group>";
 		};
 		314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */ = {
@@ -1609,6 +1630,7 @@
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
+				313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
 				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,
