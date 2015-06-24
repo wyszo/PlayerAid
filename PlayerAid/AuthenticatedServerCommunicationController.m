@@ -37,28 +37,28 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)pingCompletion:(NetworkResponseBlock)completion
 {
-  [self getRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
+  [self performGetRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
 #pragma mark - Users management
 
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion
 {
-  [self getRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
+  [self performGetRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
 }
 
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(userID.length);
   NSString *urlString = [@"user/" stringByAppendingString:userID];
-  [self getRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:YES completion:completion];
+  [self performGetRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:YES completion:completion];
 }
 
 #pragma mark - Tutorial management
 
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion
 {
-  [self getRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
+  [self performGetRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
 }
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
@@ -96,7 +96,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                // Optionally we could send CreatedOn date here
                               };
   
-  [self postRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self performPostRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
 }
@@ -151,7 +151,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                @"position" : @(position),
                                @"value" : tutorialStep.text
                               };
-  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self performPostRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
 }
@@ -208,33 +208,21 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                @"id" : tutorial.serverID.stringValue
                               };
   NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
-  [self postRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self performPostRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
 }
 
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
-  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
-  
-  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    CallBlock(completion, nil, responseObject, nil);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, nil, error);
-  }];
+  [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
 
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
-  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
-  
-  [operationManager DELETE:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    CallBlock(completion, nil, responseObject, nil);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, nil, error);
-  }];
+  [self performRequestWithType:@"DELETE" apiToken:self.apiToken urlString:urlString parameters:nil useCacheIfAllowed:NO completion:completion];
 }
 
 - (NSString *)likeUrlStringForTutorial:(Tutorial *)tutorial
@@ -250,7 +238,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSDictionary *parameters = @{
                                @"source" : @"Facebook"
                               };
-  [self postRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self performPostRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
 }
@@ -263,29 +251,22 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   if (userDescription.length) {
     [parameters addEntriesFromDictionary:@{ @"description" : userDescription }];
   }
-  
-  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
-  
-  [operationManager PUT:@"user" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    CallBlock(completion, operation.response, responseObject, nil);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, operation.response, nil, error);
-  }];
+  [self performRequestWithType:@"PUT" apiToken:self.apiToken urlString:@"user" parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
   
 #pragma mark - Sending requests
 
-- (void)getRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)performGetRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"GET" apiToken:apiToken urlString:urlString parameters:nil useCacheIfAllowed:useCache completion:completion];
+  [self performRequestWithType:@"GET" apiToken:apiToken urlString:urlString parameters:nil useCacheIfAllowed:useCache completion:completion];
 }
 
-- (void)postRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
+- (void)performPostRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
 {
-  [self requestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
+  [self performRequestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
 
-- (void)requestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
+- (void)performRequestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(requestType.length);
   AssertTrueOrReturn(urlString.length);
@@ -348,19 +329,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)followUser:(User *)user completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(user);
-  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   NSString *urlString = [[self urlStringForUser:user] stringByAppendingString:@"/follow"];
-  
-  [operationManager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    CallBlock(completion, nil, responseObject, nil);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, nil, error);
-  }];
+  [self performRequestWithType:@"POST" apiToken:self.apiToken urlString:urlString parameters:nil useCacheIfAllowed:NO completion:completion];
 }
 
 - (void)unfollowUser:(User *)user completion:(NetworkResponseBlock)completion
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  AssertTrueOrReturn(user);
+  NSString *urlString = [[self urlStringForUser:user] stringByAppendingString:@"/follow"];
+  [self performRequestWithType:@"DELETE" apiToken:self.apiToken urlString:urlString parameters:nil useCacheIfAllowed:NO completion:completion];
 }
 
 - (NSString *)urlStringForUser:(User *)user
