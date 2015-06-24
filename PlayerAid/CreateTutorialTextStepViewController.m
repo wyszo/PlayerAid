@@ -53,7 +53,7 @@ const NSInteger kTextStepDismissedError = 1;
   [self customizeNavigationBarButtons];
   [self.textView becomeFirstResponder];
   
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+  [self tw_setNavbarDoesNotCoverTheView];
   [self setupCharactersCount];
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
   

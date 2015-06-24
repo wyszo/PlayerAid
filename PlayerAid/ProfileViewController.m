@@ -44,7 +44,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [super viewDidLoad];
 
   self.followedUserTableViewDelegate = [FollowedUserTableViewDelegate new];
-  
+
+  [self tw_setNavbarDoesNotCoverTheView];  
   [self setupUserIfNotNil];
   [self setupTableViewUserFollowedCells];
   [self setupTutorialsTableDataSource];

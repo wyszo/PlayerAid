@@ -82,7 +82,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   [super viewDidLoad];
   [self setupLazyInitializers];
   [self setupNavigationBarButtons];
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+  [self tw_setNavbarDoesNotCoverTheView];
   
   [self setupTableView];
   self.createTutoriaStepButtonsView.delegate = self;
