@@ -12,6 +12,7 @@
 #import "EditProfileFilterCollectionViewController.h"
 #import "FollowedUserTableViewCell.h"
 #import "FollowedUserTableViewDelegate.h"
+#import "FollowingButtonDecorator.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -142,11 +143,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     id object = objects[indexPath.row];
     
     AssertTrueOrReturn([object isKindOfClass:[User class]]);
-    User *user = (User *)object;
-    
-    userCell.nameLabel.text = user.name;
-    userCell.descriptionLabel.text = user.userDescription;
-    [user placeAvatarInImageView:userCell.avatarImageView];
+    [userCell configureWithUser:(User *)object];
   };
   return dataSource;
 }

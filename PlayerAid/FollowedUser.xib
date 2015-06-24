@@ -21,23 +21,24 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZP-HI-AEQ">
-                        <rect key="frame" x="80" y="14" width="263" height="22"/>
+                        <rect key="frame" x="80" y="14" width="305" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rm-aX-ofi" userLabel="descriptionLabel">
-                        <rect key="frame" x="80" y="38" width="263" height="61"/>
+                        <rect key="frame" x="80" y="38" width="305" height="61"/>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cr5-51-yDw">
-                        <rect key="frame" x="346" y="39" width="80" height="30"/>
+                        <rect key="frame" x="388" y="38" width="38" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="fK6-kI-8wQ"/>
+                            <constraint firstAttribute="height" constant="32" id="7MW-D9-3l8"/>
+                            <constraint firstAttribute="width" constant="38" id="fK6-kI-8wQ"/>
                         </constraints>
-                        <state key="normal" title="Follow/Unfollow">
+                        <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -62,7 +63,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="4vl-6X-1GH" id="2l0-9v-h7w"/>
                 <outlet property="descriptionLabel" destination="3rm-aX-ofi" id="IgG-tk-yX1"/>
-                <outlet property="followUnfollowButton" destination="cr5-51-yDw" id="FCx-cf-oAs"/>
+                <outlet property="followingButton" destination="cr5-51-yDw" id="chj-pY-wR6"/>
                 <outlet property="nameLabel" destination="iZP-HI-AEQ" id="stO-mq-7J0"/>
             </connections>
             <point key="canvasLocation" x="496" y="412"/>

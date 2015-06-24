@@ -45,6 +45,7 @@
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63F61B3A901300E16D23 /* UserManipulationController.m */; };
+		313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */; };
 		314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */; };
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
@@ -205,6 +206,8 @@
 		313868561B14FFFA00C0C245 /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
 		313B63F51B3A901300E16D23 /* UserManipulationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManipulationController.h; sourceTree = "<group>"; };
 		313B63F61B3A901300E16D23 /* UserManipulationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManipulationController.m; sourceTree = "<group>"; };
+		313B63F91B3AD8E300E16D23 /* FollowingButtonDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingButtonDecorator.h; sourceTree = "<group>"; };
+		313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingButtonDecorator.m; sourceTree = "<group>"; };
 		314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileFilterCollectionViewController.h; sourceTree = "<group>"; };
 		314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileFilterCollectionViewController.m; sourceTree = "<group>"; };
 		314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoCollectionViewCell.h; sourceTree = "<group>"; };
@@ -765,6 +768,8 @@
 			children = (
 				316D86C71B206A66003874F4 /* NavigationBarButtonsDecorator.h */,
 				316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */,
+				313B63F91B3AD8E300E16D23 /* FollowingButtonDecorator.h */,
+				313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */,
 			);
 			name = Decorators;
 			sourceTree = "<group>";
@@ -1637,6 +1642,7 @@
 				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
+				313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */,
 				31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,

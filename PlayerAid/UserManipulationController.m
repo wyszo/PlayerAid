@@ -13,7 +13,22 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
 
 @implementation UserManipulationController
 
-#pragma mark - Public
+#pragma mark - Toggle follow button
+
+- (void)toggleFollowButtonPressedSendRequestUpdateModelForUser:(User *)user completion:(VoidBlockWithError)completion
+{
+  AssertTrueOrReturn(user);
+  AssertTrueOrReturn(!user.loggedInUserValue);
+  
+  if (![self loggedInUserFollowsUser:user]) {
+    [self sendFollowUserNetworkRequestAndUpdateDataModel:user completion:completion];
+  }
+  else {
+    [self sendUnfollowUserNetworkRequestAndUpdateDataModel:user completion:completion];
+  }
+}
+
+#pragma mark - Auxiliary public methods
 
 - (BOOL)currentUserFollowsUser:(User *)user
 {
@@ -22,6 +37,14 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
   User *currentUser = [UsersFetchController sharedInstance].currentUser;
   return [currentUser.follows containsObject:user];
 }
+
+- (BOOL)loggedInUserFollowsUser:(User *)user
+{
+  AssertTrueOrReturnNo(user);
+  return [[UserManipulationController new] currentUserFollowsUser:user];
+}
+
+#pragma mark - Send network request, update model
 
 - (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {

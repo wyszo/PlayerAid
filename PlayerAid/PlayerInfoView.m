@@ -7,13 +7,11 @@
 #import "UIView+TWXibLoading.h"
 #import "ColorsHelper.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
 
 
 static NSString *const kNibFileName = @"PlayerInfoView";
-
-static NSString *const kFollowImageFilename = @"addfriend";
-static NSString *const kUnfollowImageFilename = @"addfriend_on";
 
 
 @interface PlayerInfoView ()
@@ -86,21 +84,12 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
   self.editButton.hidden = !isCurrentUser;
   self.addFriendButton.hidden = isCurrentUser;
   
-  [self updateAddFriendButtonIconForProfileUser];
+  [self updateFollowingButtonImageForProfileUser];
 }
 
-- (void)updateAddFriendButtonIconForProfileUser
+- (void)updateFollowingButtonImageForProfileUser
 {
-  if (!self.user.loggedInUserValue) {
-    BOOL following = [self loggedInUserFollowsProfileUser];
-    NSString *imageName = (following ? kUnfollowImageFilename : kFollowImageFilename);
-    [self.addFriendButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-  }
-}
-
-- (BOOL)loggedInUserFollowsProfileUser
-{
-  return [[UserManipulationController new] currentUserFollowsUser:self.user];
+  [[FollowingButtonDecorator new] updateFollowingButtonImage:self.addFriendButton forUser:self.user backgroundType:BackgroundTypeDark];
 }
 
 #pragma mark - IBActions
@@ -110,23 +99,14 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
   CallBlock(self.editButtonPressed);
 }
 
-- (IBAction)toggleFriendButtonPressed:(id)sender
+- (IBAction)toggleFollowButtonPressed:(id)sender
 {
-  AssertTrueOrReturn(!self.user.loggedInUserValue);
-  
   defineWeakSelf();
-  VoidBlockWithError completion = ^(NSError *error) {
+  [[UserManipulationController new] toggleFollowButtonPressedSendRequestUpdateModelForUser:self.user completion:^(NSError *error) {
     if (!error) {
-      [weakSelf updateAddFriendButtonIconForProfileUser];
+      [weakSelf updateFollowingButtonImageForProfileUser];
     }
-  };
-  
-  if (!self.loggedInUserFollowsProfileUser) {
-    [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user completion:completion];
-  }
-  else {
-    [[UserManipulationController new] sendUnfollowUserNetworkRequestAndUpdateDataModel:self.user completion:completion];
-  }
+  }];
 }
 
 @end

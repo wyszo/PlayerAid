@@ -7,9 +7,8 @@
 
 @interface UserManipulationController : NSObject
 
-- (BOOL)currentUserFollowsUser:(User *)user;
+- (void)toggleFollowButtonPressedSendRequestUpdateModelForUser:(User *)user completion:(VoidBlockWithError)completion;
 
-- (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion;
-- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion;
+- (BOOL)loggedInUserFollowsUser:(User *)user;
 
 @end

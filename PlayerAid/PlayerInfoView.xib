@@ -76,7 +76,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="toggleFriendButtonPressed:" destination="-1" eventType="touchUpInside" id="KpU-Lf-rJY"/>
+                        <action selector="toggleFollowButtonPressed:" destination="-1" eventType="touchUpInside" id="gCd-rC-ZxO"/>
                     </connections>
                 </button>
             </subviews>
