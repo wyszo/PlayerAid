@@ -23,7 +23,7 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
   return [currentUser.follows containsObject:user];
 }
 
-- (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user
+- (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
   [self tw_bindLifetimeTo:kLifetimeFollowString]; // ensuring the object exists until the request returns
@@ -34,14 +34,16 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
     if (error) {
       // TODO: check if we want a generic alert or a custom one here
       [AlertFactory showGenericErrorAlertView];
+      CallBlock(completion, error);
     }
     else {
       [self updateCurrentUserModelAddFollowedUser:user];
+      CallBlock(completion, nil);
     }
   }];
 }
 
-- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user
+- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
   [self tw_bindLifetimeTo:kLifetimeUnfollowString]; // ensuring the object exists until the request returns
@@ -52,9 +54,11 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
     if (error) {
       // TODO: check if we want a generic alert or a custom one here
       [AlertFactory showGenericErrorAlertView];
+      CallBlock(completion, error);
     }
     else {
       [self updateCurrentUserModelRemoveFollowedUser:user];
+      CallBlock(completion, nil);
     }
   }];
 }

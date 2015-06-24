@@ -7,7 +7,6 @@
 
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
-typedef void (^VoidBlockWithError)(NSError *error);
 
 
 /**

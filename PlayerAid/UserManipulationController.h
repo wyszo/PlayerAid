@@ -9,7 +9,7 @@
 
 - (BOOL)currentUserFollowsUser:(User *)user;
 
-- (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user;
-- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user;
+- (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion;
+- (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion;
 
 @end

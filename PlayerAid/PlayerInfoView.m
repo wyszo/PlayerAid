@@ -114,11 +114,18 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
 {
   AssertTrueOrReturn(!self.user.loggedInUserValue);
   
+  defineWeakSelf();
+  VoidBlockWithError completion = ^(NSError *error) {
+    if (!error) {
+      [weakSelf updateAddFriendButtonIconForProfileUser];
+    }
+  };
+  
   if (!self.loggedInUserFollowsProfileUser) {
-    [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user];
+    [[UserManipulationController new] sendFollowUserNetworkRequestAndUpdateDataModel:self.user completion:completion];
   }
   else {
-    [[UserManipulationController new] sendUnfollowUserNetworkRequestAndUpdateDataModel:self.user];
+    [[UserManipulationController new] sendUnfollowUserNetworkRequestAndUpdateDataModel:self.user completion:completion];
   }
 }
 
