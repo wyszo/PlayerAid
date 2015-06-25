@@ -116,28 +116,51 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     tutorialCell.userAvatarSelectedBlock = self.userAvatarSelectedBlock;
   }
   
-  tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-      Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-      User *user = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
-      
-      if (favourited) {
-        [user addLikesObject:tutorialInContext];
-        [tutorialInContext addLikedByObject:user];
+  tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited, TutorialTableViewCell *tutorialCell) {
+    VoidBlock showGenericErrorBlock = ^() {
+      DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+        [AlertFactory showGenericErrorAlertView];
+      });
+    };
+    
+    if (favourited) {
+      [[AuthenticatedServerCommunicationController sharedInstance] likeTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
         
-        [[AuthenticatedServerCommunicationController sharedInstance] likeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Liking alert request failed"];
-        }];
-      }
-      else {
-        [user removeLikesObject:tutorialInContext];
-        [tutorialInContext removeLikedByObject:user];
-        
-        [[AuthenticatedServerCommunicationController sharedInstance] unlikeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Unliking alert request failed"];
-        }];
-      }
-    }];
+        if (error) {
+          showGenericErrorBlock();
+        }
+        else {
+          // TODO: extract this from here!
+          [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
+            User *user = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
+            
+            [user addLikesObject:tutorialInContext];
+            [tutorialInContext addLikedByObject:user];
+          }];
+          [tutorialCell updateLikeButtonState];
+        }
+      }];
+    }
+    else {
+      [[AuthenticatedServerCommunicationController sharedInstance] unlikeTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+          showGenericErrorBlock();
+        }
+        else {
+         
+          // TODO: extract this from here!
+          [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
+            User *user = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
+            
+            [user removeLikesObject:tutorialInContext];
+            [tutorialInContext removeLikedByObject:user];
+          }];
+          [tutorialCell updateLikeButtonState];
+        }
+      }];
+    }
   };
 }
 

@@ -84,18 +84,6 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 22
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
 
-// GoogleAnalytics-iOS-SDK
-#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
-#define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 10
-#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 0
-
-// GoogleAnalytics-iOS-SDK/Core
-#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK_Core
-#define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK_Core 3
-#define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK_Core 10
-#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK_Core 0
-
 // KZAsserts
 #define COCOAPODS_POD_AVAILABLE_KZAsserts
 #define COCOAPODS_VERSION_MAJOR_KZAsserts 1
@@ -119,6 +107,24 @@
 #define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+
+// Mixpanel
+#define COCOAPODS_POD_AVAILABLE_Mixpanel
+#define COCOAPODS_VERSION_MAJOR_Mixpanel 2
+#define COCOAPODS_VERSION_MINOR_Mixpanel 8
+#define COCOAPODS_VERSION_PATCH_Mixpanel 1
+
+// Mixpanel/MPCategoryHelpers
+#define COCOAPODS_POD_AVAILABLE_Mixpanel_MPCategoryHelpers
+#define COCOAPODS_VERSION_MAJOR_Mixpanel_MPCategoryHelpers 2
+#define COCOAPODS_VERSION_MINOR_Mixpanel_MPCategoryHelpers 8
+#define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 1
+
+// Mixpanel/Mixpanel
+#define COCOAPODS_POD_AVAILABLE_Mixpanel_Mixpanel
+#define COCOAPODS_VERSION_MAJOR_Mixpanel_Mixpanel 2
+#define COCOAPODS_VERSION_MINOR_Mixpanel_Mixpanel 8
+#define COCOAPODS_VERSION_PATCH_Mixpanel_Mixpanel 1
 
 // NSDate+TimeAgo
 #define COCOAPODS_POD_AVAILABLE_NSDate_TimeAgo

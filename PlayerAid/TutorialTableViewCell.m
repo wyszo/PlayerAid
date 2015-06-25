@@ -46,6 +46,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (void)awakeFromNib
 {
   self.selectionStyle = UITableViewCellSelectionStyleNone;
+  self.preservesSuperviewLayoutMargins = NO;
   [self.avatarImageView styleAsSmallAvatar];
   [self setupGradientOverlay];
 }
@@ -96,7 +97,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.tutorial = tutorial;
   
   [self updateBackgroundImageView];
-  [self updateLikeButtonForTutorial];
+  [self updateLikeButtonState];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
@@ -147,7 +148,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   } failure:nil];
 }
 
-- (void)updateLikeButtonForTutorial
+- (void)updateLikeButtonState
 {
   self.favouriteButton.hidden = self.tutorial.isDraft;
   [self setFavouritedButtonState:self.likeButtonHighlighted];
@@ -162,7 +163,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (BOOL)loggedInUserLikesTutorial
 {
   // we should check currentUser's createdTutorial relationship instead! 
-  __block BOOL likesTutorial;
+  __block BOOL likesTutorial = NO;
   
   [self.tutorial.likedBy enumerateObjectsUsingBlock:^(User *user, BOOL *stop) {
     if (user.loggedInUserValue) {
@@ -213,11 +214,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 {
   AssertTrueOrReturn(self.tutorial);
   BOOL newState = !self.likeButtonHighlighted;
-  
-  [self setFavouritedButtonState:newState];
-  if (self.tutorialFavouritedBlock) {
-    self.tutorialFavouritedBlock(newState);
-  }
+  CallBlock(self.tutorialFavouritedBlock, newState, self);
 }
 
 - (IBAction)authorButtonPressed:(id)sender
