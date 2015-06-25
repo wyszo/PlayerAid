@@ -148,6 +148,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   [textView tw_addBorderWithWidth:kTextViewBorderWidth color:[ColorsHelper editProfileSubviewsBorderColor]];
   [textView tw_setLeftAndRightPadding:kTextViewLeftAndRightPadding];
   [textView tw_setTopPadding:kTextViewTopPadding];
+  textView.returnKeyType = UIReturnKeyDone;
 }
 
 - (void)limitPlayerNameTextViewToOneLine
@@ -178,6 +179,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 {
   UITextView *textView = self.bioTextView;
   TWTextViewWithMaxLengthDelegate *delegate = [[TWTextViewWithMaxLengthDelegate alloc] initWithMaxLength:textViewMaxLength attachToTextView:textView];
+  delegate.resignsFirstResponderOnPressingReturn = YES;
   
   defineWeakSelf();
   delegate.textViewDidBeginEditing = ^() {

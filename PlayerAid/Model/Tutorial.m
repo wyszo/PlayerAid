@@ -2,6 +2,8 @@
 #import <KZPropertyMapper.h>
 #import "Section.h"
 #import "User.h"
+#import "TutorialStep.h"
+#import "TutorialStepHelper.h"
 
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
@@ -25,7 +27,8 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
                             @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
                             @"imageUri" : KZProperty(imageURL),
-                            @"section" : KZCall(sectionFromString:, section)
+                            @"section" : KZCall(sectionFromString:, section),
+                            @"steps" : KZCall(tutorialStepsFromDictionariesArray:, consistsOf)
                           }];
   
   if (includeAuthor) {
@@ -59,6 +62,11 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   }
   [author configureFromDictionary:authorDictionary];
   return author;
+}
+
+- (NSOrderedSet *)tutorialStepsFromDictionariesArray:(NSArray *)stepsDictionaries
+{
+  return [[TutorialStepHelper new] tutorialStepsFromDictionariesArray:stepsDictionaries inContext:self.managedObjectContext];
 }
 
 #pragma mark - State

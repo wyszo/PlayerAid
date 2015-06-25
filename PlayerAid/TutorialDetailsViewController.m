@@ -9,14 +9,16 @@
 #import "TutorialStepsDataSource.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "CommonViews.h"
+#import "VideoPlayer.h"
 
 
-@interface TutorialDetailsViewController ()
+@interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) VideoPlayer *videoPlayer;
 
 @end
 
@@ -28,8 +30,21 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setupLazyInitializers];
+  [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
+}
+
+- (void)setupLazyInitializers
+{
+  self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];
+}
+
+- (void)setupTableView
+{
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 100.f;
 }
 
 - (void)setupTableViewHeader
@@ -41,7 +56,8 @@
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:nil];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
@@ -51,7 +67,7 @@
     _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.headerTableView];
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
-    _headerTableViewDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:self allowPushingLoggedInUser:NO];
+    _headerTableViewDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
   }
   return _headerTableViewDataSource;
 }
@@ -68,6 +84,14 @@
     _headerTableView.scrollEnabled = NO;
   }
   return _headerTableView;
+}
+
+#pragma mark - TutorialStepTableViewCellDelegate
+
+- (void)didPressPlayVideoWithURL:(NSURL *)url
+{
+  AssertTrueOrReturn(url);
+  [self.videoPlayer presentMoviePlayerAndPlayVideoURL:url];
 }
 
 @end

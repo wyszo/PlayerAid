@@ -6,14 +6,16 @@
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
 #import "ColorsHelper.h"
-#import "PlayerInfoSegmentedControlButtonView.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
-
 #import "EditProfileViewController.h"
+#import "EditProfileFilterCollectionViewController.h"
+#import "FollowedUserTableViewCell.h"
+#import "FollowedUserTableViewDelegate.h"
+#import "FollowingButtonDecorator.h"
 
 
-static const NSUInteger kSegmentedControlHeight = 54.0f;
+static const NSUInteger kFilterCollectionViewHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
 static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
@@ -23,10 +25,13 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
+@property (strong, nonatomic) TWArrayTableViewDataSource *followingDataSource;
+@property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
+@property (strong, nonatomic) FollowedUserTableViewDelegate *followedUserTableViewDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
-@property (weak, nonatomic) PlayerInfoSegmentedControlButtonView *tutorialsFilterButtonView;
-
-@property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (weak, nonatomic) IBOutlet UILabel *noLikedTutorialsLabel;
+@property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
 
 @end
 
@@ -39,17 +44,46 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [super viewDidLoad];
 
+  self.followedUserTableViewDelegate = [FollowedUserTableViewDelegate new];
+
+  [self tw_setNavbarDoesNotCoverTheView];  
   [self setupUserIfNotNil];
+  [self setupTableViewUserFollowedCells];
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
   
   self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
-  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  [self setupUserTutorialsTableViewOverlay];
   
   if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
     [self presentEditProfileViewController];
   }
+}
+
+- (void)setupUserTutorialsTableViewOverlay
+{
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsLabel];
+}
+
+- (void)setupLikedTutorialsTableViewOverlay
+{
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noLikedTutorialsLabel];
+}
+
+- (void)setupEmptyTableViewBehaviourWithOverlay:(UIView *)overlay
+{
+  AssertTrueOrReturn(overlay);
+  
+  [self hideAllNoItemsOverlays];
+  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:overlay allowScrollingWhenNoCells:NO];
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
+- (void)hideAllNoItemsOverlays
+{
+  self.noTutorialsLabel.hidden = YES;
+  self.noLikedTutorialsLabel.hidden = YES;
 }
 
 - (void)setupUserIfNotNil
@@ -65,17 +99,61 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
+- (void)setupTableViewUserFollowedCells
+{
+  UINib *nib = [UINib nibWithNibName:@"FollowedUser" bundle:nil];
+  [self.tutorialTableView registerNib:nib forCellReuseIdentifier:@"UserCellIdentifier"];
+}
+
 - (void)setupTutorialsTableDataSource
 {
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
+  self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ AND state != %@", self.user, kTutorialStateUnsaved];
   self.tutorialsTableDataSource.groupBy = @"state";
   self.tutorialsTableDataSource.showSectionHeaders = YES;
-  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
+}
+
+- (void)setupLikedTutorialsTableDataSource
+{
+  self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"%@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
+}
+
+- (void)setupFollowingUsersTableDataSource
+{
+  self.followingDataSource = [self createUserCellDataSourceWithObjects:self.user.follows.allObjects];
+}
+
+- (void)setupFollowersTableDataSource
+{
+  self.followersDataSource = [self createUserCellDataSourceWithObjects:self.user.isFollowedBy.allObjects];
+}
+
+- (TWArrayTableViewDataSource *)createUserCellDataSourceWithObjects:(NSArray *)objects
+{
+  AssertTrueOrReturnNil(objects);
+  TWArrayTableViewDataSource *dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:objects attachToTableView:self.tutorialTableView cellDequeueIdentifier:@"UserCellIdentifier"];
   
-  __weak typeof(self) weakSelf = self;
-  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewControllerBlock:weakSelf allowPushingLoggedInUser:NO];
+  dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    AssertTrueOrReturn([cell isKindOfClass:[FollowedUserTableViewCell class]]);
+    FollowedUserTableViewCell *userCell = (FollowedUserTableViewCell *)cell;
+    
+    AssertTrueOrReturn(indexPath.row < objects.count);
+    id object = objects[indexPath.row];
+    
+    AssertTrueOrReturn([object isKindOfClass:[User class]]);
+    [userCell configureWithUser:(User *)object];
+  };
+  return dataSource;
+}
+
+- (TutorialsTableDataSource *)createTutorialsTableDataSourceNoPredicate
+{
+  TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
+  dataSource.tutorialTableViewDelegate = self;
+  dataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
+  return dataSource;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -87,8 +165,13 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [super viewWillAppear:animated];
   [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
-  [self updateFilterViewTutorialsCount];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [self updateFilterViewTutorialsCount];
 }
 
 #pragma mark - Header View initialization
@@ -105,44 +188,63 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupTableHeaderView
 {
   NSUInteger windowWidth = [UIApplication sharedApplication].keyWindow.frame.size.width;
-  
   self.playerInfoView = [[PlayerInfoView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight)];
   
-  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kSegmentedControlHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
-  UIView *containerView = [self wrapView:self.playerInfoView inAContainerViewWithFrame:containerFrame];
+  CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kFilterCollectionViewHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
+  UIView *containerView = [self.playerInfoView tw_wrapInAContainerViewWithFrame:containerFrame];
   
-  UIView *segmentedControl = [self flatSegmentedControlWithYOffset:kPlayerInfoViewHeight width:windowWidth];
-  [containerView addSubview:segmentedControl];
+  [self addFilterCollectionViewControllerWithSize:CGSizeMake(windowWidth, kFilterCollectionViewHeight) toContainerView:containerView];
   
   self.tutorialTableView.tableHeaderView = containerView;
 }
 
-- (UIView *)flatSegmentedControlWithYOffset:(CGFloat)yOffset width:(CGFloat)width
+- (void)addFilterCollectionViewControllerWithSize:(CGSize)cellSize toContainerView:(UIView *)containerView
 {
-  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, yOffset, width, kSegmentedControlHeight)];
-  view.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
+  AssertTrueOrReturn(containerView);
   
-  PlayerInfoSegmentedControlButtonView *segmentedControlButton = [[PlayerInfoSegmentedControlButtonView alloc] initWithFrame:CGRectMake(0, 0, 80, kSegmentedControlHeight)];
-  [view addSubview:segmentedControlButton];
-  self.tutorialsFilterButtonView = segmentedControlButton;
-  
-  return view;
+  self.filterCollectionViewController = [self filterCollectionViewControllerWithYOffset:kPlayerInfoViewHeight size:cellSize];
+  [self addChildViewController:self.filterCollectionViewController];
+  [containerView addSubview:self.filterCollectionViewController.collectionView];
+  [self.filterCollectionViewController didMoveToParentViewController:self];
 }
 
-- (UIView *)wrapView:(UIView *)view inAContainerViewWithFrame:(CGRect)frame
+- (EditProfileFilterCollectionViewController *)filterCollectionViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
 {
-  UIView *containerView = [[UIView alloc] initWithFrame:frame];
-  containerView.backgroundColor = [UIColor whiteColor];
-  [containerView addSubview:view];
-  return containerView;
+  EditProfileFilterCollectionViewController *collectionViewController = [[EditProfileFilterCollectionViewController alloc] init];
+  defineWeakSelf();
+  
+  collectionViewController.tutorialsTabSelectedBlock = ^() {
+    [weakSelf setupTutorialsTableDataSource];
+    [weakSelf setupUserTutorialsTableViewOverlay];
+    [weakSelf reloadTableView];
+  };
+  collectionViewController.likedTabSelectedBlock = ^() {
+    [weakSelf setupLikedTutorialsTableDataSource];
+    [weakSelf setupLikedTutorialsTableViewOverlay];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
+  };
+  collectionViewController.followingTabSelectedBlock = ^() {
+    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
+    [weakSelf setupFollowingUsersTableDataSource];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
+  };
+  collectionViewController.followersTabSelectedBlock = ^() {
+    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
+    [weakSelf setupFollowersTableDataSource];
+    [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
+  };
+  
+  UICollectionView *collectionView = collectionViewController.collectionView;
+  collectionView.frame = CGRectMake(0, yOffset, size.width, size.height);
+  collectionView.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
+  
+  return collectionViewController;
 }
 
 #pragma mark - Tutorials Table View Delegate
-
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
-{
-  // no action, required method
-}
 
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
 {
@@ -152,12 +254,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)updateFilterViewTutorialsCount
 {
-  NSInteger publishedCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
-  NSString *publishedCountString = [@(publishedCount) stringValue];
-  self.tutorialsFilterButtonView.topLabel.text = publishedCountString;
-  
-  NSString *bottomTitle = (publishedCount == 1 ? @"Tutorial" : @"Tutorials");
-  self.tutorialsFilterButtonView.bottomLabel.text = bottomTitle;
+  self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
 }
 
 #pragma mark - Other methods 
@@ -173,6 +270,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   };
   UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
   [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)reloadTableView
+{
+  [self.tutorialTableView reloadData];
 }
 
 @end

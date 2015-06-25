@@ -149,7 +149,28 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateLikeButtonForTutorial
 {
-  self.favouriteButton.hidden = (self.tutorial.isDraft);
+  self.favouriteButton.hidden = self.tutorial.isDraft;
+  [self setFavouritedButtonState:self.likeButtonHighlighted];
+}
+
+- (BOOL)likeButtonHighlighted
+{
+  BOOL isDraft = (self.tutorial.isDraft);
+  return (!isDraft && self.loggedInUserLikesTutorial);
+}
+
+- (BOOL)loggedInUserLikesTutorial
+{
+  // we should check currentUser's createdTutorial relationship instead! 
+  __block BOOL likesTutorial;
+  
+  [self.tutorial.likedBy enumerateObjectsUsingBlock:^(User *user, BOOL *stop) {
+    if (user.loggedInUserValue) {
+      likesTutorial = YES;
+      *stop = YES;
+    }
+  }];
+  return likesTutorial;
 }
 
 - (void)adjustAlphaFromTutorial:(Tutorial *)tutorial
@@ -191,7 +212,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (IBAction)favouriteButtonPressed:(id)sender
 {
   AssertTrueOrReturn(self.tutorial);
-  BOOL newState = YES; // TODO: update favourited button state based on User's liked relation
+  BOOL newState = !self.likeButtonHighlighted;
   
   [self setFavouritedButtonState:newState];
   if (self.tutorialFavouritedBlock) {

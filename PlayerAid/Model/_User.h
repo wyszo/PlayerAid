@@ -13,10 +13,14 @@ extern const struct UserAttributes {
 
 extern const struct UserRelationships {
 	__unsafe_unretained NSString *createdTutorial;
+	__unsafe_unretained NSString *follows;
+	__unsafe_unretained NSString *isFollowedBy;
 	__unsafe_unretained NSString *likes;
 } UserRelationships;
 
 @class Tutorial;
+@class User;
+@class User;
 @class Tutorial;
 
 @interface UserID : NSManagedObjectID {}
@@ -60,6 +64,14 @@ extern const struct UserRelationships {
 
 - (NSMutableSet*)createdTutorialSet;
 
+@property (nonatomic, strong) NSSet *follows;
+
+- (NSMutableSet*)followsSet;
+
+@property (nonatomic, strong) NSSet *isFollowedBy;
+
+- (NSMutableSet*)isFollowedBySet;
+
 @property (nonatomic, strong) NSSet *likes;
 
 - (NSMutableSet*)likesSet;
@@ -71,6 +83,22 @@ extern const struct UserRelationships {
 - (void)removeCreatedTutorial:(NSSet*)value_;
 - (void)addCreatedTutorialObject:(Tutorial*)value_;
 - (void)removeCreatedTutorialObject:(Tutorial*)value_;
+
+@end
+
+@interface _User (FollowsCoreDataGeneratedAccessors)
+- (void)addFollows:(NSSet*)value_;
+- (void)removeFollows:(NSSet*)value_;
+- (void)addFollowsObject:(User*)value_;
+- (void)removeFollowsObject:(User*)value_;
+
+@end
+
+@interface _User (IsFollowedByCoreDataGeneratedAccessors)
+- (void)addIsFollowedBy:(NSSet*)value_;
+- (void)removeIsFollowedBy:(NSSet*)value_;
+- (void)addIsFollowedByObject:(User*)value_;
+- (void)removeIsFollowedByObject:(User*)value_;
 
 @end
 
@@ -107,6 +135,12 @@ extern const struct UserRelationships {
 
 - (NSMutableSet*)primitiveCreatedTutorial;
 - (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveFollows;
+- (void)setPrimitiveFollows:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveIsFollowedBy;
+- (void)setPrimitiveIsFollowedBy:(NSMutableSet*)value;
 
 - (NSMutableSet*)primitiveLikes;
 - (void)setPrimitiveLikes:(NSMutableSet*)value;

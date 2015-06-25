@@ -1,10 +1,16 @@
 #import "TutorialStep.h"
+#import <UIImageView+AFNetworking.h>
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
+#import "KZPropertyMapper.h"
 
 
 static const CGFloat kJPEGCompressionBestQuality = 1.0f;
-
+static NSString *const kTutorialStepServerIDAttributeName = @"id";
+static NSString *const kTutorialStepDictionaryTypeAttribute = @"type";
+static NSString *const kTutorialStepTypeText = @"Text";
+static NSString *const kTutorialStepTypeImage = @"Image";
+static NSString *const kTutorialStepTypeVideo = @"Video";
 
 @implementation TutorialStep
 
@@ -46,11 +52,47 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
   return [TutorialStep MR_createInContext:context];
 }
 
+#pragma mark - Configuration
+
+- (void)configureFromDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturn(dictionary);
+  
+  NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                   @"id" : KZProperty(serverID),
+                                                                                   @"position" : KZProperty(order),
+                                                                                  }];
+  
+  if ([dictionary[kTutorialStepDictionaryTypeAttribute] isEqualToString:kTutorialStepTypeText]) {
+    [mapping addEntriesFromDictionary:@{ @"data" : KZProperty(text) }];
+  }
+  if ([dictionary[kTutorialStepDictionaryTypeAttribute] isEqualToString:kTutorialStepTypeImage]) {
+    [mapping addEntriesFromDictionary:@{ @"data" : KZProperty(imagePath) }];
+  }
+  if ([dictionary[kTutorialStepDictionaryTypeAttribute] isEqualToString:kTutorialStepTypeVideo]) {
+    [mapping addEntriesFromDictionary:@{ @"data" : KZProperty(videoPath) }];
+  }
+  
+  [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+}
+
 #pragma mark - Methods
 
-- (UIImage *)image
+- (void)placeImageInImageView:(UIImageView *)imageView
 {
-  return [UIImage imageWithData:self.imageData];
+  AssertTrueOrReturn(imageView);
+  AssertTrueOrReturn(self.imageData || self.imagePath.length);
+  
+  UIImage *image = [UIImage imageWithData:self.imageData];
+  NSURL *imageUrl = [NSURL URLWithString:self.imagePath];
+  AssertTrueOrReturn(image || imageUrl);
+  
+  if (image) {
+    imageView.image = image;
+  }
+  else if (imageUrl) {
+    [imageView setImageWithURL:imageUrl];
+  }
 }
 
 - (UIImage *)thumbnailImage
@@ -65,12 +107,22 @@ static const CGFloat kJPEGCompressionBestQuality = 1.0f;
 
 - (BOOL)isImageStep
 {
-  return (self.imageData != nil);
+  return (self.imageData != nil || self.imagePath.length);
 }
 
 - (BOOL)isVideoStep
 {
   return (self.videoPath.length != 0);
+}
+
+#pragma mark - Class methods
+
++ (NSString *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary
+{
+  AssertTrueOrReturnNil(dictionary);
+  NSString *serverID = dictionary[kTutorialStepServerIDAttributeName];
+  AssertTrueOrReturnNil(serverID);
+  return serverID;
 }
 
 @end

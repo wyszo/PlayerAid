@@ -51,8 +51,8 @@ static const CGFloat kContentImageMargin = 7.0f;
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep
 {
-  BOOL imageTutorialStep = (tutorialStep.image != nil);
-  BOOL videoTutorialStep = (tutorialStep.videoPath.length != 0);
+  BOOL imageTutorialStep = [tutorialStep isImageStep];
+  BOOL videoTutorialStep = [tutorialStep isVideoStep];
   
   if (imageTutorialStep || videoTutorialStep) {
     
@@ -60,7 +60,7 @@ static const CGFloat kContentImageMargin = 7.0f;
     self.contentImageHeightAndWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
     
     if (imageTutorialStep) {
-      self.contentImageView.image = tutorialStep.image;
+      [tutorialStep placeImageInImageView:self.contentImageView];
     }
     else if (videoTutorialStep) {
       self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];

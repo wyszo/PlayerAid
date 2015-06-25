@@ -6,6 +6,10 @@
 #import "UIImageView+AvatarStyling.h"
 #import "UIView+TWXibLoading.h"
 #import "ColorsHelper.h"
+#import "AuthenticatedServerCommunicationController.h"
+#import "FollowingButtonDecorator.h"
+#import "UserManipulationController.h"
+
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
@@ -18,6 +22,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
 
 @property (strong, nonatomic) UIView *view;
 
@@ -69,17 +74,39 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setUser:(User *)user
 {
+  _user = user;
   [user placeAvatarInImageView:self.avatarImageView];
   
   self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
+
+  BOOL isCurrentUser = user.loggedInUserValue;
+  self.editButton.hidden = !isCurrentUser;
+  self.addFriendButton.hidden = isCurrentUser;
   
-  self.editButton.hidden = !user.loggedInUserValue;
+  [self updateFollowingButtonImageForProfileUser];
 }
+
+- (void)updateFollowingButtonImageForProfileUser
+{
+  [[FollowingButtonDecorator new] updateFollowingButtonImage:self.addFriendButton forUser:self.user backgroundType:BackgroundTypeDark];
+}
+
+#pragma mark - IBActions
 
 - (IBAction)editButtonPressed:(id)sender
 {
   CallBlock(self.editButtonPressed);
+}
+
+- (IBAction)toggleFollowButtonPressed:(id)sender
+{
+  defineWeakSelf();
+  [[UserManipulationController new] toggleFollowButtonPressedSendRequestUpdateModelForUser:self.user completion:^(NSError *error) {
+    if (!error) {
+      [weakSelf updateFollowingButtonImageForProfileUser];
+    }
+  }];
 }
 
 @end

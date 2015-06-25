@@ -13,6 +13,7 @@
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
 #import "ProfileViewController.h"
+#import "UsersFetchController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -31,6 +32,9 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (instancetype)initAttachingToTableView:(UITableView *)tableView
 {
+  AssertTrueOrReturnNil(tableView);
+  // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
+  
   self = [super init];
   if (self) {
     _tableView = tableView;
@@ -115,9 +119,25 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
       Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-      // TODO: add tutorialInContext to current User's liked relationship (or remove)
+      User *user = [[UsersFetchController sharedInstance] currentUserInContext:localContext];
+      
+      if (favourited) {
+        [user addLikesObject:tutorialInContext];
+        [tutorialInContext addLikedByObject:user];
+        
+        [[AuthenticatedServerCommunicationController sharedInstance] likeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Liking alert request failed"];
+        }];
+      }
+      else {
+        [user removeLikesObject:tutorialInContext];
+        [tutorialInContext removeLikedByObject:user];
+        
+        [[AuthenticatedServerCommunicationController sharedInstance] unlikeTutorial:tutorialInContext completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+          [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Unliking alert request failed"];
+        }];
+      }
     }];
-    // TODO: make a network request to favourite/unfavourite on server
   };
 }
 
@@ -209,7 +229,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
-  [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+  
+  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(didSelectRowWithTutorial:)]) {
+    [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

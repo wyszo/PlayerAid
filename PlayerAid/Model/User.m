@@ -5,10 +5,16 @@
 #import <UIImageView+AFNetworking.h>
 #import "Tutorial.h"
 #import "TutorialsHelper.h"
+#import "UsersHelper.h"
 
 
-static NSString *const kServerIDJSONAttributeName = @"id";
-static NSString *const kServerIDKey = @"serverID";
+NSString *const kUserServerIDJSONAttributeName = @"id";
+NSString *const kUserServerIDKey = @"serverID";
+
+static NSString *const kTutorialsKey = @"tutorials";
+static NSString *const kLikesKey = @"likes";
+static NSString *const kFollowersKey = @"followers";
+static NSString *const kFollowingKey = @"following";
 
 
 @implementation User
@@ -16,10 +22,11 @@ static NSString *const kServerIDKey = @"serverID";
 - (void)configureFromDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturn(dictionary.count);
-  NSSet *oldCreatedTutorialsIDs = [self.createdTutorialsStoredOnServerSet valueForKey:kServerIDKey];
+  NSSet *oldCreatedTutorialsIDs = [self.createdTutorialsStoredOnServerSet valueForKey:kUserServerIDKey];
+  NSSet *locallyStoredTutorials = [self tutorialsStoredLocallySet];
   
   NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:@{
-                            kServerIDJSONAttributeName : KZProperty(serverID),
+                            kUserServerIDJSONAttributeName : KZProperty(serverID),
                             @"name" : KZProperty(name),
                             @"pictureUri" : KZProperty(pictureURL),
                             @"description" : KZProperty(userDescription)
@@ -27,31 +34,25 @@ static NSString *const kServerIDKey = @"serverID";
   
   BOOL tutorialsChanged = NO;
   
-  if (dictionary[@"tutorials"]) {
-    [mapping addEntriesFromDictionary:@{
-                                        @"tutorials" : KZCall(setOfOwnTutorialsFromDictionariesArray:, createdTutorial),
-                                      }];
+  if (dictionary[kTutorialsKey]) {
+    [mapping addEntriesFromDictionary:@{ kTutorialsKey : KZCall(setOfOwnTutorialsFromDictionariesArray:, createdTutorial) }];
     tutorialsChanged = YES;
   }
-  
-  if (dictionary[@"likes"]) {
-    [mapping addEntriesFromDictionary:@{
-                                       @"likes" : KZCall(setOfAnotherUsersTutorialsFromDictionariesArray:, likes)
-                                      }];
+  if (dictionary[kLikesKey]) {
+    [mapping addEntriesFromDictionary:@{ kLikesKey : KZCall(setOfAnotherUsersTutorialsFromDictionariesArray:, likes) }];
   }
-  
-  if (dictionary[@"followers"]) {
-    // TODO: not implemented yet
+  if (dictionary[kFollowersKey]) {
+    [mapping addEntriesFromDictionary:@{ kFollowersKey : KZCall(setOfOtherUsersFromDictionariesArray:, isFollowedBy) }];
   }
-  
-  if (dictionary[@"following"]) {
-    // TODO: not implemented yet
+  if (dictionary[kFollowingKey]) {
+    [mapping addEntriesFromDictionary:@{ kFollowingKey : KZCall(setOfOtherUsersFromDictionariesArray:, follows) }];
   }
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   if (tutorialsChanged) {
     [self removeDeletedTutorialsWithOldTutorialIDsSet:oldCreatedTutorialsIDs];
+    [self.createdTutorialSet addObjectsFromArray:locallyStoredTutorials.allObjects]; // draft and unsaved tutorials don't come from server, we have to add them separately
   }
   
   // TODO: if tutorial was liked before but is not liked anymore it might be worth refreshing it (by making an additional request) - it might have been deleted
@@ -63,6 +64,12 @@ static NSString *const kServerIDKey = @"serverID";
   return [self.createdTutorialSet filteredSetUsingPredicate:predicate];
 }
 
+- (NSSet *)tutorialsStoredLocallySet
+{
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"storedOnServer == NO"];
+  return [self.createdTutorialSet filteredSetUsingPredicate:predicate];
+}
+
 - (void)removeDeletedTutorialsWithOldTutorialIDsSet:(NSSet *)oldTutorialIDsSet
 {
   if (oldTutorialIDsSet.count == 0) {
@@ -70,7 +77,7 @@ static NSString *const kServerIDKey = @"serverID";
   }
   
   // Removing tutorials that used to belong to the user but don't anymore (meaning they have been deleted server-side)
-  NSSet *currentTutorialIDs = [self.createdTutorialSet valueForKey:kServerIDKey];
+  NSSet *currentTutorialIDs = [self.createdTutorialSet valueForKey:kUserServerIDKey];
   NSSet *tutorialIDsToRemove = [oldTutorialIDsSet tw_setByRemovingObjectsInSet:currentTutorialIDs];
   if (tutorialIDsToRemove.count) {
     [self deleteTutorialsWithIDs:tutorialIDsToRemove.allObjects inContext:self.managedObjectContext];
@@ -81,7 +88,7 @@ static NSString *const kServerIDKey = @"serverID";
 {
   AssertTrueOrReturn(tutorialIDs.count);
   AssertTrueOrReturn(context);
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K in %@", kServerIDKey, tutorialIDs];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K in %@", kUserServerIDKey, tutorialIDs];
   NSArray *tutorialsToRemove = [Tutorial MR_findAllWithPredicate:predicate inContext:context];
   [tutorialsToRemove makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:context];
 }
@@ -89,7 +96,7 @@ static NSString *const kServerIDKey = @"serverID";
 + (NSString *)serverIDFromUserDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturnNil(dictionary);
-  NSString *serverID = dictionary[kServerIDJSONAttributeName];
+  NSString *serverID = dictionary[kUserServerIDJSONAttributeName];
   AssertTrueOrReturnNil(serverID);
   return serverID;
 }
@@ -104,7 +111,7 @@ static NSString *const kServerIDKey = @"serverID";
   [imageView setImageWithURL:[NSURL URLWithString:self.pictureURL]];
 }
 
-#pragma mark - Data extraction methods
+#pragma mark - Tutorials data extraction methods
 
 - (NSSet *)setOfAnotherUsersTutorialsFromDictionariesArray:(id)dictionariesArray
 {
@@ -120,6 +127,13 @@ static NSString *const kServerIDKey = @"serverID";
 - (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors
 {
   return [TutorialsHelper setOfTutorialsFromDictionariesArray:dictionariesArray parseAuthors:parseAuthors inContext:self.managedObjectContext];
+}
+
+#pragma mark - Users data extraction methods
+
+- (NSSet *)setOfOtherUsersFromDictionariesArray:(id)dictionariesArray
+{
+  return [[UsersHelper new] setOfOtherUsersFromDictionariesArray:dictionariesArray inContext:self.managedObjectContext];
 }
 
 @end

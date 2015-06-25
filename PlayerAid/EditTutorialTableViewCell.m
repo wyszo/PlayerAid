@@ -38,7 +38,7 @@
   if ([tutorialStep isTextStep]) {
     self.thumbnailImageView.image = [UIImage imageNamed:@"typebtn_edit"];
   } else if ([tutorialStep isImageStep]) {
-    self.thumbnailImageView.image = tutorialStep.image;
+    [tutorialStep placeImageInImageView:self.thumbnailImageView];
   } else if ([tutorialStep isVideoStep]) {
     self.thumbnailImageView.image = tutorialStep.thumbnailImage;
     self.playIconImageView.hidden = NO;
