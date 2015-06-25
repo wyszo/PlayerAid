@@ -42,10 +42,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-8A-yvh">
-                    <rect key="frame" x="152" y="224" width="297" height="50"/>
+                    <rect key="frame" x="152" y="224" width="297" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="297" id="68Y-ma-yGJ"/>
-                        <constraint firstAttribute="height" constant="50" id="v3G-41-lD6"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Z5s-Mi-G48"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="v3G-41-lD6"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
