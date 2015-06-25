@@ -225,12 +225,14 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
+    [weakSelf hideAllNoItemsOverlays];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowingUsersTableDataSource];
     [weakSelf reloadTableView];
     weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
+    [weakSelf hideAllNoItemsOverlays];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowersTableDataSource];
     [weakSelf reloadTableView];
