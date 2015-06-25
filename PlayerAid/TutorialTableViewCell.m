@@ -97,7 +97,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.tutorial = tutorial;
   
   [self updateBackgroundImageView];
-  [self updateLikeButtonForTutorial];
+  [self updateLikeButtonState];
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
@@ -148,7 +148,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   } failure:nil];
 }
 
-- (void)updateLikeButtonForTutorial
+- (void)updateLikeButtonState
 {
   self.favouriteButton.hidden = self.tutorial.isDraft;
   [self setFavouritedButtonState:self.likeButtonHighlighted];
@@ -214,11 +214,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 {
   AssertTrueOrReturn(self.tutorial);
   BOOL newState = !self.likeButtonHighlighted;
-  
-  [self setFavouritedButtonState:newState];
-  if (self.tutorialFavouritedBlock) {
-    self.tutorialFavouritedBlock(newState);
-  }
+  CallBlock(self.tutorialFavouritedBlock, newState, self);
 }
 
 - (IBAction)authorButtonPressed:(id)sender

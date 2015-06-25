@@ -116,7 +116,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     tutorialCell.userAvatarSelectedBlock = self.userAvatarSelectedBlock;
   }
   
-  tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited) {
+  tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited, TutorialTableViewCell *tutorialCell) {
     VoidBlock showGenericErrorBlock = ^() {
       DISPATCH_ASYNC_ON_MAIN_THREAD(^{
         [AlertFactory showGenericErrorAlertView];
@@ -138,6 +138,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
             [user addLikesObject:tutorialInContext];
             [tutorialInContext addLikedByObject:user];
           }];
+          [tutorialCell updateLikeButtonState];
         }
       }];
     }
@@ -156,6 +157,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
             [user removeLikesObject:tutorialInContext];
             [tutorialInContext removeLikedByObject:user];
           }];
+          [tutorialCell updateLikeButtonState];
         }
       }];
     }
