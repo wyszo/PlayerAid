@@ -46,6 +46,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (void)awakeFromNib
 {
   self.selectionStyle = UITableViewCellSelectionStyleNone;
+  self.preservesSuperviewLayoutMargins = NO;
   [self.avatarImageView styleAsSmallAvatar];
   [self setupGradientOverlay];
 }
