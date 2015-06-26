@@ -70,7 +70,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   }];
   self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     AssertTrueOr(weakSelf.fetchedResultsControllerBinder, );
-    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf.fetchedResultsControllerBinder];
+    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:NO withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf.fetchedResultsControllerBinder];
   };
   self.tableView.dataSource = _tableViewDataSource;
 }
