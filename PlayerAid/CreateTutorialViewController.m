@@ -89,6 +89,8 @@ static NSString *const kXibName = @"CreateTutorialView";
 
   [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
   
+  // TODO: update header view UI from self.tutorial (it could have been copied from self.tutorialToDisplay)
+  
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
   [self setupTapGestureRecognizerForResigningEditing];
@@ -247,7 +249,11 @@ static NSString *const kXibName = @"CreateTutorialView";
   
   [self deleteUserUnsavedTutorials];
   
-  self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+  if (self.tutorialToDisplay) {
+    self.tutorial = [self.tutorialToDisplay MR_inContext:self.createTutorialContext];
+  } else {
+    self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+  }
   AssertTrueOrReturn(self.tutorial);
   
   self.tutorial.primitiveUnsavedValue = YES;

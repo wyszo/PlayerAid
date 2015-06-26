@@ -18,4 +18,10 @@
  */
 + (void (^)(User *))pushProfileViewControllerFromViewController:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser;
 
+/**
+ Presents a navigation controller with CreateTutorial modally,
+ Returns CreateTutorialViewController
+ */
++ (UIViewController *)presentModalCreateTutorialViewController;
+
 @end

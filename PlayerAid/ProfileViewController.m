@@ -14,6 +14,7 @@
 #import "FollowedUserTableViewDelegate.h"
 #import "FollowingButtonDecorator.h"
 #import "TutorialDetailsHelper.h"
+#import "CreateTutorialViewController.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -266,8 +267,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.lastSelectedTutorial = tutorial;
   
   if (tutorial.isDraft) {
-    // TODO: push CreateTutorial flow filled with draft tutorial's data
-    NOT_IMPLEMENTED_YET_RETURN
+    UIViewController *viewController = [ApplicationViewHierarchyHelper presentModalCreateTutorialViewController];
+    AssertTrueOrReturn([viewController isKindOfClass:[CreateTutorialViewController class]]);
+    CreateTutorialViewController *createTutorialViewController = (CreateTutorialViewController *)viewController;
+    createTutorialViewController.tutorialToDisplay = tutorial;
   }
   else {
     [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
