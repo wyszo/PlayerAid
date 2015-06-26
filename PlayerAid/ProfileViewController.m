@@ -271,6 +271,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }
   else {
     [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
   }
 }
 
@@ -278,7 +279,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
+  defineWeakSelf();
+  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial deallocBlock:^{
+    [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
+  }];
 }
 
 #pragma mark - Other methods 

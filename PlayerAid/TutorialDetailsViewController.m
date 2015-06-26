@@ -36,6 +36,11 @@
   [self setupTutorialStepsTableView];
 }
 
+- (void)dealloc
+{
+  CallBlock(self.onDeallocBlock);
+}
+
 - (void)setupLazyInitializers
 {
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];

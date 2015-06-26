@@ -566,7 +566,7 @@
         <!--Profile-->
         <scene sceneID="ORk-No-nVo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hcs-TP-QxR" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hcs-TP-QxR" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>

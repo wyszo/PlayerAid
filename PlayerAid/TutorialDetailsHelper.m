@@ -22,7 +22,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   return kShowTutorialDetailsSegueName;
 }
 
-- (void)prepareForTutorialDetailsSegue:(UIStoryboardSegue *)segue pushingTutorial:(Tutorial *)tutorial
+- (void)prepareForTutorialDetailsSegue:(UIStoryboardSegue *)segue pushingTutorial:(Tutorial *)tutorial deallocBlock:(VoidBlock)deallocBlock
 {
   AssertTrueOrReturn(tutorial);
   if([segue.identifier isEqualToString:kShowTutorialDetailsSegueName]) {
@@ -30,6 +30,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
     AssertTrueOrReturn([destinationController isKindOfClass:[TutorialDetailsViewController class]]);
     TutorialDetailsViewController *tutorialDetailsViewController = (TutorialDetailsViewController *)destinationController;
     tutorialDetailsViewController.tutorial = tutorial;
+    tutorialDetailsViewController.onDeallocBlock = deallocBlock;
   }
 }
 
