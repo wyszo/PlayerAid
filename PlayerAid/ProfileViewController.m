@@ -13,6 +13,7 @@
 #import "FollowedUserTableViewCell.h"
 #import "FollowedUserTableViewDelegate.h"
 #import "FollowingButtonDecorator.h"
+#import "TutorialDetailsHelper.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -32,6 +33,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet UILabel *noLikedTutorialsLabel;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
+@property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
 @end
 
@@ -257,6 +259,26 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)updateFilterViewTutorialsCount
 {
   self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+}
+
+- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
+{
+  self.lastSelectedTutorial = tutorial;
+  
+  if (tutorial.isDraft) {
+    // TODO: push CreateTutorial flow filled with draft tutorial's data
+    NOT_IMPLEMENTED_YET_RETURN
+  }
+  else {
+    [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
+  }
+}
+
+#pragma mark - PrepareForSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
 }
 
 #pragma mark - Other methods 

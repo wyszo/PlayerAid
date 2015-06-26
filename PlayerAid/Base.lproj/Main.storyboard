@@ -124,10 +124,10 @@
                         <viewControllerLayoutGuide type="bottom" id="WHH-tW-RVJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KyB-1G-XAP">
-                        <rect key="frame" x="0.0" y="64" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="44" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -313,6 +313,7 @@
                         <outlet property="noLikedTutorialsLabel" destination="fmi-Sj-BRS" id="2oJ-Db-ryP"/>
                         <outlet property="noTutorialsLabel" destination="Hyb-hV-U9J" id="HLU-Te-QZH"/>
                         <outlet property="tutorialTableView" destination="knL-tG-Q8f" id="bDj-7W-8MO"/>
+                        <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="Hsy-NE-Zkj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9V-94-XeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -642,5 +643,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FzJ-wj-RX8"/>
+        <segue reference="Hsy-NE-Zkj"/>
     </inferredMetricsTieBreakers>
 </document>
