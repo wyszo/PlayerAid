@@ -88,8 +88,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.createTutoriaStepButtonsView.delegate = self;
 
   [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
-  
-  // TODO: update header view UI from self.tutorial (it could have been copied from self.tutorialToDisplay)
+  [self.headerViewController updateWithTutorial:self.tutorial];
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
