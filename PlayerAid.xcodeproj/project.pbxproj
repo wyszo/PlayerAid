@@ -123,6 +123,7 @@
 		31F116831A790F680022BD74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31F116811A790F680022BD74 /* Main.storyboard */; };
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
+		31F5C3A21B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
@@ -349,6 +350,8 @@
 		31F116821A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31F116841A790F680022BD74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31F116871A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		31F5C3A01B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableFetchedResultsControllersFactory.h; sourceTree = "<group>"; };
+		31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsTableFetchedResultsControllersFactory.m; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -1204,6 +1207,7 @@
 		31B736051A8925F80081AE15 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
+				31F5C39F1B3F47B1007D0C2F /* FetchedResultsControllerFactory */,
 				3177800E1A80049A007057CD /* TutorialsTableDataSource.h */,
 				3177800F1A80049A007057CD /* TutorialsTableDataSource.m */,
 			);
@@ -1399,6 +1403,15 @@
 				31F116761A790F680022BD74 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		31F5C39F1B3F47B1007D0C2F /* FetchedResultsControllerFactory */ = {
+			isa = PBXGroup;
+			children = (
+				31F5C3A01B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.h */,
+				31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */,
+			);
+			name = FetchedResultsControllerFactory;
 			sourceTree = "<group>";
 		};
 		31FB03A61B3DDD5E00539B50 /* TutorialDetails */ = {
@@ -1616,6 +1629,7 @@
 				3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */,
 				31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */,
 				312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */,
+				31F5C3A21B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m in Sources */,
 				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
 				316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,

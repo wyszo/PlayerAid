@@ -87,11 +87,9 @@
 
 - (void)setupTabBarActionHandling
 {
-  defineWeakSelf();
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
-    [weakSelf.window.rootViewController presentViewController:[ApplicationViewHierarchyHelper navigationControllerWithCreateTutorialViewController] animated:YES completion:nil];
+    [ApplicationViewHierarchyHelper presentModalCreateTutorialViewController];
   }];
-  
   [TabBarHelper mainTabBarController].delegate = self.tabBarControllerHandler;
 }
 
