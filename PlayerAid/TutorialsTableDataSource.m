@@ -14,6 +14,8 @@
 #import "UITableView+TableViewHelper.h"
 #import "ProfileViewController.h"
 #import "UsersFetchController.h"
+#import "TutorialsTableFetchedResultsControllersFactory.h"
+#import "NSManagedObjectContext+MagicalThreading.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -63,14 +65,23 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (void)initTableViewDataSource
 {
-  __weak typeof(self) weakSelf = self;
-  
+  defineWeakSelf();
   self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell atIndexPath:indexPath];
   }];
+  
   self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    AssertTrueOr(weakSelf.fetchedResultsControllerBinder, );
-    return [Tutorial MR_fetchAllSortedBy:@"state,createdAt" ascending:YES withPredicate:weakSelf.predicate groupBy:weakSelf.groupBy delegate:weakSelf.fetchedResultsControllerBinder];
+    AssertTrueOr(weakSelf.fetchedResultsControllerBinder && @"binder should be set, otherwise UI won't ever be updated",);
+    AssertTrueOr(weakSelf.predicate,);
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSFetchedResultsController *fetchedResultsController = [[TutorialsTableFetchedResultsControllersFactory new] tutorialsTableFetchedResultsControllerWithDelegate:weakSelf.fetchedResultsControllerBinder predicate:weakSelf.predicate groupBy:weakSelf.groupBy InContext:context];
+    
+    NSError *error;
+    [fetchedResultsController performFetch:&error];
+    
+    AssertTrueOr(!error,);
+    return fetchedResultsController;
   };
   self.tableView.dataSource = _tableViewDataSource;
 }

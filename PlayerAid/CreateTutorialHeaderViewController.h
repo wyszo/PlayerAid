@@ -3,6 +3,7 @@
 //
 
 #import "Section.h"
+#import "Tutorial.h"
 
 
 @interface CreateTutorialHeaderViewController : UIViewController
@@ -13,5 +14,6 @@
 @property (assign, nonatomic, readonly) BOOL hasAnyData;
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts;
+- (void)updateWithTutorial:(Tutorial *)tutorial;
 
 @end

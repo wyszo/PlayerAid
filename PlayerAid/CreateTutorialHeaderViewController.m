@@ -45,6 +45,8 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 @implementation CreateTutorialHeaderViewController
 
+#pragma mark - View Setup and Styling
+
 - (instancetype)init
 {
   self = [super initWithNibName:@"CreateTutorialHeaderView" bundle:nil];
@@ -119,7 +121,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 - (void)setupPickACategoryButtonBackgroundImageWhite
 {
-    return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.pickACategoryButton];
+  return [self setBorderWithImageNamed:@"RoundedRectangleWhite" forButton:self.pickACategoryButton];
 }
 
 - (void)setupPickACategoryButtonBackgroundImageGray
@@ -190,6 +192,38 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
   self.pickACategoryButton.hidden = YES;
 }
 
+- (void)updateSelectedSectionLabel
+{
+  NSString *title = self.selectedSection.displayName;
+  [self.pickACategoryButton setTitle:title forState:UIControlStateNormal];
+  self.sectionLabelContainer.titleLabel.text = title;
+  
+  if (self.backgroundImageView.image) {
+    [self hidePickACategoryButtonShowSectionLabel];
+  }
+}
+
+#pragma mark - Tutorial
+
+- (void)updateWithTutorial:(Tutorial *)tutorial
+{
+  AssertTrueOrReturn(tutorial);
+  
+  if (tutorial.pngImageData) {
+    [self setEditCoverPhoto:[UIImage imageWithData:tutorial.pngImageData]];
+  }
+  
+  self.titleTextView.text = tutorial.title;
+  if (tutorial.title.length) {
+    self.titlePlaceholderTextView.hidden = YES;
+  }
+  
+  if (tutorial.section) {
+    self.selectedSection = tutorial.section;
+    [self updateSelectedSectionLabel];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)editCoverPhoto:(id)sender
@@ -212,6 +246,8 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
   UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
   [actionSheet showInView:window];
 }
+
+#pragma mark - Data Validation
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
@@ -285,14 +321,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
     AssertTrueOrReturn(buttonIndex > 0);
     NSInteger actionSheetSectionIndex = buttonIndex - 1; // cancelButtonIndex equals 0
     self.selectedSection = self.actionSheetSections[actionSheetSectionIndex];
-
-    NSString *title = self.selectedSection.displayName;
-    [self.pickACategoryButton setTitle:title forState:UIControlStateNormal];
-    self.sectionLabelContainer.titleLabel.text = title;
-    
-    if (self.backgroundImageView.image) {
-      [self hidePickACategoryButtonShowSectionLabel];
-    }
+    [self updateSelectedSectionLabel];
   }
 }
 

@@ -10,8 +10,8 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "DebugSettings.h"
 #import "VideoPlayer.h"
+#import "TutorialDetailsHelper.h"
 
-static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 
 @interface HomeViewController () <TutorialsTableViewDelegate>
@@ -137,7 +137,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial
 {
   self.lastSelectedTutorial = tutorial;
-  [self performSegueWithIdentifier:kShowTutorialDetailsSegueName sender:self];
+  [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
 }
 
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
@@ -145,16 +145,11 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
-#pragma mark - Navigation
+#pragma mark - PrepareForSegue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  if([segue.identifier isEqualToString:kShowTutorialDetailsSegueName]) {
-    UIViewController *destinationController = [segue destinationViewController];
-    AssertTrueOrReturn([destinationController isKindOfClass:[TutorialDetailsViewController class]]);
-    TutorialDetailsViewController *tutorialDetailsViewController = (TutorialDetailsViewController *)destinationController;
-    tutorialDetailsViewController.tutorial = self.lastSelectedTutorial;
-  }
+  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial deallocBlock:nil];
 }
 
 @end

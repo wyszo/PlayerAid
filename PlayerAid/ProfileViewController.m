@@ -13,6 +13,8 @@
 #import "FollowedUserTableViewCell.h"
 #import "FollowedUserTableViewDelegate.h"
 #import "FollowingButtonDecorator.h"
+#import "TutorialDetailsHelper.h"
+#import "CreateTutorialViewController.h"
 
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
@@ -28,10 +30,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followingDataSource;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followedUserTableViewDelegate;
-@property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *noLikedTutorialsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noItemsLabel;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
+@property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
 @end
 
@@ -52,8 +54,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self setupTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
-  
-  self.noTutorialsLabel.text = @"You haven't created any tutorials yet!";
   [self setupUserTutorialsTableViewOverlay];
   
   if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
@@ -63,27 +63,35 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)setupUserTutorialsTableViewOverlay
 {
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsLabel];
+  self.noItemsLabel.text = @"You haven't created any tutorials yet!";
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
 }
 
 - (void)setupLikedTutorialsTableViewOverlay
 {
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noLikedTutorialsLabel];
+  self.noItemsLabel.text = @"No liked tutorials";
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+}
+
+- (void)setupNotFollowingAnyoneTableViewOverlay
+{
+  self.noItemsLabel.text = @"Not following anyone";
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+}
+
+- (void)setupNoFollowersTableViewOverlay
+{
+  self.noItemsLabel.text = @"No followers";
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
 }
 
 - (void)setupEmptyTableViewBehaviourWithOverlay:(UIView *)overlay
 {
   AssertTrueOrReturn(overlay);
   
-  [self hideAllNoItemsOverlays];
+  self.noItemsLabel.hidden = YES;
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:overlay allowScrollingWhenNoCells:NO];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-}
-
-- (void)hideAllNoItemsOverlays
-{
-  self.noTutorialsLabel.hidden = YES;
-  self.noLikedTutorialsLabel.hidden = YES;
 }
 
 - (void)setupUserIfNotNil
@@ -225,14 +233,14 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
-    [weakSelf hideAllNoItemsOverlays];
+    [weakSelf setupNotFollowingAnyoneTableViewOverlay];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowingUsersTableDataSource];
     [weakSelf reloadTableView];
     weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
-    [weakSelf hideAllNoItemsOverlays];
+    [weakSelf setupNoFollowersTableViewOverlay];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowersTableDataSource];
     [weakSelf reloadTableView];
@@ -257,6 +265,32 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)updateFilterViewTutorialsCount
 {
   self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+}
+
+- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
+{
+  self.lastSelectedTutorial = tutorial;
+  
+  if (tutorial.isDraft) {
+    UIViewController *viewController = [ApplicationViewHierarchyHelper presentModalCreateTutorialViewController];
+    AssertTrueOrReturn([viewController isKindOfClass:[CreateTutorialViewController class]]);
+    CreateTutorialViewController *createTutorialViewController = (CreateTutorialViewController *)viewController;
+    createTutorialViewController.tutorialToDisplay = tutorial;
+  }
+  else {
+    [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+  }
+}
+
+#pragma mark - PrepareForSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  defineWeakSelf();
+  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial deallocBlock:^{
+    [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
+  }];
 }
 
 #pragma mark - Other methods 

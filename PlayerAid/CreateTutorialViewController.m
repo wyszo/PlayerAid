@@ -88,6 +88,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.createTutoriaStepButtonsView.delegate = self;
 
   [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
+  [self.headerViewController updateWithTutorial:self.tutorial]; 
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
@@ -97,7 +98,9 @@ static NSString *const kXibName = @"CreateTutorialView";
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
   DISPATCH_AFTER(0.01, ^{
-    [weakSelf disableEditButton];
+    if (!weakSelf.tutorialHasAnySteps) {
+      [weakSelf disableEditButton];
+    }
   });
 }
 
@@ -247,7 +250,11 @@ static NSString *const kXibName = @"CreateTutorialView";
   
   [self deleteUserUnsavedTutorials];
   
-  self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+  if (self.tutorialToDisplay) {
+    self.tutorial = [self.tutorialToDisplay MR_inContext:self.createTutorialContext];
+  } else {
+    self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+  }
   AssertTrueOrReturn(self.tutorial);
   
   self.tutorial.primitiveUnsavedValue = YES;

@@ -8,6 +8,7 @@
 #import "ProfileViewController.h"
 #import "UsersFetchController.h"
 #import "PlayerAidTabBarHelper.h"
+#import "AppDelegate.h"
 
 @implementation ApplicationViewHierarchyHelper
 
@@ -57,6 +58,19 @@
     }
   };
   return pushProfileViewBlock;
+}
+
+#pragma mark - Presenting CreateTutorial
+
++ (UIViewController *)presentModalCreateTutorialViewController
+{
+  UINavigationController *navigationController = [self navigationControllerWithCreateTutorialViewController];
+  AssertTrueOrReturnNil(navigationController);
+  
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
+  
+  return navigationController.topViewController;
 }
 
 @end

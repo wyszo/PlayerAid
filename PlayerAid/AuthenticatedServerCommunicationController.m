@@ -113,7 +113,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
   URLString = [NSURL URLStringWithPath:URLString baseURL:operationManager.baseURL];
   
-  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:tutorial.pngImageData mimeType:@"image/png" completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:tutorial.pngImageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
 }
 
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -161,7 +161,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn([tutorialStep isImageStep]);
   
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
-  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
 }
 
 - (void)submitVideoTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -172,11 +172,17 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:tutorialStep.videoPath]];
   AssertTrueOrReturn(videoData);
   
+  void (^appendThumbnailBlock)(id<AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
+    NSData *thumbnailImageData = UIImagePNGRepresentation(tutorialStep.thumbnailImage);
+    AssertTrueOrReturn(thumbnailImageData);
+    [formData appendPartWithFileData:thumbnailImageData name:@"thumbnail" fileName:@"videoThumbnail" mimeType:@"image/png"];
+  };
+  
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
-  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"video" fileData:videoData mimeType:@"video/mp4" appendToFormDataWithBlock:appendThumbnailBlock completionBlock:completion];
 }
 
-- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSNumber *)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype completionBlock:(NetworkResponseBlock)completion
+- (void)postMultipartFormDataWithURLString:(NSString *)URLString position:(NSNumber *)position mainContentName:(NSString *)name fileData:(NSData *)data mimeType:(NSString *)mimetype appendToFormDataWithBlock:(void (^)(id<AFMultipartFormData>))appendToFormDataBlock completionBlock:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(URLString);
   AssertTrueOrReturn(data);
@@ -192,6 +198,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       [formData appendPartWithFormData:positionData name:@"position"];
     }
     [formData appendPartWithFileData:data name:name fileName:@"" mimeType:mimetype];
+    CallBlock(appendToFormDataBlock, formData);
     
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     CallBlock(completion, nil, responseObject, nil);

@@ -18,6 +18,7 @@
 
 
 @protocol TutorialStepTableViewCellDelegate <NSObject>
+@optional
 - (void)didPressPlayVideoWithURL:(NSURL *)url;
 - (void)didPressTextViewWithStep:(TutorialStep *)tutorialTextStep;
 @end
