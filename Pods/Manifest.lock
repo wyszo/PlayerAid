@@ -58,7 +58,7 @@ DEPENDENCIES:
   - Mixpanel (= 2.8.1)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
-  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`, branch `master`)
+  - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.0.8)
   - YCameraView (from `../YCameraView`)
@@ -68,8 +68,7 @@ EXTERNAL SOURCES:
     :branch: ThomasChanges
     :git: ../FDTake
   TWCommonLib:
-    :branch: master
-    :git: https://github.com/wyszo/TWCommonLib.git
+    :path: ../TWCommonLib
   YCameraView:
     :branch: PlayerAidChanges
     :path: ../YCameraView
