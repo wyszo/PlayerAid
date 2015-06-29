@@ -113,7 +113,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageViewFromTutorialData
 {
-  if (!self.tutorial.isDraft) { // drafts don't have to contain imageData
+  if (!self.tutorial.isDraft) { // drafts are not required to contain imageData
     AssertTrueOrReturn(self.tutorial.pngImageData);
   }
   self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
@@ -138,14 +138,14 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateLikeButtonState
 {
-  self.favouriteButton.hidden = self.tutorial.isDraft;
+  BOOL likeButtonVisible = (self.tutorial.isPublished);
+  self.favouriteButton.hidden = !likeButtonVisible;
   [self setFavouritedButtonState:self.likeButtonHighlighted];
 }
 
 - (BOOL)likeButtonHighlighted
 {
-  BOOL isDraft = (self.tutorial.isDraft);
-  return (!isDraft && self.loggedInUserLikesTutorial);
+  return (self.tutorial.isPublished && self.loggedInUserLikesTutorial);
 }
 
 - (BOOL)loggedInUserLikesTutorial

@@ -102,7 +102,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 {
   NSArray *statesStoredOnServer = @[
                                    // draft and unsaved tutorials are stored locally, never send to server
-                                   kTutorialStateInReview,
+                                   // inReview tutorials are also stored locally (server doesn't push updates with them) - for now (this will change in the future)
                                    kTutorialStatePublished
                                   ];
   return [statesStoredOnServer containsObject:self.primitiveState];
@@ -120,7 +120,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 - (BOOL)isPublished
 {
-  return (self.primitiveState == kTutorialStatePublished);
+  return [self.primitiveState isEqualToString:kTutorialStatePublished];
 }
 
 #pragma mark - Unsaved
