@@ -8,7 +8,7 @@
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
-static NSString *const kTutorialStateInReview = @"Submitted"; // TODO: need to introduce a mapping between server and handset naming, this should be 'In Review' on a hanset (used to display section names in user's tutorials) 
+static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
@@ -73,11 +73,29 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 - (NSString *)stateFromString:(NSString *)state
 {
+  state = [self applyServerToHandsetMappingToState:state];
+  
   if ([self stateIsValid:state]) {
     return state;
   }
   AssertTrueOr(NO, return kTutorialStateUnsaved;);
   return kTutorialStateUnsaved;
+}
+
+- (NSString *)applyServerToHandsetMappingToState:(NSString *)state
+{
+  if (!state.length) {
+    return state;
+  }
+
+  // 'Submitted' on server -> 'In Review' in the app (state value is displayed as a section header)
+  NSDictionary *serverToHandsetStateMapping = @{
+                                                @"Submitted" : kTutorialStateInReview
+                                                };
+  if (serverToHandsetStateMapping[state]) {
+    state = serverToHandsetStateMapping[state];
+  }
+  return state;
 }
 
 - (void)setState:(NSString *)state
