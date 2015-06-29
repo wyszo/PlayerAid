@@ -64,33 +64,34 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupUserTutorialsTableViewOverlay
 {
   self.noItemsLabel.text = @"You haven't created any tutorials yet!";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.tutorialsTableDataSource];
 }
 
 - (void)setupLikedTutorialsTableViewOverlay
 {
   self.noItemsLabel.text = @"No liked tutorials";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.tutorialsTableDataSource];
 }
 
 - (void)setupNotFollowingAnyoneTableViewOverlay
 {
   self.noItemsLabel.text = @"Not following anyone";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.followingDataSource];
 }
 
 - (void)setupNoFollowersTableViewOverlay
 {
   self.noItemsLabel.text = @"No followers";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.followersDataSource];
 }
 
-- (void)setupEmptyTableViewBehaviourWithOverlay:(UIView *)overlay
+- (void)setupEmptyTableViewBehaviourWithOverlay:(UIView *)overlay dataSource:(id<TWObjectCountProtocol>)dataSource
 {
   AssertTrueOrReturn(overlay);
-  
+  AssertTrueOrReturn(dataSource);
   self.noItemsLabel.hidden = YES;
-  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:self.tutorialsTableDataSource overlayView:overlay allowScrollingWhenNoCells:NO];
+  
+  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:dataSource overlayView:overlay allowScrollingWhenNoCells:NO];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
@@ -233,17 +234,17 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
-    [weakSelf setupNotFollowingAnyoneTableViewOverlay];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowingUsersTableDataSource];
     [weakSelf reloadTableView];
+    [weakSelf setupNotFollowingAnyoneTableViewOverlay];
     weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
-    [weakSelf setupNoFollowersTableViewOverlay];
     weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowersTableDataSource];
     [weakSelf reloadTableView];
+    [weakSelf setupNoFollowersTableViewOverlay];
     weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
   };
   

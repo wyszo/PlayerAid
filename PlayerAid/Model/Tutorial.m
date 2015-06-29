@@ -8,7 +8,7 @@
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
-static NSString *const kTutorialStateInReview = @"Submitted";
+static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
@@ -73,11 +73,29 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 - (NSString *)stateFromString:(NSString *)state
 {
+  state = [self applyServerToHandsetMappingToState:state];
+  
   if ([self stateIsValid:state]) {
     return state;
   }
   AssertTrueOr(NO, return kTutorialStateUnsaved;);
   return kTutorialStateUnsaved;
+}
+
+- (NSString *)applyServerToHandsetMappingToState:(NSString *)state
+{
+  if (!state.length) {
+    return state;
+  }
+
+  // 'Submitted' on server -> 'In Review' in the app (state value is displayed as a section header)
+  NSDictionary *serverToHandsetStateMapping = @{
+                                                @"Submitted" : kTutorialStateInReview
+                                                };
+  if (serverToHandsetStateMapping[state]) {
+    state = serverToHandsetStateMapping[state];
+  }
+  return state;
 }
 
 - (void)setState:(NSString *)state
@@ -102,7 +120,7 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 {
   NSArray *statesStoredOnServer = @[
                                    // draft and unsaved tutorials are stored locally, never send to server
-                                   kTutorialStateInReview,
+                                   // inReview tutorials are also stored locally (server doesn't push updates with them) - for now (this will change in the future)
                                    kTutorialStatePublished
                                   ];
   return [statesStoredOnServer containsObject:self.primitiveState];
@@ -113,7 +131,17 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   self.primitiveState = kTutorialStateDraft;
 }
 
-#pragma mark - Unsaved 
+- (void)setStateToInReview
+{
+  self.primitiveState = kTutorialStateInReview;
+}
+
+- (BOOL)isPublished
+{
+  return [self.primitiveState isEqualToString:kTutorialStatePublished];
+}
+
+#pragma mark - Unsaved
 
 - (NSNumber *)unsaved
 {

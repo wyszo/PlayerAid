@@ -10,11 +10,10 @@
 #import "User.h"
 #import "Section.h"
 #import "TutorialCellHelper.h"
-#import "GradientHelper.h"
 #import "SectionLabelContainer.h"
+#import "GradientView.h"
 
 
-static const CGFloat kBottomGapHeight = 18.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 
@@ -28,12 +27,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
 @property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
-@property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
-@property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
 @property (weak, nonatomic) Tutorial *tutorial;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeight;
 
 @end
 
@@ -45,10 +41,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)awakeFromNib
 {
+  [super awakeFromNib];
+  
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   self.preservesSuperviewLayoutMargins = NO;
   [self.avatarImageView styleAsSmallAvatar];
-  [self setupGradientOverlay];
 }
 
 - (void)prepareForReuse
@@ -57,20 +54,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.backgroundImageView.image = nil;
 }
 
-- (void)setupGradientOverlay
-{
-  if (self.gradientLayer) {
-    return;
-  }
-  self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
-}
-
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  
   if (self.canBeDeletedOnSwipe && self.showingDeleteConfirmation) {
-    self.gradientLayer.frame = self.gradientOverlayView.bounds;
     [self customiseDeleteButtonHeight];
   }
 }
@@ -85,7 +72,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
     if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) {
       UIView *deleteButtonView = subview;
       CGRect frame = deleteButtonView.frame;
-      frame.size.height = self.frame.size.height - kBottomGapHeight;
+      CGFloat bottomGapHeight = [TutorialCellHelper new].bottomGapHeight;
+      frame.size.height = self.frame.size.height - bottomGapHeight;
       deleteButtonView.frame = frame;
     }
   }
@@ -115,7 +103,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageView
 {
-  if (self.tutorial.isDraft) {
+  if (self.tutorial.pngImageData && !self.tutorial.isPublished) {
     [self updateBackgroundImageViewFromTutorialData];
   }
   else {
@@ -125,7 +113,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageViewFromTutorialData
 {
-  if (!self.tutorial.isDraft) { // drafts don't have to contain imageData
+  if (!self.tutorial.isDraft) { // drafts are not required to contain imageData
     AssertTrueOrReturn(self.tutorial.pngImageData);
   }
   self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
@@ -150,14 +138,14 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateLikeButtonState
 {
-  self.favouriteButton.hidden = self.tutorial.isDraft;
+  BOOL likeButtonVisible = (self.tutorial.isPublished);
+  self.favouriteButton.hidden = !likeButtonVisible;
   [self setFavouritedButtonState:self.likeButtonHighlighted];
 }
 
 - (BOOL)likeButtonHighlighted
 {
-  BOOL isDraft = (self.tutorial.isDraft);
-  return (!isDraft && self.loggedInUserLikesTutorial);
+  return (self.tutorial.isPublished && self.loggedInUserLikesTutorial);
 }
 
 - (BOOL)loggedInUserLikesTutorial
@@ -192,7 +180,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (void)setShowBottomGap:(BOOL)showBottomGap
 {
   _showBottomGap = showBottomGap;
-  self.bottomGapHeight.constant = (showBottomGap ? kBottomGapHeight : 0.0f);
+  CGFloat bottomGapHeight = [TutorialCellHelper new].bottomGapHeight;
+  self.bottomGapHeightConstraint.constant = (showBottomGap ? bottomGapHeight : 0.0f);
 }
 
 #pragma mark - Auxiliary methods
@@ -222,24 +211,6 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   if (self.userAvatarSelectedBlock) {
     self.userAvatarSelectedBlock(self.tutorial.createdBy);
   }
-}
-
-#pragma mark - Class methods
-
-+ (CGFloat)cellHeightForCellWithBottomGap:(BOOL)includeBottomGap
-{
-  static CGFloat cellHeightWithGap;
-  if (!cellHeightWithGap)
-  {
-    cellHeightWithGap = [TutorialCellHelper cellHeightFromNib];
-  }
-  
-  static CGFloat cellHeightWithoutGap;
-  if (!cellHeightWithoutGap)
-  {
-    cellHeightWithoutGap = [TutorialCellHelper cellHeightFromNib] - kBottomGapHeight;
-  }
-  return (includeBottomGap ? cellHeightWithGap : cellHeightWithoutGap);
 }
 
 @end

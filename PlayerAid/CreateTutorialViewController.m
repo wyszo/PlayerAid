@@ -471,6 +471,9 @@ static NSString *const kXibName = @"CreateTutorialView";
     if (saveAsDraft) {
       [weakSelf saveTutorialAsDraftSetProfileTabBadge];
     }
+    else {
+      [weakSelf saveTutorialChangeStateToInReview];
+    }
     [weakSelf forceDismissViewController];
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
@@ -677,6 +680,12 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self updateTutorialModelFromUI];
   [self.tutorial setStateToDraft];
   
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+}
+
+- (void)saveTutorialChangeStateToInReview
+{
+  [self.tutorial setStateToInReview];
   [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 

@@ -15,6 +15,4 @@
 - (void)configureWithTutorial:(Tutorial *)tutorial;
 - (void)updateLikeButtonState;
 
-+ (CGFloat)cellHeightForCellWithBottomGap:(BOOL)includeBottomGap;
-
 @end

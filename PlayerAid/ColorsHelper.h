@@ -19,6 +19,7 @@
 + (UIColor *)tutorialsSelectedFilterButtonTextColor;
 + (UIColor *)tutorialsUnselectedFilterButtonColor;
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
++ (UIColor *)tutorialGradientBlueColor;
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;

@@ -42,7 +42,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     _tableView = tableView;
     
     _tableView.delegate = self;
-    [_tableView registerNib:[TutorialCellHelper nibForTutorialCell] forCellReuseIdentifier:kTutorialCellReuseIdentifier];
+    [_tableView registerNib:[TutorialCellHelper new].tutorialCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
@@ -271,8 +271,9 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  BOOL withBottomGap = ![indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
-  return [TutorialTableViewCell cellHeightForCellWithBottomGap:withBottomGap];
+  BOOL bottomGapVisible = ![indexPath isEqual:[self.tableViewDataSource lastTableViewCellIndexPath]];
+  
+  return [[TutorialCellHelper new] cellHeightForCurrentScreenWidthWithBottomGapVisible:bottomGapVisible];
 }
 
 #pragma mark - TableView Delegate: Section headers

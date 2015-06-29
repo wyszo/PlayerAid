@@ -8,7 +8,7 @@
 // TODO: dataSource should bind it's lifecycle to a tableView lifespan
 // TODO: modify interface so it's possible to add cells like elements in UIAlertController
 
-@interface TWArrayTableViewDataSource : NSObject <UITableViewDataSource>
+@interface TWArrayTableViewDataSource : NSObject <UITableViewDataSource, TWObjectCountProtocol>
 
 @property (copy, nonatomic) CellAtIndexPathBlock configureCellBlock;
 
