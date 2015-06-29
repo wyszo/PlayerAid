@@ -4,21 +4,40 @@
 
 #import "TutorialCellHelper.h"
 
+static const CGFloat kIPhone5ScreenWidth = 320.0f;
+static const CGFloat kIPhone5CellHeight = 242.0f;
+
+static const CGFloat kTutorialCellWithGapAspectRatio = kIPhone5ScreenWidth/kIPhone5CellHeight;
+static const CGFloat kTutorialCellBottomGapHeight = 18.0f;
+static const CGFloat kTutorialCellNoGapAspectRatio = kIPhone5ScreenWidth/(kIPhone5CellHeight - kTutorialCellBottomGapHeight);
+
 static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 
 
 @implementation TutorialCellHelper
 
-+ (CGFloat)cellHeightFromNib
+- (CGFloat)cellHeightForCurrentScreenWidthWithBottomGapVisible:(BOOL)bottomGapVisible
 {
-  static UITableViewCell *sampleCell;
-  if (!sampleCell) {
-    sampleCell = [[[self nibForTutorialCell] instantiateWithOwner:nil options:nil] lastObject];
-  }
-  return sampleCell.frame.size.height;
+  CGFloat aspectRatio = (bottomGapVisible ? kTutorialCellWithGapAspectRatio : kTutorialCellNoGapAspectRatio);
+  AssertTrueOr(aspectRatio != 0, return 0;);
+  CGFloat cellHeight = (self.currentScreenWidth / aspectRatio);
+  AssertTrueOr(cellHeight != 0,);
+  return cellHeight;
 }
 
-+ (UINib *)nibForTutorialCell
+- (CGFloat)currentScreenWidth
+{
+  return [UIScreen mainScreen].bounds.size.width;
+}
+
+- (CGFloat)bottomGapHeight
+{
+  return kTutorialCellBottomGapHeight;
+}
+
+#pragma mark - Nib
+
+- (UINib *)tutorialCellNib
 {
   return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
 }

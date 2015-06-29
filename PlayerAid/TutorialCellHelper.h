@@ -5,7 +5,8 @@
 
 @interface TutorialCellHelper : NSObject
 
-+ (CGFloat)cellHeightFromNib;
-+ (UINib *)nibForTutorialCell;
+- (CGFloat)cellHeightForCurrentScreenWidthWithBottomGapVisible:(BOOL)bottomGapVisible;
+- (CGFloat)bottomGapHeight;
+- (UINib *)tutorialCellNib;
 
 @end

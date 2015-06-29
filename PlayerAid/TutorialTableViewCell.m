@@ -14,7 +14,6 @@
 #import "SectionLabelContainer.h"
 
 
-static const CGFloat kBottomGapHeight = 18.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 
@@ -68,9 +67,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (void)layoutSubviews
 {
   [super layoutSubviews];
+  self.gradientLayer.frame = self.gradientOverlayView.bounds;
   
   if (self.canBeDeletedOnSwipe && self.showingDeleteConfirmation) {
-    self.gradientLayer.frame = self.gradientOverlayView.bounds;
     [self customiseDeleteButtonHeight];
   }
 }
@@ -85,7 +84,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
     if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) {
       UIView *deleteButtonView = subview;
       CGRect frame = deleteButtonView.frame;
-      frame.size.height = self.frame.size.height - kBottomGapHeight;
+      CGFloat bottomGapHeight = [TutorialCellHelper new].bottomGapHeight;
+      frame.size.height = self.frame.size.height - bottomGapHeight;
       deleteButtonView.frame = frame;
     }
   }
@@ -192,7 +192,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 - (void)setShowBottomGap:(BOOL)showBottomGap
 {
   _showBottomGap = showBottomGap;
-  self.bottomGapHeight.constant = (showBottomGap ? kBottomGapHeight : 0.0f);
+  CGFloat bottomGapHeight = [TutorialCellHelper new].bottomGapHeight;
+  self.bottomGapHeight.constant = (showBottomGap ? bottomGapHeight : 0.0f);
 }
 
 #pragma mark - Auxiliary methods
@@ -222,24 +223,6 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   if (self.userAvatarSelectedBlock) {
     self.userAvatarSelectedBlock(self.tutorial.createdBy);
   }
-}
-
-#pragma mark - Class methods
-
-+ (CGFloat)cellHeightForCellWithBottomGap:(BOOL)includeBottomGap
-{
-  static CGFloat cellHeightWithGap;
-  if (!cellHeightWithGap)
-  {
-    cellHeightWithGap = [TutorialCellHelper cellHeightFromNib];
-  }
-  
-  static CGFloat cellHeightWithoutGap;
-  if (!cellHeightWithoutGap)
-  {
-    cellHeightWithoutGap = [TutorialCellHelper cellHeightFromNib] - kBottomGapHeight;
-  }
-  return (includeBottomGap ? cellHeightWithGap : cellHeightWithoutGap);
 }
 
 @end

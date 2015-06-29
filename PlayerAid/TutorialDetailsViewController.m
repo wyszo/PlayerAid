@@ -82,7 +82,8 @@
 - (UITableView *)headerTableView
 {
   if (!_headerTableView) {
-    CGRect frame = CGRectMake(0, 0, 0, [TutorialCellHelper cellHeightFromNib]);
+    CGFloat cellHeight = [[TutorialCellHelper new] cellHeightForCurrentScreenWidthWithBottomGapVisible:NO];
+    CGRect frame = CGRectMake(0, 0, 0, cellHeight);
     _headerTableView = [[UITableView alloc] initWithFrame:frame];
     
     _headerTableView.allowsSelection = NO;
