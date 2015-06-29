@@ -8,7 +8,7 @@
 
 NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
-static NSString *const kTutorialStateInReview = @"Submitted";
+static NSString *const kTutorialStateInReview = @"Submitted"; // TODO: need to introduce a mapping between server and handset naming, this should be 'In Review' on a hanset (used to display section names in user's tutorials) 
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
@@ -113,7 +113,17 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   self.primitiveState = kTutorialStateDraft;
 }
 
-#pragma mark - Unsaved 
+- (void)setStateToInReview
+{
+  self.primitiveState = kTutorialStateInReview;
+}
+
+- (BOOL)isPublished
+{
+  return (self.primitiveState == kTutorialStatePublished);
+}
+
+#pragma mark - Unsaved
 
 - (NSNumber *)unsaved
 {

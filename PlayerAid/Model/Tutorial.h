@@ -14,9 +14,11 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 @property (nonatomic, strong) NSNumber *inReview;
 @property (nonatomic, strong) NSNumber *unsaved;
 @property (nonatomic, assign) BOOL storedOnServer;
+@property (nonatomic, assign, readonly) BOOL isDraft;
+@property (nonatomic, assign, readonly) BOOL isPublished;
 
 - (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor;
 - (void)setStateToDraft;
-- (BOOL)isDraft;
+- (void)setStateToInReview;
 
 @end
