@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-YS-DgD" userLabel="Gradient overlay view">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-YS-DgD" userLabel="Gradient overlay view" customClass="GradientView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -196,11 +196,11 @@
                         <exclude reference="UbL-4A-fj9"/>
                         <exclude reference="sfi-hL-a9v"/>
                         <exclude reference="RPb-Vs-vQn"/>
-                        <exclude reference="C3n-dZ-Pan"/>
                         <exclude reference="lBj-Gn-3w8"/>
                         <exclude reference="mBN-kA-uva"/>
                         <exclude reference="vjF-nl-zHc"/>
                         <exclude reference="xVO-m9-Eem"/>
+                        <exclude reference="C3n-dZ-Pan"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -208,9 +208,8 @@
                 <outlet property="authorLabel" destination="RTe-nH-zxI" id="v5J-dv-5Kf"/>
                 <outlet property="avatarImageView" destination="l9K-RJ-Tmc" id="a3D-Ng-Njx"/>
                 <outlet property="backgroundImageView" destination="OOG-mE-GJc" id="I4J-Zg-EjE"/>
-                <outlet property="bottomGapHeight" destination="h9Q-zf-hux" id="1X3-NB-eig"/>
+                <outlet property="bottomGapHeightConstraint" destination="h9Q-zf-hux" id="LaU-nl-ES8"/>
                 <outlet property="favouriteButton" destination="gdZ-L3-4O4" id="nCJ-zW-1Be"/>
-                <outlet property="gradientOverlayView" destination="0Db-YS-DgD" id="B0i-mM-1vw"/>
                 <outlet property="sectionLabelContainer" destination="n6d-ft-6nn" id="hif-gN-0pk"/>
                 <outlet property="sectionTitleBackground" destination="S8t-lE-vVW" id="orA-1S-j70"/>
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>

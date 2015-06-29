@@ -10,8 +10,8 @@
 #import "User.h"
 #import "Section.h"
 #import "TutorialCellHelper.h"
-#import "GradientHelper.h"
 #import "SectionLabelContainer.h"
+#import "GradientView.h"
 
 
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
@@ -27,12 +27,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
 @property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
-@property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
-@property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
 @property (weak, nonatomic) Tutorial *tutorial;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeight;
 
 @end
 
@@ -44,10 +41,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)awakeFromNib
 {
+  [super awakeFromNib];
+  
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   self.preservesSuperviewLayoutMargins = NO;
   [self.avatarImageView styleAsSmallAvatar];
-  [self setupGradientOverlay];
 }
 
 - (void)prepareForReuse
@@ -56,19 +54,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.backgroundImageView.image = nil;
 }
 
-- (void)setupGradientOverlay
-{
-  if (self.gradientLayer) {
-    return;
-  }
-  self.gradientLayer = [GradientHelper addGradientLayerToView:self.gradientOverlayView];
-}
-
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  self.gradientLayer.frame = self.gradientOverlayView.bounds;
-  
   if (self.canBeDeletedOnSwipe && self.showingDeleteConfirmation) {
     [self customiseDeleteButtonHeight];
   }
@@ -193,7 +181,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 {
   _showBottomGap = showBottomGap;
   CGFloat bottomGapHeight = [TutorialCellHelper new].bottomGapHeight;
-  self.bottomGapHeight.constant = (showBottomGap ? bottomGapHeight : 0.0f);
+  self.bottomGapHeightConstraint.constant = (showBottomGap ? bottomGapHeight : 0.0f);
 }
 
 #pragma mark - Auxiliary methods

@@ -80,6 +80,7 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
+		31A2819C1B419AB100D38D5A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A2819B1B419AB100D38D5A /* GradientView.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
 		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
@@ -276,6 +277,8 @@
 		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
 		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
+		31A2819A1B419AB100D38D5A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		31A2819B1B419AB100D38D5A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBadgeHelper.h; sourceTree = "<group>"; };
@@ -1046,6 +1049,15 @@
 			name = UserDefaults;
 			sourceTree = "<group>";
 		};
+		31A281981B419A8800D38D5A /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				31A2819A1B419AB100D38D5A /* GradientView.h */,
+				31A2819B1B419AB100D38D5A /* GradientView.m */,
+			);
+			name = GradientView;
+			sourceTree = "<group>";
+		};
 		31A3120D1AEA5A49002E6B5C /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1240,6 +1252,7 @@
 			children = (
 				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
+				31A281981B419A8800D38D5A /* GradientView */,
 				31C122661A838A590069D49A /* PlayerInfo */,
 				31E1F8F71AADA931005EB35B /* PopoverView */,
 				31CA3CD41AC4A3500044A13D /* SectionLabelContainer */,
@@ -1688,6 +1701,7 @@
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */,
+				31A2819C1B419AB100D38D5A /* GradientView.m in Sources */,
 				31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */,
 				316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */,
 				31014E561A9610ED002F3485 /* UsersFetchController.m in Sources */,
