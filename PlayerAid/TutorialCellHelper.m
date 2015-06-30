@@ -5,7 +5,7 @@
 #import "TutorialCellHelper.h"
 
 static const CGFloat kIPhone5ScreenWidth = 320.0f;
-static const CGFloat kIPhone5CellHeight = 242.0f;
+static const CGFloat kIPhone5CellHeight = 320.0f;
 
 static const CGFloat kTutorialCellWithGapAspectRatio = kIPhone5ScreenWidth/kIPhone5CellHeight;
 static const CGFloat kTutorialCellBottomGapHeight = 18.0f;
