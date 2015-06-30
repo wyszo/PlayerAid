@@ -60,7 +60,7 @@
 
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
 {
-  return [self showTwoButtonsAlertViewWithTitle:title message:message defaultButtonTitle:okTitle defaultButtonAction:okAction secondaryButtonTitle:nil secondaryButtonAction:cancelAction];
+  return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:okTitle firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
 }
 
 + (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message defaultButtonTitle:(NSString *)okTitle defaultButtonAction:(void (^)())okAction secondaryButtonTitle:(NSString *)cancelTitle secondaryButtonAction:(void (^)())cancelAction
