@@ -414,7 +414,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   };
   
   if (tutorialDataComplete) {
-    if (![[UserTutorialsController new] loggedInUserHasPublishedOrInReviewTutorials]) {
+    if (![[UserTutorialsController new] loggedInUserHasAnyPublishedOrInReviewTutorials]) {
       [AlertFactory showFirstPublishedTutorialAlertViewWithOKAction:^{
         publishTutorial();
       }];
@@ -469,11 +469,12 @@ static NSString *const kXibName = @"CreateTutorialView";
   __weak typeof (self) weakSelf = self;
   publishingViewController.completionBlock = ^(BOOL saveAsDraft, NSError *error) {
     if (saveAsDraft) {
-      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
+      [weakSelf saveTutorialAsDraft];
     }
     else {
       [weakSelf saveTutorialChangeStateToInReview];
     }
+    [weakSelf setProfileBadge];
     [weakSelf forceDismissViewController];
   };
   [self presentViewController:publishingViewController animated:YES completion:nil];
@@ -495,7 +496,8 @@ static NSString *const kXibName = @"CreateTutorialView";
         }
       }];
     } else {
-      [weakSelf saveTutorialAsDraftSetProfileTabBadge];
+      [weakSelf saveTutorialAsDraft];
+      [weakSelf setProfileBadge];
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }
   }];
@@ -668,9 +670,8 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self.createTutorialContext MR_saveOnlySelfAndWait];
 }
 
-- (void)saveTutorialAsDraftSetProfileTabBadge
+- (void)setProfileBadge
 {
-  [self saveTutorialAsDraft];
   [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
 }
 

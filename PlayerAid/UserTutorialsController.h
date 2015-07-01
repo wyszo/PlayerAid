@@ -4,6 +4,6 @@
 
 @interface UserTutorialsController : NSObject
 
-- (BOOL)loggedInUserHasPublishedOrInReviewTutorials;
+- (BOOL)loggedInUserHasAnyPublishedOrInReviewTutorials;
 
 @end

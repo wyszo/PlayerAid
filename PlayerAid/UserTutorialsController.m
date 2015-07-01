@@ -9,7 +9,7 @@
 
 @implementation UserTutorialsController
 
-- (BOOL)loggedInUserHasPublishedOrInReviewTutorials
+- (BOOL)loggedInUserHasAnyPublishedOrInReviewTutorials
 {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
   return [self userHasInReviewOrPublishedTutorials:currentUser];
