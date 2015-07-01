@@ -403,11 +403,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loginlogo" translatesAutoresizingMaskIntoConstraints="NO" id="IBl-TD-pMK" userLabel="Logo Image View">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loginlogo" translatesAutoresizingMaskIntoConstraints="NO" id="IBl-TD-pMK" userLabel="Old Logo ImageView">
                                 <rect key="frame" x="183" y="68" width="234" height="244"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="5uK-h5-raC"/>
                                     <constraint firstAttribute="height" constant="244" id="fco-cb-Ntk"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-HT-cbM" userLabel="Logo">
+                                <rect key="frame" x="219" y="80" width="162" height="224"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="224" id="YaL-HK-4De"/>
+                                    <constraint firstAttribute="width" constant="162" id="w2K-p4-6zT"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh7-gU-VET">
@@ -460,7 +467,9 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5Ws-EI-Edb" firstAttribute="leading" secondItem="6Xd-Vd-sts" secondAttribute="leadingMargin" id="6oL-0e-sF7"/>
+                            <constraint firstAttribute="centerX" secondItem="ZVD-HT-cbM" secondAttribute="centerX" id="Dm6-ER-m7b"/>
                             <constraint firstAttribute="centerX" secondItem="fU2-y8-ewo" secondAttribute="centerX" id="E4O-SF-TKu"/>
+                            <constraint firstItem="ZVD-HT-cbM" firstAttribute="top" secondItem="WOx-tK-efn" secondAttribute="bottom" constant="80" id="JMO-8O-voH"/>
                             <constraint firstItem="Uh7-gU-VET" firstAttribute="top" secondItem="IBl-TD-pMK" secondAttribute="bottom" constant="56" id="Jvu-um-Mbk"/>
                             <constraint firstItem="fU2-y8-ewo" firstAttribute="leading" secondItem="6Xd-Vd-sts" secondAttribute="leadingMargin" id="K6f-Mj-RRw"/>
                             <constraint firstAttribute="centerX" secondItem="IBl-TD-pMK" secondAttribute="centerX" id="Sub-GQ-RTO"/>
@@ -620,6 +629,7 @@
     </scenes>
     <resources>
         <image name="Loginlogo" width="234" height="244"/>
+        <image name="SplashLogo" width="162" height="224"/>
         <image name="browse-selected" width="16" height="16"/>
         <image name="browse-unselected" width="16" height="16"/>
         <image name="createtutorial" width="15" height="15"/>
