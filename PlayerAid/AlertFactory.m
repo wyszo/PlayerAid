@@ -109,9 +109,9 @@
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Cancel tutorial step?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Yes, cancel" defaultButtonAction:^{
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes, cancel" firstButtonAction:^{
     CallBlock(completionBlock, YES);
-  } secondaryButtonTitle:@"No, continue editing" secondaryButtonAction:^{
+  } secondButtonTitle:@"No, continue editing" secondAction:^{
     CallBlock(completionBlock, NO);
   }];
 }
@@ -119,9 +119,9 @@
 + (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
   NSString *message = @"Cancel editing tutorial step?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Yes, cancel" defaultButtonAction:^{
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes, cancel" firstButtonAction:^{
     CallBlock(completionBlock, YES);
-  } secondaryButtonTitle:@"No, continue editing" secondaryButtonAction:^{
+  } secondButtonTitle:@"No, continue editing" secondAction:^{
     CallBlock(completionBlock, NO);
   }];
 }
@@ -139,10 +139,10 @@
 + (UIAlertView *)showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:(void (^)(BOOL delete))completionBlock
 {
   NSString *message = @"This will permanently delete your tutorial. Are you sure?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message defaultButtonTitle:@"Cancel" defaultButtonAction:^{
-    CallBlock(completionBlock, NO);
-  } secondaryButtonTitle:@"Yes" secondaryButtonAction:^{
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:^{
     CallBlock(completionBlock, YES);
+  } secondButtonTitle:@"Cancel" secondAction:^{
+    CallBlock(completionBlock, NO);
   }];
 }
 
