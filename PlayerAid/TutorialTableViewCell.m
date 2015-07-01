@@ -103,7 +103,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
 - (void)updateBackgroundImageView
 {
-  if (self.tutorial.pngImageData && !self.tutorial.isPublished) {
+  if ((self.tutorial.pngImageData && !self.tutorial.isPublished) || self.tutorial.isDraft) {
     [self updateBackgroundImageViewFromTutorialData];
   }
   else {
