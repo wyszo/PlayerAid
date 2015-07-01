@@ -52,6 +52,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 {
   [super prepareForReuse];
   self.backgroundImageView.image = nil;
+  [self setSectionNameHidden:NO];
 }
 
 - (void)layoutSubviews
@@ -89,6 +90,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.titleLabel.text = tutorial.title;
   self.authorLabel.text = tutorial.createdBy.name;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
+  [self setSectionNameHidden:(self.tutorial.section == nil)];
   
   NSString *timeAgo = [tutorial.createdAt timeAgoSimple];
   self.timeLabel.text = timeAgo;
@@ -97,6 +99,12 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   // TODO: update favourited button state based on User's liked relation
   
   [self adjustAlphaFromTutorial:tutorial];
+}
+
+- (void)setSectionNameHidden:(BOOL)hidden
+{
+  self.sectionTitleBackground.hidden = hidden;
+  self.sectionLabelContainer.hidden = hidden;
 }
 
 #pragma mark - Update UI to match Tutorial
