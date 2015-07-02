@@ -50,42 +50,9 @@
   return [self showOKAlertViewWithMessage:@"Please add a tutorial cover photo"];
 }
 
-+ (UIAlertView *)showAlertViewWithMessage:(NSString *)message
-{
-  AssertTrueOrReturnNil(message.length);
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-  [alert show];
-  return alert;
-}
-
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
 {
   return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:okTitle firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
-}
-
-+ (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message defaultButtonTitle:(NSString *)okTitle defaultButtonAction:(void (^)())okAction secondaryButtonTitle:(NSString *)cancelTitle secondaryButtonAction:(void (^)())cancelAction
-{
-  AssertTrueOrReturnNil(message.length || title.length);
-  
-  NSString *cancelTitleText = @"Cancel";
-  if (cancelTitle.length) {
-    cancelTitleText = cancelTitle;
-  }
-  RIButtonItem *cancelButtonItem = [RIButtonItem itemWithLabel:cancelTitleText action:^{
-    CallBlock(cancelAction);
-  }];
-  
-  NSString *okTitleText = @"OK";
-  if (okTitleText.length) {
-    okTitleText = okTitle;
-  }
-  RIButtonItem *okButtonItem = [RIButtonItem itemWithLabel:okTitleText action:^{
-    CallBlock(okAction);
-  }];
-  
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:cancelButtonItem otherButtonItems:okButtonItem, nil];
-  [alertView show];
-  return alertView;
 }
 
 + (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message firstButtonTitle:(NSString *)firstButtonTitle firstButtonAction:(VoidBlock)firstAction secondButtonTitle:(NSString *)secondButtonTitle secondAction:(VoidBlock)secondAction
