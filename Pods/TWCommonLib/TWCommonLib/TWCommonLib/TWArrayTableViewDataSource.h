@@ -3,6 +3,7 @@
 //
 
 #import "TWCommonTypes.h"
+#import "TWObjectCountProtocol.h"
 
 
 // TODO: dataSource should bind it's lifecycle to a tableView lifespan
