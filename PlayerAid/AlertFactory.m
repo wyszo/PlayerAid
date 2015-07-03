@@ -57,20 +57,7 @@
 
 + (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message firstButtonTitle:(NSString *)firstButtonTitle firstButtonAction:(VoidBlock)firstAction secondButtonTitle:(NSString *)secondButtonTitle secondAction:(VoidBlock)secondAction
 {
-  AssertTrueOrReturnNil(message.length || title.length);
-  AssertTrueOrReturnNil(firstButtonTitle.length);
-  AssertTrueOrReturnNil(secondButtonTitle.length);
-  
-  RIButtonItem *firstButtonItem = [RIButtonItem itemWithLabel:firstButtonTitle action:^{
-    CallBlock(firstAction);
-  }];
-  RIButtonItem *secondButtonItem = [RIButtonItem itemWithLabel:secondButtonTitle action:^{
-    CallBlock(secondAction);
-  }];
-  
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message cancelButtonItem:nil otherButtonItems:firstButtonItem, secondButtonItem, nil];
-  [alertView show];
-  return alertView;
+  return [TWAlertFactory showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:firstButtonTitle firstButtonAction:firstAction secondButtonTitle:secondButtonTitle secondAction:secondAction];
 }
 
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
@@ -185,9 +172,7 @@
 
 + (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message okButtonTitle:(NSString *)okTitle
 {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:okTitle otherButtonTitles:nil];
-  [alert show];
-  return alert;
+  return [TWAlertFactory showOKAlertViewWithMessage:message okButtonTitle:okTitle];
 }
 
 + (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction
