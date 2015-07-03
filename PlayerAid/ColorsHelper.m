@@ -3,9 +3,11 @@
 //
 
 #import "ColorsHelper.h"
+#import "TWCommonMacros.h"
 
-#define UIColorMethodMake(name,r,g,b) +(UIColor *)name { return UIColorMake(r,g,b) }
-#define UIColorWithAlphaMethodMake(name,r,g,b,a) +(UIColor *)name { return UIColorWithAlphaMake(r,g,b,a) }
+
+#define UIColorMethodMake(name,r,g,b) +(UIColor *)name { return UIColorMake(r,g,b); }
+#define UIColorWithAlphaMethodMake(name,r,g,b,a) +(UIColor *)name { return UIColorWithAlphaMake(r,g,b,a); }
 
 
 @implementation ColorsHelper
