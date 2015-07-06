@@ -42,11 +42,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-8A-yvh">
-                    <rect key="frame" x="152" y="224" width="297" height="20"/>
+                    <rect key="frame" x="152" y="214" width="297" height="90"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="297" id="68Y-ma-yGJ"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Z5s-Mi-G48"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="v3G-41-lD6"/>
+                        <constraint firstAttribute="height" constant="90" id="v3G-41-lD6"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,7 +90,7 @@
                 <constraint firstItem="5Uf-vH-ntY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="78" id="HwE-1w-vLc"/>
                 <constraint firstAttribute="centerX" secondItem="PfR-eQ-h1W" secondAttribute="centerX" id="Q1V-6j-5TJ"/>
                 <constraint firstItem="cxW-jr-YZ4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="Vfi-mz-WXY"/>
-                <constraint firstItem="m5Q-8A-yvh" firstAttribute="top" secondItem="PfR-eQ-h1W" secondAttribute="bottom" constant="15" id="WuP-f9-wqS"/>
+                <constraint firstItem="m5Q-8A-yvh" firstAttribute="top" secondItem="PfR-eQ-h1W" secondAttribute="bottom" constant="5" id="WuP-f9-wqS"/>
                 <constraint firstAttribute="centerX" secondItem="m5Q-8A-yvh" secondAttribute="centerX" id="Xfb-8p-Y5g"/>
                 <constraint firstItem="N7w-eu-tkT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aja-Ap-V9G"/>
                 <constraint firstAttribute="bottom" secondItem="N7w-eu-tkT" secondAttribute="bottom" id="tWL-yV-fz6"/>
