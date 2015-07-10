@@ -3,7 +3,9 @@
 //
 
 @import CoreData;
-#import "TWCommonLib.h"
+#import "TWCommonTypes.h"
+
+typedef NSString* (^CellReuseMappingBlock)(NSIndexPath *);
 
 
 @interface TWCoreDataTableViewDataSource : NSObject <UITableViewDataSource>
@@ -12,9 +14,27 @@
 @property (copy, nonatomic) void (^deleteCellOnSwipeBlock)(NSIndexPath *indexPath);
 @property (copy, nonatomic) void (^moveRowAtIndexPathToIndexPathBlock)(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath);
 
-
-- (instancetype)initWithCellreuseIdentifier:(NSString *)cellReuseIdentifier
+/**
+ Supports only one type of cells in the tableView
+ */
+- (instancetype)initWithCellReuseIdentifier:(NSString *)cellReuseIdentifier
                          configureCellBlock:(CellAtIndexPathBlock)configureCellBlock;
+
+/**
+ Supports cells with multiple cellIdentifiers
+ // TODO: add usage example
+ */
+- (instancetype)initWithCellReuseMappingBlock:(CellReuseMappingBlock)cellReuseMappingBlock
+                           configureCellBlock:(CellAtIndexPathBlock)configureCellBlock;
+
+/**
+ @deprecated (Typo in method name)
+ Use initWithCellReuseIdentifier:configureCellBlock: instead
+ */
+- (instancetype)initWithCellreuseIdentifier:(NSString *)cellReuseIdentifier
+                         configureCellBlock:(CellAtIndexPathBlock)configureCellBlock
+__attribute__((deprecated));
+
 - (void)resetFetchedResultsController;
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;

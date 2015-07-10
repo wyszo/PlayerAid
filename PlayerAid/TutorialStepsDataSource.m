@@ -11,6 +11,7 @@
 #import "TutorialStepTableViewCell.h"
 #import "TWTableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
+#import "TWCommonLib.h"
 
 
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";

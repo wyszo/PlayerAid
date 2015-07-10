@@ -1,0 +1,42 @@
+{
+  "name": "TWCommonLib",
+  "version": "0.1",
+  "summary": "Library containing iOS components and helpers I use in my projects",
+  "homepage": "https://github.com/wyszo/TWCommonLib",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": "Tomasz W",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "social_media_url": "http://twitter.com/Wyszo",
+  "source": {
+    "git": "https://github.com/wyszo/TWCommonLib.git",
+    "commit": "bbc47578f985a31d2c9f8b1bbda83e2125c116d7"
+  },
+  "frameworks": [
+    "CoreMotion",
+    "MapKit",
+    "CoreData"
+  ],
+  "source_files": [
+    "TWCommonLib",
+    "TWCommonLib/**/*.{h,m}"
+  ],
+  "exclude_files": [
+    "TWCommonLib/Exclude",
+    "TWCommonLib/Pods",
+    "TWCommonLib/iOSInjectionProject",
+    "TWCommonLib/TWCommonLib Tests"
+  ],
+  "dependencies": {
+    "UIAlertView-Blocks": [
+      "1.0"
+    ],
+    "KZAsserts": [
+      "1.0"
+    ]
+  }
+}
