@@ -9,16 +9,16 @@
 
 static const CGFloat kCellWidth = 72.0f;
 
+// TODO: change this to enumeration
 static const NSInteger kTutorialsCellIndex = 0;
 static const NSInteger kLikedTutorialsCellIndex = 1;
 static const NSInteger kFollowingUsersCellIndex = 2;
 static const NSInteger kFollowersCellIndex = 3;
+static const NSInteger kCollectionViewNumberOfCells = 4;
 
 
 @interface EditProfileFilterCollectionViewController ()
-
 @property (strong, nonatomic) NSArray *cellLabels;
-
 @end
 
 
@@ -58,7 +58,7 @@ static const NSInteger kFollowersCellIndex = 3;
   CGFloat collectionViewHeight = self.collectionView.frame.size.height;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
   
-  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize collectionViewSize:self.collectionView.frame.size attachingToCollectionView:self.collectionView];
+  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize collectionViewSize:self.collectionView.frame.size numberOfCells:kCollectionViewNumberOfCells attachingToCollectionView:self.collectionView];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
     
     AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
