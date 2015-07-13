@@ -58,7 +58,7 @@ static const NSInteger kFollowersCellIndex = 3;
   CGFloat collectionViewHeight = self.collectionView.frame.size.height;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
   
-  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize attachingToCollectionView:self.collectionView];
+  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize collectionViewSize:self.collectionView.frame.size attachingToCollectionView:self.collectionView];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
     
     AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
