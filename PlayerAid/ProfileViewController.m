@@ -61,6 +61,47 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }
 }
 
+- (void)setupUserIfNotNil
+{
+  if (!self.user) {
+    [self forceFetchUser];
+  }
+  AssertTrueOrReturn(self.user);
+}
+
+- (void)forceFetchUser
+{
+  self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+  return UIStatusBarStyleLightContent;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [self updateFilterViewTutorialsCount];
+}
+
+- (void)updateFilterViewTutorialsCount
+{
+  self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+  self.filterCollectionViewController.likedTutorialsCount = self.user.likes.count;
+  self.filterCollectionViewController.followingCount = self.user.follows.count;
+  self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
+}
+
+#pragma mark - TableView overlays
+
 - (void)setupUserTutorialsTableViewOverlay
 {
   self.noItemsLabel.text = @"You haven't created any tutorials yet!";
@@ -95,18 +136,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
-- (void)setupUserIfNotNil
-{
-  if (!self.user) {
-    [self forceFetchUser];
-  }
-  AssertTrueOrReturn(self.user);
-}
-
-- (void)forceFetchUser
-{
-  self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
-}
+#pragma mark - DataSources setup
 
 - (void)setupTableViewUserFollowedCells
 {
@@ -163,24 +193,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   dataSource.tutorialTableViewDelegate = self;
   dataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
   return dataSource;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-  return UIStatusBarStyleLightContent;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-  [super viewWillAppear:animated];
-  [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
-  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-  [super viewDidAppear:animated];
-  [self updateFilterViewTutorialsCount];
 }
 
 #pragma mark - Header View initialization
@@ -261,11 +273,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
   [self updateFilterViewTutorialsCount];
-}
-
-- (void)updateFilterViewTutorialsCount
-{
-  self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
 }
 
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial
