@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+#import <BlocksKit/BlocksKit.h>
 #import "ProfileViewController.h"
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
@@ -55,10 +56,16 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
   [self setupUserTutorialsTableViewOverlay];
-  
+  [self setupKeyValueObservers];
+    
   if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
     [self presentEditProfileViewController];
   }
+}
+
+- (void)dealloc
+{
+  [self removeKeyValueObservers];
 }
 
 - (void)setupUserIfNotNil
@@ -98,6 +105,29 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.filterCollectionViewController.likedTutorialsCount = self.user.likes.count;
   self.filterCollectionViewController.followingCount = self.user.follows.count;
   self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
+}
+
+#pragma mark - KVO
+
+- (void)setupKeyValueObservers
+{
+  [self bk_addObserverForKeyPath:@"user.likes" task:^(id target) {
+    self.filterCollectionViewController.likedTutorialsCount = self.user.likes.count;
+  }];
+  [self bk_addObserverForKeyPath:@"user.tutorials" task:^(id target) {
+    self.filterCollectionViewController.tutorialsCount = self.user.createdTutorial.count;
+  }];
+  [self bk_addObserverForKeyPath:@"user.follows" task:^(id target) {
+    self.filterCollectionViewController.followingCount = self.user.follows.count;
+  }];
+  [self bk_addObserverForKeyPath:@"user.isFollowedBy" task:^(id target) {
+    self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
+  }];
+}
+
+- (void)removeKeyValueObservers
+{
+  [self bk_removeAllBlockObservers];
 }
 
 #pragma mark - TableView overlays
