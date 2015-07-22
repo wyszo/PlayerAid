@@ -20,6 +20,21 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Bolts (1.2.0):
     - Bolts/AppLinks (= 1.2.0)
     - Bolts/Tasks (= 1.2.0)
@@ -43,6 +58,7 @@ PODS:
   - NSDate+TimeAgo (1.0.3)
   - NSString+RemoveEmoji (0.0.1)
   - TWCommonLib (0.1):
+    - BlocksKit (= 2.2.5)
     - KZAsserts (= 1.0)
     - UIAlertView-Blocks (= 1.0)
   - UIAlertView-Blocks (1.0)
@@ -51,6 +67,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
+  - BlocksKit (= 2.2.5)
   - Facebook-iOS-SDK (= 3.22.0)
   - FDTake (from `../FDTake`, branch `master`)
   - FLKAutoLayout (= 0.2.1)
@@ -81,11 +98,12 @@ CHECKOUT OPTIONS:
     :commit: b5438df2d0c3a6f28d47efbcc3e473fe42e0ea52
     :git: ../FDTake
   TWCommonLib:
-    :commit: c2a849f671b40db90d3f5bdce3ccf205af6f0c34
+    :commit: 01083a2493c8375fd9c57a1cb241cdf3b9f9c098
     :git: ../TWCommonLib
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
   FDTake: 6ff34778a1d0b5d5a1883fc6773e158ed89bd473
@@ -96,7 +114,7 @@ SPEC CHECKSUMS:
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
-  TWCommonLib: f1ce02014c6b2f1cf68ab2bc2e4f34dee2251feb
+  TWCommonLib: 8e0d014246ee084fbe0cbbcb9d91c904db249ecc
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: f1de02b7304f2f061ee62fc4ba799afce808f803
   YCameraView: 0f3a099b3ddbb24b8847fd9bfb2de4e7060e906d
