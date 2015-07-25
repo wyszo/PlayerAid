@@ -35,8 +35,11 @@ static const CGFloat kContentImageMargin = 7.0f;
 
 - (void)setupGestureRecognizers
 {
-  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
-  [self.textView addGestureRecognizer:tapGestureRecognizer];
+  UITapGestureRecognizer *textViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
+  [self.textView addGestureRecognizer:textViewTapGestureRecognizer];
+  
+  UITapGestureRecognizer *videoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(videoPlayButtonTapped:)];
+  [self.videoPlayButton addGestureRecognizer:videoTapGestureRecognizer];
 }
 
 - (void)configureWithTutorialStep:(TutorialStep *)tutorialStep
@@ -98,14 +101,14 @@ static const CGFloat kContentImageMargin = 7.0f;
   return 10.0f;
 }
 
-- (IBAction)videoPlayButtonPressed:(id)sender
+#pragma mark - Actions
+
+- (void)videoPlayButtonTapped:(id)sender
 {
   if ([self.delegate respondsToSelector:@selector(didPressPlayVideoWithURL:)]) {
     [self.delegate didPressPlayVideoWithURL:self.videoURL];
   }
 }
-
-#pragma mark - Actions
 
 - (void)textViewTapped:(id)sender
 {
@@ -116,6 +119,8 @@ static const CGFloat kContentImageMargin = 7.0f;
     }
   }
 }
+
+#pragma mark - Accessors
 
 - (BOOL)isTextType
 {
