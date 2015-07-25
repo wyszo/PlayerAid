@@ -81,7 +81,6 @@ static NSString *const kXibName = @"CreateTutorialView";
 {
   [super viewDidLoad];
   [self setupLazyInitializers];
-  [self setupNavigationBarButtons];
   [self tw_setNavbarDoesNotCoverTheView];
   
   [self setupTableView];
@@ -94,6 +93,8 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self performDebugActions];
   [self setupTapGestureRecognizerForResigningEditing];
   [self setupCustomCamera];
+  
+  [self setupNavigationBarButtons];
   
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
@@ -337,6 +338,8 @@ static NSString *const kXibName = @"CreateTutorialView";
     publishEnabled = YES;
   }
   else {
+    AssertTrueOrReturn(self.tutorial);
+    AssertTrueOrReturn(self.headerViewController);
     publishEnabled = (self.tutorial.hasAnySteps && self.headerViewController.hasAllDataRequiredToPublish);
   }
   self.publishButton.enabled = publishEnabled;
