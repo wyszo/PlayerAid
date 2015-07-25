@@ -11,6 +11,7 @@
 #import "AlertFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "UsersFetchController_Private.h"
+#import <FacebookSDK.h>
 
 
 static const BOOL HideRefreshFromFacebookButton = YES;
@@ -208,8 +209,11 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)makeUpdateAvatarFromFacebookNetworkRequest
 {
+  NSString *facebookToken = FBSession.activeSession.accessTokenData.accessToken;
+  AssertTrueOrReturn(facebookToken.length);
+  
   defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] updateUserAvatarFromFacebookCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance] updateUserAvatarFromFacebookWithAccessToken:facebookToken completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       [AlertFactory showUpdateAvatarFromFacebookFailureAlertView];
     }

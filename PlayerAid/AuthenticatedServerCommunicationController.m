@@ -240,11 +240,14 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Edit profile
 
-- (void)updateUserAvatarFromFacebookCompletion:(NetworkResponseBlock)completion
+- (void)updateUserAvatarFromFacebookWithAccessToken:(NSString *)facebookToken completion:(NetworkResponseBlock)completion
 {
+  AssertTrueOrReturn(facebookToken.length);
   NSDictionary *parameters = @{
-                               @"source" : @"Facebook"
+                               @"source" : @"Facebook",
+                               @"token" : facebookToken
                               };
+  
   [self performPostRequestWithApiToken:self.apiToken urlString:@"user/picture" parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
