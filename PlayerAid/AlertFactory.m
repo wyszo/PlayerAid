@@ -152,7 +152,7 @@
 
 + (UIAlertView *)showUpdateAvatarFromFacebookFailureAlertView
 {
-  return [self showOKAlertViewWithMessage:@"<DEBUG> Couldn't update profile image from Facebook! Please try again later"];
+  return [self showOKAlertViewWithMessage:@"Can't update from Facebook. Please check Airplane Mode is off and you have an active Wi-Fi or mobile network connection."];
 }
 
 #pragma mark - Other alerts

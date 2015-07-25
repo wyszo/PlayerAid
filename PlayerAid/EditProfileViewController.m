@@ -318,18 +318,38 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   NOT_IMPLEMENTED_YET_RETURN
 }
 
-#pragma mark - FDTakeDelegate
+#pragma mark - FDTakeDelegate, YCameraViewControllerDelegate
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  AssertTrueOrReturn(photo);
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:photo completion:[self saveAvatarCompletionBlock]];
 }
-
-#pragma mark - YCameraViewControllerDelegate
 
 - (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  AssertTrueOrReturn(image);
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:image completion:[self saveAvatarCompletionBlock]];
+}
+
+#pragma mark - Save avatar completion
+
+- (NetworkResponseBlock)saveAvatarCompletionBlock
+{
+  defineWeakSelf();
+  void (^completion)(NSHTTPURLResponse *response, id responseObject, NSError *error) = ^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Could not save changes! Try again later!"];
+    }
+    else {
+      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+      [weakSelf saveCurrentUserFromUserDictionary:responseObject];
+      
+      CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }
+  };
+  return completion;
 }
 
 #pragma mark - Lazy initalization
