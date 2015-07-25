@@ -263,7 +263,19 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }
   [self performRequestWithType:@"PUT" apiToken:self.apiToken urlString:@"user" parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
+
+- (void)saveUserAvatarPicture:(UIImage *)image completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(image);
+  NSData *imageData = UIImagePNGRepresentation(image);
+  AssertTrueOrReturn(imageData);
   
+  AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
+  NSString *URLString = [NSURL URLStringWithPath:@"user/picture" baseURL:operationManager.baseURL];
+  
+  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:imageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
+}
+
 #pragma mark - Sending requests
 
 - (void)performGetRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion

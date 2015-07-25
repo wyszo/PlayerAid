@@ -231,19 +231,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   NSString *userName = self.nameTextView.text;
   AssertTrueOrReturn(userName.length > 0);
   
-  defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:self.bioTextView.text completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (error) {
-      [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Could not save changes! Try again later!"];
-    }
-    else {
-      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
-      [weakSelf saveCurrentUserFromUserDictionary:responseObject];
-      
-      CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
-      [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    }
-  }];
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:self.bioTextView.text completion:[self saveAvatarOrProfileCompletionBlock]];
 }
 
 #pragma mark - NavigationBar button states
@@ -323,18 +311,18 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   AssertTrueOrReturn(photo);
-  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:photo completion:[self saveAvatarCompletionBlock]];
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:photo completion:[self saveAvatarOrProfileCompletionBlock]];
 }
 
 - (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
 {
   AssertTrueOrReturn(image);
-  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:image completion:[self saveAvatarCompletionBlock]];
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:image completion:[self saveAvatarOrProfileCompletionBlock]];
 }
 
 #pragma mark - Save avatar completion
 
-- (NetworkResponseBlock)saveAvatarCompletionBlock
+- (NetworkResponseBlock)saveAvatarOrProfileCompletionBlock
 {
   defineWeakSelf();
   void (^completion)(NSHTTPURLResponse *response, id responseObject, NSError *error) = ^(NSHTTPURLResponse *response, id responseObject, NSError *error) {

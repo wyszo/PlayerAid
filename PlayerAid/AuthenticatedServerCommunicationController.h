@@ -36,6 +36,7 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 // edit profile
 - (void)updateUserAvatarFromFacebookWithAccessToken:(NSString *)facebookToken completion:(NetworkResponseBlock)completion;
 - (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion;
+- (void)saveUserAvatarPicture:(UIImage *)image completion:(NetworkResponseBlock)completion;
 
 // users
 - (void)followUser:(User *)user completion:(NetworkResponseBlock)completion;
