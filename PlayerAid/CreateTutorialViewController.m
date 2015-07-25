@@ -53,6 +53,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (strong, nonatomic) EditTutorialStepsViewController *editTutorialStepsViewController;
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
+@property (assign, nonatomic) BOOL draftHasChanges;
 
 @property (nonatomic, strong) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
@@ -152,6 +153,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   defineWeakSelf();
   self.headerViewController.valueDidChangeBlock = ^() {
     [weakSelf updatePublishNavbarButtonState];
+    weakSelf.draftHasChanges = YES;
   };
   
   AssertTrueOrReturn(self.tutorialTableView);
@@ -189,6 +191,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   defineWeakSelf();
   self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {
     [weakSelf updateEditButtonEnabled];
+    weakSelf.draftHasChanges = YES;
   };
 }
 
@@ -389,6 +392,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   [[ViewControllerPresentationHelper new] presentViewControllerInKeyWindow:self.editTutorialStepsViewController];
   
   [self removeNavigationBarButtons];
+  self.draftHasChanges = YES;
 }
 
 - (EditTutorialStepsViewController *)createEditTutorialStepsViewControllerWithTutorialSteps:(NSOrderedSet *)tutorialSteps
@@ -503,7 +507,34 @@ static NSString *const kXibName = @"CreateTutorialView";
     return;
   }
   
-  defineWeakSelf();
+  if (self.isEditingDraft) {
+    [self showDismissAlertsEditingDraft];
+  }
+  else {
+    [self showDismissAlertsCreatingTutorialFromScratch];
+  }
+}
+
+- (void)showDismissAlertsEditingDraft
+{
+  if (self.draftHasChanges) {
+    defineWeakSelf();
+    [AlertFactory showDraftSaveChangesAlertViewWithYesAction:^{
+      [weakSelf saveAsDraftSetBadgeAndDismiss];
+    } noAction:^{
+      [AlertFactory showThisWillDeleteChangesWithYesAction:^{
+        [weakSelf forceDismissViewController];
+      }];
+    }];
+  }
+  else {
+    [self forceDismissViewController];
+  }
+}
+
+- (void)showDismissAlertsCreatingTutorialFromScratch
+{
+    defineWeakSelf();
   [AlertFactory showRemoveNewTutorialConfirmationAlertViewWithCompletion:^(BOOL discard) {
     if (discard) {
       [AlertFactory showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:^(BOOL delete) {
@@ -512,11 +543,16 @@ static NSString *const kXibName = @"CreateTutorialView";
         }
       }];
     } else {
-      [weakSelf saveTutorialAsDraft];
-      [weakSelf setProfileBadge];
-      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      [weakSelf saveAsDraftSetBadgeAndDismiss];
     }
   }];
+}
+
+- (void)saveAsDraftSetBadgeAndDismiss
+{
+  [self saveTutorialAsDraft];
+  [self setProfileBadge];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)forceDismissViewController
@@ -535,6 +571,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 - (void)didPressTextViewWithStep:(TutorialStep *)tutorialTextStep
 {
   [self pushEditTextStepViewControllerWithTextStep:tutorialTextStep];
+  self.draftHasChanges = YES;
 }
 
 #pragma mark - CreateTutorialStepButtonsDelegate
@@ -543,6 +580,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 {
   [self hideAddStepPopoverView];
   [self takeOrSelectPhotoUsingFDTake];
+  self.draftHasChanges = YES;
 }
 
 - (void)takeOrSelectPhotoUsingFDTake
@@ -557,6 +595,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   
   AssertTrueOrReturn(self.mediaController);
   [self.mediaController takeVideoOrChooseFromLibrary];
+  self.draftHasChanges = YES;
 }
 
 - (void)addTextStepSelected
@@ -567,6 +606,7 @@ static NSString *const kXibName = @"CreateTutorialView";
     return;
   }
   [self pushCreateNewTutorialTextStepViewController];
+  self.draftHasChanges = YES;
 }
 
 - (void)hideAddStepPopoverView

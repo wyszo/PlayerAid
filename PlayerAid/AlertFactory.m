@@ -107,6 +107,20 @@
   }];
 }
 
+#pragma mark - Edit draft tutorial alerts
+
++ (UIAlertView *)showDraftSaveChangesAlertViewWithYesAction:(VoidBlock)yesAction noAction:(VoidBlock)noAction
+{
+  NSString *message = @"Do you want to save your changes?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"No" firstButtonAction:noAction secondButtonTitle:@"Yes" secondAction:yesAction];
+}
+
++ (UIAlertView *)showThisWillDeleteChangesWithYesAction:(VoidBlock)yesAction
+{
+  NSString *message = @"This will permanently delete any changes. Are you sure?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:yesAction secondButtonTitle:@"No" secondAction:nil];
+}
+
 #pragma mark - Publish tutorial
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction

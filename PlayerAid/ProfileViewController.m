@@ -314,6 +314,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     AssertTrueOrReturn([viewController isKindOfClass:[CreateTutorialViewController class]]);
     CreateTutorialViewController *createTutorialViewController = (CreateTutorialViewController *)viewController;
     createTutorialViewController.tutorialToDisplay = tutorial;
+    createTutorialViewController.isEditingDraft = YES;
   }
   else {
     [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];

@@ -28,6 +28,10 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 + (UIAlertView *)showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:(void (^)(BOOL delete))completionBlock;
 
+// Edit draft tutorial alerts
++ (UIAlertView *)showDraftSaveChangesAlertViewWithYesAction:(VoidBlock)yesAction noAction:(VoidBlock)noAction;
++ (UIAlertView *)showThisWillDeleteChangesWithYesAction:(VoidBlock)yesAction;
+
 // Publish tutorial alerts
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction;
 + (UIAlertView *)showTutorialInReviewInfoAlertView;
