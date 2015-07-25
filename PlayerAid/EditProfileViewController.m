@@ -327,7 +327,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   defineWeakSelf();
   void (^completion)(NSHTTPURLResponse *response, id responseObject, NSError *error) = ^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
-      [AlertFactory showOKAlertViewWithMessage:@"<DEBUG> Could not save changes! Try again later!"];
+      [AlertFactory showOKAlertViewWithMessage:@"Failed to upload, please try again"];
     }
     else {
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
