@@ -11,7 +11,9 @@
 #import "AlertFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "UsersFetchController_Private.h"
+#import "MediaPickerHelper.h"
 #import <FacebookSDK.h>
+#import <FDTakeController.h>
 
 
 static const BOOL HideRefreshFromFacebookButton = YES;
@@ -27,7 +29,7 @@ static const NSInteger kPlayerNameMaxNumberOfCharacters = 150;
 static const NSInteger kAboutMeCharacterLimit = 150;
 
 
-@interface EditProfileViewController ()
+@interface EditProfileViewController () <FDTakeDelegate, YCameraViewControllerDelegate>
 
 @property (nonatomic, weak) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -39,6 +41,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 @property (weak, nonatomic) IBOutlet UIButton *refreshFacebookDetailsButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *aboutMeCharactersLabel;
+@property (strong, nonatomic) FDTakeController *mediaController;
 
 @end
 
@@ -301,17 +304,48 @@ static const NSInteger kAboutMeCharacterLimit = 150;
     [weakSelf makeUpdateAvatarFromFacebookNetworkRequest];
   }
   chooseFromLibraryAction:^{
-    NOT_IMPLEMENTED_YET_RETURN
+    [weakSelf.mediaController chooseFromLibrary];
   }
   takePhotoAction:^{
-    NOT_IMPLEMENTED_YET_RETURN
+    [weakSelf.mediaController takePhoto];
   }];
   [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)facebookRefreshButtonPressed:(id)sender
 {
+  // This button is not visible atm
   NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - FDTakeDelegate
+
+- (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
+{
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - YCameraViewControllerDelegate
+
+- (void)yCameraController:(YCameraViewController *)cameraController didFinishPickingImage:(UIImage *)image
+{
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - Lazy initalization
+// TODO: this should be injected as a dependency
+
+- (FDTakeController *)mediaController
+{
+  if (!_mediaController) {
+    _mediaController = [MediaPickerHelper fdTakeControllerWithDelegate:self viewControllerForPresentingImagePickerController:self.navigationController];
+    
+    defineWeakSelf();
+    _mediaController.presentCustomPhotoCaptureViewBlock = ^() {
+      [MediaPickerHelper takePictureUsingYCameraViewWithDelegate:weakSelf fromViewController:weakSelf.navigationController];
+    };
+  }
+  return _mediaController;
 }
 
 @end

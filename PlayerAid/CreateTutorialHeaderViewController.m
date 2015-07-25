@@ -349,6 +349,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 }
 
 #pragma mark - Lazy initalization
+// TODO: this should be injected as a dependency
 
 - (FDTakeController *)mediaController
 {
