@@ -69,6 +69,13 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   return [[TutorialStepHelper new] tutorialStepsFromDictionariesArray:stepsDictionaries inContext:self.managedObjectContext];
 }
 
+#pragma mark - Accessors
+
+- (BOOL)hasAnySteps
+{
+  return (self.consistsOf.count > 0);
+}
+
 #pragma mark - State
 
 - (NSString *)stateFromString:(NSString *)state

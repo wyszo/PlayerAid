@@ -98,7 +98,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   // TODO: Technical debt! We shouldn't delay it like that!!
   defineWeakSelf();
   DISPATCH_AFTER(0.01, ^{
-    if (!weakSelf.tutorialHasAnySteps) {
+    if (!weakSelf.tutorial.hasAnySteps) {
       [weakSelf disableEditButton];
     }
   });
@@ -292,9 +292,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self addNavigationBarEditButton];
   [self addNavigationBarPublishButton];
   
-  if (!DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
-    self.publishButton.enabled = NO;
-  }
+  [self updatePublishNavbarButtonState];
 }
 
 - (void)addNavigationBarCancelButton
@@ -329,13 +327,28 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.navigationItem.titleView = nil;
 }
 
+#pragma mark - Publish button state
+
+- (void)updatePublishNavbarButtonState
+{
+  BOOL publishEnabled = NO;
+  
+  if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
+    publishEnabled = YES;
+  }
+  else {
+    publishEnabled = (self.tutorial.hasAnySteps && self.headerViewController.hasAllDataRequiredToPublish);
+  }
+  self.publishButton.enabled = publishEnabled;
+}
+
 #pragma mark - Edit button manipulation
 
 // TODO: extract this away from this class!
 
 - (void)updateEditButtonEnabled
 {
-  ([self tutorialHasAnySteps] ? [self enabledEditButton] : [self disableEditButton]);
+  (self.tutorial.hasAnySteps ? [self enabledEditButton] : [self disableEditButton]);
 }
 
 - (void)enabledEditButton
@@ -350,14 +363,9 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.editButton.userInteractionEnabled = NO;
 }
 
-- (BOOL)tutorialHasAnySteps
-{
-  return (self.tutorial.consistsOf.count);
-}
-
 - (BOOL)tutorialHasAnyData
 {
-  return (self.tutorialHasAnySteps || self.headerViewController.hasAnyData);
+  return (self.tutorial.hasAnySteps || self.headerViewController.hasAnyData);
 }
 
 #pragma mark - Actions
@@ -365,7 +373,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 - (void)editButtonPressed
 {
   NSOrderedSet *tutorialSteps = self.tutorial.consistsOf;
-  if (![self tutorialHasAnySteps]) {
+  if (!self.tutorial.hasAnySteps) {
     return;
   }
   

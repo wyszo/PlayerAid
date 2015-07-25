@@ -16,6 +16,7 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 @property (nonatomic, assign) BOOL storedOnServer;
 @property (nonatomic, assign, readonly) BOOL isDraft;
 @property (nonatomic, assign, readonly) BOOL isPublished;
+@property (nonatomic, assign, readonly) BOOL hasAnySteps;
 
 - (void)configureFromDictionary:(NSDictionary *)dictionary includeAuthor:(BOOL)includeAuthor;
 - (void)setStateToDraft;

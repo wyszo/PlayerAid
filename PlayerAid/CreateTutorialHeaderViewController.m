@@ -251,6 +251,16 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts
 {
+  return [self validateTutorialDataCompleteShowErrorAlerts:YES];
+}
+
+- (BOOL)hasAllDataRequiredToPublish
+{
+  return [self validateTutorialDataCompleteShowErrorAlerts:NO];
+}
+
+- (BOOL)validateTutorialDataCompleteShowErrorAlerts:(BOOL)showAlerts
+{
   BOOL titleSet = (self.title.length > 0);
   BOOL sectionSet = (self.selectedSection != nil);
   BOOL backgroundImageSet = (self.backgroundImageView.image != nil);
@@ -258,22 +268,30 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
   int numberOfFilledPiecesOfInfo = (titleSet ? 1 : 0) + (sectionSet ? 1 : 0) + (backgroundImageSet ? 1 : 0);
   
   if (numberOfFilledPiecesOfInfo < 2) {
-    [AlertFactory showCreateTutorialFillTutorialDetails];
+    if (showAlerts) {
+      [AlertFactory showCreateTutorialFillTutorialDetails];
+    }
     return NO;
   }
   
   if (!titleSet) {
-    [AlertFactory showCreateTutorialNoTitleAlertView];
+    if (showAlerts) {
+      [AlertFactory showCreateTutorialNoTitleAlertView];
+    }
     return NO;
   }
   
   if (!sectionSet) {
-    [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
+    if (showAlerts) {
+      [AlertFactory showCreateTutorialNoSectionSelectedAlertView];
+    }
     return NO;
   }
 
   if (!backgroundImageSet) {
-    [AlertFactory showCreateTutorialNoImageAlertView];
+    if (showAlerts) {
+      [AlertFactory showCreateTutorialNoImageAlertView];
+    }
     return NO;
   }
   

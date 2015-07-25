@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (strong, nonatomic, readonly) Section *selectedSection;
 @property (assign, nonatomic, readonly) BOOL hasAnyData;
+@property (assign, nonatomic, readonly) BOOL hasAllDataRequiredToPublish;
 
 - (BOOL)validateTutorialDataCompleteShowErrorAlerts;
 - (void)updateWithTutorial:(Tutorial *)tutorial;
