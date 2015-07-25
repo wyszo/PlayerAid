@@ -87,7 +87,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.createTutoriaStepButtonsView.delegate = self;
 
   [self initializeContextAndNewTutorialObject]; // Where should we do that? This doesn't seem to be a correct place...
-  [self.headerViewController updateWithTutorial:self.tutorial]; 
+  [self.headerViewController updateWithTutorial:self.tutorial];
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
@@ -148,6 +148,11 @@ static NSString *const kXibName = @"CreateTutorialView";
 {
   self.headerViewController = [[CreateTutorialHeaderViewController alloc] init];
   self.headerViewController.imagePickerPresentingViewController = self;
+  
+  defineWeakSelf();
+  self.headerViewController.valueDidChangeBlock = ^() {
+    [weakSelf updatePublishNavbarButtonState];
+  };
   
   AssertTrueOrReturn(self.tutorialTableView);
   self.tutorialTableView.tableHeaderView = self.headerViewController.view;

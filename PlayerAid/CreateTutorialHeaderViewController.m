@@ -76,8 +76,11 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
   defineWeakSelf();
   delegate.textDidChange = ^(NSString *text) {
     weakSelf.titlePlaceholderTextView.hidden = (text.length > 0);
+    
+    if(text.length) {
+      CallBlock(weakSelf.valueDidChangeBlock);
+    }
   };
-  
   self.titleTextViewDelegate = delegate;
 }
 
@@ -317,6 +320,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   [self setEditCoverPhoto:photo];
+  CallBlock(self.valueDidChangeBlock);
 }
 
 - (void)setEditCoverPhoto:(UIImage *)photo
@@ -340,6 +344,7 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
     NSInteger actionSheetSectionIndex = buttonIndex - 1; // cancelButtonIndex equals 0
     self.selectedSection = self.actionSheetSections[actionSheetSectionIndex];
     [self updateSelectedSectionLabel];
+    CallBlock(self.valueDidChangeBlock);
   }
 }
 
