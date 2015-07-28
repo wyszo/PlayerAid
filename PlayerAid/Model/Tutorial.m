@@ -97,7 +97,8 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
   // 'Submitted' on server -> 'In Review' in the app (state value is displayed as a section header)
   NSDictionary *serverToHandsetStateMapping = @{
-                                                @"Submitted" : kTutorialStateInReview
+                                                @"Submitted" : kTutorialStateInReview,
+                                                @"Rejected" : kTutorialStateDraft // we just put rejected tutorials back as drafts to the user
                                                 };
   if (serverToHandsetStateMapping[state]) {
     state = serverToHandsetStateMapping[state];
