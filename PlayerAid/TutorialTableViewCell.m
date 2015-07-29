@@ -175,10 +175,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   CGFloat alpha = 1.0f;
   
   if (tutorial.primitiveDraftValue) {
-    alpha = 0.5f;
+    alpha = 0.8f;
   }
   else if (tutorial.primitiveInReviewValue) {
-    alpha = 0.75f;
+    alpha = 0.9f;
   }
   self.contentView.alpha = alpha;
 }
