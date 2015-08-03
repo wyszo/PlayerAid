@@ -190,7 +190,7 @@
 #define COCOAPODS_POD_AVAILABLE_UITextView_Placeholder
 #define COCOAPODS_VERSION_MAJOR_UITextView_Placeholder 1
 #define COCOAPODS_VERSION_MINOR_UITextView_Placeholder 0
-#define COCOAPODS_VERSION_PATCH_UITextView_Placeholder 8
+#define COCOAPODS_VERSION_PATCH_UITextView_Placeholder 9
 
 // YCameraView
 #define COCOAPODS_POD_AVAILABLE_YCameraView
