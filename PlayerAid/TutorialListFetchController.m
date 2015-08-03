@@ -5,6 +5,7 @@
 #import "TutorialListFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
+#import "AlertFactory.h"
 
 
 @implementation TutorialListFetchController
@@ -15,9 +16,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 {
   [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsWithCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
-      // TODO: show error
-      // AlertFactory show...
-      NOT_IMPLEMENTED_YET_RETURN
+      [AlertFactory showGenericErrorAlertViewNoRetry];
     }
     else {
       [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
