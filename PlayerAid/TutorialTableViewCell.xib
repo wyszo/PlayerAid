@@ -16,7 +16,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                     </imageView>
-                    <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Overlay view">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Overlay view">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -139,7 +139,7 @@
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="8" id="spk-E1-BWH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="exw-H4-PlW" secondAttribute="trailing" constant="-8" id="tSB-lK-PFx"/>
                     <constraint firstItem="PCI-Ek-nfe" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" id="tvQ-Lc-Wzs"/>
-                    <constraint firstItem="S8t-lE-vVW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PCI-Ek-nfe" secondAttribute="trailing" id="zBx-Dd-3ub"/>
+                    <constraint firstItem="S8t-lE-vVW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PCI-Ek-nfe" secondAttribute="trailing" constant="1" id="zBx-Dd-3ub"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
