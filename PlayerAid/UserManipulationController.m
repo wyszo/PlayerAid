@@ -7,9 +7,6 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 
-static NSString *const kLifetimeFollowString = @"follow";
-static NSString *const kLifetimeUnfollowString = @"unfollow";
-
 
 @implementation UserManipulationController
 
@@ -49,10 +46,9 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
 - (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
-  [self tw_bindLifetimeTo:kLifetimeFollowString]; // ensuring the object exists until the request returns
-  
+ 
+  __strong typeof(id) strongSelf = self; // prolonging object lifecycle on purpose
   [[AuthenticatedServerCommunicationController sharedInstance] followUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    [self tw_releaseLifetimeDependencyFrom:kLifetimeFollowString];
     
     if (error) {
       // TODO: check if we want a generic alert or a custom one here
@@ -60,7 +56,7 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
       CallBlock(completion, error);
     }
     else {
-      [self updateCurrentUserModelAddFollowedUser:user];
+      [strongSelf updateCurrentUserModelAddFollowedUser:user];
       CallBlock(completion, nil);
     }
   }];
@@ -69,10 +65,9 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
 - (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
-  [self tw_bindLifetimeTo:kLifetimeUnfollowString]; // ensuring the object exists until the request returns
   
+  __strong typeof(id) strongSelf = self; // prolonging object lifecycle on purpose
   [[AuthenticatedServerCommunicationController sharedInstance] unfollowUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    [self tw_releaseLifetimeDependencyFrom:kLifetimeUnfollowString];
     
     if (error) {
       // TODO: check if we want a generic alert or a custom one here
@@ -80,7 +75,7 @@ static NSString *const kLifetimeUnfollowString = @"unfollow";
       CallBlock(completion, error);
     }
     else {
-      [self updateCurrentUserModelRemoveFollowedUser:user];
+      [strongSelf updateCurrentUserModelRemoveFollowedUser:user];
       CallBlock(completion, nil);
     }
   }];
