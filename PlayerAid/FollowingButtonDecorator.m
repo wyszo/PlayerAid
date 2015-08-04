@@ -5,9 +5,10 @@
 #import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
 
-static NSString *const kFollowImageLightBackgroundFilename = @"addfriend";
-static NSString *const kFollowImageDarkBackgroundFilename = @"addfriend_off";
-static NSString *const kUnfollowImageFilename = @"addfriend_on";
+static NSString *const kFollowImageLightBackgroundFilename = @"addfriend_off";
+static NSString *const kFollowImageDarkBackgroundFilename = @"addfriend";
+static NSString *const kUnfollowImageLightBackgroundFilename = @"addfriend_on";
+static NSString *const kUnfollowImageDarkBackgroundFilename = @"addfriendprofileselect";
 
 
 @implementation FollowingButtonDecorator
@@ -19,11 +20,16 @@ static NSString *const kUnfollowImageFilename = @"addfriend_on";
   
   if (!user.loggedInUserValue) {
     BOOL following = [[UserManipulationController new] loggedInUserFollowsUser:user];
-    NSString *imageName = (following ? kUnfollowImageFilename : [self followingImageFilenameForBackgroundType:backgroundType]);
+    NSString *imageName = (following ? [self unfollowingImageFilenameForBackgroundType:backgroundType] : [self followingImageFilenameForBackgroundType:backgroundType]);
     UIImage *image = [UIImage imageNamed:imageName];
     AssertTrueOrReturn(image);
     [addFriendButton setImage:image forState:UIControlStateNormal];
   }
+}
+
+- (NSString *)unfollowingImageFilenameForBackgroundType:(BackgroundType)backgroundType
+{
+  return (backgroundType == BackgroundTypeLight ? kUnfollowImageLightBackgroundFilename : kUnfollowImageDarkBackgroundFilename);
 }
 
 - (NSString *)followingImageFilenameForBackgroundType:(BackgroundType)backgroundType
