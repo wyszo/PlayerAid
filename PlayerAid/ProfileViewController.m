@@ -30,7 +30,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followingDataSource;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
-@property (strong, nonatomic) FollowedUserTableViewDelegate *followedUserTableViewDelegate;
+@property (strong, nonatomic) FollowedUserTableViewDelegate *followingTableViewDelegate;
+@property (strong, nonatomic) FollowedUserTableViewDelegate *followersTableViewDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *noItemsLabel;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
@@ -46,9 +47,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
-  self.followedUserTableViewDelegate = [FollowedUserTableViewDelegate new];
-
+  
   [self tw_setNavbarDoesNotCoverTheView];  
   [self setupUserIfNotNil];
   [self setupTableViewUserFollowedCells];
@@ -183,6 +182,16 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
 }
 
+- (void)setupFollowingTableViewDelegate
+{
+  self.followingTableViewDelegate = [self followedUserTableViewDelegateForDataSource:self.followingDataSource];
+}
+
+- (void)setupFollowersTableViewDelegate
+{
+  self.followersTableViewDelegate = [self followedUserTableViewDelegateForDataSource:self.followersDataSource];
+}
+
 - (void)setupLikedTutorialsTableDataSource
 {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
@@ -223,6 +232,24 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   dataSource.tutorialTableViewDelegate = self;
   dataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self allowPushingLoggedInUser:NO];
   return dataSource;
+}
+
+- (FollowedUserTableViewDelegate *)followedUserTableViewDelegateForDataSource:(TWArrayTableViewDataSource *)dataSource
+{
+  AssertTrueOrReturnNil(dataSource);
+  
+  defineWeakSelf();
+  FollowedUserTableViewDelegate *delegate = [FollowedUserTableViewDelegate new];
+  delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
+    void (^profilePushingBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:weakSelf allowPushingLoggedInUser:NO];
+    AssertTrueOrReturn(profilePushingBlock);
+    
+    User *user = [dataSource objectAtIndexPath:indexPath];
+    AssertTrueOrReturn(user);
+    CallBlock(profilePushingBlock, user);
+    [weakSelf.navigationController setNavigationBarHidden:NO animated:YES];
+  };
+  return delegate;
 }
 
 #pragma mark - Header View initialization
@@ -276,15 +303,17 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.tutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
-    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowingUsersTableDataSource];
+    [weakSelf setupFollowingTableViewDelegate];
+    weakSelf.tutorialTableView.delegate = self.followingTableViewDelegate;
     [weakSelf reloadTableView];
     [weakSelf setupNotFollowingAnyoneTableViewOverlay];
     weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
-    weakSelf.tutorialTableView.delegate = self.followedUserTableViewDelegate;
     [weakSelf setupFollowersTableDataSource];
+    [weakSelf setupFollowersTableViewDelegate];
+    weakSelf.tutorialTableView.delegate = self.followersTableViewDelegate;    
     [weakSelf reloadTableView];
     [weakSelf setupNoFollowersTableViewOverlay];
     weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
