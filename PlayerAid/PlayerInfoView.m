@@ -106,6 +106,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
     if (!error) {
       [weakSelf updateFollowingButtonImageForProfileUser];
     }
+    AssertTrueOrReturn(!error);
   }];
 }
 
