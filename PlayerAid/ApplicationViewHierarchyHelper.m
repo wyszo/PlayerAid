@@ -31,7 +31,7 @@
 
 #pragma mark - Profile
 
-+ (void (^)(User *))pushProfileViewControllerFromViewController:(UIViewController *)viewController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
++ (void (^)(User *))pushProfileViewControllerFromViewController:(UIViewController *)viewController backButtonActionBlock:(VoidBlock)backButtonAction allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
 {
   __weak UIViewController *weakViewController = viewController;
   
@@ -48,6 +48,7 @@
     ProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
     AssertTrueOrReturn(profileViewController);
     profileViewController.user = user;
+    profileViewController.backButtonAction = backButtonAction;
     
     UINavigationController *navigationController = weakViewController.navigationController;
     AssertTrueOrReturn(navigationController);
