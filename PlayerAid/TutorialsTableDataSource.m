@@ -16,6 +16,7 @@
 #import "UsersFetchController.h"
 #import "TutorialsTableFetchedResultsControllersFactory.h"
 #import "NSManagedObjectContext+MagicalThreading.h"
+#import "AuthenticatedServerCommunicationController.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
@@ -194,7 +195,17 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 {
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   if (tutorial.draftValue) {
-    [self showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:indexPath];
+    [self showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:indexPath onDeleteBlock:^{
+      /**
+       Try to delete tutorial on server. The tutorial is locally saved as draft, but on server it can be marked as rejected. In that case we want to delete it not only from a handset, but also from server. 
+       */
+      if (tutorial.serverIDValue != 0) {
+        [[AuthenticatedServerCommunicationController sharedInstance] deleteTutorial:tutorial completion:^(NSError *error) {
+          // Operation can fail for egzample due to lack of network connectivity (we don't handle that case well - on error server and local database will be out of sync)
+          AssertTrueOrReturn(!error);
+        }];
+      }
+    }];
     return;
   }
   
@@ -227,7 +238,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   }];
 }
 
-- (void)showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:(NSIndexPath *)indexPath
+- (void)showDeleteDraftTutorialAlertViewForTutorialAtIndexPath:(NSIndexPath *)indexPath onDeleteBlock:(VoidBlock)onDeleteBlock
 {
   AssertTrueOrReturn(indexPath);
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
@@ -237,6 +248,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
       [[tutorial MR_inContext:localContext] MR_deleteEntity];
     }];
+    CallBlock(onDeleteBlock);
   } cancelAction:^{
     [weakSelf.tableView reloadRowAtIndexPath:indexPath];
   }];
