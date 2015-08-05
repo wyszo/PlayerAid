@@ -3,6 +3,7 @@
 //
 
 #import "TutorialStepTableViewCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 static const CGFloat kContentImageMargin = 7.0f;
 
@@ -66,7 +67,15 @@ static const CGFloat kContentImageMargin = 7.0f;
       [tutorialStep placeImageInImageView:self.contentImageView];
     }
     else if (videoTutorialStep) {
-      self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
+      if (tutorialStep.videoThumbnailData) {
+        self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
+      } else {
+        // no local video - download from web
+        NSURL *thumbnailUrl = [NSURL URLWithString:tutorialStep.serverVideoThumbnailUrl];
+        AssertTrueOr(thumbnailUrl,);
+        [self.contentImageView setImageWithURL:thumbnailUrl];
+      }
+        
       self.videoPlayImage.hidden = NO;
       self.videoPlayButton.hidden = NO;
       self.videoURL = [NSURL URLWithString:tutorialStep.videoPath];
@@ -85,6 +94,8 @@ static const CGFloat kContentImageMargin = 7.0f;
   self.textView.text = @"";
   self.videoURL = nil;
   self.videoPlayButton.hidden = YES;
+  
+  [self.contentImageView cancelImageRequestOperation];
 }
 
 - (void)hideImageView

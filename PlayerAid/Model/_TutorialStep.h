@@ -8,6 +8,7 @@ extern const struct TutorialStepAttributes {
 	__unsafe_unretained NSString *imagePath;
 	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *serverID;
+	__unsafe_unretained NSString *serverVideoThumbnailUrl;
 	__unsafe_unretained NSString *text;
 	__unsafe_unretained NSString *videoPath;
 	__unsafe_unretained NSString *videoThumbnailData;
@@ -52,6 +53,10 @@ extern const struct TutorialStepRelationships {
 
 //- (BOOL)validateServerID:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* serverVideoThumbnailUrl;
+
+//- (BOOL)validateServerVideoThumbnailUrl:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* text;
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
@@ -89,6 +94,9 @@ extern const struct TutorialStepRelationships {
 
 - (int64_t)primitiveServerIDValue;
 - (void)setPrimitiveServerIDValue:(int64_t)value_;
+
+- (NSString*)primitiveServerVideoThumbnailUrl;
+- (void)setPrimitiveServerVideoThumbnailUrl:(NSString*)value;
 
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;

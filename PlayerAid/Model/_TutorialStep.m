@@ -8,6 +8,7 @@ const struct TutorialStepAttributes TutorialStepAttributes = {
 	.imagePath = @"imagePath",
 	.order = @"order",
 	.serverID = @"serverID",
+	.serverVideoThumbnailUrl = @"serverVideoThumbnailUrl",
 	.text = @"text",
 	.videoPath = @"videoPath",
 	.videoThumbnailData = @"videoThumbnailData",
@@ -100,6 +101,8 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 - (void)setPrimitiveServerIDValue:(int64_t)value_ {
 	[self setPrimitiveServerID:@(value_)];
 }
+
+@dynamic serverVideoThumbnailUrl;
 
 @dynamic text;
 
