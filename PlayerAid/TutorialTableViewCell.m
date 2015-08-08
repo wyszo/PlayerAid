@@ -52,6 +52,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 {
   [super prepareForReuse];
   self.backgroundImageView.image = nil;
+  [self.backgroundImageView cancelImageRequestOperation];
   [self setSectionNameHidden:NO];
 }
 
