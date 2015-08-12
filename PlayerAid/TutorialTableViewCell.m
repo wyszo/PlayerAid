@@ -44,7 +44,12 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [super awakeFromNib];
   
   self.selectionStyle = UITableViewCellSelectionStyleNone;
-  self.preservesSuperviewLayoutMargins = NO;
+  
+  if ([self respondsToSelector:@selector(preservesSuperviewLayoutMargins
+                                         )]) {
+    self.preservesSuperviewLayoutMargins = NO;
+  }
+  
   [self.avatarImageView styleAsSmallAvatar];
 }
 
