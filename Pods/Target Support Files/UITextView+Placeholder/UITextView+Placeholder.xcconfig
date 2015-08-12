@@ -1,0 +1,1 @@
+UITEXTVIEW_PLACEHOLDER_OTHER_LDFLAGS = -framework "Foundation" -framework "UIKit"

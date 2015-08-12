@@ -2,7 +2,7 @@
   "name": "YCameraView",
   "version": "0.2.0",
   "summary": "Custom Camera Controller similar to the camera View on Instagram.",
-  "description": "  YCameraViewController is a custom Image picker controller that allows you to quickly switch between Camera and iPhone Photo Library. This Controller only useful for capturing Square Image.\n",
+  "description": "YCameraViewController is a custom Image picker controller that allows you to quickly switch between Camera and iPhone Photo Library. This Controller only useful for capturing Square Image.",
   "homepage": "https://github.com/yuvirajsinh/YCameraView",
   "license": {
     "type": "MIT",

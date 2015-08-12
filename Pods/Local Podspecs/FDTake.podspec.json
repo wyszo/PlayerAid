@@ -2,7 +2,7 @@
   "name": "FDTake",
   "version": "0.2.4",
   "summary": "Easily take a photo or video or choose from library",
-  "description": "                   `FDTake` helps you quickly have the user take or choose an existing photo or video.\n",
+  "description": "`FDTake` helps you quickly have the user take or choose an existing photo or video.",
   "homepage": "https://github.com/fulldecent/FDTake",
   "screenshots": "https://i.imgur.com/SpSJzmS.png",
   "license": "MIT",

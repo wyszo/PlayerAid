@@ -1,0 +1,1 @@
+YCAMERAVIEW_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMotion" -framework "ImageIO"

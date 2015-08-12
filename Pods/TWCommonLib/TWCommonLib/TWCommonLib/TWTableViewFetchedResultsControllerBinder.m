@@ -11,6 +11,7 @@
 @property (weak, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) void (^configureCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
 @property (nonatomic, assign) BOOL disabled;
+@property (copy, nonatomic) IndexPathTransformBlock indexPathTransformBlock;
 
 @end
 
@@ -44,16 +45,32 @@
   
   UITableView *tableView = self.tableView;
   AssertTrueOrReturn(tableView);
+
+  if (self.indexPathTransformBlock) {
+    NSIndexPath *indexPathBeforeTransformation = indexPath;
+    indexPath = self.indexPathTransformBlock(indexPath);
+    if (indexPathBeforeTransformation) {
+      AssertTrueOrReturn(indexPath && @"indexPath should not be nil after transformation!");
+    }
+    
+    NSIndexPath *newIndexPathBeforeTransformation = newIndexPath;
+    newIndexPath = self.indexPathTransformBlock(newIndexPath);
+    if (newIndexPathBeforeTransformation) {
+      AssertTrueOrReturn(newIndexPath && @"newIndexPath should not be nil after transformation!");
+    }
+  }
   
   switch(type) {
       
     case NSFetchedResultsChangeInsert: {
+      AssertTrueOrReturn(newIndexPath);
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
       [self invokeNumberOfObjectsChangedCallbackForController:controller];
     } break;
       
     case NSFetchedResultsChangeDelete: {
+      AssertTrueOrReturn(indexPath);
       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                        withRowAnimation:UITableViewRowAnimationFade];
       [self invokeNumberOfObjectsChangedCallbackForController:controller];
@@ -79,10 +96,15 @@
     } break;
       
     case NSFetchedResultsChangeMove: {
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                       withRowAnimation:UITableViewRowAnimationFade];
+      AssertTrueOrReturn(indexPath);
+      AssertTrueOrReturn(newIndexPath);
+      
+      if (![indexPath isEqual:newIndexPath]) {
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+      }
     } break;
   }
 }
