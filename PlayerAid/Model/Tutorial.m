@@ -11,7 +11,7 @@ static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
-
+NSString *const kTutorialDictionaryStepsKey = @"steps";
 
 @implementation Tutorial
 
@@ -28,7 +28,6 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
                             @"status" : KZCall(stateFromString:, state),
                             @"imageUri" : KZProperty(imageURL),
                             @"section" : KZCall(sectionFromString:, section),
-                            @"steps" : KZCall(tutorialStepsFromDictionariesArray:, consistsOf)
                           }];
   
   if (includeAuthor) {
@@ -38,9 +37,27 @@ NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
   }
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
+  if (self.consistsOf.count && dictionary[kTutorialDictionaryStepsKey]) {
+    [self deleteLocalTutorialSteps];
+    
+    NSDictionary *stepsMapping = @{
+                                   kTutorialDictionaryStepsKey : KZCall(tutorialStepsFromDictionariesArray:, consistsOf)
+                                   };
+    [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:stepsMapping];
+  }
+    
   AssertTrueOrReturn(self.state.length); // tutorial won't be visible anywhere if state is not set
   AssertTrueOr(self.createdAt, self.createdAt = [NSDate new];);
   AssertTrueOr(self.title.length, self.title = @"";);
+}
+
+- (void)deleteLocalTutorialSteps
+{
+  for (TutorialStep *step in self.consistsOf) {
+    if (step.serverID.integerValue == 0) {
+      [self.managedObjectContext deleteObject:step];
+    }
+  }
 }
 
 - (Section *)sectionFromString:(NSString *)sectionName

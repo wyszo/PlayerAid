@@ -13,6 +13,6 @@
 - (BOOL)isImageStep;
 - (BOOL)isVideoStep;
 
-+ (NSString *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary;
++ (NSNumber *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary;
 
 @end

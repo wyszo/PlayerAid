@@ -75,6 +75,8 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
   }
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+  
+  AssertTrueOrReturn(self.serverID);
 }
 
 #pragma mark - Methods
@@ -118,10 +120,10 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 
 #pragma mark - Class methods
 
-+ (NSString *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary
++ (NSNumber *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary
 {
   AssertTrueOrReturnNil(dictionary);
-  NSString *serverID = dictionary[kTutorialStepServerIDAttributeName];
+  NSNumber *serverID = dictionary[kTutorialStepServerIDAttributeName];
   AssertTrueOrReturnNil(serverID);
   return serverID;
 }

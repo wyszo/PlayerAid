@@ -19,14 +19,16 @@
   [stepsDictionaries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     AssertTrueOrReturn([obj isKindOfClass:[NSDictionary class]]);
     NSDictionary *dictionary = (NSDictionary *)obj;
-    NSString *stepID = [TutorialStep serverIDFromTutorialStepDictionary:dictionary];
+    NSNumber *stepID = [TutorialStep serverIDFromTutorialStepDictionary:dictionary];
+    AssertTrueOrReturn(stepID);
     
-    TutorialStep *tutorialStep = [TutorialStep MR_findFirstByAttribute:@"serverID" withValue:stepID inContext:context];
+    TutorialStep *tutorialStep = [TutorialStep MR_findFirstByAttribute:@"serverID" withValue:[stepID stringValue] inContext:context];
     if (!tutorialStep) {
       tutorialStep = [TutorialStep MR_createInContext:context];
     }
     [tutorialStep configureFromDictionary:dictionary];
     
+    AssertTrueOrReturn(tutorialStep.serverID);
     [mutableSet addObject:tutorialStep];
   }];
   
