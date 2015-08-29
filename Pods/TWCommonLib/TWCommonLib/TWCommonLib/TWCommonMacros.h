@@ -15,6 +15,10 @@
 #define UIColorWithAlphaMake(r,g,b,a) [UIColor colorWithRed:((CGFloat)r)/255.0 green:((CGFloat)g)/255.0 blue:((CGFloat)b)/255 alpha:a]
 #define UIFontMake(fontName,fontSize) [UIFont fontWithName:fontName size:fontSize]
 
+#define ValueIfExistsOr(value, alternativeValue) (value ? value : alternativeValue)
+#define ValueOr(value, alternativeValue) (value ? value : alternativeValue)
+#define ValueOrEmptyString(value) (value ? value : @"")
+
 #define SuppressPerformSelectorLeakWarning(Code) \
 do { \
 _Pragma("clang diagnostic push") \
