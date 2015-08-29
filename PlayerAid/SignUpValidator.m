@@ -5,13 +5,15 @@
 #import "SignUpValidator.h"
 
 static const NSInteger kMinEmailLength = 3;
+static const NSInteger kMinPasswordLength = 6;
 
 
 @implementation SignUpValidator
 
 #pragma mark - Email Validation
 
-- (BOOL)validateEmail:(nonnull NSString *)email {
+- (BOOL)validateEmail:(nonnull NSString *)email
+{
   AssertTrueOrReturnNil(email);
   
   BOOL longEnough = (email.length > kMinEmailLength);
@@ -22,12 +24,13 @@ static const NSInteger kMinEmailLength = 3;
   return (longEnough && containsAtCharacter && hasPrefix && hasSufix);
 }
 
-- (BOOL)emailHasAnySufix:(nonnull NSString *)email {
+- (BOOL)emailHasAnySufix:(nonnull NSString *)email
+{
   BOOL hasSufix = NO;
   
   NSArray *emailComponents = [self emailComponentsSpearatedByAtCharacter:email];
   if (emailComponents.count > 1) {
-    NSString *sufix = emailComponents[2];
+    NSString *sufix = emailComponents[1];
     BOOL sufixContainsDotCharacter = ([sufix containsString:@"."]);
     if (sufixContainsDotCharacter) {
       hasSufix = YES;
@@ -36,7 +39,8 @@ static const NSInteger kMinEmailLength = 3;
   return hasSufix;
 }
 
-- (BOOL)emailHasAnyPrefix:(nonnull NSString *)email {
+- (BOOL)emailHasAnyPrefix:(nonnull NSString *)email
+{
   BOOL hasPrefix = NO;
   
   NSArray *emailComponents = [self emailComponentsSpearatedByAtCharacter:email];
@@ -47,16 +51,24 @@ static const NSInteger kMinEmailLength = 3;
   return hasPrefix;
 }
 
-- (NSArray *)emailComponentsSpearatedByAtCharacter:(nonnull NSString *)email {
+- (NSArray *)emailComponentsSpearatedByAtCharacter:(nonnull NSString *)email
+{
   return [email componentsSeparatedByString:@"@"];
 }
 
 #pragma mark - Password Validation
 
-- (BOOL)validatePassword:(nonnull NSString *)password {
-  NOT_IMPLEMENTED_YET_RETURN_NIL
+- (BOOL)validatePassword:(nonnull NSString *)password
+{
+  AssertTrueOrReturnNo(password);
   
-  return NO;
+  BOOL longEnough = [self passwordLongEnough:password];
+  return longEnough;
+}
+
+- (BOOL)passwordLongEnough:(nonnull NSString *)password
+{
+  return (password.length >= kMinPasswordLength);
 }
 
 @end

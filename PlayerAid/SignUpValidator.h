@@ -10,7 +10,7 @@
  - contains at least one character before '@'
  
  Password validation rules: 
-  TODO
+ - length >= 6
  */
 @interface SignUpValidator : NSObject
 

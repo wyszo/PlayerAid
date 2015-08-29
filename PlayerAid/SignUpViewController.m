@@ -4,7 +4,6 @@
 
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
-#import "AlertFactory.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -29,11 +28,19 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
   self.validator = [SignUpValidator new];
+  self.passwordTextField.secureTextEntry = YES;
   
   // TODO: view skinning
 }
 
 #pragma mark - Other methods
+
+- (void)clearPasswordField
+{
+  self.passwordTextField.text = @"";
+}
+
+#pragma mark - Accessors
 
 - (NSString *)emailAddress {
   return [self.emailTextField.text tw_stringByTrimmingWhitespaceAndNewline];
@@ -46,18 +53,19 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 #pragma mark - IBActions
 
 - (IBAction)signUpButtonPressed:(id)sender {
-  // TODO: data validation (in a new class)
+  defineWeakSelf();
+  
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
-    [AlertFactory show]
-    [AlertFactory showOKAlertViewWithMessage:@""];
-    // TODO: present error
+    [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
     return;
   }
   
   BOOL passwordValid = [self.validator validatePassword:[self password]];
   if (!passwordValid) {
-    // TODO: present error
+    [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters." action:^{
+      [weakSelf clearPasswordField];
+    }];
     return;
   }
   
