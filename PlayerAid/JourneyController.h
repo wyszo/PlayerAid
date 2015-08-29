@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+
+// TODO: Rename to 'FlowManager'
+
 @interface JourneyController : NSObject
 
 /**

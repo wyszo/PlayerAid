@@ -33,6 +33,7 @@
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
+		3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
 		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
 		3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */; };
@@ -183,6 +184,7 @@
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
+		3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
 		311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCameraViewController+InterfaceOrientation.h"; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 			isa = PBXGroup;
 			children = (
 				31F116811A790F680022BD74 /* Main.storyboard */,
+				3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1563,6 +1566,7 @@
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
+				3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,

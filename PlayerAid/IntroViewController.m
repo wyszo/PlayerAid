@@ -31,7 +31,8 @@
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:YES animated:YES];
   
-  [self recreateFacebookLoginButton];
+  // This is not needed anymore on this view, will be moved to a login modal view
+  // [self recreateFacebookLoginButton];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -41,6 +42,7 @@
 
 #pragma mark - Facebook login
 
+// not needed in this view controller
 - (void)recreateFacebookLoginButton
 {
   __weak typeof(self) weakSelf = self;
@@ -79,13 +81,6 @@
 - (void)dismissViewController
 {
   [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - DEBUG IBActions
-
-- (IBAction)termsAndConditionsButtonPressed:(id)sender
-{
-  [self performSegueWithIdentifier:@"TermsAndConditionsSegue" sender:self];
 }
 
 @end

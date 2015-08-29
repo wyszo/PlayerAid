@@ -10,6 +10,10 @@
 #import "DataCleanupHelper.h"
 
 
+static NSString *const kLoginSegueId = @"LoginSegue";
+static NSString *const kAnimatedLoginSegueId = @"LoginSegueAnimated";
+
+
 @implementation JourneyController
 
 - (void)clearAppDataAndPerformLoginSegueAnimated:(BOOL)animated
@@ -26,12 +30,7 @@
 - (void)performLoginSegueAnimated:(BOOL)animated
 {
   [self ensureMainWindowKeyAndVisible];
-  
-  NSString *loginSegueName = @"LoginSegue";
-  if (animated) {
-    loginSegueName = [loginSegueName stringByAppendingString:@"Animated"];
-  }
-  [[TabBarHelper mainTabBarController] performSegueWithIdentifier:loginSegueName sender:nil];
+  [self pushLoginNavigationControllerAnimated:animated];
 }
 
 - (void)ensureMainWindowKeyAndVisible
@@ -39,6 +38,20 @@
   if (!self.appDelegate.window.keyWindow) {
     [self.appDelegate.window makeKeyAndVisible];  // need to call this when we try to perform segue early after initialization
   }
+}
+
+#pragma mark - Login Navigation Controller
+
+- (void)pushLoginNavigationControllerAnimated:(BOOL)animated {
+  UIViewController *vc = [self loginNavigationController];
+  UITabBarController *mainTabBarController = [TabBarHelper mainTabBarController];
+  [mainTabBarController presentViewController:vc animated:animated completion:nil];
+}
+
+- (UIViewController *)loginNavigationController {
+  UIViewController *navigationController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
+  AssertTrueOrReturnNil(navigationController);
+  return navigationController;
 }
 
 #pragma mark - DEBUG methods

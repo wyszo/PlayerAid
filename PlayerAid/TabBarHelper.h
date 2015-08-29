@@ -5,20 +5,19 @@
 
 /**
  Generic TabBar utility methods. 
- Try to use PlayerAid TabBarHelper instead of this class directly.
  */
 @interface TabBarHelper : NSObject
 
-+ (UITabBarController *)mainTabBarController;
++ (nonnull UITabBarController *)mainTabBarController;
 
-+ (UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex;
++ (nullable UITabBarItem *)tabBarItemAtIndex:(NSUInteger)itemIndex;
 + (CGRect)frameForTabBarItemAtIndex:(NSUInteger)itemIndex;
 
-+ (NSNumber *)tabBarControllerIndexOfViewControllerWithType:(Class)aClass;
++ (nullable NSNumber *)tabBarControllerIndexOfViewControllerWithType:(nonnull Class)aClass;
 
 /**
  * Can return nil (if a TabBarController is inside a NavigationController)
  */
-+ (UIView *)tabBarControllerBackgroundView;
++ (nullable UIView *)tabBarControllerBackgroundView;
 
 @end
