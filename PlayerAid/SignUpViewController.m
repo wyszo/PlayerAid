@@ -4,6 +4,7 @@
 
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
+#import "AlertFactory.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -48,6 +49,8 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   // TODO: data validation (in a new class)
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
+    [AlertFactory show]
+    [AlertFactory showOKAlertViewWithMessage:@""];
     // TODO: present error
     return;
   }
