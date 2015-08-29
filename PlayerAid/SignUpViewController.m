@@ -4,6 +4,9 @@
 
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
+#import "UnauthenticatedServerCommunicationController.h"
+#import "AlertFactory.h"
+
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -68,16 +71,16 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   return self.repeatPasswordTextField.text;
 }
 
-#pragma mark - IBActions
+#pragma mark - DataValidation
 
-- (IBAction)signUpButtonPressed:(id)sender
+- (BOOL)validateEmailAndPassword
 {
   defineWeakSelf();
   
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
-    return;
+    return NO;
   }
   
   BOOL passwordValid = [self.validator validatePassword:[self password]];
@@ -85,7 +88,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
     [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters." action:^{
       [weakSelf clearPasswordFields];
     }];
-    return;
+    return NO;
   }
   
   BOOL passwordsMatch = [[self password] isEqualToString:[self repeatedPassword]];
@@ -93,12 +96,25 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
     [TWAlertFactory showOKAlertViewWithMessage:@"Sorry, the passwords you entered don't match. Can you try again?" action:^{
       [weakSelf clearPasswordFields];
     }];
-    return;
+    return NO;
   }
-  
-  // TODO: signup nework request
-  // TODO: encode password using RSA
-  // TODO: handling network responses
+  return YES;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)signUpButtonPressed:(id)sender
+{
+  if([self validateEmailAndPassword]) {
+    [[UnauthenticatedServerCommunicationController sharedInstance] requestAPITokenWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
+      if (error) {
+        [AlertFactory showGenericErrorAlertViewNoRetry];
+      } else {
+        // TODO: save API token and dismiss login
+        NOT_IMPLEMENTED_YET_RETURN
+      }
+    }];
+  }
 }
 
 @end

@@ -9,8 +9,12 @@ typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken,  NSEr
 
 /**
  Allows to access those parts of our RESET API that don't require access token. HTTP cache is never used. 
+ TODO: use objection for dependency injection instead of a singleton
  */
 @interface UnauthenticatedServerCommunicationController : NSObject
+
+NEW_AND_INIT_UNAVAILABLE
+SHARED_INSTANCE_GENERATE_INTERFACE
 
 /**
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
@@ -21,7 +25,7 @@ typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken,  NSEr
 /**
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
  */
-+ (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion;
+- (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion;
 
 @end
 

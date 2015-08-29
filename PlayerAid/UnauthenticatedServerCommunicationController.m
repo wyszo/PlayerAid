@@ -50,10 +50,22 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }];
 }
 
-+ (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
+- (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
 {
-  // post auth with customised bearer!
+  NSString *credentials = nil; // TODO: base64 encoded username and password (RSA encrypted password)
   NOT_IMPLEMENTED_YET_RETURN
+  
+  NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
+  NSDictionary *httpHeaders = @{  @"Authorization" : authorizationString  };
+  
+  [self postAuthWithParameters:nil customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *apiToken = @""; // TODO: obtain API token from the responseObject!!
+    NOT_IMPLEMENTED_YET_RETURN
+    
+    CallBlock(completion, apiToken, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, error);
+  }];
 }
 
 #pragma mark - Auxiliary methods
