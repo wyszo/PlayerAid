@@ -46,7 +46,17 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (IBAction)signUpButtonPressed:(id)sender {
   // TODO: data validation (in a new class)
-  BOOL dataIsValid = [self.validator signUpDataValidWithEmail:[self emailAddress] password:[self password]];
+  BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
+  if (!emailValid) {
+    // TODO: present error
+    return;
+  }
+  
+  BOOL passwordValid = [self.validator validatePassword:[self password]];
+  if (!passwordValid) {
+    // TODO: present error
+    return;
+  }
   
   // TODO: signup nework request
   // TODO: encode password using RSA

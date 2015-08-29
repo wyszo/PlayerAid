@@ -9,44 +9,51 @@ static const NSInteger kMinEmailLength = 3;
 
 @implementation SignUpValidator
 
-- (BOOL)signUpDataValidWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password {
-  AssertTrueOrReturnNo(email);
-  AssertTrueOrReturnNo(password);
-  
-  BOOL emailValid = [self emailValid:email];
-  BOOL passwordValid = [self passwordValid:password];
-  return (emailValid && passwordValid);
-}
-
 #pragma mark - Email Validation
 
-- (BOOL)emailValid:(nonnull NSString *)email {
+- (BOOL)validateEmail:(nonnull NSString *)email {
   AssertTrueOrReturnNil(email);
   
   BOOL longEnough = (email.length > kMinEmailLength);
   BOOL containsAtCharacter = ([email containsString:@"@"]);
-  BOOL containsSufix = [self emailHasAnySufix:email];
+  BOOL hasSufix = [self emailHasAnySufix:email];
+  BOOL hasPrefix = [self emailHasAnyPrefix:email];
   
-  return (longEnough && containsAtCharacter && containsSufix);
+  return (longEnough && containsAtCharacter && hasPrefix && hasSufix);
 }
 
 - (BOOL)emailHasAnySufix:(nonnull NSString *)email {
-  BOOL emailHasSufix = NO;
+  BOOL hasSufix = NO;
   
-  NSArray *emailComponents = [email componentsSeparatedByString:@"@"];
+  NSArray *emailComponents = [self emailComponentsSpearatedByAtCharacter:email];
   if (emailComponents.count > 1) {
     NSString *sufix = emailComponents[2];
     BOOL sufixContainsDotCharacter = ([sufix containsString:@"."]);
     if (sufixContainsDotCharacter) {
-      emailHasSufix = YES;
+      hasSufix = YES;
     }
   }
-  return emailHasSufix;
+  return hasSufix;
+}
+
+- (BOOL)emailHasAnyPrefix:(nonnull NSString *)email {
+  BOOL hasPrefix = NO;
+  
+  NSArray *emailComponents = [self emailComponentsSpearatedByAtCharacter:email];
+  if (emailComponents.count) {
+    NSString *prefix = emailComponents[0];
+    hasPrefix = (prefix.length > 0);
+  }
+  return hasPrefix;
+}
+
+- (NSArray *)emailComponentsSpearatedByAtCharacter:(nonnull NSString *)email {
+  return [email componentsSeparatedByString:@"@"];
 }
 
 #pragma mark - Password Validation
 
-- (BOOL)passwordValid:(nonnull NSString *)password {
+- (BOOL)validatePassword:(nonnull NSString *)password {
   NOT_IMPLEMENTED_YET_RETURN_NIL
   
   return NO;

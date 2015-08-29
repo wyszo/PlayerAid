@@ -6,13 +6,15 @@
  Email validation rules:
  - length > 3
  - contains '@' character
- - has a sufix (meaning: contains dot '.' character after '@'
+ - has a sufix (meaning: contains dot '.' character after '@')
+ - contains at least one character before '@'
  
  Password validation rules: 
   TODO
  */
 @interface SignUpValidator : NSObject
 
-- (BOOL)signUpDataValidWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password;
+- (BOOL)validateEmail:(nonnull NSString *)email;
+- (BOOL)validatePassword:(nonnull NSString *)password;
 
 @end
