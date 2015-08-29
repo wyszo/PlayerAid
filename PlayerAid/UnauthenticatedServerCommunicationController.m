@@ -3,6 +3,7 @@
 //
 
 #import <AFNetworking.h>
+#import <TWCommonLib/TWCommonMacros.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
@@ -40,27 +41,34 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                @"email" : data.email
                                };
   
+  NSDictionary *httpHeaders = @{  @"X-Provider" : @"Facebook"  };
+  
+  [self postAuthWithParameters:parameters customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    CallBlock(completion, operation.response, responseObject, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, nil, error);
+  }];
+}
+
++ (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
+{
+  // post auth with customised bearer!
+  NOT_IMPLEMENTED_YET_RETURN
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)postAuthWithParameters:(nullable NSDictionary *)parameters customHTTPHeaders:(nullable NSDictionary *)httpHeaders success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
+{
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
   NSString *URLString = [NSURL URLStringWithPath:@"auth" baseURL:operationManagerNoCache.baseURL];
   
   NSMutableURLRequest *request = [operationManagerNoCache.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
   AssertTrueOrReturn(request);
+  [request addHttpHeadersFromDictionary:httpHeaders];
   
-  [request addHttpHeadersFromDictionary:@{
-    @"X-Provider" : @"Facebook"
-  }];
-  
-  AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    if (completion) {
-      completion(operation.response, responseObject, nil);
-    }
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    if (completion) {
-      completion(nil, nil, error);
-    }
-  }];
-  
+  AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:successBlock failure:failureBlock];
   [operationManagerNoCache.operationQueue addOperation:operation];
 }
 
