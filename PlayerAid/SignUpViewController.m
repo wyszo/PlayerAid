@@ -85,17 +85,13 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   
   BOOL passwordValid = [self.validator validatePassword:[self password]];
   if (!passwordValid) {
-    [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters." action:^{
-      [weakSelf clearPasswordFields];
-    }];
+    [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters."];
     return NO;
   }
   
   BOOL passwordsMatch = [[self password] isEqualToString:[self repeatedPassword]];
   if (!passwordsMatch) {
-    [TWAlertFactory showOKAlertViewWithMessage:@"Sorry, the passwords you entered don't match. Can you try again?" action:^{
-      [weakSelf clearPasswordFields];
-    }];
+    [TWAlertFactory showOKAlertViewWithMessage:@"Sorry, the passwords you entered don't match. Can you try again?"];
     return NO;
   }
   return YES;
