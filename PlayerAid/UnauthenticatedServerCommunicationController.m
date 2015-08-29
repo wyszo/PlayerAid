@@ -8,6 +8,9 @@
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
 
+static NSString *const kAuthPath = @"auth";
+static NSString *const kUserPath = @"user";
+
 
 @implementation AuthenticationRequestData
 @end
@@ -43,15 +46,18 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   NSDictionary *httpHeaders = @{  @"X-Provider" : @"Facebook"  };
   
-  [self postAuthWithParameters:parameters customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self postPath:kAuthPath parameters:parameters customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
     CallBlock(completion, operation.response, responseObject, nil);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     CallBlock(completion, nil, nil, error);
   }];
 }
 
-- (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
+- (void)loginWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
 {
+  AssertTrueOrReturn(email.length);
+  AssertTrueOrReturn(password.length);
+  
   // TODO: password should be RSA encrypted!!
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
   credentials = [credentials tw_base64EncodedString];
@@ -59,8 +65,28 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
   NSDictionary *httpHeaders = @{  @"Authorization" : authorizationString  };
   
-  [self postAuthWithParameters:nil customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self postPath:kAuthPath parameters:nil customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSString *apiToken = @""; // TODO: obtain API token from the responseObject!!
+    NOT_IMPLEMENTED_YET_RETURN
+    
+    CallBlock(completion, apiToken, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    CallBlock(completion, nil, error);
+  }];
+}
+
+- (void)signUpWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion
+{
+  AssertTrueOrReturn(email.length);
+  AssertTrueOrReturn(password.length);
+  
+  NSDictionary *parameters = @{
+                               @"email" : email, // TODO: shouldn't we encrypt email here??
+                               @"password" : password // TODO: password should be RSA-encoded!
+                               };
+  
+  [self postPath:kUserPath parameters:parameters customHTTPHeaders:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *apiToken = @""; // TODO: obtain API token from the responseObject???
     NOT_IMPLEMENTED_YET_RETURN
     
     CallBlock(completion, apiToken, nil);
@@ -71,15 +97,18 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Auxiliary methods
 
-- (void)postAuthWithParameters:(nullable NSDictionary *)parameters customHTTPHeaders:(nullable NSDictionary *)httpHeaders success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
+- (void)postPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters customHTTPHeaders:(nullable NSDictionary *)httpHeaders success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
 {
+  AssertTrueOrReturn(path.length);
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
-  NSString *URLString = [NSURL URLStringWithPath:@"auth" baseURL:operationManagerNoCache.baseURL];
+  NSString *URLString = [NSURL URLStringWithPath:path baseURL:operationManagerNoCache.baseURL];
   
   NSMutableURLRequest *request = [operationManagerNoCache.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
   AssertTrueOrReturn(request);
-  [request addHttpHeadersFromDictionary:httpHeaders];
+  if (httpHeaders.count) {
+    [request addHttpHeadersFromDictionary:httpHeaders];
+  }
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:successBlock failure:failureBlock];
   [operationManagerNoCache.operationQueue addOperation:operation];

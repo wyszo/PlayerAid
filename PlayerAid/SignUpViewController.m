@@ -106,7 +106,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 - (IBAction)signUpButtonPressed:(id)sender
 {
   if([self validateEmailAndPassword]) {
-    [[UnauthenticatedServerCommunicationController sharedInstance] requestAPITokenWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
+    [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
       if (error) {
         [AlertFactory showGenericErrorAlertViewNoRetry];
       } else {

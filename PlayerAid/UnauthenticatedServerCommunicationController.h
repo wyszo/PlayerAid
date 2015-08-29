@@ -25,7 +25,9 @@ SHARED_INSTANCE_GENERATE_INTERFACE
 /**
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
  */
-- (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion;
+- (void)loginWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion;
+
+- (void)signUpWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable ApiTokenRequestCompletion)completion;
 
 @end
 
