@@ -44,6 +44,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 {
   AssertTrueOrReturn(passwordTextField);
   passwordTextField.secureTextEntry = YES;
+  passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 #pragma mark - Other methods
@@ -75,8 +76,6 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (BOOL)validateEmailAndPassword
 {
-  defineWeakSelf();
-  
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
