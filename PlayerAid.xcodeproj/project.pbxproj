@@ -33,6 +33,7 @@
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
 		310ACDE01B91E92E002E6613 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDDF1B91E92E002E6613 /* SignUpViewController.m */; };
 		310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDE41B91EF9B002E6613 /* SignUpValidator.m */; };
+		310ACDEC1B924ABC002E6613 /* T&Cs.html in Resources */ = {isa = PBXBuildFile; fileRef = 310ACDEB1B924ABC002E6613 /* T&Cs.html */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */; };
@@ -187,6 +188,7 @@
 		310ACDDF1B91E92E002E6613 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		310ACDE31B91EF9B002E6613 /* SignUpValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpValidator.h; sourceTree = "<group>"; };
 		310ACDE41B91EF9B002E6613 /* SignUpValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpValidator.m; sourceTree = "<group>"; };
+		310ACDEB1B924ABC002E6613 /* T&Cs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "T&Cs.html"; path = "../Html/T&Cs.html"; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
@@ -632,6 +634,14 @@
 				310ACDE41B91EF9B002E6613 /* SignUpValidator.m */,
 			);
 			name = SignUpEmailAndPassword;
+			sourceTree = "<group>";
+		};
+		310ACDED1B924AD7002E6613 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				310ACDEB1B924ABC002E6613 /* T&Cs.html */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 		31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */ = {
@@ -1457,6 +1467,7 @@
 		31F116741A790F680022BD74 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				310ACDED1B924AD7002E6613 /* HTML */,
 				31F116751A790F680022BD74 /* Info.plist */,
 				31F116761A790F680022BD74 /* main.m */,
 			);
@@ -1617,6 +1628,7 @@
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
+				310ACDEC1B924ABC002E6613 /* T&Cs.html in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 				31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */,
