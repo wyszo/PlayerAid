@@ -95,7 +95,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TWCommonLib:
-    :commit: 44abda7a0eae859cc2eb22a7318e974278084b14
+    :commit: 66e575198b5ae91e0328cd3d391c777f94ae7801
     :git: ../TWCommonLib
 
 SPEC CHECKSUMS:
