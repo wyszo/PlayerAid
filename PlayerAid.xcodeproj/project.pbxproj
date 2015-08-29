@@ -32,6 +32,7 @@
 		3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */; };
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
 		310ACDE01B91E92E002E6613 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDDF1B91E92E002E6613 /* SignUpViewController.m */; };
+		310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDE41B91EF9B002E6613 /* SignUpValidator.m */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */; };
@@ -184,6 +185,8 @@
 		3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCameraViewStandardDelegateObject.m; sourceTree = "<group>"; };
 		310ACDDE1B91E92E002E6613 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		310ACDDF1B91E92E002E6613 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		310ACDE31B91EF9B002E6613 /* SignUpValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpValidator.h; sourceTree = "<group>"; };
+		310ACDE41B91EF9B002E6613 /* SignUpValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpValidator.m; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
@@ -612,6 +615,23 @@
 				310ACDDF1B91E92E002E6613 /* SignUpViewController.m */,
 			);
 			name = "Sign Up";
+			sourceTree = "<group>";
+		};
+		310ACDE11B91EF7C002E6613 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				310ACDE21B91EF86002E6613 /* SignUpEmailAndPassword */,
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+		310ACDE21B91EF86002E6613 /* SignUpEmailAndPassword */ = {
+			isa = PBXGroup;
+			children = (
+				310ACDE31B91EF9B002E6613 /* SignUpValidator.h */,
+				310ACDE41B91EF9B002E6613 /* SignUpValidator.m */,
+			);
+			name = SignUpEmailAndPassword;
 			sourceTree = "<group>";
 		};
 		31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */ = {
@@ -1422,6 +1442,7 @@
 				31B46D431A87AFD1004EEA30 /* Storyboards */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
 				31C122621A838A340069D49A /* UI Components */,
+				310ACDE11B91EF7C002E6613 /* Validators */,
 				318BA8121A7ABB730012F507 /* ViewControllers */,
 				31C1225F1A8388C40069D49A /* Xibs */,
 				31F116841A790F680022BD74 /* Images.xcassets */,
@@ -1734,6 +1755,7 @@
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
+				310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
