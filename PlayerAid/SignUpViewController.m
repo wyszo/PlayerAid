@@ -13,6 +13,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
 @property (strong, nonatomic) SignUpValidator *validator;
 
@@ -21,38 +22,56 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 @implementation SignUpViewController
 
-- (void)viewDidLoad {
+#pragma mark - Setup
+
+- (void)viewDidLoad
+{
   [super viewDidLoad];
   
   self.title = @"Sign up";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
   self.validator = [SignUpValidator new];
-  self.passwordTextField.secureTextEntry = YES;
   
-  // TODO: view skinning
+  [self setupPasswordTextfield:self.passwordTextField];
+  [self setupPasswordTextfield:self.repeatPasswordTextField];
+}
+
+- (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextField
+{
+  AssertTrueOrReturn(passwordTextField);
+  passwordTextField.secureTextEntry = YES;
 }
 
 #pragma mark - Other methods
 
-- (void)clearPasswordField
+- (void)clearPasswordFields
 {
   self.passwordTextField.text = @"";
+  self.repeatPasswordTextField.text = @"";
 }
 
 #pragma mark - Accessors
 
-- (NSString *)emailAddress {
+- (NSString *)emailAddress
+{
   return [self.emailTextField.text tw_stringByTrimmingWhitespaceAndNewline];
 }
 
-- (NSString *)password {
+- (NSString *)password
+{
   return self.passwordTextField.text;
+}
+
+- (NSString *)repeatedPassword
+{
+  return self.repeatPasswordTextField.text;
 }
 
 #pragma mark - IBActions
 
-- (IBAction)signUpButtonPressed:(id)sender {
+- (IBAction)signUpButtonPressed:(id)sender
+{
   defineWeakSelf();
   
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
@@ -64,7 +83,15 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   BOOL passwordValid = [self.validator validatePassword:[self password]];
   if (!passwordValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters." action:^{
-      [weakSelf clearPasswordField];
+      [weakSelf clearPasswordFields];
+    }];
+    return;
+  }
+  
+  BOOL passwordsMatch = [[self password] isEqualToString:[self repeatedPassword]];
+  if (!passwordsMatch) {
+    [TWAlertFactory showOKAlertViewWithMessage:@"Sorry, the passwords you entered don't match. Can you try again?" action:^{
+      [weakSelf clearPasswordFields];
     }];
     return;
   }
