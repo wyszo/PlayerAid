@@ -52,8 +52,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)requestAPITokenWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
 {
-  NSString *credentials = nil; // TODO: base64 encoded username and password (RSA encrypted password)
-  NOT_IMPLEMENTED_YET_RETURN
+  // TODO: password should be RSA encrypted!!
+  NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
+  credentials = [credentials tw_base64EncodedString];
   
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
   NSDictionary *httpHeaders = @{  @"Authorization" : authorizationString  };
