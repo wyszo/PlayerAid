@@ -5,6 +5,8 @@
 
 @interface ColorsHelper : NSObject
 
++ (UIColor *)loginSignupLightBlueBackgroundColor;
+
 + (UIColor *)tabBarSelectedTextColor;
 + (UIColor *)tabBarUnselectedTextColor;
 + (UIColor *)tabBarSelectedImageTintColor;

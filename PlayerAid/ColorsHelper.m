@@ -12,6 +12,8 @@
 
 @implementation ColorsHelper
 
+UIColorMethodMake(loginSignupLightBlueBackgroundColor, 236, 238, 241);
+
 UIColorMethodMake(tabBarSelectedTextColor, 42, 70, 136)
 UIColorMethodMake(tabBarUnselectedTextColor, 158, 171, 199)
 UIColorMethodMake(tabBarSelectedImageTintColor, 53, 79, 141)

@@ -6,6 +6,7 @@
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
+#import "ColorsHelper.h"
 
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
@@ -35,9 +36,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
   self.validator = [SignUpValidator new];
-  
-  [self setupPasswordTextfield:self.passwordTextField];
-  [self setupPasswordTextfield:self.repeatPasswordTextField];
+  [self skinView];
 }
 
 - (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextField
@@ -45,6 +44,14 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   AssertTrueOrReturn(passwordTextField);
   passwordTextField.secureTextEntry = YES;
   passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
+- (void)skinView
+{
+  self.view.backgroundColor = [ColorsHelper loginSignupLightBlueBackgroundColor];
+  
+  [self setupPasswordTextfield:self.passwordTextField];
+  [self setupPasswordTextfield:self.repeatPasswordTextField];
 }
 
 #pragma mark - Other methods

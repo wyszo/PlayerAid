@@ -252,24 +252,6 @@
                                     <action selector="signUpButtonPressed:" destination="gLO-SQ-n4H" eventType="touchUpInside" id="6rE-YK-A8P"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LID-zj-fAM">
-                                <rect key="frame" x="16" y="486" width="88" height="30"/>
-                                <state key="normal" title="Terms of use">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="sTB-EH-k4V" kind="show" identifier="TermsOfUseSegueId" id="QP6-Gq-tZf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKb-Nf-M06">
-                                <rect key="frame" x="488" y="486" width="96" height="30"/>
-                                <state key="normal" title="Privacy policy">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="U50-YU-4Iu" kind="show" identifier="PrivacyPolicySegueId" id="10O-yA-KvN"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18u-EE-f5F" userLabel="FacebookSignup Container View">
                                 <rect key="frame" x="16" y="222" width="568" height="31"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -282,10 +264,65 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done"/>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J37-6G-wck" userLabel="BottomButtonsContainer">
+                                <rect key="frame" x="200" y="466" width="200" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKb-Nf-M06">
+                                        <rect key="frame" x="100" y="0.0" width="90" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="Yef-hu-syf"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Privacy policy">
+                                                    <attributes>
+                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <segue destination="U50-YU-4Iu" kind="show" identifier="PrivacyPolicySegueId" id="10O-yA-KvN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LID-zj-fAM">
+                                        <rect key="frame" x="10" y="0.0" width="90" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="go9-b7-5TX"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Terms of use">
+                                                    <attributes>
+                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <segue destination="sTB-EH-k4V" kind="show" identifier="TermsOfUseSegueId" id="QP6-Gq-tZf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="LID-zj-fAM" firstAttribute="leading" secondItem="J37-6G-wck" secondAttribute="leading" constant="10" id="32H-U1-TXX"/>
+                                    <constraint firstAttribute="height" secondItem="LID-zj-fAM" secondAttribute="height" id="Q6e-pQ-gKt"/>
+                                    <constraint firstAttribute="height" constant="70" id="SjP-Qk-gOv"/>
+                                    <constraint firstItem="RKb-Nf-M06" firstAttribute="height" secondItem="LID-zj-fAM" secondAttribute="height" id="TUC-3t-SHn"/>
+                                    <constraint firstItem="RKb-Nf-M06" firstAttribute="leading" secondItem="LID-zj-fAM" secondAttribute="trailing" id="WCC-Io-2gK"/>
+                                    <constraint firstAttribute="centerY" secondItem="LID-zj-fAM" secondAttribute="centerY" id="ioa-Ek-AKl"/>
+                                    <constraint firstAttribute="trailing" secondItem="RKb-Nf-M06" secondAttribute="trailing" constant="10" id="sOT-1S-lEq"/>
+                                    <constraint firstItem="RKb-Nf-M06" firstAttribute="centerY" secondItem="LID-zj-fAM" secondAttribute="centerY" id="sv0-jO-DBF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="LID-zj-fAM" secondAttribute="bottom" constant="20" id="3ob-XL-WgC"/>
                             <constraint firstItem="hz8-K1-aZj" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="6fr-Rl-mHx"/>
                             <constraint firstAttribute="trailing" secondItem="gFf-wo-5aM" secondAttribute="trailing" constant="16" id="DXP-tg-qpz"/>
                             <constraint firstItem="hz8-K1-aZj" firstAttribute="top" secondItem="gFf-wo-5aM" secondAttribute="bottom" constant="13" id="Lw7-Vs-MFQ"/>
@@ -293,15 +330,14 @@
                             <constraint firstItem="7KD-0C-Doc" firstAttribute="trailing" secondItem="9DH-Ja-74w" secondAttribute="trailingMargin" id="SL1-g0-ZOU"/>
                             <constraint firstItem="gG3-bd-g7j" firstAttribute="top" secondItem="hz8-K1-aZj" secondAttribute="bottom" constant="30" id="VId-Yl-OmQ"/>
                             <constraint firstItem="7KD-0C-Doc" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leadingMargin" id="Vi1-Xt-xQL"/>
+                            <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="J37-6G-wck" secondAttribute="bottom" id="Xui-yo-6oF"/>
                             <constraint firstItem="gFf-wo-5aM" firstAttribute="top" secondItem="7KD-0C-Doc" secondAttribute="bottom" constant="16" id="aQv-iC-BdO"/>
                             <constraint firstAttribute="trailing" secondItem="18u-EE-f5F" secondAttribute="trailing" constant="16" id="acj-nV-FUb"/>
-                            <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="RKb-Nf-M06" secondAttribute="bottom" constant="20" id="ffp-zo-sok"/>
+                            <constraint firstAttribute="centerX" secondItem="J37-6G-wck" secondAttribute="centerX" id="e1e-wS-gsP"/>
                             <constraint firstAttribute="trailing" secondItem="hz8-K1-aZj" secondAttribute="trailing" constant="16" id="jBE-qn-vfy"/>
                             <constraint firstAttribute="centerX" secondItem="gG3-bd-g7j" secondAttribute="centerX" id="nKE-Ps-ZEa"/>
                             <constraint firstItem="gFf-wo-5aM" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="nWH-YP-qE2"/>
-                            <constraint firstItem="LID-zj-fAM" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="rw2-Ib-bSw"/>
                             <constraint firstItem="18u-EE-f5F" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="uCM-Nf-ELX"/>
-                            <constraint firstAttribute="trailing" secondItem="RKb-Nf-M06" secondAttribute="trailing" constant="16" id="wht-W2-z8r"/>
                             <constraint firstItem="7KD-0C-Doc" firstAttribute="top" secondItem="vdE-jN-h9h" secondAttribute="bottom" constant="20" id="yTW-WA-ZOd"/>
                         </constraints>
                     </view>
