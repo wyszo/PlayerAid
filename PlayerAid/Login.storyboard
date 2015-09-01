@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-tn-qz5">
-                                <rect key="frame" x="16" y="388" width="568" height="21"/>
+                                <rect key="frame" x="16" y="341" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="M2n-Wp-1Zx"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn sport faster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONu-Ze-7kQ">
-                                <rect key="frame" x="16" y="417" width="568" height="21"/>
+                                <rect key="frame" x="16" y="370" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="F4A-sX-pMi"/>
                                 </constraints>
@@ -43,12 +43,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikG-kl-Wgh">
-                                <rect key="frame" x="16" y="457" width="568" height="30"/>
+                                <rect key="frame" x="16" y="466" width="568" height="46"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="QOP-Pf-LiH"/>
+                                    <constraint firstAttribute="height" constant="46" id="QOP-Pf-LiH"/>
                                 </constraints>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Log in">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -56,12 +57,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2H-dv-qJW">
-                                <rect key="frame" x="24" y="520" width="552" height="46"/>
+                                <rect key="frame" x="16" y="530" width="568" height="46"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="zgy-AS-tLl"/>
                                 </constraints>
                                 <state key="normal" title="Sign up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -72,22 +74,26 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="pM7-ge-CCL" secondAttribute="centerX" id="0Sv-kX-aCc"/>
-                            <constraint firstItem="ikG-kl-Wgh" firstAttribute="top" secondItem="ONu-Ze-7kQ" secondAttribute="bottom" constant="19" id="2rZ-px-lky"/>
                             <constraint firstAttribute="trailing" secondItem="ikG-kl-Wgh" secondAttribute="trailing" constant="16" id="7vG-3q-LS8"/>
                             <constraint firstItem="5eM-tn-qz5" firstAttribute="leading" secondItem="rY1-YK-3LC" secondAttribute="leadingMargin" id="9ap-iX-pWr"/>
                             <constraint firstItem="ikG-kl-Wgh" firstAttribute="leading" secondItem="rY1-YK-3LC" secondAttribute="leading" constant="16" id="GGg-Xg-h0t"/>
                             <constraint firstItem="ONu-Ze-7kQ" firstAttribute="top" secondItem="5eM-tn-qz5" secondAttribute="bottom" constant="8" id="NGy-c3-TpO"/>
                             <constraint firstItem="pM7-ge-CCL" firstAttribute="top" secondItem="iks-dF-Jso" secondAttribute="bottom" constant="80" id="NxZ-Jt-K0h"/>
-                            <constraint firstAttribute="trailing" secondItem="y2H-dv-qJW" secondAttribute="trailing" constant="24" id="Ukf-1G-epB"/>
+                            <constraint firstAttribute="trailing" secondItem="y2H-dv-qJW" secondAttribute="trailing" constant="16" id="Ukf-1G-epB"/>
                             <constraint firstItem="5eM-tn-qz5" firstAttribute="trailing" secondItem="rY1-YK-3LC" secondAttribute="trailingMargin" id="VsQ-nC-qXm"/>
                             <constraint firstItem="ONu-Ze-7kQ" firstAttribute="trailing" secondItem="rY1-YK-3LC" secondAttribute="trailingMargin" id="W5V-En-Ce2"/>
                             <constraint firstItem="ONu-Ze-7kQ" firstAttribute="leading" secondItem="rY1-YK-3LC" secondAttribute="leadingMargin" id="Xmk-Ro-8qj"/>
-                            <constraint firstItem="y2H-dv-qJW" firstAttribute="top" secondItem="ikG-kl-Wgh" secondAttribute="bottom" constant="33" id="ZqO-Ma-gIm"/>
-                            <constraint firstItem="uQm-NQ-emP" firstAttribute="top" secondItem="y2H-dv-qJW" secondAttribute="bottom" constant="34" id="hg1-eE-3jC"/>
-                            <constraint firstItem="y2H-dv-qJW" firstAttribute="leading" secondItem="rY1-YK-3LC" secondAttribute="leading" constant="24" id="u8J-Vd-DZD"/>
+                            <constraint firstItem="y2H-dv-qJW" firstAttribute="top" secondItem="ikG-kl-Wgh" secondAttribute="bottom" constant="18" id="ZqO-Ma-gIm"/>
+                            <constraint firstItem="5eM-tn-qz5" firstAttribute="top" secondItem="pM7-ge-CCL" secondAttribute="bottom" constant="17" id="bPz-Rc-zei"/>
+                            <constraint firstItem="uQm-NQ-emP" firstAttribute="top" secondItem="y2H-dv-qJW" secondAttribute="bottom" constant="24" id="hg1-eE-3jC"/>
+                            <constraint firstItem="y2H-dv-qJW" firstAttribute="leading" secondItem="rY1-YK-3LC" secondAttribute="leading" constant="16" id="u8J-Vd-DZD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u7O-dz-nQZ"/>
+                    <connections>
+                        <outlet property="loginButton" destination="ikG-kl-Wgh" id="ciW-nV-lvc"/>
+                        <outlet property="signUpButton" destination="y2H-dv-qJW" id="3yX-mA-mhZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tes-zQ-DmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

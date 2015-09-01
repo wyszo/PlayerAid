@@ -14,7 +14,12 @@
 
 
 @interface IntroViewController ()
-@property (weak, nonatomic) IBOutlet UIView *loginButtonContainer;
+
+/** obsolete - and not even connected to IBOutlet anymore!!! */
+@property (weak, nonatomic) IBOutlet UIView *loginButtonContainer DEPRECATED_ATTRIBUTE;
+
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @end
 
 
@@ -24,6 +29,7 @@
 {
   [super viewDidLoad];
   self.view.backgroundColor = [ColorsHelper playerAidBlueColor];
+  [self skinButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,6 +44,21 @@
 - (BOOL)prefersStatusBarHidden
 {
   return YES;
+}
+
+#pragma mark - Skinning
+
+- (void)skinButtons
+{
+  [self skinButton:self.loginButton];
+  [self skinButton:self.signUpButton];
+}
+
+- (void)skinButton:(UIButton *)button
+{
+  button.backgroundColor = [UIColor clearColor];
+  [button tw_addBorderWithWidth:1.0 color:[UIColor whiteColor]];
+  [button tw_setCornerRadius:8.0];
 }
 
 #pragma mark - Facebook login
