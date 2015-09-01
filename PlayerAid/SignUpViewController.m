@@ -18,9 +18,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) SignUpValidator *validator;
-
 @end
 
 
@@ -50,8 +51,26 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 {
   self.view.backgroundColor = [ColorsHelper loginSignupLightBlueBackgroundColor];
   
+  [self skinTextFields];
+  [self skinSignUpButton];
+}
+
+- (void)skinTextFields
+{
   [self setupPasswordTextfield:self.passwordTextField];
   [self setupPasswordTextfield:self.repeatPasswordTextField];
+  
+  [self.textfieldBackgroundViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+    [view tw_addBorderWithWidth:1.0 color:[UIColor lightGrayColor]];
+  }];
+}
+
+- (void)skinSignUpButton
+{
+  self.signUpButton.backgroundColor = [UIColor clearColor];
+  UIColor *buttonColor = [ColorsHelper playerAidBlueColor];
+  [self.signUpButton tw_addBorderWithWidth:1.0 color:buttonColor];
+  [self.signUpButton setTitleColor:buttonColor forState:UIControlStateNormal];
 }
 
 #pragma mark - Other methods
