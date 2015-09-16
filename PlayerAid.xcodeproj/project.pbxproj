@@ -82,6 +82,7 @@
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */; };
+		31880C4F1BA9B87700710458 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C4E1BA9B87700710458 /* LoginViewController.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
@@ -284,6 +285,8 @@
 		317780391A80ED2C007057CD /* TutorialDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsViewController.m; sourceTree = "<group>"; };
 		317E63191AE267C100652AE1 /* ViewControllerPresentationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerPresentationHelper.h; sourceTree = "<group>"; };
 		317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerPresentationHelper.m; sourceTree = "<group>"; };
+		31880C4D1BA9B87700710458 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		31880C4E1BA9B87700710458 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceCustomizationHelper.h; sourceTree = "<group>"; };
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
@@ -609,6 +612,7 @@
 			isa = PBXGroup;
 			children = (
 				317780151A80061A007057CD /* Intro */,
+				31880C4C1BA9B85B00710458 /* LogIn */,
 				310ACDF11B924EEA002E6613 /* PrivacyPolicy */,
 				310ACDDD1B91E913002E6613 /* Sign Up */,
 				31014E521A948686002F3485 /* Terms and Conditions */,
@@ -1058,6 +1062,15 @@
 				317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */,
 			);
 			name = ViewControllerPresentation;
+			sourceTree = "<group>";
+		};
+		31880C4C1BA9B85B00710458 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				31880C4D1BA9B87700710458 /* LoginViewController.h */,
+				31880C4E1BA9B87700710458 /* LoginViewController.m */,
+			);
+			name = LogIn;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -1786,6 +1799,7 @@
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
 				310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */,
+				31880C4F1BA9B87700710458 /* LoginViewController.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
