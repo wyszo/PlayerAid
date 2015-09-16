@@ -176,24 +176,7 @@
                     <view key="view" contentMode="scaleToFill" id="Doe-KG-yOv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5k-hA-waK">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcb-zM-GhF" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="oSk-uh-tpj" firstAttribute="top" secondItem="d5k-hA-waK" secondAttribute="bottom" id="00L-yT-BBP"/>
-                            <constraint firstItem="d5k-hA-waK" firstAttribute="top" secondItem="Mfh-3k-AA5" secondAttribute="bottom" id="J61-1y-2Yg"/>
-                            <constraint firstItem="d5k-hA-waK" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" id="ROx-Zn-ewL"/>
-                            <constraint firstAttribute="trailing" secondItem="d5k-hA-waK" secondAttribute="trailing" id="uvF-Pu-ZBE"/>
-                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
