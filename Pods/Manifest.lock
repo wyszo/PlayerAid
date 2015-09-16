@@ -90,7 +90,7 @@ EXTERNAL SOURCES:
     :branch: v0_6
     :git: ../TWCommonLib
   YCameraView:
-    :branch: PlayerAidChanges
+    :branch: MorePAChanges
     :path: ../YCameraView
 
 CHECKOUT OPTIONS:

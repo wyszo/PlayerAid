@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "072BEE606B968741041CF478"
+               BlueprintIdentifier = "55A80D4325EA6753B80408E2"
                BuildableName = "libYCameraView.a"
                BlueprintName = "YCameraView"
                ReferencedContainer = "container:Pods.xcodeproj">
