@@ -142,6 +142,41 @@ static NSString * const kStringsTableName = @"FDTake";
     [self.alertController.view setTag:kVideosOrPhotosActionSheetTag];
 }
 
+#pragma mark -
+
+- (void)chooseFromLibrary
+{
+  self.sources = nil;
+  self.buttonTitles = nil;
+  [self setupImagePickerSources];
+  [self.alertController.view setTag:kPhotosActionSheetTag];
+  
+  [self actionSheetDidDismissWithButtonIndex:1 cancelButton:NO];
+}
+
+- (void)takePhoto
+{
+  self.sources = nil;
+  self.buttonTitles = nil;
+  [self setupImagePickerSources];
+  [self.alertController.view setTag:kPhotosActionSheetTag];
+  
+  [self actionSheetDidDismissWithButtonIndex:0 cancelButton:NO];
+}
+
+- (void)setupImagePickerSources
+{
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    [self.sources addObject:[NSNumber numberWithInteger:UIImagePickerControllerSourceTypeCamera]];
+  }
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+    [self.sources addObject:[NSNumber numberWithInteger:UIImagePickerControllerSourceTypePhotoLibrary]];
+  }
+  else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+    [self.sources addObject:[NSNumber numberWithInteger:UIImagePickerControllerSourceTypeSavedPhotosAlbum]];
+  }
+}
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

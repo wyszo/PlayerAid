@@ -56,6 +56,10 @@
  */
 - (void)takePhotoOrVideoOrChooseFromLibrary;
 
+- (void)chooseFromLibrary;
+
+- (void)takePhoto;
+
 /**
  * The delegate to receive updates from FDTake
  */

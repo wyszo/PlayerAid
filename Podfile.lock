@@ -69,7 +69,7 @@ DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - BlocksKit (= 2.2.5)
   - Facebook-iOS-SDK (= 3.22.0)
-  - FDTake (from `../FDTake`)
+  - FDTake (from `https://github.com/wyszo/FDTake.git`, branch `master`)
   - FLKAutoLayout (= 0.2.1)
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.5.1)
@@ -80,18 +80,26 @@ DEPENDENCIES:
   - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.0.9)
-  - YCameraView (from `../YCameraView`)
+  - YCameraView (from `https://github.com/wyszo/YCameraView.git`, branch `MorePAChanges`)
 
 EXTERNAL SOURCES:
   FDTake:
     :branch: master
-    :path: ../FDTake
+    :git: https://github.com/wyszo/FDTake.git
   TWCommonLib:
     :branch: v0_7
     :path: ../TWCommonLib
   YCameraView:
     :branch: MorePAChanges
-    :path: ../YCameraView
+    :git: https://github.com/wyszo/YCameraView.git
+
+CHECKOUT OPTIONS:
+  FDTake:
+    :commit: faaac2233f06c6ee63eb6c1a92d982589c6d3e3f
+    :git: https://github.com/wyszo/FDTake.git
+  YCameraView:
+    :commit: 1bbe802fc97c15a77a948dbe720b40e0ebebdaba
+    :git: https://github.com/wyszo/YCameraView.git
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e

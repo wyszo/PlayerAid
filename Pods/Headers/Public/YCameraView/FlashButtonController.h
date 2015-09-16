@@ -1,1 +1,1 @@
-../../../../../YCameraView/YCameraViewController/FlashButtonController.h
+../../../YCameraView/YCameraViewController/FlashButtonController.h

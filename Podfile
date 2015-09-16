@@ -14,6 +14,8 @@ pod 'Mixpanel', '2.8.1'
 pod 'BlocksKit', '2.2.5'
 pod 'NSDate+TimeAgo', '1.0.3'
 pod 'NSString+RemoveEmoji', '0.0.1'
-pod 'FDTake', :path => '../FDTake', :branch => 'master'
-pod 'YCameraView', :path => '../YCameraView', :branch => 'MorePAChanges'
+
+pod 'FDTake', :git => 'https://github.com/wyszo/FDTake.git', :branch => 'master'
+pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
+
 pod 'TWCommonLib', :path => '../TWCommonLib', :branch => 'v0_7'
