@@ -37,8 +37,10 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
   }
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
-  if (self.consistsOf.count && dictionary[kTutorialDictionaryStepsKey]) {
-    [self deleteLocalTutorialSteps];
+  if (dictionary[kTutorialDictionaryStepsKey]) {
+    if (self.consistsOf.count) {
+      [self deleteLocalTutorialSteps];
+    }
     
     NSDictionary *stepsMapping = @{
                                    kTutorialDictionaryStepsKey : KZCall(tutorialStepsFromDictionariesArray:, consistsOf)
