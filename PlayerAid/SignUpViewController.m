@@ -2,11 +2,14 @@
 //  PlayerAid
 //
 
+#import <UIView+FLKAutolayout.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "ColorsHelper.h"
+#import "FacebookLoginControlsFactory.h"
+#import "LoginManager.h"
 
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
@@ -37,8 +40,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
   self.validator = [SignUpValidator new];
+  
   [self skinView];
   [self setupTextFields];
+  [self setupFacebookButton];
 }
 
 #pragma mark - Subviews skinning
@@ -83,6 +88,29 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   AssertTrueOrReturn(passwordTextField);
   passwordTextField.secureTextEntry = YES;
   passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
+#pragma mark - Setup Facebook
+
+- (void)setupFacebookButton
+{
+  defineWeakSelf();
+  
+  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
+    if (!error) {
+      [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
+        if (!error) {
+          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }
+      }];
+    }
+  }];
+  
+  UIView *loginButtonParentView = self.facebookSignUpContainerView;
+  loginButtonParentView.backgroundColor = [UIColor clearColor];
+  
+  [loginButtonParentView addSubview:loginView];
+  [loginView alignToView:loginButtonParentView];
 }
 
 #pragma mark - Other methods
