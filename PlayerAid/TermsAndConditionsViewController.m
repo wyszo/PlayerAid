@@ -29,7 +29,7 @@ static NSString *const kTermsAndConditionsHTMLFileName = @"T&Cs.html";
 
 - (void)loadWebViewContent
 {
-  NSString *htmlString = [NSString htmlStringFromFileNamed:kTermsAndConditionsHTMLFileName];
+  NSString *htmlString = [NSString tw_htmlStringFromFileNamed:kTermsAndConditionsHTMLFileName];
   AssertTrueOrReturn(htmlString.length);
   [self.webView loadHTMLString:htmlString baseURL:nil];
 }

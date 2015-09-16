@@ -21,7 +21,7 @@ static NSString *const kPrivacyPolicyHTMLFileName = @"PrivacyPolicy.html";
 
 - (void)loadWebViewContent
 {
-  NSString *htmlString = [NSString htmlStringFromFileNamed:kPrivacyPolicyHTMLFileName];
+  NSString *htmlString = [NSString tw_htmlStringFromFileNamed:kPrivacyPolicyHTMLFileName];
   AssertTrueOrReturn(htmlString.length);
   [self.webView loadHTMLString:htmlString baseURL:nil];
 }
