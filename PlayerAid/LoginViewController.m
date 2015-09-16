@@ -2,8 +2,11 @@
 //  PlayerAid
 //
 
+#import <UIView+FLKAutolayout.h>
 #import "LoginViewController.h"
 #import "ColorsHelper.h"
+#import "FacebookLoginControlsFactory.h"
+#import "LoginManager.h"
 
 @interface LoginViewController ()
 
@@ -29,7 +32,22 @@
 
 - (void)setupFacebookLoginButton
 {
-  NOT_IMPLEMENTED_YET_RETURN
+  defineWeakSelf();
+  
+  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
+    if (!error) {
+      [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
+        if (!error) {
+          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }
+      }];
+    }
+  }];
+  
+  UIView *loginButtonParentView = self.view;
+
+  [loginButtonParentView addSubview:loginView];
+  [loginView alignCenterWithView:loginButtonParentView];
 }
 
 @end

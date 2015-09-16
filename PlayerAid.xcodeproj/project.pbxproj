@@ -83,6 +83,7 @@
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */; };
 		31880C4F1BA9B87700710458 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C4E1BA9B87700710458 /* LoginViewController.m */; };
+		31880C531BA9BC3600710458 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C521BA9BC3600710458 /* LoginManager.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
@@ -287,6 +288,8 @@
 		317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerPresentationHelper.m; sourceTree = "<group>"; };
 		31880C4D1BA9B87700710458 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31880C4E1BA9B87700710458 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		31880C511BA9BC3600710458 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		31880C521BA9BC3600710458 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceCustomizationHelper.h; sourceTree = "<group>"; };
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
@@ -881,6 +884,7 @@
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
+				31880C501BA9BC1600710458 /* Login */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
 				31D8CB0D1B1C6097003EE772 /* UserTutorials */,
 				31014E531A961084002F3485 /* Users */,
@@ -1071,6 +1075,15 @@
 				31880C4E1BA9B87700710458 /* LoginViewController.m */,
 			);
 			name = LogIn;
+			sourceTree = "<group>";
+		};
+		31880C501BA9BC1600710458 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				31880C511BA9BC3600710458 /* LoginManager.h */,
+				31880C521BA9BC3600710458 /* LoginManager.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -1725,6 +1738,7 @@
 				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
+				31880C531BA9BC3600710458 /* LoginManager.m in Sources */,
 				31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */,
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
 				3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */,
