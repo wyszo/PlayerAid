@@ -1,1 +1,1 @@
-../../../TWCommonLib/TWCommonLib/TWCommonLib/TWVideoThumbnailHelper.h
+../../../../../TWCommonLib/TWCommonLib/TWCommonLib/TWVideoThumbnailHelper.h
