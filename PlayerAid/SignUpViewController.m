@@ -13,8 +13,8 @@ static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 
-@interface SignUpViewController ()
-
+@interface SignUpViewController () <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *signUpTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
@@ -38,14 +38,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   
   self.validator = [SignUpValidator new];
   [self skinView];
+  [self setupTextFields];
 }
 
-- (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextField
-{
-  AssertTrueOrReturn(passwordTextField);
-  passwordTextField.secureTextEntry = YES;
-  passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-}
+#pragma mark - Subviews skinning
 
 - (void)skinView
 {
@@ -57,9 +53,6 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (void)skinTextFields
 {
-  [self setupPasswordTextfield:self.passwordTextField];
-  [self setupPasswordTextfield:self.repeatPasswordTextField];
-  
   [self.textfieldBackgroundViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
     [view tw_addBorderWithWidth:1.0 color:[UIColor lightGrayColor]];
   }];
@@ -71,6 +64,25 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   UIColor *buttonColor = [ColorsHelper playerAidBlueColor];
   [self.signUpButton tw_addBorderWithWidth:1.0 color:buttonColor];
   [self.signUpButton setTitleColor:buttonColor forState:UIControlStateNormal];
+}
+
+#pragma mark - TextField setup
+
+- (void)setupTextFields
+{
+  for (UITextField *textField in self.signUpTextFields) {
+    textField.delegate = self;
+  }
+  
+  [self setupPasswordTextfield:self.passwordTextField];
+  [self setupPasswordTextfield:self.repeatPasswordTextField];
+}
+
+- (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextField
+{
+  AssertTrueOrReturn(passwordTextField);
+  passwordTextField.secureTextEntry = YES;
+  passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 #pragma mark - Other methods
@@ -136,6 +148,20 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
       }
     }];
   }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  if (textField == self.emailTextField) {
+    [self.passwordTextField becomeFirstResponder];
+  } else if (textField == self.passwordTextField) {
+    [self.repeatPasswordTextField becomeFirstResponder];
+  } else if (textField == self.repeatPasswordTextField) {
+    [textField resignFirstResponder];
+  }
+  return YES;
 }
 
 @end

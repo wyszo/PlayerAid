@@ -383,6 +383,9 @@
                         <outletCollection property="textfieldBackgroundViews" destination="7Wl-pp-KfZ" id="6Yv-mj-9ws"/>
                         <outletCollection property="textfieldBackgroundViews" destination="z1p-gL-2Iv" id="HCY-Dx-pbY"/>
                         <outletCollection property="textfieldBackgroundViews" destination="B0e-ne-Imk" id="sTp-ur-2x9"/>
+                        <outletCollection property="signUpTextFields" destination="7KD-0C-Doc" id="FLi-aG-f7K"/>
+                        <outletCollection property="signUpTextFields" destination="gFf-wo-5aM" id="MNT-0l-Uw0"/>
+                        <outletCollection property="signUpTextFields" destination="hz8-K1-aZj" id="Ysc-sz-abV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGY-UV-hKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
