@@ -123,6 +123,11 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   self.repeatPasswordTextField.text = @"";
 }
 
+- (void)setEmailTextFieldsTextColorRed
+{
+  self.emailTextField.textColor = [UIColor redColor];
+}
+
 - (void)setPasswordTextFieldsTextColorRed
 {
   self.passwordTextField.textColor = [UIColor redColor];
@@ -160,6 +165,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
+    [self setEmailTextFieldsTextColorRed];
     return NO;
   }
   
