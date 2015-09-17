@@ -4,19 +4,16 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
-#import "AppearanceCustomizationHelper.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
-#import "AuthenticationController.h"
 #import "NavigationControllerWhiteStatusbar.h"
-#import "ServerDataUpdateController.h"
 #import "ApplicationViewHierarchyHelper.h"
-#import "JourneyController_Debug.h"
-#import "CoreDataStackHelper.h"
+#import "AppInitializer.h"
 
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 @property (strong, nonatomic) TabBarControllerHandler *tabBarControllerHandler;
+@property (strong, nonatomic) AppInitializer *appInitializer;
 @end
 
 
@@ -27,11 +24,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
-  [CoreDataStackHelper setupCoreDataStack];
   
-  [self applicationLaunchDataFetch];
+  self.appInitializer = [AppInitializer new];
+  [self.appInitializer initializeFrameworks];
+  [self.appInitializer initializeCoreData];
+  [self.appInitializer applicationLaunchDataFetch];
+  [self.appInitializer customizeAppAppearance];
   
-  [[AppearanceCustomizationHelper new] customizeApplicationAppearance];
   [self setupTabBarActionHandling];
   
   return YES;
@@ -39,35 +38,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-  [self applicationLaunchDataFetch];
-}
-
-- (void)applicationLaunchDataFetch
-{
-  if (!DEBUG_OFFLINE_MODE) {
-    [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
-      if (authenticated) {
-        [ServerDataUpdateController updateUserAndTutorials];
-      }
-      else {
-        [[JourneyController new] performLoginSegueAnimated:NO]; // note this has to be called after setting up core data stack
-      }
-    }];
-  }
-  
-  JourneyController *journeyController = [JourneyController new];
-  
-  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
-    [journeyController DEBUG_presentCreateTutorialViewController];
-  }
-  
-  if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
-    [journeyController DEBUG_presentProfile];
-  }
-  
-  if (DEBUG_MODE_PUSH_SETTINGS) {
-    [journeyController DEBUG_presentSettings];
-  }
+  [self.appInitializer applicationLaunchDataFetch];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

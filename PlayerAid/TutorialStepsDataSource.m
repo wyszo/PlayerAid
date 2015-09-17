@@ -69,7 +69,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)initTableViewDataSource
 {
   defineWeakSelf();
-  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellreuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];

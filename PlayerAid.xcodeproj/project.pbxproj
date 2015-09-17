@@ -31,14 +31,8 @@
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
 		3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */; };
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
-		310ACDE01B91E92E002E6613 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDDF1B91E92E002E6613 /* SignUpViewController.m */; };
-		310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDE41B91EF9B002E6613 /* SignUpValidator.m */; };
-		310ACDEC1B924ABC002E6613 /* T&Cs.html in Resources */ = {isa = PBXBuildFile; fileRef = 310ACDEB1B924ABC002E6613 /* T&Cs.html */; };
-		310ACDF41B924F18002E6613 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310ACDF31B924F18002E6613 /* PrivacyPolicyViewController.m */; };
-		310ACDF61B92503A002E6613 /* PrivacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 310ACDF51B92503A002E6613 /* PrivacyPolicy.html */; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
-		3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
 		3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 311486691ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m */; };
 		3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3129036A1B24ECBA00C730DA /* AlertControllerFactory.m */; };
@@ -82,8 +76,7 @@
 		317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780351A80E557007057CD /* TutorialTableViewCell.m */; };
 		3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780391A80ED2C007057CD /* TutorialDetailsViewController.m */; };
 		317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */; };
-		31880C4F1BA9B87700710458 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C4E1BA9B87700710458 /* LoginViewController.m */; };
-		31880C531BA9BC3600710458 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C521BA9BC3600710458 /* LoginManager.m */; };
+		31880C581BAB012700710458 /* AppInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31880C571BAB012700710458 /* AppInitializer.m */; };
 		318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */; };
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
@@ -125,6 +118,14 @@
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
 		31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1F8F91AADA948005EB35B /* PopoverView.m */; };
+		31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6A81BAB250200F87C03 /* LoginViewController.m */; };
+		31EFB6AD1BAB252100F87C03 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6AC1BAB252100F87C03 /* SignUpViewController.m */; };
+		31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6AE1BAB253D00F87C03 /* Login.storyboard */; };
+		31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6B21BAB254E00F87C03 /* SignUpValidator.m */; };
+		31EFB6B71BAB258D00F87C03 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6B61BAB258D00F87C03 /* PrivacyPolicyViewController.m */; };
+		31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6BA1BAB25A800F87C03 /* T&Cs.html */; };
+		31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6BC1BAB25B500F87C03 /* PrivacyPolicy.html */; };
+		31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C01BAB25F000F87C03 /* LoginManager.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
 		31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116791A790F680022BD74 /* AppDelegate.m */; };
 		31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* HomeViewController.m */; };
@@ -188,18 +189,9 @@
 		3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistedUsersProperties.m; sourceTree = "<group>"; };
 		3108E77E1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCameraViewStandardDelegateObject.h; sourceTree = "<group>"; };
 		3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCameraViewStandardDelegateObject.m; sourceTree = "<group>"; };
-		310ACDDE1B91E92E002E6613 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		310ACDDF1B91E92E002E6613 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		310ACDE31B91EF9B002E6613 /* SignUpValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpValidator.h; sourceTree = "<group>"; };
-		310ACDE41B91EF9B002E6613 /* SignUpValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpValidator.m; sourceTree = "<group>"; };
-		310ACDEB1B924ABC002E6613 /* T&Cs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "T&Cs.html"; path = "../Html/T&Cs.html"; sourceTree = "<group>"; };
-		310ACDF21B924F18002E6613 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
-		310ACDF31B924F18002E6613 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
-		310ACDF51B92503A002E6613 /* PrivacyPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyPolicy.html; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
-		3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3114864E1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerWithAutorotate.h; sourceTree = "<group>"; };
 		3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerWithAutorotate.m; sourceTree = "<group>"; };
 		311486681ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCameraViewController+InterfaceOrientation.h"; sourceTree = "<group>"; };
@@ -286,10 +278,8 @@
 		317780391A80ED2C007057CD /* TutorialDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsViewController.m; sourceTree = "<group>"; };
 		317E63191AE267C100652AE1 /* ViewControllerPresentationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerPresentationHelper.h; sourceTree = "<group>"; };
 		317E631A1AE267C100652AE1 /* ViewControllerPresentationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerPresentationHelper.m; sourceTree = "<group>"; };
-		31880C4D1BA9B87700710458 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		31880C4E1BA9B87700710458 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		31880C511BA9BC3600710458 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
-		31880C521BA9BC3600710458 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		31880C561BAB012700710458 /* AppInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInitializer.h; sourceTree = "<group>"; };
+		31880C571BAB012700710458 /* AppInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInitializer.m; sourceTree = "<group>"; };
 		318EEAA51A82D9B000B79E73 /* AppearanceCustomizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceCustomizationHelper.h; sourceTree = "<group>"; };
 		318EEAA61A82D9B000B79E73 /* AppearanceCustomizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceCustomizationHelper.m; sourceTree = "<group>"; };
 		318EEAA81A82DBBC00B79E73 /* ColorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsHelper.h; sourceTree = "<group>"; };
@@ -362,6 +352,19 @@
 		31E1F8F51AADA853005EB35B /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
 		31E1F8F81AADA948005EB35B /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		31E1F8F91AADA948005EB35B /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		31EFB6A71BAB250200F87C03 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		31EFB6A81BAB250200F87C03 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		31EFB6AB1BAB252100F87C03 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		31EFB6AC1BAB252100F87C03 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		31EFB6AE1BAB253D00F87C03 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		31EFB6B11BAB254E00F87C03 /* SignUpValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpValidator.h; sourceTree = "<group>"; };
+		31EFB6B21BAB254E00F87C03 /* SignUpValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpValidator.m; sourceTree = "<group>"; };
+		31EFB6B51BAB258D00F87C03 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		31EFB6B61BAB258D00F87C03 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		31EFB6BA1BAB25A800F87C03 /* T&Cs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "T&Cs.html"; path = "Html/T&Cs.html"; sourceTree = SOURCE_ROOT; };
+		31EFB6BC1BAB25B500F87C03 /* PrivacyPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = PrivacyPolicy.html; path = Html/PrivacyPolicy.html; sourceTree = SOURCE_ROOT; };
+		31EFB6BF1BAB25F000F87C03 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		31EFB6C01BAB25F000F87C03 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		31F116711A790F680022BD74 /* PlayerAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F116751A790F680022BD74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F116761A790F680022BD74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -445,8 +448,13 @@
 			children = (
 				31FB6B611B1111840042C409 /* CameraPortraitBlockingOverlay */,
 				314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */,
+				317780151A80061A007057CD /* Intro */,
+				31EFB6A61BAB24F100F87C03 /* LoginViewController */,
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
+				31EFB6B41BAB257100F87C03 /* Privacy Policy */,
 				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
+				31EFB6AA1BAB250B00F87C03 /* SignUpViewController */,
+				31014E521A948686002F3485 /* Terms and Conditions */,
 				311486671ADFC4CA00A644CD /* UITabBarControllerWithAutorotate */,
 			);
 			name = "Other View Controllers";
@@ -455,6 +463,7 @@
 		31014E521A948686002F3485 /* Terms and Conditions */ = {
 			isa = PBXGroup;
 			children = (
+				31EFB6BA1BAB25A800F87C03 /* T&Cs.html */,
 				31014E4F1A94865D002F3485 /* TermsAndConditionsViewController.h */,
 				31014E501A94865D002F3485 /* TermsAndConditionsViewController.m */,
 			);
@@ -609,62 +618,6 @@
 				3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */,
 			);
 			name = YCameraView;
-			sourceTree = "<group>";
-		};
-		310ACDDC1B91E8D9002E6613 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				317780151A80061A007057CD /* Intro */,
-				31880C4C1BA9B85B00710458 /* LogIn */,
-				310ACDF11B924EEA002E6613 /* PrivacyPolicy */,
-				310ACDDD1B91E913002E6613 /* Sign Up */,
-				31014E521A948686002F3485 /* Terms and Conditions */,
-			);
-			name = Login;
-			sourceTree = "<group>";
-		};
-		310ACDDD1B91E913002E6613 /* Sign Up */ = {
-			isa = PBXGroup;
-			children = (
-				310ACDDE1B91E92E002E6613 /* SignUpViewController.h */,
-				310ACDDF1B91E92E002E6613 /* SignUpViewController.m */,
-			);
-			name = "Sign Up";
-			sourceTree = "<group>";
-		};
-		310ACDE11B91EF7C002E6613 /* Validators */ = {
-			isa = PBXGroup;
-			children = (
-				310ACDE21B91EF86002E6613 /* SignUpEmailAndPassword */,
-			);
-			name = Validators;
-			sourceTree = "<group>";
-		};
-		310ACDE21B91EF86002E6613 /* SignUpEmailAndPassword */ = {
-			isa = PBXGroup;
-			children = (
-				310ACDE31B91EF9B002E6613 /* SignUpValidator.h */,
-				310ACDE41B91EF9B002E6613 /* SignUpValidator.m */,
-			);
-			name = SignUpEmailAndPassword;
-			sourceTree = "<group>";
-		};
-		310ACDED1B924AD7002E6613 /* HTML */ = {
-			isa = PBXGroup;
-			children = (
-				310ACDF51B92503A002E6613 /* PrivacyPolicy.html */,
-				310ACDEB1B924ABC002E6613 /* T&Cs.html */,
-			);
-			name = HTML;
-			sourceTree = "<group>";
-		};
-		310ACDF11B924EEA002E6613 /* PrivacyPolicy */ = {
-			isa = PBXGroup;
-			children = (
-				310ACDF21B924F18002E6613 /* PrivacyPolicyViewController.h */,
-				310ACDF31B924F18002E6613 /* PrivacyPolicyViewController.m */,
-			);
-			name = PrivacyPolicy;
 			sourceTree = "<group>";
 		};
 		31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */ = {
@@ -881,10 +834,11 @@
 		31777FF71A7F9426007057CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				31880C551BAB011700710458 /* AppInitializer */,
 				31777FFE1A7FBF84007057CD /* Authentication */,
 				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
-				31880C501BA9BC1600710458 /* Login */,
+				31EFB6BE1BAB25DE00F87C03 /* Login */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
 				31D8CB0D1B1C6097003EE772 /* UserTutorials */,
 				31014E531A961084002F3485 /* Users */,
@@ -1068,22 +1022,13 @@
 			name = ViewControllerPresentation;
 			sourceTree = "<group>";
 		};
-		31880C4C1BA9B85B00710458 /* LogIn */ = {
+		31880C551BAB011700710458 /* AppInitializer */ = {
 			isa = PBXGroup;
 			children = (
-				31880C4D1BA9B87700710458 /* LoginViewController.h */,
-				31880C4E1BA9B87700710458 /* LoginViewController.m */,
+				31880C561BAB012700710458 /* AppInitializer.h */,
+				31880C571BAB012700710458 /* AppInitializer.m */,
 			);
-			name = LogIn;
-			sourceTree = "<group>";
-		};
-		31880C501BA9BC1600710458 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				31880C511BA9BC3600710458 /* LoginManager.h */,
-				31880C521BA9BC3600710458 /* LoginManager.m */,
-			);
-			name = Login;
+			name = AppInitializer;
 			sourceTree = "<group>";
 		};
 		318BA8111A7ABB6B0012F507 /* AppDelegate */ = {
@@ -1098,7 +1043,6 @@
 		318BA8121A7ABB730012F507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				310ACDDC1B91E8D9002E6613 /* Login */,
 				317780061A7FED38007057CD /* FromTabbar */,
 				31014E4E1A948623002F3485 /* Other View Controllers */,
 			);
@@ -1230,8 +1174,8 @@
 		31B46D431A87AFD1004EEA30 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				31EFB6AE1BAB253D00F87C03 /* Login.storyboard */,
 				31F116811A790F680022BD74 /* Main.storyboard */,
-				3113C05F1B8D9B7000C3F6C5 /* Login.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1461,6 +1405,53 @@
 			name = PopoverView;
 			sourceTree = "<group>";
 		};
+		31EFB6A61BAB24F100F87C03 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6A71BAB250200F87C03 /* LoginViewController.h */,
+				31EFB6A81BAB250200F87C03 /* LoginViewController.m */,
+			);
+			name = LoginViewController;
+			sourceTree = "<group>";
+		};
+		31EFB6AA1BAB250B00F87C03 /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6B01BAB254200F87C03 /* Validator */,
+				31EFB6AB1BAB252100F87C03 /* SignUpViewController.h */,
+				31EFB6AC1BAB252100F87C03 /* SignUpViewController.m */,
+			);
+			name = SignUpViewController;
+			sourceTree = "<group>";
+		};
+		31EFB6B01BAB254200F87C03 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6B11BAB254E00F87C03 /* SignUpValidator.h */,
+				31EFB6B21BAB254E00F87C03 /* SignUpValidator.m */,
+			);
+			name = Validator;
+			sourceTree = "<group>";
+		};
+		31EFB6B41BAB257100F87C03 /* Privacy Policy */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6BC1BAB25B500F87C03 /* PrivacyPolicy.html */,
+				31EFB6B51BAB258D00F87C03 /* PrivacyPolicyViewController.h */,
+				31EFB6B61BAB258D00F87C03 /* PrivacyPolicyViewController.m */,
+			);
+			name = "Privacy Policy";
+			sourceTree = "<group>";
+		};
+		31EFB6BE1BAB25DE00F87C03 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6BF1BAB25F000F87C03 /* LoginManager.h */,
+				31EFB6C01BAB25F000F87C03 /* LoginManager.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
@@ -1494,7 +1485,6 @@
 				31B46D431A87AFD1004EEA30 /* Storyboards */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
 				31C122621A838A340069D49A /* UI Components */,
-				310ACDE11B91EF7C002E6613 /* Validators */,
 				318BA8121A7ABB730012F507 /* ViewControllers */,
 				31C1225F1A8388C40069D49A /* Xibs */,
 				31F116841A790F680022BD74 /* Images.xcassets */,
@@ -1509,7 +1499,6 @@
 		31F116741A790F680022BD74 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				310ACDED1B924AD7002E6613 /* HTML */,
 				31F116751A790F680022BD74 /* Info.plist */,
 				31F116761A790F680022BD74 /* main.m */,
 			);
@@ -1603,7 +1592,7 @@
 				31F1166E1A790F680022BD74 /* Frameworks */,
 				31F1166F1A790F680022BD74 /* Resources */,
 				F95CF7ED4A5B876721BE5271 /* Copy Pods Resources */,
-				FF29C1B0B295D708BE1FA8B6 /* Find unused imports */,
+				31880C541BAB000800710458 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1661,7 +1650,7 @@
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
-				3113C0601B8D9B7000C3F6C5 /* Login.storyboard in Resources */,
+				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
@@ -1670,8 +1659,8 @@
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
-				310ACDF61B92503A002E6613 /* PrivacyPolicy.html in Resources */,
-				310ACDEC1B924ABC002E6613 /* T&Cs.html in Resources */,
+				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
+				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 				31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */,
@@ -1681,6 +1670,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		31880C541BAB000800710458 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" fe44e552450d8f11625ce826d9e35ca1546d6358 314567e53740124d82597e8fc7c395f3a3e2d6d9a5907f9fc922a5a51db25184";
+		};
 		B6821B324A3E7E8572D3EABB /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1711,20 +1713,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF29C1B0B295D708BE1FA8B6 /* Find unused imports */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Find unused imports";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"/Users/wyszo/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Volumes/OS X Mavericks/Users/wyszo/Documents/Devel/PlayerAid/PlayerAid\"";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1733,12 +1721,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */,
+				31EFB6AD1BAB252100F87C03 /* SignUpViewController.m in Sources */,
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */,
 				3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */,
 				31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */,
 				31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */,
-				31880C531BA9BC3600710458 /* LoginManager.m in Sources */,
 				31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */,
 				31014E681A99FF57002F3485 /* GlobalSettings.m in Sources */,
 				3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */,
@@ -1751,7 +1739,6 @@
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
-				310ACDF41B924F18002E6613 /* PrivacyPolicyViewController.m in Sources */,
 				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
@@ -1778,7 +1765,6 @@
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
 				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
-				310ACDE01B91E92E002E6613 /* SignUpViewController.m in Sources */,
 				313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
@@ -1787,9 +1773,11 @@
 				31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */,
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */,
+				31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */,
 				31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
+				31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
@@ -1799,9 +1787,11 @@
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
+				31EFB6B71BAB258D00F87C03 /* PrivacyPolicyViewController.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
+				31880C581BAB012700710458 /* AppInitializer.m in Sources */,
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */,
@@ -1812,8 +1802,6 @@
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
-				310ACDE51B91EF9B002E6613 /* SignUpValidator.m in Sources */,
-				31880C4F1BA9B87700710458 /* LoginViewController.m in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
@@ -1828,6 +1816,7 @@
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
+				31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				31A8DE451B32B4C900137ACB /* FollowedUserTableViewDelegate.m in Sources */,
