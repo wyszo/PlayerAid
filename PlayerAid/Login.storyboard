@@ -176,9 +176,58 @@
                     <view key="view" contentMode="scaleToFill" id="Doe-KG-yOv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLk-pO-4Lw" userLabel="Enter email">
+                                <rect key="frame" x="16" y="12" width="568" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZA-h8-zk4" userLabel="email text field">
+                                        <rect key="frame" x="10" y="15" width="548" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="4pU-3c-Ui8"/>
+                                    <constraint firstItem="0ZA-h8-zk4" firstAttribute="leading" secondItem="VLk-pO-4Lw" secondAttribute="leading" constant="10" id="UCa-Kd-G29"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ZA-h8-zk4" secondAttribute="trailing" constant="10" id="Yux-eP-JeR"/>
+                                    <constraint firstAttribute="centerY" secondItem="0ZA-h8-zk4" secondAttribute="centerY" id="dXv-So-QYH"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="gKh-kG-XbQ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqw-6G-b6E" userLabel="Password">
+                                <rect key="frame" x="16" y="57" width="568" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8R-OU-Rvo" userLabel="password text field">
+                                        <rect key="frame" x="10" y="15" width="548" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="38f-H5-eAv"/>
+                                    <constraint firstAttribute="trailing" secondItem="T8R-OU-Rvo" secondAttribute="trailing" constant="10" id="6hy-Ne-Ves"/>
+                                    <constraint firstItem="T8R-OU-Rvo" firstAttribute="leading" secondItem="wqw-6G-b6E" secondAttribute="leading" constant="10" id="AXr-nf-hoT"/>
+                                    <constraint firstAttribute="centerY" secondItem="T8R-OU-Rvo" secondAttribute="centerY" id="wEQ-rj-a1S"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VLk-pO-4Lw" firstAttribute="top" secondItem="Mfh-3k-AA5" secondAttribute="bottom" constant="12" id="4If-fl-VHA"/>
+                            <constraint firstItem="wqw-6G-b6E" firstAttribute="top" secondItem="VLk-pO-4Lw" secondAttribute="bottom" constant="-1" id="72O-ci-xlk"/>
+                            <constraint firstAttribute="trailing" secondItem="VLk-pO-4Lw" secondAttribute="trailing" constant="16" id="Jxv-Xd-N6N"/>
+                            <constraint firstItem="wqw-6G-b6E" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="Og6-5o-im1"/>
+                            <constraint firstAttribute="trailing" secondItem="wqw-6G-b6E" secondAttribute="trailing" constant="16" id="h4y-UJ-CVc"/>
+                            <constraint firstItem="VLk-pO-4Lw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="jfX-CT-mi0"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="0ZA-h8-zk4" id="q2g-dB-d0G"/>
+                        <outlet property="passwordTextField" destination="T8R-OU-Rvo" id="giW-Fk-hhN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyz-tY-sTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -386,6 +435,9 @@
                         <outletCollection property="signUpTextFields" destination="7KD-0C-Doc" id="FLi-aG-f7K"/>
                         <outletCollection property="signUpTextFields" destination="gFf-wo-5aM" id="MNT-0l-Uw0"/>
                         <outletCollection property="signUpTextFields" destination="hz8-K1-aZj" id="Ysc-sz-abV"/>
+                        <outletCollection property="textFieldContainers" destination="B0e-ne-Imk" id="gBg-sa-WU5"/>
+                        <outletCollection property="textFieldContainers" destination="z1p-gL-2Iv" id="cyZ-eS-AkZ"/>
+                        <outletCollection property="textFieldContainers" destination="7Wl-pp-KfZ" id="0QA-1x-nuh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGY-UV-hKs" userLabel="First Responder" sceneMemberID="firstResponder"/>

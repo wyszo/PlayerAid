@@ -2,14 +2,12 @@
 //  PlayerAid
 //
 
-#import <UIView+FLKAutolayout.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
-#import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
-#import "LoginManager.h"
+#import "LoginAppearanceHelper.h"
 
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
@@ -17,6 +15,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 
 @interface SignUpViewController () <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *signUpTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -25,6 +24,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) SignUpValidator *validator;
+@property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @end
 
 
@@ -40,35 +40,21 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
   self.validator = [SignUpValidator new];
+  self.appearanceHelper = [LoginAppearanceHelper new];
   
   [self skinView];
   [self setupTextFields];
-  [self setupFacebookButton];
+  
+  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookSignUpContainerView dismissViewControllerOnCompletion:self];
 }
 
 #pragma mark - Subviews skinning
 
 - (void)skinView
 {
-  self.view.backgroundColor = [ColorsHelper loginSignupLightBlueBackgroundColor];
-  
-  [self skinTextFields];
-  [self skinSignUpButton];
-}
-
-- (void)skinTextFields
-{
-  [self.textfieldBackgroundViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-    [view tw_addBorderWithWidth:1.0 color:[UIColor lightGrayColor]];
-  }];
-}
-
-- (void)skinSignUpButton
-{
-  self.signUpButton.backgroundColor = [UIColor clearColor];
-  UIColor *buttonColor = [ColorsHelper playerAidBlueColor];
-  [self.signUpButton tw_addBorderWithWidth:1.0 color:buttonColor];
-  [self.signUpButton setTitleColor:buttonColor forState:UIControlStateNormal];
+  [self.appearanceHelper setLoginSignupViewBackgroundColor:self.view];
+  [self.appearanceHelper skinLoginFormTextFields:self.textFieldContainers];
+  [self.appearanceHelper skinLoginSignupButton:self.signUpButton];
 }
 
 #pragma mark - TextField setup
@@ -90,29 +76,6 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   AssertTrueOrReturn(passwordTextField);
   passwordTextField.secureTextEntry = YES;
   passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-}
-
-#pragma mark - Setup Facebook
-
-- (void)setupFacebookButton
-{
-  defineWeakSelf();
-  
-  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
-    if (!error) {
-      [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
-        if (!error) {
-          [weakSelf dismissViewControllerAnimated:YES completion:nil];
-        }
-      }];
-    }
-  }];
-  
-  UIView *loginButtonParentView = self.facebookSignUpContainerView;
-  loginButtonParentView.backgroundColor = [UIColor clearColor];
-  
-  [loginButtonParentView addSubview:loginView];
-  [loginView alignToView:loginButtonParentView];
 }
 
 #pragma mark - Other methods
