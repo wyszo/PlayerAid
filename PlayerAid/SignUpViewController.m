@@ -123,6 +123,19 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   self.repeatPasswordTextField.text = @"";
 }
 
+- (void)setPasswordTextFieldsTextColorRed
+{
+  self.passwordTextField.textColor = [UIColor redColor];
+  self.repeatPasswordTextField.textColor = [UIColor redColor];
+}
+
+- (void)setTextFieldsDefaultTextColor
+{
+  for (UITextField *textField in self.signUpTextFields) {
+    textField.textColor = [UIColor blackColor];
+  }
+}
+
 #pragma mark - Accessors
 
 - (NSString *)emailAddress
@@ -153,12 +166,14 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   BOOL passwordValid = [self.validator validatePassword:[self password]];
   if (!passwordValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"We want to keep your account safe, so we ask that your password has at least 6 characters."];
+    [self setPasswordTextFieldsTextColorRed];
     return NO;
   }
   
   BOOL passwordsMatch = [[self password] isEqualToString:[self repeatedPassword]];
   if (!passwordsMatch) {
     [TWAlertFactory showOKAlertViewWithMessage:@"Sorry, the passwords you entered don't match. Can you try again?"];
+    [self setPasswordTextFieldsTextColorRed];
     return NO;
   }
   return YES;
@@ -191,6 +206,24 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   } else if (textField == self.repeatPasswordTextField) {
     [textField resignFirstResponder];
   }
+  return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+  [self setTextFieldsDefaultTextColor];
+  return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  [self setTextFieldsDefaultTextColor];
+  return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+  [self setTextFieldsDefaultTextColor];
   return YES;
 }
 
