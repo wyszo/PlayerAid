@@ -52,8 +52,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (void)skinView
 {
+  AssertTrueOrReturn(self.appearanceHelper);
+  
   [self.appearanceHelper setLoginSignupViewBackgroundColor:self.view];
-  [self.appearanceHelper skinLoginFormTextFields:self.textFieldContainers];
+  [self.appearanceHelper skinLoginFormTextFieldContainers:self.textFieldContainers];
   [self.appearanceHelper skinLoginSignupButton:self.signUpButton];
 }
 

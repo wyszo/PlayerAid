@@ -7,7 +7,7 @@
 
 @interface LoginAppearanceHelper : NSObject
 
-- (void)skinLoginFormTextFields:(nonnull NSArray *)textFields;
+- (void)skinLoginFormTextFieldContainers:(nonnull NSArray *)textFieldContainers;
 - (void)skinLoginSignupButton:(nonnull UIButton *)button;
 - (void)setLoginSignupViewBackgroundColor:(nonnull UIView *)view;
 

@@ -10,12 +10,12 @@
 
 @implementation LoginAppearanceHelper
 
-- (void)skinLoginFormTextFields:(nonnull NSArray *)textFields
+- (void)skinLoginFormTextFieldContainers:(nonnull NSArray *)textFieldContainers
 {
-  AssertTrueOrReturn(textFields.count);
+  AssertTrueOrReturn(textFieldContainers.count);
   
-  [textFields enumerateObjectsUsingBlock:^(UITextField *textField, NSUInteger idx, BOOL *stop) {
-    [textField tw_addBorderWithWidth:1.0 color:[UIColor lightGrayColor]];
+  [textFieldContainers enumerateObjectsUsingBlock:^(UIView *containerView, NSUInteger idx, BOOL *stop) {
+    [containerView tw_addBorderWithWidth:1.0 color:[UIColor lightGrayColor]];
   }];
 }
 

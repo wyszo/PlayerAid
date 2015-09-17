@@ -6,11 +6,14 @@
 #import "LoginViewController.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
-#import "LoginManager.h"
+#import "LoginAppearanceHelper.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
+@property (weak, nonatomic) IBOutlet UIView *facebookLoginContainerView;
+@property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @end
 
 @implementation LoginViewController
@@ -22,33 +25,17 @@
   self.title = @"Log In";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
+  self.appearanceHelper = [LoginAppearanceHelper new];
+  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookLoginContainerView dismissViewControllerOnCompletion:self];
+  
   [self skinView];
-  [self setupFacebookLoginButton];
 }
 
 - (void)skinView
 {
-  self.view.backgroundColor = [ColorsHelper loginLogInLightBlueBackgroundColor];
-}
-
-- (void)setupFacebookLoginButton
-{
-  defineWeakSelf();
-  
-  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
-    if (!error) {
-      [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
-        if (!error) {
-          [weakSelf dismissViewControllerAnimated:YES completion:nil];
-        }
-      }];
-    }
-  }];
-  
-  UIView *loginButtonParentView = self.view;
-
-  [loginButtonParentView addSubview:loginView];
-  [loginView alignCenterWithView:loginButtonParentView];
+  AssertTrueOrReturn(self.appearanceHelper);
+  [self.appearanceHelper setLoginSignupViewBackgroundColor:self.view];
+  [self.appearanceHelper skinLoginFormTextFieldContainers:self.textFieldContainers];
 }
 
 @end

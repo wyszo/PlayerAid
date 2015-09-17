@@ -212,6 +212,13 @@
                                     <constraint firstAttribute="centerY" secondItem="T8R-OU-Rvo" secondAttribute="centerY" id="wEQ-rj-a1S"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh4-xS-DFw" userLabel="FacebookLogin Container View">
+                                <rect key="frame" x="16" y="115" width="568" height="52"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="OOm-ak-TEE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -221,12 +228,18 @@
                             <constraint firstItem="wqw-6G-b6E" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="Og6-5o-im1"/>
                             <constraint firstAttribute="trailing" secondItem="wqw-6G-b6E" secondAttribute="trailing" constant="16" id="h4y-UJ-CVc"/>
                             <constraint firstItem="VLk-pO-4Lw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="jfX-CT-mi0"/>
+                            <constraint firstItem="xh4-xS-DFw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="lOY-sg-GeF"/>
+                            <constraint firstItem="xh4-xS-DFw" firstAttribute="top" secondItem="wqw-6G-b6E" secondAttribute="bottom" constant="12" id="wbW-Ww-J8b"/>
+                            <constraint firstAttribute="trailing" secondItem="xh4-xS-DFw" secondAttribute="trailing" constant="16" id="ywg-oc-Qga"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="emailTextField" destination="0ZA-h8-zk4" id="q2g-dB-d0G"/>
+                        <outlet property="facebookLoginContainerView" destination="xh4-xS-DFw" id="eZM-D8-Cvq"/>
                         <outlet property="passwordTextField" destination="T8R-OU-Rvo" id="giW-Fk-hhN"/>
+                        <outletCollection property="textFieldContainers" destination="VLk-pO-4Lw" id="FdC-gV-JBr"/>
+                        <outletCollection property="textFieldContainers" destination="wqw-6G-b6E" id="kIb-Rc-UI6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyz-tY-sTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
