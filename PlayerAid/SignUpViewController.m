@@ -77,7 +77,9 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 {
   for (UITextField *textField in self.signUpTextFields) {
     textField.delegate = self;
+    textField.returnKeyType = UIReturnKeyNext;
   }
+  self.repeatPasswordTextField.returnKeyType = UIReturnKeyDone;
   
   [self setupPasswordTextfield:self.passwordTextField];
   [self setupPasswordTextfield:self.repeatPasswordTextField];
