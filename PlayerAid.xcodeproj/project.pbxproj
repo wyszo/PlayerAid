@@ -1613,7 +1613,7 @@
 				TargetAttributes = {
 					31F116701A790F680022BD74 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = DS39GPXELZ;
+						DevelopmentTeam = 37PKU4Y5BL;
 					};
 				};
 			};
@@ -1933,13 +1933,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tomasz Wyszomirski (992458E4DU)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Bakri (5VZCVU7XFD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f82a0675-591f-41df-8420-e01dff10f7ac";
 			};
 			name = Debug;
 		};
@@ -1949,7 +1951,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tomasz Wyszomirski";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rami Bakri (37PKU4Y5BL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PlayerAid/PrecompiledHeader.pch;
 				INFOPLIST_FILE = PlayerAid/Info.plist;
