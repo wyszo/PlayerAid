@@ -95,7 +95,7 @@
 		31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B46D411A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m */; };
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
-		31B548641AB7032D0010FC83 /* Environments.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548631AB7032D0010FC83 /* Environments.m */; };
+		31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548631AB7032D0010FC83 /* EnvironmentSettings.m */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -313,8 +313,8 @@
 		31B548541AB48AC20010FC83 /* EditTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialCell.xib; sourceTree = "<group>"; };
 		31B548561AB48B160010FC83 /* EditTutorialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialTableViewCell.h; sourceTree = "<group>"; };
 		31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialTableViewCell.m; sourceTree = "<group>"; };
-		31B548621AB7032D0010FC83 /* Environments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environments.h; sourceTree = "<group>"; };
-		31B548631AB7032D0010FC83 /* Environments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environments.m; sourceTree = "<group>"; };
+		31B548621AB7032D0010FC83 /* EnvironmentSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentSettings.h; sourceTree = "<group>"; };
+		31B548631AB7032D0010FC83 /* EnvironmentSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSettings.m; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -483,8 +483,8 @@
 			children = (
 				31014E691A99FF6B002F3485 /* GlobalSettings.h */,
 				31014E671A99FF57002F3485 /* GlobalSettings.m */,
-				31B548621AB7032D0010FC83 /* Environments.h */,
-				31B548631AB7032D0010FC83 /* Environments.m */,
+				31B548621AB7032D0010FC83 /* EnvironmentSettings.h */,
+				31B548631AB7032D0010FC83 /* EnvironmentSettings.m */,
 				312E191C1AB712C800CB5707 /* DebugSettings.h */,
 				312E191D1AB712C900CB5707 /* DebugSettings.m */,
 			);
@@ -1760,7 +1760,7 @@
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
-				31B548641AB7032D0010FC83 /* Environments.m in Sources */,
+				31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,

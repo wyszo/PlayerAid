@@ -8,6 +8,7 @@
 #import "Section.h"
 #import "TutorialStep.h"
 #import "NSURL+URLString.h"
+#import "EnvironmentSettings.h"
 
 
 static NSString *const kTutorialUrlString = @"tutorial";
@@ -373,7 +374,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (AFHTTPRequestOperationManager *)requestOperationManager
 {
-  NSURL *url = [NSURL URLWithString:(NSString *)kServerBaseURL];
+  NSString *serverURL = [[EnvironmentSettings new] serverBaseURL];
+  AssertTrueOrReturnNil(serverURL.length);
+  
+  NSURL *url = [NSURL URLWithString:serverURL];
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];

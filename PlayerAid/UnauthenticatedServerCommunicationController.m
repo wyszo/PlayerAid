@@ -7,6 +7,7 @@
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
+#import "EnvironmentSettings.h"
 
 static NSString *const kAuthPath = @"auth";
 static NSString *const kUserPath = @"user";
@@ -126,7 +127,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (AFHTTPRequestOperationManager *)requestOperationManager
 {
-  NSURL *url = [NSURL URLWithString:(NSString *)kServerBaseURL];
+  NSString *serverURL = [[EnvironmentSettings new] serverBaseURL];
+  AssertTrueOrReturnNil(serverURL.length);
+  
+  NSURL *url = [NSURL URLWithString:serverURL];
   
   if (!_requestOperationManager) {
     _requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
