@@ -1614,6 +1614,7 @@
 				31F1166F1A790F680022BD74 /* Resources */,
 				F95CF7ED4A5B876721BE5271 /* Copy Pods Resources */,
 				31880C541BAB000800710458 /* ShellScript */,
+				31CBFA671BAC91C800E3C37F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1703,6 +1704,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" fe44e552450d8f11625ce826d9e35ca1546d6358 314567e53740124d82597e8fc7c395f3a3e2d6d9a5907f9fc922a5a51db25184";
+		};
+		31CBFA671BAC91C800E3C37F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./overlayIcon;
 		};
 		B6821B324A3E7E8572D3EABB /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
