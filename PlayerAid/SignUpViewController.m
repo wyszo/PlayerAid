@@ -100,9 +100,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (void)setTextFieldsDefaultTextColor
 {
-  for (UITextField *textField in self.signUpTextFields) {
-    textField.textColor = [UIColor blackColor];
-  }
+  [self.appearanceHelper setDefaultTextColorForTextFields:self.signUpTextFields];
 }
 
 #pragma mark - Accessors
@@ -122,10 +120,12 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   return self.repeatPasswordTextField.text;
 }
 
-#pragma mark - DataValidation
+#pragma mark - Data Validation
 
 - (BOOL)validateEmailAndPassword
 {
+  AssertTrueOrReturnNo(self.validator);
+  
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
     [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];

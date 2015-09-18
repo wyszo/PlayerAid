@@ -43,6 +43,15 @@
   passwordTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
+- (void)setDefaultTextColorForTextFields:(nonnull NSArray *)textfields
+{
+  AssertTrueOrReturn(textfields.count);
+  
+  for (UITextField *textField in textfields) {
+    textField.textColor = [UIColor blackColor];
+  }
+}
+
 #pragma mark - Keyboard keys customisation
 
 - (void)setNextKeyboardReturnKeysForTextfields:(nonnull NSArray *)textfields delegate:(nullable id<UITextFieldDelegate>)delegate

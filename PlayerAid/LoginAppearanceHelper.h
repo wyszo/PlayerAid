@@ -12,6 +12,8 @@
 - (void)setLoginSignupViewBackgroundColor:(nonnull UIView *)view;
 - (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextfield;
 
+- (void)setDefaultTextColorForTextFields:(nonnull NSArray *)textfields;
+
 /**
  Keyboard buttons in textfields are set to 'Next'. Delegate is set for all of them (if provided).
  */

@@ -222,7 +222,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUpButtonPressed:" destination="gLO-SQ-n4H" eventType="touchUpInside" id="pOH-fc-rOP"/>
+                                    <action selector="loginButtonPressed:" destination="920-Mu-8sM" eventType="touchUpInside" id="pY9-K5-daF"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMc-gm-HqS">

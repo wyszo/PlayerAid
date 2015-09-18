@@ -8,6 +8,9 @@
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
+#import "UnauthenticatedServerCommunicationController.h"
+#import "SignUpValidator.h"
+#import "AlertFactory.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
@@ -16,6 +19,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLoginContainerView;
+@property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
 @end
@@ -29,6 +33,7 @@
   self.title = @"Log In";
   [self.navigationController setNavigationBarHidden:NO animated:YES];
   
+  self.validator = [SignUpValidator new];
   self.appearanceHelper = [LoginAppearanceHelper new];
   [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookLoginContainerView dismissViewControllerOnCompletion:self];
   
@@ -60,6 +65,73 @@
   self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
+#pragma mark - Other methods
+
+- (void)setEmailTextFieldsTextColorRed
+{
+  self.emailTextField.textColor = [UIColor redColor];
+}
+
+- (void)setPasswordTextFieldTextColorRed
+{
+  self.passwordTextField.textColor = [UIColor redColor];
+}
+
+- (void)setTextFieldsDefaultTextColor
+{
+  [self.appearanceHelper setDefaultTextColorForTextFields:self.loginTextFields];
+}
+
+#pragma mark - Accessors
+
+- (NSString *)emailAddress
+{
+  return [self.emailTextField.text tw_stringByTrimmingWhitespaceAndNewline];
+}
+
+- (NSString *)password
+{
+  return self.passwordTextField.text;
+}
+
+#pragma mark - Data Validatoin
+
+- (BOOL)validateEmailAndPassword
+{
+  AssertTrueOrReturnNo(self.validator);
+  
+  BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
+  if (!emailValid) {
+    [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
+    [self setEmailTextFieldsTextColorRed];
+    return NO;
+  }
+
+  BOOL passwordValid = [self.validator validatePassword:[self password]];
+  if (!passwordValid) {
+    [TWAlertFactory showOKAlertViewWithMessage:@"That's not the right password, sorry"];
+    [self setPasswordTextFieldTextColorRed];
+    return NO;
+  }
+  return YES;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)loginButtonPressed:(id)sender
+{
+  if([self validateEmailAndPassword]) {
+    [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, NSError * __nullable error) {
+      if (error) {
+        [AlertFactory showGenericErrorAlertViewNoRetry];
+      } else {
+        // TODO: save API token and dismiss login
+        NOT_IMPLEMENTED_YET_RETURN
+      }
+    }];
+  }
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -69,6 +141,24 @@
   AssertTrueOrReturnNil(self.textFieldsFormHelper);
   [self.textFieldsFormHelper textFieldShouldReturn:textField];
   
+  return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+  [self setTextFieldsDefaultTextColor];
+  return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  [self setTextFieldsDefaultTextColor];
+  return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+  [self setTextFieldsDefaultTextColor];
   return YES;
 }
 
