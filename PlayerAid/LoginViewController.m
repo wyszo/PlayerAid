@@ -7,6 +7,7 @@
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
+#import "TextFieldsFormHelper.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLoginContainerView;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
+@property (strong, nonatomic) TextFieldsFormHelper *textFieldsFormHelper;
 @end
 
 @implementation LoginViewController
@@ -32,6 +34,7 @@
   
   [self skinView];
   [self setupTextFields];
+  [self setupTextFieldsFormHelper];
 }
 
 - (void)skinView
@@ -51,6 +54,22 @@
   self.passwordTextField.returnKeyType = UIReturnKeyDone;
 }
 
+- (void)setupTextFieldsFormHelper
+{
+  NSArray *textFields = @[ self.emailTextField, self.passwordTextField ];
+  self.textFieldsFormHelper = [[TextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
+}
+
 #pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  // see https://stackoverflow.com/questions/1347779/how-to-navigate-through-textfields-next-done-buttons/ for how to build jumping to next textfield better (ignore most upvoted answer)
+  
+  AssertTrueOrReturnNil(self.textFieldsFormHelper);
+  [self.textFieldsFormHelper textFieldShouldReturn:textField];
+  
+  return YES;
+}
 
 @end

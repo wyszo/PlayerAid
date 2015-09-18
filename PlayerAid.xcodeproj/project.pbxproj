@@ -127,6 +127,7 @@
 		31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6BC1BAB25B500F87C03 /* PrivacyPolicy.html */; };
 		31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C01BAB25F000F87C03 /* LoginManager.m */; };
 		31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */; };
+		31EFB6CB1BAC419400F87C03 /* TextFieldsFormHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6CA1BAC419400F87C03 /* TextFieldsFormHelper.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
 		31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116791A790F680022BD74 /* AppDelegate.m */; };
 		31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* HomeViewController.m */; };
@@ -368,6 +369,8 @@
 		31EFB6C01BAB25F000F87C03 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		31EFB6C41BAB473B00F87C03 /* LoginAppearanceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAppearanceHelper.h; sourceTree = "<group>"; };
 		31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAppearanceHelper.m; sourceTree = "<group>"; };
+		31EFB6C91BAC419400F87C03 /* TextFieldsFormHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldsFormHelper.h; sourceTree = "<group>"; };
+		31EFB6CA1BAC419400F87C03 /* TextFieldsFormHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldsFormHelper.m; sourceTree = "<group>"; };
 		31F116711A790F680022BD74 /* PlayerAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F116751A790F680022BD74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F116761A790F680022BD74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -863,8 +866,9 @@
 				312C6AB41AD4801200D96C19 /* DataCleanupHelper */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
-				31EFB6C31BAB471D00F87C03 /* Login */,
+				31EFB6C31BAB471D00F87C03 /* Login Appearance */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
+				31EFB6C81BAC416400F87C03 /* TextFieldsForm */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 				31A0FD361AD034BA00B94CBE /* UserDefaults */,
 				31A8DE381B31EB6700137ACB /* Users */,
@@ -1464,13 +1468,22 @@
 			name = LoginFlow;
 			sourceTree = "<group>";
 		};
-		31EFB6C31BAB471D00F87C03 /* Login */ = {
+		31EFB6C31BAB471D00F87C03 /* Login Appearance */ = {
 			isa = PBXGroup;
 			children = (
 				31EFB6C41BAB473B00F87C03 /* LoginAppearanceHelper.h */,
 				31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */,
 			);
-			name = Login;
+			name = "Login Appearance";
+			sourceTree = "<group>";
+		};
+		31EFB6C81BAC416400F87C03 /* TextFieldsForm */ = {
+			isa = PBXGroup;
+			children = (
+				31EFB6C91BAC419400F87C03 /* TextFieldsFormHelper.h */,
+				31EFB6CA1BAC419400F87C03 /* TextFieldsFormHelper.m */,
+			);
+			name = TextFieldsForm;
 			sourceTree = "<group>";
 		};
 		31F116681A790F680022BD74 = {
@@ -1842,6 +1855,7 @@
 				31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
 				31A8DE451B32B4C900137ACB /* FollowedUserTableViewDelegate.m in Sources */,
+				31EFB6CB1BAC419400F87C03 /* TextFieldsFormHelper.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
 				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,
 				317780271A80975C007057CD /* _Section.m in Sources */,

@@ -8,7 +8,7 @@
 #import "AlertFactory.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
-
+#import "TextFieldsFormHelper.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -25,6 +25,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
 @property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
+@property (strong, nonatomic) TextFieldsFormHelper *textFieldsFormHelper;
 @end
 
 
@@ -44,8 +45,15 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   
   [self skinView];
   [self setupTextFields];
+  [self setupTextFieldsFormHelper];
   
   [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookSignUpContainerView dismissViewControllerOnCompletion:self];
+}
+
+- (void)setupTextFieldsFormHelper
+{
+  NSArray *textFields = @[ self.emailTextField, self.passwordTextField, self.repeatPasswordTextField ];
+  self.textFieldsFormHelper = [[TextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
 #pragma mark - Subviews skinning
@@ -163,13 +171,9 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 {
   // see https://stackoverflow.com/questions/1347779/how-to-navigate-through-textfields-next-done-buttons/ for how to build jumping to next textfield better (ignore most upvoted answer)
   
-  if (textField == self.emailTextField) {
-    [self.passwordTextField becomeFirstResponder];
-  } else if (textField == self.passwordTextField) {
-    [self.repeatPasswordTextField becomeFirstResponder];
-  } else if (textField == self.repeatPasswordTextField) {
-    [textField resignFirstResponder];
-  }
+  AssertTrueOrReturnNil(self.textFieldsFormHelper);
+  [self.textFieldsFormHelper textFieldShouldReturn:textField];
+  
   return YES;
 }
 
