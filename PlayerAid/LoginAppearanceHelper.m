@@ -35,6 +35,14 @@
   view.backgroundColor = [ColorsHelper loginSignupLightBlueBackgroundColor];
 }
 
+- (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextfield
+{
+  AssertTrueOrReturn(passwordTextfield);
+  
+  passwordTextfield.secureTextEntry = YES;
+  passwordTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
 #pragma mark - Facebook login button
 
 - (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView dismissViewControllerOnCompletion:(nullable UIViewController *)viewControllerToDismiss

@@ -273,6 +273,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="0ZA-h8-zk4" id="q2g-dB-d0G"/>
                         <outlet property="facebookLoginContainerView" destination="xh4-xS-DFw" id="eZM-D8-Cvq"/>
+                        <outlet property="loginButton" destination="SgI-ok-7DT" id="xIn-IC-0C4"/>
                         <outlet property="passwordTextField" destination="T8R-OU-Rvo" id="giW-Fk-hhN"/>
                         <outletCollection property="textFieldContainers" destination="VLk-pO-4Lw" id="FdC-gV-JBr"/>
                         <outletCollection property="textFieldContainers" destination="wqw-6G-b6E" id="kIb-Rc-UI6"/>

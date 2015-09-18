@@ -68,16 +68,11 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
     textField.returnKeyType = UIReturnKeyNext;
   }
   self.repeatPasswordTextField.returnKeyType = UIReturnKeyDone;
+ 
+  AssertTrueOrReturn(self.appearanceHelper);
   
-  [self setupPasswordTextfield:self.passwordTextField];
-  [self setupPasswordTextfield:self.repeatPasswordTextField];
-}
-
-- (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextField
-{
-  AssertTrueOrReturn(passwordTextField);
-  passwordTextField.secureTextEntry = YES;
-  passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+  [self.appearanceHelper setupPasswordTextfield:self.passwordTextField];
+  [self.appearanceHelper setupPasswordTextfield:self.repeatPasswordTextField];
 }
 
 #pragma mark - Other methods
