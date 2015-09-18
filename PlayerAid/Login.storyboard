@@ -305,7 +305,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Wl-pp-KfZ" userLabel="Enter email">
-                                <rect key="frame" x="16" y="12" width="568" height="46"/>
+                                <rect key="frame" x="16" y="26" width="568" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KD-0C-Doc" userLabel="email text field">
                                         <rect key="frame" x="10" y="15" width="548" height="17"/>
@@ -322,7 +322,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1p-gL-2Iv" userLabel="New Password">
-                                <rect key="frame" x="16" y="57" width="568" height="46"/>
+                                <rect key="frame" x="16" y="71" width="568" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gFf-wo-5aM" userLabel="password text field">
                                         <rect key="frame" x="10" y="15" width="548" height="17"/>
@@ -339,7 +339,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-ne-Imk" userLabel="Repeat Password">
-                                <rect key="frame" x="16" y="102" width="568" height="46"/>
+                                <rect key="frame" x="16" y="116" width="568" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hz8-K1-aZj" userLabel="repeat password text field">
                                         <rect key="frame" x="10" y="15" width="548" height="17"/>
@@ -356,7 +356,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gG3-bd-g7j">
-                                <rect key="frame" x="16" y="167" width="568" height="48"/>
+                                <rect key="frame" x="16" y="181" width="568" height="48"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="jdg-BF-zxI"/>
@@ -369,7 +369,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18u-EE-f5F" userLabel="FacebookSignup Container View">
-                                <rect key="frame" x="16" y="247" width="568" height="52"/>
+                                <rect key="frame" x="16" y="275" width="568" height="52"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="Kmm-5N-blo"/>
@@ -432,7 +432,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-23-wVp">
-                                <rect key="frame" x="293" y="223" width="14" height="18"/>
+                                <rect key="frame" x="293" y="243" width="14" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -448,13 +448,13 @@
                             <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="J37-6G-wck" secondAttribute="bottom" id="Xui-yo-6oF"/>
                             <constraint firstAttribute="trailing" secondItem="18u-EE-f5F" secondAttribute="trailing" constant="16" id="acj-nV-FUb"/>
                             <constraint firstItem="B0e-ne-Imk" firstAttribute="top" secondItem="z1p-gL-2Iv" secondAttribute="bottom" constant="-1" id="caJ-BQ-Lnd"/>
-                            <constraint firstItem="18u-EE-f5F" firstAttribute="top" secondItem="fF5-23-wVp" secondAttribute="bottom" constant="6" id="ced-st-8ns"/>
+                            <constraint firstItem="18u-EE-f5F" firstAttribute="top" secondItem="fF5-23-wVp" secondAttribute="bottom" constant="14" id="ced-st-8ns"/>
                             <constraint firstAttribute="centerX" secondItem="J37-6G-wck" secondAttribute="centerX" id="e1e-wS-gsP"/>
-                            <constraint firstItem="7Wl-pp-KfZ" firstAttribute="top" secondItem="vdE-jN-h9h" secondAttribute="bottom" constant="12" id="hJW-Ni-M8I"/>
+                            <constraint firstItem="7Wl-pp-KfZ" firstAttribute="top" secondItem="vdE-jN-h9h" secondAttribute="bottom" constant="26" id="hJW-Ni-M8I"/>
                             <constraint firstItem="z1p-gL-2Iv" firstAttribute="width" secondItem="7Wl-pp-KfZ" secondAttribute="width" id="k2r-yS-7bZ"/>
                             <constraint firstAttribute="trailing" secondItem="gG3-bd-g7j" secondAttribute="trailing" constant="16" id="lCf-bz-e9X"/>
                             <constraint firstItem="gG3-bd-g7j" firstAttribute="top" secondItem="B0e-ne-Imk" secondAttribute="bottom" constant="19" id="lua-IM-qGV"/>
-                            <constraint firstItem="fF5-23-wVp" firstAttribute="top" secondItem="gG3-bd-g7j" secondAttribute="bottom" constant="8" id="n8U-Kn-spE"/>
+                            <constraint firstItem="fF5-23-wVp" firstAttribute="top" secondItem="gG3-bd-g7j" secondAttribute="bottom" constant="14" id="n8U-Kn-spE"/>
                             <constraint firstAttribute="centerX" secondItem="gG3-bd-g7j" secondAttribute="centerX" id="nKE-Ps-ZEa"/>
                             <constraint firstItem="z1p-gL-2Iv" firstAttribute="top" secondItem="7Wl-pp-KfZ" secondAttribute="bottom" constant="-1" id="ol6-gw-vqa"/>
                             <constraint firstItem="7Wl-pp-KfZ" firstAttribute="trailing" secondItem="9DH-Ja-74w" secondAttribute="trailingMargin" id="ryh-pI-sVD"/>
