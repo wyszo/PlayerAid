@@ -178,7 +178,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLk-pO-4Lw" userLabel="Enter email">
-                                <rect key="frame" x="16" y="12" width="568" height="46"/>
+                                <rect key="frame" x="16" y="26" width="568" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZA-h8-zk4" userLabel="email text field">
                                         <rect key="frame" x="10" y="15" width="548" height="17"/>
@@ -196,7 +196,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqw-6G-b6E" userLabel="Password">
-                                <rect key="frame" x="16" y="57" width="568" height="46"/>
+                                <rect key="frame" x="16" y="71" width="568" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8R-OU-Rvo" userLabel="password text field">
                                         <rect key="frame" x="10" y="15" width="548" height="17"/>
@@ -213,7 +213,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgI-ok-7DT" userLabel="LogIn">
-                                <rect key="frame" x="16" y="115" width="568" height="48"/>
+                                <rect key="frame" x="16" y="133" width="568" height="48"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Je1-LI-ilp"/>
@@ -226,13 +226,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMc-gm-HqS">
-                                <rect key="frame" x="293" y="175" width="14" height="18"/>
+                                <rect key="frame" x="293" y="195" width="14" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh4-xS-DFw" userLabel="FacebookLogin Container View">
-                                <rect key="frame" x="16" y="205" width="568" height="52"/>
+                                <rect key="frame" x="16" y="227" width="568" height="52"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="OOm-ak-TEE"/>
@@ -242,32 +242,20 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="xh4-xS-DFw" secondAttribute="trailing" constant="16" id="2AI-x9-HsT"/>
-                            <constraint firstItem="VLk-pO-4Lw" firstAttribute="top" secondItem="Mfh-3k-AA5" secondAttribute="bottom" constant="12" id="4If-fl-VHA"/>
+                            <constraint firstItem="VLk-pO-4Lw" firstAttribute="top" secondItem="Mfh-3k-AA5" secondAttribute="bottom" constant="26" id="4If-fl-VHA"/>
                             <constraint firstItem="wqw-6G-b6E" firstAttribute="top" secondItem="VLk-pO-4Lw" secondAttribute="bottom" constant="-1" id="72O-ci-xlk"/>
                             <constraint firstAttribute="trailing" secondItem="SgI-ok-7DT" secondAttribute="trailing" constant="16" id="G6H-EZ-ngl"/>
                             <constraint firstAttribute="trailing" secondItem="VLk-pO-4Lw" secondAttribute="trailing" constant="16" id="Jxv-Xd-N6N"/>
                             <constraint firstAttribute="centerX" secondItem="hMc-gm-HqS" secondAttribute="centerX" id="Jys-4t-F7z"/>
-                            <constraint firstItem="hMc-gm-HqS" firstAttribute="top" secondItem="SgI-ok-7DT" secondAttribute="bottom" constant="67" id="MOP-eT-sxj"/>
-                            <constraint firstItem="xh4-xS-DFw" firstAttribute="top" secondItem="hMc-gm-HqS" secondAttribute="bottom" constant="12" id="OWA-wo-9Zt"/>
+                            <constraint firstItem="xh4-xS-DFw" firstAttribute="top" secondItem="hMc-gm-HqS" secondAttribute="bottom" constant="14" id="OWA-wo-9Zt"/>
                             <constraint firstItem="wqw-6G-b6E" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="Og6-5o-im1"/>
-                            <constraint firstItem="SgI-ok-7DT" firstAttribute="top" secondItem="wqw-6G-b6E" secondAttribute="bottom" constant="12" id="PiH-iS-xDS"/>
+                            <constraint firstItem="SgI-ok-7DT" firstAttribute="top" secondItem="wqw-6G-b6E" secondAttribute="bottom" constant="16" id="PiH-iS-xDS"/>
                             <constraint firstItem="xh4-xS-DFw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="W4u-ch-unc"/>
-                            <constraint firstItem="hMc-gm-HqS" firstAttribute="top" secondItem="xh4-xS-DFw" secondAttribute="bottom" constant="12" id="bBV-dG-TtD"/>
-                            <constraint firstItem="hMc-gm-HqS" firstAttribute="top" secondItem="SgI-ok-7DT" secondAttribute="bottom" constant="12" id="bpc-gP-rVX"/>
+                            <constraint firstItem="hMc-gm-HqS" firstAttribute="top" secondItem="SgI-ok-7DT" secondAttribute="bottom" constant="14" id="bpc-gP-rVX"/>
                             <constraint firstAttribute="trailing" secondItem="wqw-6G-b6E" secondAttribute="trailing" constant="16" id="h4y-UJ-CVc"/>
                             <constraint firstItem="VLk-pO-4Lw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="jfX-CT-mi0"/>
-                            <constraint firstItem="xh4-xS-DFw" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="lOY-sg-GeF"/>
                             <constraint firstItem="SgI-ok-7DT" firstAttribute="leading" secondItem="Doe-KG-yOv" secondAttribute="leading" constant="16" id="q13-8r-eA5"/>
-                            <constraint firstAttribute="trailing" secondItem="xh4-xS-DFw" secondAttribute="trailing" constant="16" id="ywg-oc-Qga"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="lOY-sg-GeF"/>
-                                <exclude reference="ywg-oc-Qga"/>
-                                <exclude reference="MOP-eT-sxj"/>
-                                <exclude reference="bBV-dG-TtD"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
