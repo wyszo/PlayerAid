@@ -16,13 +16,13 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 @interface SignUpViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *signUpTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @end
@@ -63,16 +63,12 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (void)setupTextFields
 {
-  for (UITextField *textField in self.signUpTextFields) {
-    textField.delegate = self;
-    textField.returnKeyType = UIReturnKeyNext;
-  }
-  self.repeatPasswordTextField.returnKeyType = UIReturnKeyDone;
- 
   AssertTrueOrReturn(self.appearanceHelper);
-  
   [self.appearanceHelper setupPasswordTextfield:self.passwordTextField];
   [self.appearanceHelper setupPasswordTextfield:self.repeatPasswordTextField];
+  
+  [self.appearanceHelper setNextKeyboardReturnKeysForTextfields:self.signUpTextFields delegate:self];
+  self.repeatPasswordTextField.returnKeyType = UIReturnKeyDone;
 }
 
 #pragma mark - Other methods
@@ -165,6 +161,8 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+  // see https://stackoverflow.com/questions/1347779/how-to-navigate-through-textfields-next-done-buttons/ for how to build jumping to next textfield better (ignore most upvoted answer)
+  
   if (textField == self.emailTextField) {
     [self.passwordTextField becomeFirstResponder];
   } else if (textField == self.passwordTextField) {

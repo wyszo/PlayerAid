@@ -12,6 +12,11 @@
 - (void)setLoginSignupViewBackgroundColor:(nonnull UIView *)view;
 - (void)setupPasswordTextfield:(nonnull UITextField *)passwordTextfield;
 
+/**
+ Keyboard buttons in textfields are set to 'Next'. Delegate is set for all of them (if provided).
+ */
+- (void)setNextKeyboardReturnKeysForTextfields:(nonnull NSArray *)textfields delegate:(nullable id<UITextFieldDelegate>)delegate;
+
 - (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView dismissViewControllerOnCompletion:(nullable UIViewController *)viewControllerToDismiss;
 
 @end

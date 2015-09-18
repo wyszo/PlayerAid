@@ -43,6 +43,23 @@
   passwordTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
+#pragma mark - Keyboard keys customisation
+
+- (void)setNextKeyboardReturnKeysForTextfields:(nonnull NSArray *)textfields delegate:(nullable id<UITextFieldDelegate>)delegate
+{
+  AssertTrueOrReturn(textfields.count);
+  
+  for (NSObject* object in textfields) {
+    AssertTrueOrReturn([object isKindOfClass:[UITextField class]]);
+    
+    UITextField *textField = (UITextField *)object;
+    if (delegate) {
+      textField.delegate = delegate;
+    }
+    textField.returnKeyType = UIReturnKeyNext;
+  }
+}
+
 #pragma mark - Facebook login button
 
 - (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView dismissViewControllerOnCompletion:(nullable UIViewController *)viewControllerToDismiss

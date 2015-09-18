@@ -8,7 +8,8 @@
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
@@ -45,6 +46,11 @@
 {
   AssertTrueOrReturn(self.appearanceHelper);
   [self.appearanceHelper setupPasswordTextfield:self.passwordTextField];
+  
+  [self.appearanceHelper setNextKeyboardReturnKeysForTextfields:self.loginTextFields delegate:self];
+  self.passwordTextField.returnKeyType = UIReturnKeyDone;
 }
+
+#pragma mark - UITextFieldDelegate
 
 @end

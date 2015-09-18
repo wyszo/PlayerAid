@@ -277,6 +277,8 @@
                         <outlet property="passwordTextField" destination="T8R-OU-Rvo" id="giW-Fk-hhN"/>
                         <outletCollection property="textFieldContainers" destination="VLk-pO-4Lw" id="FdC-gV-JBr"/>
                         <outletCollection property="textFieldContainers" destination="wqw-6G-b6E" id="kIb-Rc-UI6"/>
+                        <outletCollection property="loginTextFields" destination="0ZA-h8-zk4" id="IEl-RB-LUo"/>
+                        <outletCollection property="loginTextFields" destination="T8R-OU-Rvo" id="zzO-da-Mtl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyz-tY-sTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
