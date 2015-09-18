@@ -3,11 +3,11 @@
 //
 
 #import <UIView+FLKAutolayout.h>
+#import <TWCommonLib/TWTextFieldsFormHelper.h>
 #import "LoginViewController.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
-#import "TextFieldsFormHelper.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLoginContainerView;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
-@property (strong, nonatomic) TextFieldsFormHelper *textFieldsFormHelper;
+@property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
 @end
 
 @implementation LoginViewController
@@ -57,7 +57,7 @@
 - (void)setupTextFieldsFormHelper
 {
   NSArray *textFields = @[ self.emailTextField, self.passwordTextField ];
-  self.textFieldsFormHelper = [[TextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
+  self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
 #pragma mark - UITextFieldDelegate

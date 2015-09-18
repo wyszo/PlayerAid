@@ -2,13 +2,13 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWTextFieldsFormHelper.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
-#import "TextFieldsFormHelper.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -25,7 +25,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (weak, nonatomic) IBOutlet UIView *facebookSignUpContainerView;
 @property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
-@property (strong, nonatomic) TextFieldsFormHelper *textFieldsFormHelper;
+@property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
 @end
 
 
@@ -53,7 +53,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 - (void)setupTextFieldsFormHelper
 {
   NSArray *textFields = @[ self.emailTextField, self.passwordTextField, self.repeatPasswordTextField ];
-  self.textFieldsFormHelper = [[TextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
+  self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
 #pragma mark - Subviews skinning
