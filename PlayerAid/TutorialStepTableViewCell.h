@@ -4,7 +4,6 @@
 
 #import "TutorialStep.h"
 
-
 @protocol TutorialStepTableViewCellDelegate;
 
 

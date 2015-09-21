@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
+#import <MagicalRecord/MagicalRecord+Setup.h>
+#import <MagicalRecord/NSPersistentStore+MagicalRecord.h>
 #import "CoreDataStackHelper.h"
-#import <MagicalRecord+Setup.h>
-#import <NSPersistentStore+MagicalRecord.h>
 #import "SectionsDataSource.h"
 
 

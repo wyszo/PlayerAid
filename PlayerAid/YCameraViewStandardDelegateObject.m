@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+#import <YCameraView/YCameraViewController.h>
 #import "YCameraViewStandardDelegateObject.h"
-#import <YCameraViewController.h>
 #import "PersistedUsersProperties.h"
 
 

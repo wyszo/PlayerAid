@@ -1,5 +1,5 @@
 #import "TutorialStep.h"
-#import <UIImageView+AFNetworking.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
 #import "KZPropertyMapper.h"

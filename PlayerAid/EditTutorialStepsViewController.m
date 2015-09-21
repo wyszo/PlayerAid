@@ -2,15 +2,15 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWArrayTableViewDataSource.h>
+#import <TWCommonLib/TWTableViewEditingStyleDelegate.h>
 #import "EditTutorialStepsViewController.h"
 #import "FontsHelper.h"
 #import "AlertFactory.h"
-#import "TWArrayTableViewDataSource.h"
 #import "EditTutorialTableViewCell.h"
 #import "AlertFactory.h"
 #import "ColorsHelper.h"
 #import "CommonViews.h"
-#import "TWTableViewEditingStyleDelegate.h"
 
 static NSString *kNibName = @"EditTutorialStepsView";
 static NSString *kTutorialCellName = @"EditTutorialCell";

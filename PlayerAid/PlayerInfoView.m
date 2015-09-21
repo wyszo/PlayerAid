@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/UIView+TWXibLoading.h>
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
-#import "UIView+TWXibLoading.h"
 #import "ColorsHelper.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "FollowingButtonDecorator.h"

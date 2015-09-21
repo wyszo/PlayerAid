@@ -3,7 +3,7 @@
 //
 
 #import "FacebookAuthenticationController.h"
-#import "FBSession.h"
+#import <FacebookSDK/FBSession.h>
 
 
 @interface FacebookAuthenticationController () <FBLoginViewDelegate>

@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import "KZPropertyMapper.h"
+#import <KZPropertyMapper/KZPropertyMapper.h>
 
 @interface KZPropertyMapper (TZDDateBoxing)
 

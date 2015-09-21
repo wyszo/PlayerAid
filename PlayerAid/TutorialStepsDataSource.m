@@ -2,16 +2,16 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWCommonLib.h>
+#import <TWCommonLib/TWCoreDataTableViewDataSource.h>
+#import <TWCommonLib/TWTableViewFetchedResultsControllerBinder+Private.h>
 #import "TutorialStepsDataSource.h"
 #import "MediaPlayerHelper.h"
 #import "AlertFactory.h"
 #import "TutorialStep.h"
 #import "Tutorial.h"
-#import "TWCoreDataTableViewDataSource.h"
 #import "TutorialStepTableViewCell.h"
-#import "TWTableViewFetchedResultsControllerBinder+Private.h"
 #import "UITableView+TableViewHelper.h"
-#import "TWCommonLib.h"
 
 
 static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";

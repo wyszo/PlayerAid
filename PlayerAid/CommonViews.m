@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-
 #import "CommonViews.h"
 
 @implementation CommonViews

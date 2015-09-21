@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWCommonMacros.h>
+
 
 @interface VideoPlayer : NSObject
 

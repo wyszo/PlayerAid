@@ -2,10 +2,10 @@
 //  PlayerAid
 //
 
-#import "TutorialTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import <UIImageView+AFNetworking.h>
-#import <NSDate+TimeAgo.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <NSDate_TimeAgo/NSDate+TimeAgo.h>
+#import "TutorialTableViewCell.h"
 #import "UIImageView+AvatarStyling.h"
 #import "User.h"
 #import "Section.h"

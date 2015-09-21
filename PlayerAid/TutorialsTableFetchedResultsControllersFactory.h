@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-
 @interface TutorialsTableFetchedResultsControllersFactory : NSObject
 
 /**

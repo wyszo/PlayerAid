@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import <TWCommonLib/TWCommonMacros.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"

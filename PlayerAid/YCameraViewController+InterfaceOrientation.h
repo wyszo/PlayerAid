@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import "YCameraViewController.h"
+#import <YCameraView/YCameraViewController.h>
 
 @interface YCameraViewController (InterfaceOrientation)
 

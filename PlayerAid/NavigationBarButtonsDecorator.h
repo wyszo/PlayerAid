@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-
 @interface NavigationBarButtonsDecorator : NSObject
 
 - (void)addCancelButtonToViewController:(UIViewController *)viewController withSelector:(SEL)cancelSelector;

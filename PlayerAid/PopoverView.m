@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/UIView+TWXibLoading.h>
 #import "PopoverView.h"
-#import "UIView+TWXibLoading.h"
 
 static NSString *const kNibFileName = @"PopoverView";
 

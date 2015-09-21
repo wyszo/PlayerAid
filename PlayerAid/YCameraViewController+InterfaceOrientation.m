@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWInterfaceOrientationViewControllerDecorator.h>
 #import "YCameraViewController+InterfaceOrientation.h"
-#import "TWInterfaceOrientationViewControllerDecorator.h"
 
 
 @implementation YCameraViewController (InterfaceOrientation)

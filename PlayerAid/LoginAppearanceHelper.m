@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <UIView+FLKAutolayout.h>
+#import <FLKAutolayout/UIView+FLKAutolayout.h>
 #import "LoginAppearanceHelper.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"

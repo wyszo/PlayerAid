@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+#import <FacebookSDK/FacebookSDK.h>
+#import <FDTake/FDTakeController.h>
 #import "EditProfileViewController.h"
 #import "UITextView+Placeholder.h"
 #import "NavigationBarButtonsDecorator.h"
@@ -12,9 +14,6 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "UsersFetchController_Private.h"
 #import "MediaPickerHelper.h"
-#import <FacebookSDK.h>
-#import <FDTakeController.h>
-
 
 static const BOOL HideRefreshFromFacebookButton = YES;
 

@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-
 @interface FontsHelper : NSObject
 
 + (UIFont *)navbarTitleFont;

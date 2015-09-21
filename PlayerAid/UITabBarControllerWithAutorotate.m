@@ -3,7 +3,7 @@
 //
 
 #import "UITabBarControllerWithAutorotate.h"
-#import "TWInterfaceOrientationViewControllerDecorator.h"
+#import <TWCommonLib/TWInterfaceOrientationViewControllerDecorator.h>
 
 
 @implementation UITabBarControllerWithAutorotate

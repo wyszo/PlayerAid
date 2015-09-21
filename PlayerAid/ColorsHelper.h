@@ -2,7 +2,6 @@
 //  PlayerAid
 //
 
-
 @interface ColorsHelper : NSObject
 
 + (UIColor *)loginLogInLightBlueBackgroundColor;
@@ -31,6 +30,5 @@
 + (UIColor *)editProfileFacebookButtonColor;
 
 + (UIColor *)createTutorialHeaderElementsBorderColor;
-
 
 @end

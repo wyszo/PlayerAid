@@ -3,7 +3,7 @@
 //
 
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
-#import <TTTAttributedLabel.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"

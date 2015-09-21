@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
+#import <TWCommonLib/TWArrayTableViewDataSource.h>
+#import <TWCommonLib/TWSimpleTableViewDelegate.h>
 #import "SettingsViewController.h"
-#import "TWArrayTableViewDataSource.h"
-#import "TWSimpleTableViewDelegate.h"
 #import "JourneyController.h"
 #import "AlertFactory.h"
 

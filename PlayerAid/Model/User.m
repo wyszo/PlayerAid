@@ -1,8 +1,8 @@
 
 #import "User.h"
-#import <KZAsserts.h>
-#import <KZPropertyMapper.h>
-#import <UIImageView+AFNetworking.h>
+#import <KZAsserts/KZAsserts.h>
+#import <KZPropertyMapper/KZPropertyMapper.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "Tutorial.h"
 #import "TutorialsHelper.h"
 #import "UsersHelper.h"

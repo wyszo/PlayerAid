@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+#import <YCameraView/YCameraViewController.h>
 #import "FDTakeController+WhiteStatusbar.h"
-#import <YCameraViewController.h>
 
 
 @interface MediaPickerHelper : NSObject

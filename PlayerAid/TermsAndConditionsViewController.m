@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import "TermsAndConditionsViewController.h"
 #import <TWCommonLib/NSString+TWHTMLString.h>
+#import "TermsAndConditionsViewController.h"
 
 static NSString *const kTermsAndConditionsHTMLFileName = @"T&Cs.html";
 

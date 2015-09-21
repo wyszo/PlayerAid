@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <FacebookSDK.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "AlertFactory.h"
 
 

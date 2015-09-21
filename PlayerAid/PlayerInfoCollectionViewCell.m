@@ -2,10 +2,9 @@
 //  PlayerAid
 //
 
+#import <KZAsserts/KZAsserts.h>
+#import <TWCommonLib/TWCommonLib.h>
 #import "PlayerInfoCollectionViewCell.h"
-#import <KZAsserts.h>
-#import "TWCommonLib.h"
-
 
 static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 

@@ -2,8 +2,10 @@
 //  PlayerAid
 //
 
-#import <FDTakeController.h>
-#import <YCameraViewController.h>
+#import <FDTake/FDTakeController.h>
+#import <YCameraView/YCameraViewController.h>
+#import <TWCommonLib/TWUserDefaultsHelper.h>
+#import <TWCommonLib/TWInterfaceOrientationViewControllerDecorator.h>
 #import "CreateTutorialViewController.h"
 #import "Tutorial.h"
 #import "TutorialStep.h"
@@ -21,8 +23,6 @@
 #import "PublishingTutorialViewController.h"
 #import "EditTutorialStepsViewController.h"
 #import "ColorsHelper.h"
-#import "TWUserDefaultsHelper.h"
-#import "TWInterfaceOrientationViewControllerDecorator.h"
 #import "ViewControllerPresentationHelper.h"
 #import "CommonViews.h"
 #import "VideoPlayer.h"

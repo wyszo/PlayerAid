@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <FDTakeController.h>
+#import <FDTake/FDTakeController.h>
 
 
 @interface FDTakeController (WhiteStatusbar)

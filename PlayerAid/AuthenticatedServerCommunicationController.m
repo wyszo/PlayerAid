@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "AuthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "Section.h"

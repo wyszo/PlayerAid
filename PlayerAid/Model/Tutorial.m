@@ -1,5 +1,5 @@
 #import "Tutorial.h"
-#import <KZPropertyMapper.h>
+#import <KZPropertyMapper/KZPropertyMapper.h>
 #import "Section.h"
 #import "User.h"
 #import "TutorialStep.h"
