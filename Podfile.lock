@@ -61,6 +61,7 @@ PODS:
   - Mixpanel/MPCategoryHelpers (2.8.1)
   - NSDate+TimeAgo (1.0.3)
   - NSString+RemoveEmoji (0.0.1)
+  - TTTAttributedLabel (1.13.4)
   - TWCommonLib (0.1):
     - BlocksKit (= 2.2.5)
     - KZAsserts (= 1.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Mixpanel (= 2.8.1)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
+  - TTTAttributedLabel (= 1.13.4)
   - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.0.9)
@@ -122,6 +124,7 @@ SPEC CHECKSUMS:
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TWCommonLib: 8e0d014246ee084fbe0cbbcb9d91c904db249ecc
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: 83895056749372c96febfb43f536c9b1aae3e08e
