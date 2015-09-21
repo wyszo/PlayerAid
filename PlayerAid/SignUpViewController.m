@@ -9,12 +9,13 @@
 #import "AlertFactory.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
+#import "ColorsHelper.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 
-@interface SignUpViewController () <UITextFieldDelegate>
+@interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *signUpTextFields;
@@ -26,6 +27,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
+@property (weak, nonatomic) IBOutlet UITextView *bottomDisclaimerTextView;
 @end
 
 
@@ -46,6 +48,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self skinView];
   [self setupTextFields];
   [self setupTextFieldsFormHelper];
+  [self setupBottomTextView];
   
   [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookSignUpContainerView dismissViewControllerOnCompletion:self];
 }
@@ -54,6 +57,44 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 {
   NSArray *textFields = @[ self.emailTextField, self.passwordTextField, self.repeatPasswordTextField ];
   self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
+}
+
+// TODO: move this to a class that creates login components
+- (void)setupBottomTextView
+{
+  self.bottomDisclaimerTextView.delegate = self;
+  
+  self.bottomDisclaimerTextView.selectable = YES; /** This is unfortunately required for link support to work :/ */
+  
+  NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+  paragraphStyle.lineHeightMultiple = 1.5;
+  
+  NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+  
+  NSDictionary *normalAttributes = @{ NSForegroundColorAttributeName : [ColorsHelper signupTermsAndConditionsPrivacyPolicyTextColor],
+                                      NSParagraphStyleAttributeName : paragraphStyle };
+  NSDictionary *linkAttributes = @{ NSForegroundColorAttributeName : [ColorsHelper playerAidBlueColor],
+                                    NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+                                    NSParagraphStyleAttributeName : paragraphStyle };
+  
+  NSAttributedString *sentenceStartString = [[NSAttributedString alloc] initWithString:@"By creating an account, you agree to the " attributes:normalAttributes];
+  [attributedString appendAttributedString:sentenceStartString];
+  
+  NSMutableAttributedString *termsAndConditionsString = [[NSMutableAttributedString alloc] initWithString:@"Terms of Use" attributes:linkAttributes];
+  [termsAndConditionsString addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"http://www.google.co.uk" /**TermsAndConditionsLinkStub"*/] range:NSMakeRange(0, termsAndConditionsString.length)];
+  [attributedString appendAttributedString:termsAndConditionsString];
+  
+  NSAttributedString *sentenceEndString = [[NSAttributedString alloc] initWithString:@" and you acknowledge that you have read the " attributes:normalAttributes];
+  [attributedString appendAttributedString:sentenceEndString];
+  
+  NSMutableAttributedString *privacyPolicyString = [[NSMutableAttributedString alloc] initWithString:@"Privacy Policy" attributes:linkAttributes];
+  [privacyPolicyString addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"PrivacyPolicyLinkStub"] range:NSMakeRange(0, privacyPolicyString.length)];
+  [attributedString appendAttributedString:privacyPolicyString];
+  
+  self.bottomDisclaimerTextView.text = nil;
+  self.bottomDisclaimerTextView.attributedText = nil;
+  
+  self.bottomDisclaimerTextView.attributedText = attributedString;
 }
 
 #pragma mark - Subviews skinning
@@ -163,6 +204,15 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
       }
     }];
   }
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+  // TODO: map stub URLs to view controllers pushes
+  
+  return NO;
 }
 
 #pragma mark - UITextFieldDelegate

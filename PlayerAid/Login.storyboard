@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eIg-VG-5mN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eIg-VG-5mN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +25,7 @@
                                     <constraint firstAttribute="height" constant="224" id="Jrn-fH-4Tb"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-tn-qz5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-tn-qz5">
                                 <rect key="frame" x="16" y="341" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="M2n-Wp-1Zx"/>
@@ -33,7 +34,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn sport faster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONu-Ze-7kQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Learn sport faster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONu-Ze-7kQ">
                                 <rect key="frame" x="16" y="370" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="F4A-sX-pMi"/>
@@ -108,7 +109,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fDZ-kI-0un"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VgH-eS-DoM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emV-Os-OLF">
@@ -141,7 +142,7 @@
                         <viewControllerLayoutGuide type="bottom" id="86Z-0x-Kmt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nFH-Ne-DcV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz7-LG-DVP">
@@ -174,7 +175,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oSk-uh-tpj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Doe-KG-yOv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLk-pO-4Lw" userLabel="Enter email">
@@ -225,7 +226,7 @@
                                     <action selector="loginButtonPressed:" destination="920-Mu-8sM" eventType="touchUpInside" id="pY9-K5-daF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMc-gm-HqS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMc-gm-HqS">
                                 <rect key="frame" x="293" y="195" width="14" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -301,14 +302,14 @@
                         <viewControllerLayoutGuide type="bottom" id="CkY-qv-oHY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9DH-Ja-74w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Wl-pp-KfZ" userLabel="Enter email">
-                                <rect key="frame" x="16" y="26" width="568" height="46"/>
+                                <rect key="frame" x="20" y="26" width="560" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KD-0C-Doc" userLabel="email text field">
-                                        <rect key="frame" x="10" y="15" width="548" height="17"/>
+                                        <rect key="frame" x="10" y="15" width="540" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                     </textField>
@@ -322,10 +323,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1p-gL-2Iv" userLabel="New Password">
-                                <rect key="frame" x="16" y="71" width="568" height="46"/>
+                                <rect key="frame" x="20" y="71" width="560" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gFf-wo-5aM" userLabel="password text field">
-                                        <rect key="frame" x="10" y="15" width="548" height="17"/>
+                                        <rect key="frame" x="10" y="15" width="540" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done"/>
                                     </textField>
@@ -339,10 +340,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-ne-Imk" userLabel="Repeat Password">
-                                <rect key="frame" x="16" y="116" width="568" height="46"/>
+                                <rect key="frame" x="20" y="116" width="560" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hz8-K1-aZj" userLabel="repeat password text field">
-                                        <rect key="frame" x="10" y="15" width="548" height="17"/>
+                                        <rect key="frame" x="10" y="15" width="540" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done"/>
                                     </textField>
@@ -432,15 +433,27 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-23-wVp">
-                                <rect key="frame" x="293" y="243" width="14" height="18"/>
+                                <rect key="frame" x="293" y="243" width="15" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Terms and Conditions, privacy policy" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGR-B3-TEL" userLabel="BottomDisclaimerTextView">
+                                <rect key="frame" x="16" y="409" width="568" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="GG5-P5-nJQ"/>
+                                </constraints>
+                                <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="CGR-B3-TEL" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="2dB-Xg-5I5"/>
                             <constraint firstItem="gG3-bd-g7j" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="3bR-kl-age"/>
+                            <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="CGR-B3-TEL" secondAttribute="bottom" constant="65" id="4sK-01-xvw"/>
+                            <constraint firstAttribute="trailing" secondItem="CGR-B3-TEL" secondAttribute="trailing" constant="16" id="8tV-iA-OOk"/>
                             <constraint firstItem="B0e-ne-Imk" firstAttribute="width" secondItem="z1p-gL-2Iv" secondAttribute="width" id="Aur-Ib-Nxi"/>
                             <constraint firstAttribute="centerX" secondItem="fF5-23-wVp" secondAttribute="centerX" id="Ffj-77-zER"/>
                             <constraint firstItem="7Wl-pp-KfZ" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leadingMargin" id="HpR-RT-idr"/>
@@ -464,6 +477,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="bottomDisclaimerTextView" destination="CGR-B3-TEL" id="GP7-rk-Zca"/>
                         <outlet property="emailTextField" destination="7KD-0C-Doc" id="LaG-aU-BGe"/>
                         <outlet property="facebookSignUpContainerView" destination="18u-EE-f5F" id="Cb9-DT-R4B"/>
                         <outlet property="passwordTextField" destination="gFf-wo-5aM" id="JfE-tv-BuI"/>

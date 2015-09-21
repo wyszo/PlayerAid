@@ -7,6 +7,7 @@
 
 + (UIColor *)loginLogInLightBlueBackgroundColor;
 + (UIColor *)loginSignupLightBlueBackgroundColor;
++ (UIColor *)signupTermsAndConditionsPrivacyPolicyTextColor;
 
 + (UIColor *)tabBarSelectedTextColor;
 + (UIColor *)tabBarUnselectedTextColor;

@@ -14,6 +14,7 @@
 
 UIColorMethodMake(loginLogInLightBlueBackgroundColor, 236, 238, 241);
 UIColorMethodMake(loginSignupLightBlueBackgroundColor, 236, 238, 241);
+UIColorMethodMake(signupTermsAndConditionsPrivacyPolicyTextColor, 133, 134, 149);
 
 UIColorMethodMake(tabBarSelectedTextColor, 42, 70, 136)
 UIColorMethodMake(tabBarUnselectedTextColor, 158, 171, 199)
