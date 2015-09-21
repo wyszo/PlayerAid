@@ -82,6 +82,7 @@
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; settings = {ASSET_TAGS = (); }; };
+		319DCA1A1BB075030079E66C /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA191BB075030079E66C /* RSA.m */; settings = {ASSET_TAGS = (); }; };
 		31A2819C1B419AB100D38D5A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A2819B1B419AB100D38D5A /* GradientView.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
@@ -292,6 +293,8 @@
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
 		319DCA141BB02D750079E66C /* LoginSignUpComponentsConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSignUpComponentsConfigurator.h; sourceTree = "<group>"; };
 		319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignUpComponentsConfigurator.m; sourceTree = "<group>"; };
+		319DCA181BB075030079E66C /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSA.h; path = Libs/RSA/RSA.h; sourceTree = SOURCE_ROOT; };
+		319DCA191BB075030079E66C /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSA.m; path = Libs/RSA/RSA.m; sourceTree = SOURCE_ROOT; };
 		31A2819A1B419AB100D38D5A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		31A2819B1B419AB100D38D5A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
@@ -1092,6 +1095,15 @@
 			name = "Login Components Configurator";
 			sourceTree = "<group>";
 		};
+		319DCA171BB074E00079E66C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				319DCA181BB075030079E66C /* RSA.h */,
+				319DCA191BB075030079E66C /* RSA.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		31A0FD361AD034BA00B94CBE /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -1515,6 +1527,7 @@
 				3108E77C1AF7A61B00E02C07 /* Delegates */,
 				31DBC1921A7F14DC00740A97 /* Factories */,
 				317780021A7FC6A7007057CD /* Helpers */,
+				319DCA171BB074E00079E66C /* Libraries */,
 				31014E661A99FF42002F3485 /* Settings */,
 				31B46D431A87AFD1004EEA30 /* Storyboards */,
 				318EEAAB1A82DBC100B79E73 /* Styling */,
@@ -1839,6 +1852,7 @@
 				313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */,
 				31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */,
 				31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */,
+				319DCA1A1BB075030079E66C /* RSA.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */,
@@ -2025,7 +2039,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e22b3760-dae4-4f97-8486-162541a8a09e";
+				PROVISIONING_PROFILE = "1375a659-534f-4f7c-8e49-75cb86a7200b";
 			};
 			name = Release;
 		};
