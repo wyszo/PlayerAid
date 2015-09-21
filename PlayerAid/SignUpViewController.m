@@ -10,13 +10,11 @@
 #import "AlertFactory.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginAppearanceHelper.h"
+#import "LoginSignUpComponentsConfigurator.h"
 #import "ColorsHelper.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
-
-static NSString *const kTermsAndConditionsStubUrl = @"TermsAndConditionsStubUrl";
-static NSString *const kPrivacyPolicyStubUrl = @"PrivacyPolicyStubUrl";
 
 
 @interface SignUpViewController () <UITextFieldDelegate, TTTAttributedLabelDelegate>
@@ -63,56 +61,10 @@ static NSString *const kPrivacyPolicyStubUrl = @"PrivacyPolicyStubUrl";
   self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
-// TODO: move this to a class that creates login components
 - (void)setupBottomTextView
 {
   self.bottomAttributedLabel.delegate = self;
-  
-  self.bottomAttributedLabel.numberOfLines = 0;
-  self.bottomAttributedLabel.backgroundColor = [UIColor clearColor];
-  
-  UIFont *font = [UIFont systemFontOfSize:10.0];
-  
-  
-  NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-  paragraphStyle.lineHeightMultiple = 1.25;
-  
-  
-  NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
-  
-  NSDictionary *normalAttributes = @{ (id)kCTForegroundColorAttributeName : (id)[ColorsHelper signupTermsAndConditionsPrivacyPolicyTextColor].CGColor,
-                                      NSFontAttributeName : font,
-                                      NSParagraphStyleAttributeName : paragraphStyle};
-  
-  NSDictionary *linkAttributes = @{ (id)kCTForegroundColorAttributeName : (id)[ColorsHelper playerAidBlueColor].CGColor,
-                                    NSFontAttributeName : font,
-                      (id)kCTUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-                                    NSParagraphStyleAttributeName : paragraphStyle };
-  self.bottomAttributedLabel.linkAttributes = linkAttributes;
-  self.bottomAttributedLabel.activeLinkAttributes = linkAttributes;
-  
-  
-  NSAttributedString *sentenceStartString = [[NSAttributedString alloc] initWithString:@"By creating an account, you agree to the " attributes:normalAttributes];
-  [attributedString appendAttributedString:sentenceStartString];
-  
-  NSMutableAttributedString *termsAndConditionsString = [[NSMutableAttributedString alloc] initWithString:@"Terms of Use" attributes:linkAttributes];
-  [attributedString appendAttributedString:termsAndConditionsString];
-  
-  NSAttributedString *sentenceEndString = [[NSAttributedString alloc] initWithString:@" and you acknowledge that you have read the " attributes:normalAttributes];
-  [attributedString appendAttributedString:sentenceEndString];
-  
-  NSMutableAttributedString *privacyPolicyString = [[NSMutableAttributedString alloc] initWithString:@"Privacy Policy" attributes:linkAttributes];
-  [attributedString appendAttributedString:privacyPolicyString];
-  
-  self.bottomAttributedLabel.attributedText = attributedString;
-  
-  
-  // Add links
-  NSRange termsOfUseRange = [[attributedString string] rangeOfString:[termsAndConditionsString string]];
-  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:kTermsAndConditionsStubUrl] withRange:termsOfUseRange];
-  
-  NSRange privacyPolicyRange = [[attributedString string] rangeOfString:[privacyPolicyString string]];
-  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:kPrivacyPolicyStubUrl] withRange:privacyPolicyRange];
+  [[LoginSignUpComponentsConfigurator new] configureSignupBottomTermsAndConditionsPrivacyPolicyAttributedLabel:self.bottomAttributedLabel];
 }
 
 #pragma mark - Subviews skinning
@@ -230,10 +182,11 @@ static NSString *const kPrivacyPolicyStubUrl = @"PrivacyPolicyStubUrl";
    didSelectLinkWithURL:(NSURL *)url
 {
   NSString *urlString = url.absoluteString;
+  LoginSignUpComponentsConfigurator *configurator = [LoginSignUpComponentsConfigurator new];
   
-  if ([urlString isEqualToString:kTermsAndConditionsStubUrl]) {
+  if ([urlString isEqualToString:configurator.termsAndConditionsStubUrlString]) {
     [self performSegueWithIdentifier:kTermsOfUseSegueId sender:self];
-  } else if ([urlString isEqualToString:kPrivacyPolicyStubUrl]) {
+  } else if ([urlString isEqualToString:configurator.privacyPolicyStubUrlString]) {
     [self performSegueWithIdentifier:kPrivacyPolicySegueId sender:self];
   } else {
     AssertTrueOrReturn(NO && @"Unexpected URL!");

@@ -81,6 +81,7 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
+		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; settings = {ASSET_TAGS = (); }; };
 		31A2819C1B419AB100D38D5A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A2819B1B419AB100D38D5A /* GradientView.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
@@ -289,6 +290,8 @@
 		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
 		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
+		319DCA141BB02D750079E66C /* LoginSignUpComponentsConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSignUpComponentsConfigurator.h; sourceTree = "<group>"; };
+		319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignUpComponentsConfigurator.m; sourceTree = "<group>"; };
 		31A2819A1B419AB100D38D5A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		31A2819B1B419AB100D38D5A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
@@ -864,6 +867,7 @@
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
 				31EFB6C31BAB471D00F87C03 /* Login Appearance */,
+				319DCA131BB02D4A0079E66C /* Login Components Configurator */,
 				3193ACB71AAF1BB0006B5952 /* ServerResponseParsing */,
 				312FF5FE1A9F1A5100AE3174 /* Tutorials */,
 				31A0FD361AD034BA00B94CBE /* UserDefaults */,
@@ -1077,6 +1081,15 @@
 				3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */,
 			);
 			name = ServerResponseParsing;
+			sourceTree = "<group>";
+		};
+		319DCA131BB02D4A0079E66C /* Login Components Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				319DCA141BB02D750079E66C /* LoginSignUpComponentsConfigurator.h */,
+				319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */,
+			);
+			name = "Login Components Configurator";
 			sourceTree = "<group>";
 		};
 		31A0FD361AD034BA00B94CBE /* UserDefaults */ = {
@@ -1861,6 +1874,7 @@
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
+				319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
