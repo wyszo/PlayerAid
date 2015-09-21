@@ -1,0 +1,6 @@
+framework module YCameraView {
+  umbrella header "YCameraView-umbrella.h"
+
+  export *
+  module * { export * }
+}

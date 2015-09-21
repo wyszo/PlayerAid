@@ -1,6 +1,7 @@
 platform :ios, '7.0'
 
 inhibit_all_warnings! # suppress all warnings from pods
+use_frameworks!
 
 pod 'AFNetworking', '2.5.0'
 pod 'Facebook-iOS-SDK', '3.22.0'

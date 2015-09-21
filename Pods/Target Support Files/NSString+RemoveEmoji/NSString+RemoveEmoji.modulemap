@@ -1,0 +1,6 @@
+framework module NSString_RemoveEmoji {
+  umbrella header "NSString+RemoveEmoji-umbrella.h"
+
+  export *
+  module * { export * }
+}
