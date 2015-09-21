@@ -54,11 +54,9 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
-  - Mixpanel (2.8.1):
-    - Mixpanel/Mixpanel (= 2.8.1)
-  - Mixpanel/Mixpanel (2.8.1):
-    - Mixpanel/MPCategoryHelpers
-  - Mixpanel/MPCategoryHelpers (2.8.1)
+  - Mixpanel (2.8.3):
+    - Mixpanel/Mixpanel (= 2.8.3)
+  - Mixpanel/Mixpanel (2.8.3)
   - NSDate+TimeAgo (1.0.3)
   - NSString+RemoveEmoji (0.0.1)
   - TTTAttributedLabel (1.13.4)
@@ -81,7 +79,7 @@ DEPENDENCIES:
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.5.1)
   - MagicalRecord (= 2.2)
-  - Mixpanel (= 2.8.1)
+  - Mixpanel (= 2.8.3)
   - NSDate+TimeAgo (= 1.0.3)
   - NSString+RemoveEmoji (= 0.0.1)
   - TTTAttributedLabel (= 1.13.4)
@@ -121,7 +119,7 @@ SPEC CHECKSUMS:
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7
   KZPropertyMapper: e80e83aa3bc6d37a6dd55e3d04a01afcb8c23d3c
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
-  Mixpanel: 93c4825025e6380ced273ed7178496282e385077
+  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
