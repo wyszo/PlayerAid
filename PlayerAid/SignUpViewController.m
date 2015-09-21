@@ -15,6 +15,9 @@
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
+static NSString *const kTermsAndConditionsStubUrl = @"TermsAndConditionsStubUrl";
+static NSString *const kPrivacyPolicyStubUrl = @"PrivacyPolicyStubUrl";
+
 
 @interface SignUpViewController () <UITextFieldDelegate, TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
@@ -29,9 +32,6 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *bottomAttributedLabel;
-
-@property (weak, nonatomic) IBOutlet UITextView *bottomDisclaimerTextView DEPRECATED_ATTRIBUTE;
-
 @end
 
 
@@ -109,10 +109,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   
   // Add links
   NSRange termsOfUseRange = [[attributedString string] rangeOfString:[termsAndConditionsString string]];
-  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:@"TermsAndConditionsUrlStub"] withRange:termsOfUseRange];
+  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:kTermsAndConditionsStubUrl] withRange:termsOfUseRange];
   
   NSRange privacyPolicyRange = [[attributedString string] rangeOfString:[privacyPolicyString string]];
-  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:@"PrivacyPolicyUrlStub"] withRange:privacyPolicyRange];
+  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:kPrivacyPolicyStubUrl] withRange:privacyPolicyRange];
 }
 
 #pragma mark - Subviews skinning
@@ -229,7 +229,15 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 - (void)attributedLabel:(TTTAttributedLabel *)label
    didSelectLinkWithURL:(NSURL *)url
 {
-  NSLog(@"URL");
+  NSString *urlString = url.absoluteString;
+  
+  if ([urlString isEqualToString:kTermsAndConditionsStubUrl]) {
+    [self performSegueWithIdentifier:kTermsOfUseSegueId sender:self];
+  } else if ([urlString isEqualToString:kPrivacyPolicyStubUrl]) {
+    [self performSegueWithIdentifier:kPrivacyPolicySegueId sender:self];
+  } else {
+    AssertTrueOrReturn(NO && @"Unexpected URL!");
+  }
 }
 
 #pragma mark - UITextFieldDelegate
