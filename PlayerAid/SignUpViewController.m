@@ -3,6 +3,7 @@
 //
 
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
+#import <TTTAttributedLabel.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
@@ -15,7 +16,7 @@ static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 
-@interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
+@interface SignUpViewController () <UITextFieldDelegate, TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textfieldBackgroundViews;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *signUpTextFields;
@@ -27,7 +28,10 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 @property (strong, nonatomic) SignUpValidator *validator;
 @property (strong, nonatomic) LoginAppearanceHelper *appearanceHelper;
 @property (strong, nonatomic) TWTextFieldsFormHelper *textFieldsFormHelper;
-@property (weak, nonatomic) IBOutlet UITextView *bottomDisclaimerTextView;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *bottomAttributedLabel;
+
+@property (weak, nonatomic) IBOutlet UITextView *bottomDisclaimerTextView DEPRECATED_ATTRIBUTE;
+
 @end
 
 
@@ -62,39 +66,53 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 // TODO: move this to a class that creates login components
 - (void)setupBottomTextView
 {
-  self.bottomDisclaimerTextView.delegate = self;
+  self.bottomAttributedLabel.delegate = self;
   
-  self.bottomDisclaimerTextView.selectable = YES; /** This is unfortunately required for link support to work :/ */
+  self.bottomAttributedLabel.numberOfLines = 0;
+  self.bottomAttributedLabel.backgroundColor = [UIColor clearColor];
+  
+  UIFont *font = [UIFont systemFontOfSize:10.0];
+  
   
   NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-  paragraphStyle.lineHeightMultiple = 1.5;
+  paragraphStyle.lineHeightMultiple = 1.25;
+  
   
   NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
   
-  NSDictionary *normalAttributes = @{ NSForegroundColorAttributeName : [ColorsHelper signupTermsAndConditionsPrivacyPolicyTextColor],
-                                      NSParagraphStyleAttributeName : paragraphStyle };
-  NSDictionary *linkAttributes = @{ NSForegroundColorAttributeName : [ColorsHelper playerAidBlueColor],
-                                    NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+  NSDictionary *normalAttributes = @{ (id)kCTForegroundColorAttributeName : (id)[ColorsHelper signupTermsAndConditionsPrivacyPolicyTextColor].CGColor,
+                                      NSFontAttributeName : font,
+                                      NSParagraphStyleAttributeName : paragraphStyle};
+  
+  NSDictionary *linkAttributes = @{ (id)kCTForegroundColorAttributeName : (id)[ColorsHelper playerAidBlueColor].CGColor,
+                                    NSFontAttributeName : font,
+                      (id)kCTUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
                                     NSParagraphStyleAttributeName : paragraphStyle };
+  self.bottomAttributedLabel.linkAttributes = linkAttributes;
+  self.bottomAttributedLabel.activeLinkAttributes = linkAttributes;
+  
   
   NSAttributedString *sentenceStartString = [[NSAttributedString alloc] initWithString:@"By creating an account, you agree to the " attributes:normalAttributes];
   [attributedString appendAttributedString:sentenceStartString];
   
   NSMutableAttributedString *termsAndConditionsString = [[NSMutableAttributedString alloc] initWithString:@"Terms of Use" attributes:linkAttributes];
-  [termsAndConditionsString addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"http://www.google.co.uk" /**TermsAndConditionsLinkStub"*/] range:NSMakeRange(0, termsAndConditionsString.length)];
   [attributedString appendAttributedString:termsAndConditionsString];
   
   NSAttributedString *sentenceEndString = [[NSAttributedString alloc] initWithString:@" and you acknowledge that you have read the " attributes:normalAttributes];
   [attributedString appendAttributedString:sentenceEndString];
   
   NSMutableAttributedString *privacyPolicyString = [[NSMutableAttributedString alloc] initWithString:@"Privacy Policy" attributes:linkAttributes];
-  [privacyPolicyString addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"PrivacyPolicyLinkStub"] range:NSMakeRange(0, privacyPolicyString.length)];
   [attributedString appendAttributedString:privacyPolicyString];
   
-  self.bottomDisclaimerTextView.text = nil;
-  self.bottomDisclaimerTextView.attributedText = nil;
+  self.bottomAttributedLabel.attributedText = attributedString;
   
-  self.bottomDisclaimerTextView.attributedText = attributedString;
+  
+  // Add links
+  NSRange termsOfUseRange = [[attributedString string] rangeOfString:[termsAndConditionsString string]];
+  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:@"TermsAndConditionsUrlStub"] withRange:termsOfUseRange];
+  
+  NSRange privacyPolicyRange = [[attributedString string] rangeOfString:[privacyPolicyString string]];
+  [self.bottomAttributedLabel addLinkToURL:[NSURL URLWithString:@"PrivacyPolicyUrlStub"] withRange:privacyPolicyRange];
 }
 
 #pragma mark - Subviews skinning
@@ -206,13 +224,12 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   }
 }
 
-#pragma mark - UITextViewDelegate
+#pragma mark - TTTAttributedLabelDelegate
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+- (void)attributedLabel:(TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url
 {
-  // TODO: map stub URLs to view controllers pushes
-  
-  return NO;
+  NSLog(@"URL");
 }
 
 #pragma mark - UITextFieldDelegate

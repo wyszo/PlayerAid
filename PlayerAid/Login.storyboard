@@ -240,7 +240,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="xh4-xS-DFw" secondAttribute="trailing" constant="16" id="2AI-x9-HsT"/>
                             <constraint firstItem="VLk-pO-4Lw" firstAttribute="top" secondItem="Mfh-3k-AA5" secondAttribute="bottom" constant="26" id="4If-fl-VHA"/>
@@ -438,30 +438,26 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Terms and Conditions, privacy policy" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGR-B3-TEL" userLabel="BottomDisclaimerTextView">
-                                <rect key="frame" x="16" y="409" width="568" height="62"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkg-zl-7B3" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="16" y="446" width="568" height="10"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="GG5-P5-nJQ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="tmY-Ht-WD3"/>
                                 </constraints>
-                                <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="CGR-B3-TEL" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="2dB-Xg-5I5"/>
                             <constraint firstItem="gG3-bd-g7j" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="3bR-kl-age"/>
-                            <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="CGR-B3-TEL" secondAttribute="bottom" constant="65" id="4sK-01-xvw"/>
-                            <constraint firstAttribute="trailing" secondItem="CGR-B3-TEL" secondAttribute="trailing" constant="16" id="8tV-iA-OOk"/>
                             <constraint firstItem="B0e-ne-Imk" firstAttribute="width" secondItem="z1p-gL-2Iv" secondAttribute="width" id="Aur-Ib-Nxi"/>
                             <constraint firstAttribute="centerX" secondItem="fF5-23-wVp" secondAttribute="centerX" id="Ffj-77-zER"/>
                             <constraint firstItem="7Wl-pp-KfZ" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leadingMargin" id="HpR-RT-idr"/>
+                            <constraint firstItem="J37-6G-wck" firstAttribute="top" secondItem="tkg-zl-7B3" secondAttribute="bottom" constant="10" id="NND-Ri-iTE"/>
                             <constraint firstItem="B0e-ne-Imk" firstAttribute="centerX" secondItem="z1p-gL-2Iv" secondAttribute="centerX" id="UXT-eQ-XVl"/>
                             <constraint firstItem="CkY-qv-oHY" firstAttribute="top" secondItem="J37-6G-wck" secondAttribute="bottom" id="Xui-yo-6oF"/>
                             <constraint firstAttribute="trailing" secondItem="18u-EE-f5F" secondAttribute="trailing" constant="16" id="acj-nV-FUb"/>
                             <constraint firstItem="B0e-ne-Imk" firstAttribute="top" secondItem="z1p-gL-2Iv" secondAttribute="bottom" constant="-1" id="caJ-BQ-Lnd"/>
                             <constraint firstItem="18u-EE-f5F" firstAttribute="top" secondItem="fF5-23-wVp" secondAttribute="bottom" constant="14" id="ced-st-8ns"/>
+                            <constraint firstAttribute="trailing" secondItem="tkg-zl-7B3" secondAttribute="trailing" constant="16" id="dQ3-mB-rAQ"/>
                             <constraint firstAttribute="centerX" secondItem="J37-6G-wck" secondAttribute="centerX" id="e1e-wS-gsP"/>
                             <constraint firstItem="7Wl-pp-KfZ" firstAttribute="top" secondItem="vdE-jN-h9h" secondAttribute="bottom" constant="26" id="hJW-Ni-M8I"/>
                             <constraint firstItem="z1p-gL-2Iv" firstAttribute="width" secondItem="7Wl-pp-KfZ" secondAttribute="width" id="k2r-yS-7bZ"/>
@@ -473,11 +469,12 @@
                             <constraint firstItem="7Wl-pp-KfZ" firstAttribute="trailing" secondItem="9DH-Ja-74w" secondAttribute="trailingMargin" id="ryh-pI-sVD"/>
                             <constraint firstItem="z1p-gL-2Iv" firstAttribute="centerX" secondItem="7Wl-pp-KfZ" secondAttribute="centerX" id="thA-Up-mzE"/>
                             <constraint firstItem="18u-EE-f5F" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="uCM-Nf-ELX"/>
+                            <constraint firstItem="tkg-zl-7B3" firstAttribute="leading" secondItem="9DH-Ja-74w" secondAttribute="leading" constant="16" id="yQ7-Hp-aOD"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="bottomDisclaimerTextView" destination="CGR-B3-TEL" id="GP7-rk-Zca"/>
+                        <outlet property="bottomAttributedLabel" destination="tkg-zl-7B3" id="3bJ-aw-25t"/>
                         <outlet property="emailTextField" destination="7KD-0C-Doc" id="LaG-aU-BGe"/>
                         <outlet property="facebookSignUpContainerView" destination="18u-EE-f5F" id="Cb9-DT-R4B"/>
                         <outlet property="passwordTextField" destination="gFf-wo-5aM" id="JfE-tv-BuI"/>
