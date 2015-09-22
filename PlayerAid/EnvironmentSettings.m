@@ -24,6 +24,21 @@ static NSString const *kTestRSAPublicKey = @"-----BEGIN PUBLIC KEY-----\n"
   "KUk1b4aS3XJr4g7e7wIDAQAB\n"
   "-----END PUBLIC KEY-----";
 
+static NSString const *kTest4096BitRSAPublicKey = @"-----BEGIN PUBLIC KEY-----\n"
+  "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwPPzkw+NygQ3cDGwLJwL\n"
+  "G6CCQLFzBFMMSViXE4VOHmtUJJF1tddnSwHk+F9w3sWSUNWCt8r0YriGUfxDgI6o\n"
+  "Y6EFs/2KPlQda/7fYCZCWtEpZE1OcKjmoQClBVaYI6XNSdrb+epb4QxHoCsuf6gI\n"
+  "hcA7ZbzecF8ezRVQImssRH5zsVFTd4JzhCmBp6TSn6NruC0GsGXve7430J54Y0Fe\n"
+  "3EwWmrDK3IscbyjYFUOVh2ldYuM4xgMD0UWpYMKx4pJTKJ58oJpOk9jXf6cnFJKe\n"
+  "O9Ichh8POZ0wDtO2yGAH0BXZbF/eZ2BGLWwqgv3nS/gS3g8wASYeiGXdfUmjF1Ku\n"
+  "wV+G6++B/5cCa0lM2J79QtOM5rocYOJ5Or5hJZTbrOkQOQuj5SEroAj1spLUsjpD\n"
+  "KCL4h/AqbUnnWJXqJxKcHC8LlkHfqu/3XYkgEuhyclm+SRJVFnbyrkRoC3eIfAxJ\n"
+  "FAad5pkiiQUyNbi5uiD7HwJu/kk7/X62oGI0T+gesNezeeJ6M2ZHekyHfw3j5b+x\n"
+  "nwWEFreVvmUnhxzxY1JQ4xEzRIAkyegFJEh9dEmQUXIWzpy8sTmL8kbL6IK9X+QW\n"
+  "iYKcXTotWPenoJUViEftAoaeN0nd5OjYmmD55KaOjcZa5nmKQYMQc/NAjdEC+p2Y\n"
+  "+8PxnUfBLBwdTR5ed03dyZ8CAwEAAQ==\n"
+  "-----END PUBLIC KEY-----";
+
 @implementation EnvironmentSettings
 
 #pragma mark - Server URL
@@ -68,6 +83,7 @@ static NSString const *kTestRSAPublicKey = @"-----BEGIN PUBLIC KEY-----\n"
 {
   return @{
            kStagingEnvName : kTestRSAPublicKey,
+           // kStagingEnvName  : kTest4096BitRSAPublicKey,
            // TODO: bundle our Server public keys here...
           };
 }
