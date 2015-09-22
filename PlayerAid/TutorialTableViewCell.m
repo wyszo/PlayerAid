@@ -45,8 +45,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   
-  if ([self respondsToSelector:@selector(preservesSuperviewLayoutMargins
-                                         )]) {
+  if ([self respondsToSelector:@selector(preservesSuperviewLayoutMargins)]) {
     self.preservesSuperviewLayoutMargins = NO;
   }
   

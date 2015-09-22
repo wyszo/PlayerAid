@@ -83,6 +83,7 @@
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
 		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; settings = {ASSET_TAGS = (); }; };
 		319DCA1A1BB075030079E66C /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA191BB075030079E66C /* RSA.m */; settings = {ASSET_TAGS = (); }; };
+		319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA1D1BB07DE50079E66C /* RSAEncoder.m */; settings = {ASSET_TAGS = (); }; };
 		31A2819C1B419AB100D38D5A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A2819B1B419AB100D38D5A /* GradientView.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
@@ -295,6 +296,8 @@
 		319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignUpComponentsConfigurator.m; sourceTree = "<group>"; };
 		319DCA181BB075030079E66C /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSA.h; path = Libs/RSA/RSA.h; sourceTree = SOURCE_ROOT; };
 		319DCA191BB075030079E66C /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSA.m; path = Libs/RSA/RSA.m; sourceTree = SOURCE_ROOT; };
+		319DCA1C1BB07DE50079E66C /* RSAEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncoder.h; sourceTree = "<group>"; };
+		319DCA1D1BB07DE50079E66C /* RSAEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncoder.m; sourceTree = "<group>"; };
 		31A2819A1B419AB100D38D5A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		31A2819B1B419AB100D38D5A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		31A3120E1AEA5A5F002E6B5C /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
@@ -509,6 +512,7 @@
 		31014E6B1A99FFE6002F3485 /* Unauthenticated */ = {
 			isa = PBXGroup;
 			children = (
+				319DCA1B1BB07DD40079E66C /* RSAEncoder */,
 				31014E6C1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.h */,
 				31014E6D1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m */,
 			);
@@ -1102,6 +1106,15 @@
 				319DCA191BB075030079E66C /* RSA.m */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		319DCA1B1BB07DD40079E66C /* RSAEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				319DCA1C1BB07DE50079E66C /* RSAEncoder.h */,
+				319DCA1D1BB07DE50079E66C /* RSAEncoder.m */,
+			);
+			name = RSAEncoder;
 			sourceTree = "<group>";
 		};
 		31A0FD361AD034BA00B94CBE /* UserDefaults */ = {
@@ -1892,6 +1905,7 @@
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
+				319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */,
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,

@@ -9,4 +9,9 @@
  */
 - (NSString *)serverBaseURL;
 
+/**
+ Returns server public key for RSA encryption for current environment (specified via app bundle identifier)
+ */
+- (NSString *)serverRSAPublicKey;
+
 @end

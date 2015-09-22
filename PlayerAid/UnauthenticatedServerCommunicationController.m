@@ -8,6 +8,7 @@
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
 #import "EnvironmentSettings.h"
+#import "RSAEncoder.h"
 
 static NSString *const kAuthPath = @"auth";
 static NSString *const kUserPath = @"user";
@@ -81,9 +82,24 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(email.length);
   AssertTrueOrReturn(password.length);
   
+  void (^FailureCompletionBlock)() = ^(){
+    NSInteger errorCode = 10;
+    NSError *error = [NSError errorWithDomain:@"DataCorruption" code:errorCode userInfo:nil];
+    CallBlock(completion, nil, error);
+  };
+  
+  RSAEncoder *rsaEncoder = [RSAEncoder new];
+  
+  NSString *rsaEncodedEmail = [rsaEncoder encodeString:email];
+  AssertTrueOr(rsaEncodedEmail.length, FailureCompletionBlock(); return;);
+  
+  NSString *rsaEncodedPassword = [rsaEncoder encodeString:password];
+  AssertTrueOr(rsaEncodedPassword.length, FailureCompletionBlock(); return;);
+  
+  // TODO: shouldn't whole request body be RSA encoded?
   NSDictionary *parameters = @{
-                               @"email" : email, // TODO: shouldn't we encrypt email here??
-                               @"password" : password // TODO: password should be RSA-encoded!
+                               @"email" : rsaEncodedEmail,
+                               @"password" : rsaEncodedPassword
                                };
   
   [self postPath:kUserPath parameters:parameters customHTTPHeaders:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
