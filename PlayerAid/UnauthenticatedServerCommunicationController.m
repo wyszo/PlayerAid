@@ -96,25 +96,21 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   RSAEncoder *rsaEncoder = [RSAEncoder new];
   
-  NSString *rsaEncodedEmail = [rsaEncoder encodeString:email];
-  AssertTrueOr(rsaEncodedEmail.length, FailureCompletionBlock(); return;);
-  
-  NSString *rsaEncodedPassword = [rsaEncoder encodeString:password];
-  AssertTrueOr(rsaEncodedPassword.length, FailureCompletionBlock(); return;);
-  
-  /**
-   // alternative - whole credentials encrypted
-  NSString *credentials = @"{ \"email\" : %@, \"password\" : %@ }";
+  NSString *credentials = [NSString stringWithFormat:@"{ \"email\" : %@, \"password\" : %@ }", email, password];
   NSString *rsaEncodedCredentials = [rsaEncoder encodeString:credentials];
-  NSDictionary *parameters = @{ @"credentials" : rsaEncodedCredentials };
-  */
+  AssertTrueOr(rsaEncodedCredentials.length, FailureCompletionBlock(); return;);
   
-  NSDictionary *parameters = @{
-                               @"email" : rsaEncodedEmail,
-                               @"password" : rsaEncodedPassword
-                               };
+  AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
-  [self postPath:kUserPath parameters:parameters customHTTPHeaders:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  NSURL *url = [NSURL URLWithPath:kUserPath baseURL:operationManagerNoCache.baseURL];
+  AssertTrueOrReturn(url);
+  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+  [request setHTTPMethod:@"POST"];
+  
+  NSData *requestData = [rsaEncodedCredentials dataUsingEncoding:NSUTF8StringEncoding];
+  [request setHTTPBody:requestData];
+  
+  AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSString *apiToken = @""; // TODO: obtain API token from the responseObject???
     NOT_IMPLEMENTED_YET_RETURN
     
@@ -122,6 +118,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     CallBlock(completion, nil, error);
   }];
+  
+  [operationManagerNoCache.operationQueue addOperation:operation];
 }
 
 #pragma mark - Auxiliary methods
