@@ -102,7 +102,13 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *rsaEncodedPassword = [rsaEncoder encodeString:password];
   AssertTrueOr(rsaEncodedPassword.length, FailureCompletionBlock(); return;);
   
-  // TODO: shouldn't whole request body be RSA encoded?
+  /**
+   // alternative - whole credentials encrypted
+  NSString *credentials = @"{ \"email\" : %@, \"password\" : %@ }";
+  NSString *rsaEncodedCredentials = [rsaEncoder encodeString:credentials];
+  NSDictionary *parameters = @{ @"credentials" : rsaEncodedCredentials };
+  */
+  
   NSDictionary *parameters = @{
                                @"email" : rsaEncodedEmail,
                                @"password" : rsaEncodedPassword
