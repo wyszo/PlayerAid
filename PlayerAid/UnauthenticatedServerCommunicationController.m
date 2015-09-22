@@ -60,9 +60,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(email.length);
   AssertTrueOrReturn(password.length);
   
-  // TODO: password should be RSA encrypted!!
+  void (^FailureCompletionBlock)() = ^() {
+    NSInteger errorCode = 10;
+    NSError *error = [NSError errorWithDomain:@"RSAEncoding" code:errorCode userInfo:nil];
+    CallBlock(completion, nil, error);
+  };
+  
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
-  credentials = [credentials tw_base64EncodedString];
+  credentials = [[RSAEncoder new] encodeString:credentials];
+  AssertTrueOr(credentials, FailureCompletionBlock(); return;);
   
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
   NSDictionary *httpHeaders = @{  @"Authorization" : authorizationString  };
@@ -83,7 +89,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(password.length);
   
   void (^FailureCompletionBlock)() = ^(){
-    NSInteger errorCode = 10;
+    NSInteger errorCode = 11;
     NSError *error = [NSError errorWithDomain:@"DataCorruption" code:errorCode userInfo:nil];
     CallBlock(completion, nil, error);
   };
