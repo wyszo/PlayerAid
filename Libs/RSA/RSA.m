@@ -5,6 +5,7 @@
 
 #import "RSA.h"
 #import <Security/Security.h>
+#import <KZAsserts/KZAsserts.h>
 
 @implementation RSA
 
@@ -34,7 +35,10 @@ static NSData *base64_decode(NSString *str){
 	if (d_key == nil) return(nil);
 	
 	unsigned long len = [d_key length];
-	if (!len) return(nil);
+  if (!len) {
+    AssertTrueOrReturnNil(NO && @"key can't be empty");
+    return(nil);
+  }
 	
 	unsigned char *c_key = (unsigned char *)[d_key bytes];
 	unsigned int  idx	= 0;
@@ -81,6 +85,7 @@ static NSData *base64_decode(NSString *str){
 	NSData *data = base64_decode(key);
 	data = [RSA stripPublicKeyHeader:data];
 	if(!data){
+    AssertTrueOrReturnNil(NO && @"no data");
 		return nil;
 	}
 	
@@ -119,6 +124,7 @@ static NSData *base64_decode(NSString *str){
 	SecKeyRef keyRef = nil;
 	status = SecItemCopyMatching((__bridge CFDictionaryRef)publicKey, (CFTypeRef *)&keyRef);
 	if(status != noErr){
+    AssertTrueOrReturnNil(NO && @"obtaining key error");
 		return nil;
 	}
 	return keyRef;
@@ -131,11 +137,14 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSData *)encryptData:(NSData *)data publicKey:(NSString *)pubKey{
+  AssertTrueOrReturnNil(data.length && pubKey.length);
+  
 	if(!data || !pubKey){
 		return nil;
 	}
 	SecKeyRef keyRef = [RSA addPublicKey:pubKey];
 	if(!keyRef){
+    AssertTrueOrReturnNil(NO && @"obtaining key reference error");
 		return nil;
 	}
 	
@@ -145,6 +154,7 @@ static NSData *base64_decode(NSString *str){
 	size_t outlen = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
 	if(srclen > outlen - 11){
 		CFRelease(keyRef);
+    AssertTrueOrReturnNil(NO && @"data to encode too long!");
 		return nil;
 	}
 	void *outbuf = malloc(outlen);
@@ -160,6 +170,7 @@ static NSData *base64_decode(NSString *str){
 	NSData *ret = nil;
 	if (status != 0) {
 		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
+    AssertTrueOrReturnNil(NO && @"encryption failed!");
 	}else{
 		ret = [NSData dataWithBytes:outbuf length:outlen];
 	}
@@ -176,11 +187,14 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSData *)decryptData:(NSData *)data publicKey:(NSString *)pubKey{
+  AssertTrueOrReturnNil(data.length && pubKey.length);
+  
 	if(!data || !pubKey){
 		return nil;
 	}
 	SecKeyRef keyRef = [RSA addPublicKey:pubKey];
 	if(!keyRef){
+    AssertTrueOrReturnNil(NO && @"obtaining key reference error");
 		return nil;
 	}
 	
@@ -191,6 +205,7 @@ static NSData *base64_decode(NSString *str){
 	if(srclen != outlen){
 		//TODO currently we are able to decrypt only one block!
 		CFRelease(keyRef);
+    AssertTrueOrReturnNil(NO && @"data to decode too long! Wrapper limitation");
 		return nil;
 	}
 	UInt8 *outbuf = malloc(outlen);
@@ -207,6 +222,7 @@ static NSData *base64_decode(NSString *str){
 	NSData *result = nil;
 	if (status != 0) {
 		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
+    AssertTrueOrReturnNil(NO && @"decryption failed!");
 	}else{
 		//the actual decrypted data is in the middle, locate it!
 		int idxFirstZero = -1;
