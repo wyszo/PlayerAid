@@ -6,8 +6,8 @@
 #import "LoginSignUpComponentsConfigurator.h"
 #import "ColorsHelper.h"
 
-static CGFloat kLineHeightMultiple = 1.25f;
-static CGFloat kFontSize = 10.0f;
+static CGFloat kLineHeightMultiple = 1.20f;
+static CGFloat kFontSize = 10.5f;
 
 
 @implementation LoginSignUpComponentsConfigurator
