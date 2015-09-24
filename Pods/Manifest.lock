@@ -66,6 +66,7 @@ PODS:
     - UIAlertView-Blocks (= 1.0)
   - UIAlertView-Blocks (1.0)
   - UITextView+Placeholder (1.0.9)
+  - XRSA (1.1.0)
   - YCameraView (0.2.0)
 
 DEPENDENCIES:
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.0.9)
+  - XRSA (= 1.1.0)
   - YCameraView (from `https://github.com/wyszo/YCameraView.git`, branch `MorePAChanges`)
 
 EXTERNAL SOURCES:
@@ -126,6 +128,7 @@ SPEC CHECKSUMS:
   TWCommonLib: 8e0d014246ee084fbe0cbbcb9d91c904db249ecc
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: 83895056749372c96febfb43f536c9b1aae3e08e
+  XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
 COCOAPODS: 0.38.2

@@ -68,6 +68,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/TWCommonLib.framework'
   install_framework 'Pods/UIAlertView_Blocks.framework'
   install_framework 'Pods/UITextView_Placeholder.framework'
+  install_framework 'Pods/XRSA.framework'
   install_framework 'Pods/YCameraView.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -87,5 +88,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/TWCommonLib.framework'
   install_framework 'Pods/UIAlertView_Blocks.framework'
   install_framework 'Pods/UITextView_Placeholder.framework'
+  install_framework 'Pods/XRSA.framework'
   install_framework 'Pods/YCameraView.framework'
 fi

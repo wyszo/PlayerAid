@@ -1,0 +1,6 @@
+framework module XRSA {
+  umbrella header "XRSA-umbrella.h"
+
+  export *
+  module * { export * }
+}
