@@ -628,6 +628,14 @@
 			name = YCameraView;
 			sourceTree = "<group>";
 		};
+		3109125F1BB44B12007536B6 /* Server certificates */ = {
+			isa = PBXGroup;
+			children = (
+				3109125D1BB408DE007536B6 /* staging.cert.der */,
+			);
+			name = "Server certificates";
+			sourceTree = "<group>";
+		};
 		31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */ = {
 			isa = PBXGroup;
 			children = (
@@ -1504,10 +1512,10 @@
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
-				3109125D1BB408DE007536B6 /* staging.cert.der */,
 				31F116731A790F680022BD74 /* PlayerAid */,
 				31F116721A790F680022BD74 /* Products */,
 				D0249EBA475EA22D67FA6BDF /* Pods */,
+				3109125F1BB44B12007536B6 /* Server certificates */,
 				9941D48C7CF54B64C92CF46B /* Frameworks */,
 			);
 			sourceTree = "<group>";
