@@ -2,20 +2,22 @@
 //  PlayerAid
 //
 
+#import <XRSA/XRSA.h>
 #import "RSAEncoder.h"
 #import "EnvironmentSettings.h"
-#import "RSA.h"
 
 @implementation RSAEncoder
 
 - (nonnull NSString *)encodeString:(nonnull NSString *)string
 {
   AssertTrueOrReturnNil(string.length);
-
-  NSString *publicKey = [[EnvironmentSettings new] serverRSAPublicKey];
-  AssertTrueOrReturnNil(publicKey);
   
-  NSString *encrypted = [RSA encryptString:string publicKey:publicKey];
+  NSString *certificatePath = [[EnvironmentSettings new] serverRSACertificatePath];
+  AssertTrueOrReturnNil(certificatePath.length);
+  
+  XRSA *xRsaEncryptor = [[XRSA alloc] initWithPublicKey:certificatePath];
+  
+  NSString *encrypted = [xRsaEncryptor encryptToString:string];
   AssertTrueOrReturnNil(encrypted.length);
   return encrypted;
 }

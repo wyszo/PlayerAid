@@ -7,11 +7,11 @@
 /**
  Returns correct server URL based on current app bundle identifier
  */
-- (NSString *)serverBaseURL;
+- (nonnull NSString *)serverBaseURL;
 
 /**
- Returns server public key for RSA encryption for current environment (specified via app bundle identifier)
+ Returns local path to the server certificate containing RSA public keys for current environment (specified via app bundel identifier)
  */
-- (NSString *)serverRSAPublicKey;
+- (nullable NSString *)serverRSACertificatePath;
 
 @end
