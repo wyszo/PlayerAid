@@ -96,7 +96,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   RSAEncoder *rsaEncoder = [RSAEncoder new];
   
-  NSString *credentials = [NSString stringWithFormat:@"{ \"email\" : %@, \"password\" : %@ }", email, password];
+  NSString *credentials = [NSString stringWithFormat:@"{ \"email\" : \"%@\", \"password\" : \"%@\" }", email, password];
   NSString *rsaEncodedCredentials = [rsaEncoder encodeString:credentials];
   AssertTrueOr(rsaEncodedCredentials.length, FailureCompletionBlock(); return;);
   
@@ -108,6 +108,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [request setHTTPMethod:@"POST"];
   
   NSData *requestData = [rsaEncodedCredentials dataUsingEncoding:NSUTF8StringEncoding];
+  [request addHttpHeadersFromDictionary:@{ @"X-Authenticate" : @"true", @"Content-type" : @"application/json"}];
   [request setHTTPBody:requestData];
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
