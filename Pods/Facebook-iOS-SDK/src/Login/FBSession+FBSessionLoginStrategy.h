@@ -22,7 +22,8 @@
 
 - (void)authorizeUsingSystemAccountStore:(NSArray *)permissions
                          defaultAudience:(FBSessionDefaultAudience)defaultAudience
-                           isReauthorize:(BOOL)isReauthorize;
+                           isReauthorize:(BOOL)isReauthorize
+                     canFetchAppSettings:(BOOL)canFetchAppSettings;
 - (FBAppCall *)authorizeUsingFacebookNativeLoginWithPermissions:(NSArray *)permissions
                                                 defaultAudience:(FBSessionDefaultAudience)defaultAudience
                                                     clientState:(NSDictionary *)clientState;
@@ -37,7 +38,7 @@
                             isReauthorize:(BOOL)isReauthorize
                       canFetchAppSettings:(BOOL)canFetchAppSettings;
 - (BOOL)authorizeUsingFacebookApplication:(NSMutableDictionary *)params;
-- (BOOL)authorizeUsingSafari:(NSMutableDictionary *)params;
+- (BOOL)authorizeUsingSafari:(NSMutableDictionary *)params useSFVC:(BOOL)useSFVC;
 - (void)setLoginTypeOfPendingOpenUrlCallback:(FBSessionLoginType)loginType;
 - (void)authorizeUsingLoginDialog:(NSMutableDictionary *)params;
 

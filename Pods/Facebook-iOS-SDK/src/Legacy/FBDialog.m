@@ -16,6 +16,7 @@
 
 #import "FBDialog.h"
 
+#import "FBAppCall+Internal.h"
 #import "FBDialogClosePNG.h"
 #import "FBFrictionlessRequestSettings.h"
 #import "FBSettings+Internal.h"
@@ -235,7 +236,14 @@ static BOOL FBUseLegacyLayout(void) {
     if (params) {
         NSMutableArray *pairs = [NSMutableArray array];
         for (NSString *key in params.keyEnumerator) {
-            NSString *value = [params objectForKey:key];
+            id value = [params objectForKey:key];
+            if ([value isKindOfClass:[NSNumber class]]) {
+                value = [value stringValue];
+            }
+            if (![value isKindOfClass:[NSString class]]) {
+                [FBLogger singleShotLogEntry:FBLoggingBehaviorDeveloperErrors formatString:@"%@ is not valid for generateURL", value];
+                continue;
+            }
             NSString *escaped_value = [FBUtility stringByURLEncodingString:value];
             [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, escaped_value]];
         }
@@ -491,8 +499,7 @@ static BOOL FBUseLegacyLayout(void) {
                 return NO;
             }
         }
-
-        [[UIApplication sharedApplication] openURL:request.URL];
+        [FBAppCall openURL:request.URL];
         return NO;
     } else {
         return YES;

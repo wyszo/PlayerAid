@@ -45,8 +45,8 @@ PODS:
   - Fabric (1.5.1):
     - Fabric/Base (= 1.5.1)
   - Fabric/Base (1.5.1)
-  - Facebook-iOS-SDK (3.22.0):
-    - Bolts (~> 1.0)
+  - Facebook-iOS-SDK (3.24.0):
+    - Bolts (~> 1.2)
   - FDTake (0.2.4)
   - FLKAutoLayout (0.2.1)
   - KZAsserts (1.0)
@@ -74,7 +74,7 @@ DEPENDENCIES:
   - BlocksKit (= 2.2.5)
   - Crashlytics (= 3.3.1)
   - Fabric (= 1.5.1)
-  - Facebook-iOS-SDK (= 3.22.0)
+  - Facebook-iOS-SDK (= 3.24.0)
   - FDTake (from `https://github.com/wyszo/FDTake.git`, branch `master`)
   - FLKAutoLayout (= 0.2.1)
   - KZAsserts (= 1.0)
@@ -115,7 +115,7 @@ SPEC CHECKSUMS:
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
   Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
   Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
-  Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
+  Facebook-iOS-SDK: cb209af2e67e3a5d323f966c22e4e482e819405e
   FDTake: 3a718ebf9a080738334188b793d135215eeba6ab
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7

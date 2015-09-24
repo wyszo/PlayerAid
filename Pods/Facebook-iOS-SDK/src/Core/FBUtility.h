@@ -33,13 +33,14 @@ typedef NS_ENUM(NSUInteger, FBAdvertisingTrackingStatus) {
 };
 
 typedef NS_ENUM(NSInteger, FBIOSVersion) {
-  FBIOSVersion_6_0,
-  FBIOSVersion_6_1,
-  FBIOSVersion_7_0,
-  FBIOSVersion_7_1,
-  FBIOSVersion_8_0,
+    FBIOSVersion_6_0,
+    FBIOSVersion_6_1,
+    FBIOSVersion_7_0,
+    FBIOSVersion_7_1,
+    FBIOSVersion_8_0,
+    FBIOSVersion_9_0,
 
-  FBIOSVersionCount
+    FBIOSVersionCount
 };
 
 typedef NS_ENUM(NSUInteger, FBTriStateBOOL) {
@@ -63,6 +64,7 @@ FBSDK_EXTERN BOOL FBCheckObjectIsEqual(NSObject *a, NSObject *b);
 #pragma mark - UI Helpers
 
 + (void)centerView:(UIView *)view tableView:(UITableView *)tableView;
++ (UIViewController *)topMostViewController;
 
 #pragma mark - Time Data
 
@@ -96,9 +98,8 @@ FBSDK_EXTERN BOOL FBCheckObjectIsEqual(NSObject *a, NSObject *b);
 
 + (void)fetchAppSettings:(NSString *)appID
                 callback:(void (^)(FBFetchedAppSettings *, NSError *))callback;
-// Only returns nil if no settings have been fetched; otherwise it returns the last fetched settings.
-// If the settings are stale, an async request will be issued to fetch them.
-+ (FBFetchedAppSettings *)fetchedAppSettings;
+// Returns fetched settings if they have been fetched and are not stale; otherwise returns nil.
++ (FBFetchedAppSettings *)fetchedAppSettingsIfCurrent;
 
 #pragma mark - IDs / Attribution
 

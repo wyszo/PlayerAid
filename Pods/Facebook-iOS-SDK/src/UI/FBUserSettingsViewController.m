@@ -249,7 +249,10 @@
     [self updateBackgroundImage];
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmismatched-return-types"
 - (NSUInteger)supportedInterfaceOrientations {
+#pragma GCC diagnostic pop
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return UIInterfaceOrientationMaskAll;
     } else {
@@ -366,7 +369,10 @@
     if (self.permissions) {
         [FBSession openActiveSessionWithPermissions:self.permissions
                                        allowLoginUI:allowLoginUI
+                                      loginBehavior:FBSessionLoginBehaviorWithFallbackToWebView
+                                             isRead:NO
                                     defaultAudience:self.defaultAudience
+                                 fromViewController:self
                                   completionHandler:self.sessionStateHandler];
     } else if (![self.publishPermissions count]) {
         [FBSession openActiveSessionWithReadPermissions:self.readPermissions

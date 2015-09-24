@@ -35,13 +35,15 @@ static const double APPSETTINGS_STALE_THRESHOLD_SECONDS = 60 * 60; // one hour.
 static FBFetchedAppSettings *g_fetchedAppSettings = nil;
 static NSError *g_fetchedAppSettingsError = nil;
 static NSDate *g_fetchedAppSettingsTimestamp = nil;
-
+static dispatch_group_t g_fetchedAppSettingsDispatchGroup;
 static const NSString *kAppSettingsFieldAppName = @"name";
 static const NSString *kAppSettingsFieldSupportsImplicitLogging = @"supports_implicit_sdk_logging";
 static const NSString *kAppSettingsFieldEnableLoginTooltip = @"gdpv4_nux_enabled";
 static const NSString *kAppSettingsFieldLoginTooltipContent = @"gdpv4_nux_content";
 static const NSString *kAppSettingsFieldDialogConfigs = @"ios_dialog_configs";
+static const NSString *kAppSettingsFieldDialogFlows = @"ios_sdk_dialog_flows";
 static const NSString *kAppSettingsFieldAppEventsFeatureBitmask = @"app_events_feature_bitmask";
+static const NSString *kAppSettingsFieldSupportsSystemAuth = @"ios_supports_system_auth";
 
 FBTriStateBOOL FBTriStateBOOLFromBOOL(BOOL value) {
     return value ? FBTriStateBOOLValueYES : FBTriStateBOOLValueNO;
@@ -67,7 +69,6 @@ BOOL FBCheckObjectIsEqual(NSObject *a, NSObject *b)
 
 NSString *const FBPersistedAnonymousIDFilename   = @"com-facebook-sdk-PersistedAnonymousID.json";
 NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
-
 
 #pragma mark Object Helpers
 
@@ -106,6 +107,15 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
 
     center = [view.superview convertPoint:center fromView:tableView];
     view.center = center;
+}
+
++ (UIViewController *)topMostViewController
+{
+  UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+  while (topController.presentedViewController) {
+    topController = topController.presentedViewController;
+  }
+  return topController;
 }
 
 #pragma mark - Time / Date
@@ -182,7 +192,8 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
 
 + (BOOL)isSafariBundleIdentifier:(NSString *)bundleIdentifier
 {
-    return [bundleIdentifier isEqualToString:@"com.apple.mobilesafari"];
+    return ([bundleIdentifier isEqualToString:@"com.apple.mobilesafari"] ||
+            [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]);
 }
 
 #pragma mark - Permissions
@@ -224,8 +235,24 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
 // with calling with a second appid are undefined (in reality will just return the previously requested app's results).
 + (void)fetchAppSettings:(NSString *)appID
                 callback:(void (^)(FBFetchedAppSettings *, NSError *))callback {
-    if ([self isFetchedFBAppSettingsStale] || (!g_fetchedAppSettingsError && !g_fetchedAppSettings)) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        g_fetchedAppSettingsDispatchGroup = dispatch_group_create();
+    });
+    // track if we're in the middle of fetching to prevent redundant requests; otherwise, we've blocked the dispatch_group
+    // until the last fetch finishes.
+    static BOOL isFetching = NO;
 
+    if (!isFetching &&
+        ([self isFetchedFBAppSettingsStale] || (!g_fetchedAppSettingsError && !g_fetchedAppSettings))) {
+        dispatch_group_enter(g_fetchedAppSettingsDispatchGroup);
+        isFetching = YES;
+        NSOperatingSystemVersion operatingSystemVersion = FBUtilityGetSystemVersion();
+        NSString *dialogFlowsField = [NSString stringWithFormat:@"%@.os_version(%ti.%ti.%ti)",
+                                      kAppSettingsFieldDialogFlows,
+                                      operatingSystemVersion.majorVersion,
+                                      operatingSystemVersion.minorVersion,
+                                      operatingSystemVersion.patchVersion];
         NSString *pingPath = [NSString stringWithFormat:@"%@?fields=%@",
                               appID,
                               [@[kAppSettingsFieldAppName,
@@ -233,6 +260,8 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
                                  kAppSettingsFieldEnableLoginTooltip,
                                  kAppSettingsFieldLoginTooltipContent,
                                  kAppSettingsFieldDialogConfigs,
+                                 dialogFlowsField,
+                                 kAppSettingsFieldSupportsSystemAuth,
                                  kAppSettingsFieldAppEventsFeatureBitmask] componentsJoinedByString:@","]
                               ];
         FBRequest *pingRequest = [[[FBRequest alloc] initWithSession:nil graphPath:pingPath] autorelease];
@@ -268,13 +297,18 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
                     g_fetchedAppSettings.enableLoginTooltip = [result[kAppSettingsFieldEnableLoginTooltip] boolValue];
                     g_fetchedAppSettings.loginTooltipContent = result[kAppSettingsFieldLoginTooltipContent];
                     g_fetchedAppSettings.dialogConfigs = [self _parseDialogConfigs:result[kAppSettingsFieldDialogConfigs]];
+                    g_fetchedAppSettings.dialogFlows = result[kAppSettingsFieldDialogFlows];
+                    g_fetchedAppSettings.supportsSystemAuth = [result[kAppSettingsFieldSupportsSystemAuth] boolValue];
                 }
             }
-            [self callTheFetchAppSettingsCallback:callback];
+            // make sure we clear isFetching before leaving group; otherwise,
+            // a callback may be notified and then would not be able to issue
+            // another fetch until the flag is set to NO.
+            isFetching = NO;
+            dispatch_group_leave(g_fetchedAppSettingsDispatchGroup);
         }];
-    } else {
-        [self callTheFetchAppSettingsCallback:callback];
     }
+    [self callTheFetchAppSettingsCallback:callback];
 }
 
 + (NSDictionary *)_parseDialogConfigs:(NSDictionary *)dialogConfigsDictionary
@@ -294,9 +328,9 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
     return dialogConfigs;
 }
 
-+ (FBFetchedAppSettings *)fetchedAppSettings {
++ (FBFetchedAppSettings *)fetchedAppSettingsIfCurrent {
     if ([self isFetchedFBAppSettingsStale]) {
-        [self fetchAppSettings:g_fetchedAppSettings.appID callback:nil];
+        return nil;
     }
     return g_fetchedAppSettings;
 }
@@ -307,11 +341,13 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
 
 + (void)callTheFetchAppSettingsCallback:(void (^)(FBFetchedAppSettings *, NSError *))callback {
     if (callback) {
-        if (g_fetchedAppSettingsError) {
-            callback(nil, g_fetchedAppSettingsError);
-        } else if (g_fetchedAppSettings) {
-            callback(g_fetchedAppSettings, nil);
-        }
+        dispatch_group_notify(g_fetchedAppSettingsDispatchGroup, dispatch_get_main_queue(), ^{
+            if (g_fetchedAppSettingsError) {
+                callback(nil, [[g_fetchedAppSettingsError retain] autorelease]);
+            } else if (g_fetchedAppSettings) {
+                callback(g_fetchedAppSettings, nil);
+            }
+        });
     }
 }
 
@@ -748,6 +784,7 @@ NSString *const FBPersistedAnonymousIDKey   = @"anon_id";
         0x0b57, // 7.0
         0x0b77, // 7.1
         0x0ce6, // 8.0 Beta 5
+        0x0db1, // 9.0 Beta 5
     };
     _Static_assert(sizeof(UIKitLibraryVersionNumbers) / sizeof(UIKitLibraryVersionNumbers[0]) == FBIOSVersionCount, "The iOS version enum to UIKit library version number table is out of sync.");
 
@@ -823,6 +860,7 @@ BOOL FBUtilityIsSystemVersionIOSVersionOrLater(NSOperatingSystemVersion systemVe
         { 7, 0, 0 },
         { 7, 1, 0 },
         { 8, 0, 0 },
+        { 9, 0, 0 },
     };
     _Static_assert(sizeof(IOSVersionNumbers) / sizeof(IOSVersionNumbers[0]) == FBIOSVersionCount, "The iOS version enum to iOS version number table is out of sync.");
 
