@@ -27,7 +27,7 @@ static NSString *const kFollowingKey = @"following";
   
   NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:@{
                             kUserServerIDJSONAttributeName : KZProperty(serverID),
-                            @"name" : KZProperty(name),
+                            @"name" : KZCall(nonemptyStringFromName:, name),
                             @"pictureUri" : KZProperty(pictureURL),
                             @"description" : KZProperty(userDescription)
                            }];
@@ -56,6 +56,15 @@ static NSString *const kFollowingKey = @"following";
   }
   
   // TODO: if tutorial was liked before but is not liked anymore it might be worth refreshing it (by making an additional request) - it might have been deleted
+}
+
+- (NSString *)nonemptyStringFromName:(nullable NSString *)name
+{
+  NSString *safeName = @"";
+  if (name) {
+    safeName = name;
+  }
+  return safeName;
 }
 
 - (NSSet *)createdTutorialsStoredOnServerSet
