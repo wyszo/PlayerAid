@@ -290,7 +290,8 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   VoidBlock updatePhotoFromFacebookAction = ^() {
     [weakSelf makeUpdateAvatarFromFacebookNetworkRequest];
   };
-  if (!self.user.linkedWithFacebook) {
+  if (!self.user.linkedWithFacebookValue) {
+    // TODO: we sholud check a FBSession object instead!
     // hide 'Update photo from Facebook' actionSheet option
     updatePhotoFromFacebookAction = nil;
   }
