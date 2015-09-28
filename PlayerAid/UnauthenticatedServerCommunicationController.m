@@ -4,6 +4,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import <TWCommonLib/TWCommonMacros.h>
+#import <TWCommonLib/NSString+TWBase64Encoding.h>
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
@@ -70,17 +71,21 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   };
   
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
-  credentials = [[RSAEncoder new] encodeString:credentials];
+  
+  if (DEBUG_DISABLE_LOGIN_SIGNUP_ENCRYPTION) {
+    credentials = [credentials tw_base64EncodedString];
+  } else {
+    credentials = [[RSAEncoder new] encodeString:credentials];
+  }
   AssertTrueOr(credentials, FailureCompletionBlock(); return;);
   
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
   NSDictionary *httpHeaders = @{  @"Authorization" : authorizationString  };
   
   [self postPath:kAuthPath parameters:nil customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSString *apiToken = @""; // TODO: obtain API token from the responseObject!!
-    NOT_IMPLEMENTED_YET_RETURN
-    
-    CallBlock(completion, apiToken, nil);
+    NSError *error = nil;
+    NSString *apiToken = [self apiTokenFromResponseObject:responseObject errorRef:&error];
+    CallBlock(completion, apiToken, error);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     CallBlock(completion, nil, error);
   }];
@@ -123,16 +128,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [request setHTTPBody:requestData];
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSDictionary *responseDictionary;
-    if ([responseObject isKindOfClass:[NSDictionary class]]) {
-      responseDictionary = (NSDictionary *)responseObject;
-    }
-    
-    NSString *apiToken = responseDictionary[@"accessToken"];
     NSError *error = nil;
-    if (!apiToken.length) {
-      error = [NSError authenticationTokenError];
-    }
+    NSString *apiToken = [self apiTokenFromResponseObject:responseObject errorRef:&error];
     CallBlock(completion, apiToken, error);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     CallBlock(completion, nil, error);
@@ -142,6 +139,20 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 }
 
 #pragma mark - Auxiliary methods
+
+- (nullable NSString *)apiTokenFromResponseObject:(nullable id)responseObject errorRef:(NSError **)errorRef
+{
+  NSDictionary *responseDictionary;
+  if ([responseObject isKindOfClass:[NSDictionary class]]) {
+    responseDictionary = (NSDictionary *)responseObject;
+  }
+  
+  NSString *apiToken = responseDictionary[@"accessToken"];
+  if (!apiToken.length) {
+    (*errorRef) = [NSError authenticationTokenError];
+  }
+  return apiToken;
+}
 
 - (void)postPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters customHTTPHeaders:(nullable NSDictionary *)httpHeaders success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock
 {

@@ -11,6 +11,7 @@
 #import "UnauthenticatedServerCommunicationController.h"
 #import "SignUpValidator.h"
 #import "AlertFactory.h"
+#import "LoginManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
@@ -121,15 +122,27 @@
 - (IBAction)loginButtonPressed:(id)sender
 {
   if([self validateEmailAndPassword]) {
+    defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, NSError * __nullable error) {
       if (error) {
         [AlertFactory showGenericErrorAlertViewNoRetry];
       } else {
-        // TODO: save API token and dismiss login
-        NOT_IMPLEMENTED_YET_RETURN
+        [weakSelf loginWithApiToken:apiToken];
       }
     }];
   }
+}
+
+- (void)loginWithApiToken:(nonnull NSString *)apiToken
+{
+  defineWeakSelf();
+  [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error) {
+    if (error) {
+      [AlertFactory showGenericErrorAlertViewNoRetry];
+    } else {
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }
+  }];
 }
 
 #pragma mark - UITextFieldDelegate
