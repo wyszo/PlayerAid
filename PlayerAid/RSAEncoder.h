@@ -6,6 +6,7 @@
 
 @interface RSAEncoder : NSObject
 
-- (nonnull NSData *)encodeString:(nonnull NSString *)string;
+- (nonnull NSData *)encodeWithString:(nonnull NSString *)string;
+- (nonnull NSString *)encodeToString:(nonnull NSString *)string;
 
 @end

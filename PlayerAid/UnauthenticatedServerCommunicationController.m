@@ -71,8 +71,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   };
   
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
-  
-  credentials = [[RSAEncoder new] encodeString:credentials];
+  credentials = [[RSAEncoder new] encodeToString:credentials];
   AssertTrueOr(credentials, FailureCompletionBlock(); return;);
   
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
@@ -101,7 +100,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   RSAEncoder *rsaEncoder = [RSAEncoder new];
   NSString *credentials = [NSString stringWithFormat:@"{\"email\":\"%@\",\"password\":\"%@\"}", email, password];
   
-  NSData *rsaEncodedData = [rsaEncoder encodeString:credentials];
+  NSData *rsaEncodedData = [rsaEncoder encodeWithString:credentials];
   AssertTrueOr(rsaEncodedData.length, FailureCompletionBlock(); return;);
   
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
