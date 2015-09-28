@@ -31,7 +31,6 @@
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
 		3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */; };
 		3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */; };
-		3109125E1BB408DE007536B6 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 3109125D1BB408DE007536B6 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */; };
 		31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */; };
 		311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114864F1ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m */; };
@@ -115,6 +114,8 @@
 		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
 		31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */; };
 		31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */; };
+		31D91AEA1BB9D62E0013C7D3 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31D91AE91BB9D62E0013C7D3 /* production.cert.der */; settings = {ASSET_TAGS = (); }; };
+		31D91AEC1BB9E8F60013C7D3 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
@@ -193,7 +194,6 @@
 		3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistedUsersProperties.m; sourceTree = "<group>"; };
 		3108E77E1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCameraViewStandardDelegateObject.h; sourceTree = "<group>"; };
 		3108E77F1AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCameraViewStandardDelegateObject.m; sourceTree = "<group>"; };
-		3109125D1BB408DE007536B6 /* staging.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = staging.cert.der; sourceTree = "<group>"; };
 		31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTutorialStepsView.xib; sourceTree = "<group>"; };
 		31115F9F1AB2E10100836CB1 /* EditTutorialStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTutorialStepsViewController.h; sourceTree = "<group>"; };
 		31115FA01AB2E10100836CB1 /* EditTutorialStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialStepsViewController.m; sourceTree = "<group>"; };
@@ -351,6 +351,8 @@
 		31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialsController.m; sourceTree = "<group>"; };
 		31D8CB111B1CEA28003EE772 /* PlayerAidTabBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAidTabBarHelper.h; sourceTree = "<group>"; };
 		31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAidTabBarHelper.m; sourceTree = "<group>"; };
+		31D91AE91BB9D62E0013C7D3 /* production.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = production.cert.der; sourceTree = "<group>"; };
+		31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = staging.cert.der; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -631,7 +633,8 @@
 		3109125F1BB44B12007536B6 /* Server certificates */ = {
 			isa = PBXGroup;
 			children = (
-				3109125D1BB408DE007536B6 /* staging.cert.der */,
+				31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */,
+				31D91AE91BB9D62E0013C7D3 /* production.cert.der */,
 			);
 			name = "Server certificates";
 			sourceTree = "<group>";
@@ -1713,6 +1716,7 @@
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
+				31D91AEA1BB9D62E0013C7D3 /* production.cert.der in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
@@ -1721,10 +1725,10 @@
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
+				31D91AEC1BB9E8F60013C7D3 /* staging.cert.der in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 				31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */,
-				3109125E1BB408DE007536B6 /* staging.cert.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2032,6 +2036,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c66e8fe1-8aca-40b1-816f-e420694e0a99";
 			};
@@ -2050,6 +2055,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1375a659-534f-4f7c-8e49-75cb86a7200b";
 			};

@@ -8,7 +8,7 @@
 
 @implementation RSAEncoder
 
-- (nonnull NSString *)encodeString:(nonnull NSString *)string
+- (nonnull NSData *)encodeString:(nonnull NSString *)string
 {
   AssertTrueOrReturnNil(string.length);
   
@@ -17,9 +17,9 @@
   
   XRSA *xRsaEncryptor = [[XRSA alloc] initWithPublicKey:certificatePath];
   
-  NSString *encrypted = [xRsaEncryptor encryptToString:string];
-  AssertTrueOrReturnNil(encrypted.length);
-  return encrypted;
+  NSData *encryptedData = [xRsaEncryptor encryptWithString:string];
+  AssertTrueOrReturnNil(encryptedData.length);
+  return encryptedData;
 }
 
 @end

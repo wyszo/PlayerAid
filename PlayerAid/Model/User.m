@@ -115,9 +115,9 @@ static NSString *const kFollowingKey = @"following";
 - (void)placeAvatarInImageView:(UIImageView *)imageView
 {
   AssertTrueOrReturn(imageView);
-  AssertTrueOrReturn(self.pictureURL);
-  
-  [imageView setImageWithURL:[NSURL URLWithString:self.pictureURL]];
+  if (self.pictureURL) { // users creaded using email/signup flow don't need to have a picture
+    [imageView setImageWithURL:[NSURL URLWithString:self.pictureURL]];
+  }
 }
 
 #pragma mark - Tutorials data extraction methods

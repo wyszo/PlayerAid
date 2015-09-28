@@ -287,10 +287,15 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (IBAction)avatarOverlayButtonPressed:(id)sender
 {
   defineWeakSelf();
-  UIViewController *alert = [AlertControllerFactory editProfilePhotoActionControllerFacebookAction:^{
+  VoidBlock updatePhotoFromFacebookAction = ^() {
     [weakSelf makeUpdateAvatarFromFacebookNetworkRequest];
+  };
+  if (!self.user.linkedWithFacebook) {
+    // hide 'Update photo from Facebook' actionSheet option
+    updatePhotoFromFacebookAction = nil;
   }
-  chooseFromLibraryAction:^{
+  
+  UIViewController *alert = [AlertControllerFactory editProfilePhotoActionControllerFacebookAction:updatePhotoFromFacebookAction chooseFromLibraryAction:^{
     [weakSelf.mediaController chooseFromLibrary];
   }
   takePhotoAction:^{

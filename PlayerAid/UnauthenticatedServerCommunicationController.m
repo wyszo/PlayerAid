@@ -72,11 +72,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
   
-  if (DEBUG_DISABLE_LOGIN_SIGNUP_ENCRYPTION) {
-    credentials = [credentials tw_base64EncodedString];
-  } else {
-    credentials = [[RSAEncoder new] encodeString:credentials];
-  }
+  credentials = [[RSAEncoder new] encodeString:credentials];
   AssertTrueOr(credentials, FailureCompletionBlock(); return;);
   
   NSString *authorizationString = [NSString stringWithFormat:@"Basic %@", credentials];
@@ -103,10 +99,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   };
   
   RSAEncoder *rsaEncoder = [RSAEncoder new];
-  
   NSString *credentials = [NSString stringWithFormat:@"{\"email\":\"%@\",\"password\":\"%@\"}", email, password];
-  NSString *rsaEncodedCredentials = [rsaEncoder encodeString:credentials];
-  AssertTrueOr(rsaEncodedCredentials.length, FailureCompletionBlock(); return;);
+  
+  NSData *rsaEncodedData = [rsaEncoder encodeString:credentials];
+  AssertTrueOr(rsaEncodedData.length, FailureCompletionBlock(); return;);
   
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
@@ -116,16 +112,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setHTTPMethod:@"POST"];
   
-  NSString *requestCredentials = rsaEncodedCredentials;
-  if (DEBUG_DISABLE_LOGIN_SIGNUP_ENCRYPTION) {
-    requestCredentials = credentials;
-  }
-  
   NSDictionary *httpHeaders = @{ @"X-Authenticate" : @"true", @"Content-type" : @"application/json", @"Accept" : @"application/json"};
   
-  NSData *requestData = [requestCredentials dataUsingEncoding:NSUTF8StringEncoding];
   [request addHttpHeadersFromDictionary:httpHeaders];
-  [request setHTTPBody:requestData];
+  [request setHTTPBody:rsaEncodedData];
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
