@@ -8,5 +8,6 @@
 + (NSError *)incorrectServerResponseError;
 + (NSError *)tutorialStepSubmissionError;
 + (NSError *)incorrectParameterError;
++ (NSError *)authenticationTokenError;
 
 @end

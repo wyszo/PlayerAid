@@ -9,6 +9,9 @@
 #import "NSURL+URLString.h"
 #import "EnvironmentSettings.h"
 #import "RSAEncoder.h"
+#import "DebugSettings.h"
+#import "NSError+PlayerAidErrors.h"
+#import "LoginManager.h"
 
 static NSString *const kAuthPath = @"auth";
 static NSString *const kUserPath = @"user";
@@ -96,26 +99,41 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   RSAEncoder *rsaEncoder = [RSAEncoder new];
   
-  NSString *credentials = [NSString stringWithFormat:@"{ \"email\" : \"%@\", \"password\" : \"%@\" }", email, password];
+  NSString *credentials = [NSString stringWithFormat:@"{\"email\":\"%@\",\"password\":\"%@\"}", email, password];
   NSString *rsaEncodedCredentials = [rsaEncoder encodeString:credentials];
   AssertTrueOr(rsaEncodedCredentials.length, FailureCompletionBlock(); return;);
   
   AFHTTPRequestOperationManager *operationManagerNoCache = [self requestOperationManagerBypassignCache];
   
-  NSURL *url = [NSURL URLWithPath:kUserPath baseURL:operationManagerNoCache.baseURL];
+  NSString *serverURLString = [[EnvironmentSettings new] serverBaseURL];
+  NSURL *url = [NSURL URLWithPath:kUserPath baseURL:[NSURL URLWithString:serverURLString]];
   AssertTrueOrReturn(url);
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setHTTPMethod:@"POST"];
   
-  NSData *requestData = [rsaEncodedCredentials dataUsingEncoding:NSUTF8StringEncoding];
-  [request addHttpHeadersFromDictionary:@{ @"X-Authenticate" : @"true", @"Content-type" : @"application/json"}];
+  NSString *requestCredentials = rsaEncodedCredentials;
+  if (DEBUG_DISABLE_LOGIN_SIGNUP_ENCRYPTION) {
+    requestCredentials = credentials;
+  }
+  
+  NSDictionary *httpHeaders = @{ @"X-Authenticate" : @"true", @"Content-type" : @"application/json", @"Accept" : @"application/json"};
+  
+  NSData *requestData = [requestCredentials dataUsingEncoding:NSUTF8StringEncoding];
+  [request addHttpHeadersFromDictionary:httpHeaders];
   [request setHTTPBody:requestData];
   
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSString *apiToken = @""; // TODO: obtain API token from the responseObject???
-    NOT_IMPLEMENTED_YET_RETURN
+    NSDictionary *responseDictionary;
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+      responseDictionary = (NSDictionary *)responseObject;
+    }
     
-    CallBlock(completion, apiToken, nil);
+    NSString *apiToken = responseDictionary[@"accessToken"];
+    NSError *error = nil;
+    if (!apiToken.length) {
+      error = [NSError authenticationTokenError];
+    }
+    CallBlock(completion, apiToken, error);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     CallBlock(completion, nil, error);
   }];

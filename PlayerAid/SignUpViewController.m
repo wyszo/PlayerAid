@@ -12,6 +12,7 @@
 #import "LoginAppearanceHelper.h"
 #import "LoginSignUpComponentsConfigurator.h"
 #import "ColorsHelper.h"
+#import "LoginManager.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
@@ -60,8 +61,15 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 - (void)sendDebugSignUpRequestIfNeeded
 {
   if (DEBUG_SEND_SIGNUP_REQUEST) {
+    // TODO: move the implementation to a separate debug class
+    
+    defineWeakSelf();
     DISPATCH_AFTER(1.0, ^{
-      [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:@"test@test.test" password:@"blablabla" completion:^(NSString * _Nullable apiToken, NSError * _Nullable error) {
+      NSInteger randomNumber = 1000 + arc4random_uniform(9000);
+      NSString *emailAddress = [NSString stringWithFormat:@"test%ld@test.test", randomNumber];
+    
+      [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:emailAddress password:@"blablabla" completion:^(NSString * _Nullable apiToken, NSError * _Nullable error) {
+        [weakSelf loginUsingApiToken:apiToken];
         NSLog(@"DEBUG SIGNUP REQUEST SEND");
       }];
     });
@@ -178,15 +186,29 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 - (IBAction)signUpButtonPressed:(id)sender
 {
   if([self validateEmailAndPassword]) {
+    defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
       if (error) {
         [AlertFactory showGenericErrorAlertViewNoRetry];
       } else {
-        // TODO: save API token and dismiss login
-        NOT_IMPLEMENTED_YET_RETURN
+        [weakSelf loginUsingApiToken:apiToken];
       }
     }];
   }
+}
+
+- (void)loginUsingApiToken:(nonnull NSString *)apiToken
+{
+  AssertTrueOrReturn(apiToken.length);
+  
+  defineWeakSelf();
+  [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
+    if (!error) {
+      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    } else {
+      [AlertFactory showGenericErrorAlertViewNoRetry];
+    }
+  }];
 }
 
 #pragma mark - TTTAttributedLabelDelegate
