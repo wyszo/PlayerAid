@@ -78,7 +78,7 @@
   
   FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
     if (!error) {
-      [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
+      [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:YES completion:^(NSError *error){
         [weakViewController dismissViewControllerAnimated:YES completion:nil];
       }];
     }

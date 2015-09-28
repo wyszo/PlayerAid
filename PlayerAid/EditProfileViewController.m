@@ -263,7 +263,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (void)saveCurrentUserFromUserDictionary:(NSDictionary *)userDictionary
 {
   AssertTrueOrReturn(userDictionary.count);
-  [[UsersFetchController sharedInstance] updateLoggedInUserObjectWithDictionary:userDictionary];
+  [[UsersFetchController sharedInstance] updateLoggedInUserObjectWithDictionary:userDictionary userLinkedWithFacebook:nil];
   [self populateDataFromUserObject];
 }
 

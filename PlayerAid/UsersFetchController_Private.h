@@ -7,6 +7,9 @@
 
 @interface UsersFetchController (Private)
 
-- (void)updateLoggedInUserObjectWithDictionary:(NSDictionary *)dictionary;
+/**
+ @param linkedWithFacebook  optional - if set, it'll set user's linkedWithFacebook property
+ */
+- (void)updateLoggedInUserObjectWithDictionary:(nonnull NSDictionary *)dictionary userLinkedWithFacebook:(nullable NSNumber *)linkedWithFacebook;
 
 @end

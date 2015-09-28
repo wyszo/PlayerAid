@@ -4,6 +4,7 @@
 #import "_User.h"
 
 const struct UserAttributes UserAttributes = {
+	.linkedWithFacebook = @"linkedWithFacebook",
 	.loggedInUser = @"loggedInUser",
 	.name = @"name",
 	.pictureURL = @"pictureURL",
@@ -44,6 +45,11 @@ const struct UserRelationships UserRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"linkedWithFacebookValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"linkedWithFacebook"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"loggedInUserValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"loggedInUser"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -56,6 +62,26 @@ const struct UserRelationships UserRelationships = {
 	}
 
 	return keyPaths;
+}
+
+@dynamic linkedWithFacebook;
+
+- (BOOL)linkedWithFacebookValue {
+	NSNumber *result = [self linkedWithFacebook];
+	return [result boolValue];
+}
+
+- (void)setLinkedWithFacebookValue:(BOOL)value_ {
+	[self setLinkedWithFacebook:@(value_)];
+}
+
+- (BOOL)primitiveLinkedWithFacebookValue {
+	NSNumber *result = [self primitiveLinkedWithFacebook];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveLinkedWithFacebookValue:(BOOL)value_ {
+	[self setPrimitiveLinkedWithFacebook:@(value_)];
 }
 
 @dynamic loggedInUser;

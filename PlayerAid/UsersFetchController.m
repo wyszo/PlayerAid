@@ -38,7 +38,17 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }
 }
 
+- (void)fetchCurrentUserProfileUserLinkedWithFacebook:(BOOL)userLinkedWithFacebook
+{
+  [self fetchCurrentUserProfileFacebookUser:@(userLinkedWithFacebook)];
+}
+
 - (void)fetchCurrentUserProfile
+{
+  [self fetchCurrentUserProfileFacebookUser:nil];
+}
+
+- (void)fetchCurrentUserProfileFacebookUser:(nullable NSNumber *)userLinkedWithFacebook
 {
   __weak typeof(self) weakSelf = self;
   [[AuthenticatedServerCommunicationController sharedInstance] getCurrentUserCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -62,7 +72,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       [weakSelf dismissBlockingAlertView];
       
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
-      [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject];
+      [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject userLinkedWithFacebook:userLinkedWithFacebook];
     }
   }];
 }
@@ -85,7 +95,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Updating User Object
 
-- (void)updateLoggedInUserObjectWithDictionary:(NSDictionary *)dictionary
+- (void)updateLoggedInUserObjectWithDictionary:(nonnull NSDictionary *)dictionary userLinkedWithFacebook:(nullable NSNumber *)linkedWithFacebook
 {
   AssertTrueOrReturn(dictionary.count);
   
@@ -95,6 +105,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       user = [User MR_createInContext:localContext];
     }
     [user setLoggedInUserValue:YES];
+    
+    if (linkedWithFacebook) {
+      [user setLinkedWithFacebookValue:linkedWithFacebook.boolValue];
+    }
     [user configureFromDictionary:dictionary];
   }];
 }

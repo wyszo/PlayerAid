@@ -136,7 +136,7 @@
 - (void)loginWithApiToken:(nonnull NSString *)apiToken
 {
   defineWeakSelf();
-  [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error) {
+  [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:NO completion:^(NSError *error) {
     if (error) {
       [AlertFactory showGenericErrorAlertViewNoRetry];
     } else {

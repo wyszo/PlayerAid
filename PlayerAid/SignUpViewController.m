@@ -202,7 +202,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   AssertTrueOrReturn(apiToken.length);
   
   defineWeakSelf();
-  [[LoginManager new] loginWithApiToken:apiToken completion:^(NSError *error){
+  [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:NO completion:^(NSError *error){
     if (!error) {
       [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } else {

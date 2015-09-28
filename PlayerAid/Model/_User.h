@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct UserAttributes {
+	__unsafe_unretained NSString *linkedWithFacebook;
 	__unsafe_unretained NSString *loggedInUser;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *pictureURL;
@@ -31,6 +32,14 @@ extern const struct UserRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) UserID* objectID;
+
+@property (nonatomic, strong) NSNumber* linkedWithFacebook;
+
+@property (atomic) BOOL linkedWithFacebookValue;
+- (BOOL)linkedWithFacebookValue;
+- (void)setLinkedWithFacebookValue:(BOOL)value_;
+
+//- (BOOL)validateLinkedWithFacebook:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* loggedInUser;
 
@@ -111,6 +120,12 @@ extern const struct UserRelationships {
 @end
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveLinkedWithFacebook;
+- (void)setPrimitiveLinkedWithFacebook:(NSNumber*)value;
+
+- (BOOL)primitiveLinkedWithFacebookValue;
+- (void)setPrimitiveLinkedWithFacebookValue:(BOOL)value_;
 
 - (NSNumber*)primitiveLoggedInUser;
 - (void)setPrimitiveLoggedInUser:(NSNumber*)value;

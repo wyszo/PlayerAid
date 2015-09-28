@@ -18,6 +18,12 @@
 
 @implementation ServerDataUpdateController
 
++ (void)updateUserAndTutorialsUserLinkedWithFacebook:(BOOL)linkedWithFacebook
+{
+  [[UsersFetchController sharedInstance] fetchCurrentUserProfileUserLinkedWithFacebook:linkedWithFacebook];
+  [[TutorialListFetchController sharedInstance] fetchTutorials];
+}
+
 + (void)updateUserAndTutorials
 {
   [[UsersFetchController sharedInstance] fetchCurrentUserProfile];
