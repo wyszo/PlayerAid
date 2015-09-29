@@ -79,6 +79,7 @@
 #import "UIViewController+Navbar.h"
 #import "UIViewController+PerformSegueMapping.h"
 #import "UIViewController+TWNotificationObserving.h"
+#import "UIViewController+TWResponderChain.h"
 
 FOUNDATION_EXPORT double TWCommonLibVersionNumber;
 FOUNDATION_EXPORT const unsigned char TWCommonLibVersionString[];
