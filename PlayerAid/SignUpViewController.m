@@ -55,7 +55,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self setupTextFieldsFormHelper];
   [self setupBottomTextView];
   
-  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookSignUpContainerView dismissViewControllerOnCompletion:self];
+  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookSignUpContainerView parentViewControllerToDismissOnCompletion:self];
   
   [self sendDebugSignUpRequestIfNeeded];
 }

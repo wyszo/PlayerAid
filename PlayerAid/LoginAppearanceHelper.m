@@ -3,6 +3,7 @@
 //
 
 #import <FLKAutolayout/UIView+FLKAutolayout.h>
+#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
 #import "LoginAppearanceHelper.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
@@ -71,15 +72,20 @@
 
 #pragma mark - Facebook login button
 
-- (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView dismissViewControllerOnCompletion:(nullable UIViewController *)viewControllerToDismiss
+- (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView parentViewControllerToDismissOnCompletion:(nullable UIViewController *)parentViewController
 {
   AssertTrueOrReturnNil(containerView);
-  __weak typeof(viewControllerToDismiss) weakViewController = viewControllerToDismiss;
+  __weak typeof(parentViewController) weakViewController = parentViewController;
   
   FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
     if (!error) {
+      TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
+      [parentViewController.navigationController.view addSubview:activityIndicator];
+      
       [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:YES completion:^(NSError *error){
-        [weakViewController dismissViewControllerAnimated:YES completion:nil];
+        [weakViewController dismissViewControllerAnimated:YES completion:^() {
+          [activityIndicator dismiss];
+        }];
       }];
     }
   }];

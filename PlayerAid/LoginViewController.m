@@ -38,7 +38,7 @@
   
   self.validator = [SignUpValidator new];
   self.appearanceHelper = [LoginAppearanceHelper new];
-  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookLoginContainerView dismissViewControllerOnCompletion:self];
+  [self.appearanceHelper addFacebookLoginButtonToFillContainerView:self.facebookLoginContainerView parentViewControllerToDismissOnCompletion:self];
   
   [self skinView];
   [self setupTextFields];
