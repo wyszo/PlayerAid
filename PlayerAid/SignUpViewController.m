@@ -3,6 +3,7 @@
 //
 
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
+#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
 #import <TWCommonLib/UIViewController+TWResponderChain.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "SignUpViewController.h"
@@ -70,7 +71,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
       NSString *emailAddress = [NSString stringWithFormat:@"test%ld@test.test", randomNumber];
     
       [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:emailAddress password:@"blablabla" completion:^(NSString * _Nullable apiToken, NSError * _Nullable error) {
-        [weakSelf loginUsingApiToken:apiToken];
+        [weakSelf loginUsingApiToken:apiToken completion:nil];
         NSLog(@"DEBUG SIGNUP REQUEST SEND");
       }];
     });
@@ -189,27 +190,36 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   [self tw_resignFirstResponder];
   
   if([self validateEmailAndPassword]) {
+    TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
+    [self.navigationController.view addSubview:activityIndicator];
+    
     defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
       if (error) {
+        [activityIndicator dismiss];
         [AlertFactory showGenericErrorAlertViewNoRetry];
       } else {
-        [weakSelf loginUsingApiToken:apiToken];
+        [weakSelf loginUsingApiToken:apiToken completion:^(){
+          [activityIndicator dismiss];
+        }];
       }
     }];
   }
 }
 
-- (void)loginUsingApiToken:(nonnull NSString *)apiToken
+- (void)loginUsingApiToken:(nonnull NSString *)apiToken completion:(nullable VoidBlock)completion
 {
   AssertTrueOrReturn(apiToken.length);
   
   defineWeakSelf();
   [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:NO completion:^(NSError *error){
     if (!error) {
-      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      [weakSelf dismissViewControllerAnimated:YES completion:^() {
+        CallBlock(completion, nil);
+      }];
     } else {
       [AlertFactory showGenericErrorAlertViewNoRetry];
+      CallBlock(completion, nil);
     }
   }];
 }
