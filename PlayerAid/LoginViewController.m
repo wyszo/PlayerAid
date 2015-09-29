@@ -4,6 +4,7 @@
 
 #import <FLKAutolayout/UIView+FLKAutolayout.h>
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
+#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
 #import "LoginViewController.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
@@ -122,25 +123,34 @@
 - (IBAction)loginButtonPressed:(id)sender
 {
   if([self validateEmailAndPassword]) {
+    TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
+    [self.navigationController.view addSubview:activityIndicator];
+    
     defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, NSError * __nullable error) {
       if (error) {
+        [activityIndicator dismiss];
         [AlertFactory showGenericErrorAlertViewNoRetry];
       } else {
-        [weakSelf loginWithApiToken:apiToken];
+        [weakSelf loginWithApiToken:apiToken completion:^{
+          [activityIndicator dismiss];
+        }];
       }
     }];
   }
 }
 
-- (void)loginWithApiToken:(nonnull NSString *)apiToken
+- (void)loginWithApiToken:(nonnull NSString *)apiToken completion:(nullable VoidBlock)completion
 {
   defineWeakSelf();
   [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:NO completion:^(NSError *error) {
     if (error) {
       [AlertFactory showGenericErrorAlertViewNoRetry];
+      CallBlock(completion, nil);
     } else {
-      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      [weakSelf dismissViewControllerAnimated:YES completion:^() {
+        CallBlock(completion, nil);
+      }];
     }
   }];
 }
