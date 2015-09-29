@@ -4,7 +4,8 @@
 
 #import <FLKAutolayout/UIView+FLKAutolayout.h>
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
-#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
+#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
+#import <TWCommonLib/UIViewController+TWResponderChain.h>
 #import "LoginViewController.h"
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
@@ -122,6 +123,8 @@
 
 - (IBAction)loginButtonPressed:(id)sender
 {
+  [self tw_resignFirstResponder];
+  
   if([self validateEmailAndPassword]) {
     TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
     [self.navigationController.view addSubview:activityIndicator];

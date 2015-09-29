@@ -3,6 +3,7 @@
 //
 
 #import <TWCommonLib/TWTextFieldsFormHelper.h>
+#import <TWCommonLib/UIViewController+TWResponderChain.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
@@ -185,6 +186,8 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (IBAction)signUpButtonPressed:(id)sender
 {
+  [self tw_resignFirstResponder];
+  
   if([self validateEmailAndPassword]) {
     defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
