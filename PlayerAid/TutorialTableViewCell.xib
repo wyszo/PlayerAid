@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jBq-6U-qF8" id="Gdk-OC-wt1">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="241"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="241.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
@@ -23,44 +23,44 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
-                        <rect key="frame" x="16" y="138" width="230" height="36"/>
+                        <rect key="frame" x="16" y="127" width="230" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="2zP-2i-5WL"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
-                        <rect key="frame" x="50" y="183" width="76" height="21"/>
+                        <rect key="frame" x="62" y="177" width="88.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" priority="100" constant="193" id="cm6-Tz-0Ie"/>
                             <constraint firstAttribute="height" constant="21" id="gXA-w8-yvP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-RJ-Tmc" userLabel="Avatar Image View">
-                        <rect key="frame" x="16" y="179" width="30" height="30"/>
+                        <rect key="frame" x="16" y="167" width="42" height="42"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="DH6-7m-fNO"/>
-                            <constraint firstAttribute="width" constant="30" id="ZqS-Vu-gUO"/>
+                            <constraint firstAttribute="height" constant="42" id="DH6-7m-fNO"/>
+                            <constraint firstAttribute="width" constant="42" id="ZqS-Vu-gUO"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-Pj-OYA">
-                        <rect key="frame" x="254" y="145" width="50" height="28"/>
+                        <rect key="frame" x="254" y="139" width="50" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="3sp-gm-Mer"/>
                             <constraint firstAttribute="height" constant="28" id="x0D-03-GGU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-L3-4O4" userLabel="Like button">
-                        <rect key="frame" x="276" y="8" width="44" height="44"/>
+                        <rect key="frame" x="268" y="8" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="4Iw-eX-vo2"/>
                             <constraint firstAttribute="height" constant="44" id="RVP-GF-cK6"/>
@@ -72,8 +72,8 @@
                             <action selector="favouriteButtonPressed:" destination="jBq-6U-qF8" eventType="touchUpInside" id="IVh-H1-I4A"/>
                         </connections>
                     </button>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
-                        <rect key="frame" x="235" y="179" width="69" height="30"/>
+                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
+                        <rect key="frame" x="242" y="173" width="62" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="MJS-r6-0kQ"/>
@@ -86,7 +86,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
-                        <rect key="frame" x="235" y="179" width="69" height="30"/>
+                        <rect key="frame" x="242" y="173" width="62" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exw-H4-PlW" userLabel="BottomGapView">
@@ -97,10 +97,11 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCI-Ek-nfe" userLabel="Author Button">
-                        <rect key="frame" x="0.0" y="172" width="136" height="45"/>
+                        <rect key="frame" x="0.0" y="166" width="160.5" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="cTq-6c-Hsx"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -110,11 +111,11 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="gdZ-L3-4O4" secondAttribute="trailing" id="1ar-Dq-cZM"/>
+                    <constraint firstAttribute="trailing" secondItem="gdZ-L3-4O4" secondAttribute="trailing" constant="8" id="1ar-Dq-cZM"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="width" secondItem="n6d-ft-6nn" secondAttribute="width" id="2wB-lM-3G9"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="l9K-RJ-Tmc" secondAttribute="bottom" constant="14" id="3m0-hS-4wE"/>
                     <constraint firstItem="PCI-Ek-nfe" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="A5I-F9-ofO"/>
-                    <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="5" id="BgC-VH-a8f"/>
+                    <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="4" id="BgC-VH-a8f"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" constant="-0.5" id="CPW-2X-bUt"/>
                     <constraint firstAttribute="trailing" secondItem="hII-NL-LnG" secondAttribute="trailing" id="Cwa-Ib-YRs"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="height" secondItem="n6d-ft-6nn" secondAttribute="height" id="Fgc-98-eBH"/>

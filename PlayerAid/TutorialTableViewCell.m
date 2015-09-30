@@ -13,12 +13,9 @@
 #import "SectionLabelContainer.h"
 #import "GradientView.h"
 
-
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 
-
 @interface TutorialTableViewCell ()
-
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -30,9 +27,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
 @property (weak, nonatomic) Tutorial *tutorial;
-
 @end
-
 
 
 @implementation TutorialTableViewCell
