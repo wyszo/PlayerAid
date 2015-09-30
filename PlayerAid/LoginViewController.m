@@ -68,7 +68,7 @@
   self.textFieldsFormHelper = [[TWTextFieldsFormHelper alloc] initWithTextFieldsToChain:textFields];
 }
 
-#pragma mark - Other methods
+#pragma mark - UI helper methods
 
 - (void)setEmailTextFieldsTextColorRed
 {
@@ -119,6 +119,38 @@
   return YES;
 }
 
+#pragma mark - Error handling
+
+- (void)displayLoginAlertForServerResponse:(id)responseObject
+{
+  AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+  
+  NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+  AssertTrueOrReturn(responseDictionary.count);
+  
+  NSNumber *errorCode = responseDictionary[@"error"];
+  [self displayLoginAlertForErrorCode:errorCode.integerValue];
+}
+
+- (void)displayLoginAlertForErrorCode:(NSInteger)errorCode
+{
+  NSInteger kObsoleteGenericLoginErrorCode = 1200;
+  
+  NSDictionary *loginErrorCodesMapping = @{
+                                           @(kObsoleteGenericLoginErrorCode) : @"Invalid Login Credentials", // lexem needs approval
+                                           @(1201) : @"Email address unrecognized", // lexem needs approval
+                                           @(1202) : @"That’s not the right password, sorry",
+                                           @(1203) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!'", // lexem needs approval
+                                           @(1204) : @"That doesn't seem like a valid email address. Can you try again?",
+                                          };
+  NSString *errorMessage = loginErrorCodesMapping[@(errorCode)];
+  if (!errorMessage.length) {
+    [AlertFactory showGenericErrorAlertViewNoRetry];
+  } else {
+    [TWAlertFactory showOKAlertViewWithMessage:errorMessage];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)loginButtonPressed:(id)sender
@@ -130,10 +162,10 @@
     [self.navigationController.view addSubview:activityIndicator];
     
     defineWeakSelf();
-    [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, NSError * __nullable error) {
+    [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, id responseObject, NSError * __nullable error) {
       if (error) {
         [activityIndicator dismiss];
-        [AlertFactory showGenericErrorAlertViewNoRetry];
+        [self displayLoginAlertForServerResponse:responseObject];
       } else {
         [weakSelf loginWithApiToken:apiToken completion:^{
           [activityIndicator dismiss];

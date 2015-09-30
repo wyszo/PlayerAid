@@ -57,6 +57,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       // possible error codes:
       // 1100 - facebook token invalid
       // 1101 - facebook token expired
+      // TODO: handle error code for email already used to register using email/password 
       
       [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
     }

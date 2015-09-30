@@ -59,7 +59,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }];
 }
 
-- (void)loginWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken,  NSError * __nullable error))completion
+- (void)loginWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password completion:(nullable void (^)( NSString * __nullable apiToken, id responseObject, NSError * __nullable error))completion
 {
   AssertTrueOrReturn(email.length);
   AssertTrueOrReturn(password.length);
@@ -67,7 +67,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   void (^FailureCompletionBlock)() = ^() {
     NSInteger errorCode = 10;
     NSError *error = [NSError errorWithDomain:@"RSAEncoding" code:errorCode userInfo:nil];
-    CallBlock(completion, nil, error);
+    CallBlock(completion, nil, nil, error);
   };
   
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", email, password];
@@ -80,9 +80,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self postPath:kAuthPath parameters:nil customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
     NSString *apiToken = [self apiTokenFromResponseObject:responseObject errorRef:&error];
-    CallBlock(completion, apiToken, error);
+    CallBlock(completion, apiToken, responseObject, error);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, error);
+    CallBlock(completion, nil, operation.responseObject, error);
   }];
 }
 
@@ -94,7 +94,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   void (^FailureCompletionBlock)() = ^(){
     NSInteger errorCode = 11;
     NSError *error = [NSError errorWithDomain:@"DataCorruption" code:errorCode userInfo:nil];
-    CallBlock(completion, nil, error);
+    CallBlock(completion, nil, nil, error);
   };
   
   RSAEncoder *rsaEncoder = [RSAEncoder new];
@@ -119,9 +119,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AFHTTPRequestOperation *operation = [operationManagerNoCache HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
     NSString *apiToken = [self apiTokenFromResponseObject:responseObject errorRef:&error];
-    CallBlock(completion, apiToken, error);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, error);
+    CallBlock(completion, apiToken, responseObject, error);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {    
+    CallBlock(completion, nil, operation.responseObject, error);
   }];
   
   [operationManagerNoCache.operationQueue addOperation:operation];

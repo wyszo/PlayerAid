@@ -4,7 +4,7 @@
 
 @class AuthenticationRequestData;
 
-typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken,  NSError * __nullable error);
+typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken, id responseObject, NSError * __nullable error);
 
 
 /**

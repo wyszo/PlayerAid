@@ -19,6 +19,8 @@
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
+static NSString *const kInvalidEmailAddressMessage = @"That doesn't seem like a valid email address. Can you try again?";
+
 
 @interface SignUpViewController () <UITextFieldDelegate, TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *textFieldContainers;
@@ -62,16 +64,24 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
 
 - (void)sendDebugSignUpRequestIfNeeded
 {
-  if (DEBUG_SEND_SIGNUP_REQUEST) {
+  if (DEBUG_SEND_VALID_SIGNUP_REQUEST || DEBUG_SEND_INVALID_SIGNUP_REQUEST) {
     // TODO: move the implementation to a separate debug class
     
     defineWeakSelf();
     DISPATCH_AFTER(1.0, ^{
-      NSInteger randomNumber = 1000 + arc4random_uniform(9000);
-      NSString *emailAddress = [NSString stringWithFormat:@"test%ld@test.test", randomNumber];
+      NSInteger testAccountNumber = 8855;
+      
+      if (DEBUG_SEND_VALID_SIGNUP_REQUEST) {
+        testAccountNumber = 1000 + arc4random_uniform(9000);
+      }
+      NSString *emailAddress = [NSString stringWithFormat:@"test%ld@test.test", testAccountNumber];
     
-      [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:emailAddress password:@"blablabla" completion:^(NSString * _Nullable apiToken, NSError * _Nullable error) {
-        [weakSelf loginUsingApiToken:apiToken completion:nil];
+      [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:emailAddress password:@"blablabla" completion:^(NSString * _Nullable apiToken, id responseObject, NSError * _Nullable error) {
+        if (error) {
+          [weakSelf displaySignUpServerError:((NSDictionary *)responseObject)];
+        } else {
+          [weakSelf loginUsingApiToken:apiToken completion:nil];
+        }
         NSLog(@"DEBUG SIGNUP REQUEST SEND");
       }];
     });
@@ -162,7 +172,7 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   
   BOOL emailValid = [self.validator validateEmail:[self emailAddress]];
   if (!emailValid) {
-    [TWAlertFactory showOKAlertViewWithMessage:@"That doesn't seem like a valid email address. Can you try again?"];
+    [TWAlertFactory showOKAlertViewWithMessage:kInvalidEmailAddressMessage];
     [self setEmailTextFieldsTextColorRed];
     return NO;
   }
@@ -183,6 +193,40 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
   return YES;
 }
 
+#pragma mark - Auxiliary methods
+
+- (NSString *)signupErrorForErrorCode:(NSInteger)errorCode
+{
+  NSDictionary *signUpErrorCodesMapping = @{
+                                      @(5200) : kInvalidEmailAddressMessage,
+                                      @(5201) : @"Email address already in use!", // lexem needs approval
+                                      @(5202) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!", // lexem needs approval
+                                      @(5300) : @"We want to keep your account safe, so we ask that your password has at least 6 characters.",
+                                      @(5301) : @"Password to weak!" // lexem needs approval
+                                      };
+  NSString *errorMessage = signUpErrorCodesMapping[@(errorCode)];
+  return errorMessage;
+}
+
+- (void)displaySignUpServerError:(nonnull NSDictionary *)serverResponseDictionary
+{
+  AssertTrueOrReturn(serverResponseDictionary.count);
+  NSNumber *errorCode = serverResponseDictionary[@"error"];
+  
+  NSString *errorMessage = [self signupErrorForErrorCode:[errorCode integerValue]];
+  if (!errorMessage.length) {
+    // fallback to message from server
+    errorMessage = serverResponseDictionary[@"errorMessage"];
+  }
+  
+  if (errorMessage.length) {
+    [TWAlertFactory showOKAlertViewWithMessage:errorMessage];
+  } else {
+    // fallback to generic error message
+    [AlertFactory showGenericErrorAlertView];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)signUpButtonPressed:(id)sender
@@ -194,10 +238,11 @@ static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";
     [self.navigationController.view addSubview:activityIndicator];
     
     defineWeakSelf();
-    [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken,  NSError * __nullable error) {
+    [[UnauthenticatedServerCommunicationController sharedInstance] signUpWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, id responseObject, NSError * __nullable error) {
       if (error) {
         [activityIndicator dismiss];
-        [AlertFactory showGenericErrorAlertViewNoRetry];
+        AssertTrueOr([responseObject isKindOfClass:[NSDictionary class]],);
+        [self displaySignUpServerError:((NSDictionary *)responseObject)];
       } else {
         [weakSelf loginUsingApiToken:apiToken completion:^(){
           [activityIndicator dismiss];
