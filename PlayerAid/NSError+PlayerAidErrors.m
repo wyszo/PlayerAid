@@ -12,6 +12,7 @@ static const NSInteger kIncorrectResponseErrorCode = 501;
 static const NSInteger kTutorialStepSubmissionErrorCode = 502;
 static const NSInteger kIncorrectParameterErrorCode = 503;
 static const NSInteger kAuthenticationTokenParameterErrorCode = 504;
+static const NSInteger kEmailAddressAlreadyUsedForRegistration = 505;
 
 
 #define ErrorMethodMake(methodName,errorCode) + (NSError *)methodName { return [[NSError alloc] initWithDomain:kPlayerAidServerDomain code:errorCode userInfo:nil]; }
@@ -24,5 +25,6 @@ ErrorMethodMake(incorrectServerResponseError, kIncorrectResponseErrorCode)
 ErrorMethodMake(tutorialStepSubmissionError, kTutorialStepSubmissionErrorCode)
 ErrorMethodMake(incorrectParameterError, kIncorrectParameterErrorCode)
 ErrorMethodMake(authenticationTokenError, kAuthenticationTokenParameterErrorCode)
+ErrorMethodMake(emailAddressAlreadyUsedForRegistrationError, kEmailAddressAlreadyUsedForRegistration)
 
 @end

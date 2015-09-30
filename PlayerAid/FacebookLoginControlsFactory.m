@@ -7,6 +7,7 @@
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "DataExtractionHelper.h"
+#import "NSError+PlayerAidErrors.h"
 
 
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
@@ -51,17 +52,24 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 {
   __weak typeof(self) weakSelf = self;
   [UnauthenticatedServerCommunicationController requestAPITokenWithAuthenticationRequestData:authRequestData completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+
     if (error) {
       NSLog(@"Internal authentication failure!");
       
       // possible error codes:
       // 1100 - facebook token invalid
       // 1101 - facebook token expired
-      // TODO: handle error code for email already used to register using email/password 
+      // ???  - email address already registered
       
-      [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData completion:completion];
+      if ([self emailAddressAlreadyUsedForRegistrationWithRequestApiTokenServerResponse:responseObject]) {
+        NSError *error = [NSError emailAddressAlreadyUsedForRegistrationError];
+        CallBlock(completion, nil, error);
+        return;
+      } else {
+        [weakSelf showServerUnreachableAlert:showErrorOnFailure andRetryAuthenticationRequestAfterDelayWithData:authRequestData   completion:completion];
+      }
     }
-    else {
+    else if (!error) {
       NSString *accessToken = [weakSelf accessTokenFromResponseObject:responseObject];
       if (accessToken.length == 0) {
         NSLog(@"Internal authentication failure!");
@@ -77,6 +85,23 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       }
     }
   }];
+}
+
+- (BOOL)emailAddressAlreadyUsedForRegistrationWithRequestApiTokenServerResponse:(id)responseObject
+{
+  if (!responseObject) {
+    return NO;
+  }
+  
+  AssertTrueOrReturnNo([responseObject isKindOfClass:[NSDictionary class]]);
+  NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+  NSNumber *errorCode = responseDictionary[@"error"];
+  
+  NSInteger kErrorCodeEmailAlreadyUsedForRegistration = -666; // TODO: replace with real error code
+  if ([errorCode integerValue] == kErrorCodeEmailAlreadyUsedForRegistration) {
+    return YES;
+  }
+  return NO;
 }
 
 - (NSString *)accessTokenFromResponseObject:(id)responseObject

@@ -8,6 +8,8 @@
 #import "ColorsHelper.h"
 #import "FacebookLoginControlsFactory.h"
 #import "LoginManager.h"
+#import "NSError+PlayerAidErrors.h"
+#import "FacebookAuthenticationController.h"
 
 @implementation LoginAppearanceHelper
 
@@ -87,6 +89,9 @@
           [activityIndicator dismiss];
         }];
       }];
+    }  else if (error.code == [NSError emailAddressAlreadyUsedForRegistrationError].code) {
+      [FacebookAuthenticationController logout];
+      [TWAlertFactory showOKAlertViewWithMessage:@"Hey, it looks like you already signed up with email. Please log in using that method!"];
     }
   }];
   

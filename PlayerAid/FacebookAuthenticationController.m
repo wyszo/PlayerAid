@@ -32,6 +32,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 + (void)logout
 {
+  FacebookAuthenticationController *sharedInstance = [FacebookAuthenticationController sharedInstance];
+  sharedInstance.loggedIn = NO;
+  sharedInstance.user = nil;
+  
   [FBSession.activeSession closeAndClearTokenInformation];
 }
 

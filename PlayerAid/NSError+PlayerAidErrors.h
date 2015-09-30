@@ -9,5 +9,6 @@
 + (NSError *)tutorialStepSubmissionError;
 + (NSError *)incorrectParameterError;
 + (NSError *)authenticationTokenError;
++ (NSError *)emailAddressAlreadyUsedForRegistrationError;
 
 @end
