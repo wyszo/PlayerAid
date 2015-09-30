@@ -5,11 +5,10 @@
 #import "TutorialStepTableViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
-static const CGFloat kContentImageMargin = 7.0f;
+static const CGFloat kContentImageMargin = 0.0f;
 
 
-@interface TutorialStepTableViewCell () <NSLayoutManagerDelegate>
-
+@interface TutorialStepTableViewCell ()
 @property (strong, nonatomic) TutorialStep *tutorialStep;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -19,7 +18,6 @@ static const CGFloat kContentImageMargin = 7.0f;
 @property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
 @property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
 @property (strong, nonatomic) NSURL *videoURL;
-
 @end
 
 
@@ -47,7 +45,6 @@ static const CGFloat kContentImageMargin = 7.0f;
 {
   self.tutorialStep = tutorialStep;
   
-  self.textView.layoutManager.delegate = self;
   self.textView.text = tutorialStep.text;
   self.videoPlayImage.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
@@ -103,13 +100,6 @@ static const CGFloat kContentImageMargin = 7.0f;
   self.contentImageHeightAndWidthConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
-}
-
-#pragma mark - NSLayoutManagerDelegate
-
-- (CGFloat)layoutManager:(NSLayoutManager *)layoutManager lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(CGRect)rect
-{
-  return 10.0f;
 }
 
 #pragma mark - Actions
