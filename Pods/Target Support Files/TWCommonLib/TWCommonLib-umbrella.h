@@ -69,6 +69,7 @@
 #import "UIImagePickerController+TWCameraDeviceSwitching.h"
 #import "UIScrollView+StopScrolling.h"
 #import "UITableView+TWRegisterNib.h"
+#import "UITableViewCell+TWHideSeparator.h"
 #import "UITextView+NumberOfLines.h"
 #import "UITextView+TWPadding.h"
 #import "UIView+LayerDecoration.h"
