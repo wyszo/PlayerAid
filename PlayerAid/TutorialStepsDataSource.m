@@ -2,9 +2,7 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWCommonLib.h>
-#import <TWCommonLib/TWCoreDataTableViewDataSource.h>
-#import <TWCommonLib/TWTableViewFetchedResultsControllerBinder+Private.h>
+@import TWCommonLib;
 #import "TutorialStepsDataSource.h"
 #import "MediaPlayerHelper.h"
 #import "AlertFactory.h"
@@ -72,7 +70,9 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
+    
     [weakSelf configureCell:tutorialStepCell atIndexPath:indexPath];
+    [weakSelf updateSeparatorVisiblityForCell:tutorialStepCell atIndexPath:indexPath];
   }];
   
   [self setupTableViewDataSourceCellsEditing];
@@ -170,6 +170,33 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
   tutorialStepCell.delegate = self.cellDelegate;
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)updateSeparatorVisiblityForCell:tutorialStepCell atIndexPath:indexPath
+{
+  if ([self objectForNextIndexPathIsTextStep:indexPath]) {
+    [tutorialStepCell tw_hideSeparator];
+  }
+}
+
+- (BOOL)objectForNextIndexPathIsTextStep:(nonnull NSIndexPath *)indexPath
+{
+  AssertTrueOrReturnNo(indexPath);
+  
+  NSInteger lastObjectIndex = (self.tableViewDataSource.objectCount - 1);
+  if (indexPath.row != lastObjectIndex) {
+    NSIndexPath *nextIndexPath = [indexPath tw_nextRowIndexPath];
+    id nextObject = [self.tableViewDataSource objectAtIndexPath:nextIndexPath];
+    AssertTrueOrReturnNo([nextObject isKindOfClass:[TutorialStep class]]);
+    TutorialStep *nextTutorialStep = (TutorialStep *)nextObject;
+    
+    if (!nextTutorialStep.isTextStep) {
+      return YES;
+    }
+  }
+  return NO;
 }
 
 #pragma mark - Context
