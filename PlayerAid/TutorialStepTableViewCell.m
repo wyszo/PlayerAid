@@ -4,8 +4,10 @@
 
 #import "TutorialStepTableViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <TWCommonLib/UITableViewCell+TWHideSeparator.h>
 
 static const CGFloat kContentImageMargin = 0.0f;
+static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 
 @interface TutorialStepTableViewCell ()
@@ -29,6 +31,7 @@ static const CGFloat kContentImageMargin = 0.0f;
 {
   [super awakeFromNib];
   self.selectionStyle = UITableViewCellSelectionStyleNone;
+  self.layoutMargins = UIEdgeInsetsZero; // required for hiding cell separator
   [self setupGestureRecognizers];
 }
 
@@ -48,6 +51,7 @@ static const CGFloat kContentImageMargin = 0.0f;
   self.textView.text = tutorialStep.text;
   self.videoPlayImage.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
+  [self updateSeparatorVisibility];
 }
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep
@@ -93,6 +97,7 @@ static const CGFloat kContentImageMargin = 0.0f;
   self.videoPlayButton.hidden = YES;
   
   [self.contentImageView cancelImageRequestOperation];
+  [self showSeparator];
 }
 
 - (void)hideImageView
@@ -100,6 +105,22 @@ static const CGFloat kContentImageMargin = 0.0f;
   self.contentImageHeightAndWidthConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
+}
+
+#pragma mark - Separator visibility
+
+- (void)updateSeparatorVisibility
+{
+  if (self.tutorialStep.isTextStep) {
+    [self showSeparator];
+  } else {
+    [self tw_hideSeparator];
+  }
+}
+
+- (void)showSeparator
+{
+  [self tw_showSeparatorWithMarginInset:kSeparatorInsetMargin];
 }
 
 #pragma mark - Actions
