@@ -64,7 +64,7 @@
 
 - (instancetype)init
 {
-  return [[YCameraViewController alloc] initWithNibName:@"YCameraViewController" bundle:nil];
+  return [[YCameraViewController alloc] initWithNibName:@"YCameraViewController" bundle:[NSBundle bundleForClass:self.class]];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

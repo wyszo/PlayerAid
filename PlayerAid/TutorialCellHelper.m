@@ -39,7 +39,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 
 - (UINib *)tutorialCellNib
 {
-  return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle bundleForClass:[self class]]];
+  return [UINib nibWithNibName:kTutorialCellNibName bundle:[NSBundle mainBundle]];
 }
 
 @end

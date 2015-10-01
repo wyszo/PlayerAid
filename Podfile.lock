@@ -106,7 +106,7 @@ CHECKOUT OPTIONS:
     :commit: 61d16f97de87450bee242a6a4d9d0444352c6e35
     :git: https://github.com/wyszo/FDTake.git
   YCameraView:
-    :commit: 1bbe802fc97c15a77a948dbe720b40e0ebebdaba
+    :commit: 38affb892d95678401684ea9aa8209e4c3c5e967
     :git: https://github.com/wyszo/YCameraView.git
 
 SPEC CHECKSUMS:
