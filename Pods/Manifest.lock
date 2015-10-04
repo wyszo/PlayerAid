@@ -41,7 +41,7 @@ PODS:
   - Bolts/AppLinks (1.2.2):
     - Bolts/Tasks
   - Bolts/Tasks (1.2.2)
-  - Crashlytics (3.3.1)
+  - Crashlytics (3.3.4)
   - Fabric (1.5.1):
     - Fabric/Base (= 1.5.1)
   - Fabric/Base (1.5.1)
@@ -72,7 +72,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - BlocksKit (= 2.2.5)
-  - Crashlytics (= 3.3.1)
+  - Crashlytics (= 3.3.4)
   - Fabric (= 1.5.1)
   - Facebook-iOS-SDK (= 3.24.0)
   - FDTake (from `https://github.com/wyszo/FDTake.git`, branch `hotfix/strings`)
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
-  Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
+  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
   Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
   Facebook-iOS-SDK: cb209af2e67e3a5d323f966c22e4e482e819405e
   FDTake: 3a718ebf9a080738334188b793d135215eeba6ab

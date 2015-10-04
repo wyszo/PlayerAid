@@ -16,7 +16,7 @@ pod 'BlocksKit', '2.2.5'
 pod 'NSDate+TimeAgo', '1.0.3'
 pod 'NSString+RemoveEmoji', '0.0.1'
 pod 'Fabric', '1.5.1'
-pod 'Crashlytics', '3.3.1'
+pod 'Crashlytics', '3.3.4'
 pod 'TTTAttributedLabel', '1.13.4'
 pod 'XRSA', '1.1.0'
 
