@@ -25,7 +25,7 @@
     
     TutorialStep *tutorialStep = [TutorialStep MR_findFirstByAttribute:@"serverID" withValue:[stepID stringValue] inContext:context];
     if (!tutorialStep) {
-      tutorialStep = [TutorialStep MR_createInContext:context];
+      tutorialStep = [TutorialStep MR_createEntityInContext:context];
     }
     [tutorialStep configureFromDictionary:dictionary];
     

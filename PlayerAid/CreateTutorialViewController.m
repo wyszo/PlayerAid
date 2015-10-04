@@ -260,7 +260,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   if (self.tutorialToDisplay) {
     self.tutorial = [self.tutorialToDisplay MR_inContext:self.createTutorialContext];
   } else {
-    self.tutorial = [Tutorial MR_createInContext:self.createTutorialContext];
+    self.tutorial = [Tutorial MR_createEntityInContext:self.createTutorialContext];
   }
   AssertTrueOrReturn(self.tutorial);
   
@@ -274,7 +274,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ && unsaved = YES", [self currentUser]];
   NSArray *unsavedTutorials = [Tutorial MR_findAllSortedBy:nil ascending:YES withPredicate:predicate inContext:self.createTutorialContext];
   for (Tutorial *tutorial in unsavedTutorials) {
-    [tutorial MR_deleteInContext:self.createTutorialContext];
+    [tutorial MR_deleteEntityInContext:self.createTutorialContext];
   }
   [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }

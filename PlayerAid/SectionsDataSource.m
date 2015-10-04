@@ -37,7 +37,7 @@ static const NSInteger kTotalNumberOfSections = 4;
   
   Section *section = [Section MR_findFirstByAttribute:@"name" withValue:kServerSectionNameGameKnowledge];
   if (!section) {
-    section = [Section MR_createInContext:localContext];
+    section = [Section MR_createEntityInContext:localContext];
     section.name = sectionName;
     section.sectionDescription = description;
   }

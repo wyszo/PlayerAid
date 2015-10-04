@@ -105,7 +105,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
     User *user = [self currentUserInContext:localContext];
     if (!user) {
-      user = [User MR_createInContext:localContext];
+      user = [User MR_createEntityInContext:localContext];
     }
     [user setLoggedInUserValue:YES];
     

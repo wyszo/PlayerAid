@@ -23,7 +23,7 @@ SHARED_INSTANCE_GENERATE_INTERFACE
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
  */
 + (void)requestAPITokenWithAuthenticationRequestData:(nonnull AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion;
+                                          completion:(nullable void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion;
 
 /**
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).

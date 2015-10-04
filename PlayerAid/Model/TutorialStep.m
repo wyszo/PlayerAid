@@ -52,7 +52,7 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 + (TutorialStep *)tutorialStepInContext:(NSManagedObjectContext *)context
 {
   AssertTrueOrReturnNil(context);
-  return [TutorialStep MR_createInContext:context];
+  return [TutorialStep MR_createEntityInContext:context];
 }
 
 #pragma mark - Configuration

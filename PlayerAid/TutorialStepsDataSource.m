@@ -155,7 +155,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete" okAction:^{
       TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
       AssertTrueOrReturn(weakSelf.context);
-      [tutorialStep MR_deleteInContext:weakSelf.context];
+      [tutorialStep MR_deleteEntityInContext:weakSelf.context];
       [weakSelf.context MR_saveOnlySelfAndWait];
       
       if (weakSelf.cellDeletionCompletionBlock) {

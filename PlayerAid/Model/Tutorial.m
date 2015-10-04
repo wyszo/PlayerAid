@@ -79,7 +79,7 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
   
   User *author = [User MR_findFirstByAttribute:@"serverID" withValue:authorID inContext:self.managedObjectContext];
   if (!author) {
-    author = [User MR_createInContext:self.managedObjectContext];
+    author = [User MR_createEntityInContext:self.managedObjectContext];
   }
   [author configureFromDictionary:authorDictionary];
   return author;

@@ -54,7 +54,7 @@
     NSString *serverID = [TutorialsHelper serverIDFromTutorialDictionary:dictionary];
     Tutorial *tutorial = [TutorialsHelper tutorialWithServerID:serverID inContext:context];
     if (!tutorial) {
-      tutorial = [Tutorial MR_createInContext:context];
+      tutorial = [Tutorial MR_createEntityInContext:context];
     }
     [tutorial configureFromDictionary:dictionary includeAuthor:parseAuthors];
     

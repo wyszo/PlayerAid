@@ -100,7 +100,7 @@ static NSString *const kFollowingKey = @"following";
   AssertTrueOrReturn(context);
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K in %@", kUserServerIDKey, tutorialIDs];
   NSArray *tutorialsToRemove = [Tutorial MR_findAllWithPredicate:predicate inContext:context];
-  [tutorialsToRemove makeObjectsPerformSelector:@selector(MR_deleteInContext:) withObject:context];
+  [tutorialsToRemove makeObjectsPerformSelector:@selector(MR_deleteEntityInContext:) withObject:context];
 }
 
 + (NSString *)serverIDFromUserDictionary:(NSDictionary *)dictionary

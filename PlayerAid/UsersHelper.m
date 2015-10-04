@@ -23,7 +23,7 @@
     NSString *userID = [self userIDFromUserDictionary:dictionary];
     User *user = [self userWithUserID:userID inContext:context];
     if (!user) {
-      user = [User MR_createInContext:context];
+      user = [User MR_createEntityInContext:context];
     }
     [user configureFromDictionary:dictionary];
     

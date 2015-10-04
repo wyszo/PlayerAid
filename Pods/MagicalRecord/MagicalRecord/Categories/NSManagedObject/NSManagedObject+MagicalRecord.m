@@ -243,7 +243,7 @@ static NSUInteger kMagicalRecordDefaultBatchSize = 20;
     
 	for (id objectToTruncate in objectsToTruncate) 
     {
-		[objectToTruncate MR_deleteInContext:context];
+		[objectToTruncate MR_deleteEntityInContext:context];
 	}
     
 	return YES;
@@ -322,7 +322,7 @@ static NSUInteger kMagicalRecordDefaultBatchSize = 20;
     return [self MR_createEntityInContext:context];
 }
 
-- (BOOL) MR_deleteInContext:(NSManagedObjectContext *)context
+- (BOOL) MR_deleteEntityInContext:(NSManagedObjectContext *)context
 {
     return [self MR_deleteEntityInContext:context];
 }

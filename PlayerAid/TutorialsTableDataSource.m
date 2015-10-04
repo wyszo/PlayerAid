@@ -232,7 +232,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
       // Remove tutorial object from CoreData, tableView will automatically pick up the change
       [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         Tutorial *tutorialInLocalContext = [tutorial MR_inContext:localContext];
-        [tutorialInLocalContext MR_deleteInContext:localContext];
+        [tutorialInLocalContext MR_deleteEntityInContext:localContext];
       }];
       
       [AlertFactory showOKAlertViewWithMessage:@"<Tutorial removed from server!>"];
