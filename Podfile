@@ -5,7 +5,7 @@ use_frameworks!
 
 pod 'AFNetworking', '2.5.0'
 pod 'Facebook-iOS-SDK', '3.24.0'
-pod 'MagicalRecord', '2.2'
+pod 'MagicalRecord', '2.3'
 pod 'KZAsserts', '1.0'
 pod 'KZPropertyMapper', '2.5.1'
 pod 'UIAlertView-Blocks', '1.0'
