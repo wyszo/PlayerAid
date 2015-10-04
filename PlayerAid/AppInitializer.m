@@ -4,12 +4,16 @@
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <TWCommonLib/TWMagicalRecordDebugErrorHandler.h>
+#import <BlocksKit/NSObject+BKAssociatedObjects.h>
 #import "AppInitializer.h"
 #import "JourneyController_Debug.h"
 #import "AuthenticationController.h"
 #import "ServerDataUpdateController.h"
 #import "CoreDataStackHelper.h"
 #import "AppearanceCustomizationHelper.h"
+
+static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
 
 @implementation AppInitializer
@@ -24,6 +28,9 @@
 - (void)initializeCoreData
 {
   [CoreDataStackHelper setupCoreDataStack];
+  
+  id errorHandler = [TWMagicalRecordDebugErrorHandler new];
+  [AppLifetimeStaticVariable bk_associateValue:errorHandler withKey:@"errorHandler"];
 }
 
 - (void)customizeAppAppearance
