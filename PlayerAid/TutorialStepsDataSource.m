@@ -165,17 +165,25 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   };
 }
 
-- (void)configureCell:(TutorialStepTableViewCell *)tutorialStepCell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(nonnull TutorialStepTableViewCell *)tutorialStepCell atIndexPath:(nonnull NSIndexPath *)indexPath
 {
+  AssertTrueOrReturn(tutorialStepCell);
+  AssertTrueOrReturn(indexPath);
+  
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
   tutorialStepCell.delegate = self.cellDelegate;
+  
+  [self updateSeparatorVisiblityForCell:tutorialStepCell atIndexPath:indexPath];
 }
 
 #pragma mark - Auxiliary methods
 
-- (void)updateSeparatorVisiblityForCell:tutorialStepCell atIndexPath:indexPath
+- (void)updateSeparatorVisiblityForCell:(nonnull UITableViewCell *)tutorialStepCell atIndexPath:(nonnull NSIndexPath *)indexPath
 {
+  AssertTrueOrReturn(tutorialStepCell);
+  AssertTrueOrReturn(indexPath);
+  
   if ([self objectForNextIndexPathIsTextStep:indexPath]) {
     [tutorialStepCell tw_hideSeparator];
   }
