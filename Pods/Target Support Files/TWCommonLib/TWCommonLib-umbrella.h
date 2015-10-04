@@ -35,6 +35,7 @@
 #import "TWJSONHelper.h"
 #import "TWLazyInitializationProxy.h"
 #import "TWLocationUpdatesManager.h"
+#import "TWMagicalRecordDebugErrorHandler.h"
 #import "TWMapKitHelper.h"
 #import "TWObjectCountProtocol.h"
 #import "TWOrientationChangeDelegate.h"
