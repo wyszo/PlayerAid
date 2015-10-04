@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @interface LoginManager : NSObject
 
 /**

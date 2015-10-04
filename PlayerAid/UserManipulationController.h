@@ -2,8 +2,9 @@
 //  PlayerAid
 //
 
+@import Foundation;
 #import "User.h"
-
+#import <TWCommonLib/TWCommonTypes.h>
 
 @interface UserManipulationController : NSObject
 

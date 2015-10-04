@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 extern NSString *const kServerSectionNameGameKnowledge;
 
 

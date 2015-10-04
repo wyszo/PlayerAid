@@ -2,8 +2,9 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
 @import MediaPlayer;
-
 
 @interface MediaPlayerHelper : NSObject
 

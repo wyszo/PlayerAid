@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TabBarHelper.h"
-
 
 @implementation TabBarHelper
 

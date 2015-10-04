@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @interface ColorsHelper : NSObject
 
 + (UIColor *)loginLogInLightBlueBackgroundColor;

@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "AppearanceCustomizationHelper.h"
 #import "ColorsHelper.h"
 #import "PlayerAidTabBarHelper.h"

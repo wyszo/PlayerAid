@@ -2,8 +2,9 @@
 //  PlayerAid
 //
 
+@import CoreData;
+@import Foundation;
 #import "Tutorial.h"
-
 
 @interface TutorialsHelper : NSObject
 

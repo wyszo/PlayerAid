@@ -4,7 +4,6 @@
 
 #import "UITableView+TableViewHelper.h"
 
-
 @implementation UITableView (TableViewHelper)
 
 - (void)reloadRowAtIndexPath:(NSIndexPath *)indexPath

@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "ServerResponseParsing.h"
 
 @implementation ServerResponseParsing

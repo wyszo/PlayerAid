@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
-#import <AFNetworking/AFNetworking.h>
-#import <TWCommonLib/TWCommonMacros.h>
-#import <TWCommonLib/NSString+TWBase64Encoding.h>
+@import KZAsserts;
+@import AFNetworking;
+@import TWCommonLib;
 #import "UnauthenticatedServerCommunicationController.h"
 #import "GlobalSettings.h"
 #import "NSURL+URLString.h"
@@ -16,7 +16,6 @@
 
 static NSString *const kAuthPath = @"auth";
 static NSString *const kUserPath = @"user";
-
 
 @implementation AuthenticationRequestData
 @end

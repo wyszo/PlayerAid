@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
 #import "TutorialStep.h"
-
 
 typedef void (^CreateTextStepCompletion)(NSString *text, NSError *error);
 

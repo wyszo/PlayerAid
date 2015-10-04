@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 /**
  Email validation rules:
  - length > 3

@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import Foundation;
+#import <TWCommonLib/TWCommonMacros.h>
+
 @class AuthenticationRequestData;
 
 typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken, id responseObject, NSError * __nullable error);

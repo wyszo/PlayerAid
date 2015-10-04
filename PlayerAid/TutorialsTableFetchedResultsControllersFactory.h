@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import CoreData;
+@import Foundation;
+
 @interface TutorialsTableFetchedResultsControllersFactory : NSObject
 
 /**

@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
 

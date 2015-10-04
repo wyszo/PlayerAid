@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWUserDefaultsHelper.h>
+@import TWCommonLib;
 #import "PersistedUsersProperties.h"
 
 static NSString *const kTakePhotoGridEnabledKey = @"TakePhotoGridEnabled";

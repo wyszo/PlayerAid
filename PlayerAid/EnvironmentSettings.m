@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <KZAsserts/KZAsserts.h>
+@import KZAsserts;
 #import "EnvironmentSettings.h"
 
 static NSString const* kAppStoreEnvName = @"playeraid";

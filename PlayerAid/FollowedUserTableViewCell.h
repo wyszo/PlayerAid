@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
 #import "User.h"
-
 
 @interface FollowedUserTableViewCell : UITableViewCell
 

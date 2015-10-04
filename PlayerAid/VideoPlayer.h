@@ -4,7 +4,6 @@
 
 #import <TWCommonLib/TWCommonMacros.h>
 
-
 @interface VideoPlayer : NSObject
 
 @property (nonatomic, assign) BOOL presentInLandscapeOrientation;

@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import Foundation;
+#import <TWCommonLib/TWCommonTypes.h>
+
 @class Tutorial;
 
 typedef void (^SaveCompletionBlock)(NSError *error);

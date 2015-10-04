@@ -5,7 +5,6 @@
 #import "CreateTutorialStepButton.h"
 #import <TWCommonLib/UIView+TWXibLoading.h>
 
-
 static NSString *const kNibFileName = @"CreateTutorialStepButton";
 
 

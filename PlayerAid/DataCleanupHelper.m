@@ -5,7 +5,6 @@
 #import "DataCleanupHelper.h"
 #import "CoreDataStackHelper.h"
 
-
 @implementation DataCleanupHelper
 
 #pragma mark - Clearing AppData

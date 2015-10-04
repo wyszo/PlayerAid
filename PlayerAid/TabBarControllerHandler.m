@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TabBarControllerHandler.h"
 #import "CreateTutorialViewController.h"
 

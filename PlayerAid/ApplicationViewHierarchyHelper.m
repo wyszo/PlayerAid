@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "ApplicationViewHierarchyHelper.h"
 #import "CreateTutorialViewController.h"
 #import "NavigationControllerWhiteStatusbar.h"

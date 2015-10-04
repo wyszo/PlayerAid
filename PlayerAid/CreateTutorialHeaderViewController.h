@@ -2,10 +2,11 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
 #import <TWCommonLib/TWCommonTypes.h>
 #import "Section.h"
 #import "Tutorial.h"
-
 
 @interface CreateTutorialHeaderViewController : UIViewController
 

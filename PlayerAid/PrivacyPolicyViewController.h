@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface PrivacyPolicyViewController : UIViewController
 

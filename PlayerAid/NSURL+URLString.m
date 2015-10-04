@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "NSURL+URLString.h"
 
 @implementation NSURL (URLString)

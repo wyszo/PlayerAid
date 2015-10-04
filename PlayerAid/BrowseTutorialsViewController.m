@@ -2,6 +2,13 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
+@import MagicalRecord;
+@import KZAsserts;
+#import <TWCommonLib/TWArrayTableViewDataSource.h>
+#import <TWCommonLib/NSObject+TWLazyInitialization.h>
+#import <TWCommonLib/TWSimpleTableViewDelegate.h>
 #import "BrowseTutorialsViewController.h"
 #import "Section.h"
 #import "SectionCell.h"

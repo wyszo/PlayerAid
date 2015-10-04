@@ -2,8 +2,10 @@
 //  PlayerAid
 //
 
-#import <FacebookSDK/FacebookSDK.h>
-#import <FDTake/FDTakeController.h>
+@import FacebookSDK;
+@import FDTake;
+@import KZAsserts;
+@import TWCommonLib;
 #import "EditProfileViewController.h"
 #import "UITextView+Placeholder.h"
 #import "NavigationBarButtonsDecorator.h"

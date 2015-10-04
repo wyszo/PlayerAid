@@ -2,7 +2,10 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
 #import "User.h"
+#import <TWCommonLib/TWCommonTypes.h>
 
 IB_DESIGNABLE
 @interface PlayerInfoView : UIView

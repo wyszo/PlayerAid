@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
+
 @interface PlayerInfoCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;

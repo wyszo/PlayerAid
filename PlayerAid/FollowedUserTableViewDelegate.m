@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWCommonLib.h>
+@import TWCommonLib;
 #import "FollowedUserTableViewDelegate.h"
 
 static const CGFloat kUserFollowedCellHeight = 88.0f;

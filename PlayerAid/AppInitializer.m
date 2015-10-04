@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import Fabric;
+@import Crashlytics;
 #import <TWCommonLib/TWMagicalRecordDebugErrorHandler.h>
 #import <BlocksKit/NSObject+BKAssociatedObjects.h>
 #import "AppInitializer.h"
@@ -11,6 +11,7 @@
 #import "AuthenticationController.h"
 #import "ServerDataUpdateController.h"
 #import "CoreDataStackHelper.h"
+#import "DebugSettings.h"
 #import "AppearanceCustomizationHelper.h"
 
 static NSString *const AppLifetimeStaticVariable = @"Lifetime";

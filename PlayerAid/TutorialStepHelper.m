@@ -2,9 +2,10 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import MagicalRecord;
 #import "TutorialStepHelper.h"
 #import "TutorialStep.h"
-
 
 @implementation TutorialStepHelper
 

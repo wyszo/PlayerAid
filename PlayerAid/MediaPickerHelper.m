@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "MediaPickerHelper.h"
 #import "PersistedUsersProperties.h"
 

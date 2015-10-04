@@ -5,7 +5,6 @@
 #import "GradientView.h"
 #import "ColorsHelper.h"
 
-
 @implementation GradientView
 
 #pragma mark - Initialization

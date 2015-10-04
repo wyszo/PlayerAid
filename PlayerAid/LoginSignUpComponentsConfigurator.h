@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
+@import Foundation;
+@import TTTAttributedLabel;
 
 @interface LoginSignUpComponentsConfigurator : NSObject
 

@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
+
 @class Tutorial;
 
 

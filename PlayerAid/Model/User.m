@@ -1,12 +1,13 @@
 
+@import KZAsserts;
+@import KZPropertyMapper;
+@import MagicalRecord;
+@import AFNetworking;
+@import TWCommonLib;
 #import "User.h"
-#import <KZAsserts/KZAsserts.h>
-#import <KZPropertyMapper/KZPropertyMapper.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "Tutorial.h"
 #import "TutorialsHelper.h"
 #import "UsersHelper.h"
-
 
 NSString *const kUserServerIDJSONAttributeName = @"id";
 NSString *const kUserServerIDKey = @"serverID";

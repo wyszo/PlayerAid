@@ -2,7 +2,9 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 @import TWCommonLib;
+@import MagicalRecord;
 #import "TutorialStepsDataSource.h"
 #import "MediaPlayerHelper.h"
 #import "AlertFactory.h"

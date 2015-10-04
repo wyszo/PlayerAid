@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TutorialDetailsHelper.h"
 #import "TutorialDetailsViewController.h"
-
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 

@@ -2,7 +2,9 @@
 //  PlayerAid
 //
 
-#import <YCameraView/YCameraViewController.h>
+@import KZAsserts;
+@import TWCommonLib;
+@import YCameraView;
 #import "YCameraViewStandardDelegateObject.h"
 #import "PersistedUsersProperties.h"
 

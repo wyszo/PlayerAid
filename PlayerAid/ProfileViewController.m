@@ -2,7 +2,10 @@
 //  PlayerAid
 //
 
-#import <BlocksKit/BlocksKit.h>
+@import KZAsserts;
+@import BlocksKit;
+@import TWCommonLib;
+@import MagicalRecord;
 #import "ProfileViewController.h"
 #import "PlayerInfoView.h"
 #import "TutorialsTableDataSource.h"
@@ -16,15 +19,13 @@
 #import "FollowingButtonDecorator.h"
 #import "TutorialDetailsHelper.h"
 #import "CreateTutorialViewController.h"
-
+#import "DebugSettings.h"
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
 static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
-
 @interface ProfileViewController () <TutorialsTableViewDelegate>
-
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
@@ -36,7 +37,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
-
 @end
 
 

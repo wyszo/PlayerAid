@@ -2,10 +2,10 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWUIImagePickerExtendedEventsObserver.h>
+@import KZAsserts;
+@import TWCommonLib;
 #import "ImagePickerOverlayController.h"
 #import "CameraPortraitBlockingOverlayViewController.h"
-
 
 static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
 

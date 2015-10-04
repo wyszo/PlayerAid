@@ -2,11 +2,11 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import <TWCommonLib/NSString+TWHTMLString.h>
 #import "TermsAndConditionsViewController.h"
 
 static NSString *const kTermsAndConditionsHTMLFileName = @"T&Cs.html";
-
 
 @interface TermsAndConditionsViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

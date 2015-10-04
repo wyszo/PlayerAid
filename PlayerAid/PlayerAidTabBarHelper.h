@@ -2,9 +2,9 @@
 //  PlayerAid
 //
 
+@import Foundation;
 #import "TabBarHelper.h"
 #import "ProfileViewController.h"
-
 
 /**
  TabBar utility methods that require assumptions about available tabBar items

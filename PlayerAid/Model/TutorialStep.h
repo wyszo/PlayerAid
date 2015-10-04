@@ -1,4 +1,7 @@
 #import "_TutorialStep.h"
+@import UIKit;
+@import CoreData;
+#import <TWCommonLib/TWConfigurableFromDictionary.h>
 
 @interface TutorialStep : _TutorialStep <TWConfigurableFromDictionary>
 

@@ -2,11 +2,11 @@
 //  PlayerAid
 //
 
+@import MagicalRecord;
 #import "TutorialListFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
-
 
 @implementation TutorialListFetchController
 

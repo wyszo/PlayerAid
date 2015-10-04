@@ -2,10 +2,9 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWTextFieldsFormHelper.h>
-#import <TWCommonLib/TWFullscreenActivityIndicatorView.h>
-#import <TWCommonLib/UIViewController+TWResponderChain.h>
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
+@import KZAsserts;
+@import TWCommonLib;
+@import TTTAttributedLabel;
 #import "SignUpViewController.h"
 #import "SignUpValidator.h"
 #import "UnauthenticatedServerCommunicationController.h"
@@ -15,6 +14,7 @@
 #import "LoginSignUpComponentsConfigurator.h"
 #import "ColorsHelper.h"
 #import "LoginManager.h"
+#import "DebugSettings.h"
 
 static NSString *const kPrivacyPolicySegueId = @"PrivacyPolicySegueId";
 static NSString *const kTermsOfUseSegueId = @"TermsOfUseSegueId";

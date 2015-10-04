@@ -3,10 +3,9 @@
 //
 
 #import "CameraPortraitBlockingOverlayViewController.h"
-
+#import <TWCommonLib/TWCommonMacros.h>
 
 static NSString *const kOverlayNibName = @"CameraPortraitBlockingOverlay";
-
 
 @implementation CameraPortraitBlockingOverlayViewController
 

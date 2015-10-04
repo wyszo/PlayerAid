@@ -2,10 +2,10 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "AuthenticationController.h"
 #import "AuthenticationController_SavingToken.h"
 #import "AuthenticatedServerCommunicationController.h"
-
 
 static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey";
 

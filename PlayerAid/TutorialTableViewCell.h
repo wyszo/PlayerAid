@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
 #import "Tutorial.h"
-
 
 @interface TutorialTableViewCell : UITableViewCell
 

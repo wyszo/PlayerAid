@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import TWCommonLib;
+@import MagicalRecord;
 #import "UsersFetchController.h"
 #import "User.h"
 #import "AuthenticatedServerCommunicationController.h"

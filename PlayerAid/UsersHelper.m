@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-#import <KZAsserts/KZAsserts.h>
+@import KZAsserts;
+@import MagicalRecord;
 #import "UsersHelper.h"
 #import "User.h"
 

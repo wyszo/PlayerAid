@@ -2,10 +2,10 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TabBarBadgeHelper.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "PlayerAidTabBarHelper.h"
-
 
 @implementation TabBarBadgeHelper
 

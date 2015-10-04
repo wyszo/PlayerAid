@@ -5,7 +5,6 @@
 #import "NavigationBarCustomizationHelper.h"
 #import "FontsHelper.h"
 
-
 @implementation NavigationBarCustomizationHelper
 
 + (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title target:(id)target action:(SEL)action

@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
 #import "Tutorial.h"
-
 
 @interface CreateTutorialViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

@@ -2,11 +2,12 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import MagicalRecord;
 #import "UserManipulationController.h"
 #import "UsersFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
-
 
 @implementation UserManipulationController
 

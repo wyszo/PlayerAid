@@ -4,7 +4,6 @@
 
 #import "NSError+PlayerAidErrors.h"
 
-
 static NSString *const kPlayerAidServerDomain = @"PlayerAidServer";
 
 static const NSInteger kGenericServerResponseErrorCode = 500;

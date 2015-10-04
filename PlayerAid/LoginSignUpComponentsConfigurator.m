@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <KZAsserts/KZAsserts.h>
+@import KZAsserts;
 #import "LoginSignUpComponentsConfigurator.h"
 #import "ColorsHelper.h"
 

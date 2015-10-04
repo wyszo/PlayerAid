@@ -2,14 +2,13 @@
 //  PlayerAid
 //
 
-#import <FacebookSDK/FacebookSDK.h>
+@import FacebookSDK;
 #import "AppDelegate.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "AppInitializer.h"
-
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 @property (strong, nonatomic) TabBarControllerHandler *tabBarControllerHandler;

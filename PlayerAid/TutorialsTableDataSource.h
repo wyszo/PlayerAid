@@ -5,6 +5,8 @@
 #import "Tutorial.h"
 #import "User.h"
 #import "TutorialsTableViewDelegate.h"
+#import <TWCommonLib/TWCommonMacros.h>
+#import <TWCommonLib/TWObjectCountProtocol.h>
 
 
 @interface TutorialsTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>

@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import Foundation;
 
 @interface TutorialCellHelper : NSObject
 

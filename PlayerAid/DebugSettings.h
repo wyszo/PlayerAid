@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 extern BOOL DEBUG_MODE_FLOW_EDIT_TUTORIAL;
 extern BOOL DEBUG_MODE_FLOW_PUBLISH_TUTORIAL;
 extern BOOL DEBUG_MODE_ADD_TUTORIAL_STEPS;

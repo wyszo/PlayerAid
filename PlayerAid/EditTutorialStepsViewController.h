@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import UIKit;
+#import <TWCommonLib/TWCommonMacros.h>
+
 @interface EditTutorialStepsViewController : UIViewController
 
 @property (nonatomic, copy) void (^dismissBlock)(BOOL saveChanges, NSArray *reorderedSteps);

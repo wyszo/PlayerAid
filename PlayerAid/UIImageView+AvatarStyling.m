@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import TWCommonLib;
 #import "UIImageView+AvatarStyling.h"
 
 static const CGFloat kSmallAvatarBorderWidth = 1.5f;

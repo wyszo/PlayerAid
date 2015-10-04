@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
+
 @interface AppearanceCustomizationHelper : NSObject
 
 /**

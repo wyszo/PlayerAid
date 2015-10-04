@@ -2,11 +2,11 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "SignUpValidator.h"
 
 static const NSInteger kMinEmailLength = 3;
 static const NSInteger kMinPasswordLength = 6;
-
 
 @implementation SignUpValidator
 

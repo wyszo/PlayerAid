@@ -2,8 +2,10 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import MagicalRecord;
 #import <TWCommonLib/TWCoreDataTableViewDataSource.h>
-#import <MagicalRecord/NSManagedObjectContext+MagicalThreading.h>
+#import <TWCommonLib/TWDispatchMacros.h>
 #import <TWCommonLib/TWTableViewFetchedResultsControllerBinder.h>
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"

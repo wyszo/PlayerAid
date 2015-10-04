@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/UIView+TWXibLoading.h>
+@import KZAsserts;
+@import TWCommonLib;
 #import "PlayerInfoView.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
@@ -10,12 +11,9 @@
 #import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
 
-
 static NSString *const kNibFileName = @"PlayerInfoView";
 
-
 @interface PlayerInfoView ()
-
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -25,9 +23,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
 
 @property (strong, nonatomic) UIView *view;
-
 @end
-
 
 @implementation PlayerInfoView
 

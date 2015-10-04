@@ -1,7 +1,6 @@
 #import "Section.h"
 #import "SectionsDataSource.h"
 
-
 @interface Section ()
 @end
 

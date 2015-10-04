@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @interface NSError (PlayerAidErrors)
 
 + (NSError *)genericServerResponseError;

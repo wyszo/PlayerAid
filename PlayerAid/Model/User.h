@@ -1,6 +1,6 @@
 #import "_User.h"
-#import <UIKit/UIKit.h>
-
+@import UIKit;
+#import <TWCommonLib/TWConfigurableFromDictionary.h>
 
 extern NSString *const kUserServerIDJSONAttributeName;
 extern NSString *const kUserServerIDKey;

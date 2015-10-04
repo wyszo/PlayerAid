@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/TWCommonMacros.h>
+@import TWCommonLib;
 #import "ColorsHelper.h"
 
 

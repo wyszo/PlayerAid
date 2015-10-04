@@ -1,5 +1,7 @@
 #import "Tutorial.h"
-#import <KZPropertyMapper/KZPropertyMapper.h>
+@import KZAsserts;
+@import KZPropertyMapper;
+@import MagicalRecord;
 #import "Section.h"
 #import "User.h"
 #import "TutorialStep.h"

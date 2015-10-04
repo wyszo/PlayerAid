@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
+
 IB_DESIGNABLE
 @interface SectionLabelContainer : UIView
 

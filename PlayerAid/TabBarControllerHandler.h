@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
+#import <TWCommonLib/TWCommonMacros.h>
 
 @interface TabBarControllerHandler : NSObject <UITabBarControllerDelegate>
 

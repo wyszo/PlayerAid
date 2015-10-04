@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @interface EnvironmentSettings : NSObject
 
 /**

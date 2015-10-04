@@ -4,7 +4,6 @@
 
 #import "GradientHelper.h"
 
-
 @implementation GradientHelper
 
 + (CAGradientLayer *)addGradientLayerToView:(UIView *)view

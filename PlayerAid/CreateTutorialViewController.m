@@ -2,10 +2,11 @@
 //  PlayerAid
 //
 
-#import <FDTake/FDTakeController.h>
-#import <YCameraView/YCameraViewController.h>
-#import <TWCommonLib/TWUserDefaultsHelper.h>
-#import <TWCommonLib/TWInterfaceOrientationViewControllerDecorator.h>
+@import FDTake;
+@import KZAsserts;
+@import YCameraView;
+@import TWCommonLib;
+@import MagicalRecord;
 #import "CreateTutorialViewController.h"
 #import "Tutorial.h"
 #import "TutorialStep.h"
@@ -30,13 +31,11 @@
 #import "TabBarBadgeHelper.h"
 #import "ImagePickerOverlayController.h"
 #import "UserTutorialsController.h"
-
+#import "DebugSettings.h"
 
 static NSString *const kXibName = @"CreateTutorialView";
 
-
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
-
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) FDTakeController *mediaController;
@@ -57,7 +56,6 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 @property (nonatomic, strong) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
-
 @end
 
 

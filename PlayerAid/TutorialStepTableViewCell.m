@@ -2,9 +2,10 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import AFNetworking;
+@import TWCommonLib;
 #import "TutorialStepTableViewCell.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import <TWCommonLib/UITableViewCell+TWHideSeparator.h>
 
 static const CGFloat kContentImageMargin = 0.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;

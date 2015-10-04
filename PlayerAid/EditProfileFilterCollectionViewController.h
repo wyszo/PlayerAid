@@ -2,8 +2,8 @@
 //  PlayerAid
 //
 
-#import <UIKit/UIKit.h>
-
+@import UIKit;
+#import <TWCommonLib/TWCommonTypes.h>
 
 @interface EditProfileFilterCollectionViewController : UICollectionViewController
 

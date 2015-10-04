@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "FacebookAuthenticationController.h"
 #import <FacebookSDK/FBSession.h>
 

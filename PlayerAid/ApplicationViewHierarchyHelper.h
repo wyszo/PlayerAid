@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
 #import "ProfileViewController.h"
 
 @class User;

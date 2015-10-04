@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-#import <XRSA/XRSA.h>
+@import XRSA;
+@import KZAsserts;
 #import "RSAEncoder.h"
 #import "EnvironmentSettings.h"
 

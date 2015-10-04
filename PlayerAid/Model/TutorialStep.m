@@ -1,8 +1,11 @@
 #import "TutorialStep.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+@import KZAsserts;
+@import AFNetworking;
+@import KZPropertyMapper;
+@import TWCommonLib;
+@import MagicalRecord;
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
-#import "KZPropertyMapper.h"
 
 
 static const CGFloat kJPEGCompressionBestQuality = 1.0f;

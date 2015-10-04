@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TutorialCellHelper.h"
 
 static const CGFloat kIPhone5ScreenWidth = 320.0f;

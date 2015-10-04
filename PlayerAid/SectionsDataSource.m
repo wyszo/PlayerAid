@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import MagicalRecord;
 #import "SectionsDataSource.h"
 #import "Section.h"
 

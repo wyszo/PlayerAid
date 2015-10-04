@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+#import <TWCommonLib/TWCommonMacros.h>
 #import "User.h"
 
 

@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @protocol TutorialsTableViewDelegate <NSObject>
 
 @optional

@@ -2,8 +2,9 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import TWCommonLib;
 #import "VideoPlayer.h"
-
 
 // TODO: migrate to AVPlayerViewController as MPMoviePlayerPlaybackDidFinishNotification is not handled correctly on iOS8 (not invoked in case of URL resource error)
 // TODO: test error and dismiss view controller

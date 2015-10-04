@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <TWCommonLib/UIView+TWXibLoading.h>
+@import TWCommonLib;
 #import "CreateTutorialStepButtonsContainerView.h"
 #import "CreateTutorialStepButton.h"
 

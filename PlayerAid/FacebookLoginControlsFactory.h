@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-#import <FacebookSDK/FacebookSDK.h>
+@import FacebookSDK;
+#import <TWCommonLib/TWCommonMacros.h>
 
 
 @interface FacebookLoginControlsFactory : NSObject

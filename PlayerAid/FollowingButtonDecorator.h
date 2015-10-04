@@ -3,7 +3,8 @@
 //
 
 #import "User.h"
-
+@import UIKit;
+@import Foundation;
 
 typedef NS_ENUM(NSInteger, BackgroundType) {
   BackgroundTypeLight,

@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import Foundation;
+
 @interface CoreDataStackHelper : NSObject
 
 + (void)setupCoreDataStack;

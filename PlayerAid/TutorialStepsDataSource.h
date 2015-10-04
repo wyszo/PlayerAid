@@ -4,7 +4,7 @@
 
 #import "Tutorial.h"
 #import "TutorialStepTableViewCell.h"
-
+#import <TWCommonLib/TWCommonTypes.h>
 
 @interface TutorialStepsDataSource : NSObject 
 

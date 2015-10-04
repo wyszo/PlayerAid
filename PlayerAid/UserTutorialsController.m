@@ -6,7 +6,6 @@
 #import "UsersFetchController.h"
 #import "Tutorial.h"
 
-
 @implementation UserTutorialsController
 
 - (BOOL)loggedInUserHasAnyPublishedOrInReviewTutorials

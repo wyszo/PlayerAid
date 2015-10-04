@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 #import "TutorialsTableFetchedResultsControllersFactory.h"
 
 

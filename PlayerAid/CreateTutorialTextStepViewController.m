@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-#import <NSString_RemoveEmoji/NSString+RemoveEmoji.h>
+@import TWCommonLib;
+@import NSString_RemoveEmoji;
 #import "CreateTutorialTextStepViewController.h"
 #import "AlertFactory.h"
 #import "GlobalSettings.h"

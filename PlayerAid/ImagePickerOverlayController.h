@@ -2,6 +2,9 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
+#import <TWCommonLib/TWCommonMacros.h>
 
 @interface ImagePickerOverlayController : NSObject
 

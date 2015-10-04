@@ -2,12 +2,12 @@
 //  PlayerAid
 //
 
+@import Foundation;
 #import "Tutorial.h"
 #import "User.h"
-
+#import <TWCommonLib/TWCommonTypes.h>
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
-
 
 /**
  A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!

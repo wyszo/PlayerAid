@@ -2,6 +2,10 @@
 //  PlayerAid
 //
 
+@import UIKit;
+@import Foundation;
+#import <TWCommonLib/TWCommonTypes.h>
+
 IB_DESIGNABLE
 @interface CreateTutorialStepButton : UIView
 

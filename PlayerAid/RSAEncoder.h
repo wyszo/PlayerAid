@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface RSAEncoder : NSObject
 
