@@ -61,9 +61,9 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
   defineWeakSelf();
   [ServerDataUpdateController saveTutorial:self.tutorial progressChanged:^(CGFloat progress) {
     AssertTrueOr(progress >= 0 && progress <= 1.0, ;);
-    weakSelf.progressBarWidthConstraint.constant = progress * weakSelf.progressBarBackgroundWidthConstraint.constant;
     
     DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+      weakSelf.progressBarWidthConstraint.constant = progress * weakSelf.progressBarBackgroundWidthConstraint.constant;
       [weakSelf.view setNeedsLayout];
     });
   } completion:^(NSError *error) {
