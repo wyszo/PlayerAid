@@ -32,8 +32,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Authentication
 
-+ (void)requestAPITokenWithAuthenticationRequestData:(AuthenticationRequestData *)data
-                                          completion:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion
++ (void)requestAPITokenWithAuthenticationRequestData:(nonnull AuthenticationRequestData *)data
+                                          completion:(nullable void (^)(NSHTTPURLResponse * __nullable response, id __nullable responseObject, NSError * __nullable error))completion
 {
   [[self sharedInstance] requestAPITokenWithAuthenticationRequestData:data completion:completion];
 }

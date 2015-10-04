@@ -7,7 +7,7 @@
 
 @class AuthenticationRequestData;
 
-typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken, id responseObject, NSError * __nullable error);
+typedef void (^ApiTokenRequestCompletion)( NSString * __nullable apiToken, id __nullable responseObject, NSError * __nullable error);
 
 
 /**
@@ -23,7 +23,7 @@ SHARED_INSTANCE_GENERATE_INTERFACE
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
  */
 + (void)requestAPITokenWithAuthenticationRequestData:(nonnull AuthenticationRequestData *)data
-                                          completion:(nullable void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))completion;
+                                          completion:(nullable void (^)(NSHTTPURLResponse * __nullable response, id __nullable responseObject, NSError * __nullable error))completion;
 
 /**
  Requests an API token that can be used in all communication with our PlayerAid server (via AuthenticatedServerCommunicationController class).
