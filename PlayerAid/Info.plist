@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.9</string>
+	<string>1.0.10</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -83,17 +83,17 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
-      <key>graph.facebook.com</key>
-      <dict>
-        <key>NSExceptionRequiresForwardSecrecy</key>
-        <false/>
-        <key>NSIncludesSubdomains</key>
-        <true/>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-      </dict>
+			<key>graph.facebook.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>fbcdn.net</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
