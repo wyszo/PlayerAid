@@ -117,7 +117,11 @@ static NSString *const kFollowingKey = @"following";
 {
   AssertTrueOrReturn(imageView);
   if (self.pictureURL) { // users creaded using email/signup flow don't need to have a picture
-    [imageView setImageWithURL:[NSURL URLWithString:self.pictureURL]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.pictureURL]];
+    [imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+      NSLog(@"Avatar image loading error: %@", error);
+      AssertTrueOrReturn(!error);
+    }];
   }
 }
 
