@@ -5,7 +5,7 @@
 @import KZAsserts;
 @import QuartzCore;
 @import AFNetworking;
-@import NSDate_TimeAgo;
+@import DateTools;
 @import TWCommonLib;
 #import "TutorialTableViewCell.h"
 #import "UIImageView+AvatarStyling.h"
@@ -94,7 +94,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
   [self setSectionNameHidden:(self.tutorial.section == nil)];
   
-  NSString *timeAgo = [tutorial.createdAt timeAgoSimple];
+  NSString *timeAgo = [tutorial.createdAt shortTimeAgoSinceNow];
   self.timeLabel.text = timeAgo;
   
   [tutorial.createdBy placeAvatarInImageView:self.avatarImageView];
