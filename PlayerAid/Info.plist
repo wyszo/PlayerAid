@@ -83,6 +83,17 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
+      <key>graph.facebook.com</key>
+      <dict>
+        <key>NSExceptionRequiresForwardSecrecy</key>
+        <false/>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+      </dict>
 			<key>fbcdn.net</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
