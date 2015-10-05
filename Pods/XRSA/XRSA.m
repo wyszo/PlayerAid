@@ -63,7 +63,7 @@
     [content getBytes:plain
                length:plainLen];
 
-    size_t cipherLen = 128 * 4; // currently RSA key length is set to 512 bytes (4096 bits)
+    size_t cipherLen = 128; // currently RSA key length is set to 128 bytes
     void *cipher = malloc(cipherLen);
 
     OSStatus returnCode = SecKeyEncrypt(publicKey, kSecPaddingPKCS1, plain,

@@ -306,15 +306,7 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
 - (NSString *) stringFromFormat:(NSString *)format withValue:(NSInteger)value
 {
     NSString * localeFormat = [NSString stringWithFormat:format, [self getLocaleFormatUnderscoresWithValue:value]];
-    NSString * localizedString = NSDateTimeAgoLocalizedStrings(localeFormat);
-  
-    // PlayerAid change
-    if (!localizedString.length) {
-      localizedString = localeFormat;
-    }
-    // /PlayerAid
-  
-    return [NSString stringWithFormat:localizedString, value];
+    return [NSString stringWithFormat:NSDateTimeAgoLocalizedStrings(localeFormat), value];
 }
 
 - (NSString *) timeAgoWithLimit:(NSTimeInterval)limit
