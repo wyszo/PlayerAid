@@ -1,3 +1,7 @@
+
+**This fork adds:**
++ **Support for any allowed RSA key length (instead of just 1024 bits)**
+
 XRSA
 ==========
 
