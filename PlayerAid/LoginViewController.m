@@ -137,10 +137,10 @@
   
   NSDictionary *loginErrorCodesMapping = @{
                                            @(kObsoleteGenericLoginErrorCode) : @"Invalid Login Credentials", // lexem needs approval
-                                           @(1201) : @"That doesn't seem like a the right email address. Can you try again?",
+                                           @(1200) : @"That doesn't seem like a the right email address. Can you try again?",
+                                           @(1201) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!",
                                            @(1202) : @"That’s not the right password, sorry",
-                                           @(1203) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!",
-                                           @(1204) : @"That doesn't seem like a valid email address. Can you try again?",
+                                           @(5200) : @"That doesn't seem like a valid email address. Can you try again?",
                                           };
   NSString *errorMessage = loginErrorCodesMapping[@(errorCode)];
   if (!errorMessage.length) {
