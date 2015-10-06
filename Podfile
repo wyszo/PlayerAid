@@ -20,7 +20,7 @@ pod 'Crashlytics', '3.3.4'
 pod 'TTTAttributedLabel', '1.13.4'
 
 pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
-pod 'FDTake', :git => 'https://github.com/wyszo/FDTake.git', :branch => 'hotfix/strings'
+pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'
 pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
 
 pod 'TWCommonLib', :path => '../TWCommonLib', :branch => 'v0_7'

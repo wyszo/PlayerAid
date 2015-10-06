@@ -40,6 +40,12 @@
     ],
     "BlocksKit": [
       "2.2.5"
+    ],
+    "FLKAutoLayout": [
+      "0.2.1"
+    ],
+    "MagicalRecord": [
+      "2.3.0"
     ]
   }
 }

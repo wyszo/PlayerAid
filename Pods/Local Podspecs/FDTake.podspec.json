@@ -18,5 +18,10 @@
   },
   "source_files": "FDTakeExample/FDTakeController.{h,m}",
   "resources": "FDTakeExample/*.lproj",
-  "requires_arc": true
+  "requires_arc": true,
+  "dependencies": {
+    "TWCommonLib": [
+
+    ]
+  }
 }
