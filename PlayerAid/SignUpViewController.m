@@ -199,7 +199,7 @@ static NSString *const kInvalidEmailAddressMessage = @"That doesn't seem like a 
 {
   NSDictionary *signUpErrorCodesMapping = @{
                                       @(5200) : kInvalidEmailAddressMessage,
-                                      @(5201) : @"Email address already in use!", // lexem needs approval
+                                      @(5201) : @"Hey, it looks like you already registered so please log in!",
                                       @(5202) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!", // lexem needs approval
                                       @(5300) : @"We want to keep your account safe, so we ask that your password has at least 6 characters.",
                                       @(5301) : @"Password to weak!" // lexem needs approval
