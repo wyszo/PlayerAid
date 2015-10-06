@@ -37,7 +37,9 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 
 + (TutorialStep *)tutorialStepWithVideoURL:(NSURL *)videoUrl inContext:(NSManagedObjectContext *)context
 {
+  AssertTrueOrReturnNil(context);
   AssertTrueOrReturnNil(videoUrl);
+  
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
   tutorialStep.videoPath = videoUrl.absoluteString;
   

@@ -689,18 +689,21 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 - (void)saveTutorialStepWithText:(NSString *)text
 {
+  AssertTrueOrReturn(self.createTutorialContext);  
   TutorialStep *step = [TutorialStep tutorialStepWithText:text inContext:self.createTutorialContext];
   [self addTutorialStepAndSave:step];
 }
 
 - (void)saveTutorialStepWithImage:(UIImage *)image
 {
+  AssertTrueOrReturn(self.createTutorialContext);
   TutorialStep *step = [TutorialStep tutorialStepWithImage:image inContext:self.createTutorialContext];
   [self addTutorialStepAndSave:step];
 }
 
 - (void)saveTutorialStepWithVideoURL:(NSURL *)url
 {
+  AssertTrueOrReturn(self.createTutorialContext);
   TutorialStep *step = [TutorialStep tutorialStepWithVideoURL:url inContext:self.createTutorialContext];
   [self addTutorialStepAndSave:step];
 }
