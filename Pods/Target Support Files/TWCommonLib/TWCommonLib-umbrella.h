@@ -27,6 +27,7 @@
 #import "TWDispatchMacros.h"
 #import "TWExtendedMPMoviePlayerViewController.h"
 #import "TWExtendedUIImagePickerControllerDelegate.h"
+#import "TWFilesystemHelper.h"
 #import "TWFullscreenActivityIndicatorView.h"
 #import "TWImagePickerDelegate.h"
 #import "TWImagePickerOverlayProtocol.h"
