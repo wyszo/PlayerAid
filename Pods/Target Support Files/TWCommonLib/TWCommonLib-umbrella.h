@@ -11,6 +11,7 @@
 #import "NSSet+TWSetByRemoving.h"
 #import "NSString+TWBase64Encoding.h"
 #import "NSString+TWHTMLString.h"
+#import "NSString+TWReplacingCharacters.h"
 #import "NSString+TWTrimming.h"
 #import "TWAlertFactory.h"
 #import "TWArrayTableViewDataSource.h"
