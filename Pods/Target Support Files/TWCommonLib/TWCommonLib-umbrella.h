@@ -66,6 +66,7 @@
 #import "TWUIImagePickerExtendedEventsObserver.h"
 #import "TWUIImagePickerHelper.h"
 #import "TWUserDefaultsHelper.h"
+#import "TWVideoPlaybackErrorHandler.h"
 #import "TWVideoThumbnailHelper.h"
 #import "UIImage+TWByOverlayingImage.h"
 #import "UIImage+TWConvenience.h"
