@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.11</string>
+	<string>1.0.12</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -110,17 +110,17 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
-      <key>playeraid.streaming.mediaservices.windows.net</key>
-      <dict>
-        <key>NSExceptionRequiresForwardSecrecy</key>
-        <false/>
-        <key>NSIncludesSubdomains</key>
-        <true/>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-      </dict>
+			<key>playeraid.streaming.mediaservices.windows.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
