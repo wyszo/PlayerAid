@@ -25,6 +25,7 @@
   [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
   
   self.appInitializer = [AppInitializer new];
+  [self.appInitializer initializeGlobalErrorHandlers];
   [self.appInitializer initializeFrameworks];
   [self.appInitializer initializeCoreData];
   [self.appInitializer applicationLaunchDataFetch];

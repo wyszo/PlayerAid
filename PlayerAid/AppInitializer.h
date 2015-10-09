@@ -6,6 +6,7 @@
 
 @interface AppInitializer : NSObject
 
+- (void)initializeGlobalErrorHandlers;
 - (void)initializeFrameworks;
 - (void)initializeCoreData;
 - (void)customizeAppAppearance;

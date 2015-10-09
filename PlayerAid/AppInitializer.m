@@ -5,6 +5,7 @@
 @import Fabric;
 @import Crashlytics;
 #import <TWCommonLib/TWMagicalRecordDebugErrorHandler.h>
+#import <TWCommonLib/TWVideoPlaybackErrorHandler.h>
 #import <BlocksKit/NSObject+BKAssociatedObjects.h>
 #import "AppInitializer.h"
 #import "JourneyController_Debug.h"
@@ -16,10 +17,15 @@
 
 static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
-
 @implementation AppInitializer
 
 #pragma mark - AppSetup
+
+- (void)initializeGlobalErrorHandlers
+{
+  id errorHandler = [TWVideoPlaybackErrorHandler new];
+  [AppLifetimeStaticVariable bk_associateValue:errorHandler withKey:@"VideoPlayback ErrorHandler"];
+}
 
 - (void)initializeFrameworks
 {
@@ -31,7 +37,7 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
   [CoreDataStackHelper setupCoreDataStack];
   
   id errorHandler = [TWMagicalRecordDebugErrorHandler new];
-  [AppLifetimeStaticVariable bk_associateValue:errorHandler withKey:@"errorHandler"];
+  [AppLifetimeStaticVariable bk_associateValue:errorHandler withKey:@"CoreData ErrorHandler"];
 }
 
 - (void)customizeAppAppearance
