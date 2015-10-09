@@ -73,7 +73,7 @@
 #import "UIImage+TWCreateImage.h"
 #import "UIImage+TWCropping.h"
 #import "UIImagePickerController+TWCameraDeviceSwitching.h"
-#import "UIScrollView+StopScrolling.h"
+#import "UIScrollView+TWScrolling.h"
 #import "UITableView+TWRegisterNib.h"
 #import "UITableViewCell+TWHideSeparator.h"
 #import "UITextView+NumberOfLines.h"

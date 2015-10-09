@@ -96,7 +96,7 @@ EXTERNAL SOURCES:
     :branch: feature/AssetsHelper
     :path: ../FDTake
   TWCommonLib:
-    :branch: v0_7
+    :branch: v0_8
     :path: ../TWCommonLib
   XRSA:
     :branch: master
