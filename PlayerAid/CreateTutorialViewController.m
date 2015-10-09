@@ -407,7 +407,8 @@ static NSString *const kXibName = @"CreateTutorialView";
     if (saveChanges && steps) {
       NSOrderedSet *stepsSet = [[NSOrderedSet alloc] initWithArray:steps];
       [weakSelf.tutorial setConsistsOf:stepsSet];
-      
+
+      [self.tutorialTableView tw_scrollToTop];
       [weakSelf saveTutorial];
     }
   };
