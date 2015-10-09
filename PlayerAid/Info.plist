@@ -110,6 +110,17 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
+      <key>playeraid.streaming.mediaservices.windows.net</key>
+      <dict>
+        <key>NSExceptionRequiresForwardSecrecy</key>
+        <false/>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+      </dict>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
