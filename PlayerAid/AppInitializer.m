@@ -4,8 +4,8 @@
 
 @import Fabric;
 @import Crashlytics;
-#import <TWCommonLib/TWMagicalRecordDebugErrorHandler.h>
-#import <TWCommonLib/TWVideoPlaybackErrorHandler.h>
+@import KZPropertyMapper;
+@import TWCommonLib;
 #import <BlocksKit/NSObject+BKAssociatedObjects.h>
 #import "AppInitializer.h"
 #import "JourneyController_Debug.h"
@@ -30,6 +30,7 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 - (void)initializeFrameworks
 {
   [Fabric with:@[[Crashlytics class]]];
+  [KZPropertyMapper logIgnoredValues:NO];
 }
 
 - (void)initializeCoreData
