@@ -54,13 +54,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-jr-YZ4">
-                    <rect key="frame" x="544" y="30" width="48" height="30"/>
+                    <rect key="frame" x="494" y="30" width="98" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="3ZB-lU-ZAu"/>
-                        <constraint firstAttribute="width" constant="48" id="6wS-Df-aph"/>
+                        <constraint firstAttribute="width" constant="98" id="6wS-Df-aph"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                    <state key="normal" title="Edit">
+                    <state key="normal" title="Edit Profile">
                         <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
