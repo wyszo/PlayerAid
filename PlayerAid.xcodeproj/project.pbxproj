@@ -114,8 +114,6 @@
 		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
 		31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */; };
 		31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */; };
-		31D91AEA1BB9D62E0013C7D3 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31D91AE91BB9D62E0013C7D3 /* production.cert.der */; settings = {ASSET_TAGS = (); }; };
-		31D91AEC1BB9E8F60013C7D3 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
@@ -142,6 +140,9 @@
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
+		31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752C1BCD38B4001DC102 /* playeraid.cert.der */; settings = {ASSET_TAGS = (); }; };
+		31FB75301BCD38B4001DC102 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752D1BCD38B4001DC102 /* production.cert.der */; settings = {ASSET_TAGS = (); }; };
+		31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752E1BCD38B4001DC102 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -351,8 +352,6 @@
 		31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialsController.m; sourceTree = "<group>"; };
 		31D8CB111B1CEA28003EE772 /* PlayerAidTabBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAidTabBarHelper.h; sourceTree = "<group>"; };
 		31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAidTabBarHelper.m; sourceTree = "<group>"; };
-		31D91AE91BB9D62E0013C7D3 /* production.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = production.cert.der; sourceTree = "<group>"; };
-		31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = staging.cert.der; sourceTree = "<group>"; };
 		31DBC18F1A7F03D300740A97 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
@@ -399,6 +398,9 @@
 		31FB6BD01B1329C40042C409 /* TutorialsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableViewDelegate.h; sourceTree = "<group>"; };
 		31FB6BD21B13482F0042C409 /* TutorialListFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialListFetchController.h; sourceTree = "<group>"; };
 		31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialListFetchController.m; sourceTree = "<group>"; };
+		31FB752C1BCD38B4001DC102 /* playeraid.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = playeraid.cert.der; path = Certificates/playeraid.cert.der; sourceTree = "<group>"; };
+		31FB752D1BCD38B4001DC102 /* production.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = production.cert.der; path = Certificates/production.cert.der; sourceTree = "<group>"; };
+		31FB752E1BCD38B4001DC102 /* staging.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = staging.cert.der; path = Certificates/staging.cert.der; sourceTree = "<group>"; };
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
@@ -633,8 +635,9 @@
 		3109125F1BB44B12007536B6 /* Server certificates */ = {
 			isa = PBXGroup;
 			children = (
-				31D91AEB1BB9E8F60013C7D3 /* staging.cert.der */,
-				31D91AE91BB9D62E0013C7D3 /* production.cert.der */,
+				31FB752C1BCD38B4001DC102 /* playeraid.cert.der */,
+				31FB752D1BCD38B4001DC102 /* production.cert.der */,
+				31FB752E1BCD38B4001DC102 /* staging.cert.der */,
 			);
 			name = "Server certificates";
 			sourceTree = "<group>";
@@ -1706,6 +1709,7 @@
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
+				31FB75301BCD38B4001DC102 /* production.cert.der in Resources */,
 				314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
@@ -1716,16 +1720,16 @@
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
-				31D91AEA1BB9D62E0013C7D3 /* production.cert.der in Resources */,
+				31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
+				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
-				31D91AEC1BB9E8F60013C7D3 /* staging.cert.der in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,
 				31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */,
