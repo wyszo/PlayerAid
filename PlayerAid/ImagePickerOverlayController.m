@@ -29,7 +29,7 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
   return self;
 }
 
-- (void)showOverlay
+- (void)showPickerOverlay
 {
   if ([self overlayVisible]) {
     return;
@@ -43,7 +43,7 @@ static const NSTimeInterval kOverlayFadeAnimationDuration = 0.25f;
   [self.overlayViewController.view tw_fadeInAnimationWithDuration:kOverlayFadeAnimationDuration];
 }
 
-- (void)hideOverlay
+- (void)hidePickerOverlay
 {
   AssertTrueOrReturn(self.imagePickerController);
   
