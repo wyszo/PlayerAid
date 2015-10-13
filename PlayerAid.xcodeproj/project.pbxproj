@@ -2037,9 +2037,9 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.playeraid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c66e8fe1-8aca-40b1-816f-e420694e0a99";
+				PROVISIONING_PROFILE = "b2ce8b73-5d5b-4f9a-8d93-32e8c840919a";
 			};
 			name = Debug;
 		};
@@ -2056,9 +2056,9 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.playeraid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1375a659-534f-4f7c-8e49-75cb86a7200b";
+				PROVISIONING_PROFILE = "73237723-9df6-4340-9137-bbc75d1c347c";
 			};
 			name = Release;
 		};
