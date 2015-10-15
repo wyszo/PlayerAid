@@ -120,10 +120,10 @@
                         <viewControllerLayoutGuide type="bottom" id="WHH-tW-RVJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KyB-1G-XAP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-W7-zuV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -283,13 +283,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6UK-xR-8AO" firstAttribute="top" secondItem="DIJ-1J-d9a" secondAttribute="bottom" constant="415" id="7bf-wn-S6l"/>
                             <constraint firstAttribute="trailing" secondItem="6UK-xR-8AO" secondAttribute="trailing" id="BUo-Qn-pl3"/>
                             <constraint firstItem="knL-tG-Q8f" firstAttribute="top" secondItem="WZN-gV-v0K" secondAttribute="topMargin" id="UbT-0r-oEn"/>
                             <constraint firstItem="6UK-xR-8AO" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leading" id="asl-g7-Bb8"/>
                             <constraint firstItem="knL-tG-Q8f" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leading" id="c9Z-1G-CcX"/>
                             <constraint firstAttribute="trailing" secondItem="knL-tG-Q8f" secondAttribute="trailing" id="js7-MW-caI"/>
                             <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="knL-tG-Q8f" secondAttribute="bottom" id="mQU-Em-qlE"/>
-                            <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="6UK-xR-8AO" secondAttribute="bottom" constant="36" id="yHc-BU-ppo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Kc-AF-f7Z"/>
@@ -297,6 +297,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="noTutorialsOverlayTopConstraint" destination="7bf-wn-S6l" id="c8S-kv-IAi"/>
                         <outlet property="noTutorialsView" destination="6UK-xR-8AO" id="vNT-qw-87I"/>
                         <outlet property="tutorialTableView" destination="knL-tG-Q8f" id="bDj-7W-8MO"/>
                         <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="Hsy-NE-Zkj"/>
@@ -482,6 +483,6 @@
         <image name="settings-unselected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hsy-NE-Zkj"/>
+        <segue reference="WCv-E4-gA0"/>
     </inferredMetricsTieBreakers>
 </document>

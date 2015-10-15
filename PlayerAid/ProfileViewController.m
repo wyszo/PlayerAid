@@ -35,6 +35,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followingTableViewDelegate;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followersTableViewDelegate;
 @property (weak, nonatomic) IBOutlet NoTutorialsView *noTutorialsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noTutorialsOverlayTopConstraint;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
@@ -57,7 +58,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self setupPlayerInfoView];
   [self setupUserTutorialsTableViewOverlay];
   [self setupKeyValueObservers];
-    
+  
   if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
     [self presentEditProfileViewController];
   }
@@ -120,6 +121,14 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
 }
 
+#pragma mark - View Layout
+
+-(void)viewDidLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  [self updateTableOverlayTopConstraint];
+}
+
 #pragma mark - KVO
 
 - (void)setupKeyValueObservers
@@ -177,6 +186,20 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:dataSource overlayView:overlay allowScrollingWhenNoCells:NO];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+  [self updateTableOverlayTopConstraint];
+}
+
+#pragma mark - Overlay position
+
+- (void)updateTableOverlayTopConstraint
+{
+  CGFloat playerInfoHeight = self.playerInfoView.frame.size.height;
+  CGFloat tableHeight = self.tutorialTableView.frame.size.height;
+  CGFloat noTutorialsOverlayHeight = self.noTutorialsView.frame.size.height;
+  CGFloat topConstant = playerInfoHeight + (tableHeight - playerInfoHeight - noTutorialsOverlayHeight) * 0.5;
+  topConstant = round(topConstant);
+  
+  self.noTutorialsOverlayTopConstraint.constant = topConstant;
 }
 
 #pragma mark - DataSources setup

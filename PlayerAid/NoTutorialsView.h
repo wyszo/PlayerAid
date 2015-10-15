@@ -7,6 +7,6 @@
 IB_DESIGNABLE
 @interface NoTutorialsView : UIView
 
-- (void)setText:(nullable NSString *)text image:(nullable UIImage *)image;
+- (void)setText:(nullable NSString *)text imageNamed:(nullable NSString *)imageName;
 
 @end

@@ -38,8 +38,14 @@ static NSString *const kNibFileName = @"NoTutorialsView";
 
 #pragma mark - Public interface 
 
-- (void)setText:(nullable NSString *)text image:(nullable UIImage *)image
+- (void)setText:(nullable NSString *)text imageNamed:(nullable NSString *)imageName
 {
+  UIImage *image;
+  if (imageName.length) {
+    image = [UIImage imageNamed:imageName];
+    AssertTrueOr(image,);
+  }
+  
   self.noTutorialsLabel.text = text;
   self.imageView.image = image;
 }
