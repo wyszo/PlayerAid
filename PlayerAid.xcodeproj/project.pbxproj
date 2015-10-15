@@ -143,6 +143,8 @@
 		31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752C1BCD38B4001DC102 /* playeraid.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31FB75301BCD38B4001DC102 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752D1BCD38B4001DC102 /* production.cert.der */; settings = {ASSET_TAGS = (); }; };
 		31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752E1BCD38B4001DC102 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
+		31FB75361BCFC56C001DC102 /* NoTutorialsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */; settings = {ASSET_TAGS = (); }; };
+		31FB753B1BCFC7C4001DC102 /* NoTutorialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB753A1BCFC7C4001DC102 /* NoTutorialsView.m */; settings = {ASSET_TAGS = (); }; };
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -401,6 +403,9 @@
 		31FB752C1BCD38B4001DC102 /* playeraid.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = playeraid.cert.der; path = Certificates/playeraid.cert.der; sourceTree = "<group>"; };
 		31FB752D1BCD38B4001DC102 /* production.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = production.cert.der; path = Certificates/production.cert.der; sourceTree = "<group>"; };
 		31FB752E1BCD38B4001DC102 /* staging.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = staging.cert.der; path = Certificates/staging.cert.der; sourceTree = "<group>"; };
+		31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoTutorialsView.xib; sourceTree = "<group>"; };
+		31FB75391BCFC7C4001DC102 /* NoTutorialsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoTutorialsView.h; sourceTree = "<group>"; };
+		31FB753A1BCFC7C4001DC102 /* NoTutorialsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoTutorialsView.m; sourceTree = "<group>"; };
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
@@ -1269,15 +1274,14 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		31B735FF1A88D9780081AE15 /* Tutorial Cells */ = {
+		31B735FF1A88D9780081AE15 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				31B548541AB48AC20010FC83 /* EditTutorialCell.xib */,
-				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
-				31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */,
+				31FB75371BCFC574001DC102 /* Cells */,
+				31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */,
 				31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */,
 			);
-			name = "Tutorial Cells";
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		31B736031A88EC550081AE15 /* Tutorial */ = {
@@ -1323,7 +1327,7 @@
 				31B735E01A87B4350081AE15 /* Create Tutorial */,
 				316D86C31B205DB7003874F4 /* EditProfile */,
 				312FF5F51A9E8F9A00AE3174 /* PlayerInfo */,
-				31B735FF1A88D9780081AE15 /* Tutorial Cells */,
+				31B735FF1A88D9780081AE15 /* Tutorial */,
 				31CA3CD11AC4A2E00044A13D /* UI Components */,
 			);
 			name = Xibs;
@@ -1335,6 +1339,7 @@
 				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
 				31A281981B419A8800D38D5A /* GradientView */,
+				31FB75381BCFC799001DC102 /* NoTutorialsView */,
 				31C122661A838A590069D49A /* PlayerInfo */,
 				31E1F8F71AADA931005EB35B /* PopoverView */,
 				31CA3CD41AC4A3500044A13D /* SectionLabelContainer */,
@@ -1613,6 +1618,25 @@
 			name = Tutorials;
 			sourceTree = "<group>";
 		};
+		31FB75371BCFC574001DC102 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				31B548541AB48AC20010FC83 /* EditTutorialCell.xib */,
+				310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */,
+				31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		31FB75381BCFC799001DC102 /* NoTutorialsView */ = {
+			isa = PBXGroup;
+			children = (
+				31FB75391BCFC7C4001DC102 /* NoTutorialsView.h */,
+				31FB753A1BCFC7C4001DC102 /* NoTutorialsView.m */,
+			);
+			name = NoTutorialsView;
+			sourceTree = "<group>";
+		};
 		31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1725,6 +1749,7 @@
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
+				31FB75361BCFC56C001DC102 /* NoTutorialsView.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
@@ -1836,6 +1861,7 @@
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
+				31FB753B1BCFC7C4001DC102 /* NoTutorialsView.m in Sources */,
 				31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
@@ -2041,9 +2067,9 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.playeraid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b2ce8b73-5d5b-4f9a-8d93-32e8c840919a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2060,9 +2086,9 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.playeraid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73237723-9df6-4340-9137-bbc75d1c347c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

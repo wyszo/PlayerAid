@@ -20,6 +20,7 @@
 #import "TutorialDetailsHelper.h"
 #import "CreateTutorialViewController.h"
 #import "DebugSettings.h"
+#import "NoTutorialsView.h"
 
 static const NSUInteger kFilterCollectionViewHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
@@ -33,7 +34,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followingTableViewDelegate;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followersTableViewDelegate;
-@property (weak, nonatomic) IBOutlet UILabel *noItemsLabel;
+@property (weak, nonatomic) IBOutlet NoTutorialsView *noTutorialsView;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
@@ -146,33 +147,33 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)setupUserTutorialsTableViewOverlay
 {
-  self.noItemsLabel.text = @"You haven't created any tutorials yet!";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.tutorialsTableDataSource];
+  [self.noTutorialsView setText:@"No tutorials made" imageNamed:@"emptystate-tutorial-ic"];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.tutorialsTableDataSource];
 }
 
 - (void)setupLikedTutorialsTableViewOverlay
 {
-  self.noItemsLabel.text = @"No liked tutorials";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.tutorialsTableDataSource];
+  [self.noTutorialsView setText:@"No liked tutorials" imageNamed:@"emptystate-liked-ic"];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.tutorialsTableDataSource];
 }
 
 - (void)setupNotFollowingAnyoneTableViewOverlay
 {
-  self.noItemsLabel.text = @"Not following anyone";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.followingDataSource];
+  [self.noTutorialsView setText:@"Not following anyone yet" imageNamed:@"emptystate-followers-ic"];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.followingDataSource];
 }
 
 - (void)setupNoFollowersTableViewOverlay
 {
-  self.noItemsLabel.text = @"No followers";
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noItemsLabel dataSource:self.followersDataSource];
+  [self.noTutorialsView setText:@"No followers yet" imageNamed:@"emptystate-followers-ic"];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.followersDataSource];
 }
 
 - (void)setupEmptyTableViewBehaviourWithOverlay:(UIView *)overlay dataSource:(id<TWObjectCountProtocol>)dataSource
 {
   AssertTrueOrReturn(overlay);
   AssertTrueOrReturn(dataSource);
-  self.noItemsLabel.hidden = YES;
+  self.noTutorialsView.hidden = YES;
   
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialTableView dataSource:dataSource overlayView:overlay allowScrollingWhenNoCells:NO];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
