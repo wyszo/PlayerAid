@@ -176,6 +176,8 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
       }];
     }
   };
+  
+  CallBlock(self.didConfigureCellAtIndexPath, tutorialCell, indexPath);
 }
 
 #pragma mark - DataSource - deleting cells

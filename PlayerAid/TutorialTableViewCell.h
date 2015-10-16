@@ -15,4 +15,9 @@
 - (void)configureWithTutorial:(Tutorial *)tutorial;
 - (void)updateLikeButtonState;
 
+/**
+ @param   showGradientOverlay   Determines whether to show dark bottom gradient overlay or default plain full-screen overlay
+ */
+- (void)showGradientOverlay:(BOOL)showGradientOverlay;
+
 @end

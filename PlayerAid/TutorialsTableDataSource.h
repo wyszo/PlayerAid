@@ -5,6 +5,7 @@
 #import "Tutorial.h"
 #import "User.h"
 #import "TutorialsTableViewDelegate.h"
+#import "TutorialTableViewCell.h"
 #import <TWCommonLib/TWCommonMacros.h>
 #import <TWCommonLib/TWObjectCountProtocol.h>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
 @property (nonatomic, copy) void (^userAvatarSelectedBlock)(User *user);
+@property (nonatomic, copy) void (^didConfigureCellAtIndexPath)(TutorialTableViewCell *cell, NSIndexPath *indexPath);
 
 NEW_AND_INIT_UNAVAILABLE
 

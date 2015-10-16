@@ -26,6 +26,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 @property (weak, nonatomic) IBOutlet SectionLabelContainer *sectionLabelContainer;
 @property (weak, nonatomic) IBOutlet UIView *sectionTitleBackground;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
+
+@property (weak, nonatomic) IBOutlet UIView *plainOverlayView;
+@property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
 @property (weak, nonatomic) Tutorial *tutorial;
@@ -47,6 +51,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   }
   
   [self.avatarImageView styleAsSmallAvatar];
+  [self showGradientOverlay:NO];
 }
 
 - (void)prepareForReuse
@@ -56,6 +61,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.backgroundImageView.image = nil;
   [self.backgroundImageView cancelImageRequestOperation];
   [self setSectionNameHidden:NO];
+  [self showGradientOverlay:NO];
 }
 
 - (void)layoutSubviews
@@ -84,6 +90,14 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   // TODO: this approach sucks - gaps between tableView cells are implemented as part of cells, instead of dummy sections. That's why we traverse view hierarchy to decrease size of a delete button. Likely to break in future iOS versions.
 }
 
+- (void)setSectionNameHidden:(BOOL)hidden
+{
+  self.sectionTitleBackground.hidden = hidden;
+  self.sectionLabelContainer.hidden = hidden;
+}
+
+#pragma mark - Public methods
+
 - (void)configureWithTutorial:(Tutorial *)tutorial
 {
   self.tutorial = tutorial;
@@ -104,10 +118,17 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [self adjustAlphaFromTutorial:tutorial];
 }
 
-- (void)setSectionNameHidden:(BOOL)hidden
+- (void)updateLikeButtonState
 {
-  self.sectionTitleBackground.hidden = hidden;
-  self.sectionLabelContainer.hidden = hidden;
+  BOOL likeButtonVisible = (self.tutorial.isPublished);
+  self.favouriteButton.hidden = !likeButtonVisible;
+  [self setFavouritedButtonState:self.likeButtonHighlighted];
+}
+
+- (void)showGradientOverlay:(BOOL)showGradientOverlay
+{
+  self.plainOverlayView.hidden = showGradientOverlay;
+  self.gradientOverlayView.hidden = !(showGradientOverlay);
 }
 
 #pragma mark - Update UI to match Tutorial
@@ -145,13 +166,6 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
       weakBackgroundImageView.alpha = 1.0f;
     }];
   } failure:nil];
-}
-
-- (void)updateLikeButtonState
-{
-  BOOL likeButtonVisible = (self.tutorial.isPublished);
-  self.favouriteButton.hidden = !likeButtonVisible;
-  [self setFavouritedButtonState:self.likeButtonHighlighted];
 }
 
 - (BOOL)likeButtonHighlighted

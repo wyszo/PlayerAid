@@ -12,15 +12,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jBq-6U-qF8" id="Gdk-OC-wt1">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="241"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="241.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                     </imageView>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Overlay view">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Timeline (plain) Overlay view">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-lP-FpM" userLabel="TutorialDetails (gradient) overlay view">
+                        <rect key="frame" x="0.0" y="111" width="320" height="112"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="112" id="qke-h4-p41"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
                         <rect key="frame" x="16" y="127" width="230" height="36"/>
@@ -32,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTe-nH-zxI">
-                        <rect key="frame" x="62" y="177" width="89" height="21"/>
+                        <rect key="frame" x="62" y="177" width="88.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" priority="100" constant="193" id="cm6-Tz-0Ie"/>
                             <constraint firstAttribute="height" constant="21" id="gXA-w8-yvP"/>
@@ -72,8 +79,8 @@
                             <action selector="favouriteButtonPressed:" destination="jBq-6U-qF8" eventType="touchUpInside" id="IVh-H1-I4A"/>
                         </connections>
                     </button>
-                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
-                        <rect key="frame" x="242" y="173" width="62" height="30"/>
+                    <view alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
+                        <rect key="frame" x="161.5" y="173" width="142.5" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="MJS-r6-0kQ"/>
@@ -85,8 +92,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
-                        <rect key="frame" x="242" y="173" width="62" height="30"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
+                        <rect key="frame" x="161.5" y="173" width="142.5" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exw-H4-PlW" userLabel="BottomGapView">
@@ -97,7 +104,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCI-Ek-nfe" userLabel="Author Button">
-                        <rect key="frame" x="0.0" y="166" width="161" height="45"/>
+                        <rect key="frame" x="0.0" y="166" width="160.5" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="cTq-6c-Hsx"/>
                         </constraints>
@@ -115,11 +122,14 @@
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="width" secondItem="n6d-ft-6nn" secondAttribute="width" id="2wB-lM-3G9"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="l9K-RJ-Tmc" secondAttribute="bottom" constant="14" id="3m0-hS-4wE"/>
                     <constraint firstItem="PCI-Ek-nfe" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="A5I-F9-ofO"/>
+                    <constraint firstAttribute="trailing" secondItem="fp1-lP-FpM" secondAttribute="trailing" id="AIm-bq-CXe"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="4" id="BgC-VH-a8f"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" constant="-0.5" id="CPW-2X-bUt"/>
                     <constraint firstAttribute="trailing" secondItem="hII-NL-LnG" secondAttribute="trailing" id="Cwa-Ib-YRs"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="height" secondItem="n6d-ft-6nn" secondAttribute="height" id="Fgc-98-eBH"/>
+                    <constraint firstItem="fp1-lP-FpM" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leading" id="Hs7-3J-scg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VaV-Pj-OYA" secondAttribute="trailing" constant="8" id="JNf-52-43w"/>
+                    <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="fp1-lP-FpM" secondAttribute="bottom" id="Jk2-GH-ocp"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerX" secondItem="n6d-ft-6nn" secondAttribute="centerX" id="MuM-hq-gQm"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="OOG-mE-GJc" secondAttribute="bottom" id="O1y-Ua-Qeq"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" id="SHy-Ze-3x9"/>
@@ -151,6 +161,8 @@
                 <outlet property="backgroundImageView" destination="OOG-mE-GJc" id="I4J-Zg-EjE"/>
                 <outlet property="bottomGapHeightConstraint" destination="h9Q-zf-hux" id="LaU-nl-ES8"/>
                 <outlet property="favouriteButton" destination="gdZ-L3-4O4" id="nCJ-zW-1Be"/>
+                <outlet property="gradientOverlayView" destination="fp1-lP-FpM" id="SGa-FD-zVc"/>
+                <outlet property="plainOverlayView" destination="hII-NL-LnG" id="c1i-PL-S4r"/>
                 <outlet property="sectionLabelContainer" destination="n6d-ft-6nn" id="hif-gN-0pk"/>
                 <outlet property="sectionTitleBackground" destination="S8t-lE-vVW" id="orA-1S-j70"/>
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>

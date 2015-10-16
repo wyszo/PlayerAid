@@ -75,6 +75,10 @@
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
     _headerTableViewDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+    
+    _headerTableViewDataSource.didConfigureCellAtIndexPath = ^(TutorialTableViewCell *cell, NSIndexPath *indexPath) {
+      [cell showGradientOverlay:YES];
+    };
   }
   return _headerTableViewDataSource;
 }
