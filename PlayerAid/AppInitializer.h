@@ -6,11 +6,10 @@
 
 @interface AppInitializer : NSObject
 
-- (void)initializeGlobalErrorHandlers;
-- (void)initializeFrameworks;
-- (void)initializeCoreData;
+- (void)initializeAppInternals;
 - (void)customizeAppAppearance;
 
-- (void)applicationLaunchDataFetch;
+// TODO: this logic should not be part of the initializer
+- (void)applicationLaunchFetchUsersAndTutorials;
 
 @end

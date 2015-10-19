@@ -21,10 +21,24 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
 #pragma mark - AppSetup
 
+- (void)initializeAppInternals
+{
+  [self initializeGlobalErrorHandlers];
+  [self increaseCacheSize];
+  [self initializeFrameworks];
+  [self initializeCoreData];
+}
+
 - (void)initializeGlobalErrorHandlers
 {
   id errorHandler = [TWVideoPlaybackErrorHandler new];
   [AppLifetimeStaticVariable bk_associateValue:errorHandler withKey:@"VideoPlayback ErrorHandler"];
+}
+
+- (void)increaseCacheSize
+{
+  // Default cache size: in-memory: 0,5MB; disk: 10MB
+  [NSURLCache tw_setMemoryCacheSizeMegabytes:10.0 diskCacheSizeMegabytes:50.0];
 }
 
 - (void)initializeFrameworks
@@ -48,7 +62,7 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
 #pragma mark - AppLaunchDataFetch
 
-- (void)applicationLaunchDataFetch
+- (void)applicationLaunchFetchUsersAndTutorials
 {
   if (!DEBUG_OFFLINE_MODE) {
     [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
