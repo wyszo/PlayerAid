@@ -26,4 +26,13 @@ ErrorMethodMake(incorrectParameterError, kIncorrectParameterErrorCode)
 ErrorMethodMake(authenticationTokenError, kAuthenticationTokenParameterErrorCode)
 ErrorMethodMake(emailAddressAlreadyUsedForRegistrationError, kEmailAddressAlreadyUsedForRegistration)
 
+#pragma mark - Other interface methods
+
+- (BOOL)isURLRequestErrorUserCancelled
+{
+  BOOL urlErrorDomain = [self.domain isEqualToString:NSURLErrorDomain];
+  BOOL cancelledErrorCode = (self.code == NSURLErrorCancelled);
+  return (urlErrorDomain && cancelledErrorCode);
+}
+
 @end

@@ -8,6 +8,7 @@
 #import "Tutorial.h"
 #import "TutorialsHelper.h"
 #import "UsersHelper.h"
+#import "NSError+PlayerAidErrors.h"
 
 NSString *const kUserServerIDJSONAttributeName = @"id";
 NSString *const kUserServerIDKey = @"serverID";
@@ -119,8 +120,15 @@ static NSString *const kFollowingKey = @"following";
   if (self.pictureURL) { // users creaded using email/signup flow don't need to have a picture
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.pictureURL]];
     [imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-      NSLog(@"Avatar image loading error: %@", error);
-      AssertTrueOrReturn(!error);
+      if ([error isURLRequestErrorUserCancelled]) {
+        // all good - request cancelled, because we didn't care about the outcome anymore
+        // TODO: in this case we probably want to queue it, high chance we'll request that data later
+        return;
+      }
+      else {
+        NSLog(@"Avatar image loading error: %@", error);
+        AssertTrueOrReturn(!error);
+      }
     }];
   }
 }

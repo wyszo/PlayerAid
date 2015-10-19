@@ -61,6 +61,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   [super prepareForReuse];
   self.avatarImageView.image = nil;
   self.backgroundImageView.image = nil;
+  [self.avatarImageView cancelImageRequestOperation];
   [self.backgroundImageView cancelImageRequestOperation];
   [self setSectionNameHidden:NO];
   [self showGradientOverlay:NO];
