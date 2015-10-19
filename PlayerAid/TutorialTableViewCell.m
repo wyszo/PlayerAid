@@ -15,7 +15,9 @@
 #import "SectionLabelContainer.h"
 #import "GradientView.h"
 
+static const NSTimeInterval kImageRequestTimeoutIntervalSeconds = 10.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
+
 
 @interface TutorialTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -139,7 +141,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
     [self updateBackgroundImageViewFromTutorialData];
   }
   else {
-    [self fetchBackgroundImageViewFromNetwork];
+    [self fetchBackgroundImageView];
   }
 }
 
@@ -151,20 +153,27 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
   self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
 }
 
-- (void)fetchBackgroundImageViewFromNetwork
+- (void)fetchBackgroundImageView
 {
-  __weak UIImageView *weakBackgroundImageView = self.backgroundImageView;
-  
   NSString *imageURLString = self.tutorial.imageURL;
   AssertTrueOrReturn(imageURLString.length);
-  NSURLRequest *imageURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.tutorial.imageURL]];
   
+  NSURLRequest *imageURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.tutorial.imageURL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:kImageRequestTimeoutIntervalSeconds];
+  
+  // we want to display images from cache without fadeIn animation
+  BOOL imageCachedOnDisk = ([[NSURLCache sharedURLCache] tw_cachedHTTPResponseForURLRequest:imageURLRequest] != nil);
+
+  defineWeakSelf();
   [self.backgroundImageView setImageWithURLRequest:imageURLRequest placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-    weakBackgroundImageView.alpha = 0.0f;
-    weakBackgroundImageView.image = image;
-    [UIView animateWithDuration:kBackgroundImageViewFadeInDuration animations:^{
-      weakBackgroundImageView.alpha = 1.0f;
-    }];
+    defineStrongSelf();
+    
+    BOOL imageFromAFNetworkingInMemoryCache = (request == nil && response == nil && image != nil);
+    if (imageCachedOnDisk || imageFromAFNetworkingInMemoryCache) {
+      [strongSelf setBackgroundImage:image fadeInAnimation:NO];
+    }
+    else {
+      [strongSelf setBackgroundImage:image fadeInAnimation:YES];
+    }
   } failure:nil];
 }
 
@@ -210,6 +219,20 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
 }
 
 #pragma mark - Auxiliary methods
+
+- (void)setBackgroundImage:(nonnull UIImage *)image fadeInAnimation:(BOOL)fadeInAnimation
+{
+  if (!fadeInAnimation) {
+    self.backgroundImageView.image = image;
+    self.backgroundImageView.alpha = 1.0f;
+  } else {
+    self.backgroundImageView.alpha = 0.0f;
+    self.backgroundImageView.image = image;
+    [UIView animateWithDuration:kBackgroundImageViewFadeInDuration animations:^{
+      self.backgroundImageView.alpha = 1.0f;
+    }];
+  }
+}
 
 - (void)setFavouritedButtonState:(BOOL)favourited
 {
