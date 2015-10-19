@@ -13,6 +13,7 @@
 #import "NSString+TWHTMLString.h"
 #import "NSString+TWReplacingCharacters.h"
 #import "NSString+TWTrimming.h"
+#import "NSURLCache+TWCache.h"
 #import "TWAlertFactory.h"
 #import "TWArrayTableViewDataSource.h"
 #import "TWAssetsHelper.h"
