@@ -169,6 +169,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
     defineStrongSelf();
     
     BOOL imageFromAFNetworkingInMemoryCache = (request == nil && response == nil && image != nil);
+    // Right now there's a visible lag for images from a disk cache - but it'll go away once timeline images prefetching is implemented
+    
     if (imageCachedOnDisk || imageFromAFNetworkingInMemoryCache) {
       [strongSelf setBackgroundImage:image fadeInAnimation:NO];
     }
