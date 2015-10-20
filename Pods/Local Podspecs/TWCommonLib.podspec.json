@@ -23,7 +23,7 @@
   ],
   "source_files": [
     "TWCommonLib",
-    "TWCommonLib/**/*.{h,m}"
+    "TWCommonLib/**/*.{h,m,swift}"
   ],
   "exclude_files": [
     "TWCommonLib/Exclude",

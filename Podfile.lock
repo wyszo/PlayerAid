@@ -129,7 +129,7 @@ SPEC CHECKSUMS:
   Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  TWCommonLib: 5206872ea0cbbfef0a19c1ebdd51271bbbf77614
+  TWCommonLib: 2d736b7a5afe235a7fbc1fad7b0ca3df3f0e24b9
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: 83895056749372c96febfb43f536c9b1aae3e08e
   XRSA: efd78169cdb34f28194c140f51b49e312d996649

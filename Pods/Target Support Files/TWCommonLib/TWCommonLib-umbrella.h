@@ -19,6 +19,7 @@
 #import "TWAssetsHelper.h"
 #import "TWClassMethodCopyHelper.h"
 #import "TWCommonFunctions.h"
+#import "TWCommonLib-Bridging-Header.h"
 #import "TWCommonLib.h"
 #import "TWCommonMacros.h"
 #import "TWCommonTypes.h"
