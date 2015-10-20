@@ -3,7 +3,7 @@
 //
 
 @import TWCommonLib;
-#import "HomeViewController.h"
+#import "TimelineViewController.h"
 #import "TutorialsTableDataSource.h"
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
@@ -13,7 +13,7 @@
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
 
-@interface HomeViewController () <TutorialsTableViewDelegate>
+@interface TimelineViewController () <TutorialsTableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *latestFilterBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *followingFilterBackgroundView;
@@ -32,7 +32,7 @@
 @end
 
 
-@implementation HomeViewController
+@implementation TimelineViewController
 
 - (void)viewDidLoad
 {

@@ -131,7 +131,7 @@
 		31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
 		31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116791A790F680022BD74 /* AppDelegate.m */; };
-		31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* HomeViewController.m */; };
+		31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* TimelineViewController.m */; };
 		31F116801A790F680022BD74 /* BrowseTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167F1A790F680022BD74 /* BrowseTutorialsViewController.m */; };
 		31F116831A790F680022BD74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31F116811A790F680022BD74 /* Main.storyboard */; };
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
@@ -384,8 +384,8 @@
 		31F116761A790F680022BD74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		31F116781A790F680022BD74 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		31F116791A790F680022BD74 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		31F1167B1A790F680022BD74 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		31F1167C1A790F680022BD74 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		31F1167B1A790F680022BD74 /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		31F1167C1A790F680022BD74 /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		31F1167E1A790F680022BD74 /* BrowseTutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowseTutorialsViewController.h; sourceTree = "<group>"; };
 		31F1167F1A790F680022BD74 /* BrowseTutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowseTutorialsViewController.m; sourceTree = "<group>"; };
 		31F116821A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -929,8 +929,8 @@
 			isa = PBXGroup;
 			children = (
 				317780371A80ED0D007057CD /* TutorialDetails */,
-				31F1167B1A790F680022BD74 /* HomeViewController.h */,
-				31F1167C1A790F680022BD74 /* HomeViewController.m */,
+				31F1167B1A790F680022BD74 /* TimelineViewController.h */,
+				31F1167C1A790F680022BD74 /* TimelineViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1902,7 +1902,7 @@
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
-				31F1167D1A790F680022BD74 /* HomeViewController.m in Sources */,
+				31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */,
 				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
