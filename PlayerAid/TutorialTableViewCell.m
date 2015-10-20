@@ -16,7 +16,7 @@
 #import "GradientView.h"
 
 static const NSTimeInterval kImageRequestTimeoutIntervalSeconds = 10.0f;
-static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.3f;
+static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 
 
 @interface TutorialTableViewCell ()
