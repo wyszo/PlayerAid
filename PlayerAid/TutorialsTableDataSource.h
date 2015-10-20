@@ -13,16 +13,17 @@
 @interface TutorialsTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
-@property (nonatomic, strong) NSPredicate *predicate;
-@property (nonatomic, copy) NSString *groupBy;
+@property (nonatomic, nonnull, strong) NSPredicate *predicate;
+@property (nonatomic, nullable, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
-@property (nonatomic, copy) void (^userAvatarSelectedBlock)(User *user);
-@property (nonatomic, copy) void (^didConfigureCellAtIndexPath)(TutorialTableViewCell *cell, NSIndexPath *indexPath);
+@property (nonatomic, nullable, copy) void (^userAvatarSelectedBlock)(User * __nonnull user);
+@property (nonatomic, nullable, copy) void (^didConfigureCellAtIndexPath)(TutorialTableViewCell * __nonnull cell, NSIndexPath *__nonnull indexPath);
 
 NEW_AND_INIT_UNAVAILABLE
 
-- (instancetype)initAttachingToTableView:(UITableView *)tableView;
-- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName;
+- (nonnull instancetype)initAttachingToTableView:(nonnull UITableView *)tableView;
+- (NSInteger)numberOfRowsForSectionNamed:(nonnull NSString *)sectionName;
+- (nullable Tutorial *)tutorialAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end

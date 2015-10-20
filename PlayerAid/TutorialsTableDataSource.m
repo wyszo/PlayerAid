@@ -35,7 +35,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 #pragma mark - Initilization
 
-- (instancetype)initAttachingToTableView:(UITableView *)tableView
+- (nonnull instancetype)initAttachingToTableView:(nonnull UITableView *)tableView
 {
   AssertTrueOrReturnNil(tableView);
   // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
@@ -260,9 +260,11 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 #pragma mark - Auxiliary methods
 
-- (Tutorial *)tutorialAtIndexPath:(NSIndexPath *)indexPath
+- (nullable Tutorial *)tutorialAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-  return [self.tableViewDataSource objectAtIndexPath:indexPath];
+  AssertTrueOrReturnNil(indexPath);
+  id objectAtIndexPath = [self.tableViewDataSource objectAtIndexPath:indexPath];
+  return (Tutorial *)objectAtIndexPath;
 }
 
 - (NSInteger)objectCount
@@ -316,7 +318,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return sectionHeaderView;
 }
 
-- (NSInteger)numberOfRowsForSectionNamed:(NSString *)sectionName
+- (NSInteger)numberOfRowsForSectionNamed:(nonnull NSString *)sectionName
 {
   AssertTrueOr(sectionName.length, return 0;);
   
