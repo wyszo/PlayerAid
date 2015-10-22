@@ -18,6 +18,7 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
 @property (nonatomic, retain, nonnull) dispatch_queue_t dispatchQueue;
 @property (nonatomic, weak, nullable) TutorialsTableDataSource *dataSource;
 @property (nonatomic, weak, nullable) UITableView *tableView;
+@property (nonatomic, strong, nonnull) NSIndexPath *furthestPrefetchedIndexPath;
 @end
 
 @implementation ImagesPrefetchingController
@@ -32,6 +33,7 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
   self = [super init];
   if (self) {
     _dataSource = dataSource;
+    _furthestPrefetchedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self setupPrioritySerialBackgroundDispatchQueue];
   }
   return self;
@@ -58,6 +60,10 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
       }
       
       NSIndexPath *prefetchRowIndexPath = [NSIndexPath indexPathForRow:rowIndex inSection:indexPath.section];
+      if ([prefetchRowIndexPath compare:self.furthestPrefetchedIndexPath] == NSOrderedAscending) {
+        return; // this row must have already been prefetched
+      }
+      
       BOOL cellVisible = [self.tableView.indexPathsForVisibleRows containsObject:prefetchRowIndexPath];
       
       if (cellVisible) {
@@ -73,6 +79,8 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
 
 - (void)prefetchImageForIndexPath:(nonnull NSIndexPath *)indexPath
 {
+  self.furthestPrefetchedIndexPath = indexPath;
+  
   AssertTrueOrReturn(indexPath);
   
   Tutorial *tutorial = [self.dataSource tutorialAtIndexPath:indexPath];
