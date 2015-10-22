@@ -1,1 +1,5 @@
-YCAMERAVIEW_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMotion" -framework "ImageIO"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/YCameraView" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric"
+OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMotion" -framework "ImageIO"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES
