@@ -81,8 +81,8 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
-		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; settings = {ASSET_TAGS = (); }; };
-		319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA1D1BB07DE50079E66C /* RSAEncoder.m */; settings = {ASSET_TAGS = (); }; };
+		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; };
+		319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA1D1BB07DE50079E66C /* RSAEncoder.m */; };
 		31A2819C1B419AB100D38D5A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A2819B1B419AB100D38D5A /* GradientView.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
@@ -129,6 +129,7 @@
 		31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6BC1BAB25B500F87C03 /* PrivacyPolicy.html */; };
 		31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C01BAB25F000F87C03 /* LoginManager.m */; };
 		31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */; };
+		31F09EF61BD8AA55003B9794 /* ImagesPrefetchingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F09EF51BD8AA55003B9794 /* ImagesPrefetchingController.m */; };
 		31F116771A790F680022BD74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116761A790F680022BD74 /* main.m */; };
 		31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F116791A790F680022BD74 /* AppDelegate.m */; };
 		31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F1167C1A790F680022BD74 /* TimelineViewController.m */; };
@@ -140,14 +141,14 @@
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
-		31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752C1BCD38B4001DC102 /* playeraid.cert.der */; settings = {ASSET_TAGS = (); }; };
-		31FB75301BCD38B4001DC102 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752D1BCD38B4001DC102 /* production.cert.der */; settings = {ASSET_TAGS = (); }; };
-		31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752E1BCD38B4001DC102 /* staging.cert.der */; settings = {ASSET_TAGS = (); }; };
-		31FB75361BCFC56C001DC102 /* NoTutorialsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */; settings = {ASSET_TAGS = (); }; };
-		31FB753B1BCFC7C4001DC102 /* NoTutorialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB753A1BCFC7C4001DC102 /* NoTutorialsView.m */; settings = {ASSET_TAGS = (); }; };
+		31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752C1BCD38B4001DC102 /* playeraid.cert.der */; };
+		31FB75301BCD38B4001DC102 /* production.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752D1BCD38B4001DC102 /* production.cert.der */; };
+		31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31FB752E1BCD38B4001DC102 /* staging.cert.der */; };
+		31FB75361BCFC56C001DC102 /* NoTutorialsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */; };
+		31FB753B1BCFC7C4001DC102 /* NoTutorialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB753A1BCFC7C4001DC102 /* NoTutorialsView.m */; };
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
-		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -379,6 +380,8 @@
 		31EFB6C01BAB25F000F87C03 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		31EFB6C41BAB473B00F87C03 /* LoginAppearanceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAppearanceHelper.h; sourceTree = "<group>"; };
 		31EFB6C51BAB473B00F87C03 /* LoginAppearanceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAppearanceHelper.m; sourceTree = "<group>"; };
+		31F09EF41BD8AA55003B9794 /* ImagesPrefetchingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesPrefetchingController.h; sourceTree = "<group>"; };
+		31F09EF51BD8AA55003B9794 /* ImagesPrefetchingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesPrefetchingController.m; sourceTree = "<group>"; };
 		31F116711A790F680022BD74 /* PlayerAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F116751A790F680022BD74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F116761A790F680022BD74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -866,6 +869,7 @@
 				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
 				31EFB6BE1BAB25DE00F87C03 /* Login */,
+				31F09EF31BD8A6C7003B9794 /* Prefetching */,
 				310308BE1A86354F00B7F921 /* ServerCommunication */,
 				31D8CB0D1B1C6097003EE772 /* UserTutorials */,
 				31014E531A961084002F3485 /* Users */,
@@ -1520,6 +1524,15 @@
 			name = "Login Appearance";
 			sourceTree = "<group>";
 		};
+		31F09EF31BD8A6C7003B9794 /* Prefetching */ = {
+			isa = PBXGroup;
+			children = (
+				31F09EF41BD8AA55003B9794 /* ImagesPrefetchingController.h */,
+				31F09EF51BD8AA55003B9794 /* ImagesPrefetchingController.m */,
+			);
+			name = Prefetching;
+			sourceTree = "<group>";
+		};
 		31F116681A790F680022BD74 = {
 			isa = PBXGroup;
 			children = (
@@ -1939,6 +1952,7 @@
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */,
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
+				31F09EF61BD8AA55003B9794 /* ImagesPrefetchingController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */,

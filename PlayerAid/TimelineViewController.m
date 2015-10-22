@@ -2,7 +2,9 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 @import TWCommonLib;
+@import AFNetworking;
 #import "TimelineViewController.h"
 #import "TutorialsTableDataSource.h"
 #import "TutorialDetailsViewController.h"
@@ -12,6 +14,7 @@
 #import "DebugSettings.h"
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
+#import "ImagesPrefetchingController.h"
 
 @interface TimelineViewController () <TutorialsTableViewDelegate>
 
@@ -27,6 +30,7 @@
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 
 @property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (nonatomic, strong) ImagesPrefetchingController *imagesPrefetchingController;
 @property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 @end
@@ -40,13 +44,10 @@
   self.title = @"Home";
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.tabBarController];
   
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
-  
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
-  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
-  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
-  
+  [self setupDataSource];
   [self setupTableViewHeader];
+  
+  self.imagesPrefetchingController = [[ImagesPrefetchingController alloc] initWithDataSource:self.tutorialsTableDataSource tableView:self.tutorialsTableView];
   
   self.noTutorialsLabel.text = @"No tutorials to show yet";
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
@@ -59,6 +60,14 @@
   });
   
   // TODO: Filter buttons should be extracted to a separate class!!
+}
+
+- (void)setupDataSource
+{
+  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
+  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
+  self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
 }
 
 - (void)setupTableViewHeader
@@ -132,6 +141,12 @@
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows
 {
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
+- (void)willDisplayCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  AssertTrueOrReturn(self.imagesPrefetchingController);
+  [self.imagesPrefetchingController willDisplayCellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - PrepareForSegue
