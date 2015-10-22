@@ -294,6 +294,13 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return [[TutorialCellHelper new] cellHeightForCurrentScreenWidthWithBottomGapVisible:bottomGapVisible];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(willDisplayCellForRowAtIndexPath:)]) {
+    [self.tutorialTableViewDelegate willDisplayCellForRowAtIndexPath:indexPath];
+  }
+}
+
 #pragma mark - TableView Delegate: Section headers
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
