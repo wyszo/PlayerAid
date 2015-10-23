@@ -31,6 +31,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 
 @property (weak, nonatomic) IBOutlet UIView *plainOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
+@property (weak, nonatomic) IBOutlet UIView *topGradientOverlayView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 

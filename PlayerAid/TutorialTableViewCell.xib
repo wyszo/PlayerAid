@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -18,15 +18,22 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                     </imageView>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Timeline (plain) Overlay view">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Timeline (plain) Overlay view" customClass="GradientView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEK-nM-QJK" userLabel="topGradientView" customClass="GradientView">
+                        <rect key="frame" x="0.0" y="77" width="320" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="wMW-c5-bCI"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-lP-FpM" userLabel="TutorialDetails (gradient) overlay view">
-                        <rect key="frame" x="0.0" y="111" width="320" height="112"/>
+                        <rect key="frame" x="0.0" y="127" width="320" height="96"/>
                         <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="112" id="qke-h4-p41"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="qke-h4-p41"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-Ug-2gd">
@@ -79,8 +86,8 @@
                             <action selector="favouriteButtonPressed:" destination="jBq-6U-qF8" eventType="touchUpInside" id="IVh-H1-I4A"/>
                         </connections>
                     </button>
-                    <view alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
-                        <rect key="frame" x="161.5" y="173" width="142.5" height="30"/>
+                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-lE-vVW" userLabel="Section Title Background">
+                        <rect key="frame" x="242" y="173" width="62" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="MJS-r6-0kQ"/>
@@ -92,8 +99,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
-                        <rect key="frame" x="161.5" y="173" width="142.5" height="30"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ft-6nn" userLabel="SectionLabelContainer" customClass="SectionLabelContainer">
+                        <rect key="frame" x="242" y="173" width="62" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exw-H4-PlW" userLabel="BottomGapView">
@@ -121,6 +128,7 @@
                     <constraint firstAttribute="trailing" secondItem="gdZ-L3-4O4" secondAttribute="trailing" constant="8" id="1ar-Dq-cZM"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="width" secondItem="n6d-ft-6nn" secondAttribute="width" id="2wB-lM-3G9"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="l9K-RJ-Tmc" secondAttribute="bottom" constant="14" id="3m0-hS-4wE"/>
+                    <constraint firstItem="FEK-nM-QJK" firstAttribute="width" secondItem="fp1-lP-FpM" secondAttribute="width" id="9o9-aO-z4n"/>
                     <constraint firstItem="PCI-Ek-nfe" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="A5I-F9-ofO"/>
                     <constraint firstAttribute="trailing" secondItem="fp1-lP-FpM" secondAttribute="trailing" id="AIm-bq-CXe"/>
                     <constraint firstItem="l9K-RJ-Tmc" firstAttribute="top" secondItem="fFb-Ug-2gd" secondAttribute="bottom" constant="4" id="BgC-VH-a8f"/>
@@ -132,12 +140,14 @@
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="fp1-lP-FpM" secondAttribute="bottom" id="Jk2-GH-ocp"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerX" secondItem="n6d-ft-6nn" secondAttribute="centerX" id="MuM-hq-gQm"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="top" secondItem="OOG-mE-GJc" secondAttribute="bottom" id="O1y-Ua-Qeq"/>
+                    <constraint firstItem="FEK-nM-QJK" firstAttribute="centerX" secondItem="fp1-lP-FpM" secondAttribute="centerX" id="RSG-AG-1oV"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" id="SHy-Ze-3x9"/>
                     <constraint firstAttribute="bottomMargin" secondItem="exw-H4-PlW" secondAttribute="bottom" constant="-8" id="VCE-3g-tEt"/>
                     <constraint firstItem="S8t-lE-vVW" firstAttribute="centerY" secondItem="n6d-ft-6nn" secondAttribute="centerY" id="X6A-Es-24N"/>
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="4" id="YAA-0y-hKi"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="Zvv-En-Gcf"/>
                     <constraint firstItem="fFb-Ug-2gd" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="a2s-LB-Ako"/>
+                    <constraint firstItem="fFb-Ug-2gd" firstAttribute="top" secondItem="fp1-lP-FpM" secondAttribute="top" id="bKv-ee-Qmw"/>
                     <constraint firstAttribute="trailing" secondItem="OOG-mE-GJc" secondAttribute="trailing" id="bRL-3C-7b5"/>
                     <constraint firstItem="n6d-ft-6nn" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="6" id="bUI-04-ER0"/>
                     <constraint firstItem="OOG-mE-GJc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leading" id="c41-s8-rar"/>
@@ -149,6 +159,7 @@
                     <constraint firstItem="OOG-mE-GJc" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="top" id="n78-to-rv4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="S8t-lE-vVW" secondAttribute="trailing" constant="8" id="nM1-sY-Z0m"/>
                     <constraint firstItem="hII-NL-LnG" firstAttribute="top" secondItem="Gdk-OC-wt1" secondAttribute="top" id="qRe-5N-gzZ"/>
+                    <constraint firstItem="fp1-lP-FpM" firstAttribute="top" secondItem="FEK-nM-QJK" secondAttribute="bottom" id="s3X-X9-y8r"/>
                     <constraint firstItem="VaV-Pj-OYA" firstAttribute="leading" secondItem="fFb-Ug-2gd" secondAttribute="trailing" constant="8" id="spk-E1-BWH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="exw-H4-PlW" secondAttribute="trailing" constant="-8" id="tSB-lK-PFx"/>
                     <constraint firstItem="PCI-Ek-nfe" firstAttribute="centerY" secondItem="l9K-RJ-Tmc" secondAttribute="centerY" id="tvQ-Lc-Wzs"/>
@@ -167,6 +178,7 @@
                 <outlet property="sectionTitleBackground" destination="S8t-lE-vVW" id="orA-1S-j70"/>
                 <outlet property="timeLabel" destination="VaV-Pj-OYA" id="qnh-Ik-pwk"/>
                 <outlet property="titleLabel" destination="fFb-Ug-2gd" id="wQK-cj-xpK"/>
+                <outlet property="topGradientOverlayView" destination="FEK-nM-QJK" id="BHm-BI-qtv"/>
             </connections>
             <point key="canvasLocation" x="436" y="102"/>
         </tableViewCell>
