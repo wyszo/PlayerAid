@@ -7,6 +7,6 @@
 
 @interface GradientView : UIView
 
-@property (nonatomic, strong) NSArray *gradientColors;
+@property (nonatomic, strong) NSArray<UIColor *> *gradientColors;
 
 @end

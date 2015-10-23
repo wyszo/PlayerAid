@@ -36,6 +36,20 @@
   self.gradientLayer.colors = @[ (id)[whiteTransparent CGColor], (id)[darkBlue CGColor] ];
 }
 
+#pragma mark - Public
+
+- (void)setGradientColors:(NSArray *)gradientColors
+{
+  if (gradientColors && gradientColors != _gradientColors) {
+    NSMutableArray *cgColorsArray = [NSMutableArray new];
+    
+    for (UIColor *color in gradientColors) {
+      [cgColorsArray addObject:(id)[color CGColor]];
+    }
+    _gradientColors = [cgColorsArray copy];
+  }
+}
+
 #pragma mark - Accessors
 
 - (CAGradientLayer *)gradientLayer
