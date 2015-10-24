@@ -34,6 +34,7 @@
 #import "TWExtendedUIImagePickerControllerDelegate.h"
 #import "TWFilesystemHelper.h"
 #import "TWFullscreenActivityIndicatorView.h"
+#import "TWGradientView.h"
 #import "TWImagePickerDelegate.h"
 #import "TWImagePickerOverlayProtocol.h"
 #import "TWInterfaceOrientationClassStubs.h"
