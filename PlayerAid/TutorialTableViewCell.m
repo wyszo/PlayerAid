@@ -13,7 +13,6 @@
 #import "Section.h"
 #import "TutorialCellHelper.h"
 #import "SectionLabelContainer.h"
-#import "GradientView.h"
 
 static const NSTimeInterval kImageRequestTimeoutIntervalSeconds = 10.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
@@ -30,8 +29,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
 
 @property (weak, nonatomic) IBOutlet UIView *plainOverlayView;
+
+// TODO: move those two into a separate class
 @property (weak, nonatomic) IBOutlet UIView *gradientOverlayView;
-@property (weak, nonatomic) IBOutlet UIView *topGradientOverlayView;
+@property (weak, nonatomic) IBOutlet TWGradientView *topGradientOverlayView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
@@ -54,7 +55,14 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   }
   
   [self.avatarImageView styleAsSmallAvatar];
-  [self showGradientOverlay:NO];
+  [self setupGradient];
+  [self showGradientOverlay:YES];
+}
+
+- (void)setupGradient
+{
+  UIColor *halfTransparentBlack = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6];
+  self.topGradientOverlayView.gradientColors = @[[UIColor clearColor], halfTransparentBlack];
 }
 
 - (void)prepareForReuse
@@ -65,7 +73,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   [self.avatarImageView cancelImageRequestOperation];
   [self.backgroundImageView cancelImageRequestOperation];
   [self setSectionNameHidden:NO];
-  [self showGradientOverlay:NO];
+  [self showGradientOverlay:YES];
 }
 
 - (void)layoutSubviews
@@ -132,7 +140,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 - (void)showGradientOverlay:(BOOL)showGradientOverlay
 {
   self.plainOverlayView.hidden = showGradientOverlay;
+  
   self.gradientOverlayView.hidden = !(showGradientOverlay);
+  self.topGradientOverlayView.hidden = (!showGradientOverlay);
 }
 
 #pragma mark - Update UI to match Tutorial

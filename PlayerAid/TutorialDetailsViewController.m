@@ -77,7 +77,7 @@
     _headerTableViewDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
     
     _headerTableViewDataSource.didConfigureCellAtIndexPath = ^(TutorialTableViewCell *cell, NSIndexPath *indexPath) {
-      [cell showGradientOverlay:NO]; // turned off for now, change to YES when you want to use gradient view
+      [cell showGradientOverlay:YES];
      };
   }
   return _headerTableViewDataSource;
