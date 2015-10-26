@@ -133,11 +133,8 @@
 
 - (void)displayLoginAlertForErrorCode:(NSInteger)errorCode
 {
-  NSInteger kObsoleteGenericLoginErrorCode = 1200;
-  
   NSDictionary *loginErrorCodesMapping = @{
-                                           @(kObsoleteGenericLoginErrorCode) : @"Invalid Login Credentials", // lexem needs approval
-                                           @(1200) : @"That doesn't seem like a the right email address. Can you try again?",
+                                           @(1200) : @"Hey, this doesn't seem like a valid account. Is your email correct?",
                                            @(1201) : @"Hey, it looks like you already signed up with Facebook. Please log in using that method!",
                                            @(1202) : @"That’s not the right password, sorry",
                                            @(5200) : @"That doesn't seem like a valid email address. Can you try again?",
