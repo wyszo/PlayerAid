@@ -61,7 +61,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       // possible error codes:
       // 1100 - facebook token invalid
       // 1101 - facebook token expired
-      // ???  - email address already registered
+      // 1201  - email address already registered
       
       if ([self emailAddressAlreadyUsedForRegistrationWithRequestApiTokenServerResponse:responseObject]) {
         NSError *error = [NSError emailAddressAlreadyUsedForRegistrationError];
@@ -99,7 +99,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSDictionary *responseDictionary = (NSDictionary *)responseObject;
   NSNumber *errorCode = responseDictionary[@"error"];
   
-  NSInteger kErrorCodeEmailAlreadyUsedForRegistration = -666; // TODO: replace with real error code
+  NSInteger kErrorCodeEmailAlreadyUsedForRegistration = 1201; 
   if ([errorCode integerValue] == kErrorCodeEmailAlreadyUsedForRegistration) {
     return YES;
   }

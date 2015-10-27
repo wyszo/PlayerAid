@@ -54,7 +54,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self postPath:kAuthPath parameters:parameters customHTTPHeaders:httpHeaders success:^(AFHTTPRequestOperation *operation, id responseObject) {
     CallBlock(completion, operation.response, responseObject, nil);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, nil, nil, error);
+    CallBlock(completion, operation.response, operation.responseObject, error);
   }];
 }
 
