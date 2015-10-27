@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-@import Foundation;
+@import UIKit;
 #import "TutorialsTableDataSource.h"
 
 
@@ -16,5 +16,8 @@ NEW_AND_INIT_UNAVAILABLE
 
 // need to be called manually from tableViewDelegate
 - (void)willDisplayCellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
+// need to be called manually from tableViewDelegate
+- (void)didEndDisplayingCellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath withTutorial:(nonnull Tutorial *)tutorial;
 
 @end

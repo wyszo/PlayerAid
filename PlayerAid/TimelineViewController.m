@@ -149,6 +149,12 @@
   [self.imagesPrefetchingController willDisplayCellForRowAtIndexPath:indexPath];
 }
 
+- (void)didEndDisplayingCellForRowAtIndexPath:(NSIndexPath *)indexPath withTutorial:(Tutorial *)tutorial
+{
+  AssertTrueOrReturn(self.imagesPrefetchingController);
+  [self.imagesPrefetchingController didEndDisplayingCellForRowAtIndexPath:indexPath withTutorial:tutorial];
+}
+
 #pragma mark - PrepareForSegue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

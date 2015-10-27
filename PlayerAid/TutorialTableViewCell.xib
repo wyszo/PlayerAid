@@ -18,7 +18,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOG-mE-GJc" userLabel="Background Image View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                     </imageView>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Timeline (plain) Overlay view" customClass="GradientView">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-NL-LnG" userLabel="Timeline (plain) Overlay view">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

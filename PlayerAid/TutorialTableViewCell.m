@@ -174,7 +174,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   
   // we want to display images from cache without fadeIn animation
   BOOL imageCachedOnDisk = ([[NSURLCache sharedURLCache] tw_cachedHTTPResponseForURLRequest:imageURLRequest] != nil);
-
+  
   defineWeakSelf();
   [self.backgroundImageView setImageWithURLRequest:imageURLRequest placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     defineStrongSelf();

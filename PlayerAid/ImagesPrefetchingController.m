@@ -3,10 +3,13 @@
 //
 
 @import KZAsserts;
-@import UIKit;
 @import TWCommonLib;
 @import AFNetworking;
+@import BlocksKit;
+#import <KZAsserts/KZAsserts.h>
 #import "ImagesPrefetchingController.h"
+#import "TutorialTableViewCell+Prefetching.h"
+#import "NetworkRequestsPrefetchingController.h"
 
 /** 
  Because everything is sequential, it'll slow down the app if we prefetch more than a couple of images!
@@ -19,6 +22,7 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
 @property (nonatomic, weak, nullable) TutorialsTableDataSource *dataSource;
 @property (nonatomic, weak, nullable) UITableView *tableView;
 @property (nonatomic, strong, nonnull) NSIndexPath *furthestPrefetchedIndexPath;
+@property (nonatomic, strong, nonnull) NetworkRequestsPrefetchingController *requestsPrefetchingController;
 @end
 
 @implementation ImagesPrefetchingController
@@ -33,7 +37,9 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
   self = [super init];
   if (self) {
     _dataSource = dataSource;
+    _tableView = tableView;
     _furthestPrefetchedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    _requestsPrefetchingController = [NetworkRequestsPrefetchingController new];
     [self setupPrioritySerialBackgroundDispatchQueue];
   }
   return self;
@@ -65,14 +71,20 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
       }
       
       BOOL cellVisible = [self.tableView.indexPathsForVisibleRows containsObject:prefetchRowIndexPath];
-      
       if (cellVisible) {
-        continue; // if cell is already visible, it's already too late to prefetch, ignore this cell
+        continue; // if cell visible in UI, it's already too late to prefetch, ignore this cell
       } else {
         [self prefetchImageForIndexPath:prefetchRowIndexPath];
       }
     }
   });
+}
+
+- (void)didEndDisplayingCellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath withTutorial:(nonnull Tutorial *)tutorial{
+  AssertTrueOrReturn(indexPath);
+  
+  AssertTrueOrReturn(self.requestsPrefetchingController);
+  [self.requestsPrefetchingController cancelFetchingImageForNetworkForIndexPath:indexPath];
 }
 
 #pragma mark - Private
@@ -101,12 +113,29 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
     if (response) {
       UIImage *image = [UIImage imageWithData:response.data];
       AssertTrueOrReturn(image);
-      
       [self saveImageToAFNetworkingInMemoryCacheIfNotCached:image forURLString:imageURLString];
     } else if (!response) {
-      // TODO: image not cached, need to download it from network!
+      [self prefetchFromNetworkImageWithURLString:imageURLString forIndexPath:indexPath];
     }
   }
+}
+
+- (void)prefetchFromNetworkImageWithURLString:(nonnull NSString *)imageURLString forIndexPath:(nonnull NSIndexPath *)indexPath
+{
+  AssertTrueOrReturn(imageURLString.length);
+  AssertTrueOrReturn(indexPath);
+  AssertTrueOrReturn(self.requestsPrefetchingController);
+  
+  defineWeakSelf();
+  [self.requestsPrefetchingController prefetchImageWithURLString:imageURLString forIndexPath:indexPath completion:^(UIImage *image) {
+    if (image) {
+      BOOL cellVisible = [weakSelf.tableView.indexPathsForVisibleRows containsObject:indexPath];
+      if (cellVisible) {
+        TutorialTableViewCell *cell = (TutorialTableViewCell *)[weakSelf.tableView cellForRowAtIndexPath:indexPath];
+        [cell setBackgroundImageIfNil:image animated:YES];
+      }
+    }
+  }];
 }
 
 - (BOOL)imageWithURLStringIsInAFNetworkingInMemoryCache:(nonnull NSString *)imageURLString

@@ -41,6 +41,7 @@
 		312C6AB71AD4807500D96C19 /* CoreDataStackHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */; };
 		312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E191D1AB712C900CB5707 /* DebugSettings.m */; };
 		312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 312E19231AB85D1E00CB5707 /* NSURL+URLString.m */; };
+		312EFF421BD9181300F2017D /* TutorialTableViewCell+Prefetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 312EFF411BD9181300F2017D /* TutorialTableViewCell+Prefetching.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
@@ -107,6 +108,7 @@
 		31B735F71A88009A0081AE15 /* TutorialStepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */; };
 		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */; };
+		31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBDD0B1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
@@ -218,6 +220,8 @@
 		312E191D1AB712C900CB5707 /* DebugSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSettings.m; sourceTree = "<group>"; };
 		312E19221AB85D1E00CB5707 /* NSURL+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+URLString.h"; sourceTree = "<group>"; };
 		312E19231AB85D1E00CB5707 /* NSURL+URLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+URLString.m"; sourceTree = "<group>"; };
+		312EFF401BD9181300F2017D /* TutorialTableViewCell+Prefetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TutorialTableViewCell+Prefetching.h"; sourceTree = "<group>"; };
+		312EFF411BD9181300F2017D /* TutorialTableViewCell+Prefetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TutorialTableViewCell+Prefetching.m"; sourceTree = "<group>"; };
 		312FF6011A9F1AA000AE3174 /* SectionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionsDataSource.h; sourceTree = "<group>"; };
 		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SectionsDataSource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 		31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStepTableViewCell.xib; sourceTree = "<group>"; };
 		31B736001A88EB3A0081AE15 /* TutorialStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStepTableViewCell.h; sourceTree = "<group>"; };
 		31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepTableViewCell.m; sourceTree = "<group>"; };
+		31BBDD0A1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequestsPrefetchingController.h; sourceTree = "<group>"; };
+		31BBDD0B1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestsPrefetchingController.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -700,6 +706,15 @@
 				312C6AB61AD4807500D96C19 /* CoreDataStackHelper.m */,
 			);
 			name = CoreDataStackHelper;
+			sourceTree = "<group>";
+		};
+		312EFF3F1BD917FE00F2017D /* Prefetching */ = {
+			isa = PBXGroup;
+			children = (
+				312EFF401BD9181300F2017D /* TutorialTableViewCell+Prefetching.h */,
+				312EFF411BD9181300F2017D /* TutorialTableViewCell+Prefetching.m */,
+			);
+			name = Prefetching;
 			sourceTree = "<group>";
 		};
 		312FF5F51A9E8F9A00AE3174 /* PlayerInfo */ = {
@@ -1279,6 +1294,7 @@
 		31B736031A88EC550081AE15 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				312EFF3F1BD917FE00F2017D /* Prefetching */,
 				317780341A80E557007057CD /* TutorialTableViewCell.h */,
 				317780351A80E557007057CD /* TutorialTableViewCell.m */,
 			);
@@ -1311,6 +1327,15 @@
 				31B735F61A88009A0081AE15 /* TutorialStepsDataSource.m */,
 			);
 			name = TutorialSteps;
+			sourceTree = "<group>";
+		};
+		31BBDD091BDFD5D9000732E7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				31BBDD0A1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.h */,
+				31BBDD0B1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		31C1225F1A8388C40069D49A /* Xibs */ = {
@@ -1514,6 +1539,7 @@
 		31F09EF31BD8A6C7003B9794 /* Prefetching */ = {
 			isa = PBXGroup;
 			children = (
+				31BBDD091BDFD5D9000732E7 /* Network */,
 				31F09EF41BD8AA55003B9794 /* ImagesPrefetchingController.h */,
 				31F09EF51BD8AA55003B9794 /* ImagesPrefetchingController.m */,
 			);
@@ -1868,6 +1894,7 @@
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
+				31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
 				31B735ED1A87FAD70081AE15 /* _TutorialStep.m in Sources */,
@@ -1928,6 +1955,7 @@
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
 				31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */,
+				312EFF421BD9181300F2017D /* TutorialTableViewCell+Prefetching.m in Sources */,
 				31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */,
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,

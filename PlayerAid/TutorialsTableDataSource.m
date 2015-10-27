@@ -301,6 +301,14 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   }
 }
 
+- (void)tableView:(UITableView * _Nonnull)tableView didEndDisplayingCell:(UITableViewCell * _Nonnull)cell forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath
+{
+  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(didEndDisplayingCellForRowAtIndexPath:withTutorial:)]) {
+    Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
+    [self.tutorialTableViewDelegate didEndDisplayingCellForRowAtIndexPath:indexPath withTutorial:tutorial];
+  }
+}
+
 #pragma mark - TableView Delegate: Section headers
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
