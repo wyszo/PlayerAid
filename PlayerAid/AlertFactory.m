@@ -57,6 +57,11 @@
   return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:okTitle firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
 }
 
++ (UIAlertView *)showCancelOKAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle cancelAction:(void (^)())cancelAction okAction:(void (^)())okAction
+{
+  return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:@"Cancel" firstButtonAction:cancelAction secondButtonTitle:okTitle secondAction:okAction];
+}
+
 + (UIAlertView *)showTwoButtonsAlertViewWithTitle:(NSString *)title message:(NSString *)message firstButtonTitle:(NSString *)firstButtonTitle firstButtonAction:(VoidBlock)firstAction secondButtonTitle:(NSString *)secondButtonTitle secondAction:(VoidBlock)secondAction
 {
   return [TWAlertFactory showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:firstButtonTitle firstButtonAction:firstAction secondButtonTitle:secondButtonTitle secondAction:secondAction];
@@ -206,6 +211,12 @@
     CallBlock(okAction);
   } cancelAction:nil];
   return alert;
+}
+
++ (UIAlertView *)showReportTutorialAlertViewWithOKAction:(ActionBlock)okAction
+{
+  NSString *message = @"Tap OK to report guide as inappropriate. The PlayerAid team will then re-check the tutorial.";
+  return [AlertFactory showCancelOKAlertViewWithTitle:nil message:message okTitle:@"OK" cancelAction:nil okAction:okAction];
 }
 
 #pragma mark - Facebook

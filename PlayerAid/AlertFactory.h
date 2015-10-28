@@ -17,6 +17,7 @@ typedef void (^ActionBlock)() ;
 
 // Universal alerts
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction;
++ (UIAlertView *)showCancelOKAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle cancelAction:(void (^)())cancelAction okAction:(void (^)())okAction;
 
 // Create tutorial alerts
 + (UIAlertView *)showCreateTutorialNoTitleAlertView;
@@ -50,6 +51,7 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;
 + (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message;
 + (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction;
++ (UIAlertView *)showReportTutorialAlertViewWithOKAction:(ActionBlock)okAction;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;

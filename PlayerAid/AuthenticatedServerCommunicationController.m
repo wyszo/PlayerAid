@@ -217,7 +217,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSDictionary *parameters = @{
                                @"id" : tutorial.serverID.stringValue
                               };
-  NSString *URLString = [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/review"];
+  NSString *URLString = [self urlStringForTutorial:tutorial withSufix:@"review"];
   [self performPostRequestWithApiToken:self.apiToken urlString:URLString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
@@ -225,20 +225,41 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
+  AssertTrueOrReturn(tutorial);
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
 
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
+  AssertTrueOrReturn(tutorial);
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
   [self performRequestWithType:@"DELETE" apiToken:self.apiToken urlString:urlString parameters:nil useCacheIfAllowed:NO completion:completion];
 }
 
+- (void)reportTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial);
+  NSString *urlString = [self urlStringForTutorial:tutorial withSufix:@"report"];
+  [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
+}
+
+#pragma mark - paths helpers
+
 - (NSString *)likeUrlStringForTutorial:(Tutorial *)tutorial
 {
+  return [self urlStringForTutorial:tutorial withSufix:@"like"];
+}
+
+- (NSString *)urlStringForTutorial:(nonnull Tutorial *)tutorial withSufix:(nullable NSString *)sufix
+{
   AssertTrueOrReturnNil(tutorial);
-  return [[self urlStringForTutorialID:tutorial.serverID] stringByAppendingString:@"/like"];
+  NSString *tutorialWithIDPath = [self urlStringForTutorialID:tutorial.serverID];
+  NSString *path = tutorialWithIDPath;
+  if (sufix.length) {
+    path = [tutorialWithIDPath stringByAppendingString:[NSString stringWithFormat:@"/%@", sufix]];
+  }
+  return path;
 }
 
 #pragma mark - Edit profile

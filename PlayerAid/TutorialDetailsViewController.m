@@ -3,7 +3,7 @@
 //
 
 @import KZAsserts;
-#import <TWCommonLib/NSObject+TWLazyInitialization.h>
+@import TWCommonLib;
 #import "TutorialDetailsViewController.h"
 #import "TutorialTableViewCell.h"
 #import "TutorialsTableDataSource.h"
@@ -12,18 +12,15 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "CommonViews.h"
 #import "VideoPlayer.h"
-
+#import "TutorialDetailsHelper.h"
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
-
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
-
 @end
-
 
 @implementation TutorialDetailsViewController
 
@@ -33,6 +30,7 @@
 {
   [super viewDidLoad];
   [self setupLazyInitializers];
+  [self setupNavigationBarButtons];
   [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
@@ -41,6 +39,11 @@
 - (void)dealloc
 {
   CallBlock(self.onDeallocBlock);
+}
+
+- (void)setupNavigationBarButtons
+{
+  self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
 }
 
 - (void)setupLazyInitializers
