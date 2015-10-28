@@ -214,8 +214,8 @@ static const CGFloat kTitleTextViewCornerRadius = 6.0f;
 {
   AssertTrueOrReturn(tutorial);
   
-  if (tutorial.pngImageData) {
-    [self setEditCoverPhoto:[UIImage imageWithData:tutorial.pngImageData]];
+  if (tutorial.jpegImageData) {
+    [self setEditCoverPhoto:[UIImage imageWithData:tutorial.jpegImageData]];
   }
   
   self.titleTextView.text = tutorial.title;

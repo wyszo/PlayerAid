@@ -12,7 +12,7 @@
         <attribute name="flaggedAsInappropriate" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="pngImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="jpegImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="state" attributeType="String" defaultValueString="Draft" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>

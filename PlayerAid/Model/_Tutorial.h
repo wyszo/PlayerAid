@@ -9,7 +9,7 @@ extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *flaggedAsInappropriate;
 	__unsafe_unretained NSString *imageURL;
 	__unsafe_unretained NSString *inReview;
-	__unsafe_unretained NSString *pngImageData;
+	__unsafe_unretained NSString *jpegImageData;
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *title;
@@ -69,9 +69,9 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateInReview:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSData* pngImageData;
+@property (nonatomic, strong) NSData* jpegImageData;
 
-//- (BOOL)validatePngImageData:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateJpegImageData:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* serverID;
 
@@ -164,8 +164,8 @@ extern const struct TutorialRelationships {
 - (BOOL)primitiveInReviewValue;
 - (void)setPrimitiveInReviewValue:(BOOL)value_;
 
-- (NSData*)primitivePngImageData;
-- (void)setPrimitivePngImageData:(NSData*)value;
+- (NSData*)primitiveJpegImageData;
+- (void)setPrimitiveJpegImageData:(NSData*)value;
 
 - (NSNumber*)primitiveServerID;
 - (void)setPrimitiveServerID:(NSNumber*)value;

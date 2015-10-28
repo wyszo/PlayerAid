@@ -107,7 +107,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 {
   AssertTrueOrReturn(tutorial);
-  AssertTrueOrReturn(tutorial.pngImageData);
+  AssertTrueOrReturn(tutorial.jpegImageData);
   NSString *tutorialID = [tutorial.serverID stringValue];
   AssertTrueOrReturn(tutorialID);
   
@@ -116,7 +116,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *URLString = [NSString stringWithFormat:@"%@/image", [self urlStringForTutorialIDString:tutorialID]];
   URLString = [NSURL URLStringWithPath:URLString baseURL:operationManager.baseURL];
   
-  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:tutorial.pngImageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:tutorial.jpegImageData mimeType:@"image/jpeg" appendToFormDataWithBlock:nil completionBlock:completion];
 }
 
 - (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -164,7 +164,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn([tutorialStep isImageStep]);
   
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
-  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:@(position) mainContentName:@"image" fileData:tutorialStep.imageData mimeType:@"image/jpeg" appendToFormDataWithBlock:nil completionBlock:completion];
 }
 
 - (void)submitVideoTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion
@@ -176,9 +176,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(videoData);
   
   void (^appendThumbnailBlock)(id<AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
-    NSData *thumbnailImageData = UIImagePNGRepresentation(tutorialStep.thumbnailImage);
+    NSData *thumbnailImageData = UIImageJPEGRepresentation(tutorialStep.thumbnailImage, kJPEGCompressionQuality);
     AssertTrueOrReturn(thumbnailImageData);
-    [formData appendPartWithFileData:thumbnailImageData name:@"thumbnail" fileName:@"videoThumbnail" mimeType:@"image/png"];
+    [formData appendPartWithFileData:thumbnailImageData name:@"thumbnail" fileName:@"videoThumbnail" mimeType:@"image/jpeg"];
   };
   
   NSString *URLString = [self URLStringForTutorialStep:tutorialStep];
@@ -291,13 +291,13 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)saveUserAvatarPicture:(UIImage *)image completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(image);
-  NSData *imageData = UIImagePNGRepresentation(image);
+  NSData *imageData = UIImageJPEGRepresentation(image, kJPEGCompressionQuality);
   AssertTrueOrReturn(imageData);
   
   AFHTTPRequestOperationManager *operationManager = [self operationManageWithApiToken:self.apiToken useCacheIfAllowed:NO];
   NSString *URLString = [NSURL URLStringWithPath:@"user/picture" baseURL:operationManager.baseURL];
   
-  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:imageData mimeType:@"image/png" appendToFormDataWithBlock:nil completionBlock:completion];
+  [self postMultipartFormDataWithURLString:URLString position:nil mainContentName:@"image" fileData:imageData mimeType:@"image/jpg" appendToFormDataWithBlock:nil completionBlock:completion];
 }
 
 #pragma mark - Sending requests

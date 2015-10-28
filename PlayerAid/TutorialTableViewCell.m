@@ -149,7 +149,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 
 - (void)updateBackgroundImageView
 {
-  if ((self.tutorial.pngImageData && !self.tutorial.isPublished) || self.tutorial.isDraft) {
+  if ((self.tutorial.jpegImageData && !self.tutorial.isPublished) || self.tutorial.isDraft) {
     [self updateBackgroundImageViewFromTutorialData];
   }
   else {
@@ -160,9 +160,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 - (void)updateBackgroundImageViewFromTutorialData
 {
   if (!self.tutorial.isDraft) { // drafts are not required to contain imageData
-    AssertTrueOrReturn(self.tutorial.pngImageData);
+    AssertTrueOrReturn(self.tutorial.jpegImageData);
   }
-  self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.pngImageData];
+  self.backgroundImageView.image = [UIImage imageWithData:self.tutorial.jpegImageData];
 }
 
 - (void)fetchBackgroundImageView

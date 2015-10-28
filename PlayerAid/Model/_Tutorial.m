@@ -9,7 +9,7 @@ const struct TutorialAttributes TutorialAttributes = {
 	.flaggedAsInappropriate = @"flaggedAsInappropriate",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
-	.pngImageData = @"pngImageData",
+	.jpegImageData = @"jpegImageData",
 	.serverID = @"serverID",
 	.state = @"state",
 	.title = @"title",
@@ -142,7 +142,7 @@ const struct TutorialRelationships TutorialRelationships = {
 	[self setPrimitiveInReview:@(value_)];
 }
 
-@dynamic pngImageData;
+@dynamic jpegImageData;
 
 @dynamic serverID;
 

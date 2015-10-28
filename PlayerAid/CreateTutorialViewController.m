@@ -31,6 +31,7 @@
 #import "TabBarBadgeHelper.h"
 #import "ImagePickerOverlayController.h"
 #import "UserTutorialsController.h"
+#import "GlobalSettings.h"
 #import "DebugSettings.h"
 
 static NSString *const kXibName = @"CreateTutorialView";
@@ -185,6 +186,8 @@ static NSString *const kXibName = @"CreateTutorialView";
   AssertTrueOrReturn(self.createTutorialContext);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
+  
+
   
   defineWeakSelf();
   self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {
@@ -450,7 +453,9 @@ static NSString *const kXibName = @"CreateTutorialView";
   // fill in empty fields with debug data
   self.tutorial.title = @"test_title";
   self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
-  self.tutorial.pngImageData = UIImagePNGRepresentation([UIImage imageNamed:@"bubble"]);
+  
+  UIImage *bubbleImage = [UIImage imageNamed:@"bubble"];
+  self.tutorial.jpegImageData = UIImageJPEGRepresentation(bubbleImage, kJPEGCompressionQuality);
   
   [self DEBUG_addTwoTextTutorialSteps];
   [self DEBUG_addImageStep];
@@ -759,7 +764,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.tutorial.createdAt = [NSDate new];
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
-  self.tutorial.pngImageData = UIImagePNGRepresentation(image);
+  self.tutorial.jpegImageData = UIImageJPEGRepresentation(image, kJPEGCompressionQuality);
 }
 
 #pragma mark - Lazy initalization

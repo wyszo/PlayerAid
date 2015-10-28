@@ -11,6 +11,8 @@
 #import "NSError+PlayerAidErrors.h"
 #import "ServerResponseParsing.h"
 
+// TODO: rewrite this to use chained BFTasks instead of manual synchronisation..
+
 #define InvokeCompletionBlockAndUnlockConditionIfErrorAndReturn(condition, error) if(error) { [condition unlock]; if(completion) { completion(error); } return; }
 
 #define InvokeProgressChangedBlockForStepWithSelf(self, stepNumber) [self invokeProgressChagnedBlock:progressChangedBlock withCurrentStepNumber:stepNumber andTotalNumberOfSteps:totalNumberOfProgressSteps];

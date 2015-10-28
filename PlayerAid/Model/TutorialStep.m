@@ -4,11 +4,10 @@
 @import KZPropertyMapper;
 @import TWCommonLib;
 @import MagicalRecord;
+#import "GlobalSettings.h"
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
 
-
-static const CGFloat kJPEGCompressionBestQuality = 1.0f;
 static NSString *const kTutorialStepServerIDAttributeName = @"id";
 static NSString *const kTutorialStepDictionaryTypeAttribute = @"type";
 static NSString *const kTutorialStepTypeText = @"Text";
@@ -31,7 +30,7 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 {
   AssertTrueOrReturnNil(image);
   TutorialStep *tutorialStep = [self tutorialStepInContext:context];
-  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompressionBestQuality); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
+  tutorialStep.imageData = UIImageJPEGRepresentation(image, kJPEGCompressionQuality); /** Watch out if ever changing to PNG, PNGs don't retain image rotation data, while JPGs do */
   return tutorialStep;
 }
 
@@ -46,7 +45,7 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
   UIImage *thumbnailLandscape = [TWVideoThumbnailHelper thumbnailImageFromVideoURL:videoUrl atTimeInSeconds:0];
   UIImage *thumbnailSquare = [thumbnailLandscape tw_imageByCroppingCenterToSquare];
   AssertTrueOr(thumbnailSquare, ;);
-  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionBestQuality);
+  tutorialStep.videoThumbnailData = UIImageJPEGRepresentation(thumbnailSquare, kJPEGCompressionQuality);
   
   return tutorialStep;
 }
