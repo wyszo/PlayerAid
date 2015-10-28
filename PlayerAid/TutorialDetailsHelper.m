@@ -8,6 +8,7 @@
 #import "TutorialDetailsViewController.h"
 #import "AlertFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "TutorialsHelper.h"
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
@@ -48,7 +49,11 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
   [reportButton bk_addEventHandler:^(id sender) {
     [AlertFactory showReportTutorialAlertViewWithOKAction:^{
       [[AuthenticatedServerCommunicationController sharedInstance] reportTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-        // TODO: modify tutorial - block it from displaying locally
+        if (error) {
+          [AlertFactory showGenericErrorAlertViewNoRetry];
+        } else {
+          [TutorialsHelper markTutorialAsInappropriateByCurrentUser:tutorial];
+        }
       }];
     }];
   } forControlEvents:UIControlEventTouchUpInside];

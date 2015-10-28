@@ -69,7 +69,6 @@
 		317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* TutorialsTableDataSource.m */; };
 		317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317780171A80076C007057CD /* DataModel.xcdatamodeld */; };
 		317780271A80975C007057CD /* _Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177801C1A80975C007057CD /* _Section.m */; };
-		317780281A80975C007057CD /* _Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177801E1A80975C007057CD /* _Tutorial.m */; };
 		317780291A80975C007057CD /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780201A80975C007057CD /* _User.m */; };
 		3177802A1A80975C007057CD /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780221A80975C007057CD /* Section.m */; };
 		3177802B1A80975C007057CD /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780241A80975C007057CD /* Tutorial.m */; };
@@ -109,6 +108,7 @@
 		31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735FD1A88D96D0081AE15 /* TutorialStepTableViewCell.xib */; };
 		31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */; };
 		31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBDD0B1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m */; };
+		31BBDD121BE12B67000732E7 /* _Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBDD111BE12B67000732E7 /* _Tutorial.m */; };
 		31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C122601A8388EB0069D49A /* PlayerInfoView.xib */; };
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
@@ -274,8 +274,6 @@
 		317780181A80076C007057CD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3177801B1A80975C007057CD /* _Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Section.h; sourceTree = "<group>"; };
 		3177801C1A80975C007057CD /* _Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Section.m; sourceTree = "<group>"; };
-		3177801D1A80975C007057CD /* _Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Tutorial.h; sourceTree = "<group>"; };
-		3177801E1A80975C007057CD /* _Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Tutorial.m; sourceTree = "<group>"; };
 		3177801F1A80975C007057CD /* _User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _User.h; sourceTree = "<group>"; };
 		317780201A80975C007057CD /* _User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _User.m; sourceTree = "<group>"; };
 		317780211A80975C007057CD /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -348,6 +346,8 @@
 		31B736011A88EB3A0081AE15 /* TutorialStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStepTableViewCell.m; sourceTree = "<group>"; };
 		31BBDD0A1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequestsPrefetchingController.h; sourceTree = "<group>"; };
 		31BBDD0B1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestsPrefetchingController.m; sourceTree = "<group>"; };
+		31BBDD101BE12B67000732E7 /* _Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Tutorial.h; sourceTree = "<group>"; };
+		31BBDD111BE12B67000732E7 /* _Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Tutorial.m; sourceTree = "<group>"; };
 		31C122601A8388EB0069D49A /* PlayerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		31C122631A838A530069D49A /* PlayerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoView.h; sourceTree = "<group>"; };
 		31C122641A838A530069D49A /* PlayerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoView.m; sourceTree = "<group>"; };
@@ -1010,12 +1010,12 @@
 		3177802D1A809766007057CD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				31BBDD101BE12B67000732E7 /* _Tutorial.h */,
+				31BBDD111BE12B67000732E7 /* _Tutorial.m */,
 				31B735EB1A87FAD70081AE15 /* _TutorialStep.h */,
 				31B735EC1A87FAD70081AE15 /* _TutorialStep.m */,
 				3177801B1A80975C007057CD /* _Section.h */,
 				3177801C1A80975C007057CD /* _Section.m */,
-				3177801D1A80975C007057CD /* _Tutorial.h */,
-				3177801E1A80975C007057CD /* _Tutorial.m */,
 				3177801F1A80975C007057CD /* _User.h */,
 				317780201A80975C007057CD /* _User.m */,
 			);
@@ -1930,7 +1930,6 @@
 				31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */,
 				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
 				31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */,
-				317780281A80975C007057CD /* _Tutorial.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
@@ -1942,6 +1941,7 @@
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
 				31880C581BAB012700710458 /* AppInitializer.m in Sources */,
+				31BBDD121BE12B67000732E7 /* _Tutorial.m in Sources */,
 				31014E711A9AA182002F3485 /* ServerDataUpdateController.m in Sources */,
 				315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */,
 				31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */,

@@ -59,13 +59,13 @@
     [weakSelf selectFilterLatest];
   });
   
-  // TODO: Filter buttons should be extracted to a separate class!!
+  // TODO: Filter buttons should be extracted to a separate class!! // We can also use UIStackView on iOS9
 }
 
 - (void)setupDataSource
 {
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@", kTutorialStatePublished];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND flaggedAsInappropriate == 0", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
 }

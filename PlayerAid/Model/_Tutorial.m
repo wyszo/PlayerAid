@@ -6,6 +6,7 @@
 const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
+	.flaggedAsInappropriate = @"flaggedAsInappropriate",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
 	.pngImageData = @"pngImageData",
@@ -53,6 +54,11 @@ const struct TutorialRelationships TutorialRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"flaggedAsInappropriateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"flaggedAsInappropriate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"inReviewValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -92,6 +98,26 @@ const struct TutorialRelationships TutorialRelationships = {
 
 - (void)setPrimitiveDraftValue:(BOOL)value_ {
 	[self setPrimitiveDraft:@(value_)];
+}
+
+@dynamic flaggedAsInappropriate;
+
+- (BOOL)flaggedAsInappropriateValue {
+	NSNumber *result = [self flaggedAsInappropriate];
+	return [result boolValue];
+}
+
+- (void)setFlaggedAsInappropriateValue:(BOOL)value_ {
+	[self setFlaggedAsInappropriate:@(value_)];
+}
+
+- (BOOL)primitiveFlaggedAsInappropriateValue {
+	NSNumber *result = [self primitiveFlaggedAsInappropriate];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveFlaggedAsInappropriateValue:(BOOL)value_ {
+	[self setPrimitiveFlaggedAsInappropriate:@(value_)];
 }
 
 @dynamic imageURL;
