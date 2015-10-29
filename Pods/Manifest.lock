@@ -85,7 +85,7 @@ DEPENDENCIES:
   - Mixpanel (= 2.8.3)
   - NSString+RemoveEmoji (= 0.0.1)
   - TTTAttributedLabel (= 1.13.4)
-  - TWCommonLib (from `../TWCommonLib`)
+  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`, tag `CommonLib_0_8`)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.0.9)
   - XRSA (from `https://github.com/wyszo/XRSA.git`, branch `master`)
@@ -96,8 +96,8 @@ EXTERNAL SOURCES:
     :branch: feature/AssetsHelper
     :path: ../FDTake
   TWCommonLib:
-    :branch: v0_8
-    :path: ../TWCommonLib
+    :git: https://github.com/wyszo/TWCommonLib.git
+    :tag: CommonLib_0_8
   XRSA:
     :branch: master
     :git: https://github.com/wyszo/XRSA.git
@@ -106,6 +106,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/wyszo/YCameraView.git
 
 CHECKOUT OPTIONS:
+  TWCommonLib:
+    :git: https://github.com/wyszo/TWCommonLib.git
+    :tag: CommonLib_0_8
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31
     :git: https://github.com/wyszo/XRSA.git
