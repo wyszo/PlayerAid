@@ -215,8 +215,8 @@
 
 + (UIAlertView *)showReportTutorialAlertViewWithOKAction:(ActionBlock)okAction
 {
-  NSString *message = @"Tap OK to report guide as inappropriate. The PlayerAid team will then re-check the tutorial.";
-  return [AlertFactory showCancelOKAlertViewWithTitle:nil message:message okTitle:@"OK" cancelAction:nil okAction:okAction];
+  NSString *message = @"You are about to report this guide as inappropriate. Are you sure?";
+  return [AlertFactory showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:okAction secondButtonTitle:@"No" secondAction:nil];
 }
 
 #pragma mark - Facebook
