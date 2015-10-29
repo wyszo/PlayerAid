@@ -186,8 +186,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   AssertTrueOrReturn(self.createTutorialContext);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
-  
-
+  self.tutorialStepsDataSource.scrollToBottomWhenLastItemAdded = YES;
   
   defineWeakSelf();
   self.tutorialStepsDataSource.cellDeletionCompletionBlock = ^() {

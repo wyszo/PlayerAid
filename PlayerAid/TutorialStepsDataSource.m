@@ -64,6 +64,15 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
   self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
   }];
+  
+  self.fetchedResultsControllerBinder.objectInsertedAtIndexPathBlock = ^(NSIndexPath *indexPath) {
+    if (weakSelf.scrollToBottomWhenLastItemAdded) {
+      NSInteger lastIndexPathRow = ([weakSelf.tableViewDataSource objectCount] - 1);
+      if (indexPath.row == lastIndexPathRow) {
+        [weakSelf.tableView tw_scrollToBottomAnimated:YES];
+      }
+    }
+  };
 }
 
 - (void)initTableViewDataSource

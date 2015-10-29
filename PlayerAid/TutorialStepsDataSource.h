@@ -11,6 +11,9 @@
 @property (nonatomic, weak) UIViewController *moviePlayerParentViewController;
 @property (nonatomic, copy) VoidBlock cellDeletionCompletionBlock;
 
+/** defaults to NO */
+@property (nonatomic, assign) BOOL scrollToBottomWhenLastItemAdded;
+
 NEW_AND_INIT_UNAVAILABLE
 
 /**
