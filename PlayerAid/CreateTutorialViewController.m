@@ -411,7 +411,7 @@ static NSString *const kXibName = @"CreateTutorialView";
       [weakSelf.tutorial setConsistsOf:stepsSet];
 
       [self.tutorialTableView tw_scrollToTop];
-      [weakSelf saveTutorial];
+      [weakSelf saveTutorialAsDraft];
     }
   };
   return editTutorialStepsViewController;
@@ -492,7 +492,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   __weak typeof (self) weakSelf = self;
   publishingViewController.completionBlock = ^(BOOL saveAsDraft, NSError *error) {
     if (saveAsDraft) {
-      [weakSelf saveTutorialAsDraft];
+      [weakSelf saveTutorialAsDraft]; 
     }
     else {
       [weakSelf saveTutorialChangeStateToInReview];
@@ -537,12 +537,14 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 - (void)showDismissAlertsCreatingTutorialFromScratch
 {
-    defineWeakSelf();
+  defineWeakSelf();
   [AlertFactory showRemoveNewTutorialConfirmationAlertViewWithCompletion:^(BOOL discard) {
     if (discard) {
       [AlertFactory showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:^(BOOL delete) {
         if (delete) {
-          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+          defineStrongSelf();
+          [strongSelf deleteCurrentTutorial];
+          [strongSelf dismissViewControllerAnimated:YES completion:nil];
         }
       }];
     } else {
@@ -676,7 +678,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self pushCreateTutorialTextStepViewControllerWithCompletion:^(NSString *text, NSError *error) {
     if (!error && text.length) {
       tutorialStep.text = text;
-      [weakSelf saveTutorial];
+      [weakSelf saveTutorialAsDraft];
     }
    } tutorialTextStep:tutorialStep];
 }
@@ -719,23 +721,12 @@ static NSString *const kXibName = @"CreateTutorialView";
   tutorialStep.primitiveOrderValue = maxOrderValue + 1;
   [self.tutorial addConsistsOfObject:tutorialStep];
   
-  [self saveTutorial];
+  [self saveTutorialAsDraft];
   self.publishButton.enabled = YES;
   [self updateEditButtonEnabled];
 }
 
 #pragma mark - Saving tutorial
-
-- (void)saveTutorial
-{
-  [self fillRequiredFieldsForTutorial:self.tutorial];
-  [self.createTutorialContext MR_saveOnlySelfAndWait];
-}
-
-- (void)setProfileBadge
-{
-  [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
-}
 
 - (void)saveTutorialAsDraft
 {
@@ -744,6 +735,11 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self.tutorial setStateToDraft];
   
   [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+}
+
+- (void)setProfileBadge
+{
+  [[TabBarBadgeHelper new] showProfileTabBarItemBadge];
 }
 
 - (void)saveTutorialChangeStateToInReview
@@ -764,6 +760,15 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.tutorial.primitiveDraftValue = YES;
   [self.tutorial setSection:[section MR_inContext:self.createTutorialContext]];
   self.tutorial.jpegImageData = UIImageJPEGRepresentation(image, kJPEGCompressionQuality);
+}
+
+#pragma mark - Manipulating tutorial object
+
+- (void)deleteCurrentTutorial
+{
+  AssertTrueOrReturn(self.tutorial);
+  [self.tutorial MR_deleteEntity];
+  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 
 #pragma mark - Lazy initalization
