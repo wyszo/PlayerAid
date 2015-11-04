@@ -33,6 +33,8 @@
 #import "UserTutorialsController.h"
 #import "GlobalSettings.h"
 #import "DebugSettings.h"
+#import "TutorialBackupManager.h"
+
 
 static NSString *const kXibName = @"CreateTutorialView";
 
@@ -55,8 +57,10 @@ static NSString *const kXibName = @"CreateTutorialView";
 @property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 @property (assign, nonatomic) BOOL draftHasChanges;
 
-@property (nonatomic, strong) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
-@property (nonatomic, strong) VideoPlayer *videoPlayer;
+@property (strong, nonatomic) TWShowImagePickerOverlayWhenOrientationPortraitBehaviour *showImagePickerOverlayInPortraitBehaviour;
+@property (strong, nonatomic) VideoPlayer *videoPlayer;
+@property (strong, nonatomic) TutorialBackupManager *tutorialBackupManager;
+
 @end
 
 
@@ -261,6 +265,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   
   if (self.tutorialToDisplay) {
     self.tutorial = [self.tutorialToDisplay MR_inContext:self.createTutorialContext];
+    [self createTutorialBackup];
   } else {
     self.tutorial = [Tutorial MR_createEntityInContext:self.createTutorialContext];
   }
@@ -270,6 +275,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self assignTutorialToCurrentUser];
 }
 
+// TODO: drop 'unsaved' state, not used anymore!!
 // This is a temporary method, need to be either fixed or extracted from here
 - (void)deleteUserUnsavedTutorials
 {
@@ -527,6 +533,7 @@ static NSString *const kXibName = @"CreateTutorialView";
     } noAction:^{
       [AlertFactory showThisWillDeleteChangesWithYesAction:^{
         [weakSelf forceDismissViewController];
+        [weakSelf restoreCopiedTutorialRemoveCurrent];
       }];
     }];
   }
@@ -769,6 +776,28 @@ static NSString *const kXibName = @"CreateTutorialView";
   AssertTrueOrReturn(self.tutorial);
   [self.tutorial MR_deleteEntity];
   [self.createTutorialContext MR_saveToPersistentStoreAndWait];
+}
+
+#pragma mark - Tutorial backup
+
+- (void)createTutorialBackup
+{
+  if (!self.tutorialToDisplay) {
+    return;
+  }
+  
+  if (!self.tutorialBackupManager) {
+    self.tutorialBackupManager = [TutorialBackupManager new];
+  }
+  
+  [self.tutorialBackupManager backupTutorial:self.tutorialToDisplay];
+}
+
+- (void)restoreCopiedTutorialRemoveCurrent
+{
+  AssertTrueOrReturn(self.tutorialBackupManager);
+  [self deleteCurrentTutorial];
+  [self.tutorialBackupManager restoreTutorialFromBackup];
 }
 
 #pragma mark - Lazy initalization

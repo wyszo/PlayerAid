@@ -1,7 +1,8 @@
-#import "Tutorial.h"
 @import KZAsserts;
 @import KZPropertyMapper;
 @import MagicalRecord;
+#import "Tutorial.h"
+#import "Tutorial_Clone.h"
 #import "Section.h"
 #import "User.h"
 #import "TutorialStep.h"
@@ -95,6 +96,30 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
 - (BOOL)hasAnySteps
 {
   return (self.consistsOf.count > 0);
+}
+
+#pragma mark - Cloning (public)
+
++ (NSArray *)entityClassNamesThatAllowOnlyShallowCopy
+{
+  NSArray *classesToExclude = [self entitiesClassesThatAllowOnlyShallowCopy];
+  AssertTrueOrReturnNil(classesToExclude);
+  NSMutableArray *namesToExclude = [NSMutableArray new];
+  
+  [classesToExclude enumerateObjectsUsingBlock:^(Class _Nonnull aClass, NSUInteger idx, BOOL * _Nonnull stop) {
+    [namesToExclude addObject:NSStringFromClass(aClass)];
+  }];
+  return [namesToExclude copy];
+}
+
+#pragma mark - Cloning (private)
+
++ (NSArray *)entitiesClassesThatAllowOnlyShallowCopy
+{
+  /**
+   It's crucial that all the classes that should not be deep-copied when tutorial object is cloned are listed in here!
+   */
+  return @[ [Section class], [User class] ];
 }
 
 #pragma mark - State

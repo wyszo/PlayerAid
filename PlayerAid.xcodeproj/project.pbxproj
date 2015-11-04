@@ -139,6 +139,7 @@
 		31F116851A790F680022BD74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F116841A790F680022BD74 /* Images.xcassets */; };
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
 		31F5C3A21B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */; };
+		31F7217B1BE9860B001DB831 /* TutorialBackupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
@@ -399,6 +400,9 @@
 		31F116871A790F680022BD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		31F5C3A01B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableFetchedResultsControllersFactory.h; sourceTree = "<group>"; };
 		31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsTableFetchedResultsControllersFactory.m; sourceTree = "<group>"; };
+		31F721791BE9860B001DB831 /* TutorialBackupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialBackupManager.h; sourceTree = "<group>"; };
+		31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialBackupManager.m; sourceTree = "<group>"; };
+		31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tutorial_Clone.h; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -904,6 +908,7 @@
 			children = (
 				31B735F41A88000B0081AE15 /* Categories */,
 				312C6AB81AD4807D00D96C19 /* CoreDataStackHelper */,
+				31F721781BE985BA001DB831 /* CreateTutorial */,
 				312C6AB41AD4801200D96C19 /* DataCleanupHelper */,
 				312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */,
 				3173C8261AA7C645004CEF1E /* Image/Video */,
@@ -1030,6 +1035,7 @@
 				317780211A80975C007057CD /* Section.h */,
 				317780221A80975C007057CD /* Section.m */,
 				317780231A80975C007057CD /* Tutorial.h */,
+				31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */,
 				317780241A80975C007057CD /* Tutorial.m */,
 				317780251A80975C007057CD /* User.h */,
 				317780261A80975C007057CD /* User.m */,
@@ -1609,6 +1615,15 @@
 			name = FetchedResultsControllerFactory;
 			sourceTree = "<group>";
 		};
+		31F721781BE985BA001DB831 /* CreateTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				31F721791BE9860B001DB831 /* TutorialBackupManager.h */,
+				31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */,
+			);
+			name = CreateTutorial;
+			sourceTree = "<group>";
+		};
 		31FB03A61B3DDD5E00539B50 /* TutorialDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1869,6 +1884,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */,
+				31F7217B1BE9860B001DB831 /* TutorialBackupManager.m in Sources */,
 				31EFB6AD1BAB252100F87C03 /* SignUpViewController.m in Sources */,
 				3177802C1A80975C007057CD /* User.m in Sources */,
 				31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */,
