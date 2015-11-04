@@ -5930,6 +5930,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 381D61140F01D316DE364BB96C3A52E8 /* TWCommonLib.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -6336,6 +6337,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 381D61140F01D316DE364BB96C3A52E8 /* TWCommonLib.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

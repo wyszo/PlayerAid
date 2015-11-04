@@ -24,3 +24,11 @@ pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'
 pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
 
 pod 'TWCommonLib', :path => '../TWCommonLib'
+
+
+# post-install configuration hooks
+post_install do |installer|
+  installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
+    configuration.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+  end
+end
