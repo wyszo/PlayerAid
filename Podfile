@@ -23,4 +23,4 @@ pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
 pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'
 pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
 
-pod 'TWCommonLib', :git => 'https://github.com/wyszo/TWCommonLib.git', :tag => 'CommonLib_0_8'
+pod 'TWCommonLib', :path => '../TWCommonLib'
