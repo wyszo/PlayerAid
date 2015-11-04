@@ -6,6 +6,7 @@
 #import "NSLayoutConstraint+ConstraintCopying.h"
 #import "NSLayoutConstraint+TWAnimations.h"
 #import "NSManagedObject+Clone.h"
+#import "NSManagedObject+TWShallowCopy.h"
 #import "NSMutableArray+TWMoveRow.h"
 #import "NSMutableURLRequest+TWHttpHeaders.h"
 #import "NSObject+TWLazyInitialization.h"
