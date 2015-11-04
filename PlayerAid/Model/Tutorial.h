@@ -1,8 +1,6 @@
 #import "_Tutorial.h"
 
-extern NSString *const kTutorialStateUnsaved;
 extern NSString *const kTutorialStatePublished;
-
 extern NSString *const kTutorialDictionaryServerIDPropertyName;
 
 
@@ -10,7 +8,6 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 
 @property (nonatomic, strong) NSNumber *draft;
 @property (nonatomic, strong) NSNumber *inReview;
-@property (nonatomic, strong) NSNumber *unsaved;
 @property (nonatomic, assign) BOOL storedOnServer;
 @property (nonatomic, assign, readonly) BOOL isDraft;
 @property (nonatomic, assign, readonly) BOOL isPublished;

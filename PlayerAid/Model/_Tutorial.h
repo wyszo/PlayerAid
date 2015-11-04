@@ -13,7 +13,6 @@ extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *title;
-	__unsafe_unretained NSString *unsaved;
 } TutorialAttributes;
 
 extern const struct TutorialRelationships {
@@ -88,14 +87,6 @@ extern const struct TutorialRelationships {
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* unsaved;
-
-@property (atomic) BOOL unsavedValue;
-- (BOOL)unsavedValue;
-- (void)setUnsavedValue:(BOOL)value_;
-
-//- (BOOL)validateUnsaved:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSOrderedSet *consistsOf;
 
@@ -178,12 +169,6 @@ extern const struct TutorialRelationships {
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
-
-- (NSNumber*)primitiveUnsaved;
-- (void)setPrimitiveUnsaved:(NSNumber*)value;
-
-- (BOOL)primitiveUnsavedValue;
-- (void)setPrimitiveUnsavedValue:(BOOL)value_;
 
 - (NSMutableOrderedSet*)primitiveConsistsOf;
 - (void)setPrimitiveConsistsOf:(NSMutableOrderedSet*)value;

@@ -261,30 +261,15 @@ static NSString *const kXibName = @"CreateTutorialView";
   self.createTutorialContext = [NSManagedObjectContext MR_context];
   AssertTrueOrReturn(self.createTutorialContext);
   
-  [self deleteUserUnsavedTutorials];
-  
   if (self.tutorialToDisplay) {
     self.tutorial = [self.tutorialToDisplay MR_inContext:self.createTutorialContext];
     [self createTutorialBackup];
   } else {
     self.tutorial = [Tutorial MR_createEntityInContext:self.createTutorialContext];
   }
-  AssertTrueOrReturn(self.tutorial);
   
-  self.tutorial.primitiveUnsavedValue = YES;
+  AssertTrueOrReturn(self.tutorial);
   [self assignTutorialToCurrentUser];
-}
-
-// TODO: drop 'unsaved' state, not used anymore!!
-// This is a temporary method, need to be either fixed or extracted from here
-- (void)deleteUserUnsavedTutorials
-{
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdBy = %@ && unsaved = YES", [self currentUser]];
-  NSArray *unsavedTutorials = [Tutorial MR_findAllSortedBy:nil ascending:YES withPredicate:predicate inContext:self.createTutorialContext];
-  for (Tutorial *tutorial in unsavedTutorials) {
-    [tutorial MR_deleteEntityInContext:self.createTutorialContext];
-  }
-  [self.createTutorialContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)assignTutorialToCurrentUser

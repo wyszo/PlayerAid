@@ -403,6 +403,7 @@
 		31F721791BE9860B001DB831 /* TutorialBackupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialBackupManager.h; sourceTree = "<group>"; };
 		31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialBackupManager.m; sourceTree = "<group>"; };
 		31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tutorial_Clone.h; sourceTree = "<group>"; };
+		31F721831BEA6F6E001DB831 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -2163,9 +2164,10 @@
 		317780171A80076C007057CD /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				31F721831BEA6F6E001DB831 /* DataModel 2.xcdatamodel */,
 				317780181A80076C007057CD /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 317780181A80076C007057CD /* DataModel.xcdatamodel */;
+			currentVersion = 31F721831BEA6F6E001DB831 /* DataModel 2.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

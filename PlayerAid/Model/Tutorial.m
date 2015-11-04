@@ -8,8 +8,6 @@
 #import "TutorialStep.h"
 #import "TutorialStepHelper.h"
 
-
-NSString *const kTutorialStateUnsaved = @"Unsaved";
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
@@ -131,8 +129,8 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
   if ([self stateIsValid:state]) {
     return state;
   }
-  AssertTrueOr(NO, return kTutorialStateUnsaved;);
-  return kTutorialStateUnsaved;
+  AssertTrueOr(NO, return kTutorialStateDraft;);
+  return kTutorialStateDraft;
 }
 
 - (NSString *)applyServerToHandsetMappingToState:(NSString *)state
@@ -162,7 +160,6 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
 - (BOOL)stateIsValid:(NSString *)state
 {
   NSArray *allStates = @[
-                         kTutorialStateUnsaved,
                          kTutorialStateDraft,
                          kTutorialStateInReview,
                          kTutorialStatePublished
@@ -173,7 +170,7 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
 - (BOOL)storedOnServer
 {
   NSArray *statesStoredOnServer = @[
-                                   // draft and unsaved tutorials are stored locally, never send to server
+                                   // drafts are stored locally, never send to server
                                    // inReview tutorials are also stored locally (server doesn't push updates with them) - for now (this will change in the future)
                                    kTutorialStatePublished
                                   ];
@@ -193,33 +190,6 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
 - (BOOL)isPublished
 {
   return [self.primitiveState isEqualToString:kTutorialStatePublished];
-}
-
-#pragma mark - Unsaved
-
-- (NSNumber *)unsaved
-{
-  return @([self primitiveUnsavedValue]);
-}
-
-- (BOOL)primitiveUnsavedValue
-{
-  return [self.state isEqualToString:kTutorialStateUnsaved];
-}
-
-- (void)setUnsavedValue:(BOOL)value_
-{
-  [self setPrimitiveUnsavedValue:value_];
-}
-
-- (void)setPrimitiveUnsavedValue:(BOOL)value
-{
-  if (value) {
-    self.state = kTutorialStateUnsaved;
-  }
-  else {
-    self.state = kTutorialStateDraft;
-  }
 }
 
 #pragma mark - Draft
@@ -250,7 +220,7 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
     self.state = kTutorialStateDraft;
   }
   else {
-    self.state = kTutorialStateUnsaved;
+    // do nothing, since draft is a default state - tutorial state will remain draft
   }
 }
 

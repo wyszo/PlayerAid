@@ -19,7 +19,7 @@
   __block BOOL anyPublishedOrInReviewTutorials;
   
   [user.createdTutorial enumerateObjectsUsingBlock:^(Tutorial *tutorial, BOOL *stop) {
-    if (tutorial.draftValue == 0 && tutorial.unsavedValue == 0) // if a tutorial is not unsaved and not draft, it means it's either in review (submitted) or published
+    if (tutorial.draftValue == 0) // if a tutorial is not draft, it means it's either in review (submitted) or published
     {
       anyPublishedOrInReviewTutorials = YES;
       *stop = YES;

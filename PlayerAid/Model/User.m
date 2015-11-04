@@ -54,7 +54,7 @@ static NSString *const kFollowingKey = @"following";
   
   if (tutorialsChanged) {
     [self removeDeletedTutorialsWithOldTutorialIDsSet:oldCreatedTutorialsIDs];
-    [self.createdTutorialSet addObjectsFromArray:locallyStoredTutorials.allObjects]; // draft and unsaved tutorials don't come from server, we have to add them separately
+    [self.createdTutorialSet addObjectsFromArray:locallyStoredTutorials.allObjects]; // draft tutorials don't come from server, we have to add them separately
   }
   
   // TODO: if tutorial was liked before but is not liked anymore it might be worth refreshing it (by making an additional request) - it might have been deleted
