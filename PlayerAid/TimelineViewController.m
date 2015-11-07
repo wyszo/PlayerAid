@@ -65,7 +65,7 @@
 - (void)setupDataSource
 {
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND flaggedAsInappropriate == 0", kTutorialStatePublished];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND flaggedAsInappropriate == 0 AND hidden == 0", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
   self.tutorialsTableDataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
 }

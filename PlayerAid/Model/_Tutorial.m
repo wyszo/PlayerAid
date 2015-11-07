@@ -7,6 +7,7 @@ const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
 	.flaggedAsInappropriate = @"flaggedAsInappropriate",
+	.hidden = @"hidden",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
 	.jpegImageData = @"jpegImageData",
@@ -55,6 +56,11 @@ const struct TutorialRelationships TutorialRelationships = {
 	}
 	if ([key isEqualToString:@"flaggedAsInappropriateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"flaggedAsInappropriate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"hiddenValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -112,6 +118,26 @@ const struct TutorialRelationships TutorialRelationships = {
 
 - (void)setPrimitiveFlaggedAsInappropriateValue:(BOOL)value_ {
 	[self setPrimitiveFlaggedAsInappropriate:@(value_)];
+}
+
+@dynamic hidden;
+
+- (BOOL)hiddenValue {
+	NSNumber *result = [self hidden];
+	return [result boolValue];
+}
+
+- (void)setHiddenValue:(BOOL)value_ {
+	[self setHidden:@(value_)];
+}
+
+- (BOOL)primitiveHiddenValue {
+	NSNumber *result = [self primitiveHidden];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHiddenValue:(BOOL)value_ {
+	[self setPrimitiveHidden:@(value_)];
 }
 
 @dynamic imageURL;

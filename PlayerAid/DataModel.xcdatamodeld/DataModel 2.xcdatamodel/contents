@@ -10,6 +10,7 @@
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="draft" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="flaggedAsInappropriate" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inReview" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jpegImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -46,7 +47,7 @@
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="180"/>
         <element name="User" positionX="-36" positionY="45" width="128" height="195"/>
     </elements>

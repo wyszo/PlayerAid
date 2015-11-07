@@ -25,6 +25,7 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
   NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary: @{
                             kTutorialDictionaryServerIDPropertyName : KZProperty(serverID),
                             @"title" : KZProperty(title),
+                            @"hidden" : KZProperty(hidden),
                             @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
                             @"imageUri" : KZProperty(imageURL),
