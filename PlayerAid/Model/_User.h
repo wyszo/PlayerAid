@@ -13,16 +13,20 @@ extern const struct UserAttributes {
 } UserAttributes;
 
 extern const struct UserRelationships {
+	__unsafe_unretained NSString *commented;
 	__unsafe_unretained NSString *createdTutorial;
 	__unsafe_unretained NSString *follows;
 	__unsafe_unretained NSString *isFollowedBy;
 	__unsafe_unretained NSString *likes;
+	__unsafe_unretained NSString *likesComment;
 } UserRelationships;
 
+@class TutorialComment;
 @class Tutorial;
 @class User;
 @class User;
 @class Tutorial;
+@class TutorialComment;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -69,6 +73,10 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateUserDescription:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *commented;
+
+- (NSMutableSet*)commentedSet;
+
 @property (nonatomic, strong) NSSet *createdTutorial;
 
 - (NSMutableSet*)createdTutorialSet;
@@ -84,6 +92,18 @@ extern const struct UserRelationships {
 @property (nonatomic, strong) NSSet *likes;
 
 - (NSMutableSet*)likesSet;
+
+@property (nonatomic, strong) NSSet *likesComment;
+
+- (NSMutableSet*)likesCommentSet;
+
+@end
+
+@interface _User (CommentedCoreDataGeneratedAccessors)
+- (void)addCommented:(NSSet*)value_;
+- (void)removeCommented:(NSSet*)value_;
+- (void)addCommentedObject:(TutorialComment*)value_;
+- (void)removeCommentedObject:(TutorialComment*)value_;
 
 @end
 
@@ -119,6 +139,14 @@ extern const struct UserRelationships {
 
 @end
 
+@interface _User (LikesCommentCoreDataGeneratedAccessors)
+- (void)addLikesComment:(NSSet*)value_;
+- (void)removeLikesComment:(NSSet*)value_;
+- (void)addLikesCommentObject:(TutorialComment*)value_;
+- (void)removeLikesCommentObject:(TutorialComment*)value_;
+
+@end
+
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
 
 - (NSNumber*)primitiveLinkedWithFacebook;
@@ -148,6 +176,9 @@ extern const struct UserRelationships {
 - (NSString*)primitiveUserDescription;
 - (void)setPrimitiveUserDescription:(NSString*)value;
 
+- (NSMutableSet*)primitiveCommented;
+- (void)setPrimitiveCommented:(NSMutableSet*)value;
+
 - (NSMutableSet*)primitiveCreatedTutorial;
 - (void)setPrimitiveCreatedTutorial:(NSMutableSet*)value;
 
@@ -159,5 +190,8 @@ extern const struct UserRelationships {
 
 - (NSMutableSet*)primitiveLikes;
 - (void)setPrimitiveLikes:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveLikesComment;
+- (void)setPrimitiveLikesComment:(NSMutableSet*)value;
 
 @end

@@ -19,6 +19,7 @@ const struct TutorialAttributes TutorialAttributes = {
 const struct TutorialRelationships TutorialRelationships = {
 	.consistsOf = @"consistsOf",
 	.createdBy = @"createdBy",
+	.hasComments = @"hasComments",
 	.likedBy = @"likedBy",
 	.section = @"section",
 };
@@ -201,6 +202,17 @@ const struct TutorialRelationships TutorialRelationships = {
 
 @dynamic createdBy;
 
+@dynamic hasComments;
+
+- (NSMutableOrderedSet*)hasCommentsSet {
+	[self willAccessValueForKey:@"hasComments"];
+
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"hasComments"];
+
+	[self didAccessValueForKey:@"hasComments"];
+	return result;
+}
+
 @dynamic likedBy;
 
 - (NSMutableSet*)likedBySet {
@@ -273,6 +285,66 @@ const struct TutorialRelationships TutorialRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"consistsOf"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"consistsOf"];
+}
+@end
+
+@implementation _Tutorial (HasCommentsCoreDataGeneratedAccessors)
+- (void)addHasComments:(NSOrderedSet*)value_ {
+	[self.hasCommentsSet unionOrderedSet:value_];
+}
+- (void)removeHasComments:(NSOrderedSet*)value_ {
+	[self.hasCommentsSet minusOrderedSet:value_];
+}
+- (void)addHasCommentsObject:(TutorialComment*)value_ {
+	[self.hasCommentsSet addObject:value_];
+}
+- (void)removeHasCommentsObject:(TutorialComment*)value_ {
+	[self.hasCommentsSet removeObject:value_];
+}
+- (void)insertObject:(TutorialComment*)value inHasCommentsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"hasComments"];
+}
+- (void)removeObjectFromHasCommentsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"hasComments"];
+}
+- (void)insertHasComments:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"hasComments"];
+}
+- (void)removeHasCommentsAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"hasComments"];
+}
+- (void)replaceObjectInHasCommentsAtIndex:(NSUInteger)idx withObject:(TutorialComment*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"hasComments"];
+}
+- (void)replaceHasCommentsAtIndexes:(NSIndexSet *)indexes withHasComments:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"hasComments"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self hasComments]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"hasComments"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"hasComments"];
 }
 @end
 

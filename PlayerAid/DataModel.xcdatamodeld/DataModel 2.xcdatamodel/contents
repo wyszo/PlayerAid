@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+    <entity name="Comment" representedClassName="TutorialComment" syncable="YES">
+        <attribute name="createdOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="belongsToTutorial" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="hasComments" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="hasReplies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="isReplyTo" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="isReplyTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="hasReplies" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="likedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="likesComment" inverseEntity="User" syncable="YES"/>
+        <relationship name="madeBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="commented" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="backgroundImage" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -19,6 +30,7 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="consistsOf" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TutorialStep" inverseName="belongsTo" inverseEntity="TutorialStep" syncable="YES"/>
         <relationship name="createdBy" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTutorial" inverseEntity="User" syncable="YES"/>
+        <relationship name="hasComments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Comment" inverseName="belongsToTutorial" inverseEntity="Comment" syncable="YES"/>
         <relationship name="likedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="likes" inverseEntity="User" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="containsTutorial" inverseEntity="Section" syncable="YES"/>
     </entity>
@@ -40,15 +52,18 @@
         <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serverID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commented" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="madeBy" inverseEntity="Comment" syncable="YES"/>
         <relationship name="createdTutorial" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tutorial" inverseName="createdBy" inverseEntity="Tutorial" syncable="YES"/>
         <relationship name="follows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="isFollowedBy" inverseEntity="User" syncable="YES"/>
         <relationship name="isFollowedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="follows" inverseEntity="User" syncable="YES"/>
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="likedBy" inverseEntity="Tutorial" syncable="YES"/>
+        <relationship name="likesComment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="likedBy" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="180"/>
-        <element name="User" positionX="-36" positionY="45" width="128" height="195"/>
+        <element name="User" positionX="-36" positionY="45" width="128" height="225"/>
+        <element name="Comment" positionX="-45" positionY="99" width="128" height="180"/>
     </elements>
 </model>

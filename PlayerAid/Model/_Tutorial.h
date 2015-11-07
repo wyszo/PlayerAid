@@ -19,12 +19,14 @@ extern const struct TutorialAttributes {
 extern const struct TutorialRelationships {
 	__unsafe_unretained NSString *consistsOf;
 	__unsafe_unretained NSString *createdBy;
+	__unsafe_unretained NSString *hasComments;
 	__unsafe_unretained NSString *likedBy;
 	__unsafe_unretained NSString *section;
 } TutorialRelationships;
 
 @class TutorialStep;
 @class User;
+@class TutorialComment;
 @class User;
 @class Section;
 
@@ -105,6 +107,10 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateCreatedBy:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSOrderedSet *hasComments;
+
+- (NSMutableOrderedSet*)hasCommentsSet;
+
 @property (nonatomic, strong) NSSet *likedBy;
 
 - (NSMutableSet*)likedBySet;
@@ -127,6 +133,21 @@ extern const struct TutorialRelationships {
 - (void)removeConsistsOfAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInConsistsOfAtIndex:(NSUInteger)idx withObject:(TutorialStep*)value;
 - (void)replaceConsistsOfAtIndexes:(NSIndexSet *)indexes withConsistsOf:(NSArray *)values;
+
+@end
+
+@interface _Tutorial (HasCommentsCoreDataGeneratedAccessors)
+- (void)addHasComments:(NSOrderedSet*)value_;
+- (void)removeHasComments:(NSOrderedSet*)value_;
+- (void)addHasCommentsObject:(TutorialComment*)value_;
+- (void)removeHasCommentsObject:(TutorialComment*)value_;
+
+- (void)insertObject:(TutorialComment*)value inHasCommentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromHasCommentsAtIndex:(NSUInteger)idx;
+- (void)insertHasComments:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeHasCommentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInHasCommentsAtIndex:(NSUInteger)idx withObject:(TutorialComment*)value;
+- (void)replaceHasCommentsAtIndexes:(NSIndexSet *)indexes withHasComments:(NSArray *)values;
 
 @end
 
@@ -190,6 +211,9 @@ extern const struct TutorialRelationships {
 
 - (User*)primitiveCreatedBy;
 - (void)setPrimitiveCreatedBy:(User*)value;
+
+- (NSMutableOrderedSet*)primitiveHasComments;
+- (void)setPrimitiveHasComments:(NSMutableOrderedSet*)value;
 
 - (NSMutableSet*)primitiveLikedBy;
 - (void)setPrimitiveLikedBy:(NSMutableSet*)value;

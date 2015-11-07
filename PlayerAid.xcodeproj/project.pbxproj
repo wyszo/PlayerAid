@@ -140,6 +140,8 @@
 		31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F116861A790F680022BD74 /* LaunchScreen.xib */; };
 		31F5C3A21B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5C3A11B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m */; };
 		31F7217B1BE9860B001DB831 /* TutorialBackupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */; };
+		31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721851BEEB1B2001DB831 /* _TutorialComment.m */; };
+		31F721891BEEB1BC001DB831 /* TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721881BEEB1BC001DB831 /* TutorialComment.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
@@ -403,6 +405,10 @@
 		31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialBackupManager.m; sourceTree = "<group>"; };
 		31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tutorial_Clone.h; sourceTree = "<group>"; };
 		31F721831BEA6F6E001DB831 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		31F721841BEEB1B2001DB831 /* _TutorialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TutorialComment.h; sourceTree = "<group>"; };
+		31F721851BEEB1B2001DB831 /* _TutorialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TutorialComment.m; sourceTree = "<group>"; };
+		31F721871BEEB1BC001DB831 /* TutorialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialComment.h; sourceTree = "<group>"; };
+		31F721881BEEB1BC001DB831 /* TutorialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialComment.m; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -1015,6 +1021,8 @@
 		3177802D1A809766007057CD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				31F721841BEEB1B2001DB831 /* _TutorialComment.h */,
+				31F721851BEEB1B2001DB831 /* _TutorialComment.m */,
 				31BBDD101BE12B67000732E7 /* _Tutorial.h */,
 				31BBDD111BE12B67000732E7 /* _Tutorial.m */,
 				31B735EB1A87FAD70081AE15 /* _TutorialStep.h */,
@@ -1030,15 +1038,11 @@
 		3177802E1A80976E007057CD /* Human */ = {
 			isa = PBXGroup;
 			children = (
-				31B735EE1A87FADE0081AE15 /* TutorialStep.h */,
-				31B735EF1A87FADE0081AE15 /* TutorialStep.m */,
-				317780211A80975C007057CD /* Section.h */,
-				317780221A80975C007057CD /* Section.m */,
-				317780231A80975C007057CD /* Tutorial.h */,
-				31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */,
-				317780241A80975C007057CD /* Tutorial.m */,
-				317780251A80975C007057CD /* User.h */,
-				317780261A80975C007057CD /* User.m */,
+				31F7218A1BEEB1C4001DB831 /* Comment */,
+				31F7218B1BEEB1C9001DB831 /* Section */,
+				31F7218C1BEEB1CF001DB831 /* Tutorial */,
+				31F7218E1BEEB1DA001DB831 /* TutorialStep */,
+				31F7218D1BEEB1D4001DB831 /* User */,
 			);
 			name = Human;
 			sourceTree = "<group>";
@@ -1623,6 +1627,52 @@
 			name = CreateTutorial;
 			sourceTree = "<group>";
 		};
+		31F7218A1BEEB1C4001DB831 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				31F721871BEEB1BC001DB831 /* TutorialComment.h */,
+				31F721881BEEB1BC001DB831 /* TutorialComment.m */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
+		31F7218B1BEEB1C9001DB831 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				317780211A80975C007057CD /* Section.h */,
+				317780221A80975C007057CD /* Section.m */,
+			);
+			name = Section;
+			sourceTree = "<group>";
+		};
+		31F7218C1BEEB1CF001DB831 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				317780231A80975C007057CD /* Tutorial.h */,
+				31F7217F1BEA0AB7001DB831 /* Tutorial_Clone.h */,
+				317780241A80975C007057CD /* Tutorial.m */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		31F7218D1BEEB1D4001DB831 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				317780251A80975C007057CD /* User.h */,
+				317780261A80975C007057CD /* User.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		31F7218E1BEEB1DA001DB831 /* TutorialStep */ = {
+			isa = PBXGroup;
+			children = (
+				31B735EE1A87FADE0081AE15 /* TutorialStep.h */,
+				31B735EF1A87FADE0081AE15 /* TutorialStep.m */,
+			);
+			name = TutorialStep;
+			sourceTree = "<group>";
+		};
 		31FB03A61B3DDD5E00539B50 /* TutorialDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1923,6 +1973,7 @@
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
 				311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
+				31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */,
@@ -1952,6 +2003,7 @@
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31EFB6B71BAB258D00F87C03 /* PrivacyPolicyViewController.m in Sources */,
+				31F721891BEEB1BC001DB831 /* TutorialComment.m in Sources */,
 				312E191E1AB712C900CB5707 /* DebugSettings.m in Sources */,
 				31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */,
 				31014E791A9BB35F002F3485 /* ApplicationViewHierarchyHelper.m in Sources */,
