@@ -37,6 +37,11 @@
   return [self showOKAlertViewWithMessage:@"Please complete tutorial details"];
 }
 
++ (UIAlertView *)showCreateTutorialSavingTutorialSteps
+{
+  return [self showOKAlertViewWithMessage:@"We automatically save your Guide as you add steps, so no matter what happens nothing you've done will be lost!"];
+}
+
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
 {
   return [self showOKAlertViewWithMessage:@"Please name the tutorial"];

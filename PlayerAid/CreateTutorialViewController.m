@@ -716,6 +716,18 @@ static NSString *const kXibName = @"CreateTutorialView";
   [self saveTutorialAsDraft];
   self.publishButton.enabled = YES;
   [self updateEditButtonEnabled];
+  
+  NSUInteger numberOfSteps = self.tutorial.consistsOf.count;
+  NSUInteger numberOfTutorials = [self currentUser].createdTutorial.count;
+  [self displaySavingTutorialStepsInfoAlertIfNecessaryWithNumberOfTutorialSteps:numberOfSteps totalNumberOfUsersTutorials:numberOfTutorials];
+}
+
+// TODO: extract those create tutorial alerts to a separate class...
+- (void)displaySavingTutorialStepsInfoAlertIfNecessaryWithNumberOfTutorialSteps:(NSUInteger)numberOfSteps totalNumberOfUsersTutorials:(NSUInteger)usersTutorials
+{
+  if (numberOfSteps == 1 && usersTutorials == 1) {
+    [AlertFactory showCreateTutorialSavingTutorialSteps];
+  }
 }
 
 #pragma mark - Saving tutorial

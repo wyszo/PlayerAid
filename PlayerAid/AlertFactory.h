@@ -24,6 +24,7 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView;
 + (UIAlertView *)showCreateTutorialNoImageAlertView;
 + (UIAlertView *)showCreateTutorialFillTutorialDetails;
++ (UIAlertView *)showCreateTutorialSavingTutorialSteps;
 
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
 + (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock;
