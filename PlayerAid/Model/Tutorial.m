@@ -11,6 +11,7 @@
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialStatePublished = @"Published";
+NSString *const kTutorialStateReported = @"Reported"; // as inappropriate
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 NSString *const kTutorialDictionaryStepsKey = @"steps";
 
@@ -163,7 +164,8 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
   NSArray *allStates = @[
                          kTutorialStateDraft,
                          kTutorialStateInReview,
-                         kTutorialStatePublished
+                         kTutorialStatePublished,
+                         kTutorialStateReported
                         ];
   return [allStates containsObject:state];
 }
