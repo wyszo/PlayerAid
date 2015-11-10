@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
+@import MagicalRecord;
 #import "TutorialDetailsViewController.h"
 #import "TutorialTableViewCell.h"
 #import "TutorialsTableDataSource.h"
@@ -13,6 +14,7 @@
 #import "CommonViews.h"
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
+#import "TutorialComment.h"
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
@@ -20,6 +22,9 @@
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
+
+// temporary label, will be removed later
+@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @end
 
 @implementation TutorialDetailsViewController
@@ -34,11 +39,20 @@
   [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
+  [self setupNumberOfCommentsCount];
 }
 
 - (void)dealloc
 {
   CallBlock(self.onDeallocBlock);
+}
+
+- (void)setupNumberOfCommentsCount
+{
+  NSArray *comments = [self allComments];
+  self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu", comments.count];
+  
+  // TODO: wire up KVO on self.tutorial.hasComments property to trigger updating this! 
 }
 
 - (void)setupNavigationBarButtons
@@ -84,6 +98,17 @@
      };
   }
   return _headerTableViewDataSource;
+}
+
+#pragma mark - Tutorial Comments
+
+// TODO: extract this logic from here!
+- (NSArray *)allComments
+{
+  AssertTrueOrReturnNil(self.tutorial);
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", self.tutorial];
+  NSArray *comments = [TutorialComment MR_findAllWithPredicate:predicate inContext:self.tutorial.managedObjectContext];
+  return comments;
 }
 
 #pragma mark - Lazy Initalization
