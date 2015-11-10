@@ -39,7 +39,7 @@
 
 + (UIAlertView *)showCreateTutorialSavingTutorialSteps
 {
-  return [self showOKAlertViewWithMessage:@"We automatically save your Guide as you add steps, so no matter what happens nothing you've done will be lost!"];
+  return [self showOKAlertViewWithMessage:@"We automatically save your Guide as steps are added, so nothing you do is ever lost!"];
 }
 
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
