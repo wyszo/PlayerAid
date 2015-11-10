@@ -244,6 +244,18 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
 
+- (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(commentText.length);
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(completion);
+  
+  NSString *urlString = [self urlStringForTutorial:tutorial withSufix:@"comment"];
+  NSDictionary *parameters = @{ @"message" : commentText };
+  
+  [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:parameters completion:completion];
+}
+
 #pragma mark - paths helpers
 
 - (NSString *)likeUrlStringForTutorial:(Tutorial *)tutorial

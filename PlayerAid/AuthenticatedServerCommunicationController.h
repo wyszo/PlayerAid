@@ -27,6 +27,7 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;;
 - (void)reportTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion;
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
