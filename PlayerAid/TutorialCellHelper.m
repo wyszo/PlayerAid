@@ -3,6 +3,7 @@
 //
 
 @import KZAsserts;
+@import TWCommonLib;
 #import "TutorialCellHelper.h"
 
 static const CGFloat kIPhone5ScreenWidth = 320.0f;
@@ -21,14 +22,9 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
 {
   CGFloat aspectRatio = (bottomGapVisible ? kTutorialCellWithGapAspectRatio : kTutorialCellNoGapAspectRatio);
   AssertTrueOr(aspectRatio != 0, return 0;);
-  CGFloat cellHeight = (self.currentScreenWidth / aspectRatio);
+  CGFloat cellHeight = ([UIScreen tw_width] / aspectRatio);
   AssertTrueOr(cellHeight != 0,);
   return cellHeight;
-}
-
-- (CGFloat)currentScreenWidth
-{
-  return [UIScreen mainScreen].bounds.size.width;
 }
 
 - (CGFloat)bottomGapHeight

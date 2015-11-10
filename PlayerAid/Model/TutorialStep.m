@@ -63,7 +63,7 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
   AssertTrueOrReturn(dictionary);
   
   NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                   @"id" : KZProperty(serverID),
+                                                                                   kTutorialStepServerIDAttributeName : KZProperty(serverID),
                                                                                    @"position" : KZProperty(order),
                                                                                    @"thumbnail" : KZProperty(serverVideoThumbnailUrl)
                                                                                   }];
@@ -124,12 +124,17 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 
 #pragma mark - Class methods
 
-+ (NSNumber *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary
++ (nullable NSNumber *)serverIDFromTutorialStepDictionary:(nonnull NSDictionary *)dictionary
 {
   AssertTrueOrReturnNil(dictionary);
   NSNumber *serverID = dictionary[kTutorialStepServerIDAttributeName];
   AssertTrueOrReturnNil(serverID);
   return serverID;
+}
+
++ (nonnull TutorialStep *)findFirstOrCreateByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context
+{
+  return [TutorialStep MR_findFirstOrCreateByAttribute:@"serverID" withValue:serverID inContext:context];
 }
 
 @end

@@ -1,19 +1,23 @@
 @import KZAsserts;
 @import KZPropertyMapper;
 @import MagicalRecord;
+@import TWCommonLib;
 #import "Tutorial.h"
 #import "Tutorial_Clone.h"
 #import "Section.h"
 #import "User.h"
 #import "TutorialStep.h"
 #import "TutorialStepHelper.h"
+#import "TutorialCommentParsingHelper.h"
+
+NSString *const kTutorialStatePublished = @"Published";
+NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 static NSString *const kTutorialStateDraft = @"Draft";
 static NSString *const kTutorialStateInReview = @"In Review";
-NSString *const kTutorialStatePublished = @"Published";
-NSString *const kTutorialStateReported = @"Reported"; // as inappropriate
-NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
-NSString *const kTutorialDictionaryStepsKey = @"steps";
+static NSString *const kTutorialStateReported = @"Reported"; // as inappropriate
+static NSString *const kTutorialDictionaryStepsKey = @"steps";
+static NSString *const kCommentsKey = @"comments";
 
 @implementation Tutorial
 
@@ -30,7 +34,7 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
                             @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
                             @"imageUri" : KZProperty(imageURL),
-                            @"section" : KZCall(sectionFromString:, section),
+                            @"section" : KZCall(sectionFromString:, section)
                           }];
   
   if (includeAuthor) {
@@ -38,6 +42,11 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
                                        @"author" : KZCall(authorFromDictionary:, createdBy)
                                        }];
   }
+  
+  if (dictionary[kCommentsKey]) {
+    [mapping addEntriesFromDictionary:@{ kCommentsKey : KZCall(commentsFromDictionariesArray:, hasComments) }];
+  }
+  
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
   
   if (dictionary[kTutorialDictionaryStepsKey]) {
@@ -89,6 +98,14 @@ NSString *const kTutorialDictionaryStepsKey = @"steps";
 - (NSOrderedSet *)tutorialStepsFromDictionariesArray:(NSArray *)stepsDictionaries
 {
   return [[TutorialStepHelper new] tutorialStepsFromDictionariesArray:stepsDictionaries inContext:self.managedObjectContext];
+}
+
+#pragma mark - Comments
+
+- (NSOrderedSet *)commentsFromDictionariesArray:(nonnull NSArray *)commentsDictionaries
+{
+  AssertTrueOrReturnNil(commentsDictionaries);
+  return [[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:commentsDictionaries inContext:self.managedObjectContext];
 }
 
 #pragma mark - Accessors

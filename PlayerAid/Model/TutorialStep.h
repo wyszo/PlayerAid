@@ -16,6 +16,9 @@
 - (BOOL)isImageStep;
 - (BOOL)isVideoStep;
 
-+ (NSNumber *)serverIDFromTutorialStepDictionary:(NSDictionary *)dictionary;
+#pragma mark - Class methods
+
++ (nullable NSNumber *)serverIDFromTutorialStepDictionary:(nonnull NSDictionary *)dictionary;
++ (nonnull TutorialStep *)findFirstOrCreateByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context;
 
 @end

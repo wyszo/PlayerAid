@@ -142,6 +142,7 @@
 		31F7217B1BE9860B001DB831 /* TutorialBackupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F7217A1BE9860B001DB831 /* TutorialBackupManager.m */; };
 		31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721851BEEB1B2001DB831 /* _TutorialComment.m */; };
 		31F721891BEEB1BC001DB831 /* TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721881BEEB1BC001DB831 /* TutorialComment.m */; };
+		31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
@@ -409,6 +410,8 @@
 		31F721851BEEB1B2001DB831 /* _TutorialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TutorialComment.m; sourceTree = "<group>"; };
 		31F721871BEEB1BC001DB831 /* TutorialComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialComment.h; sourceTree = "<group>"; };
 		31F721881BEEB1BC001DB831 /* TutorialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialComment.m; sourceTree = "<group>"; };
+		31F721B11BF28058001DB831 /* TutorialCommentParsingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentParsingHelper.h; sourceTree = "<group>"; };
+		31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentParsingHelper.m; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -761,6 +764,7 @@
 		312FF5FE1A9F1A5100AE3174 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
+				31F721B01BF2803E001DB831 /* CommentParser */,
 				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
 				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
 				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
@@ -1673,6 +1677,15 @@
 			name = TutorialStep;
 			sourceTree = "<group>";
 		};
+		31F721B01BF2803E001DB831 /* CommentParser */ = {
+			isa = PBXGroup;
+			children = (
+				31F721B11BF28058001DB831 /* TutorialCommentParsingHelper.h */,
+				31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */,
+			);
+			name = CommentParser;
+			sourceTree = "<group>";
+		};
 		31FB03A61B3DDD5E00539B50 /* TutorialDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1956,6 +1969,7 @@
 				31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
+				31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
