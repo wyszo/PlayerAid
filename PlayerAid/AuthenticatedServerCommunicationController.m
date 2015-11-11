@@ -244,6 +244,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
 
+- (void)refreshTutorialAndComments:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(completion);
+  
+  NSString *urlString = [self urlStringForTutorial:tutorial withSufix:@""];
+  [self performGetRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:NO completion:completion];
+}
+
 - (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(commentText.length);

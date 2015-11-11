@@ -15,6 +15,7 @@
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
 #import "TutorialComment.h"
+#import "TutorialCommentsController.h"
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
+@property (strong, nonatomic) TutorialCommentsController *commentsController;
 
 // temporary label, will be removed later
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
@@ -39,7 +41,8 @@
   [self setupTableView];
   [self setupTableViewHeader];
   [self setupTutorialStepsTableView];
-  [self setupNumberOfCommentsCount];
+  [self refreshCommentsCountLabel];
+  [self setupCommentsController];
 }
 
 - (void)dealloc
@@ -47,12 +50,12 @@
   CallBlock(self.onDeallocBlock);
 }
 
-- (void)setupNumberOfCommentsCount
+- (void)setupCommentsController
 {
-  NSArray *comments = [self allComments];
-  self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu", comments.count];
-  
-  // TODO: wire up KVO on self.tutorial.hasComments property to trigger updating this! 
+  defineWeakSelf();
+  self.commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
+    [weakSelf refreshCommentsCountLabel];
+  }];
 }
 
 - (void)setupNavigationBarButtons
@@ -100,15 +103,12 @@
   return _headerTableViewDataSource;
 }
 
-#pragma mark - Tutorial Comments
+#pragma mark - Comments 
 
-// TODO: extract this logic from here!
-- (NSArray *)allComments
+- (void)refreshCommentsCountLabel
 {
-  AssertTrueOrReturnNil(self.tutorial);
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", self.tutorial];
-  NSArray *comments = [TutorialComment MR_findAllWithPredicate:predicate inContext:self.tutorial.managedObjectContext];
-  return comments;
+  NSInteger commentsCount = self.tutorial.hasComments.count;
+  self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu", commentsCount];
 }
 
 #pragma mark - Lazy Initalization

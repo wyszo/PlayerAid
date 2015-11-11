@@ -18,15 +18,16 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 + (instancetype)sharedInstance;
 + (void)setApiToken:(NSString *)apiToken;
 
-
 - (void)pingCompletion:(NetworkResponseBlock)completion;
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
+
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(VoidBlockWithError)completion;
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;;
 - (void)reportTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)refreshTutorialAndComments:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion;
 - (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion;
 
 // publishing tutorial

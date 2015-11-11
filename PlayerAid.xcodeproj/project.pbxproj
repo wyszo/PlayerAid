@@ -143,6 +143,7 @@
 		31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721851BEEB1B2001DB831 /* _TutorialComment.m */; };
 		31F721891BEEB1BC001DB831 /* TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721881BEEB1BC001DB831 /* TutorialComment.m */; };
 		31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */; };
+		31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
 		31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */; };
@@ -412,6 +413,8 @@
 		31F721881BEEB1BC001DB831 /* TutorialComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialComment.m; sourceTree = "<group>"; };
 		31F721B11BF28058001DB831 /* TutorialCommentParsingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentParsingHelper.h; sourceTree = "<group>"; };
 		31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentParsingHelper.m; sourceTree = "<group>"; };
+		31F721B51BF3F7E0001DB831 /* TutorialCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentsController.h; sourceTree = "<group>"; };
+		31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentsController.m; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
@@ -892,6 +895,7 @@
 			children = (
 				31880C551BAB011700710458 /* AppInitializer */,
 				31777FFE1A7FBF84007057CD /* Authentication */,
+				31F721B41BF3F7CA001DB831 /* Comments */,
 				315822241AEBD83000DA6CCE /* ImagePickerOverlay */,
 				312C6AAC1AD4735600D96C19 /* Journey */,
 				31EFB6BE1BAB25DE00F87C03 /* Login */,
@@ -1686,6 +1690,15 @@
 			name = CommentParser;
 			sourceTree = "<group>";
 		};
+		31F721B41BF3F7CA001DB831 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				31F721B51BF3F7E0001DB831 /* TutorialCommentsController.h */,
+				31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
 		31FB03A61B3DDD5E00539B50 /* TutorialDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1991,6 +2004,7 @@
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */,
+				31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
