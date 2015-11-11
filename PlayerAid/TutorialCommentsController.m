@@ -56,19 +56,16 @@
     if (error) {
       [AlertFactory showGenericErrorAlertView];
     } else {
-      [weakSelf refreshTutorialAndComments];
+      AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+      [weakSelf updateTutorialObjectFromDictionary:(NSDictionary *)responseObject];
     }
   }];
 }
 
-- (void)refreshTutorialAndComments
+- (void)updateTutorialObjectFromDictionary:(nonnull NSDictionary *)dictionary
 {
-  defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] refreshTutorialAndComments:weakSelf.tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-      // TODO: it probably makes sense to only parse comments in here - or better - to ask server only for comments
-      [TutorialsHelper tutorialFromDictionary:responseObject parseAuthors:NO inContext:localContext];
-    }];
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [TutorialsHelper tutorialFromDictionary:dictionary parseAuthors:NO inContext:localContext];
   }];
 }
 
