@@ -20,6 +20,8 @@
 		31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */; };
 		31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */; };
 		31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */; };
+		3102F93B1BF697C300B544C6 /* AddCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102F9391BF697C300B544C6 /* AddCommentInputViewController.m */; };
+		3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -186,6 +188,9 @@
 		31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialSectionHeaderView.m; sourceTree = "<group>"; };
 		31014E811A9CE98C002F3485 /* UITableView+TableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+TableViewHelper.h"; sourceTree = "<group>"; };
 		31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TableViewHelper.m"; sourceTree = "<group>"; };
+		3102F9381BF697C300B544C6 /* AddCommentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentInputViewController.h; sourceTree = "<group>"; };
+		3102F9391BF697C300B544C6 /* AddCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentInputViewController.m; sourceTree = "<group>"; };
+		3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentInputView.xib; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -572,6 +577,24 @@
 				31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */,
 			);
 			name = TutorialSectionHeaderView;
+			sourceTree = "<group>";
+		};
+		3102F9371BF6978C00B544C6 /* KeyboardInputVC */ = {
+			isa = PBXGroup;
+			children = (
+				3102F9381BF697C300B544C6 /* AddCommentInputViewController.h */,
+				3102F9391BF697C300B544C6 /* AddCommentInputViewController.m */,
+			);
+			name = KeyboardInputVC;
+			sourceTree = "<group>";
+		};
+		3102F93D1BF697D300B544C6 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */,
+				31F721B81BF54422001DB831 /* TutorialComments.xib */,
+			);
+			name = Comments;
 			sourceTree = "<group>";
 		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
@@ -1308,8 +1331,8 @@
 			isa = PBXGroup;
 			children = (
 				31FB75371BCFC574001DC102 /* Cells */,
+				3102F93D1BF697D300B544C6 /* Comments */,
 				31FB75351BCFC56C001DC102 /* NoTutorialsView.xib */,
-				31F721B81BF54422001DB831 /* TutorialComments.xib */,
 				31014E7B1A9C7590002F3485 /* TutorialsSectionHeaderView.xib */,
 			);
 			name = Tutorial;
@@ -1709,6 +1732,7 @@
 		31F721BD1BF545DA001DB831 /* TutorialComments */ = {
 			isa = PBXGroup;
 			children = (
+				3102F9371BF6978C00B544C6 /* KeyboardInputVC */,
 				31F721BA1BF545D4001DB831 /* TutorialCommentsViewController.h */,
 				31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */,
 			);
@@ -1877,6 +1901,7 @@
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */,
+				3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
@@ -2029,6 +2054,7 @@
 				313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
+				3102F93B1BF697C300B544C6 /* AddCommentInputViewController.m in Sources */,
 				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,
 				312E19241AB85D1E00CB5707 /* NSURL+URLString.m in Sources */,
 				31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */,

@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="commentsBar" destination="rjg-Rf-oXJ" id="Dw3-2s-WmQ"/>
                 <outlet property="commentsCountLabel" destination="mUJ-YM-Bjn" id="dR6-c1-Jf7"/>
+                <outlet property="inputTextField" destination="syc-vB-JOB" id="8aw-RG-wLm"/>
                 <outlet property="view" destination="iN0-l3-epB" id="TFC-po-Iei"/>
             </connections>
         </placeholder>
@@ -34,9 +35,19 @@
                         <constraint firstItem="mUJ-YM-Bjn" firstAttribute="centerY" secondItem="rjg-Rf-oXJ" secondAttribute="centerY" id="kch-yj-dfd"/>
                     </constraints>
                 </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syc-vB-JOB">
+                    <rect key="frame" x="8" y="61" width="304" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="304" id="L7a-rq-1Xi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="syc-vB-JOB" firstAttribute="top" secondItem="rjg-Rf-oXJ" secondAttribute="bottom" constant="8" id="1wx-vf-l1E"/>
+                <constraint firstItem="syc-vB-JOB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Iot-BO-hWj"/>
                 <constraint firstAttribute="trailing" secondItem="rjg-Rf-oXJ" secondAttribute="trailing" id="PWJ-Y5-VJW"/>
                 <constraint firstItem="rjg-Rf-oXJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="f5v-rt-CCM"/>
                 <constraint firstItem="rjg-Rf-oXJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hrE-bF-WNe"/>

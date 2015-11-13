@@ -8,6 +8,7 @@
 #import "TutorialCommentsViewController.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
+#import "AddCommentInputViewController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -15,6 +16,7 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 };
 
 static NSString * const kXibFileName = @"TutorialComments";
+static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -22,6 +24,10 @@ static NSString * const kXibFileName = @"TutorialComments";
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
+@property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
+
+// temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
+@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @end
 
 @implementation TutorialCommentsViewController
@@ -44,6 +50,7 @@ static NSString * const kXibFileName = @"TutorialComments";
   [self setupCommentsController];
   [self refreshCommentsCountLabel];
   [self setupGestureRecognizer];
+  [self setupKeyboardInputView];
   
   [self fold];
   [self invokeDidChangeHeightCallback];
@@ -64,6 +71,16 @@ static NSString * const kXibFileName = @"TutorialComments";
     [weakSelf toggleFoldedInvokeCallbacks];
   } delay:0.0];
   [self.commentsBar addGestureRecognizer:gestureRecognizer];
+}
+
+- (void)setupKeyboardInputView
+{
+  AddCommentInputViewController *inputVC = [AddCommentInputViewController new];
+  inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for changing height
+  inputVC.view.tw_height = kKeyboardInputViewHeight;
+
+  self.addCommentInputViewController = inputVC;
+  self.inputTextField.inputView = self.addCommentInputViewController.view;
 }
 
 #pragma mark - Fold/Expand
@@ -88,12 +105,16 @@ static NSString * const kXibFileName = @"TutorialComments";
 {
   self.view.tw_height = 300.0;
   self.state = CommentsViewStateExpanded;
+  
+  [self.inputTextField becomeFirstResponder];
 }
 
 - (void)fold
 {
   self.view.tw_height = 150.0;
   self.state = CommentsViewStateFolded;
+  
+  [self.inputTextField resignFirstResponder];
 }
 
 - (void)invokeDidChangeHeightCallback
