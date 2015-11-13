@@ -9,12 +9,18 @@
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
 
+typedef NS_ENUM(NSInteger, CommentsViewState) {
+  CommentsViewStateFolded,
+  CommentsViewStateExpanded,
+};
+
 static NSString * const kXibFileName = @"TutorialComments";
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
 @property (strong, nonatomic) TutorialCommentsController *commentsController;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @end
 
@@ -55,24 +61,39 @@ static NSString * const kXibFileName = @"TutorialComments";
 {
   defineWeakSelf();
   UITapGestureRecognizer *gestureRecognizer = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    defineStrongSelf();
-    [strongSelf expand];
-    [strongSelf invokeDidChangeHeightCallback];
-    CallBlock(strongSelf.didExpandBlock);
+    [weakSelf toggleFoldedInvokeCallbacks];
   } delay:0.0];
   [self.commentsBar addGestureRecognizer:gestureRecognizer];
 }
 
 #pragma mark - Fold/Expand
 
+- (void)toggleFoldedInvokeCallbacks
+{
+  if (self.state == CommentsViewStateFolded) {
+    [self expand];
+    [self invokeDidChangeHeightCallback];
+    CallBlock(self.didExpandBlock);
+  }
+  else if (self.state == CommentsViewStateExpanded) {
+    [self fold];
+    [self invokeDidChangeHeightCallback];
+  }
+  else {
+    AssertTrueOrReturn(@"unhandled condition");
+  }
+}
+
 - (void)expand
 {
   self.view.tw_height = 300.0;
+  self.state = CommentsViewStateExpanded;
 }
 
 - (void)fold
 {
   self.view.tw_height = 150.0;
+  self.state = CommentsViewStateFolded;
 }
 
 - (void)invokeDidChangeHeightCallback
