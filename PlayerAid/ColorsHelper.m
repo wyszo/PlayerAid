@@ -32,6 +32,8 @@ UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
 
+UIColorMethodMake(tutorialCommentsBarBackgroundColor, 60, 100, 198)
+
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134)
 UIColorMethodMake(editProfileViewBackgroundColor, 245, 245, 245)
 UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)

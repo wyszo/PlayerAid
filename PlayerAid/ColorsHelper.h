@@ -26,6 +26,8 @@
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 + (UIColor *)tutorialGradientBlueColor;
 
++ (UIColor *)tutorialCommentsBarBackgroundColor;
+
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;

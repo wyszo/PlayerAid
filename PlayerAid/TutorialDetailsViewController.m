@@ -16,6 +16,7 @@
 #import "TutorialDetailsHelper.h"
 #import "TutorialComment.h"
 #import "TutorialCommentsController.h"
+#import "TutorialCommentsViewController.h"
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
-@property (strong, nonatomic) TutorialCommentsController *commentsController;
+@property (strong, nonatomic) TutorialCommentsViewController *commentsViewController;
 
 // temporary label, will be removed later
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
@@ -40,22 +41,13 @@
   [self setupNavigationBarButtons];
   [self setupTableView];
   [self setupTableViewHeader];
+  [self setupTableViewFooter];
   [self setupTutorialStepsTableView];
-  [self refreshCommentsCountLabel];
-  [self setupCommentsController];
 }
 
 - (void)dealloc
 {
   CallBlock(self.onDeallocBlock);
-}
-
-- (void)setupCommentsController
-{
-  defineWeakSelf();
-  self.commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
-    [weakSelf refreshCommentsCountLabel];
-  }];
 }
 
 - (void)setupNavigationBarButtons
@@ -80,12 +72,21 @@
   self.headerTableViewDataSource = self.headerTableViewDataSource;
 }
 
+- (void)setupTableViewFooter
+{
+  AssertTrueOrReturn(self.tutorial);
+  TutorialCommentsViewController *commentsVC = [[TutorialCommentsViewController alloc] initWithTutorial:self.tutorial];
+  UIView *footerView = commentsVC.view;
+  
+  self.tableView.tableFooterView = footerView;
+  // TODO: set initial frame height programmatically (to 150), because now it probably just takes it from the xib file
+}
+
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
   self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
-  self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
@@ -101,14 +102,6 @@
      };
   }
   return _headerTableViewDataSource;
-}
-
-#pragma mark - Comments 
-
-- (void)refreshCommentsCountLabel
-{
-  NSInteger commentsCount = self.tutorial.hasComments.count;
-  self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu", commentsCount];
 }
 
 #pragma mark - Lazy Initalization
