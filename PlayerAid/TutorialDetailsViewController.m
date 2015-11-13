@@ -4,7 +4,6 @@
 
 @import KZAsserts;
 @import TWCommonLib;
-@import MagicalRecord;
 #import "TutorialDetailsViewController.h"
 #import "TutorialTableViewCell.h"
 #import "TutorialsTableDataSource.h"
@@ -25,9 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
 @property (strong, nonatomic) TutorialCommentsViewController *commentsViewController;
-
-// temporary label, will be removed later
-@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @end
 
 @implementation TutorialDetailsViewController
@@ -76,9 +72,17 @@
 {
   AssertTrueOrReturn(self.tutorial);
   TutorialCommentsViewController *commentsVC = [[TutorialCommentsViewController alloc] initWithTutorial:self.tutorial];
+  defineWeakSelf();
+  commentsVC.didChangeHeightBlock = ^(UIView *commentsView) {
+    weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
+  };
+  commentsVC.didExpandBlock = ^() {
+    [weakSelf.tableView tw_scrollToBottom];
+  };
   UIView *footerView = commentsVC.view;
-  
   self.tableView.tableFooterView = footerView;
+  
+  self.commentsViewController = commentsVC;
   // TODO: set initial frame height programmatically (to 150), because now it probably just takes it from the xib file
 }
 
