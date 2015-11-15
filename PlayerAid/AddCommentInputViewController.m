@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 @import TWCommonLib;
 #import "AddCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
@@ -9,16 +10,19 @@
 static NSString *const kXibFileName = @"AddCommentInputView";
 
 @interface AddCommentInputViewController ()
+@property (strong, nonatomic, nonnull) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @end
 
 @implementation AddCommentInputViewController
 
-- (instancetype)init
+- (instancetype)initWithUser:(User *)user
 {
+  AssertTrueOrReturnNil(user);
   self = [super initWithNibName:kXibFileName bundle:nil];
   if (self) {
+    _user = user;
   }
   return self;
 }
@@ -26,6 +30,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self.user placeAvatarInImageView:self.avatarImageView];
 }
 
 #pragma mark - IBOutlet

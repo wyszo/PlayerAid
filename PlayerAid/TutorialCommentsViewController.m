@@ -9,6 +9,7 @@
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
 #import "AddCommentInputViewController.h"
+#import "UsersFetchController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -75,8 +76,9 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 - (void)setupKeyboardInputView
 {
-  AddCommentInputViewController *inputVC = [AddCommentInputViewController new];
-  inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for changing height
+  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
+  AddCommentInputViewController *inputVC = [[AddCommentInputViewController alloc] initWithUser:currentUser];
+  inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
   inputVC.view.tw_height = kKeyboardInputViewHeight;
 
   self.addCommentInputViewController = inputVC;
