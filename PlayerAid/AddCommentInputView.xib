@@ -26,16 +26,24 @@
                     </constraints>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5OC-dt-JmK" userLabel="Input Text Field">
-                    <rect key="frame" x="76" y="8" width="348" height="30"/>
+                    <rect key="frame" x="76" y="8" width="331" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogV-yY-2qj" userLabel="Post Button">
-                    <rect key="frame" x="433" y="50" width="31" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogV-yY-2qj" userLabel="Post Button">
+                    <rect key="frame" x="416" y="48" width="48" height="32"/>
+                    <color key="backgroundColor" red="0.35686274509803922" green="0.49803921568627452" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="31" id="fm9-IC-TVG"/>
+                        <constraint firstAttribute="width" constant="48" id="fm9-IC-TVG"/>
+                        <constraint firstAttribute="height" constant="32" id="vPd-oq-Fro"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Post"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="postButtonPressed:" destination="-1" eventType="touchUpInside" id="ilF-WS-mry"/>
                     </connections>
