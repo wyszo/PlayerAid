@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,21 +16,52 @@
                 <rect key="frame" x="0.0" y="0.0" width="364" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="title label">
-                        <rect key="frame" x="8" y="8" width="348" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
+                        <rect key="frame" x="8" y="8" width="36" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wYM-dQ-F5j" secondAttribute="height" multiplier="54:49" id="G5h-uI-607"/>
+                            <constraint firstAttribute="width" constant="36" id="VEV-CG-6XX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
+                        <rect key="frame" x="52" y="14" width="304" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                        <rect key="frame" x="52" y="43" width="304" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="6rk-30-uBq"/>
+                    <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="8" id="9Oe-z1-exT"/>
+                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="IOO-SA-Yds"/>
+                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="8" id="LeV-MC-n7b"/>
+                    <constraint firstItem="CTC-2c-EIQ" firstAttribute="baseline" secondItem="wYM-dQ-F5j" secondAttribute="baseline" id="NHj-Il-gvs"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="8" id="Qy7-bi-Orw"/>
+                    <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="topMargin" id="clf-nM-HnV"/>
-                    <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="8" id="sTN-gh-bMY"/>
+                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
+                    <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
+                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
+                    <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="NHj-Il-gvs"/>
+                        <exclude reference="6rk-30-uBq"/>
+                        <exclude reference="clf-nM-HnV"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="titleLabel" destination="OZa-Sb-n3z" id="tBO-he-QsJ"/>
+                <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>
+                <outlet property="avatarImageView" destination="wYM-dQ-F5j" id="QrU-tr-sUi"/>
+                <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
             </connections>
             <point key="canvasLocation" x="542" y="114.5"/>
         </tableViewCell>

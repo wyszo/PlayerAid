@@ -1,7 +1,9 @@
-#import "TutorialComment.h"
+
 @import KZAsserts;
 @import KZPropertyMapper;
 @import MagicalRecord;
+#import "TutorialComment.h"
+#import "UsersHelper.h"
 
 static NSString *const kCommentServerIDAttributeName = @"id";
 
@@ -15,11 +17,16 @@ static NSString *const kCommentServerIDAttributeName = @"id";
                             kCommentServerIDAttributeName : KZProperty(serverID),
                             @"message" : KZProperty(text),
                             @"createdOn" : KZBox(DateWithTZD, createdOn),
-                            // @"author",
+                            @"author" : KZCall(userFromDictionary:, madeBy),
                             // position? to determine comments order
                             };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+}
+
+- (User *)userFromDictionary:(nonnull NSDictionary *)dictionary
+{
+  return [[UsersHelper new] userFromDictionary:dictionary inContext:self.managedObjectContext];
 }
 
 #pragma mark - Class methods

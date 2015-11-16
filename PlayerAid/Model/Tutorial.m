@@ -9,6 +9,7 @@
 #import "TutorialStep.h"
 #import "TutorialStepHelper.h"
 #import "TutorialCommentParsingHelper.h"
+#import "UsersHelper.h"
 
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
@@ -84,15 +85,7 @@ static NSString *const kCommentsKey = @"comments";
 
 - (User *)authorFromDictionary:(NSDictionary *)authorDictionary
 {
-  AssertTrueOrReturnNil(authorDictionary.count);
-  NSString *authorID = [User serverIDFromUserDictionary:authorDictionary];
-  
-  User *author = [User MR_findFirstByAttribute:@"serverID" withValue:authorID inContext:self.managedObjectContext];
-  if (!author) {
-    author = [User MR_createEntityInContext:self.managedObjectContext];
-  }
-  [author configureFromDictionary:authorDictionary];
-  return author;
+  return [[UsersHelper new] userFromDictionary:authorDictionary inContext:self.managedObjectContext];
 }
 
 - (NSOrderedSet *)tutorialStepsFromDictionariesArray:(NSArray *)stepsDictionaries

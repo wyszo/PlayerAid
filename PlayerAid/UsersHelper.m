@@ -53,4 +53,17 @@
   return [User MR_findFirstWithPredicate:predicate inContext:context];
 }
 
+#pragma mark - Single user
+
+- (User *)userFromDictionary:(NSDictionary *)userDictionary inContext:(NSManagedObjectContext *)context
+{
+  AssertTrueOrReturnNil(userDictionary.count);
+  AssertTrueOrReturnNil(context);
+  
+  NSString *userID = [User serverIDFromUserDictionary:userDictionary];
+  User *user = [User MR_findFirstOrCreateByAttribute:@"serverID" withValue:userID inContext:context];
+  [user configureFromDictionary:userDictionary];
+  return user;
+}
+
 @end
