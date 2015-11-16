@@ -6,6 +6,7 @@
 @import TWCommonLib;
 #import "AddCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "UIImageView+AvatarStyling.h"
 
 static NSString *const kXibFileName = @"AddCommentInputView";
 
@@ -30,6 +31,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self.avatarImageView makeCircular];
   [self.user placeAvatarInImageView:self.avatarImageView];
 }
 
