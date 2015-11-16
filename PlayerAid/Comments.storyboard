@@ -86,32 +86,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNu-ce-1ba">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNu-ce-1ba">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
-                                <rect key="frame" x="72" y="33" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.2470588235" green="0.40784313729999999" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O78-V6-vEI" userLabel="No comments Overlay Container">
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
+                                        <rect key="frame" x="30" y="52" width="324" height="90"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-emptystate-ic" translatesAutoresizingMaskIntoConstraints="NO" id="TSw-CP-Ebo">
+                                                <rect key="frame" x="154" y="8" width="16" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="7AD-kU-qVZ"/>
+                                                    <constraint firstAttribute="width" constant="16" id="QkO-kX-RZN"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are currently no comments for this tutorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ift-CC-fkK">
+                                                <rect key="frame" x="8" y="38" width="308" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="4wP-SQ-3cY"/>
+                                            <constraint firstItem="Ift-CC-fkK" firstAttribute="leading" secondItem="Jhk-Vf-vpM" secondAttribute="leading" constant="8" id="MbV-qZ-QpQ"/>
+                                            <constraint firstItem="TSw-CP-Ebo" firstAttribute="top" secondItem="Jhk-Vf-vpM" secondAttribute="top" constant="8" id="NQa-ik-DiR"/>
+                                            <constraint firstAttribute="width" constant="324" id="Nnc-Df-OgP"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ift-CC-fkK" secondAttribute="bottom" constant="8" id="RNJ-Pn-fWa"/>
+                                            <constraint firstItem="Ift-CC-fkK" firstAttribute="top" secondItem="TSw-CP-Ebo" secondAttribute="bottom" constant="14" id="Xh2-NX-TbO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ift-CC-fkK" secondAttribute="trailing" constant="8" id="epv-8F-TS4"/>
+                                            <constraint firstItem="TSw-CP-Ebo" firstAttribute="centerX" secondItem="Jhk-Vf-vpM" secondAttribute="centerX" id="vlR-1E-Jlw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="4wP-SQ-3cY"/>
-                                    <constraint firstAttribute="width" constant="240" id="8co-U1-jpd"/>
+                                    <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerX" secondItem="O78-V6-vEI" secondAttribute="centerX" id="gSq-OU-RLc"/>
+                                    <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerY" secondItem="O78-V6-vEI" secondAttribute="centerY" id="ijh-gh-9tE"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SNu-ce-1ba" firstAttribute="leading" secondItem="PUF-6D-30S" secondAttribute="leading" id="2Wo-Ji-W2c"/>
-                            <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerX" secondItem="PUF-6D-30S" secondAttribute="centerX" id="Hjx-xH-5MF"/>
+                            <constraint firstItem="O78-V6-vEI" firstAttribute="leading" secondItem="PUF-6D-30S" secondAttribute="leading" id="69i-if-UcS"/>
                             <constraint firstAttribute="trailing" secondItem="SNu-ce-1ba" secondAttribute="trailing" id="Ou2-SJ-lmn"/>
                             <constraint firstItem="SNu-ce-1ba" firstAttribute="top" secondItem="PUF-6D-30S" secondAttribute="top" id="aVh-rH-zlO"/>
-                            <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerY" secondItem="PUF-6D-30S" secondAttribute="centerY" id="dfD-Re-KcU"/>
+                            <constraint firstItem="afF-x4-eUd" firstAttribute="top" secondItem="O78-V6-vEI" secondAttribute="bottom" id="gkt-aq-TFK"/>
+                            <constraint firstAttribute="trailing" secondItem="O78-V6-vEI" secondAttribute="trailing" id="hES-fH-Tfg"/>
+                            <constraint firstItem="O78-V6-vEI" firstAttribute="top" secondItem="jxj-ZL-mFw" secondAttribute="bottom" id="qma-7L-Y8d"/>
                             <constraint firstAttribute="bottom" secondItem="SNu-ce-1ba" secondAttribute="bottom" id="ztV-ed-i9F"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="commentsTableView" destination="SNu-ce-1ba" id="PIx-a8-dvb"/>
-                        <outlet property="noCommentsOverlayView" destination="Jhk-Vf-vpM" id="uGb-k6-V6X"/>
+                        <outlet property="noCommentsOverlayView" destination="O78-V6-vEI" id="4Rz-Fn-MzO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnX-Rz-hsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -119,4 +152,7 @@
             <point key="canvasLocation" x="221" y="776.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="comments-emptystate-ic" width="32" height="32"/>
+    </resources>
 </document>
