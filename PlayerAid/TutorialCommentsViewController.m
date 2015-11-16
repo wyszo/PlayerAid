@@ -5,11 +5,13 @@
 @import KZAsserts;
 @import TWCommonLib;
 @import BlocksKit;
+@import MagicalRecord;
 #import "TutorialCommentsViewController.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
 #import "AddCommentInputViewController.h"
 #import "UsersFetchController.h"
+#import "TutorialComment.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -17,6 +19,8 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 };
 
 static NSString * const kXibFileName = @"TutorialComments";
+static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
+static NSString * const kTutorialCommentXibName = @"TutorialCommentCell";
 static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 @interface TutorialCommentsViewController ()
@@ -26,6 +30,8 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+@property (strong, nonatomic) TWCoreDataTableViewDataSource *dataSource;
 
 // temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
@@ -52,6 +58,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   [self refreshCommentsCountLabel];
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
+  [self setupCommentsTableView];
   
   [self fold];
   [self invokeDidChangeHeightCallback];
@@ -83,6 +90,38 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
   self.addCommentInputViewController = inputVC;
   self.inputTextField.inputView = self.addCommentInputViewController.view;
+}
+
+#pragma mark - TableView setup
+
+- (void)setupCommentsTableView
+{
+  [self setupCommentsTableViewCells];
+  [self setupCommentsTableViewDataSource];
+}
+
+- (void)setupCommentsTableViewCells
+{
+  [self.commentsTableView registerNibWithName:kTutorialCommentXibName forCellReuseIdentifier:kTutorialCommentCellIdentifier];
+}
+
+- (void)setupCommentsTableViewDataSource
+{
+  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:@"TutorialCommentCell" configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    NOT_IMPLEMENTED_YET_RETURN
+  }];
+  self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
+    // TODO: update this to display only comments for current tutorial!
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+    NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:nil useFileCache:NO groupedBy:nil inContext:context];
+    [fetchedResultsController tw_performFetchAssertResults];
+    // TODO: introduce FetchResultsControllerBinder so that the comments UI is refreshed when new data comes in
+    
+    return fetchedResultsController;
+  };
+  self.commentsTableView.dataSource = self.dataSource;
 }
 
 #pragma mark - Fold/Expand

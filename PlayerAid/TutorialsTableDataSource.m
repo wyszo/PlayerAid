@@ -4,9 +4,7 @@
 
 @import KZAsserts;
 @import MagicalRecord;
-#import <TWCommonLib/TWCoreDataTableViewDataSource.h>
-#import <TWCommonLib/TWDispatchMacros.h>
-#import <TWCommonLib/TWTableViewFetchedResultsControllerBinder.h>
+@import TWCommonLib;
 #import "TutorialsTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
@@ -79,11 +77,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSFetchedResultsController *fetchedResultsController = [[TutorialsTableFetchedResultsControllersFactory new] tutorialsTableFetchedResultsControllerWithDelegate:weakSelf.fetchedResultsControllerBinder predicate:weakSelf.predicate groupBy:weakSelf.groupBy InContext:context];
-    
-    NSError *error;
-    [fetchedResultsController performFetch:&error];
-    
-    AssertTrueOr(!error,);
+    [fetchedResultsController tw_performFetchAssertResults];
     return fetchedResultsController;
   };
   self.tableView.dataSource = _tableViewDataSource;
