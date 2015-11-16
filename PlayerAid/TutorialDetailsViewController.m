@@ -16,6 +16,7 @@
 #import "TutorialComment.h"
 #import "TutorialCommentsController.h"
 #import "TutorialCommentsViewController.h"
+#import "ViewControllersFactory.h"
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
@@ -70,8 +71,8 @@
 
 - (void)setupTableViewFooter
 {
-  AssertTrueOrReturn(self.tutorial);
-  TutorialCommentsViewController *commentsVC = [[TutorialCommentsViewController alloc] initWithTutorial:self.tutorial];
+  TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
+  
   defineWeakSelf();
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change

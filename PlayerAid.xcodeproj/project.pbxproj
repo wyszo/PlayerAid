@@ -59,6 +59,10 @@
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
+		317309F21BF9EBF2004C541D /* CommentsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 317309F11BF9EBF2004C541D /* CommentsContainerView.xib */; };
+		317309F61BF9ECB2004C541D /* CommentsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317309F51BF9ECB2004C541D /* CommentsContainerViewController.m */; };
+		317309F81BF9EFDA004C541D /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317309F71BF9EFDA004C541D /* Comments.storyboard */; };
+		317309FC1BFA1B89004C541D /* ViewControllersFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 317309FB1BFA1B89004C541D /* ViewControllersFactory.m */; };
 		3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */; };
 		3173C8241AA7C14F004CEF1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8221AA7C14F004CEF1E /* AVFoundation.framework */; };
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
@@ -148,7 +152,6 @@
 		31F721891BEEB1BC001DB831 /* TutorialComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721881BEEB1BC001DB831 /* TutorialComment.m */; };
 		31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */; };
 		31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */; };
-		31F721B91BF54422001DB831 /* TutorialComments.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F721B81BF54422001DB831 /* TutorialComments.xib */; };
 		31F721BC1BF545D4001DB831 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */; };
 		31FB03A91B3DDD7900539B50 /* TutorialDetailsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */; };
 		31FB6B641B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */; };
@@ -262,6 +265,12 @@
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		316D86C71B206A66003874F4 /* NavigationBarButtonsDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarButtonsDecorator.h; sourceTree = "<group>"; };
 		316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarButtonsDecorator.m; sourceTree = "<group>"; };
+		317309F11BF9EBF2004C541D /* CommentsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsContainerView.xib; sourceTree = "<group>"; };
+		317309F41BF9ECB2004C541D /* CommentsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsContainerViewController.h; sourceTree = "<group>"; };
+		317309F51BF9ECB2004C541D /* CommentsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsContainerViewController.m; sourceTree = "<group>"; };
+		317309F71BF9EFDA004C541D /* Comments.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
+		317309FA1BFA1B89004C541D /* ViewControllersFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllersFactory.h; sourceTree = "<group>"; };
+		317309FB1BFA1B89004C541D /* ViewControllersFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllersFactory.m; sourceTree = "<group>"; };
 		3173C8181AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDTakeController+WhiteStatusbar.h"; sourceTree = "<group>"; };
 		3173C8191AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDTakeController+WhiteStatusbar.m"; sourceTree = "<group>"; };
 		3173C81B1AA7AF08004CEF1E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -427,7 +436,6 @@
 		31F721B21BF28058001DB831 /* TutorialCommentParsingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentParsingHelper.m; sourceTree = "<group>"; };
 		31F721B51BF3F7E0001DB831 /* TutorialCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentsController.h; sourceTree = "<group>"; };
 		31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentsController.m; sourceTree = "<group>"; };
-		31F721B81BF54422001DB831 /* TutorialComments.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialComments.xib; sourceTree = "<group>"; };
 		31F721BA1BF545D4001DB831 /* TutorialCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentsViewController.h; sourceTree = "<group>"; };
 		31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentsViewController.m; sourceTree = "<group>"; };
 		31FB03A71B3DDD7900539B50 /* TutorialDetailsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialDetailsHelper.h; sourceTree = "<group>"; };
@@ -597,7 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */,
-				31F721B81BF54422001DB831 /* TutorialComments.xib */,
+				317309F11BF9EBF2004C541D /* CommentsContainerView.xib */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -911,6 +919,24 @@
 				313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */,
 			);
 			name = Decorators;
+			sourceTree = "<group>";
+		};
+		317309F31BF9EC97004C541D /* CommentsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				317309F41BF9ECB2004C541D /* CommentsContainerViewController.h */,
+				317309F51BF9ECB2004C541D /* CommentsContainerViewController.m */,
+			);
+			name = CommentsContainer;
+			sourceTree = "<group>";
+		};
+		317309F91BFA1B6B004C541D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				317309FA1BFA1B89004C541D /* ViewControllersFactory.h */,
+				317309FB1BFA1B89004C541D /* ViewControllersFactory.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3173C8171AA79AE2004CEF1E /* FDTake Styling */ = {
@@ -1288,6 +1314,7 @@
 		31B46D431A87AFD1004EEA30 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				317309F71BF9EFDA004C541D /* Comments.storyboard */,
 				31EFB6AE1BAB253D00F87C03 /* Login.storyboard */,
 				31F116811A790F680022BD74 /* Main.storyboard */,
 			);
@@ -1472,6 +1499,7 @@
 				31014E451A93530F002F3485 /* Alert */,
 				31E1E1861AECAE3B0091ED01 /* CommonViews */,
 				31014E461A935315002F3485 /* FacebookLoginControls */,
+				317309F91BFA1B6B004C541D /* ViewControllers */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -1747,6 +1775,7 @@
 			isa = PBXGroup;
 			children = (
 				3102F9481BF9DC4700B544C6 /* Cells */,
+				317309F31BF9EC97004C541D /* CommentsContainer */,
 				3102F9371BF6978C00B544C6 /* KeyboardInputVC */,
 				31F721BA1BF545D4001DB831 /* TutorialCommentsViewController.h */,
 				31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */,
@@ -1916,6 +1945,8 @@
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
+				317309F21BF9EBF2004C541D /* CommentsContainerView.xib in Resources */,
+				317309F81BF9EFDA004C541D /* Comments.storyboard in Resources */,
 				3102F9431BF9D58D00B544C6 /* TutorialCommentCell.xib in Resources */,
 				31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */,
 				3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */,
@@ -1927,7 +1958,6 @@
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
-				31F721B91BF54422001DB831 /* TutorialComments.xib in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
@@ -2034,6 +2064,7 @@
 				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
 				316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */,
 				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
+				317309F61BF9ECB2004C541D /* CommentsContainerViewController.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
@@ -2089,6 +2120,7 @@
 				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
+				317309FC1BFA1B89004C541D /* ViewControllersFactory.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
 				317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */,
 				31EFB6B71BAB258D00F87C03 /* PrivacyPolicyViewController.m in Sources */,

@@ -11,8 +11,7 @@
 #import "TutorialCommentsController.h"
 #import "AddCommentInputViewController.h"
 #import "UsersFetchController.h"
-#import "TutorialComment.h"
-#import "TutorialCommentCell.h"
+#import "CommentsContainerViewController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -20,8 +19,6 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 };
 
 static NSString * const kXibFileName = @"TutorialComments";
-static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
-static NSString * const kTutorialCommentXibName = @"TutorialCommentCell";
 static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 @interface TutorialCommentsViewController ()
@@ -31,8 +28,8 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
-@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-@property (strong, nonatomic) TWCoreDataTableViewDataSource *dataSource;
+
+// TODO: @property (weak, nonatomic) CommentsContainerViewController;
 
 // temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
@@ -42,24 +39,16 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 #pragma mark - Init
 
-- (nonnull instancetype)initWithTutorial:(nonnull Tutorial *)tutorial
-{
-  self = [super initWithNibName:kXibFileName bundle:nil];
-  if (self) {
-    _tutorial = tutorial;
-  }
-  return self;
-}
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
+  
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
   [self setupCommentsController];
   [self refreshCommentsCountLabel];
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
-  [self setupCommentsTableView];
   
   [self fold];
   [self invokeDidChangeHeightCallback];
@@ -93,43 +82,13 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   self.inputTextField.inputView = self.addCommentInputViewController.view;
 }
 
-#pragma mark - TableView setup
+#pragma mark - Setters
 
-- (void)setupCommentsTableView
+- (void)setTutorial:(Tutorial *)tutorial
 {
-  [self setupCommentsTableViewCells];
-  [self setupCommentsTableViewDataSource];
-}
-
-- (void)setupCommentsTableViewCells
-{
-  [self.commentsTableView registerNibWithName:kTutorialCommentXibName forCellReuseIdentifier:kTutorialCommentCellIdentifier];
-}
-
-- (void)setupCommentsTableViewDataSource
-{
-  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:@"TutorialCommentCell" configureCellWithObjectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-    AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
-    TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
-
-    AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-    TutorialComment *comment = (TutorialComment *)object;
-    [commentCell configureWithTutorialComment:comment];
-  }];
-  defineWeakSelf();
-  self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    defineStrongSelf();
-    NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", strongSelf.tutorial];
-    
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-    NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:nil useFileCache:NO groupedBy:nil inContext:context];
-    [fetchedResultsController tw_performFetchAssertResults];
-    // TODO: introduce FetchResultsControllerBinder so that the comments UI is refreshed when new data comes in
-    
-    return fetchedResultsController;
-  };
-  self.commentsTableView.dataSource = self.dataSource;
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(!self.tutorial && @"Can't reinitialize self.tutorial");
+  _tutorial = tutorial;
 }
 
 #pragma mark - Fold/Expand

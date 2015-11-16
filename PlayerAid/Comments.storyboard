@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OqB-Du-gve">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Tutorial Comments View Controller-->
+        <scene sceneID="1Xt-2p-U9Y">
+            <objects>
+                <viewController id="OqB-Du-gve" customClass="TutorialCommentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Miq-9D-8Hv"/>
+                        <viewControllerLayoutGuide type="bottom" id="DPM-yy-Stk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VbX-j1-LKg">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSd-xM-cHq" userLabel="CommentsBar">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="53"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nd-TZ-PAM">
+                                        <rect key="frame" x="30" y="16" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5nd-TZ-PAM" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="TJZ-FA-YIR"/>
+                                    <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" constant="30" id="Udn-oz-ZMy"/>
+                                    <constraint firstAttribute="height" constant="53" id="YhU-Zs-m9r"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJw-Y2-mTL">
+                                <rect key="frame" x="8" y="61" width="304" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="304" id="naU-f1-URI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-sq-NWH" userLabel="Comments Container View">
+                                <rect key="frame" x="8" y="99" width="384" height="193"/>
+                                <connections>
+                                    <segue destination="aIn-Qw-7qp" kind="embed" id="QId-9h-cSt"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OJw-Y2-mTL" firstAttribute="leading" secondItem="VbX-j1-LKg" secondAttribute="leading" constant="8" id="0S3-na-ozs"/>
+                            <constraint firstAttribute="trailing" secondItem="jSd-xM-cHq" secondAttribute="trailing" id="UrZ-UQ-6Uh"/>
+                            <constraint firstAttribute="trailing" secondItem="9iM-sq-NWH" secondAttribute="trailing" constant="8" id="Vtd-uC-iSF"/>
+                            <constraint firstItem="DPM-yy-Stk" firstAttribute="top" secondItem="9iM-sq-NWH" secondAttribute="bottom" constant="8" id="g3F-7O-gzN"/>
+                            <constraint firstItem="jSd-xM-cHq" firstAttribute="leading" secondItem="VbX-j1-LKg" secondAttribute="leading" id="haF-eS-Vxs"/>
+                            <constraint firstItem="9iM-sq-NWH" firstAttribute="leading" secondItem="VbX-j1-LKg" secondAttribute="leading" constant="8" id="nvW-wS-82Q"/>
+                            <constraint firstItem="OJw-Y2-mTL" firstAttribute="top" secondItem="jSd-xM-cHq" secondAttribute="bottom" constant="8" id="poM-En-3L4"/>
+                            <constraint firstItem="jSd-xM-cHq" firstAttribute="top" secondItem="VbX-j1-LKg" secondAttribute="top" id="qDx-YT-Bab"/>
+                            <constraint firstItem="9iM-sq-NWH" firstAttribute="top" secondItem="OJw-Y2-mTL" secondAttribute="bottom" constant="8" id="uwe-aQ-b7e"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="300"/>
+                    <connections>
+                        <outlet property="commentsBar" destination="jSd-xM-cHq" id="UU3-sA-Khd"/>
+                        <outlet property="commentsCountLabel" destination="5nd-TZ-PAM" id="THQ-VY-HmE"/>
+                        <outlet property="inputTextField" destination="OJw-Y2-mTL" id="sYG-Qg-dyB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e30-BR-kZs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="221" y="385"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sPa-U9-yU3">
+            <objects>
+                <viewController id="aIn-Qw-7qp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DCd-aY-sHg">
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gnX-Rz-hsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="221" y="776.5"/>
+        </scene>
+    </scenes>
+</document>
