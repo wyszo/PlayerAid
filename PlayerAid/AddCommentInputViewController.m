@@ -13,7 +13,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 @interface AddCommentInputViewController ()
 @property (strong, nonatomic, nonnull) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
+@property (weak, nonatomic) IBOutlet UITextView *inputTextView;
 @end
 
 @implementation AddCommentInputViewController

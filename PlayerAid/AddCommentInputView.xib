@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddCommentInputViewController">
             <connections>
                 <outlet property="avatarImageView" destination="soC-TU-OVY" id="ubt-nc-3qZ"/>
-                <outlet property="inputTextField" destination="5OC-dt-JmK" id="3G9-6t-0iZ"/>
+                <outlet property="inputTextView" destination="d7f-sG-MXo" id="UeV-1I-fQ1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wNb-rF-nUy"/>
             </connections>
         </placeholder>
@@ -25,11 +25,16 @@
                         <constraint firstAttribute="width" secondItem="soC-TU-OVY" secondAttribute="height" multiplier="1:1" id="nOW-JQ-wd4"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5OC-dt-JmK" userLabel="Input Text Field">
-                    <rect key="frame" x="48" y="8" width="359" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d7f-sG-MXo" userLabel="Input Text View">
+                    <rect key="frame" x="50" y="8" width="358" height="72"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogV-yY-2qj" userLabel="Post Button">
                     <rect key="frame" x="416" y="48" width="48" height="32"/>
                     <color key="backgroundColor" red="0.35686274509803922" green="0.49803921568627452" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,9 +58,10 @@
             <constraints>
                 <constraint firstItem="soC-TU-OVY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="0jr-NH-UKF"/>
                 <constraint firstItem="soC-TU-OVY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="1wg-ue-7h1"/>
-                <constraint firstItem="5OC-dt-JmK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="5is-9Q-2by"/>
-                <constraint firstItem="5OC-dt-JmK" firstAttribute="leading" secondItem="soC-TU-OVY" secondAttribute="trailing" constant="6" id="A1f-RL-ibS"/>
-                <constraint firstItem="ogV-yY-2qj" firstAttribute="leading" secondItem="5OC-dt-JmK" secondAttribute="trailing" constant="9" id="HXi-c0-o8H"/>
+                <constraint firstItem="ogV-yY-2qj" firstAttribute="leading" secondItem="d7f-sG-MXo" secondAttribute="trailing" constant="8" id="8PS-xY-OLc"/>
+                <constraint firstItem="d7f-sG-MXo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="MOl-w7-FZD"/>
+                <constraint firstItem="d7f-sG-MXo" firstAttribute="leading" secondItem="soC-TU-OVY" secondAttribute="trailing" constant="8" id="RWp-vt-Y8C"/>
+                <constraint firstAttribute="bottom" secondItem="d7f-sG-MXo" secondAttribute="bottom" constant="8" id="Whg-fs-BSn"/>
                 <constraint firstAttribute="bottom" secondItem="ogV-yY-2qj" secondAttribute="bottom" constant="8" id="fhq-Jb-kfR"/>
                 <constraint firstAttribute="trailing" secondItem="ogV-yY-2qj" secondAttribute="trailing" constant="8" id="urX-o9-mhY"/>
             </constraints>
