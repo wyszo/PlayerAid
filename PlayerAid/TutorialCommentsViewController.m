@@ -12,6 +12,7 @@
 #import "AddCommentInputViewController.h"
 #import "UsersFetchController.h"
 #import "TutorialComment.h"
+#import "TutorialCommentCell.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -107,8 +108,13 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 - (void)setupCommentsTableViewDataSource
 {
-  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:@"TutorialCommentCell" configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
-    NOT_IMPLEMENTED_YET_RETURN
+  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:@"TutorialCommentCell" configureCellWithObjectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+    AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
+    TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
+
+    AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
+    TutorialComment *comment = (TutorialComment *)object;
+    [commentCell configureWithTutorialComment:comment];
   }];
   self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];

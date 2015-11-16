@@ -23,6 +23,7 @@
 		3102F93B1BF697C300B544C6 /* AddCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102F9391BF697C300B544C6 /* AddCommentInputViewController.m */; };
 		3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */; };
 		3102F9431BF9D58D00B544C6 /* TutorialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F9421BF9D58D00B544C6 /* TutorialCommentCell.xib */; };
+		3102F94B1BF9DC6400B544C6 /* TutorialCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
 		310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */; };
 		310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */; };
@@ -193,6 +194,8 @@
 		3102F9391BF697C300B544C6 /* AddCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentInputViewController.m; sourceTree = "<group>"; };
 		3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentInputView.xib; sourceTree = "<group>"; };
 		3102F9421BF9D58D00B544C6 /* TutorialCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCommentCell.xib; sourceTree = "<group>"; };
+		3102F9491BF9DC6400B544C6 /* TutorialCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentCell.h; sourceTree = "<group>"; };
+		3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentCell.m; sourceTree = "<group>"; };
 		310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTableViewCell.xib; sourceTree = "<group>"; };
 		310308AA1A83DEC100B7F921 /* UIImageView+AvatarStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AvatarStyling.h"; sourceTree = "<group>"; };
 		310308AB1A83DEC100B7F921 /* UIImageView+AvatarStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AvatarStyling.m"; sourceTree = "<group>"; };
@@ -597,6 +600,15 @@
 				31F721B81BF54422001DB831 /* TutorialComments.xib */,
 			);
 			name = Comments;
+			sourceTree = "<group>";
+		};
+		3102F9481BF9DC4700B544C6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3102F9491BF9DC6400B544C6 /* TutorialCommentCell.h */,
+				3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		310308A91A83DE7900B7F921 /* AvatarStyling */ = {
@@ -1734,6 +1746,7 @@
 		31F721BD1BF545DA001DB831 /* TutorialComments */ = {
 			isa = PBXGroup;
 			children = (
+				3102F9481BF9DC4700B544C6 /* Cells */,
 				3102F9371BF6978C00B544C6 /* KeyboardInputVC */,
 				31F721BA1BF545D4001DB831 /* TutorialCommentsViewController.h */,
 				31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */,
@@ -2051,6 +2064,7 @@
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */,
 				31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */,
+				3102F94B1BF9DC6400B544C6 /* TutorialCommentCell.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
