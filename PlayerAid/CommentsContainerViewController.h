@@ -10,9 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentsContainerViewController : UIViewController
 
-NEW_AND_INIT_UNAVAILABLE
-
-- (instancetype)initWithTutorial:(Tutorial *)tutorial;
+// mandatory, part of the initialization
+- (void)setTutorial:(Tutorial *)tutorial;
 
 @end
 

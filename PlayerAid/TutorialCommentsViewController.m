@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 };
 
 static NSString * const kXibFileName = @"TutorialComments";
+static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
+
 static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 @interface TutorialCommentsViewController ()
@@ -28,8 +30,6 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
-
-// TODO: @property (weak, nonatomic) CommentsContainerViewController;
 
 // temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
@@ -136,6 +136,16 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 {
   NSInteger commentsCount = self.tutorial.hasComments.count;
   self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu Comments", commentsCount];
+}
+
+#pragma mark- 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
+    CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
+    [commentsContainerVC setTutorial:self.tutorial];
+  }
 }
 
 @end

@@ -45,7 +45,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-sq-NWH" userLabel="Comments Container View">
                                 <rect key="frame" x="8" y="99" width="384" height="193"/>
                                 <connections>
-                                    <segue destination="aIn-Qw-7qp" kind="embed" id="QId-9h-cSt"/>
+                                    <segue destination="aIn-Qw-7qp" kind="embed" identifier="CommentsContainerSegue" id="QId-9h-cSt"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -74,15 +74,45 @@
             </objects>
             <point key="canvasLocation" x="221" y="385"/>
         </scene>
-        <!--View Controller-->
+        <!--Comments Container View Controller-->
         <scene sceneID="sPa-U9-yU3">
             <objects>
-                <viewController id="aIn-Qw-7qp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DCd-aY-sHg">
+                <viewController id="aIn-Qw-7qp" customClass="CommentsContainerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jxj-ZL-mFw"/>
+                        <viewControllerLayoutGuide type="bottom" id="afF-x4-eUd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PUF-6D-30S">
                         <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNu-ce-1ba">
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="193"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
+                                <rect key="frame" x="72" y="33" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.2470588235" green="0.40784313729999999" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="4wP-SQ-3cY"/>
+                                    <constraint firstAttribute="width" constant="240" id="8co-U1-jpd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SNu-ce-1ba" firstAttribute="leading" secondItem="PUF-6D-30S" secondAttribute="leading" id="2Wo-Ji-W2c"/>
+                            <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerX" secondItem="PUF-6D-30S" secondAttribute="centerX" id="Hjx-xH-5MF"/>
+                            <constraint firstAttribute="trailing" secondItem="SNu-ce-1ba" secondAttribute="trailing" id="Ou2-SJ-lmn"/>
+                            <constraint firstItem="SNu-ce-1ba" firstAttribute="top" secondItem="PUF-6D-30S" secondAttribute="top" id="aVh-rH-zlO"/>
+                            <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerY" secondItem="PUF-6D-30S" secondAttribute="centerY" id="dfD-Re-KcU"/>
+                            <constraint firstAttribute="bottom" secondItem="SNu-ce-1ba" secondAttribute="bottom" id="ztV-ed-i9F"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="commentsTableView" destination="SNu-ce-1ba" id="PIx-a8-dvb"/>
+                        <outlet property="noCommentsOverlayView" destination="Jhk-Vf-vpM" id="uGb-k6-V6X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnX-Rz-hsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

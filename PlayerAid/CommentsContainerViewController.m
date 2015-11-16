@@ -28,18 +28,11 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
 #pragma mark - Setup
 
-- (instancetype)initWithTutorial:(Tutorial *)tutorial
-{
-  self = [super initWithNibName:kNibFileName bundle:nil];
-  if (self) {
-    _tutorial = tutorial;
-  }
-  return self;
-}
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
+  
   [self setupCommentsTableView];
 }
 
@@ -86,6 +79,15 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 - (void)setupCommentsTableViewOverlayBehaviour
 {
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.commentsTableView dataSource:self.dataSource overlayView:self.noCommentsOverlayView allowScrollingWhenNoCells:NO];
+}
+
+#pragma mark - Setters
+
+- (void)setTutorial:(Tutorial *)tutorial
+{
+  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(!self.tutorial && @"Can't reinitialize self.tutorial");
+  _tutorial = tutorial;
 }
 
 @end
