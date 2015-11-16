@@ -116,9 +116,11 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
     TutorialComment *comment = (TutorialComment *)object;
     [commentCell configureWithTutorialComment:comment];
   }];
+  defineWeakSelf();
   self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    defineStrongSelf();
     NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
-    // TODO: update this to display only comments for current tutorial!
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", strongSelf.tutorial];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:nil useFileCache:NO groupedBy:nil inContext:context];
