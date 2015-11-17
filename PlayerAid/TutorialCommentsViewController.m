@@ -25,8 +25,10 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsBarHeightConstraint;
 @property (strong, nonatomic) TutorialCommentsController *commentsController;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (assign, nonatomic) CGFloat navbarHeight;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
@@ -50,8 +52,11 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
   
-  [self fold];
-  [self invokeDidChangeHeightCallback];
+  DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+    // Technical debt: I don't know why it doesn't set the correct height when I don't delay this operation...
+    [self fold];
+    [self invokeDidChangeHeightCallback];
+  });
 }
 
 - (void)setupCommentsController
@@ -91,6 +96,11 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   _tutorial = tutorial;
 }
 
+- (void)setNavbarScreenHeight:(CGFloat)navbarHeight
+{
+  _navbarHeight = navbarHeight;
+}
+
 #pragma mark - Fold/Expand
 
 - (void)toggleFoldedInvokeCallbacks
@@ -111,7 +121,8 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 - (void)expand
 {
-  self.view.tw_height = 300.0;
+  CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight);
+  self.view.tw_height = desiredHeight;
   self.state = CommentsViewStateExpanded;
   
   [self.inputTextField becomeFirstResponder];
@@ -119,7 +130,9 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 - (void)fold
 {
-  self.view.tw_height = 150.0;
+  CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
+  AssertTrueOr(commentsBarHeight > 0.0f,);
+  self.view.tw_height = commentsBarHeight;
   self.state = CommentsViewStateFolded;
   
   [self.inputTextField resignFirstResponder];

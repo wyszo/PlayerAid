@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 // mandatory, required for initialization
 - (void)setTutorial:(Tutorial * _Nonnull)tutorial;
 
+// mandatory, dirty way of calculating desired comments view height when expanded
+- (void)setNavbarScreenHeight:(CGFloat)navbarHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

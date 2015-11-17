@@ -50,10 +50,23 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 {
   self.tutorialStep = tutorialStep;
   
-  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:tutorialStep.text];
   self.videoPlayImage.hidden = YES;
+  [self updateTextWithTutorialStep:tutorialStep];
   [self updateImageViewWithTutorialStep:tutorialStep];
   [self updateSeparatorVisibility];
+}
+
+- (void)updateTextWithTutorialStep:(TutorialStep *)tutorialStep
+{
+  AssertTrueOrReturn(tutorialStep);
+  NSString *text;
+  if ([self.tutorialStep isTextStep]) {
+    text = self.tutorialStep.text;
+  }
+  if (!text.length) {
+    text = @"";
+  }
+  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:text];
 }
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep

@@ -72,6 +72,8 @@
 - (void)setupTableViewFooter
 {
   TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
+  CGFloat navbarHeight = [self.navigationController.navigationBar tw_bottom];
+  [commentsVC setNavbarScreenHeight:navbarHeight];
   
   defineWeakSelf();
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView) {
