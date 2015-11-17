@@ -41,7 +41,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.title = @"Home";
+  self.navigationItem.title = @"Latest Guides";
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.tabBarController];
   
   [self setupDataSource];
