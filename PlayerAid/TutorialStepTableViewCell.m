@@ -6,6 +6,7 @@
 @import AFNetworking;
 @import TWCommonLib;
 #import "TutorialStepTableViewCell.h"
+#import "TutorialTextStylingHelper.h"
 
 static const CGFloat kContentImageMargin = 0.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
@@ -49,7 +50,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 {
   self.tutorialStep = tutorialStep;
   
-  self.textView.text = tutorialStep.text;
+  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:tutorialStep.text];
   self.videoPlayImage.hidden = YES;
   [self updateImageViewWithTutorialStep:tutorialStep];
   [self updateSeparatorVisibility];

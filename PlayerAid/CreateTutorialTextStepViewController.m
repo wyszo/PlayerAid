@@ -7,6 +7,7 @@
 #import "CreateTutorialTextStepViewController.h"
 #import "AlertFactory.h"
 #import "GlobalSettings.h"
+#import "TutorialTextStylingHelper.h"
 
 /**
  Technical debt: this class should use TWTextViewWithCharacterLimitLabelDelegate instead of implementing it from scratch. See EditProfileView as an example. 
@@ -56,18 +57,24 @@ const NSInteger kTextStepDismissedError = 1;
   
   [self tw_setNavbarDoesNotCoverTheView];
   [self setupCharactersCount];
-  self.textView.keyboardType = UIKeyboardTypeASCIICapable;
-  
+  [self styleTextView];
   [self prepopulateTextViewText];
+  
   [self installSwipeRightGestureRecognizer];
   [self updateTextStepRemainingCharactersCount];
   [self updateConfirmButtonState];
 }
 
+- (void)styleTextView
+{
+  self.textView.keyboardType = UIKeyboardTypeASCIICapable;
+  self.textView.typingAttributes = [[TutorialTextStylingHelper new] textStepFormatAttributes];
+}
+
 - (void)prepopulateTextViewText
 {
   if (self.tutorialTextStep) {
-    self.textView.text = self.tutorialTextStep.text;
+    self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:self.tutorialTextStep.text];
   }
 }
 

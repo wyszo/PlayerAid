@@ -56,6 +56,7 @@
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
+		31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -259,6 +260,8 @@
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
+		31652D6C1BFB96A50007855A /* TutorialTextStylingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTextStylingHelper.h; sourceTree = "<group>"; };
+		31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTextStylingHelper.m; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -815,8 +818,8 @@
 			isa = PBXGroup;
 			children = (
 				31F721B01BF2803E001DB831 /* CommentParser */,
-				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
-				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+				31652D6A1BFB96750007855A /* TextStyling */,
+				31652D6B1BFB968A0007855A /* TutorialCell */,
 				31014E721A9B8407002F3485 /* TutorialsHelper.h */,
 				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
 				31A8DE461B331C3100137ACB /* TutorialStepHelper.h */,
@@ -887,6 +890,24 @@
 				315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */,
 			);
 			name = ImagePickerOverlay;
+			sourceTree = "<group>";
+		};
+		31652D6A1BFB96750007855A /* TextStyling */ = {
+			isa = PBXGroup;
+			children = (
+				31652D6C1BFB96A50007855A /* TutorialTextStylingHelper.h */,
+				31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */,
+			);
+			name = TextStyling;
+			sourceTree = "<group>";
+		};
+		31652D6B1BFB968A0007855A /* TutorialCell */ = {
+			isa = PBXGroup;
+			children = (
+				31B735F11A87FDEE0081AE15 /* TutorialCellHelper.h */,
+				31B735F21A87FDEE0081AE15 /* TutorialCellHelper.m */,
+			);
+			name = TutorialCell;
 			sourceTree = "<group>";
 		};
 		316D86BF1B205C82003874F4 /* EditProfile */ = {
@@ -2072,6 +2093,7 @@
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
+				31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */,
 				31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
