@@ -148,7 +148,11 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 - (void)refreshCommentsCountLabel
 {
   NSInteger commentsCount = self.tutorial.hasComments.count;
-  self.commentsCountLabel.text = [NSString stringWithFormat:@"%lu Comments", commentsCount];
+  NSString *numberOfCommentsString = @"";
+  if (commentsCount) {
+    numberOfCommentsString = [NSString stringWithFormat:@"%lu ", commentsCount];
+  }
+  self.commentsCountLabel.text = [NSString stringWithFormat:@"%@Comments", numberOfCommentsString];
 }
 
 #pragma mark- 
