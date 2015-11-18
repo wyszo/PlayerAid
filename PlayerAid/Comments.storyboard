@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSd-xM-cHq" userLabel="CommentsBar">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="53"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="49"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nd-TZ-PAM">
-                                        <rect key="frame" x="30" y="16" width="84" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="29" y="15" width="79" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-uparrow" translatesAutoresizingMaskIntoConstraints="NO" id="Lde-bx-8yc" userLabel="Arrow ImageView">
-                                        <rect key="frame" x="374" y="19" width="16" height="16"/>
+                                        <rect key="frame" x="370" y="17" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="SGO-UV-Apw"/>
                                             <constraint firstAttribute="width" constant="16" id="b2U-VS-Opk"/>
@@ -36,15 +36,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Lde-bx-8yc" secondAttribute="trailing" constant="10" id="JMX-3V-hdk"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lde-bx-8yc" secondAttribute="trailing" constant="14" id="JMX-3V-hdk"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="TJZ-FA-YIR"/>
-                                    <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" constant="30" id="Udn-oz-ZMy"/>
-                                    <constraint firstAttribute="height" constant="53" id="YhU-Zs-m9r"/>
+                                    <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" constant="29" id="Udn-oz-ZMy"/>
+                                    <constraint firstAttribute="height" constant="49" id="YhU-Zs-m9r"/>
                                     <constraint firstItem="Lde-bx-8yc" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="mKt-Xy-9xk"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-sq-NWH" userLabel="Comments Container View">
-                                <rect key="frame" x="0.0" y="53" width="400" height="247"/>
+                                <rect key="frame" x="0.0" y="49" width="400" height="251"/>
                                 <connections>
                                     <segue destination="aIn-Qw-7qp" kind="embed" identifier="CommentsContainerSegue" id="QId-9h-cSt"/>
                                 </connections>
@@ -86,18 +86,18 @@
                         <viewControllerLayoutGuide type="bottom" id="afF-x4-eUd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PUF-6D-30S">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="247"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNu-ce-1ba">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="247"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O78-V6-vEI" userLabel="No comments Overlay Container">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="247"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
-                                        <rect key="frame" x="38" y="79" width="324" height="90"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
+                                        <rect key="frame" x="38" y="82" width="324" height="90"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-emptystate-ic" translatesAutoresizingMaskIntoConstraints="NO" id="TSw-CP-Ebo">
                                                 <rect key="frame" x="154" y="8" width="16" height="16"/>
