@@ -10,8 +10,8 @@
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
 #import "AddCommentInputViewController.h"
-#import "UsersFetchController.h"
 #import "CommentsContainerViewController.h"
+#import "MakeCommentKeyboardAccessoryInputViewHandler.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -21,7 +21,6 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
-static const CGFloat kKeyboardInputViewHeight = 60.0f; /** Technical debt: this shouldn't be hardcoded - especially that this value is not always correct! */
 static const CGFloat kFoldingAnimationDuration = 0.5f;
 
 @interface TutorialCommentsViewController ()
@@ -35,9 +34,7 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
-
-// temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
-@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
+@property (strong, nonatomic) MakeCommentKeyboardAccessoryInputViewHandler *makeCommentInputViewHandler;
 @end
 
 @implementation TutorialCommentsViewController
@@ -81,13 +78,13 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 
 - (void)setupKeyboardInputView
 {
-  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  AddCommentInputViewController *inputVC = [[AddCommentInputViewController alloc] initWithUser:currentUser];
-  inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
-  inputVC.view.tw_height = kKeyboardInputViewHeight;
-
+  self.makeCommentInputViewHandler = [MakeCommentKeyboardAccessoryInputViewHandler new];
+  AddCommentInputViewController *inputVC = self.makeCommentInputViewHandler.makeCommentInputViewController;
+  defineWeakSelf();
+  inputVC.postButtonPressedBlock = ^(NSString *text) {
+    [weakSelf.commentsController sendACommentWithText:text];
+  };
   self.addCommentInputViewController = inputVC;
-  self.inputTextField.inputView = self.addCommentInputViewController.view;
 }
 
 #pragma mark - Setters
@@ -130,7 +127,7 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
   self.state = CommentsViewStateExpanded;
   [self.arrowImageView tw_setRotationRadians:0];
   
-  [self.inputTextField becomeFirstResponder];
+  [self.makeCommentInputViewHandler slideInputViewIn];
 }
 
 - (void)foldAnimated:(BOOL)animated
@@ -159,7 +156,7 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
   self.state = CommentsViewStateFolded;
   [self.arrowImageView tw_setRotationRadians:M_PI];
   
-  [self.inputTextField resignFirstResponder];
+  [self.makeCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)invokeDidChangeHeightCallback

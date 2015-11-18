@@ -50,6 +50,7 @@
 - (void)sendACommentWithText:(nonnull NSString *)text
 {
   AssertTrueOrReturn(text.length);
+  AssertTrueOrReturn(self.tutorial);
   
   defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] addAComment:text toTutorial:self.tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {

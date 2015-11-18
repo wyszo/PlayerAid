@@ -10,6 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddCommentInputViewController : UIViewController
 
+@property (nonatomic, copy) void (^postButtonPressedBlock)(NSString *text);
+
 NEW_AND_INIT_UNAVAILABLE
 
 - (instancetype)initWithUser:(User *)user;

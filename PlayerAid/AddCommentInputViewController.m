@@ -39,13 +39,10 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 
 - (IBAction)postButtonPressed:(id)sender
 {
-  // TODO: make a network request with a new comment
-  NSString *commentText = @"comment text"; // TODO
-  Tutorial *tutorial = nil; // TODO
+  NSString *commentText = self.inputTextView.text;
+  AssertTrueOrReturn(commentText.length);
   
-  [[AuthenticatedServerCommunicationController sharedInstance] addAComment:commentText toTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    // TODO: implement this
-  }];
+  CallBlock(self.postButtonPressedBlock, commentText);
 }
 
 @end
