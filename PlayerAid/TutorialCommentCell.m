@@ -20,6 +20,7 @@
 {
   [super awakeFromNib];
   [self.avatarImageView makeCircular];
+  [self tw_configureForFullWidthSeparators];
 }
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment

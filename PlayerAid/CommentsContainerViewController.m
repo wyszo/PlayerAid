@@ -38,6 +38,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
 - (void)setupCommentsTableView
 {
+  self.commentsTableView.estimatedRowHeight = 70.0f;
   [self setupCommentsTableViewCells];
   [self setupCommentsTableViewDataSource];
   [self setupCommentsTableViewOverlayBehaviour];
