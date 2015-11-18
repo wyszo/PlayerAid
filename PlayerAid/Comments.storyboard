@@ -106,11 +106,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O78-V6-vEI" userLabel="No comments Overlay Container">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
-                                        <rect key="frame" x="38" y="82" width="324" height="90"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
+                                        <rect key="frame" x="65" y="59" width="270" height="94"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-emptystate-ic" translatesAutoresizingMaskIntoConstraints="NO" id="TSw-CP-Ebo">
-                                                <rect key="frame" x="154" y="8" width="16" height="16"/>
+                                                <rect key="frame" x="127" y="8" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="899" constant="16" id="7AD-kU-qVZ"/>
                                                     <constraint firstAttribute="width" priority="900" constant="16" id="QkO-kX-RZN"/>
@@ -122,21 +122,28 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are currently no comments for this tutorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ift-CC-fkK">
-                                                <rect key="frame" x="8" y="38" width="308" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ift-CC-fkK">
+                                                <rect key="frame" x="8" y="38" width="254" height="48"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="There are currently no comments for this tutorial">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="16" name="Avenir-Roman"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="4wP-SQ-3cY"/>
                                             <constraint firstItem="TSw-CP-Ebo" firstAttribute="height" relation="lessThanOrEqual" secondItem="Jhk-Vf-vpM" secondAttribute="height" id="CH6-ht-EZD"/>
                                             <constraint firstItem="Ift-CC-fkK" firstAttribute="height" relation="lessThanOrEqual" secondItem="Jhk-Vf-vpM" secondAttribute="height" id="GeH-oZ-ef0"/>
                                             <constraint firstItem="Ift-CC-fkK" firstAttribute="leading" secondItem="Jhk-Vf-vpM" secondAttribute="leading" constant="8" id="MbV-qZ-QpQ"/>
                                             <constraint firstItem="TSw-CP-Ebo" firstAttribute="top" secondItem="Jhk-Vf-vpM" secondAttribute="top" priority="898" constant="8" id="NQa-ik-DiR"/>
-                                            <constraint firstAttribute="width" constant="324" id="Nnc-Df-OgP"/>
+                                            <constraint firstAttribute="width" constant="270" id="Nnc-Df-OgP"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ift-CC-fkK" secondAttribute="bottom" constant="8" id="RNJ-Pn-fWa"/>
                                             <constraint firstItem="Ift-CC-fkK" firstAttribute="top" secondItem="TSw-CP-Ebo" secondAttribute="bottom" priority="900" constant="14" id="Xh2-NX-TbO"/>
                                             <constraint firstAttribute="trailing" secondItem="Ift-CC-fkK" secondAttribute="trailing" constant="8" id="epv-8F-TS4"/>
@@ -149,7 +156,7 @@
                                 <constraints>
                                     <constraint firstItem="Jhk-Vf-vpM" firstAttribute="height" relation="lessThanOrEqual" secondItem="O78-V6-vEI" secondAttribute="height" id="K3n-W9-3jX"/>
                                     <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerX" secondItem="O78-V6-vEI" secondAttribute="centerX" id="gSq-OU-RLc"/>
-                                    <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerY" secondItem="O78-V6-vEI" secondAttribute="centerY" priority="998" id="ijh-gh-9tE"/>
+                                    <constraint firstItem="Jhk-Vf-vpM" firstAttribute="centerY" secondItem="O78-V6-vEI" secondAttribute="centerY" priority="998" constant="-20" id="ijh-gh-9tE"/>
                                 </constraints>
                             </view>
                         </subviews>
