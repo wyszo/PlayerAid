@@ -93,6 +93,7 @@
 #import "UIView+TWEmbedding.h"
 #import "UIView+TWFadeAnimations.h"
 #import "UIView+TWSizes.h"
+#import "UIView+TWTransformations.h"
 #import "UIView+TWXibLoading.h"
 #import "UIViewController+Navbar.h"
 #import "UIViewController+PerformSegueMapping.h"
