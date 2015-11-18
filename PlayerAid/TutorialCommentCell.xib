@@ -29,8 +29,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="52" y="43" width="304" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                        <rect key="frame" x="52" y="43" width="304" height="31"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="IOO-SA-Yds"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="8" id="LeV-MC-n7b"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="baseline" secondItem="wYM-dQ-F5j" secondAttribute="baseline" id="NHj-Il-gvs"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="8" id="Qy7-bi-Orw"/>
+                    <constraint firstAttribute="bottom" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="8" id="Qy7-bi-Orw"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="topMargin" id="clf-nM-HnV"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
