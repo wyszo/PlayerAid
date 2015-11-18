@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) void (^didChangeHeightBlock)(UIView * _Nonnull contentView);
 @property (nonatomic, copy, nullable) VoidBlock didExpandBlock;
 
+@property (nonatomic, copy, nullable) VoidBlock willExpandBlock;
+@property (nonatomic, copy, nullable) VoidBlock didFoldBlock;
+
 // mandatory, required for initialization
 - (void)setTutorial:(Tutorial * _Nonnull)tutorial;
 

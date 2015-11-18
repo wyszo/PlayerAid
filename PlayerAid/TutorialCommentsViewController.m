@@ -123,6 +123,8 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 
 - (void)expand
 {
+  CallBlock(self.willExpandBlock);
+  
   CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight);
   self.view.tw_height = desiredHeight;
   self.state = CommentsViewStateExpanded;
@@ -145,10 +147,13 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
     [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
       heightUpdateBlock();
       [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+      CallBlock(self.didFoldBlock);
     }];
   }
   else {
     heightUpdateBlock();
+    CallBlock(self.didFoldBlock);
   }
   
   self.state = CommentsViewStateFolded;
