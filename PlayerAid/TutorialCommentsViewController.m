@@ -125,7 +125,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight);
   self.view.tw_height = desiredHeight;
   self.state = CommentsViewStateExpanded;
-  [self.arrowImageView tw_setRotationRadians:M_PI];
+  [self.arrowImageView tw_setRotationRadians:0];
   
   [self.inputTextField becomeFirstResponder];
 }
@@ -136,7 +136,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   AssertTrueOr(commentsBarHeight > 0.0f,);
   self.view.tw_height = commentsBarHeight;
   self.state = CommentsViewStateFolded;
-  [self.arrowImageView tw_setRotationRadians:0];
+  [self.arrowImageView tw_setRotationRadians:M_PI];
   
   [self.inputTextField resignFirstResponder];
 }
