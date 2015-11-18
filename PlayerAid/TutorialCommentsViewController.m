@@ -31,6 +31,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 @property (assign, nonatomic) CGFloat navbarHeight;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
 
 // temp, will be removed (or at least hidden) later - just to be able to easily hook up to the responder chain for now
@@ -124,6 +125,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight);
   self.view.tw_height = desiredHeight;
   self.state = CommentsViewStateExpanded;
+  [self.arrowImageView tw_setRotationRadians:M_PI];
   
   [self.inputTextField becomeFirstResponder];
 }
@@ -134,6 +136,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   AssertTrueOr(commentsBarHeight > 0.0f,);
   self.view.tw_height = commentsBarHeight;
   self.state = CommentsViewStateFolded;
+  [self.arrowImageView tw_setRotationRadians:0];
   
   [self.inputTextField resignFirstResponder];
 }
