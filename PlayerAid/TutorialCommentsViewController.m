@@ -31,6 +31,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 @property (assign, nonatomic) CGFloat navbarHeight;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
 
@@ -49,7 +50,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
   [self setupCommentsController];
-  [self refreshCommentsCountLabel];
+  [self refreshAllCommentsLabels];
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
   
@@ -64,7 +65,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 {
   defineWeakSelf();
   self.commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
-    [weakSelf refreshCommentsCountLabel];
+    [weakSelf refreshAllCommentsLabels];
   }];
 }
 
@@ -148,17 +149,38 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
 
 #pragma mark - UI Updates
 
+- (void)refreshAllCommentsLabels
+{
+  [self refreshCommentsCountLabel];
+  [self refreshCommentsLabel];
+}
+
 - (void)refreshCommentsCountLabel
 {
-  NSInteger commentsCount = self.tutorial.hasComments.count;
   NSString *numberOfCommentsString = @"";
-  if (commentsCount) {
-    numberOfCommentsString = [NSString stringWithFormat:@"%lu", commentsCount];
+  if (self.commentsCount) {
+    numberOfCommentsString = [NSString stringWithFormat:@"%lu", self.commentsCount];
   }
   self.commentsCountLabel.text = numberOfCommentsString;
 }
 
-#pragma mark- 
+- (void)refreshCommentsLabel
+{
+  NSString *sufix = @"";
+  if (self.commentsCount != 1) {
+    sufix = @"s";
+  }
+  self.commentsLabel.text = [NSString stringWithFormat:@"Comment%@", sufix];
+}
+
+#pragma mark - Auxiliary methods
+
+- (NSInteger)commentsCount
+{  
+  return self.tutorial.hasComments.count;
+}
+
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
