@@ -21,7 +21,8 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
-static const CGFloat kKeyboardInputViewHeight = 60.0f;
+static const CGFloat kKeyboardInputViewHeight = 60.0f; /** Technical debt: this shouldn't be hardcoded - especially that this value is not always correct! */
+static const CGFloat kFoldingAnimationDuration = 0.5f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -56,7 +57,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   
   DISPATCH_ASYNC_ON_MAIN_THREAD(^{
     // Technical debt: I don't know why it doesn't set the correct height when I don't delay this operation...
-    [self fold];
+    [self foldAnimated:NO];
     [self invokeDidChangeHeightCallback];
   });
 }
@@ -113,8 +114,7 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
     CallBlock(self.didExpandBlock);
   }
   else if (self.state == CommentsViewStateExpanded) {
-    [self fold];
-    [self invokeDidChangeHeightCallback];
+    [self foldAnimated:YES];
   }
   else {
     AssertTrueOrReturn(@"unhandled condition");
@@ -131,11 +131,26 @@ static const CGFloat kKeyboardInputViewHeight = 60.0f;
   [self.inputTextField becomeFirstResponder];
 }
 
-- (void)fold
+- (void)foldAnimated:(BOOL)animated
 {
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
   AssertTrueOr(commentsBarHeight > 0.0f,);
-  self.view.tw_height = commentsBarHeight;
+  
+  VoidBlock heightUpdateBlock = ^() {
+    self.view.tw_height = commentsBarHeight;
+    [self invokeDidChangeHeightCallback];
+  };
+  
+  if (animated) {
+    [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
+      heightUpdateBlock();
+      [self.view layoutIfNeeded];
+    }];
+  }
+  else {
+    heightUpdateBlock();
+  }
+  
   self.state = CommentsViewStateFolded;
   [self.arrowImageView tw_setRotationRadians:M_PI];
   
