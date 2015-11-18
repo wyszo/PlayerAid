@@ -99,6 +99,7 @@
 #import "UIViewController+PerformSegueMapping.h"
 #import "UIViewController+TWNotificationObserving.h"
 #import "UIViewController+TWResponderChain.h"
+#import "UIWindow+TWWindow.h"
 
 FOUNDATION_EXPORT double TWCommonLibVersionNumber;
 FOUNDATION_EXPORT const unsigned char TWCommonLibVersionString[];
