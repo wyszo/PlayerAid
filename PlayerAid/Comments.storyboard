@@ -26,12 +26,21 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-uparrow" translatesAutoresizingMaskIntoConstraints="NO" id="Lde-bx-8yc" userLabel="Arrow ImageView">
+                                        <rect key="frame" x="374" y="19" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="SGO-UV-Apw"/>
+                                            <constraint firstAttribute="width" constant="16" id="b2U-VS-Opk"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Lde-bx-8yc" secondAttribute="trailing" constant="10" id="JMX-3V-hdk"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="TJZ-FA-YIR"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" constant="30" id="Udn-oz-ZMy"/>
                                     <constraint firstAttribute="height" constant="53" id="YhU-Zs-m9r"/>
+                                    <constraint firstItem="Lde-bx-8yc" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="mKt-Xy-9xk"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-sq-NWH" userLabel="Comments Container View">
@@ -58,6 +67,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="300"/>
                     <connections>
+                        <outlet property="arrowImageView" destination="Lde-bx-8yc" id="sgg-DE-nhZ"/>
                         <outlet property="commentsBar" destination="jSd-xM-cHq" id="UU3-sA-Khd"/>
                         <outlet property="commentsBarHeightConstraint" destination="YhU-Zs-m9r" id="4wl-cC-YUm"/>
                         <outlet property="commentsCountLabel" destination="5nd-TZ-PAM" id="THQ-VY-HmE"/>
@@ -157,5 +167,6 @@
     </scenes>
     <resources>
         <image name="comments-emptystate-ic" width="32" height="32"/>
+        <image name="comments-uparrow" width="16" height="16"/>
     </resources>
 </document>
