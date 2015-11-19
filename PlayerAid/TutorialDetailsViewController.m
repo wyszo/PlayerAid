@@ -71,6 +71,11 @@
 
 - (void)setupTableViewFooter
 {
+  if (![self shouldShowComments]) {
+    [self setupDummyTableFooterViewsToHideUnnecessarySeparators];
+    return;
+  }
+  
   TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
   CGFloat navbarHeight = [self.navigationController.navigationBar tw_bottom];
   [commentsVC setNavbarScreenHeight:navbarHeight];
@@ -115,6 +120,18 @@
      };
   }
   return _headerTableViewDataSource;
+}
+
+- (BOOL)shouldShowComments
+{
+  AssertTrueOrReturnNo(self.tutorial);
+  return [self.tutorial isPublished];
+}
+
+- (void)setupDummyTableFooterViewsToHideUnnecessarySeparators
+{
+  AssertTrueOrReturn(self.tableView);
+  self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 #pragma mark - Lazy Initalization
