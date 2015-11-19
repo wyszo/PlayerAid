@@ -8,6 +8,7 @@
 #import "TutorialCommentCell.h"
 #import "User.h"
 #import "UIImageView+AvatarStyling.h"
+#import "ColorsHelper.h"
 
 @interface TutorialCommentCell()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -23,6 +24,7 @@
   [super awakeFromNib];
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
+  self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
 }
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment

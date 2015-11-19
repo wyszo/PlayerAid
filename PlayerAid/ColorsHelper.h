@@ -27,6 +27,7 @@
 + (UIColor *)tutorialGradientBlueColor;
 
 + (UIColor *)tutorialCommentsBarBackgroundColor;
++ (UIColor *)commentsTimeAgoLabelColor;
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
