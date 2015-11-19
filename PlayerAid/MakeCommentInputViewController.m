@@ -31,8 +31,10 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
   [self.avatarImageView makeCircular];
   [self.user placeAvatarInImageView:self.avatarImageView];
+  [self.view tw_addTopBorderWithWidth:1.0f color:[UIColor colorWithWhite:0 alpha:0.2f]];
 }
 
 #pragma mark - IBOutlet
