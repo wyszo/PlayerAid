@@ -6,11 +6,13 @@
 @import CoreData;
 @import MagicalRecord;
 @import TWCommonLib;
+@import BlocksKit;
 #import "CommentsContainerViewController.h"
 #import "TutorialCommentCell.h"
 #import "TutorialComment.h"
 #import "Tutorial.h"
 #import "CommonViews.h"
+#import "CommentsTableViewDataSource.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -63,19 +65,12 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 - (void)setupCommentsTableViewDataSource
 {
   defineWeakSelf();
-  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialCommentCellIdentifier configureCellWithObjectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+  CommentsTableViewDataSourceConfigurator *configurator = [[CommentsTableViewDataSourceConfigurator alloc] initWithTutorial:self.tutorial cellReuseIdentifier:kTutorialCommentCellIdentifier fetchedResultsControllerDelegate:self.fetchedResultsControllerBinder configureCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
     [weakSelf configureCell:cell withObject:object atIndexPath:indexPath];
   }];
-  self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-    defineStrongSelf();
-    NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", strongSelf.tutorial];
-    
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-    NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:weakSelf.fetchedResultsControllerBinder useFileCache:NO groupedBy:nil inContext:context];
-    [fetchedResultsController tw_performFetchAssertResults];
-    return fetchedResultsController;
-  };
+  [self.commentsTableView bk_associateValue:configurator withKey:@"dataSourceConfigurator"]; // binding to ensure block callbacks are invoked (technical debt)
+  
+  self.dataSource = [configurator dataSource];
   self.commentsTableView.dataSource = self.dataSource;
 }
 
