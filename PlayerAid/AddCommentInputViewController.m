@@ -42,7 +42,18 @@ static NSString *const kXibFileName = @"AddCommentInputView";
   NSString *commentText = self.inputTextView.text;
   AssertTrueOrReturn(commentText.length);
   
-  CallBlock(self.postButtonPressedBlock, commentText);
+  CallBlock(self.postButtonPressedBlock, commentText, ^(BOOL success){
+    if (success) {
+      [self clearInputTextView];
+    }
+  });
+}
+
+#pragma mark - 
+
+- (void)clearInputTextView
+{
+  self.inputTextView.text = @"";
 }
 
 @end

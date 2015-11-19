@@ -6,10 +6,14 @@
 @import TWCommonLib;
 #import "Tutorial.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface TutorialCommentsController : NSObject
 
-- (nonnull instancetype)initWithTutorial:(nonnull Tutorial *)tutorial commentsCountChangedBlock:(nullable VoidBlock)commentsCountChangedBlock;
+- (instancetype)initWithTutorial:(Tutorial *)tutorial commentsCountChangedBlock:(nullable VoidBlock)commentsCountChangedBlock;
 
-- (void)sendACommentWithText:(nonnull NSString *)text;
+- (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

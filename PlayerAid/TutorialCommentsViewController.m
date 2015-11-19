@@ -81,8 +81,8 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
   self.makeCommentInputViewHandler = [MakeCommentKeyboardAccessoryInputViewHandler new];
   AddCommentInputViewController *inputVC = self.makeCommentInputViewHandler.makeCommentInputViewController;
   defineWeakSelf();
-  inputVC.postButtonPressedBlock = ^(NSString *text) {
-    [weakSelf.commentsController sendACommentWithText:text];
+  inputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
+    [weakSelf.commentsController sendACommentWithText:text completion:completion];
   };
   self.addCommentInputViewController = inputVC;
 }

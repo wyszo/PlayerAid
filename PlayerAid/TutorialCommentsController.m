@@ -47,7 +47,7 @@
 
 #pragma mark -
 
-- (void)sendACommentWithText:(nonnull NSString *)text
+- (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion
 {
   AssertTrueOrReturn(text.length);
   AssertTrueOrReturn(self.tutorial);
@@ -56,9 +56,13 @@
   [[AuthenticatedServerCommunicationController sharedInstance] addAComment:text toTutorial:self.tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       [AlertFactory showGenericErrorAlertView];
+      BOOL success = false;
+      CallBlock(completion, success);
     } else {
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
       [weakSelf updateTutorialObjectFromDictionary:(NSDictionary *)responseObject];
+      BOOL success = true;
+      CallBlock(completion, success);
     }
   }];
 }
