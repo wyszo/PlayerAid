@@ -27,6 +27,11 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   return self;
 }
 
+- (void)dealloc
+{
+  [self slideInputViewOut];
+}
+
 - (void)setupKeyboardInputView
 {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
@@ -52,10 +57,12 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)slideInputViewOut
 {
+  __strong UIView *strongInputView = self.makeCommentInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
+  
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.makeCommentInputViewController.view.tw_bottom = [UIScreen tw_height] + kKeyboardAccessoryInputViewHeight;
   } completion:^(BOOL finished) {
-    [self.makeCommentInputViewController.view removeFromSuperview];
+    [strongInputView removeFromSuperview];
   }];
 }
 
