@@ -45,6 +45,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
   CallBlock(self.postButtonPressedBlock, commentText, ^(BOOL success){
     if (success) {
       [self clearInputTextView];
+      [self.inputTextView resignFirstResponder]; // hide the keyboard
     }
   });
 }

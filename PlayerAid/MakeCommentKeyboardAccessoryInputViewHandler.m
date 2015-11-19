@@ -23,6 +23,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self = [super init];
   if (self) {
     [self setupKeyboardInputView];
+    [self setupAccessoryKeyboardInputViewNotificationCallbacks];
   }
   return self;
 }
@@ -34,12 +35,43 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)setupKeyboardInputView
 {
-  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
+  MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:self.currentUser];
   inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
   inputVC.view.tw_height = kKeyboardAccessoryInputViewHeight;
   
   self.makeCommentInputViewController = inputVC;
+}
+
+#pragma mark - Notifications setup
+
+- (void)setupAccessoryKeyboardInputViewNotificationCallbacks
+{
+  [self setupKeyboardDidShowNotificationHandler];
+  [self setupKeyboardWillHideNotificationHandler];
+}
+
+- (void)setupKeyboardDidShowNotificationHandler
+{
+  const CGFloat kInputViewToKeyboardTopAnimationDuration = 0.2f;
+  
+  defineWeakSelf();
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    defineStrongSelf();
+    CGRect keyboardFrameRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
+    
+    strongSelf.makeCommentInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
+    [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
+      strongSelf.makeCommentInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
+    }];
+  }];
+}
+
+- (void)setupKeyboardWillHideNotificationHandler
+{
+  defineWeakSelf();
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    weakSelf.makeCommentInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+  }];
 }
 
 #pragma mark - public interface
@@ -47,7 +79,6 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)slideInputViewIn
 {
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
-  
   [self installInputViewInKeyWindow];
   
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
@@ -83,6 +114,11 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (MakeCommentInputViewController *)inputVC
 {
   return self.makeCommentInputViewController;
+}
+
+- (User *)currentUser
+{
+  return [[UsersFetchController sharedInstance] currentUser];
 }
 
 @end
