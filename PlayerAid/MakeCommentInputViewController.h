@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddCommentInputViewController : UIViewController
+@interface MakeCommentInputViewController : UIViewController
 
 /**
  @param   completion  Completion block has bool parameter determining if post a comment was successful (if it is, textView is gonna get cleared

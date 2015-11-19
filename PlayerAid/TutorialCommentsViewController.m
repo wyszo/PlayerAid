@@ -9,7 +9,7 @@
 #import "TutorialCommentsViewController.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
-#import "AddCommentInputViewController.h"
+#import "MakeCommentInputViewController.h"
 #import "CommentsContainerViewController.h"
 #import "MakeCommentKeyboardAccessoryInputViewHandler.h"
 
@@ -33,7 +33,7 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
-@property (strong, nonatomic) AddCommentInputViewController *addCommentInputViewController;
+@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputViewController;
 @property (strong, nonatomic) MakeCommentKeyboardAccessoryInputViewHandler *makeCommentInputViewHandler;
 @end
 
@@ -79,12 +79,12 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 - (void)setupKeyboardInputView
 {
   self.makeCommentInputViewHandler = [MakeCommentKeyboardAccessoryInputViewHandler new];
-  AddCommentInputViewController *inputVC = self.makeCommentInputViewHandler.makeCommentInputViewController;
+  MakeCommentInputViewController *inputVC = self.makeCommentInputViewHandler.makeCommentInputViewController;
   defineWeakSelf();
   inputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
     [weakSelf.commentsController sendACommentWithText:text completion:completion];
   };
-  self.addCommentInputViewController = inputVC;
+  self.makeCommentInputViewController = inputVC;
 }
 
 #pragma mark - Setters

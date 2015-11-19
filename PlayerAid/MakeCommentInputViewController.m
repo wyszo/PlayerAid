@@ -4,19 +4,19 @@
 
 @import KZAsserts;
 @import TWCommonLib;
-#import "AddCommentInputViewController.h"
+#import "MakeCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "UIImageView+AvatarStyling.h"
 
 static NSString *const kXibFileName = @"AddCommentInputView";
 
-@interface AddCommentInputViewController ()
+@interface MakeCommentInputViewController ()
 @property (strong, nonatomic, nonnull) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
 @end
 
-@implementation AddCommentInputViewController
+@implementation MakeCommentInputViewController
 
 - (instancetype)initWithUser:(User *)user
 {

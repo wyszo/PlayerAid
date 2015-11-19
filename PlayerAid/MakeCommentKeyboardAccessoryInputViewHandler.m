@@ -7,13 +7,13 @@
 #import "MakeCommentKeyboardAccessoryInputViewHandler.h"
 #import "UsersFetchController.h"
 #import "User.h"
-#import "AddCommentInputViewController.h"
+#import "MakeCommentInputViewController.h"
 
 static const CGFloat kKeyboardAccessoryInputViewHeight = 50.0f;
 static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 @interface MakeCommentKeyboardAccessoryInputViewHandler()
-@property (nonatomic, strong) AddCommentInputViewController *makeCommentInputViewController;
+@property (nonatomic, strong) MakeCommentInputViewController *makeCommentInputViewController;
 @end
 
 @implementation MakeCommentKeyboardAccessoryInputViewHandler
@@ -30,7 +30,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)setupKeyboardInputView
 {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  AddCommentInputViewController *inputVC = [[AddCommentInputViewController alloc] initWithUser:currentUser];
+  MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
   inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
   inputVC.view.tw_height = kKeyboardAccessoryInputViewHeight;
   
@@ -73,7 +73,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self.inputVC.view.tw_bottom = [UIScreen tw_height] + self.inputVC.view.tw_height;
 }
 
-- (AddCommentInputViewController *)inputVC
+- (MakeCommentInputViewController *)inputVC
 {
   return self.makeCommentInputViewController;
 }

@@ -3,11 +3,11 @@
 //
 
 @import Foundation;
-#import "AddCommentInputViewController.h"
+#import "MakeCommentInputViewController.h"
 
 @interface MakeCommentKeyboardAccessoryInputViewHandler : NSObject
 
-@property (nonatomic, strong, readonly) AddCommentInputViewController *makeCommentInputViewController;
+@property (nonatomic, strong, readonly) MakeCommentInputViewController *makeCommentInputViewController;
 
 - (void)slideInputViewIn;
 - (void)slideInputViewOut;
