@@ -10,6 +10,7 @@
 #import "TutorialCommentCell.h"
 #import "TutorialComment.h"
 #import "Tutorial.h"
+#import "CommonViews.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -22,6 +23,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 @property (weak, nonatomic) IBOutlet UIView *noCommentsOverlayView;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (strong, nonatomic) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
 @implementation CommentsContainerViewController
@@ -32,18 +34,25 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 {
   [super viewDidLoad];
   AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
-  
+
+  [self setupFetchedResultsControllerBinder];
   [self setupCommentsTableView];
 }
 
 - (void)setupCommentsTableView
 {
-  self.commentsTableView.estimatedRowHeight = 70.0f;
+  [self setupCommentsTableViewProperties];
   [self setupCommentsTableViewCells];
   [self setupCommentsTableViewDataSource];
   [self setupCommentsTableViewOverlayBehaviour];
+  
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-  // TODO: update tableViewOverlayBehaviour on CoreData update!
+}
+
+- (void)setupCommentsTableViewProperties
+{
+  self.commentsTableView.estimatedRowHeight = 70.0f;
+  self.commentsTableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 - (void)setupCommentsTableViewCells
@@ -53,25 +62,18 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
 - (void)setupCommentsTableViewDataSource
 {
-  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:@"TutorialCommentCell" configureCellWithObjectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-    AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
-    TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
-    
-    AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-    TutorialComment *comment = (TutorialComment *)object;
-    [commentCell configureWithTutorialComment:comment];
-  }];
   defineWeakSelf();
+  self.dataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialCommentCellIdentifier configureCellWithObjectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+    [weakSelf configureCell:cell withObject:object atIndexPath:indexPath];
+  }];
   self.dataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
     defineStrongSelf();
     NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", strongSelf.tutorial];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-    NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:nil useFileCache:NO groupedBy:nil inContext:context];
+    NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:weakSelf.fetchedResultsControllerBinder useFileCache:NO groupedBy:nil inContext:context];
     [fetchedResultsController tw_performFetchAssertResults];
-    // TODO: introduce FetchResultsControllerBinder so that the comments UI is refreshed when new data comes in
-    
     return fetchedResultsController;
   };
   self.commentsTableView.dataSource = self.dataSource;
@@ -82,6 +84,17 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.commentsTableView dataSource:self.dataSource overlayView:self.noCommentsOverlayView allowScrollingWhenNoCells:NO];
 }
 
+- (void)setupFetchedResultsControllerBinder
+{
+  defineWeakSelf();
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.commentsTableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    [weakSelf configureCell:cell withObject:nil atIndexPath:indexPath];
+  }];
+  self.fetchedResultsControllerBinder.objectInsertedAtIndexPathBlock = ^(NSIndexPath *indexPath) {
+    [weakSelf.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+  };
+}
+
 #pragma mark - Setters
 
 - (void)setTutorial:(Tutorial *)tutorial
@@ -89,6 +102,25 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn(tutorial);
   AssertTrueOrReturn(!self.tutorial && @"Can't reinitialize self.tutorial");
   _tutorial = tutorial;
+}
+
+#pragma mark - Private
+
+- (void)configureCell:(nonnull UITableViewCell *)cell withObject:(nullable id)object atIndexPath:(nonnull NSIndexPath *)indexPath
+{
+  AssertTrueOrReturn(cell);
+  AssertTrueOrReturn(indexPath);
+  
+  AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
+  TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
+  
+  if (!object) {
+    object = [self.dataSource objectAtIndexPath:indexPath];
+  }
+  AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
+  TutorialComment *comment = (TutorialComment *)object;
+  
+  [commentCell configureWithTutorialComment:comment];
 }
 
 @end
