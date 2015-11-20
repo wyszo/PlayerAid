@@ -224,6 +224,12 @@
   return [AlertFactory showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:okAction secondButtonTitle:@"No" secondAction:nil];
 }
 
++ (UIAlertView *)showReportCommentAlertViewWithOKAction:(ActionBlock)okAction
+{
+  NSString *message = @"Are you sure you want to report this comment?";
+  return [AlertFactory showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:okAction secondButtonTitle:@"No" secondAction:nil];
+}
+
 #pragma mark - Facebook
 // TODO: this should be extracted to a separate class
 

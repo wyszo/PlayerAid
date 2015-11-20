@@ -4,10 +4,13 @@
 
 @import Foundation;
 #import "Tutorial.h"
+#import "TutorialComment.h"
 #import "User.h"
 #import <TWCommonLib/TWCommonTypes.h>
 
-typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObject, NSError *error);
+typedef void (^NetworkResponseBlock)(NSHTTPURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error);
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!
@@ -22,27 +25,33 @@ typedef void (^NetworkResponseBlock)(NSHTTPURLResponse *response, id responseObj
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
 
-- (void)deleteTutorial:(Tutorial *)tutorial completion:(VoidBlockWithError)completion;
+// tutorials
+- (void)deleteTutorial:(Tutorial *)tutorial completion:(nullable VoidBlockWithError)completion;
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;;
 - (void)reportTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
-- (void)refreshTutorialAndComments:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion;
-- (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion;
+- (void)refreshTutorialAndComments:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+
+// comments
+- (void)addAComment:(NSString *)commentText toTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)reportCommentAsInappropriate:( TutorialComment *)comment completion:(NetworkResponseBlock)completion;
 
 // publishing tutorial
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
-- (void)submitImageForTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
-- (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:(NetworkResponseBlock)completion;
+- (void)submitImageForTutorial:(Tutorial *)tutorial completion:(nullable NetworkResponseBlock)completion;
+- (void)submitTutorialStep:(TutorialStep *)tutorialStep withPosition:(NSInteger)position completion:( NetworkResponseBlock)completion;
 - (void)submitTutorialForReview:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 
 // edit profile
-- (void)updateUserAvatarFromFacebookWithAccessToken:(NSString *)facebookToken completion:(NetworkResponseBlock)completion;
-- (void)saveUserProfileWithName:(NSString *)userName description:(NSString *)userDescription completion:(NetworkResponseBlock)completion;
-- (void)saveUserAvatarPicture:(UIImage *)image completion:(NetworkResponseBlock)completion;
+- (void)updateUserAvatarFromFacebookWithAccessToken:(NSString *)facebookToken completion:( NetworkResponseBlock)completion;
+- (void)saveUserProfileWithName:(NSString *)userName description:(nullable NSString *)userDescription completion:(NetworkResponseBlock)completion;
+- (void)saveUserAvatarPicture:(UIImage *)image completion:(nullable NetworkResponseBlock)completion;
 
 // users
 - (void)followUser:(User *)user completion:(NetworkResponseBlock)completion;
 - (void)unfollowUser:(User *)user completion:(NetworkResponseBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

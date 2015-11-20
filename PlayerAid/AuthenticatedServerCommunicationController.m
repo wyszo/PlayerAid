@@ -253,6 +253,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performGetRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:NO completion:completion];
 }
 
+#pragma mark - Comments
+
 - (void)addAComment:(nonnull NSString *)commentText toTutorial:(nonnull Tutorial *)tutorial completion:(nonnull NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(commentText.length);
@@ -263,6 +265,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSDictionary *parameters = @{ @"message" : commentText };
   
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:parameters completion:completion];
+}
+
+- (void)reportCommentAsInappropriate:(nonnull TutorialComment *)comment completion:(nonnull NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(comment.serverID);
+  AssertTrueOrReturn(completion);
+  
+  NSString *urlString = [NSString stringWithFormat:@"comment/%@/report", comment.serverID];
+  [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
 
 #pragma mark - paths helpers

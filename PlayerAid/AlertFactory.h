@@ -52,7 +52,10 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showBlockingFirstSyncFailedAlertView;
 + (UIAlertView *)showOKAlertViewWithMessage:(NSString *)message;
 + (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction;
+
+// Reporting content
 + (UIAlertView *)showReportTutorialAlertViewWithOKAction:(ActionBlock)okAction;
++ (UIAlertView *)showReportCommentAlertViewWithOKAction:(ActionBlock)okAction;
 
 // Facebook alerts
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error;

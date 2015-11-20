@@ -14,6 +14,8 @@
 #import "CommonViews.h"
 #import "CommentsTableViewDataSource.h"
 #import "AlertControllerFactory.h"
+#import "AlertFactory.h"
+#import "AuthenticatedServerCommunicationController.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -69,10 +71,23 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TWSimpleTableViewDelegate *delegate = [[TWSimpleTableViewDelegate alloc] initAndAttachToTableView:self.commentsTableView];
   defineWeakSelf();
   delegate.cellSelectedExtendedBlock = ^(NSIndexPath *indexPath, id object) {
-    AssertTrueOrReturn(object);
+    AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
     
     UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
-      // TODO: report comment action - show confirmation alert view
+      [AlertFactory showReportCommentAlertViewWithOKAction:^{
+        TutorialComment *comment = (TutorialComment *)object;
+        [[AuthenticatedServerCommunicationController sharedInstance] reportCommentAsInappropriate:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+          if (error) {
+            [AlertFactory showGenericErrorAlertViewNoRetry];
+          }
+          else {
+            // TODO: comment text should locally change to 'Comment was removed as inappropriate'
+            
+            // This needs to persist after fetching new comments! Need to introduce local array of comment ids reported as inappropriate by an user (not recommened). Or even better: handle this server-side, so server always returns the comment as flagged as inappropriate to a current user.
+            // So ideally server should return a comment object in here with text changed to 'inappropriate'
+          }
+        }];
+      }];
     }];
     [weakSelf presentViewController:actionSheet animated:YES completion:nil];
   };
