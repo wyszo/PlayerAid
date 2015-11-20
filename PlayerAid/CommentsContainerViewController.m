@@ -13,6 +13,7 @@
 #import "Tutorial.h"
 #import "CommonViews.h"
 #import "CommentsTableViewDataSource.h"
+#import "AlertControllerFactory.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -45,6 +46,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 {
   [self setupCommentsTableViewProperties];
   [self setupCommentsTableViewCells];
+  [self setupCommentsTableViewDelegate];
   [self setupCommentsTableViewDataSource];
   [self setupCommentsTableViewOverlayBehaviour];
   
@@ -60,6 +62,21 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 - (void)setupCommentsTableViewCells
 {
   [self.commentsTableView registerNibWithName:kTutorialCommentNibName forCellReuseIdentifier:kTutorialCommentCellIdentifier];
+}
+
+- (void)setupCommentsTableViewDelegate
+{
+  TWSimpleTableViewDelegate *delegate = [[TWSimpleTableViewDelegate alloc] initAndAttachToTableView:self.commentsTableView];
+  defineWeakSelf();
+  delegate.cellSelectedExtendedBlock = ^(NSIndexPath *indexPath, id object) {
+    AssertTrueOrReturn(object);
+    
+    UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
+      // TODO: report comment action - show confirmation alert view
+    }];
+    [weakSelf presentViewController:actionSheet animated:YES completion:nil];
+  };
+  [self.commentsTableView bk_associateValue:delegate withKey:@"tableViewDelegate"];
 }
 
 - (void)setupCommentsTableViewDataSource
