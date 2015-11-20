@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
+@import UITextView_Placeholder;
 #import "MakeCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "UIImageView+AvatarStyling.h"
@@ -31,6 +32,13 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self styleSubviews];
+}
+
+- (void)styleSubviews
+{
+  self.inputTextView.placeholder = @"add a comment..";
+  self.inputTextView.placeholderColor = [UIColor colorWithWhite:(152.0/255.0) alpha:1.0];
   
   [self.avatarImageView makeCircular];
   [self.user placeAvatarInImageView:self.avatarImageView];
