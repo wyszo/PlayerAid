@@ -1,5 +1,4 @@
 
-@import KZAsserts;
 @import KZPropertyMapper;
 @import MagicalRecord;
 #import "TutorialComment.h"
@@ -18,7 +17,7 @@ static NSString *const kCommentServerIDAttributeName = @"id";
                             @"message" : KZProperty(text),
                             @"createdOn" : KZBox(DateWithTZD, createdOn),
                             @"author" : KZCall(userFromDictionary:, madeBy),
-                            // position? to determine comments order
+                            @"upvotes" : KZProperty(likesCount),
                             };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];

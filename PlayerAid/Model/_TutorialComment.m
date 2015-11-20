@@ -5,7 +5,7 @@
 
 const struct TutorialCommentAttributes TutorialCommentAttributes = {
 	.createdOn = @"createdOn",
-	.likes = @"likes",
+	.likesCount = @"likesCount",
 	.serverID = @"serverID",
 	.text = @"text",
 };
@@ -44,8 +44,8 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-	if ([key isEqualToString:@"likesValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"likes"];
+	if ([key isEqualToString:@"likesCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"likesCount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -60,24 +60,24 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 
 @dynamic createdOn;
 
-@dynamic likes;
+@dynamic likesCount;
 
-- (int64_t)likesValue {
-	NSNumber *result = [self likes];
+- (int64_t)likesCountValue {
+	NSNumber *result = [self likesCount];
 	return [result longLongValue];
 }
 
-- (void)setLikesValue:(int64_t)value_ {
-	[self setLikes:@(value_)];
+- (void)setLikesCountValue:(int64_t)value_ {
+	[self setLikesCount:@(value_)];
 }
 
-- (int64_t)primitiveLikesValue {
-	NSNumber *result = [self primitiveLikes];
+- (int64_t)primitiveLikesCountValue {
+	NSNumber *result = [self primitiveLikesCount];
 	return [result longLongValue];
 }
 
-- (void)setPrimitiveLikesValue:(int64_t)value_ {
-	[self setPrimitiveLikes:@(value_)];
+- (void)setPrimitiveLikesCountValue:(int64_t)value_ {
+	[self setPrimitiveLikesCount:@(value_)];
 }
 
 @dynamic serverID;

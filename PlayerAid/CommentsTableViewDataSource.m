@@ -50,6 +50,7 @@
     
     NSFetchedResultsController *fetchedResultsController = [TutorialComment MR_fetchController:fetchRequest delegate:strongSelf.fetchedResultsControllerDelegate useFileCache:NO groupedBy:nil inContext:context];
     [fetchedResultsController tw_performFetchAssertResults];
+    
     return fetchedResultsController;
   };
 }
@@ -60,16 +61,15 @@
   
   NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
   fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@", self.tutorial];
-  // fetchRequest.sortDescriptors = [self sortDescriptors];
+  fetchRequest.sortDescriptors = [self sortDescriptors];
   return fetchRequest;
 }
 
 - (NSArray *)sortDescriptors
 {
-  return nil;
-  
-  // NOT_IMPLEMENTED_YET_RETURN_NIL
-  // 1. sort by # of likes, 2. sort by creationDate
+  NSSortDescriptor *sortDescriptorLikes = [[NSSortDescriptor alloc] initWithKey:@"likesCount" ascending:NO];
+  NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc] initWithKey:@"createdOn" ascending:NO];
+  return @[sortDescriptorLikes, sortDescriptorDate];
 }
 
 #pragma mark - public
