@@ -5,6 +5,7 @@
 @import KZAsserts;
 @import TWCommonLib;
 @import DateTools;
+@import AFNetworking;
 #import "TutorialCommentCell.h"
 #import "User.h"
 #import "UIImageView+AvatarStyling.h"
@@ -25,6 +26,13 @@
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
   self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
+}
+
+- (void)prepareForReuse
+{
+  [super prepareForReuse];
+  self.avatarImageView.image = nil;
+  [self.avatarImageView cancelImageRequestOperation];
 }
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment
