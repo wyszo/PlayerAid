@@ -49,6 +49,7 @@
 #import "TWLocationUpdatesManager.h"
 #import "TWMagicalRecordDebugErrorHandler.h"
 #import "TWMapKitHelper.h"
+#import "TWObjectAtIndexPathProtocol.h"
 #import "TWObjectCountProtocol.h"
 #import "TWOrientationChangeDelegate.h"
 #import "TWOrientationChangeDetector.h"
