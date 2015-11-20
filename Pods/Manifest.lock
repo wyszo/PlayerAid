@@ -35,17 +35,16 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bolts (1.3.0):
-    - Bolts/AppLinks (= 1.3.0)
-    - Bolts/Tasks (= 1.3.0)
-  - Bolts/AppLinks (1.3.0):
+  - Bolts (1.5.0):
+    - Bolts/AppLinks (= 1.5.0)
+    - Bolts/Tasks (= 1.5.0)
+  - Bolts/AppLinks (1.5.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.3.0)
-  - Crashlytics (3.3.4)
+  - Bolts/Tasks (1.5.0)
+  - Crashlytics (3.4.1):
+    - Fabric (~> 1.6.0)
   - DateTools (1.7.0)
-  - Fabric (1.5.1):
-    - Fabric/Base (= 1.5.1)
-  - Fabric/Base (1.5.1)
+  - Fabric (1.6.1)
   - Facebook-iOS-SDK (3.24.0):
     - Bolts (~> 1.2)
   - FDTake (0.2.4):
@@ -54,9 +53,9 @@ PODS:
   - KZAsserts (1.0)
   - KZPropertyMapper (2.5.1)
   - MagicalRecord (2.3.0)
-  - Mixpanel (2.8.3):
-    - Mixpanel/Mixpanel (= 2.8.3)
-  - Mixpanel/Mixpanel (2.8.3)
+  - Mixpanel (2.9.0):
+    - Mixpanel/Mixpanel (= 2.9.0)
+  - Mixpanel/Mixpanel (2.9.0)
   - NSString+RemoveEmoji (0.0.1)
   - TTTAttributedLabel (1.13.4)
   - TWCommonLib (0.9):
@@ -66,28 +65,28 @@ PODS:
     - MagicalRecord (= 2.3.0)
     - UIAlertView-Blocks (= 1.0)
   - UIAlertView-Blocks (1.0)
-  - UITextView+Placeholder (1.0.9)
+  - UITextView+Placeholder (1.1.0)
   - XRSA (1.1.0)
   - YCameraView (0.2.0)
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
   - BlocksKit (= 2.2.5)
-  - Crashlytics (= 3.3.4)
+  - Crashlytics (= 3.4.1)
   - DateTools (= 1.7.0)
-  - Fabric (= 1.5.1)
+  - Fabric (= 1.6.1)
   - Facebook-iOS-SDK (= 3.24.0)
   - FDTake (from `../FDTake`)
   - FLKAutoLayout (= 0.2.1)
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.5.1)
   - MagicalRecord (= 2.3.0)
-  - Mixpanel (= 2.8.3)
+  - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.0.1)
   - TTTAttributedLabel (= 1.13.4)
   - TWCommonLib (from `../TWCommonLib`)
   - UIAlertView-Blocks (= 1.0)
-  - UITextView+Placeholder (= 1.0.9)
+  - UITextView+Placeholder (= 1.1.0)
   - XRSA (from `https://github.com/wyszo/XRSA.git`, branch `master`)
   - YCameraView (from `https://github.com/wyszo/YCameraView.git`, branch `MorePAChanges`)
 
@@ -115,22 +114,22 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
-  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
+  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
+  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
   Facebook-iOS-SDK: cb209af2e67e3a5d323f966c22e4e482e819405e
   FDTake: 22f82a1c7060a1d60ed9ae534122694054b2ea22
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7
   KZPropertyMapper: e80e83aa3bc6d37a6dd55e3d04a01afcb8c23d3c
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
-  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
+  Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TWCommonLib: ec404fb3d106bc52edec40740fd5a0a77949c9a9
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
-  UITextView+Placeholder: 83895056749372c96febfb43f536c9b1aae3e08e
+  UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
