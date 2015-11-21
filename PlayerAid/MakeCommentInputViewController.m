@@ -8,13 +8,15 @@
 #import "MakeCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "UIImageView+AvatarStyling.h"
+#import "ColorsHelper.h"
 
 static NSString *const kXibFileName = @"AddCommentInputView";
 
-@interface MakeCommentInputViewController ()
+@interface MakeCommentInputViewController () <UITextViewDelegate>
 @property (strong, nonatomic, nonnull) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @end
 
 @implementation MakeCommentInputViewController
@@ -32,7 +34,11 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
   [self styleSubviews];
+  
+  self.inputTextView.delegate = self;
+  [self updatePostButtonHighlight];
 }
 
 - (void)styleSubviews
@@ -49,6 +55,10 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 
 - (IBAction)postButtonPressed:(id)sender
 {
+  if (!self.postButtonActive) {
+    return;
+  }
+  
   NSString *commentText = self.inputTextView.text;
   AssertTrueOrReturn(commentText.length);
   
@@ -60,11 +70,33 @@ static NSString *const kXibFileName = @"AddCommentInputView";
   });
 }
 
-#pragma mark - 
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView * _Nonnull)textView
+{
+  [self updatePostButtonHighlight];
+}
+
+#pragma mark - Private
 
 - (void)clearInputTextView
 {
   self.inputTextView.text = @"";
+}
+
+- (void)updatePostButtonHighlight
+{
+  UIColor *buttonBackgroundColor = [ColorsHelper makeCommentPostButtonInactiveBackgroundColor];
+  
+  if ([self postButtonActive]) {
+    buttonBackgroundColor = [ColorsHelper makeCommentPostButtonActiveBackgroundColor];
+  }
+  self.postButton.backgroundColor = buttonBackgroundColor;
+}
+
+- (BOOL)postButtonActive
+{
+  return (self.inputTextView.text.length > 0);
 }
 
 @end

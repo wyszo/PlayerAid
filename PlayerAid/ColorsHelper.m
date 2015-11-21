@@ -34,6 +34,8 @@ UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
 
 UIColorMethodMake(tutorialCommentsBarBackgroundColor, 60, 100, 198)
 UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139);
+UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
+UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134)
 UIColorMethodMake(editProfileViewBackgroundColor, 245, 245, 245)

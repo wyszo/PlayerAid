@@ -29,6 +29,9 @@
 + (UIColor *)tutorialCommentsBarBackgroundColor;
 + (UIColor *)commentsTimeAgoLabelColor;
 
++ (UIColor *)makeCommentPostButtonActiveBackgroundColor;
++ (UIColor *)makeCommentPostButtonInactiveBackgroundColor;
+
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;
