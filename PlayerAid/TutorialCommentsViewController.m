@@ -22,6 +22,7 @@ static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
 static const CGFloat kFoldingAnimationDuration = 0.5f;
+static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -122,7 +123,7 @@ static const CGFloat kFoldingAnimationDuration = 0.5f;
 {
   CallBlock(self.willExpandBlock);
   
-  CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight);
+  CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight - kOpenCommentsToNavbarOffset);
   self.view.tw_height = desiredHeight;
   self.state = CommentsViewStateExpanded;
   [self.arrowImageView tw_setRotationRadians:0];
