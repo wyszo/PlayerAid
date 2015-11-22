@@ -51,7 +51,7 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
   AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
   
   CallBlock(self.willChangeCellHeightBlock);
-  self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contains calls to beginUpdates and endUpdates on tableView
+  self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
   CallBlock(self.didChangeCellHeightBlock);
 }
 
