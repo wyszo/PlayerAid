@@ -141,6 +141,14 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
   TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
   
+  defineWeakSelf();
+  commentCell.willChangeCellHeightBlock = ^() {
+    [weakSelf.commentsTableView beginUpdates];
+  };
+  commentCell.didChangeCellHeightBlock = ^() {
+    [weakSelf.commentsTableView endUpdates];
+  };
+  
   if (!object) {
     object = [self.dataSource objectAtIndexPath:indexPath];
   }

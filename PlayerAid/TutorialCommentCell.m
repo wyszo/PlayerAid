@@ -17,6 +17,7 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 @end
 
@@ -41,6 +42,17 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 - (void)setupCommentLabel
 {
   self.commentLabel.numberOfLines = kMaxFoldedCommentNumberOfLines;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)moreButtonPressed:(id)sender {
+  BOOL bothBeforeAndAfterAnimationBlocksSet = (self.willChangeCellHeightBlock && self.didChangeCellHeightBlock);
+  AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
+  
+  CallBlock(self.willChangeCellHeightBlock);
+  self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contains calls to beginUpdates and endUpdates on tableView
+  CallBlock(self.didChangeCellHeightBlock);
 }
 
 #pragma mark TWConfigurableFromDictionary

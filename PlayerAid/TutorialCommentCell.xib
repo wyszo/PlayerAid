@@ -8,11 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="dDA-qc-dQS" customClass="TutorialCommentCell">
-            <rect key="frame" x="0.0" y="0.0" width="364" height="95"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="131" id="dDA-qc-dQS" customClass="TutorialCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="131"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="94"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="131"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
@@ -29,13 +29,25 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="52" y="45" width="304" height="15"/>
+                        <rect key="frame" x="52" y="45" width="304" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
+                        <rect key="frame" x="52" y="82" width="50" height="16"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="1rz-3x-zv6"/>
+                            <constraint firstAttribute="width" constant="50" id="qQQ-3s-GtK"/>
+                        </constraints>
+                        <state key="normal" title="..."/>
+                        <connections>
+                            <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtM-Lg-sQJ">
-                        <rect key="frame" x="52" y="69" width="62" height="17"/>
+                        <rect key="frame" x="52" y="106" width="62" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="jvn-X3-TW9"/>
                         </constraints>
@@ -49,22 +61,31 @@
                     <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="8" id="9Oe-z1-exT"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="8" id="LeV-MC-n7b"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="QMV-XM-CXf"/>
+                    <constraint firstItem="2ak-KO-H2a" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="bOo-v6-Ia9"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstAttribute="bottom" secondItem="DtM-Lg-sQJ" secondAttribute="bottom" constant="8" id="fLb-7b-VH8"/>
+                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="8" id="p5I-KF-tqR"/>
                     <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="9" id="qz6-4Y-Hgc"/>
                     <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
+                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="8" id="yt9-pa-Zf4"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="qz6-4Y-Hgc"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>
                 <outlet property="avatarImageView" destination="wYM-dQ-F5j" id="QrU-tr-sUi"/>
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
+                <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="timeAgoLabel" destination="DtM-Lg-sQJ" id="NhE-fE-hAV"/>
             </connections>
-            <point key="canvasLocation" x="542" y="120.5"/>
+            <point key="canvasLocation" x="542" y="138.5"/>
         </tableViewCell>
     </objects>
 </document>
