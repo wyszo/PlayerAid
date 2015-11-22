@@ -11,6 +11,8 @@
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
 
+static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
+
 @interface TutorialCommentCell()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -26,6 +28,7 @@
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
   self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
+  [self setupCommentLabel];
 }
 
 - (void)prepareForReuse
@@ -34,6 +37,13 @@
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
 }
+
+- (void)setupCommentLabel
+{
+  self.commentLabel.numberOfLines = kMaxFoldedCommentNumberOfLines;
+}
+
+#pragma mark TWConfigurableFromDictionary
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment
 {
