@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="52" y="45" width="304" height="19.5"/>
+                        <rect key="frame" x="52" y="45" width="304" height="23.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="52" y="72.5" width="24" height="8"/>
+                        <rect key="frame" x="52" y="74.5" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                             <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -64,11 +64,11 @@
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstAttribute="bottom" secondItem="DtM-Lg-sQJ" secondAttribute="bottom" constant="8" id="fLb-7b-VH8"/>
-                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="8" id="p5I-KF-tqR"/>
+                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="6" id="p5I-KF-tqR"/>
                     <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="9" id="qz6-4Y-Hgc"/>
                     <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
-                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="8" id="yt9-pa-Zf4"/>
+                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="6" id="yt9-pa-Zf4"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
                 <variation key="default">
