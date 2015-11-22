@@ -12,6 +12,8 @@
 #import "ColorsHelper.h"
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
+static CGFloat defaultMoreButtonHeightConstraintConstant;
+static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 
 @interface TutorialCommentCell()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -19,6 +21,11 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
+//@property (assign, nonatomic) CGFloat defaultMoreButtonHeightConstraintConstant;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonToTimeAgoLabelDistanceConstraint;
+//@property (assign, nonatomic) CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 @end
 
 @implementation TutorialCommentCell
@@ -35,8 +42,11 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 - (void)prepareForReuse
 {
   [super prepareForReuse];
+  
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
+  self.moreButton.hidden = NO;
+  [self restoreDefaultConstraints];
 }
 
 - (void)setupCommentTextLabel
@@ -63,7 +73,46 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 
 - (void)updateMoreButtonVisibility
 {
-  self.moreButton.hidden = ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  BOOL shouldHideMoreButton = ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  
+  self.moreButton.hidden = shouldHideMoreButton;
+  if (shouldHideMoreButton) {
+    [self shrinkEmptySpaceAboveTimeAgoLabel];
+  } else {
+    [self restoreDefaultConstraints];
+  }
+}
+
+- (void)hideMoreButton
+{
+  self.moreButton.hidden = YES;
+  [self shrinkEmptySpaceAboveTimeAgoLabel];
+}
+
+#pragma mark - Constraints manipulation
+
+- (void)shrinkEmptySpaceAboveTimeAgoLabel
+{
+  [self saveDefaultConstraintValuesIfNeeded];
+  self.moreButtonToTimeAgoLabelDistanceConstraint.constant = 0;
+  self.moreButtonHeightConstraint.constant = 0;
+}
+
+- (void)saveDefaultConstraintValuesIfNeeded
+{
+  if (!defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant) {
+    defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant = self.moreButtonToTimeAgoLabelDistanceConstraint.constant;
+  }
+  
+  if (!defaultMoreButtonHeightConstraintConstant) {
+    defaultMoreButtonHeightConstraintConstant = self.moreButtonHeightConstraint.constant;
+  }
+}
+
+- (void)restoreDefaultConstraints
+{
+  self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
+  self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
 }
 
 #pragma mark - IBActions
@@ -74,7 +123,7 @@ static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
   
   CallBlock(self.willChangeCellHeightBlock);
   self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
-  self.moreButton.hidden = YES; // cell extended, we don't need it anymore
+  [self hideMoreButton]; // cell extended, we don't need it anymore
   CallBlock(self.didChangeCellHeightBlock);
 }
 

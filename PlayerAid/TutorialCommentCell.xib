@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="364" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="113.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
@@ -23,19 +23,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
-                        <rect key="frame" x="52" y="16" width="304" height="20.5"/>
+                        <rect key="frame" x="52" y="16" width="304" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="52" y="45" width="304" height="23.5"/>
+                        <rect key="frame" x="52" y="45" width="304" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtM-Lg-sQJ">
-                        <rect key="frame" x="52" y="88.5" width="61.5" height="17"/>
+                        <rect key="frame" x="52" y="89" width="62" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="jvn-X3-TW9"/>
                         </constraints>
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="52" y="74.5" width="24" height="8"/>
+                        <rect key="frame" x="52" y="75" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                             <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -65,23 +65,19 @@
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstAttribute="bottom" secondItem="DtM-Lg-sQJ" secondAttribute="bottom" constant="8" id="fLb-7b-VH8"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="6" id="p5I-KF-tqR"/>
-                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="9" id="qz6-4Y-Hgc"/>
                     <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
                     <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="6" id="yt9-pa-Zf4"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="qz6-4Y-Hgc"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>
                 <outlet property="avatarImageView" destination="wYM-dQ-F5j" id="QrU-tr-sUi"/>
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
+                <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
+                <outlet property="moreButtonToTimeAgoLabelDistanceConstraint" destination="yt9-pa-Zf4" id="O8Q-Nx-8tj"/>
                 <outlet property="timeAgoLabel" destination="DtM-Lg-sQJ" id="NhE-fE-hAV"/>
             </connections>
             <point key="canvasLocation" x="542" y="130"/>
