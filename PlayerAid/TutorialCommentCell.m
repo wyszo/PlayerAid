@@ -32,7 +32,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
   self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
-  [self setupCommentTextLabel];
+  [self setupCommentTextLabelMaxLineCount];
 }
 
 - (void)prepareForReuse
@@ -43,10 +43,11 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;
   
+  [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
 }
 
-- (void)setupCommentTextLabel
+- (void)setupCommentTextLabelMaxLineCount
 {
   self.commentLabel.numberOfLines = kMaxFoldedCommentNumberOfLines;
 }
