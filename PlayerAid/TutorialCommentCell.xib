@@ -77,7 +77,6 @@
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
-                <outlet property="moreButtonToTimeAgoLabelDistanceConstraint" destination="yt9-pa-Zf4" id="O8Q-Nx-8tj"/>
                 <outlet property="timeAgoLabel" destination="DtM-Lg-sQJ" id="NhE-fE-hAV"/>
             </connections>
             <point key="canvasLocation" x="542" y="130"/>

@@ -13,7 +13,6 @@
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 static CGFloat defaultMoreButtonHeightConstraintConstant;
-static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 
 @interface TutorialCommentCell()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -23,9 +22,6 @@ static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
-//@property (assign, nonatomic) CGFloat defaultMoreButtonHeightConstraintConstant;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonToTimeAgoLabelDistanceConstraint;
-//@property (assign, nonatomic) CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 @end
 
 @implementation TutorialCommentCell
@@ -46,7 +42,8 @@ static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;
-  [self restoreDefaultConstraints];
+  
+  [self restoreMoreButtonHeightConstraint];
 }
 
 - (void)setupCommentTextLabel
@@ -64,8 +61,8 @@ static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
   self.authorLabel.text = commentAuthor.name;
   self.commentLabel.text = comment.text;
   self.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
-  [self updateMoreButtonVisibility];
   
+  [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageView:self.avatarImageView];
 }
 
@@ -74,44 +71,31 @@ static CGFloat defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant;
 - (void)updateMoreButtonVisibility
 {
   BOOL shouldHideMoreButton = ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
-  
-  self.moreButton.hidden = shouldHideMoreButton;
   if (shouldHideMoreButton) {
-    [self shrinkEmptySpaceAboveTimeAgoLabel];
-  } else {
-    [self restoreDefaultConstraints];
+    [self shrinkMoreButtonHeight];
   }
+  self.moreButton.hidden = shouldHideMoreButton;
 }
 
 - (void)hideMoreButton
 {
   self.moreButton.hidden = YES;
-  [self shrinkEmptySpaceAboveTimeAgoLabel];
+  [self shrinkMoreButtonHeight];
 }
 
 #pragma mark - Constraints manipulation
 
-- (void)shrinkEmptySpaceAboveTimeAgoLabel
+- (void)shrinkMoreButtonHeight
 {
-  [self saveDefaultConstraintValuesIfNeeded];
-  self.moreButtonToTimeAgoLabelDistanceConstraint.constant = 0;
+  if (defaultMoreButtonHeightConstraintConstant == 0) {
+    defaultMoreButtonHeightConstraintConstant = self.moreButtonHeightConstraint.constant;
+  }
   self.moreButtonHeightConstraint.constant = 0;
 }
 
-- (void)saveDefaultConstraintValuesIfNeeded
+- (void)restoreMoreButtonHeightConstraint
 {
-  if (!defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant) {
-    defaultMoreButtonToTimeAgoLabelDistanceConstraintConstant = self.moreButtonToTimeAgoLabelDistanceConstraint.constant;
-  }
-  
-  if (!defaultMoreButtonHeightConstraintConstant) {
-    defaultMoreButtonHeightConstraintConstant = self.moreButtonHeightConstraint.constant;
-  }
-}
-
-- (void)restoreDefaultConstraints
-{
-  self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
+  AssertTrueOrReturn(defaultMoreButtonHeightConstraintConstant != 0.0);
   self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
 }
 
