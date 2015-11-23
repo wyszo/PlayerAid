@@ -72,24 +72,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   defineWeakSelf();
   delegate.cellSelectedExtendedBlock = ^(NSIndexPath *indexPath, id object) {
     AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-    
-    UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
-      [AlertFactory showReportCommentAlertViewWithOKAction:^{
-        TutorialComment *comment = (TutorialComment *)object;
-        [[AuthenticatedServerCommunicationController sharedInstance] reportCommentAsInappropriate:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-          if (error) {
-            [AlertFactory showGenericErrorAlertViewNoRetry];
-          }
-          else {
-            // TODO: comment text should locally change to 'Comment was removed as inappropriate'
-            
-            // This needs to persist after fetching new comments! Need to introduce local array of comment ids reported as inappropriate by an user (not recommened). Or even better: handle this server-side, so server always returns the comment as flagged as inappropriate to a current user.
-            // So ideally server should return a comment object in here with text changed to 'inappropriate'
-          }
-        }];
-      }];
-    }];
-    [weakSelf presentViewController:actionSheet animated:YES completion:nil];
+    [weakSelf commentSelectionShowUserActionsActionSheet:(TutorialComment *)comment];
   };
   [self.commentsTableView bk_associateValue:delegate withKey:@"tableViewDelegate"];
 }
@@ -131,7 +114,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   _tutorial = tutorial;
 }
 
-#pragma mark - Private
+#pragma mark - Comment cells
 
 - (void)configureCell:(nonnull UITableViewCell *)cell withObject:(nullable id)object atIndexPath:(nonnull NSIndexPath *)indexPath
 {
@@ -156,6 +139,30 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TutorialComment *comment = (TutorialComment *)object;
   
   [commentCell configureWithTutorialComment:comment];
+}
+
+- (void)showUserActionsActionSheetForComment:(nonnull TutorialComment *)comment
+{
+  AssertTrueOrReturn(comment);
+  
+  UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
+    // TODO: the code below is the implementation of report comment behaviour, it should be extracted out of this method (as it's independent of CommentsContainerView)
+    
+    [AlertFactory showReportCommentAlertViewWithOKAction:^{
+      [[AuthenticatedServerCommunicationController sharedInstance] reportCommentAsInappropriate:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+          [AlertFactory showGenericErrorAlertViewNoRetry];
+        }
+        else {
+          // TODO: comment text should locally change to 'Comment was removed as inappropriate'
+          
+          // This needs to persist after fetching new comments! Need to introduce local array of comment ids reported as inappropriate by an user (not recommened). Or even better: handle this server-side, so server always returns the comment as flagged as inappropriate to a current user.
+          // So ideally server should return a comment object in here with text changed to 'inappropriate'
+        }
+      }];
+    }];
+  }];
+  [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 @end
