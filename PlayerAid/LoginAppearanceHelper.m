@@ -75,12 +75,12 @@
 
 #pragma mark - Facebook login button
 
-- (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView parentViewControllerToDismissOnCompletion:(nullable UIViewController *)parentViewController
+- (nullable FBSDKLoginButton *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView parentViewControllerToDismissOnCompletion:(nullable UIViewController *)parentViewController
 {
   AssertTrueOrReturnNil(containerView);
   __weak typeof(parentViewController) weakViewController = parentViewController;
   
-  FBLoginView *loginView = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
+  FBSDKLoginButton *loginButton = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
     if (!error) {
       TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
       [parentViewController.navigationController.view addSubview:activityIndicator];
@@ -98,10 +98,10 @@
   
   containerView.backgroundColor = [UIColor clearColor];
   
-  [containerView addSubview:loginView];
-  [loginView alignToView:containerView];
+  [containerView addSubview:loginButton];
+  [loginButton alignToView:containerView];
   
-  return loginView;
+  return loginButton;
 }
 
 @end

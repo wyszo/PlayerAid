@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
+@import FBSDKCoreKit;
 #import "FacebookLoginControlsFactory.h"
 #import "FacebookAuthenticationController.h"
 #import "UnauthenticatedServerCommunicationController.h"
@@ -23,12 +24,13 @@ static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
 
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
-
 #pragma mark - Creating Facebook login button
 
-+ (FBLoginView *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSString *apiToken, NSError *error))completion
++ (nullable FBSDKLoginButton *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSString *apiToken, NSError *error))completion
 {
-  FBLoginView *loginView = [FacebookAuthenticationController facebookLoginViewWithLoginCompletion:^(id<FBGraphUser> user, NSError *error) {
+  AssertTrueOrReturnNil(completion);
+  
+  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithLoginCompletion:^(FBSDKProfile *user, NSError *error) {
     if (error) {
       [AlertFactory showAlertFromFacebookError:error];
     }
@@ -37,15 +39,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       authRequestData.email = [DataExtractionHelper emailFromFBGraphUser:user];
       NSLog(@"email: %@", authRequestData.email);
       
-      AssertTrueOrReturn(FBSession.activeSession.isOpen);
-      
-      authRequestData.facebookAuthenticationToken = FBSession.activeSession.accessTokenData.accessToken;
+      NSString *accessTokenString = [FBSDKAccessToken currentAccessToken].tokenString;
+      authRequestData.facebookAuthenticationToken = accessTokenString;
       NSLog(@"access token: %@", authRequestData.facebookAuthenticationToken);
+      AssertTrueOrReturn(accessTokenString.length && @"no access token means FB session is not open");
       
       [[self sharedInstance] sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:YES completion:completion];
     }
   }];
-  return loginView;
+  return loginButton;
 }
 
 - (void)sendAuthenticationApiRequestWithAuthenticationRequestData:(AuthenticationRequestData *)authRequestData

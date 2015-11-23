@@ -236,6 +236,10 @@
 // error handling code source: https://developers.facebook.com/docs/facebook-login/ios/v2.2
 + (UIAlertView *)showAlertFromFacebookError:(NSError *)error
 {
+  // Needs updating to FB SDK 4.x!
+  // TODO: they should now provide all the error data in NSError itself, it's enough just to display it (I think). For more information, see: https://developers.facebook.com/docs/ios/errors#errorhandling
+  
+  /**
   NSString *alertMessage, *alertTitle;
   UIAlertView *alertView;
   
@@ -278,6 +282,8 @@
     [alertView show];
   }
   return alertView;
+  */
+  return nil;
 }
 
 @end

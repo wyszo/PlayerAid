@@ -213,7 +213,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)makeUpdateAvatarFromFacebookNetworkRequest
 {
-  NSString *facebookToken = FBSession.activeSession.accessTokenData.accessToken;
+  NSString *facebookToken = [FBSDKAccessToken currentAccessToken].tokenString;
   AssertTrueOrReturn(facebookToken.length);
   
   defineWeakSelf();

@@ -3,6 +3,7 @@
 //
 
 @import FBSDKCoreKit;
+@import FBSDKLoginKit;
 
 @interface LoginAppearanceHelper : NSObject
 
@@ -21,6 +22,6 @@
 /**
  Additionally presents an activity indicator on parentViewController while trying to LogIn
  */
-- (nullable FBLoginView *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView parentViewControllerToDismissOnCompletion:(nullable UIViewController *)parentViewController;
+- (nullable FBSDKLoginButton *)addFacebookLoginButtonToFillContainerView:(nonnull UIView *)containerView parentViewControllerToDismissOnCompletion:(nullable UIViewController *)parentViewController;
 
 @end

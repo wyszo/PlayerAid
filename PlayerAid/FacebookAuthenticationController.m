@@ -3,13 +3,11 @@
 //
 
 @import KZAsserts;
-@import FBSDKCoreKit;
 #import "FacebookAuthenticationController.h"
 
-@interface FacebookAuthenticationController () <FBLoginViewDelegate>
-@property (nonatomic, copy) void (^completionBlock)(id<FBGraphUser> user, NSError *error);
-@property (nonatomic, strong) id<FBGraphUser> user;
-@property (nonatomic, assign) BOOL loggedIn;
+@interface FacebookAuthenticationController () <FBSDKLoginButtonDelegate>
+@property (nonatomic, copy) void (^completionBlock)(FBSDKProfile *user, NSError *error);
+@property (nonatomic, strong) FBSDKProfile *user;
 @end
 
 @implementation FacebookAuthenticationController
@@ -21,63 +19,54 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Public interface
 
-+ (FBLoginView *)facebookLoginViewWithLoginCompletion:(void (^)(id<FBGraphUser> user, NSError *error))completion
++ (nullable FBSDKLoginButton *)facebookLoginViewWithLoginCompletion:(void (^)(FBSDKProfile *user, NSError *error))completion
 {
+  AssertTrueOrReturnNil(completion);
+  [self.class setupFacebookSDKBehaviour];
+  
   ((FacebookAuthenticationController *)self.sharedInstance).completionBlock = completion;
   
-  FBLoginView *loginView = [[FBLoginView alloc] initWithReadPermissions:@[@"email"]];
-  loginView.delegate = self.sharedInstance;
-  return loginView;
+  FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
+  loginButton.readPermissions = @[@"email"];
+  loginButton.delegate = self.sharedInstance;
+  return loginButton;
+}
+
++ (void)setupFacebookSDKBehaviour
+{
+  [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
 }
 
 + (void)logout
 {
-  FacebookAuthenticationController *sharedInstance = [FacebookAuthenticationController sharedInstance];
-  sharedInstance.loggedIn = NO;
-  sharedInstance.user = nil;
-  
-  [FBSession.activeSession closeAndClearTokenInformation];
+  FacebookAuthenticationController.sharedInstance.user = nil;
+  [FBSDKAccessToken setCurrentAccessToken:nil];
 }
 
-#pragma mark - FBLoginViewDelegate
+#pragma mark - FBSDKLoginButtonDelegate
 
-// depending on the scenario, either this method will be called first or loginViewFetchedUserInfo:user:
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
 {
-  self.loggedIn = YES;
-  [self invokeCompletionBlockIfUserLoggedInAndUserInfoFetched];
-}
-
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user
-{
-  if (self.user == user) {
-    return; // delegate method called more than once, ignore
+  if (error) {
+    CallBlock(self.completionBlock, nil, error);
   }
- 
-  AssertTrueOrReturn(user);
-  self.user = user;
-  [self invokeCompletionBlockIfUserLoggedInAndUserInfoFetched];
-}
-
-- (void)invokeCompletionBlockIfUserLoggedInAndUserInfoFetched
-{
-  if (self.completionBlock && self.user && self.loggedIn) {
+  else {
+    if ([result isCancelled]) {
+      return;
+    }
+    
+    // TODO: that's too early, profile data not fetched yet...
+    self.user = [FBSDKProfile currentProfile];
     AssertTrueOrReturn(self.user);
-    self.completionBlock(self.user, nil);
+    // TODO: Investigate - I got email premission declined from my test account here (in result.declinedPermissions)!
+    
+    CallBlock(self.completionBlock, self.user, nil);
   }
 }
 
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
-  // TODO: Need to ensure user won't be able to logout from the intro screen...
-}
-
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
-{
-  if (self.completionBlock) {
-    self.completionBlock(nil, error);
-  }
+  AssertTrueOrReturn(NO && @"user should not be able to logout using login button!");
 }
 
 @end

@@ -4,8 +4,12 @@
 
 @import FBSDKCoreKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DataExtractionHelper : NSObject
 
-+ (NSString *)emailFromFBGraphUser:(id<FBGraphUser>)user;
++ (nullable NSString *)emailFromFBGraphUser:(FBSDKProfile *)user;
 
 @end
+
+NS_ASSUME_NONNULL_END

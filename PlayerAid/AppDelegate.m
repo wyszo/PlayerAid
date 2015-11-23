@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [FBLoginView class]; // ensures FBLoginView is loaded in memory before being presented, recommended by Facebook
+  [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
   
   self.appInitializer = [AppInitializer new];
   [self.appInitializer initializeAppInternals];
@@ -41,15 +41,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-  [FBAppEvents activateApp];   // Logs 'install' and 'app activate' App Events.
+  [FBSDKAppEvents activateApp];   // Logs 'install' and 'app activate' App Events.
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-  return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication]; // attempt to extract a token from the url
+  return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Auxiliary methods
