@@ -3,9 +3,8 @@
 //
 
 @import KZAsserts;
+@import FBSDKCoreKit;
 #import "FacebookAuthenticationController.h"
-#import <FacebookSDK/FBSession.h>
-
 
 @interface FacebookAuthenticationController () <FBLoginViewDelegate>
 @property (nonatomic, copy) void (^completionBlock)(id<FBGraphUser> user, NSError *error);

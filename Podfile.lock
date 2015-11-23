@@ -45,8 +45,17 @@ PODS:
     - Fabric (~> 1.6.0)
   - DateTools (1.7.0)
   - Fabric (1.6.1)
-  - Facebook-iOS-SDK (3.24.1):
-    - Bolts (~> 1.2)
+  - FBSDKCoreKit (4.8.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.8.0)
+    - FBSDKCoreKit/no-arc (= 4.8.0)
+  - FBSDKCoreKit/arc (4.8.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.8.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.8.0):
+    - FBSDKCoreKit
   - FDTake (0.2.4):
     - TWCommonLib
   - FLKAutoLayout (0.2.1)
@@ -75,7 +84,8 @@ DEPENDENCIES:
   - Crashlytics (= 3.4.1)
   - DateTools (= 1.7.0)
   - Fabric (= 1.6.1)
-  - Facebook-iOS-SDK (= 3.24.1)
+  - FBSDKCoreKit (= 4.8.0)
+  - FBSDKLoginKit (= 4.8.0)
   - FDTake (from `../FDTake`)
   - FLKAutoLayout (= 0.2.1)
   - KZAsserts (= 1.0)
@@ -118,7 +128,8 @@ SPEC CHECKSUMS:
   Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
-  Facebook-iOS-SDK: 08689c2690dc4e087b9c8e171e48667608b72a2a
+  FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
+  FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   FDTake: 22f82a1c7060a1d60ed9ae534122694054b2ea22
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7

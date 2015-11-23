@@ -2,7 +2,8 @@
 //  PlayerAid
 //
 
-@import FacebookSDK;
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
 #import <TWCommonLib/TWCommonMacros.h>
 
 

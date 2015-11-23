@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-#import <FacebookSDK/FacebookSDK.h>
+@import FBSDKCoreKit;
 
 @interface DataExtractionHelper : NSObject
 

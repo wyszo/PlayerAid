@@ -3,7 +3,7 @@
 //
 
 @import Foundation;
-@import FacebookSDK;
+@import FBSDKCoreKit;
 #import <TWCommonLib/TWCommonMacros.h>
 
 

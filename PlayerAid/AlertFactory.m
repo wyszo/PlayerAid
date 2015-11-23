@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-@import FacebookSDK;
+@import FBSDKCoreKit;
 @import TWCommonLib;
 @import UIAlertView_Blocks;
 #import "AlertFactory.h"

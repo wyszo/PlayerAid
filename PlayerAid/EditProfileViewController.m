@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-@import FacebookSDK;
+@import FBSDKCoreKit;
 @import FDTake;
 @import KZAsserts;
 @import TWCommonLib;

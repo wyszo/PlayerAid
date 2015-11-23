@@ -4,7 +4,8 @@ inhibit_all_warnings! # suppress all warnings from pods
 use_frameworks!
 
 pod 'AFNetworking', '2.5.0' # 3.0.0 in beta 2 available, 2.6.3 stable
-pod 'Facebook-iOS-SDK', '3.24.1' # 4.1.0 available
+pod 'FBSDKCoreKit', '4.8.0'
+pod 'FBSDKLoginKit', '4.8.0'
 pod 'MagicalRecord', '2.3.0'
 pod 'KZAsserts', '1.0'
 pod 'KZPropertyMapper', '2.5.1'

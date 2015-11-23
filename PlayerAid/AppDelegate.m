@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-@import FacebookSDK;
+@import FBSDKCoreKit;
 #import "AppDelegate.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
