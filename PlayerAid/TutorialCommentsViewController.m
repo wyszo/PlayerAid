@@ -48,7 +48,6 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
   
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
-  [self setupCommentsController];
   [self refreshAllCommentsLabels];
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
@@ -58,14 +57,6 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     [self foldAnimated:NO];
     [self invokeDidChangeHeightCallback];
   });
-}
-
-- (void)setupCommentsController
-{
-  defineWeakSelf();
-  self.commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
-    [weakSelf refreshAllCommentsLabels];
-  }];
 }
 
 - (void)setupGestureRecognizer
@@ -191,9 +182,24 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   self.commentsLabel.text = [NSString stringWithFormat:@"Comment%@", sufix];
 }
 
+#pragma mark - Lazy initialization
+
+- (TutorialCommentsController *)commentsController
+{
+  if (!_commentsController) {
+    AssertTrueOrReturnNil(self.tutorial && @"Tutorial property is mandatory");
+    
+    defineWeakSelf();
+    _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
+      [weakSelf refreshAllCommentsLabels];
+    }];
+  }
+  return _commentsController;
+}
+
 #pragma mark - Auxiliary methods
 
-- (NSInteger)commentsCount
+- (NSUInteger)commentsCount
 {  
   return self.tutorial.hasComments.count;
 }
@@ -204,6 +210,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 {
   if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
+    [commentsContainerVC setTutorialCommentsController:self.commentsController];
     [commentsContainerVC setTutorial:self.tutorial];
   }
 }

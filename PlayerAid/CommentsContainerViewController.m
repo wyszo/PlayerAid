@@ -8,6 +8,7 @@
 @import TWCommonLib;
 @import BlocksKit;
 #import "CommentsContainerViewController.h"
+#import "TutorialCommentsController.h"
 #import "TutorialCommentCell.h"
 #import "TutorialComment.h"
 #import "Tutorial.h"
@@ -25,6 +26,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 @interface CommentsContainerViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (strong, nonatomic) TWCoreDataTableViewDataSource *dataSource;
+@property (weak, nonatomic) TutorialCommentsController *commentsController;
 @property (weak, nonatomic) IBOutlet UIView *noCommentsOverlayView;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -72,7 +74,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   defineWeakSelf();
   delegate.cellSelectedExtendedBlock = ^(NSIndexPath *indexPath, id object) {
     AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-    [weakSelf commentSelectionShowUserActionsActionSheet:(TutorialComment *)comment];
+    [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object];
   };
   [self.commentsTableView bk_associateValue:delegate withKey:@"tableViewDelegate"];
 }
@@ -106,6 +108,12 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 }
 
 #pragma mark - Setters
+
+- (void)setTutorialCommentsController:(TutorialCommentsController *)commentsController
+{
+  AssertTrueOrReturn(commentsController);
+  _commentsController = commentsController;
+}
 
 - (void)setTutorial:(Tutorial *)tutorial
 {
@@ -144,23 +152,11 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 - (void)showUserActionsActionSheetForComment:(nonnull TutorialComment *)comment
 {
   AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(self.commentsController && @"comments controller has to be set for reporting comments!");
   
+  defineWeakSelf();
   UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
-    // TODO: the code below is the implementation of report comment behaviour, it should be extracted out of this method (as it's independent of CommentsContainerView)
-    
-    [AlertFactory showReportCommentAlertViewWithOKAction:^{
-      [[AuthenticatedServerCommunicationController sharedInstance] reportCommentAsInappropriate:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-          [AlertFactory showGenericErrorAlertViewNoRetry];
-        }
-        else {
-          // TODO: comment text should locally change to 'Comment was removed as inappropriate'
-          
-          // This needs to persist after fetching new comments! Need to introduce local array of comment ids reported as inappropriate by an user (not recommened). Or even better: handle this server-side, so server always returns the comment as flagged as inappropriate to a current user.
-          // So ideally server should return a comment object in here with text changed to 'inappropriate'
-        }
-      }];
-    }];
+    [weakSelf.commentsController reportCommentShowConfirmationAlert:comment];
   }];
   [self presentViewController:actionSheet animated:YES completion:nil];
 }
