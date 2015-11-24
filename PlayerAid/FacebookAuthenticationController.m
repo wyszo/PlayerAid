@@ -24,6 +24,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturnNil(completion);
   [self.class setupFacebookSDKBehaviour];
   
+  // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern...
   ((FacebookAuthenticationController *)self.sharedInstance).completionBlock = completion;
   
   FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
@@ -54,19 +55,50 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     if ([result isCancelled]) {
       return;
     }
+    self.user = [FBSDKProfile currentProfile]; // setter should invoike completion block
     
-    // TODO: that's too early, profile data not fetched yet...
-    self.user = [FBSDKProfile currentProfile];
-    AssertTrueOrReturn(self.user);
-    // TODO: Investigate - I got email premission declined from my test account here (in result.declinedPermissions)!
-    
-    CallBlock(self.completionBlock, self.user, nil);
+    if (!self.user) {
+      [self registerForFacebookUserProfileDidChangeNotification];
+    }
   }
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
   AssertTrueOrReturn(NO && @"user should not be able to logout using login button!");
+}
+
+#pragma mark - Facebook notifications
+
+- (void)registerForFacebookUserProfileDidChangeNotification
+{
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileDidChange:) name:FBSDKProfileDidChangeNotification object:nil];
+}
+
+- (void)stopObservingFacebookProfileNotifications
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:FBSDKProfileDidChangeNotification object:nil];
+}
+
+#pragma mark - Setters
+
+- (void)setUser:(FBSDKProfile *)user
+{
+  _user = user;
+  if (user != nil) {
+    CallBlock(self.completionBlock, self.user, nil);
+  }
+}
+
+#pragma mark - Notification callbacks
+
+- (void)profileDidChange:(NSNotification *)notification
+{
+  FBSDKProfile *user = notification.userInfo[FBSDKProfileChangeNewKey];
+  AssertTrueOrReturn(user);
+  
+  [self stopObservingFacebookProfileNotifications];
+  self.user = user; // setter should invoike completion block
 }
 
 @end
