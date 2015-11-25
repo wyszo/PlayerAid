@@ -13,6 +13,8 @@
 + (NSError *)authenticationTokenError;
 + (NSError *)emailAddressAlreadyUsedForRegistrationError;
 
++ (NSError *)userCancelledURLRequestError;
+
 - (BOOL)isURLRequestErrorUserCancelled;
 
 @end

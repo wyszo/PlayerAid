@@ -12,7 +12,6 @@
 #import "DataExtractionHelper.h"
 #import "NSError+PlayerAidErrors.h"
 
-
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
 
 @interface FacebookLoginControlsFactory ()
@@ -32,7 +31,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   
   FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSError *error) {
     if (error) {
-      [AlertFactory showAlertFromFacebookError:error];
+      if (![error isURLRequestErrorUserCancelled]) {
+        [AlertFactory showAlertFromFacebookError:error]; // TODO: this needs updating!!!
+      }
+      CallBlock(completion, nil, error);
     }
     else {
       AuthenticationRequestData *authRequestData = [AuthenticationRequestData new];

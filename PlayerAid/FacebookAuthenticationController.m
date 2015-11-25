@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 #import "FacebookAuthenticationController.h"
+#import "NSError+PlayerAidErrors.h"
 
 @interface FacebookAuthenticationController () <FBSDKLoginButtonDelegate>
 @property (nonatomic, copy) VoidBlock loginButtonActionBlock;
@@ -59,6 +60,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }
   else {
     if ([result isCancelled]) {
+      NSError *error = [NSError userCancelledURLRequestError];
+      CallBlock(self.completionBlock, nil, error);
       return;
     }
     self.user = [FBSDKProfile currentProfile]; // setter should invoike completion block
