@@ -6,6 +6,7 @@
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 #import <TWCommonLib/TWCommonMacros.h>
+#import <TWCommonLib/TWCommonTypes.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NEW_AND_INIT_UNAVAILABLE
 
-+ (nullable FBSDKLoginButton *)facebookLoginViewWithLoginCompletion:(void (^)(FBSDKProfile *user, NSError *error))completion;
++ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSError *error))completion;
 
 + (void)logout;
 

@@ -79,20 +79,25 @@
 {
   AssertTrueOrReturnNil(containerView);
   __weak typeof(parentViewController) weakViewController = parentViewController;
+  __block TWFullscreenActivityIndicatorView *activityIndicator;
   
-  FBSDKLoginButton *loginButton = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:^(NSString *apiToken, NSError *error) {
+  FBSDKLoginButton *loginButton = [FacebookLoginControlsFactory facebookLoginButtonTriggeringInternalAuthenticationWithAction:^(){
+    activityIndicator = [TWFullscreenActivityIndicatorView new];
+    [parentViewController.navigationController.view addSubview:activityIndicator];
+  } completion:^(NSString *apiToken, NSError *error) {
     if (!error) {
-      TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
-      [parentViewController.navigationController.view addSubview:activityIndicator];
-      
       [[LoginManager new] loginWithApiToken:apiToken userLinkedWithFacebook:YES completion:^(NSError *error){
         [weakViewController dismissViewControllerAnimated:YES completion:^() {
           [activityIndicator dismiss];
         }];
       }];
-    }  else if (error.code == [NSError emailAddressAlreadyUsedForRegistrationError].code) {
+    } else if (error.code == [NSError emailAddressAlreadyUsedForRegistrationError].code) {
+      [activityIndicator dismiss];
       [FacebookAuthenticationController logout];
       [TWAlertFactory showOKAlertViewWithMessage:@"Hey, it looks like you already signed up with email. Please log in using that method!"];
+    }
+    else {
+      [activityIndicator dismiss];
     }
   }];
   

@@ -26,11 +26,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Creating Facebook login button
 
-+ (nullable FBSDKLoginButton *)facebookLoginButtonTriggeringInternalAuthenticationWithCompletion:(void (^)(NSString *apiToken, NSError *error))completion
++ (nullable FBSDKLoginButton *)facebookLoginButtonTriggeringInternalAuthenticationWithAction:(nullable VoidBlock)buttonAction completion:(void (^)(NSString *apiToken, NSError *error))completion
 {
   AssertTrueOrReturnNil(completion);
   
-  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithLoginCompletion:^(FBSDKProfile *user, NSError *error) {
+  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSError *error) {
     if (error) {
       [AlertFactory showAlertFromFacebookError:error];
     }

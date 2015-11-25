@@ -6,6 +6,7 @@
 #import "FacebookAuthenticationController.h"
 
 @interface FacebookAuthenticationController () <FBSDKLoginButtonDelegate>
+@property (nonatomic, copy) VoidBlock loginButtonActionBlock;
 @property (nonatomic, copy) void (^completionBlock)(FBSDKProfile *user, NSError *error);
 @property (nonatomic, strong) FBSDKProfile *user;
 @end
@@ -19,13 +20,16 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Public interface
 
-+ (nullable FBSDKLoginButton *)facebookLoginViewWithLoginCompletion:(void (^)(FBSDKProfile *user, NSError *error))completion
++ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSError *error))completion
 {
   AssertTrueOrReturnNil(completion);
   [self.class setupFacebookSDKBehaviour];
   
-  // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern...
-  ((FacebookAuthenticationController *)self.sharedInstance).completionBlock = completion;
+  {
+    // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern!!!
+    FacebookAuthenticationController.sharedInstance.loginButtonActionBlock = action;
+    FacebookAuthenticationController.sharedInstance.completionBlock = completion;
+  }
   
   FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
   loginButton.readPermissions = @[@"email"];
@@ -48,6 +52,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
 {
+  CallBlock(self.loginButtonActionBlock);
+  
   if (error) {
     CallBlock(self.completionBlock, nil, error);
   }
@@ -98,7 +104,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(user);
   
   [self stopObservingFacebookProfileNotifications];
-  self.user = user; // setter should invoike completion block
+  self.user = user; // should invoike completion block
 }
 
 @end
