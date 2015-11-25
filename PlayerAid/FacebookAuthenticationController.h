@@ -12,11 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FacebookAuthenticationController : NSObject
 
+/**
+ Technical debt: this class should not be a singleton!
+ */
 NEW_AND_INIT_UNAVAILABLE
+SHARED_INSTANCE_GENERATE_INTERFACE
 
 + (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSError *error))completion;
 
-+ (void)logout;
+- (void)logout;
 
 @end
 

@@ -14,6 +14,7 @@
 + (NSError *)emailAddressAlreadyUsedForRegistrationError;
 
 + (NSError *)userCancelledURLRequestError;
++ (NSError *)networkConnectionLostError;
 
 - (BOOL)isURLRequestErrorUserCancelled;
 

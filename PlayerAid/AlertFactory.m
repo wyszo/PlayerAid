@@ -7,7 +7,6 @@
 @import UIAlertView_Blocks;
 #import "AlertFactory.h"
 
-
 @implementation AlertFactory
 
 #pragma mark - App Alerts

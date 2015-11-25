@@ -19,7 +19,7 @@ static NSString *const kAnimatedLoginSegueId = @"LoginSegueAnimated";
 
 - (void)clearAppDataAndPerformLoginSegueAnimated:(BOOL)animated
 {
-  [FacebookAuthenticationController logout];
+  [FacebookAuthenticationController.sharedInstance logout];
   
   DataCleanupHelper *cleanupHelper = [DataCleanupHelper new];
   [cleanupHelper clearUserDefaults];

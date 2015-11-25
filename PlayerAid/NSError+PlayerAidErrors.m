@@ -5,13 +5,20 @@
 #import "NSError+PlayerAidErrors.h"
 
 static NSString *const kPlayerAidServerDomain = @"PlayerAidServer";
+static NSString *const kPlayerAidUserDomain = @"PlayerAidUser";
 
-static const NSInteger kGenericServerResponseErrorCode = 500;
-static const NSInteger kIncorrectResponseErrorCode = 501;
-static const NSInteger kTutorialStepSubmissionErrorCode = 502;
-static const NSInteger kIncorrectParameterErrorCode = 503;
-static const NSInteger kAuthenticationTokenParameterErrorCode = 504;
-static const NSInteger kEmailAddressAlreadyUsedForRegistration = 505;
+typedef NS_ENUM(NSUInteger, ServerDomainErrorCodes) {
+  GenericServerResponseErrorCode = 500,
+  IncorrectServerResopnseErrorCode = 501,
+  TutorialStepSumbmissionErrorCode = 502,
+  IncorrectParameterErrorCode = 503,
+  AuthenticationTokenParameterErrorCode = 504,
+  EmailAddressAlreadyUsedForRegistration = 505,
+};
+
+NS_ENUM(NSUInteger, UserDomainErrorCodes) {
+  NetworkConnectionLostErrorCode = 600,
+};
 
 #define ErrorMethodServerDomainMake(methodName,errorCode) + (NSError *)methodName { return [[NSError alloc] initWithDomain:kPlayerAidServerDomain code:errorCode userInfo:nil]; }
 
@@ -19,16 +26,17 @@ static const NSInteger kEmailAddressAlreadyUsedForRegistration = 505;
 
 @implementation NSError (PlayerAidErrors)
 
-ErrorMethodServerDomainMake(genericServerResponseError, kGenericServerResponseErrorCode)
-ErrorMethodServerDomainMake(incorrectServerResponseError, kIncorrectResponseErrorCode)
-ErrorMethodServerDomainMake(tutorialStepSubmissionError, kTutorialStepSubmissionErrorCode)
-ErrorMethodServerDomainMake(incorrectParameterError, kIncorrectParameterErrorCode)
-ErrorMethodServerDomainMake(authenticationTokenError, kAuthenticationTokenParameterErrorCode)
-ErrorMethodServerDomainMake(emailAddressAlreadyUsedForRegistrationError, kEmailAddressAlreadyUsedForRegistration)
+ErrorMethodServerDomainMake(genericServerResponseError, GenericServerResponseErrorCode)
+ErrorMethodServerDomainMake(incorrectServerResponseError, IncorrectServerResopnseErrorCode)
+ErrorMethodServerDomainMake(tutorialStepSubmissionError, TutorialStepSumbmissionErrorCode)
+ErrorMethodServerDomainMake(incorrectParameterError, IncorrectParameterErrorCode)
+ErrorMethodServerDomainMake(authenticationTokenError, AuthenticationTokenParameterErrorCode)
+ErrorMethodServerDomainMake(emailAddressAlreadyUsedForRegistrationError, EmailAddressAlreadyUsedForRegistration)
 
 #pragma mark - User errors
 
 NSErrorMethodMake(userCancelledURLRequestError, NSURLErrorDomain, NSURLErrorCancelled)
+NSErrorMethodMake(networkConnectionLostError, kPlayerAidUserDomain, NetworkConnectionLostErrorCode)
 
 #pragma mark - Other interface methods
 

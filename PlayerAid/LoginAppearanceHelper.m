@@ -11,6 +11,7 @@
 #import "LoginManager.h"
 #import "NSError+PlayerAidErrors.h"
 #import "FacebookAuthenticationController.h"
+#import "AlertFactory.h"
 
 @implementation LoginAppearanceHelper
 
@@ -93,9 +94,13 @@
       }];
     } else if (error.code == [NSError emailAddressAlreadyUsedForRegistrationError].code) {
       [activityIndicator dismiss];
-      [FacebookAuthenticationController logout];
+      [FacebookAuthenticationController.sharedInstance logout];
       [TWAlertFactory showOKAlertViewWithMessage:@"Hey, it looks like you already signed up with email. Please log in using that method!"];
     }
+    else if (error && ![error isURLRequestErrorUserCancelled]) {
+      [AlertFactory showGenericErrorAlertViewNoRetry];
+      [activityIndicator dismiss];
+    } 
     else {
       [activityIndicator dismiss];
     }

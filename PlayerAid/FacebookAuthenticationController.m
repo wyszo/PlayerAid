@@ -3,6 +3,7 @@
 //
 
 @import KZAsserts;
+@import AFNetworking;
 #import "FacebookAuthenticationController.h"
 #import "NSError+PlayerAidErrors.h"
 
@@ -10,6 +11,7 @@
 @property (nonatomic, copy) VoidBlock loginButtonActionBlock;
 @property (nonatomic, copy) void (^completionBlock)(FBSDKProfile *user, NSError *error);
 @property (nonatomic, strong) FBSDKProfile *user;
+@property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 @end
 
 @implementation FacebookAuthenticationController
@@ -26,11 +28,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturnNil(completion);
   [self.class setupFacebookSDKBehaviour];
   
-  {
-    // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern!!!
-    FacebookAuthenticationController.sharedInstance.loginButtonActionBlock = action;
-    FacebookAuthenticationController.sharedInstance.completionBlock = completion;
-  }
+  // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern!!!
+  FacebookAuthenticationController.sharedInstance.loginButtonActionBlock = action;
+  FacebookAuthenticationController.sharedInstance.completionBlock = completion;
   
   FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
   loginButton.readPermissions = @[@"email"];
@@ -43,9 +43,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
 }
 
-+ (void)logout
+- (void)logout
 {
-  FacebookAuthenticationController.sharedInstance.user = nil;
+  self.user = nil;
   [FBSDKAccessToken setCurrentAccessToken:nil];
 }
 
@@ -67,7 +67,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     self.user = [FBSDKProfile currentProfile]; // setter should invoike completion block
     
     if (!self.user) {
-      [self registerForFacebookUserProfileDidChangeNotification];
+      [self startObservingFacebookProfileUpdates];
     }
   }
 }
@@ -77,15 +77,44 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(NO && @"user should not be able to logout using login button!");
 }
 
+#pragma mark - Reachability monitoring 
+
+- (void)startMonitoringReachability
+{
+  defineWeakSelf();
+  
+  self.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"www.facebook.com"];
+  AssertTrueOrReturn(self.reachabilityManager);
+  
+  [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+      [FacebookAuthenticationController.sharedInstance logout];
+      [weakSelf stopObservingFacebookProfileUpdates];
+      
+      NSError *error = [NSError networkConnectionLostError];
+      CallBlock(weakSelf.completionBlock, nil, error);
+    }
+  }];
+  [self.reachabilityManager startMonitoring];
+}
+
+- (void)stopMonitoringReachability
+{
+  [self.reachabilityManager setReachabilityStatusChangeBlock:nil];
+  [self.reachabilityManager stopMonitoring];
+}
+
 #pragma mark - Facebook notifications
 
-- (void)registerForFacebookUserProfileDidChangeNotification
+- (void)startObservingFacebookProfileUpdates
 {
+  [self startMonitoringReachability];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileDidChange:) name:FBSDKProfileDidChangeNotification object:nil];
 }
 
-- (void)stopObservingFacebookProfileNotifications
+- (void)stopObservingFacebookProfileUpdates
 {
+  [self stopMonitoringReachability];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:FBSDKProfileDidChangeNotification object:nil];
 }
 
@@ -106,7 +135,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   FBSDKProfile *user = notification.userInfo[FBSDKProfileChangeNewKey];
   AssertTrueOrReturn(user);
   
-  [self stopObservingFacebookProfileNotifications];
+  [self stopObservingFacebookProfileUpdates];
   self.user = user; // should invoike completion block
 }
 
