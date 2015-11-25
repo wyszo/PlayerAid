@@ -7,11 +7,14 @@
 #import "FacebookAuthenticationController.h"
 #import "NSError+PlayerAidErrors.h"
 
+static const NSTimeInterval kProfileUpdateTimeoutInSeconds = 30.0f;
+
 @interface FacebookAuthenticationController () <FBSDKLoginButtonDelegate>
 @property (nonatomic, copy) VoidBlock loginButtonActionBlock;
 @property (nonatomic, copy) void (^completionBlock)(FBSDKProfile *user, NSError *error);
 @property (nonatomic, strong) FBSDKProfile *user;
 @property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
+@property (nonatomic, strong) NSTimer *timeoutTimer; // Timeout timer is useful for a case where there is a flaky internet connection that loses packets and doesn't allow to fetch data (but is not completely down)
 @end
 
 @implementation FacebookAuthenticationController
@@ -108,14 +111,39 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)startObservingFacebookProfileUpdates
 {
+  [self scheduleTimeoutTimer];
   [self startMonitoringReachability];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileDidChange:) name:FBSDKProfileDidChangeNotification object:nil];
 }
 
 - (void)stopObservingFacebookProfileUpdates
 {
+  [self stopTimeoutTimer];
   [self stopMonitoringReachability];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:FBSDKProfileDidChangeNotification object:nil];
+}
+
+#pragma mark - Timeout timer
+
+- (void)scheduleTimeoutTimer
+{
+  self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:kProfileUpdateTimeoutInSeconds target:self selector:@selector(timeoutTimerDidFire:) userInfo:nil repeats:NO];
+}
+
+- (void)stopTimeoutTimer
+{
+  [self.timeoutTimer invalidate];
+  self.timeoutTimer = nil;
+}
+
+- (void)timeoutTimerDidFire:(NSTimer *)timer
+{
+  AssertTrueOrReturn(timer == self.timeoutTimer);
+  [self stopTimeoutTimer];
+  [self stopObservingFacebookProfileUpdates];
+  
+  NSError *error = [NSError networkTimeOutError];
+  CallBlock(self.completionBlock, nil, error);
 }
 
 #pragma mark - Setters
@@ -136,7 +164,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(user);
   
   [self stopObservingFacebookProfileUpdates];
-  self.user = user; // should invoike completion block
+  self.user = user; // should invoke completion block
 }
 
 @end

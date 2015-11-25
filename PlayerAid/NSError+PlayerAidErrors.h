@@ -15,7 +15,9 @@
 
 + (NSError *)userCancelledURLRequestError;
 + (NSError *)networkConnectionLostError;
++ (NSError *)networkTimeOutError;
 
 - (BOOL)isURLRequestErrorUserCancelled;
+- (BOOL)isNetworkRequestTimeOutError;
 
 @end

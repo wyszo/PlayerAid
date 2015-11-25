@@ -36,15 +36,26 @@ ErrorMethodServerDomainMake(emailAddressAlreadyUsedForRegistrationError, EmailAd
 #pragma mark - User errors
 
 NSErrorMethodMake(userCancelledURLRequestError, NSURLErrorDomain, NSURLErrorCancelled)
+NSErrorMethodMake(networkTimeOutError, NSURLErrorDomain, NSURLErrorTimedOut)
 NSErrorMethodMake(networkConnectionLostError, kPlayerAidUserDomain, NetworkConnectionLostErrorCode)
 
 #pragma mark - Other interface methods
 
 - (BOOL)isURLRequestErrorUserCancelled
 {
-  BOOL urlErrorDomain = [self.domain isEqualToString:NSURLErrorDomain];
-  BOOL cancelledErrorCode = (self.code == NSURLErrorCancelled);
-  return (urlErrorDomain && cancelledErrorCode);
+  return (self.domainIsUrlErrorDomain && self.code == NSURLErrorCancelled);
+}
+
+- (BOOL)isNetworkRequestTimeOutError
+{
+  return (self.domainIsUrlErrorDomain && self.code == NSURLErrorTimedOut);
+}
+
+#pragma mark - Private
+
+- (BOOL)domainIsUrlErrorDomain
+{
+  return [self.domain isEqualToString:NSURLErrorDomain];
 }
 
 @end
