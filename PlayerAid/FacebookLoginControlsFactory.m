@@ -9,7 +9,7 @@
 #import "FacebookAuthenticationController.h"
 #import "UnauthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
-#import "DataExtractionHelper.h"
+#import "FBSDKProfileFormatter.h"
 #import "NSError+PlayerAidErrors.h"
 
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
@@ -29,7 +29,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 {
   AssertTrueOrReturnNil(completion);
   
-  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSError *error) {
+  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSString *email, NSError *error) {
     if (error) {
       if (![error isURLRequestErrorUserCancelled]) {
         [AlertFactory showAlertFromFacebookError:error]; 
@@ -38,7 +38,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     }
     else {
       AuthenticationRequestData *authRequestData = [AuthenticationRequestData new];
-      authRequestData.email = [DataExtractionHelper emailFromFBGraphUser:user];
+      authRequestData.email = [FBSDKProfileFormatter formattedEmail:email fromFBSDKProfile:user];
       NSLog(@"email: %@", authRequestData.email);
       
       NSString *accessTokenString = [FBSDKAccessToken currentAccessToken].tokenString;

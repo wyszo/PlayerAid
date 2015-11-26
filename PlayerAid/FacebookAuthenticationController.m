@@ -3,18 +3,16 @@
 //
 
 @import KZAsserts;
-@import AFNetworking;
+@import TWCommonLib;
 #import "FacebookAuthenticationController.h"
 #import "NSError+PlayerAidErrors.h"
-
-static const NSTimeInterval kProfileUpdateTimeoutInSeconds = 30.0f;
+#import "FBGraphApiRequest.h"
 
 @interface FacebookAuthenticationController () <FBSDKLoginButtonDelegate>
 @property (nonatomic, copy) VoidBlock loginButtonActionBlock;
-@property (nonatomic, copy) void (^completionBlock)(FBSDKProfile *user, NSError *error);
-@property (nonatomic, strong) FBSDKProfile *user;
-@property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
-@property (nonatomic, strong) NSTimer *timeoutTimer; // Timeout timer is useful for a case where there is a flaky internet connection that loses packets and doesn't allow to fetch data (but is not completely down)
+@property (nonatomic, copy) ProfileRequestCompletionBlock completionBlock;
+@property (nonatomic, strong) FBGraphApiRequest *graphApiRequest;
+
 @end
 
 @implementation FacebookAuthenticationController
@@ -26,7 +24,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Public interface
 
-+ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSError *error))completion
++ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSString *email, NSError *error))completion
 {
   AssertTrueOrReturnNil(completion);
   [self.class setupFacebookSDKBehaviour];
@@ -48,7 +46,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)logout
 {
-  self.user = nil;
   [FBSDKAccessToken setCurrentAccessToken:nil];
 }
 
@@ -59,113 +56,29 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   CallBlock(self.loginButtonActionBlock);
   
   if (error) {
-    CallBlock(self.completionBlock, nil, error);
+    CallBlock(self.completionBlock, nil, nil, error);
   }
   else {
     if ([result isCancelled]) {
       NSError *error = [NSError userCancelledURLRequestError];
-      CallBlock(self.completionBlock, nil, error);
+      CallBlock(self.completionBlock, nil, nil, error);
       return;
     }
-    self.user = [FBSDKProfile currentProfile]; // setter should invoike completion block
     
-    if (!self.user) {
-      [self startObservingFacebookProfileUpdates];
-    }
+    defineWeakSelf();
+    self.graphApiRequest = [[FBGraphApiRequest alloc] init];
+    [self.graphApiRequest makeGraphApiProfileRequestWithCompletion:^(FBSDKProfile * _Nullable profile, NSString * _Nullable email, NSError * _Nullable error) {
+      if (error) {
+        [weakSelf logout];
+      }
+      weakSelf.completionBlock(profile, email, error);
+    }];
   }
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
   AssertTrueOrReturn(NO && @"user should not be able to logout using login button!");
-}
-
-#pragma mark - Reachability monitoring 
-
-- (void)startMonitoringReachability
-{
-  defineWeakSelf();
-  
-  self.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"www.facebook.com"];
-  AssertTrueOrReturn(self.reachabilityManager);
-  
-  [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-    if (status == AFNetworkReachabilityStatusNotReachable) {
-      [FacebookAuthenticationController.sharedInstance logout];
-      [weakSelf stopObservingFacebookProfileUpdates];
-      
-      NSError *error = [NSError networkConnectionLostError];
-      CallBlock(weakSelf.completionBlock, nil, error);
-    }
-  }];
-  [self.reachabilityManager startMonitoring];
-}
-
-- (void)stopMonitoringReachability
-{
-  [self.reachabilityManager setReachabilityStatusChangeBlock:nil];
-  [self.reachabilityManager stopMonitoring];
-}
-
-#pragma mark - Facebook notifications
-
-- (void)startObservingFacebookProfileUpdates
-{
-  [self scheduleTimeoutTimer];
-  [self startMonitoringReachability];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(profileDidChange:) name:FBSDKProfileDidChangeNotification object:nil];
-}
-
-- (void)stopObservingFacebookProfileUpdates
-{
-  [self stopTimeoutTimer];
-  [self stopMonitoringReachability];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:FBSDKProfileDidChangeNotification object:nil];
-}
-
-#pragma mark - Timeout timer
-
-- (void)scheduleTimeoutTimer
-{
-  self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:kProfileUpdateTimeoutInSeconds target:self selector:@selector(timeoutTimerDidFire:) userInfo:nil repeats:NO];
-}
-
-- (void)stopTimeoutTimer
-{
-  [self.timeoutTimer invalidate];
-  self.timeoutTimer = nil;
-}
-
-- (void)timeoutTimerDidFire:(NSTimer *)timer
-{
-  AssertTrueOrReturn(timer == self.timeoutTimer);
-  [self stopTimeoutTimer];
-  [self stopObservingFacebookProfileUpdates];
-  [FacebookAuthenticationController.sharedInstance logout]; // in case we got logged in but didn't fetch user profile
-  
-  NSError *error = [NSError networkTimeOutError];
-  CallBlock(self.completionBlock, nil, error);
-}
-
-#pragma mark - Setters
-
-- (void)setUser:(FBSDKProfile *)user
-{
-  _user = user;
-  if (user != nil) {
-    CallBlock(self.completionBlock, self.user, nil);
-  }
-}
-
-#pragma mark - Notification callbacks
-
-- (void)profileDidChange:(NSNotification *)notification
-{
-  FBSDKProfile *user = notification.userInfo[FBSDKProfileChangeNewKey];
-  AssertTrueOrReturn(user);
-  
-  [self stopObservingFacebookProfileUpdates];
-  self.user = user; // should invoke completion block
 }
 
 @end

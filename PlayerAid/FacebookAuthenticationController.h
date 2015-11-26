@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 NEW_AND_INIT_UNAVAILABLE
 SHARED_INSTANCE_GENERATE_INTERFACE
 
-+ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSError *error))completion;
++ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSString *email, NSError *error))completion;
 
 - (void)logout;
 

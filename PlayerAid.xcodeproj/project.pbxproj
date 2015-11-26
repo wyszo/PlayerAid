@@ -56,6 +56,7 @@
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
+		315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */; };
 		31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
@@ -71,7 +72,7 @@
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
-		317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* DataExtractionHelper.m */; };
+		317780051A7FC6B6007057CD /* FBSDKProfileFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */; };
 		317780091A7FED4F007057CD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780081A7FED4F007057CD /* ProfileViewController.m */; };
 		3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800B1A7FED7A007057CD /* SettingsViewController.m */; };
 		317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* TutorialsTableDataSource.m */; };
@@ -262,6 +263,8 @@
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
+		315C0DFE1C07A4D700B82BA4 /* FBGraphApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGraphApiRequest.h; sourceTree = "<group>"; };
+		315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGraphApiRequest.m; sourceTree = "<group>"; };
 		31652D6C1BFB96A50007855A /* TutorialTextStylingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTextStylingHelper.h; sourceTree = "<group>"; };
 		31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTextStylingHelper.m; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -291,8 +294,8 @@
 		31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticatedServerCommunicationController.m; sourceTree = "<group>"; };
 		31777FFF1A7FBFBC007057CD /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
 		317780001A7FBFBC007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
-		317780031A7FC6B6007057CD /* DataExtractionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExtractionHelper.h; sourceTree = "<group>"; };
-		317780041A7FC6B6007057CD /* DataExtractionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataExtractionHelper.m; sourceTree = "<group>"; };
+		317780031A7FC6B6007057CD /* FBSDKProfileFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSDKProfileFormatter.h; sourceTree = "<group>"; };
+		317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSDKProfileFormatter.m; sourceTree = "<group>"; };
 		317780071A7FED4F007057CD /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		317780081A7FED4F007057CD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3177800A1A7FED7A007057CD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -802,8 +805,8 @@
 		312FF5FB1A9F1A2600AE3174 /* Facebook data manipulation */ = {
 			isa = PBXGroup;
 			children = (
-				317780031A7FC6B6007057CD /* DataExtractionHelper.h */,
-				317780041A7FC6B6007057CD /* DataExtractionHelper.m */,
+				317780031A7FC6B6007057CD /* FBSDKProfileFormatter.h */,
+				317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */,
 			);
 			name = "Facebook data manipulation";
 			sourceTree = "<group>";
@@ -897,6 +900,15 @@
 				315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */,
 			);
 			name = ImagePickerOverlay;
+			sourceTree = "<group>";
+		};
+		315C0DFD1C07A49D00B82BA4 /* GraphApiRequest */ = {
+			isa = PBXGroup;
+			children = (
+				315C0DFE1C07A4D700B82BA4 /* FBGraphApiRequest.h */,
+				315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */,
+			);
+			name = GraphApiRequest;
 			sourceTree = "<group>";
 		};
 		31652D6A1BFB96750007855A /* TextStyling */ = {
@@ -1104,6 +1116,7 @@
 		317780161A800630007057CD /* FacebookAuthentication */ = {
 			isa = PBXGroup;
 			children = (
+				315C0DFD1C07A49D00B82BA4 /* GraphApiRequest */,
 				31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */,
 				31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */,
 			);
@@ -2129,6 +2142,7 @@
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */,
+				315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */,
 				313868571B14FFFA00C0C245 /* SectionCell.m in Sources */,
 				31014E481A939232002F3485 /* AuthenticationController_SavingToken.h in Sources */,
 				31B46D421A87AF75004EEA30 /* CreateTutorialStepButtonsContainerView.m in Sources */,
@@ -2159,7 +2173,7 @@
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
 				312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */,
 				31EFB6B31BAB254E00F87C03 /* SignUpValidator.m in Sources */,
-				317780051A7FC6B6007057CD /* DataExtractionHelper.m in Sources */,
+				317780051A7FC6B6007057CD /* FBSDKProfileFormatter.m in Sources */,
 				31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
