@@ -32,7 +32,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSError *error) {
     if (error) {
       if (![error isURLRequestErrorUserCancelled]) {
-        [AlertFactory showAlertFromFacebookError:error]; // TODO: this needs updating!!!
+        [AlertFactory showAlertFromFacebookError:error]; 
       }
       CallBlock(completion, nil, error);
     }

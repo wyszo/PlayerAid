@@ -58,6 +58,6 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showReportCommentAlertViewWithOKAction:(ActionBlock)okAction;
 
 // Facebook alerts
-+ (UIAlertView *)showAlertFromFacebookError:(NSError *)error;
++ (nullable UIAlertView *)showAlertFromFacebookError:(nonnull NSError *)error;
 
 @end

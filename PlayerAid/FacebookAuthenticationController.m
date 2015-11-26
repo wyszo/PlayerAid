@@ -36,7 +36,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   FacebookAuthenticationController.sharedInstance.completionBlock = completion;
   
   FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
-  loginButton.readPermissions = @[@"email"];
+  loginButton.readPermissions = @[@"public_profile", @"email"];
   loginButton.delegate = self.sharedInstance;
   return loginButton;
 }
@@ -141,6 +141,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(timer == self.timeoutTimer);
   [self stopTimeoutTimer];
   [self stopObservingFacebookProfileUpdates];
+  [FacebookAuthenticationController.sharedInstance logout]; // in case we got logged in but didn't fetch user profile
   
   NSError *error = [NSError networkTimeOutError];
   CallBlock(self.completionBlock, nil, error);
