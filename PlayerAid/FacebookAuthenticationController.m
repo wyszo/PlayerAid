@@ -17,25 +17,19 @@
 
 @implementation FacebookAuthenticationController
 
-#pragma mark - Singleton
-
-/* Technical debt: could easily avoid making a singleton here! */
-SHARED_INSTANCE_GENERATE_IMPLEMENTATION
-
 #pragma mark - Public interface
 
-+ (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(void (^)(FBSDKProfile *user, NSString *email, NSError *error))completion
+- (nullable FBSDKLoginButton *)facebookLoginViewWithAction:(nullable VoidBlock)action completion:(ProfileRequestCompletionBlock)completion
 {
   AssertTrueOrReturnNil(completion);
   [self.class setupFacebookSDKBehaviour];
   
-  // TODO: Technical debt - setting a completion block on a singleton?? Definitely an anti-pattern!!!
-  FacebookAuthenticationController.sharedInstance.loginButtonActionBlock = action;
-  FacebookAuthenticationController.sharedInstance.completionBlock = completion;
+  self.loginButtonActionBlock = action;
+  self.completionBlock = completion;
   
   FBSDKLoginButton *loginButton = [FBSDKLoginButton new];
   loginButton.readPermissions = @[@"public_profile", @"email"];
-  loginButton.delegate = self.sharedInstance;
+  loginButton.delegate = self;
   return loginButton;
 }
 

@@ -5,6 +5,7 @@
 @import KZAsserts;
 @import TWCommonLib;
 @import FBSDKCoreKit;
+@import BlocksKit;
 #import "FacebookLoginControlsFactory.h"
 #import "FacebookAuthenticationController.h"
 #import "UnauthenticatedServerCommunicationController.h"
@@ -29,7 +30,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 {
   AssertTrueOrReturnNil(completion);
   
-  FBSDKLoginButton *loginButton = [FacebookAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSString *email, NSError *error) {
+  FacebookAuthenticationController *fbAuthenticationController = [FacebookAuthenticationController new];
+  FBSDKLoginButton *loginButton = [fbAuthenticationController facebookLoginViewWithAction:buttonAction completion:^(FBSDKProfile *user, NSString *email, NSError *error) {
     if (error) {
       if (![error isURLRequestErrorUserCancelled]) {
         [AlertFactory showAlertFromFacebookError:error]; 
@@ -49,6 +51,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       [[self sharedInstance] sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:YES completion:completion];
     }
   }];
+  [loginButton bk_associateValue:fbAuthenticationController withKey:@"fbAuthenticationController"];
   return loginButton;
 }
 

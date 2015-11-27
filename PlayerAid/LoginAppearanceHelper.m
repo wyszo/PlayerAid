@@ -94,7 +94,7 @@
       }];
     } else if (error.code == [NSError emailAddressAlreadyUsedForRegistrationError].code) {
       [activityIndicator dismiss];
-      [FacebookAuthenticationController.sharedInstance logout];
+      [[FacebookAuthenticationController new] logout]; // TODO: inject FAC as an external dependency
       [TWAlertFactory showOKAlertViewWithMessage:@"Hey, it looks like you already signed up with email. Please log in using that method!"];
     }
     else if (error && ![error isURLRequestErrorUserCancelled]) {
