@@ -61,6 +61,8 @@
   AssertTrueOrReturnNil(comment);
   
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
+    // TODO: highlight comment being edited
+    // TODO: show comment editing inputView
     // TODO: edit comment network request
     NOT_IMPLEMENTED_YET_RETURN
   } removeAction:^{
