@@ -2,7 +2,7 @@
 //  PlayerAid
 //
 
-@import Foundation;
+@import UIKit;
 @import TWCommonLib;
 #import "Tutorial.h"
 @class TutorialComment;
@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion;
 
-- (void)reportCommentShowConfirmationAlert:(TutorialComment *)comment;
+- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment;
+- (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment;
 
 @end
 

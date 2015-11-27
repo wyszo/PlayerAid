@@ -14,9 +14,9 @@
 #import "Tutorial.h"
 #import "CommonViews.h"
 #import "CommentsTableViewDataSource.h"
-#import "AlertControllerFactory.h"
 #import "AlertFactory.h"
-#import "AuthenticatedServerCommunicationController.h"
+//#import "AuthenticatedServerCommunicationController.h"
+#import "UsersFetchController.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -166,10 +166,11 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn(actionSheetPresenter);
   AssertTrueOr([actionSheetPresenter isKindOfClass:[UITabBarController class]],);
   
-  defineWeakSelf();
-  UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
-    [weakSelf.commentsController reportCommentShowConfirmationAlert:comment];
-  }];
+  UIAlertController *actionSheet = [self.commentsController reportCommentAlertController:comment];
+  
+  if ([self isOwnComment:comment]) {
+    actionSheet = [self.commentsController editDeleteCommentActionSheet:comment];
+  }
   
   /**
    Technical debt: can't figure out why despite running on a main thread, the action sheet appears with a delay (on iOS9)! Dispatch async as a workaround..
@@ -178,6 +179,15 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   DISPATCH_ASYNC_ON_MAIN_THREAD(^{
     [actionSheetPresenter presentViewController:actionSheet animated:YES completion:nil];
   });
+}
+
+#pragma mark - Private
+
+- (BOOL)isOwnComment:(nonnull TutorialComment *)comment
+{
+  AssertTrueOrReturnNo(comment);
+  User *currentUser = [UsersFetchController.sharedInstance currentUserInContext:comment.managedObjectContext];
+  return (comment.madeBy == currentUser); // objects from same managedObjectContext, pointer equality check is enough
 }
 
 @end

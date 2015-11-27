@@ -10,6 +10,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
+#import "AlertControllerFactory.h"
 
 @interface TutorialCommentsController()
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -46,6 +47,29 @@
 }
 
 #pragma mark - public interface
+
+- (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment
+{
+  defineWeakSelf();
+  return [AlertControllerFactory reportCommentActionControllerWithAction:^() {
+    [weakSelf reportCommentShowConfirmationAlert:comment];
+  }];
+}
+
+- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment
+{
+  AssertTrueOrReturnNil(comment);
+  
+  UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
+    // TODO: edit comment network request
+    NOT_IMPLEMENTED_YET_RETURN
+  } removeAction:^{
+    [self sendRemoveCommentNetworkRequest:comment];
+  }];
+  return actionSheet;
+}
+
+#pragma mark - private
 
 - (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion
 {
@@ -86,12 +110,32 @@
   }];
 }
 
-#pragma mark - private
-
 - (void)updateTutorialObjectFromDictionary:(nonnull NSDictionary *)dictionary
 {
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
     [TutorialsHelper tutorialFromDictionary:dictionary parseAuthors:NO inContext:localContext];
+  }];
+}
+
+#pragma mark - Removing a comment
+
+- (void)sendRemoveCommentNetworkRequest:(nonnull TutorialComment *)comment
+{
+  defineWeakSelf();
+  [[AuthenticatedServerCommunicationController sharedInstance] deleteComment:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    if (error) {
+      [AlertFactory showGenericErrorAlertViewNoRetry];
+    } else {
+      [weakSelf removeCommentFromCoreData:comment];
+    }
+  }];
+}
+
+- (void)removeCommentFromCoreData:(nonnull TutorialComment *)comment
+{
+  AssertTrueOrReturn(comment);
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [comment MR_deleteEntityInContext:localContext];
   }];
 }
 

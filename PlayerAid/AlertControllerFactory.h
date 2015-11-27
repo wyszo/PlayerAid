@@ -9,6 +9,7 @@
 
 + (UIAlertController *)editProfilePhotoActionControllerFacebookAction:(VoidBlock)facebookAction chooseFromLibraryAction:(VoidBlock)chooseFromLibraryAction takePhotoAction:(VoidBlock)takePhotoAction;
 
-+ (UIAlertController *)reportCommentActionControllerWithAction:(nonnull VoidBlock)reportAction;
++ (nonnull UIAlertController *)editDeleteCommentActionControllerWithEditAction:(nonnull VoidBlock)editAction removeAction:(nonnull VoidBlock)removeAction;
++ (nonnull UIAlertController *)reportCommentActionControllerWithAction:(nonnull VoidBlock)reportAction;
 
 @end

@@ -267,6 +267,18 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:parameters completion:completion];
 }
 
+- (void)deleteComment:(TutorialComment *)comment completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(completion);
+  
+  NSString *commentID = comment.serverID.stringValue;
+  AssertTrueOrReturn(commentID.length);
+  NSString *urlString = [NSString stringWithFormat:@"comment/%@", commentID];
+  
+  [self performDeleteRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
+}
+
 - (void)reportCommentAsInappropriate:(nonnull TutorialComment *)comment completion:(nonnull NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(comment.serverID);
@@ -342,6 +354,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)performPostRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
 {
   [self performRequestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
+}
+
+- (void)performDeleteRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
+{
+  [self performRequestWithType:@"DELETE" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
 
 - (void)performRequestWithType:(NSString *)requestType apiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters useCacheIfAllowed:(BOOL)useCache completion:(NetworkResponseBlock)completion

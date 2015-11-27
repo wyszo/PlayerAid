@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 @import TWCommonLib;
 #import "AlertControllerFactory.h"
 
@@ -38,20 +39,35 @@
   return alertController;
 }
 
++ (nonnull UIAlertController *)editDeleteCommentActionControllerWithEditAction:(nonnull VoidBlock)editAction removeAction:(nonnull VoidBlock)removeAction
+{
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  [alertController addAction:[self alertActionWithTitle:@"Edit Comment" action:editAction]];
+  [alertController addAction:[self alertActionWithTitle:@"Delete Comment" action:removeAction]];
+  [alertController addAction:[self cancelAlertAction]];
+  return alertController;
+}
+
 + (UIAlertController *)reportCommentActionControllerWithAction:(VoidBlock)reportActionBlock
 {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  
-  UIAlertAction *reportAction = [UIAlertAction actionWithTitle:@"Report Comment" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    CallBlock(reportActionBlock);
-  }];
-  [alertController addAction:reportAction];
-  
+  [alertController addAction:[self alertActionWithTitle:@"Report Comment" action:reportActionBlock]];  
   [alertController addAction:[self cancelAlertAction]];
   return alertController;
 }
 
 #pragma mark - Private
+
++ (UIAlertAction *)alertActionWithTitle:(nonnull NSString *)title action:(nonnull VoidBlock)action
+{
+  AssertTrueOrReturnNil(title.length);
+  AssertTrueOrReturnNil(action);
+  
+  UIAlertAction *alertAction = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull handlerAction) {
+    CallBlock(action);
+  }];
+  return alertAction;
+}
 
 + (UIAlertAction *)cancelAlertAction
 {
