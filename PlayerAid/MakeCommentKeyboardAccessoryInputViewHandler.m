@@ -99,7 +99,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)installInputViewInKeyWindow
 {
-  [[UIWindow tw_keyWindow] addSubview:self.inputVC.view];
+  UIViewController *parentVC = [UIWindow tw_keyWindow].rootViewController;
+  AssertTrueOrReturn(parentVC);
+  
+  [parentVC.view addSubview:self.inputVC.view];
   [self positionInputViewBelowTheScreen];
 }
 

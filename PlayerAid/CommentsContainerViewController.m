@@ -162,11 +162,15 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn(comment);
   AssertTrueOrReturn(self.commentsController && @"comments controller has to be set for reporting comments!");
   
+  UIViewController *actionSheetPresenter = [UIWindow tw_keyWindow].rootViewController;
+  AssertTrueOrReturn(actionSheetPresenter);
+  AssertTrueOr([actionSheetPresenter isKindOfClass:[UITabBarController class]],);
+  
   defineWeakSelf();
   UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
     [weakSelf.commentsController reportCommentShowConfirmationAlert:comment];
   }];
-  [self presentViewController:actionSheet animated:YES completion:nil];
+  [actionSheetPresenter presentViewController:actionSheet animated:YES completion:nil];
 }
 
 @end
