@@ -267,14 +267,22 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:parameters completion:completion];
 }
 
+- (void)editComment:(TutorialComment *)comment withText:(NSString *)commentText completion:(NetworkResponseBlock)completion
+{
+  AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(commentText.length);
+  AssertTrueOrReturn(completion);
+  
+  NSDictionary *parameters = @{ @"message" : commentText };
+  NSString *urlString = [self urlStringForComment:comment];
+  [self performPutRequestWithApiToken:self.apiToken urlString:urlString parameters:parameters completion:completion];
+}
+
 - (void)deleteComment:(TutorialComment *)comment completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(comment);
   AssertTrueOrReturn(completion);
-  
-  NSString *commentID = comment.serverID.stringValue;
-  AssertTrueOrReturn(commentID.length);
-  NSString *urlString = [NSString stringWithFormat:@"comment/%@", commentID];
+  NSString *urlString = [self urlStringForComment:comment];
   
   [self performDeleteRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
@@ -293,6 +301,14 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (NSString *)likeUrlStringForTutorial:(Tutorial *)tutorial
 {
   return [self urlStringForTutorial:tutorial withSufix:@"like"];
+}
+
+- (NSString *)urlStringForComment:(TutorialComment *)comment
+{
+  AssertTrueOrReturnNil(comment);
+  NSString *commentID = comment.serverID.stringValue;
+  AssertTrueOrReturnNil(commentID.length);
+  return [NSString stringWithFormat:@"comment/%@", commentID];
 }
 
 - (NSString *)urlStringForTutorial:(nonnull Tutorial *)tutorial withSufix:(nullable NSString *)sufix
@@ -354,6 +370,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)performPostRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
 {
   [self performRequestWithType:@"POST" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
+}
+
+- (void)performPutRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion
+{
+  [self performRequestWithType:@"PUT" apiToken:apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
 }
 
 - (void)performDeleteRequestWithApiToken:(NSString *)apiToken urlString:(NSString *)urlString parameters:(id)parameters completion:(NetworkResponseBlock)completion

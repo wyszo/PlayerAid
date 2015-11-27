@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // comments
 - (void)addAComment:(NSString *)commentText toTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
+- (void)editComment:(TutorialComment *)comment withText:(NSString *)commentText completion:(NetworkResponseBlock)completion;
 - (void)deleteComment:(TutorialComment *)comment completion:(NetworkResponseBlock)completion;
 - (void)reportCommentAsInappropriate:(TutorialComment *)comment completion:(NetworkResponseBlock)completion;
 
