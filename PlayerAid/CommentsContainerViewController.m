@@ -170,7 +170,14 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   UIAlertController *actionSheet = [AlertControllerFactory reportCommentActionControllerWithAction:^() {
     [weakSelf.commentsController reportCommentShowConfirmationAlert:comment];
   }];
-  [actionSheetPresenter presentViewController:actionSheet animated:YES completion:nil];
+  
+  /**
+   Technical debt: can't figure out why despite running on a main thread, the action sheet appears with a delay (on iOS9)! Dispatch async as a workaround..
+  */
+  AssertTrueOr([NSThread isMainThread],);
+  DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+    [actionSheetPresenter presentViewController:actionSheet animated:YES completion:nil];
+  });
 }
 
 @end
