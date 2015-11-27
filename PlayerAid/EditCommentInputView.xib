@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCommentInputViewController">
+            <connections>
+                <outlet property="inputTextView" destination="gr7-yp-3zC" id="mqq-9o-UpF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="122"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gr7-yp-3zC" userLabel="Input Text View">
+                    <rect key="frame" x="8" y="64" width="426" height="50"/>
+                    <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="9U4-LK-N3e"/>
+                    </constraints>
+                    <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ql1-j7-e8y" userLabel="Cancel">
+                    <rect key="frame" x="8" y="8" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="dZ7-c7-jZt"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7e-SK-i9x">
+                    <rect key="frame" x="400" y="8" width="34" height="30"/>
+                    <state key="normal" title="Save"/>
+                    <connections>
+                        <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="S5K-l3-vwz"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editing Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwT-ih-cbc" userLabel="Editing Message">
+                    <rect key="frame" x="154" y="12" width="135" height="20.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="135" id="WMC-Lm-Zwe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WwT-ih-cbc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="6za-NW-3rL"/>
+                <constraint firstItem="Y7e-SK-i9x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="70c-3L-WhU"/>
+                <constraint firstItem="WwT-ih-cbc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7BJ-Gg-PhR"/>
+                <constraint firstItem="gr7-yp-3zC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="BM0-Ra-KqY"/>
+                <constraint firstAttribute="trailing" secondItem="gr7-yp-3zC" secondAttribute="trailing" constant="8" id="EcG-YM-Kgf"/>
+                <constraint firstItem="ql1-j7-e8y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="GRO-wg-MyA"/>
+                <constraint firstAttribute="bottom" secondItem="gr7-yp-3zC" secondAttribute="bottom" constant="8" id="NgP-d3-S4f"/>
+                <constraint firstAttribute="trailing" secondItem="Y7e-SK-i9x" secondAttribute="trailing" constant="8" id="kEH-yF-YBW"/>
+                <constraint firstItem="ql1-j7-e8y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wyX-gf-cbE"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="162" y="168"/>
+        </view>
+    </objects>
+</document>

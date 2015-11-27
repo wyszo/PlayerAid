@@ -55,6 +55,8 @@
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
+		31549F861C09089600B2CA87 /* EditCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31549F851C09089600B2CA87 /* EditCommentInputViewController.m */; };
+		31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31549F871C0908B300B2CA87 /* EditCommentInputView.xib */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */; };
 		31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */; };
@@ -261,6 +263,9 @@
 		314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
+		31549F841C09089600B2CA87 /* EditCommentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCommentInputViewController.h; sourceTree = "<group>"; };
+		31549F851C09089600B2CA87 /* EditCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCommentInputViewController.m; sourceTree = "<group>"; };
+		31549F871C0908B300B2CA87 /* EditCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCommentInputView.xib; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
 		315C0DFE1C07A4D700B82BA4 /* FBGraphApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGraphApiRequest.h; sourceTree = "<group>"; };
@@ -605,9 +610,8 @@
 		3102F9371BF6978C00B544C6 /* KeyboardInputVC */ = {
 			isa = PBXGroup;
 			children = (
-				3177CACF1BFD19A700F371A0 /* Handler */,
-				3102F9381BF697C300B544C6 /* MakeCommentInputViewController.h */,
-				3102F9391BF697C300B544C6 /* MakeCommentInputViewController.m */,
+				31549F831C09086A00B2CA87 /* EditComment */,
+				31549F821C09086500B2CA87 /* MakeComment */,
 			);
 			name = KeyboardInputVC;
 			sourceTree = "<group>";
@@ -616,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */,
+				31549F871C0908B300B2CA87 /* EditCommentInputView.xib */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -891,6 +896,25 @@
 				314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */,
 			);
 			name = EditProfileFiltersCollectionViewController;
+			sourceTree = "<group>";
+		};
+		31549F821C09086500B2CA87 /* MakeComment */ = {
+			isa = PBXGroup;
+			children = (
+				3177CACF1BFD19A700F371A0 /* Handler */,
+				3102F9381BF697C300B544C6 /* MakeCommentInputViewController.h */,
+				3102F9391BF697C300B544C6 /* MakeCommentInputViewController.m */,
+			);
+			name = MakeComment;
+			sourceTree = "<group>";
+		};
+		31549F831C09086A00B2CA87 /* EditComment */ = {
+			isa = PBXGroup;
+			children = (
+				31549F841C09089600B2CA87 /* EditCommentInputViewController.h */,
+				31549F851C09089600B2CA87 /* EditCommentInputViewController.m */,
+			);
+			name = EditComment;
 			sourceTree = "<group>";
 		};
 		315822241AEBD83000DA6CCE /* ImagePickerOverlay */ = {
@@ -2001,6 +2025,7 @@
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
+				31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				317309F81BF9EFDA004C541D /* Comments.storyboard in Resources */,
 				3102F9431BF9D58D00B544C6 /* TutorialCommentCell.xib in Resources */,
@@ -2203,6 +2228,7 @@
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,
 				31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */,
+				31549F861C09089600B2CA87 /* EditCommentInputViewController.m in Sources */,
 				312EFF421BD9181300F2017D /* TutorialTableViewCell+Prefetching.m in Sources */,
 				31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */,
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
