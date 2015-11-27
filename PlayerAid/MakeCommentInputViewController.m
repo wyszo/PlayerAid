@@ -59,7 +59,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
     return;
   }
   
-  NSString *commentText = self.inputTextView.text;
+  NSString *commentText = [self.inputTextView.text tw_stringByTrimmingWhitespaceAndNewline];
   AssertTrueOrReturn(commentText.length);
   
   CallBlock(self.postButtonPressedBlock, commentText, ^(BOOL success){
