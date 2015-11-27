@@ -28,6 +28,7 @@
 
 + (UIColor *)tutorialCommentsBarBackgroundColor;
 + (UIColor *)commentsTimeAgoLabelColor;
++ (UIColor *)editedCommentTableViewCellBackgroundColor;
 
 + (UIColor *)makeCommentPostButtonActiveBackgroundColor;
 + (UIColor *)makeCommentPostButtonInactiveBackgroundColor;

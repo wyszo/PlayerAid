@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion;
 
-- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment;
+- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell;
 - (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment;
 
 @end

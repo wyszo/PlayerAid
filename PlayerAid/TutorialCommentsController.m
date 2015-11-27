@@ -11,6 +11,7 @@
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
 #import "AlertControllerFactory.h"
+#import "ColorsHelper.h"
 
 @interface TutorialCommentsController()
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -56,14 +57,17 @@
   }];
 }
 
-- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment
+- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell
 {
   AssertTrueOrReturnNil(comment);
+  AssertTrueOrReturnNil(cell);
   
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
-    // TODO: highlight comment being edited
+    cell.contentView.backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
     // TODO: show comment editing inputView
     // TODO: edit comment network request
+    // TODO: dismiss cell hilight when comment editing finished
+    
     NOT_IMPLEMENTED_YET_RETURN
   } removeAction:^{
     [self sendRemoveCommentNetworkRequest:comment];

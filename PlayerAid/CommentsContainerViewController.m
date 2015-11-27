@@ -78,7 +78,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     
     if ([cell isExpanded]) {
       AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-      [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object];
+      [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object withTableViewCell:cell];
     }
     else {
       [cell expandCell];
@@ -157,9 +157,10 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   [commentCell configureWithTutorialComment:comment];
 }
 
-- (void)showUserActionsActionSheetForComment:(nonnull TutorialComment *)comment
+- (void)showUserActionsActionSheetForComment:(nonnull TutorialComment *)comment withTableViewCell:(nonnull UITableViewCell *)cell
 {
   AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(cell);
   AssertTrueOrReturn(self.commentsController && @"comments controller has to be set for reporting comments!");
   
   UIViewController *actionSheetPresenter = [UIWindow tw_keyWindow].rootViewController;
@@ -169,7 +170,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   UIAlertController *actionSheet = [self.commentsController reportCommentAlertController:comment];
   
   if ([self isOwnComment:comment]) {
-    actionSheet = [self.commentsController editDeleteCommentActionSheet:comment];
+    actionSheet = [self.commentsController editDeleteCommentActionSheet:comment withTableViewCell:cell];
   }
   
   /**

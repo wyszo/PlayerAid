@@ -14,9 +14,9 @@ static const NSInteger kNewPlayerAidBlue = 0x3f68c5;
 
 @implementation ColorsHelper
 
-UIColorMethodMake(loginLogInLightBlueBackgroundColor, 236, 238, 241);
-UIColorMethodMake(loginSignupLightBlueBackgroundColor, 236, 238, 241);
-UIColorMethodMake(signupTermsAndConditionsPrivacyPolicyTextColor, 133, 134, 149);
+UIColorMethodMake(loginLogInLightBlueBackgroundColor, 236, 238, 241)
+UIColorMethodMake(loginSignupLightBlueBackgroundColor, 236, 238, 241)
+UIColorMethodMake(signupTermsAndConditionsPrivacyPolicyTextColor, 133, 134, 149)
 
 UIColorMethodMake(tabBarSelectedTextColor, 42, 70, 136)
 UIColorMethodMake(tabBarUnselectedTextColor, 158, 171, 199)
@@ -36,7 +36,9 @@ UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
 
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
-UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139);
+UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139)
+UIColorMethodMake(editedCommentTableViewCellBackgroundColor, 255, 255, 223)
+
 UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
 UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
 
