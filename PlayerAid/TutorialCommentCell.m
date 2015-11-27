@@ -20,6 +20,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
+@property (assign, nonatomic) BOOL expanded;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
@@ -42,6 +43,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;
+  self.expanded = NO;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
@@ -67,15 +69,39 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [commentAuthor placeAvatarInImageView:self.avatarImageView];
 }
 
+#pragma mark - interface
+
+- (BOOL)isExpanded
+{
+  return self.expanded || [self shouldHideMoreButton]; // lineCount equals either 0 or <= maxNrOfLines
+}
+
+- (void)expandCell
+{
+  BOOL bothBeforeAndAfterAnimationBlocksSet = (self.willChangeCellHeightBlock && self.didChangeCellHeightBlock);
+  AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
+  
+  CallBlock(self.willChangeCellHeightBlock);
+  self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
+  [self hideMoreButton]; // cell extended, we don't need more button anymore
+  self.expanded = YES;
+  CallBlock(self.didChangeCellHeightBlock);
+}
+
 #pragma mark - private
 
 - (void)updateMoreButtonVisibility
 {
-  BOOL shouldHideMoreButton = ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  BOOL shouldHideMoreButton = [self shouldHideMoreButton];
   if (shouldHideMoreButton) {
     [self shrinkMoreButtonHeight];
   }
   self.moreButton.hidden = shouldHideMoreButton;
+}
+
+- (BOOL)shouldHideMoreButton
+{
+  return ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
 }
 
 - (void)hideMoreButton
@@ -103,13 +129,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 #pragma mark - IBActions
 
 - (IBAction)moreButtonPressed:(id)sender {
-  BOOL bothBeforeAndAfterAnimationBlocksSet = (self.willChangeCellHeightBlock && self.didChangeCellHeightBlock);
-  AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
-  
-  CallBlock(self.willChangeCellHeightBlock);
-  self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
-  [self hideMoreButton]; // cell extended, we don't need it anymore
-  CallBlock(self.didChangeCellHeightBlock);
+  [self expandCell];
 }
 
 @end

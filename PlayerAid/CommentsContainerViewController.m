@@ -73,8 +73,16 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TWSimpleTableViewDelegate *delegate = [[TWSimpleTableViewDelegate alloc] initAndAttachToTableView:self.commentsTableView];
   defineWeakSelf();
   delegate.cellSelectedExtendedBlock = ^(NSIndexPath *indexPath, id object) {
-    AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-    [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object];
+    TutorialCommentCell *cell = [weakSelf.commentsTableView cellForRowAtIndexPath:indexPath];
+    AssertTrueOrReturn(cell);
+    
+    if ([cell isExpanded]) {
+      AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
+      [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object];
+    }
+    else {
+      [cell expandCell];
+    }
   };
   [self.commentsTableView bk_associateValue:delegate withKey:@"tableViewDelegate"];
 }
