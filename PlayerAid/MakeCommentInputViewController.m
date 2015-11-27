@@ -59,7 +59,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
     return;
   }
   
-  NSString *commentText = [self.inputTextView.text tw_stringByTrimmingWhitespaceAndNewline];
+  NSString *commentText = self.trimmedCommentText;
   AssertTrueOrReturn(commentText.length);
   
   CallBlock(self.postButtonPressedBlock, commentText, ^(BOOL success){
@@ -84,6 +84,11 @@ static NSString *const kXibFileName = @"AddCommentInputView";
   self.inputTextView.text = @"";
 }
 
+- (NSString *)trimmedCommentText
+{
+  return [self.inputTextView.text tw_stringByTrimmingWhitespaceAndNewline];
+}
+
 - (void)updatePostButtonHighlight
 {
   UIColor *buttonBackgroundColor = [ColorsHelper makeCommentPostButtonInactiveBackgroundColor];
@@ -96,7 +101,7 @@ static NSString *const kXibFileName = @"AddCommentInputView";
 
 - (BOOL)postButtonActive
 {
-  return (self.inputTextView.text.length > 0);
+  return (self.trimmedCommentText.length > 0);
 }
 
 @end
