@@ -2,6 +2,8 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
+@import TWCommonLib;
 #import "EditCommentInputViewController.h"
 
 static NSString *const kNibName = @"EditCommentInputView";
@@ -31,7 +33,7 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
-
+  CallBlock(self.cancelButtonAction);
 }
 
 - (IBAction)saveButtonPressed:(id)sender

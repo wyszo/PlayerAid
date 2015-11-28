@@ -15,7 +15,6 @@
 #import "CommonViews.h"
 #import "CommentsTableViewDataSource.h"
 #import "AlertFactory.h"
-//#import "AuthenticatedServerCommunicationController.h"
 #import "UsersFetchController.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";

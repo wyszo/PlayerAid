@@ -24,6 +24,7 @@ static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegu
 
 static const CGFloat kFoldingAnimationDuration = 0.5f;
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
+static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -74,7 +75,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
   self.makeCommentInputViewController = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
   
-  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputViewController];
+  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputViewController desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
   
   defineWeakSelf();
   self.makeCommentInputViewController.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
