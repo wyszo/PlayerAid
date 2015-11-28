@@ -225,9 +225,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 100.0f;
     defineWeakSelf();
     _editCommentInputVC.cancelButtonAction = ^() {
       [weakSelf.editCommentInputViewHandler slideInputViewOut];
-      
     };
-    
   }
   return _editCommentInputVC;
 }
@@ -250,9 +248,18 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 100.0f;
     [commentsContainerVC setTutorial:self.tutorial];
     
     defineWeakSelf();
-    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(NSString *commentText){
+    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(NSString *commentText, BlockWithBoolParameter completion){
       [weakSelf.editCommentInputViewHandler slideInputViewIn];
       [weakSelf.editCommentInputVC setCommentText:commentText];
+      
+      weakSelf.editCommentInputViewHandler.inputViewDidDismissBlock = ^() {
+        BOOL commentChanged = YES; // TODO: update this value to whether it really changed or not
+        CallBlock(completion, commentChanged);
+      };
+      
+      weakSelf.editCommentInputVC.saveButtonAction = ^(NSString *editedComment) {
+        // TODO: send a network request for editing a comment...
+      };
     }];
   }
 }

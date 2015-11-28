@@ -99,10 +99,12 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
   AssertTrueOr(self.desiredInputViewHeight > 0,);
   
+  defineWeakSelf();
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
   } completion:^(BOOL finished) {
     [strongInputView removeFromSuperview];
+    CallBlock(weakSelf.inputViewDidDismissBlock);
   }];
 }
 

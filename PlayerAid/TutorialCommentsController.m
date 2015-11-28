@@ -57,18 +57,26 @@
   }];
 }
 
-- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell
+- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction
 {
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(cell);
+  AssertTrueOrReturnNil(editCommentAction);
   
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
-    cell.contentView.backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
-    // TODO: show comment editing inputView
-    // TODO: edit comment network request
-    // TODO: dismiss cell hilight when comment editing finished
+    UIColor *originalCellBackgroundColor = cell.contentView.backgroundColor;
     
-    NOT_IMPLEMENTED_YET_RETURN
+    cell.contentView.backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
+    
+    BlockWithBoolParameter didFinishEditingCommentCompletionBlock = ^(BOOL commentChanged) {
+      cell.contentView.backgroundColor = originalCellBackgroundColor;
+      
+      if (commentChanged) {
+        // TODO: send edit comment network request
+      }
+    };
+    
+    CallBlock(editCommentAction, comment.text, didFinishEditingCommentCompletionBlock);
   } removeAction:^{
     [self sendRemoveCommentNetworkRequest:comment];
   }];
