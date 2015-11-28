@@ -4,7 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
-#import "MakeCommentKeyboardAccessoryInputViewHandler.h"
+#import "KeyboardCustomAccessoryInputViewHandler.h"
 #import "UsersFetchController.h"
 #import "User.h"
 #import "MakeCommentInputViewController.h"
@@ -12,16 +12,20 @@
 static const CGFloat kKeyboardAccessoryInputViewHeight = 50.0f;
 static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
-@interface MakeCommentKeyboardAccessoryInputViewHandler()
-@property (nonatomic, strong) MakeCommentInputViewController *makeCommentInputViewController;
+@interface KeyboardCustomAccessoryInputViewHandler()
+@property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
 @end
 
-@implementation MakeCommentKeyboardAccessoryInputViewHandler
+@implementation KeyboardCustomAccessoryInputViewHandler
 
-- (instancetype)init
+#pragma mark - Init
+
+- (instancetype)initWithAccessoryKeyboardInputViewController:(UIViewController *)viewController
 {
+  AssertTrueOrReturnNil(viewController);
   self = [super init];
   if (self) {
+    _accessoryKeyboardInputViewController = viewController;
     [self setupKeyboardInputView];
     [self setupAccessoryKeyboardInputViewNotificationCallbacks];
   }
@@ -35,11 +39,12 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)setupKeyboardInputView
 {
-  MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:self.currentUser];
-  inputVC.view.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
-  inputVC.view.tw_height = kKeyboardAccessoryInputViewHeight;
+  UIView *accessoryInputView = self.accessoryKeyboardInputViewController.view;
+  AssertTrueOrReturn(accessoryInputView);
   
-  self.makeCommentInputViewController = inputVC;
+  // MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:self.currentUser];
+  accessoryInputView.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
+  accessoryInputView.tw_height = kKeyboardAccessoryInputViewHeight; // to juz jest raczej tylko dla MakeCommentInputVC...
 }
 
 #pragma mark - Notifications setup
@@ -59,9 +64,9 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
     defineStrongSelf();
     CGRect keyboardFrameRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
     
-    strongSelf.makeCommentInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
+    strongSelf.accessoryKeyboardInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
     [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
-      strongSelf.makeCommentInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
+      strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
     }];
   }];
 }
@@ -70,7 +75,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 {
   defineWeakSelf();
   [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-    weakSelf.makeCommentInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+    weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
   }];
 }
 
@@ -88,10 +93,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)slideInputViewOut
 {
-  __strong UIView *strongInputView = self.makeCommentInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
+  __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
   
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
-    self.makeCommentInputViewController.view.tw_bottom = [UIScreen tw_height] + kKeyboardAccessoryInputViewHeight;
+    self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + kKeyboardAccessoryInputViewHeight;
   } completion:^(BOOL finished) {
     [strongInputView removeFromSuperview];
   }];
@@ -114,14 +119,9 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self.inputVC.view.tw_bottom = [UIScreen tw_height] + self.inputVC.view.tw_height;
 }
 
-- (MakeCommentInputViewController *)inputVC
+- (UIViewController *)inputVC
 {
-  return self.makeCommentInputViewController;
-}
-
-- (User *)currentUser
-{
-  return [[UsersFetchController sharedInstance] currentUser];
+  return self.accessoryKeyboardInputViewController;
 }
 
 @end

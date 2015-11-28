@@ -11,7 +11,8 @@
 #import "TutorialCommentsController.h"
 #import "MakeCommentInputViewController.h"
 #import "CommentsContainerViewController.h"
-#import "MakeCommentKeyboardAccessoryInputViewHandler.h"
+#import "KeyboardCustomAccessoryInputViewHandler.h"
+#import "UsersFetchController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -35,7 +36,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputViewController;
-@property (strong, nonatomic) MakeCommentKeyboardAccessoryInputViewHandler *makeCommentInputViewHandler;
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
 @end
 
 @implementation TutorialCommentsViewController
@@ -70,13 +71,15 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 - (void)setupKeyboardInputView
 {
-  self.makeCommentInputViewHandler = [MakeCommentKeyboardAccessoryInputViewHandler new];
-  MakeCommentInputViewController *inputVC = self.makeCommentInputViewHandler.makeCommentInputViewController;
+  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
+  self.makeCommentInputViewController = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
+  
+  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputViewController];
+  
   defineWeakSelf();
-  inputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
+  self.makeCommentInputViewController.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
     [weakSelf.commentsController sendACommentWithText:text completion:completion];
   };
-  self.makeCommentInputViewController = inputVC;
 }
 
 #pragma mark - Setters
