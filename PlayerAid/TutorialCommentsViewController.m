@@ -13,6 +13,7 @@
 #import "CommentsContainerViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
 #import "UsersFetchController.h"
+#import "EditCommentInputViewController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -24,7 +25,9 @@ static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegu
 
 static const CGFloat kFoldingAnimationDuration = 0.5f;
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
+
 static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
+static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 100.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -36,8 +39,12 @@ static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
-@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputViewController;
+
+@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputVC;
 @property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
+
+@property (strong, nonatomic) EditCommentInputViewController *editCommentInputVC;
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
 @end
 
 @implementation TutorialCommentsViewController
@@ -73,12 +80,12 @@ static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 - (void)setupKeyboardInputView
 {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  self.makeCommentInputViewController = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
+  self.makeCommentInputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
   
-  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputViewController desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
+  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
   
   defineWeakSelf();
-  self.makeCommentInputViewController.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
+  self.makeCommentInputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
     [weakSelf.commentsController sendACommentWithText:text completion:completion];
   };
 }
@@ -208,6 +215,31 @@ static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
   return self.tutorial.hasComments.count;
 }
 
+#pragma mark - Lazy Initialization
+
+- (EditCommentInputViewController *)editCommentInputVC
+{
+  if (!_editCommentInputVC) {
+    _editCommentInputVC = [EditCommentInputViewController new];
+    
+    defineWeakSelf();
+    _editCommentInputVC.cancelButtonAction = ^() {
+      [weakSelf.editCommentInputViewHandler slideInputViewOut];
+      
+    };
+    
+  }
+  return _editCommentInputVC;
+}
+
+- (KeyboardCustomAccessoryInputViewHandler *)editCommentInputViewHandler
+{
+  if (!_editCommentInputViewHandler) {
+    _editCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.editCommentInputVC desiredInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
+  }
+  return _editCommentInputViewHandler;
+}
+
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -216,6 +248,12 @@ static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
     [commentsContainerVC setTutorialCommentsController:self.commentsController];
     [commentsContainerVC setTutorial:self.tutorial];
+    
+    defineWeakSelf();
+    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(NSString *commentText){
+      [weakSelf.editCommentInputViewHandler slideInputViewIn];
+      [weakSelf.editCommentInputVC setCommentText:commentText];
+    }];
   }
 }
 

@@ -29,6 +29,13 @@ static NSString *const kNibName = @"EditCommentInputView";
     [super viewDidLoad];
 }
 
+#pragma mark - Public
+
+- (void)setCommentText:(NSString *)commentText
+{
+  self.inputTextView.text = commentText;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)cancelButtonPressed:(id)sender
@@ -38,7 +45,14 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (IBAction)saveButtonPressed:(id)sender
 {
+  CallBlock(self.saveButtonAction, self.trimmedCommentText);
+}
 
+#pragma mark - private
+
+- (NSString *)trimmedCommentText
+{
+  return [self.inputTextView.text tw_stringByTrimmingWhitespaceAndNewline];
 }
 
 @end

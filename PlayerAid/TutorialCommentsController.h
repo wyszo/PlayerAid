@@ -7,6 +7,9 @@
 #import "Tutorial.h"
 @class TutorialComment;
 
+typedef void (^EditCommentBlock)(NSString * _Nonnull commentText);
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TutorialCommentsController : NSObject
@@ -15,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion;
 
-- (UIAlertController *)editDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell;
+- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction;
+
 - (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment;
 
 @end

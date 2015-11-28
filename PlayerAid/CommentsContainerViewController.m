@@ -23,13 +23,14 @@ static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
 @interface CommentsContainerViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-@property (strong, nonatomic) TWCoreDataTableViewDataSource *dataSource;
-@property (weak, nonatomic) TutorialCommentsController *commentsController;
-@property (weak, nonatomic) IBOutlet UIView *noCommentsOverlayView;
-@property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
-@property (strong, nonatomic) Tutorial *tutorial;
-@property (strong, nonatomic) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
+@property (nonatomic, weak) IBOutlet UITableView *commentsTableView;
+@property (nonatomic, strong) TWCoreDataTableViewDataSource *dataSource;
+@property (nonatomic, weak) TutorialCommentsController *commentsController;
+@property (nonatomic, weak) IBOutlet UIView *noCommentsOverlayView;
+@property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
+@property (nonatomic, strong) Tutorial *tutorial;
+@property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
+@property (nonatomic, copy) VoidBlock editCommentActionSheetOptionSelectedBlock;
 @end
 
 @implementation CommentsContainerViewController
@@ -40,6 +41,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 {
   [super viewDidLoad];
   AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
+  AssertTrueOr(self.editCommentActionSheetOptionSelectedBlock && @"setting edit comment action is mandatory",);
 
   [self setupFetchedResultsControllerBinder];
   [self setupCommentsTableView];
@@ -125,8 +127,15 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 - (void)setTutorial:(Tutorial *)tutorial
 {
   AssertTrueOrReturn(tutorial);
-  AssertTrueOrReturn(!self.tutorial && @"Can't reinitialize self.tutorial");
+  AssertTrueOrReturn(!self.tutorial && @"You shouldn't try to reinitialize self.tutorial");
   _tutorial = tutorial;
+}
+
+- (void)setEditCommentActionSheetOptionSelectedBlock:(VoidBlock)block
+{
+  AssertTrueOrReturn(block);
+  AssertTrueOrReturn(!self.editCommentActionSheetOptionSelectedBlock && @"You shouldn't try to reinitialize edit comment action");
+  _editCommentActionSheetOptionSelectedBlock = block;
 }
 
 #pragma mark - Comment cells
@@ -169,7 +178,9 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   UIAlertController *actionSheet = [self.commentsController reportCommentAlertController:comment];
   
   if ([self isOwnComment:comment]) {
-    actionSheet = [self.commentsController editDeleteCommentActionSheet:comment withTableViewCell:cell];
+    AssertTrueOrReturn(self.editCommentActionSheetOptionSelectedBlock);
+    
+    actionSheet = [self.commentsController editOrDeleteCommentActionSheet:comment withTableViewCell:cell editCommentAction:self.editCommentActionSheetOptionSelectedBlock];
   }
   
   /**

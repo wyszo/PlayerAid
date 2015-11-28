@@ -3,8 +3,9 @@
 //
 
 @import UIKit;
+#import "TutorialCommentsController.h"
 @class Tutorial;
-@class TutorialCommentsController;
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // mandatory, part of the initialization
 - (void)setTutorial:(Tutorial *)tutorial;
+
+// mandatory, part of the initialization
+- (void)setEditCommentActionSheetOptionSelectedBlock:(EditCommentBlock)block;
 
 @end
 
