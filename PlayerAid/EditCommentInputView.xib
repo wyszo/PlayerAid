@@ -28,9 +28,11 @@
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ql1-j7-e8y" userLabel="Cancel">
-                    <rect key="frame" x="8" y="0.0" width="42" height="35.5"/>
+                    <rect key="frame" x="8" y="0.0" width="42" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Cancel"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="0.11764705882352941" green="0.50980392156862742" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="dZ7-c7-jZt"/>
                     </connections>
@@ -38,7 +40,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7e-SK-i9x">
                     <rect key="frame" x="404" y="0.0" width="30" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Save"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" red="0.11764705882352941" green="0.50980392156862742" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="saveButtonPressed:" destination="-1" eventType="touchUpInside" id="S5K-l3-vwz"/>
                     </connections>
