@@ -32,6 +32,7 @@
 
 + (UIColor *)makeCommentPostButtonActiveBackgroundColor;
 + (UIColor *)makeCommentPostButtonInactiveBackgroundColor;
++ (UIColor *)makeEditCommentInputViewTopBorderColor;
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)editProfileViewBackgroundColor;

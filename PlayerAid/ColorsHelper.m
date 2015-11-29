@@ -41,6 +41,7 @@ UIColorMethodMake(editedCommentTableViewCellBackgroundColor, 255, 255, 223)
 
 UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
 UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
+UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134) // old, darker one
 UIColorMethodMake(editProfileViewBackgroundColor, 245, 245, 245)

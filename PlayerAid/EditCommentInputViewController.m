@@ -5,6 +5,7 @@
 @import KZAsserts;
 @import TWCommonLib;
 #import "EditCommentInputViewController.h"
+#import "ColorsHelper.h"
 
 static NSString *const kNibName = @"EditCommentInputView";
 
@@ -26,7 +27,8 @@ static NSString *const kNibName = @"EditCommentInputView";
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
 }
 
 #pragma mark - Public
