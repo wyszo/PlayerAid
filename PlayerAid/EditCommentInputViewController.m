@@ -9,9 +9,10 @@
 
 static NSString *const kNibName = @"EditCommentInputView";
 
-@interface EditCommentInputViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *inputTextView;
-
+@interface EditCommentInputViewController () <UITextViewDelegate>
+@property (nonatomic, weak) IBOutlet UITextView *inputTextView;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (nonatomic, copy) NSString *originalText;
 @end
 
 @implementation EditCommentInputViewController
@@ -28,13 +29,18 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.inputTextView.delegate = self;
   [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
+  
+  [self updateSaveButtonHighlight];
 }
 
 #pragma mark - Public
 
 - (void)setCommentText:(NSString *)commentText
 {
+  self.originalText = commentText;
   self.inputTextView.text = commentText;
 }
 
@@ -55,6 +61,21 @@ static NSString *const kNibName = @"EditCommentInputView";
 - (NSString *)trimmedCommentText
 {
   return [self.inputTextView.text tw_stringByTrimmingWhitespaceAndNewline];
+}
+
+- (void)updateSaveButtonHighlight
+{
+  BOOL textNotEmpty = (self.trimmedCommentText.length > 0);
+  BOOL textChanged = !([self.trimmedCommentText isEqualToString:self.originalText]);
+  
+  self.saveButton.enabled = (textNotEmpty && textChanged);
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView * _Nonnull)textView
+{
+  [self updateSaveButtonHighlight];
 }
 
 @end

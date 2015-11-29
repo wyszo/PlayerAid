@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCommentInputViewController">
             <connections>
                 <outlet property="inputTextView" destination="gr7-yp-3zC" id="mqq-9o-UpF"/>
+                <outlet property="saveButton" destination="Y7e-SK-i9x" id="Vgb-5k-rd3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="tIf-s0-lWA"/>
             </connections>
         </placeholder>
