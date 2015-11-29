@@ -42,6 +42,16 @@ static NSString *const kNibName = @"EditCommentInputView";
   [self.inputTextView tw_addBorderWithWidth:1.0 color:[ColorsHelper editedCommentKeyboardInputViewInputTextViewBorderColor]];
 }
 
+#pragma mark - Dismissing keyboard
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+  [super didMoveToParentViewController:parent];
+  if (parent == nil) {
+    [self.inputTextView resignFirstResponder];
+  }
+}
+
 #pragma mark - Public
 
 - (void)setComment:(TutorialComment *)comment

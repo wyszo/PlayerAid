@@ -110,6 +110,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)invokeSlideInputViewOutAnimationWithCompletion:(BlockWithBoolParameter)completion
 {
+  [self.inputVC willMoveToParentViewController:nil];
+  [self.inputVC removeFromParentViewController];
+  [self.inputVC didMoveToParentViewController:nil];
+  
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
   } completion:completion];
@@ -121,7 +125,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   AssertTrueOrReturn(parentVC);
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
   
+  [parentVC willMoveToParentViewController:parentVC];
   [parentVC.view addSubview:self.inputVC.view];
+  [parentVC didMoveToParentViewController:parentVC];
+  
   [self positionInputViewBelowTheScreen];
 }
 

@@ -51,6 +51,16 @@ static NSString *const kXibFileName = @"AddCommentInputView";
   [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
 }
 
+#pragma mark - Dismissing keyboard
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+  [super didMoveToParentViewController:parent];
+  if (parent == nil) {
+    [self.inputTextView resignFirstResponder];
+  }
+}
+
 #pragma mark - IBOutlet
 
 - (IBAction)postButtonPressed:(id)sender
