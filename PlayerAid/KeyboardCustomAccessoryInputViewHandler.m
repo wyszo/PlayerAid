@@ -38,7 +38,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)dealloc
 {
-  [self slideInputViewOut];
+  [self invokeSlideInputViewOutAnimationWithCompletion:nil];
 }
 
 - (void)setupKeyboardInputView
@@ -101,13 +101,18 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   AssertTrueOr(self.desiredInputViewHeight > 0,);
   
   defineWeakSelf();
-  [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
-    self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
-  } completion:^(BOOL finished) {
+  [self invokeSlideInputViewOutAnimationWithCompletion:^(BOOL finished) {
     weakSelf.inputViewVisible = NO;
     [strongInputView removeFromSuperview];
     CallBlock(weakSelf.inputViewDidDismissBlock);
   }];
+}
+
+- (void)invokeSlideInputViewOutAnimationWithCompletion:(BlockWithBoolParameter)completion
+{
+  [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
+    self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
+  } completion:completion];
 }
 
 - (void)installInputViewInKeyWindow

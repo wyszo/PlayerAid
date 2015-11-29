@@ -11,7 +11,6 @@
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
 #import "AlertControllerFactory.h"
-#import "ColorsHelper.h"
 
 @interface TutorialCommentsController()
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -64,19 +63,17 @@
   AssertTrueOrReturnNil(editCommentAction);
   
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
-    UIColor *originalCellBackgroundColor = cell.contentView.backgroundColor;
-    
-    cell.contentView.backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
+    [cell setSelected:YES];
     
     BlockWithBoolParameter didFinishEditingCommentCompletionBlock = ^(BOOL commentChanged) {
-      cell.contentView.backgroundColor = originalCellBackgroundColor;
+      [cell setSelected:NO];
       
       if (commentChanged) {
         // TODO: send edit comment network request
       }
     };
     
-    CallBlock(editCommentAction, comment.text, didFinishEditingCommentCompletionBlock);
+    CallBlock(editCommentAction, comment, didFinishEditingCommentCompletionBlock);
   } removeAction:^{
     [self sendRemoveCommentNetworkRequest:comment];
   }];

@@ -173,6 +173,19 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TutorialComment *comment = (TutorialComment *)object;
   
   [commentCell configureWithTutorialComment:comment];
+  [self updateCellSelectionHightlight:commentCell forComment:comment];
+}
+
+- (void)updateCellSelectionHightlight:(nonnull TutorialCommentCell *)cell forComment:(nonnull TutorialComment *)comment
+{
+  AssertTrueOrReturn(cell);
+  AssertTrueOrReturn(comment);
+  
+  BOOL isCommentBeingEdited = NO;
+  if (self.isCommentBeingEditedBlock) {
+    isCommentBeingEdited = self.isCommentBeingEditedBlock(comment);
+  }
+  [cell setSelected:isCommentBeingEdited];
 }
 
 - (void)showUserActionsActionSheetForComment:(nonnull TutorialComment *)comment withTableViewCell:(nonnull UITableViewCell *)cell

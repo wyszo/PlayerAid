@@ -13,6 +13,7 @@
 #import "CommentsContainerViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
 #import "UsersFetchController.h"
+#import "TutorialComment.h"
 #import "EditCommentInputViewController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
@@ -252,9 +253,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
       return weakSelf.editCommentInputViewHandler.inputViewVisible;
     };
     
-    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(NSString *commentText, BlockWithBoolParameter completion){
+    commentsContainerVC.isCommentBeingEditedBlock = ^BOOL(TutorialComment *comment) {
+      return [weakSelf.editCommentInputVC.comment isEqual:comment];
+    };
+    
+    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(TutorialComment *comment, BlockWithBoolParameter completion){
       [weakSelf.editCommentInputViewHandler slideInputViewIn];
-      [weakSelf.editCommentInputVC setCommentText:commentText];
+      [weakSelf.editCommentInputVC setComment:comment];
       
       weakSelf.editCommentInputViewHandler.inputViewDidDismissBlock = ^() {
         BOOL commentChanged = YES; // TODO: update this value to whether it really changed or not

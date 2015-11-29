@@ -72,7 +72,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [commentAuthor placeAvatarInImageView:self.avatarImageView];
 }
 
-#pragma mark - interface
+#pragma mark - public
 
 - (BOOL)isExpanded
 {
@@ -89,6 +89,15 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self hideMoreButton]; // cell extended, we don't need more button anymore
   self.expanded = YES;
   CallBlock(self.didChangeCellHeightBlock);
+}
+
+- (void)setSelected:(BOOL)selected
+{
+  UIColor *backgroundColor = self.defaultBackgroundColor;
+  if (selected) {
+    backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
+  }
+  self.contentView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - private

@@ -4,6 +4,7 @@
 
 @import UIKit;
 #import <TWCommonLib/TWCommonTypes.h>
+@class TutorialComment;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -11,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) VoidBlock cancelButtonAction;
 @property (nonatomic, copy) void (^saveButtonAction)(NSString *editedMessageText);
-
-- (void)setCommentText:(NSString *)commentText;
+@property (nonatomic, copy) TutorialComment *comment;
 
 @end
 

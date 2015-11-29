@@ -6,12 +6,13 @@
 @import TWCommonLib;
 #import "EditCommentInputViewController.h"
 #import "ColorsHelper.h"
+#import "TutorialComment.h"
 
 static NSString *const kNibName = @"EditCommentInputView";
 
 @interface EditCommentInputViewController () <UITextViewDelegate>
 @property (nonatomic, weak) IBOutlet UITextView *inputTextView;
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, copy) NSString *originalText;
 @end
 
@@ -43,10 +44,13 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 #pragma mark - Public
 
-- (void)setCommentText:(NSString *)commentText
+- (void)setComment:(TutorialComment *)comment
 {
-  self.originalText = commentText;
-  self.inputTextView.text = commentText;
+  AssertTrueOrReturn(comment);
+  _comment = comment;
+  
+  self.originalText = comment.text;
+  self.inputTextView.text = comment.text;
 }
 
 #pragma mark - IBActions
