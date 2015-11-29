@@ -19,6 +19,8 @@ NEW_AND_INIT_UNAVAILABLE
 - (void)slideInputViewIn;
 - (void)slideInputViewOut;
 
+- (BOOL)inputViewVisible;
+
 @end
 
 NS_ASSUME_NONNULL_END

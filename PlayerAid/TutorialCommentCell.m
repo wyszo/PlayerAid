@@ -20,6 +20,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
+@property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
@@ -30,6 +31,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 - (void)awakeFromNib
 {
   [super awakeFromNib];
+  self.defaultBackgroundColor = self.contentView.backgroundColor;
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
   self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
@@ -40,6 +42,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 {
   [super prepareForReuse];
   
+  self.contentView.backgroundColor = self.defaultBackgroundColor;
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;

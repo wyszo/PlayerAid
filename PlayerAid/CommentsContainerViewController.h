@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentsContainerViewController : UIViewController
 
+@property (nonatomic, copy) BOOL (^isAnyCommentBeingEditedBlock)();
+
 // mandatory, part of the initialization
 - (void)setTutorialCommentsController:(TutorialCommentsController *)commentsController;
 

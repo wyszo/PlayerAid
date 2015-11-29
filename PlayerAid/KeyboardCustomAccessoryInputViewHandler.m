@@ -14,6 +14,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 @interface KeyboardCustomAccessoryInputViewHandler()
 @property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
 @property (nonatomic, assign) CGFloat desiredInputViewHeight;
+@property (nonatomic, assign) BOOL inputViewVisible;
 @end
 
 @implementation KeyboardCustomAccessoryInputViewHandler
@@ -45,7 +46,6 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   UIView *accessoryInputView = self.accessoryKeyboardInputViewController.view;
   AssertTrueOrReturn(accessoryInputView);
   
-  // MakeCommentInputViewController *inputVC = [[MakeCommentInputViewController alloc] initWithUser:self.currentUser];
   accessoryInputView.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
   accessoryInputView.tw_height = self.desiredInputViewHeight;
 }
@@ -88,6 +88,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 {
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
   [self installInputViewInKeyWindow];
+  self.inputViewVisible = YES;
   
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.inputVC.view.tw_bottom = [UIScreen tw_height];
@@ -103,6 +104,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
   } completion:^(BOOL finished) {
+    weakSelf.inputViewVisible = NO;
     [strongInputView removeFromSuperview];
     CallBlock(weakSelf.inputViewDidDismissBlock);
   }];

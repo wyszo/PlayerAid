@@ -248,6 +248,10 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     [commentsContainerVC setTutorial:self.tutorial];
     
     defineWeakSelf();
+    commentsContainerVC.isAnyCommentBeingEditedBlock = ^() {
+      return weakSelf.editCommentInputViewHandler.inputViewVisible;
+    };
+    
     [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(NSString *commentText, BlockWithBoolParameter completion){
       [weakSelf.editCommentInputViewHandler slideInputViewIn];
       [weakSelf.editCommentInputVC setCommentText:commentText];
