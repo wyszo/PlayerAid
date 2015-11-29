@@ -42,6 +42,8 @@
 {
   [super viewDidLoad];
   self.navigationItem.title = @"Latest Guides";
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Guides" style:UIBarButtonItemStylePlain target:nil action:nil];
+  
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.tabBarController];
   
   [self setupDataSource];
