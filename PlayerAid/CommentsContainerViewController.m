@@ -30,7 +30,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 @property (nonatomic, strong) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
-@property (nonatomic, copy) VoidBlock editCommentActionSheetOptionSelectedBlock;
+@property (nonatomic, copy) EditCommentBlock editCommentActionSheetOptionSelectedBlock;
 @end
 
 @implementation CommentsContainerViewController
@@ -131,7 +131,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   _tutorial = tutorial;
 }
 
-- (void)setEditCommentActionSheetOptionSelectedBlock:(VoidBlock)block
+- (void)setEditCommentActionSheetOptionSelectedBlock:(EditCommentBlock)block
 {
   AssertTrueOrReturn(block);
   AssertTrueOrReturn(!self.editCommentActionSheetOptionSelectedBlock && @"You shouldn't try to reinitialize edit comment action");
