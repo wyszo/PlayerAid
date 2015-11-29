@@ -37,7 +37,9 @@ UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
 
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
 UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139)
+
 UIColorMethodMake(editedCommentTableViewCellBackgroundColor, 255, 255, 223)
+UIColorMethodMake(editedCommentKeyboardInputViewInputTextViewBorderColor, 233, 233, 233)
 
 UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
 UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
