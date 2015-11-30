@@ -7,10 +7,10 @@ const struct TutorialAttributes TutorialAttributes = {
 	.createdAt = @"createdAt",
 	.draft = @"draft",
 	.flaggedAsInappropriate = @"flaggedAsInappropriate",
-	.hidden = @"hidden",
 	.imageURL = @"imageURL",
 	.inReview = @"inReview",
 	.jpegImageData = @"jpegImageData",
+	.reportedByUser = @"reportedByUser",
 	.serverID = @"serverID",
 	.state = @"state",
 	.title = @"title",
@@ -60,13 +60,13 @@ const struct TutorialRelationships TutorialRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"hiddenValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+	if ([key isEqualToString:@"inReviewValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"inReviewValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"inReview"];
+	if ([key isEqualToString:@"reportedByUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"reportedByUser"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -121,26 +121,6 @@ const struct TutorialRelationships TutorialRelationships = {
 	[self setPrimitiveFlaggedAsInappropriate:@(value_)];
 }
 
-@dynamic hidden;
-
-- (BOOL)hiddenValue {
-	NSNumber *result = [self hidden];
-	return [result boolValue];
-}
-
-- (void)setHiddenValue:(BOOL)value_ {
-	[self setHidden:@(value_)];
-}
-
-- (BOOL)primitiveHiddenValue {
-	NSNumber *result = [self primitiveHidden];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveHiddenValue:(BOOL)value_ {
-	[self setPrimitiveHidden:@(value_)];
-}
-
 @dynamic imageURL;
 
 @dynamic inReview;
@@ -164,6 +144,26 @@ const struct TutorialRelationships TutorialRelationships = {
 }
 
 @dynamic jpegImageData;
+
+@dynamic reportedByUser;
+
+- (BOOL)reportedByUserValue {
+	NSNumber *result = [self reportedByUser];
+	return [result boolValue];
+}
+
+- (void)setReportedByUserValue:(BOOL)value_ {
+	[self setReportedByUser:@(value_)];
+}
+
+- (BOOL)primitiveReportedByUserValue {
+	NSNumber *result = [self primitiveReportedByUser];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveReportedByUserValue:(BOOL)value_ {
+	[self setPrimitiveReportedByUser:@(value_)];
+}
 
 @dynamic serverID;
 

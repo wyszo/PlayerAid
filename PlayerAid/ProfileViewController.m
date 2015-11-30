@@ -214,7 +214,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupTutorialsTableDataSource
 {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"flaggedAsInappropriate == 0 AND hidden == 0 AND createdBy = %@", self.user];
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"flaggedAsInappropriate == 0 AND reportedByUser == 0 AND createdBy = %@", self.user];
   self.tutorialsTableDataSource.groupBy = @"state";
   self.tutorialsTableDataSource.showSectionHeaders = YES;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
@@ -233,7 +233,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupLikedTutorialsTableDataSource
 {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"flaggedAsInappropriate == 0 AND hidden == 0 AND %@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
+  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"flaggedAsInappropriate == 0 AND reportedByUser == 0 AND %@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
 }
 
 - (void)setupFollowingUsersTableDataSource

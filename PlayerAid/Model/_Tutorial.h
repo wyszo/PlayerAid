@@ -7,10 +7,10 @@ extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *draft;
 	__unsafe_unretained NSString *flaggedAsInappropriate;
-	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *imageURL;
 	__unsafe_unretained NSString *inReview;
 	__unsafe_unretained NSString *jpegImageData;
+	__unsafe_unretained NSString *reportedByUser;
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *title;
@@ -59,14 +59,6 @@ extern const struct TutorialRelationships {
 
 //- (BOOL)validateFlaggedAsInappropriate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* hidden;
-
-@property (atomic) BOOL hiddenValue;
-- (BOOL)hiddenValue;
-- (void)setHiddenValue:(BOOL)value_;
-
-//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* imageURL;
 
 //- (BOOL)validateImageURL:(id*)value_ error:(NSError**)error_;
@@ -82,6 +74,14 @@ extern const struct TutorialRelationships {
 @property (nonatomic, strong) NSData* jpegImageData;
 
 //- (BOOL)validateJpegImageData:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* reportedByUser;
+
+@property (atomic) BOOL reportedByUserValue;
+- (BOOL)reportedByUserValue;
+- (void)setReportedByUserValue:(BOOL)value_;
+
+//- (BOOL)validateReportedByUser:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* serverID;
 
@@ -176,12 +176,6 @@ extern const struct TutorialRelationships {
 - (BOOL)primitiveFlaggedAsInappropriateValue;
 - (void)setPrimitiveFlaggedAsInappropriateValue:(BOOL)value_;
 
-- (NSNumber*)primitiveHidden;
-- (void)setPrimitiveHidden:(NSNumber*)value;
-
-- (BOOL)primitiveHiddenValue;
-- (void)setPrimitiveHiddenValue:(BOOL)value_;
-
 - (NSString*)primitiveImageURL;
 - (void)setPrimitiveImageURL:(NSString*)value;
 
@@ -193,6 +187,12 @@ extern const struct TutorialRelationships {
 
 - (NSData*)primitiveJpegImageData;
 - (void)setPrimitiveJpegImageData:(NSData*)value;
+
+- (NSNumber*)primitiveReportedByUser;
+- (void)setPrimitiveReportedByUser:(NSNumber*)value;
+
+- (BOOL)primitiveReportedByUserValue;
+- (void)setPrimitiveReportedByUserValue:(BOOL)value_;
 
 - (NSNumber*)primitiveServerID;
 - (void)setPrimitiveServerID:(NSNumber*)value;

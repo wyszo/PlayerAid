@@ -31,11 +31,11 @@ static NSString *const kCommentsKey = @"comments";
   NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary: @{
                             kTutorialDictionaryServerIDPropertyName : KZProperty(serverID),
                             @"title" : KZProperty(title),
-                            @"hidden" : KZProperty(hidden),
                             @"createdOn" : KZBox(DateWithTZD, createdAt),
                             @"status" : KZCall(stateFromString:, state),
                             @"imageUri" : KZProperty(imageURL),
-                            @"section" : KZCall(sectionFromString:, section)
+                            @"reportedByUser" : KZProperty(reportedByUser),
+                            @"section" : KZCall(sectionFromString:, section),
                           }];
   
   if (includeAuthor) {
