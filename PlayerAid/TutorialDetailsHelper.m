@@ -35,6 +35,7 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
     TutorialDetailsViewController *tutorialDetailsViewController = (TutorialDetailsViewController *)destinationController;
     tutorialDetailsViewController.tutorial = tutorial;
     tutorialDetailsViewController.onDeallocBlock = deallocBlock;
+    tutorialDetailsViewController.hidesBottomBarWhenPushed = YES;
   }
 }
 
