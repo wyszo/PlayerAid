@@ -6,6 +6,7 @@
 extern const struct TutorialCommentAttributes {
 	__unsafe_unretained NSString *createdOn;
 	__unsafe_unretained NSString *likesCount;
+	__unsafe_unretained NSString *reportedByUser;
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *text;
 } TutorialCommentAttributes;
@@ -44,6 +45,14 @@ extern const struct TutorialCommentRelationships {
 - (void)setLikesCountValue:(int64_t)value_;
 
 //- (BOOL)validateLikesCount:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* reportedByUser;
+
+@property (atomic) BOOL reportedByUserValue;
+- (BOOL)reportedByUserValue;
+- (void)setReportedByUserValue:(BOOL)value_;
+
+//- (BOOL)validateReportedByUser:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* serverID;
 
@@ -105,6 +114,12 @@ extern const struct TutorialCommentRelationships {
 
 - (int64_t)primitiveLikesCountValue;
 - (void)setPrimitiveLikesCountValue:(int64_t)value_;
+
+- (NSNumber*)primitiveReportedByUser;
+- (void)setPrimitiveReportedByUser:(NSNumber*)value;
+
+- (BOOL)primitiveReportedByUserValue;
+- (void)setPrimitiveReportedByUserValue:(BOOL)value_;
 
 - (NSNumber*)primitiveServerID;
 - (void)setPrimitiveServerID:(NSNumber*)value;

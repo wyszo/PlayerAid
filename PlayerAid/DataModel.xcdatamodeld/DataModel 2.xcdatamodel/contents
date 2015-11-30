@@ -3,6 +3,7 @@
     <entity name="Comment" representedClassName="TutorialComment" syncable="YES">
         <attribute name="createdOn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="likesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="reportedByUser" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="belongsToTutorial" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="hasComments" inverseEntity="Tutorial" syncable="YES"/>
@@ -60,7 +61,7 @@
         <relationship name="likesComment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="likedBy" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Comment" positionX="-45" positionY="99" width="128" height="180"/>
+        <element name="Comment" positionX="-45" positionY="99" width="128" height="195"/>
         <element name="Section" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Tutorial" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="TutorialStep" positionX="-45" positionY="54" width="128" height="180"/>

@@ -6,6 +6,7 @@
 const struct TutorialCommentAttributes TutorialCommentAttributes = {
 	.createdOn = @"createdOn",
 	.likesCount = @"likesCount",
+	.reportedByUser = @"reportedByUser",
 	.serverID = @"serverID",
 	.text = @"text",
 };
@@ -49,6 +50,11 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"reportedByUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"reportedByUser"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"serverIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"serverID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -78,6 +84,26 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 
 - (void)setPrimitiveLikesCountValue:(int64_t)value_ {
 	[self setPrimitiveLikesCount:@(value_)];
+}
+
+@dynamic reportedByUser;
+
+- (BOOL)reportedByUserValue {
+	NSNumber *result = [self reportedByUser];
+	return [result boolValue];
+}
+
+- (void)setReportedByUserValue:(BOOL)value_ {
+	[self setReportedByUser:@(value_)];
+}
+
+- (BOOL)primitiveReportedByUserValue {
+	NSNumber *result = [self primitiveReportedByUser];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveReportedByUserValue:(BOOL)value_ {
+	[self setPrimitiveReportedByUser:@(value_)];
 }
 
 @dynamic serverID;

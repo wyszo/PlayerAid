@@ -212,8 +212,10 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 #pragma mark - Auxiliary methods
 
 - (NSUInteger)commentsCount
-{  
-  return self.tutorial.hasComments.count;
+{
+  NSPredicate *notReportedPredicte = [NSPredicate predicateWithFormat:@"reportedByUser == 0"];
+  NSOrderedSet *notReportedComments = [self.tutorial.hasCommentsSet filteredOrderedSetUsingPredicate:notReportedPredicte];
+  return [notReportedComments count];
 }
 
 #pragma mark - Lazy Initialization

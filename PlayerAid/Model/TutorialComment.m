@@ -17,6 +17,7 @@ static NSString *const kCommentServerIDAttributeName = @"id";
                             @"message" : KZProperty(text),
                             @"createdOn" : KZBox(DateWithTZD, createdOn),
                             @"author" : KZCall(userFromDictionary:, madeBy),
+                            @"reportedByUser" : KZProperty(reportedByUser),
                             @"upvotes" : KZProperty(likesCount),
                             };
   
