@@ -42,6 +42,18 @@
   [self setupTutorialStepsTableView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  self.navigationController.hidesBarsOnSwipe = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  self.navigationController.hidesBarsOnSwipe = NO;
+}
+
 - (void)dealloc
 {
   CallBlock(self.onDeallocBlock);
