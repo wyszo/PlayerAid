@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 @import BlocksKit;
+@import MagicalRecord;
 #import "TutorialDetailsHelper.h"
 #import "TutorialDetailsViewController.h"
 #import "AlertFactory.h"
@@ -53,7 +54,12 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
         if (error) {
           [AlertFactory showGenericErrorAlertViewNoRetry];
         } else {
-          [TutorialsHelper markTutorialAsInappropriateByCurrentUser:tutorial];
+          AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
+          NSDictionary *reportedTutorialDictionary = (NSDictionary *)responseObject;
+          
+          [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            [TutorialsHelper tutorialFromDictionary:reportedTutorialDictionary parseAuthors:NO inContext:localContext];
+          }];
         }
       }];
     }];

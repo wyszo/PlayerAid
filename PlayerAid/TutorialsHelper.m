@@ -75,17 +75,4 @@
   return tutorial;
 }
 
-#pragma mark - Change tutorial state
-
-+ (void)markTutorialAsInappropriateByCurrentUser:(Tutorial *)tutorial
-{
-  AssertTrueOrReturn(tutorial);
-  
-  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-    Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
-    tutorialInContext.flaggedAsInappropriateValue = YES;
-    // TODO: when I changed tutorialInContext.state (to inappropriate), it didn't save, figure out why
-  }];
-}
-
 @end

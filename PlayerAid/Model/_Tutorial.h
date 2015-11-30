@@ -6,7 +6,6 @@
 extern const struct TutorialAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *draft;
-	__unsafe_unretained NSString *flaggedAsInappropriate;
 	__unsafe_unretained NSString *imageURL;
 	__unsafe_unretained NSString *inReview;
 	__unsafe_unretained NSString *jpegImageData;
@@ -50,14 +49,6 @@ extern const struct TutorialRelationships {
 - (void)setDraftValue:(BOOL)value_;
 
 //- (BOOL)validateDraft:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* flaggedAsInappropriate;
-
-@property (atomic) BOOL flaggedAsInappropriateValue;
-- (BOOL)flaggedAsInappropriateValue;
-- (void)setFlaggedAsInappropriateValue:(BOOL)value_;
-
-//- (BOOL)validateFlaggedAsInappropriate:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* imageURL;
 
@@ -169,12 +160,6 @@ extern const struct TutorialRelationships {
 
 - (BOOL)primitiveDraftValue;
 - (void)setPrimitiveDraftValue:(BOOL)value_;
-
-- (NSNumber*)primitiveFlaggedAsInappropriate;
-- (void)setPrimitiveFlaggedAsInappropriate:(NSNumber*)value;
-
-- (BOOL)primitiveFlaggedAsInappropriateValue;
-- (void)setPrimitiveFlaggedAsInappropriateValue:(BOOL)value_;
 
 - (NSString*)primitiveImageURL;
 - (void)setPrimitiveImageURL:(NSString*)value;

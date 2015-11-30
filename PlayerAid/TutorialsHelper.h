@@ -14,7 +14,4 @@
 + (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors inContext:(NSManagedObjectContext *)context;
 + (Tutorial *)tutorialFromDictionary:(nonnull NSDictionary *)dictionary parseAuthors:(BOOL)parseAuthors inContext:(nonnull NSManagedObjectContext *)context;
 
-/** tutorials marked as inappropriate won't display for the user who reported them */
-+ (void)markTutorialAsInappropriateByCurrentUser:(Tutorial *)tutorial;
-
 @end
