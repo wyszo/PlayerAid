@@ -257,7 +257,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 {
   self.nameTextView.text = self.user.name;
   self.bioTextView.text = self.user.userDescription;
-  [self.user placeAvatarInImageView:self.avatarImageView];
+  [self.user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeLarge];
 }
 
 #pragma mark - Other Methods
