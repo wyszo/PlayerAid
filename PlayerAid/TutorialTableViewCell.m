@@ -124,7 +124,7 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   NSString *timeAgo = [tutorial.createdAt shortTimeAgoSinceNow];
   self.timeLabel.text = timeAgo;
   
-  [tutorial.createdBy placeAvatarInImageView:self.avatarImageView];
+  [tutorial.createdBy placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeMedium];
   // TODO: update favourited button state based on User's liked relation
   
   [self adjustAlphaFromTutorial:tutorial];
