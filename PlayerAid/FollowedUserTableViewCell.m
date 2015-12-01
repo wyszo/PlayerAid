@@ -13,7 +13,6 @@
 @property (weak, nonatomic) User *user;
 @end
 
-
 @implementation FollowedUserTableViewCell
 
 - (void)awakeFromNib
@@ -32,7 +31,7 @@
   
   self.nameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
-  [user placeAvatarInImageView:self.avatarImageView];
+  [user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeMedium];
   
   [self updateFollowingButtonVisibility];
   [self updateFollowingButtonImage];
