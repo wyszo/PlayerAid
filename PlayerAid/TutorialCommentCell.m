@@ -69,7 +69,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   self.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
   
   [self updateMoreButtonVisibility];
-  [commentAuthor placeAvatarInImageView:self.avatarImageView];
+  [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
 }
 
 #pragma mark - public

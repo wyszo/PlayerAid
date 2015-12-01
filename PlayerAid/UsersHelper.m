@@ -66,4 +66,24 @@
   return user;
 }
 
+#pragma mark - Avatars
+
+- (nullable UIImage *)avatarPlaceholderImageForPlaceholderSize:(AvatarPlaceholderSize)placeholderSize
+{
+  NSString *placeholderImageName = @"profile-emptystate-";
+  
+  NSDictionary *placeholderImageNameSufixMapping = @{
+                                                     @(AvatarPlaceholderSizeSmall) : @"small",
+                                                     @(AvatarPlaceholderSizeMedium) : @"medium",
+                                                     @(AvatarPlaceholderSizeLarge) : @"large",
+                                                     };
+  NSString *placeholderImageNameSufix = placeholderImageNameSufixMapping[@(placeholderSize)];
+  AssertTrueOrReturnNil(placeholderImageNameSufix.length);
+  
+  placeholderImageName = [placeholderImageName stringByAppendingString:placeholderImageNameSufix];
+  UIImage *image = [UIImage imageNamed:placeholderImageName];
+  AssertTrueOrReturnNil(image);
+  return image;
+}
+
 @end

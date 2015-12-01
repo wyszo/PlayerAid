@@ -133,6 +133,15 @@ static NSString *const kFollowingKey = @"following";
   }
 }
 
+- (void)placeAvatarInImageViewOrDisplayPlaceholder:(nonnull UIImageView *)imageView placeholderSize:(AvatarPlaceholderSize)placeholderSize;
+{
+  if (self.pictureURL) {
+    [self placeAvatarInImageView:imageView];
+  } else {
+    [imageView setImage:[[UsersHelper new] avatarPlaceholderImageForPlaceholderSize:placeholderSize]];
+  }
+}
+
 #pragma mark - Tutorials data extraction methods
 
 - (NSSet *)setOfAnotherUsersTutorialsFromDictionariesArray:(id)dictionariesArray
