@@ -235,6 +235,12 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   return [notReportedComments count];
 }
 
+- (void)dismissEditCommentBar
+{
+  [self.editCommentInputVC hideKeyboard];
+  [self.editCommentInputViewHandler slideInputViewOut];
+}
+
 #pragma mark - Lazy Initialization
 
 - (EditCommentInputViewController *)editCommentInputVC
@@ -293,7 +299,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
       };
       
       weakSelf.editCommentInputVC.saveButtonAction = ^(NSString *editedComment) {
-        // TODO: send a network request for editing a comment...
+        if (editedComment.length > 0) {
+          [weakSelf.commentsController editComment:comment withText:editedComment completion:^(NSError *error) {
+            if (!error) {
+              [weakSelf dismissEditCommentBar];
+            }
+          }];
+        }
       };
     }];
   }

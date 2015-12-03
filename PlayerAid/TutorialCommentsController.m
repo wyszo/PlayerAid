@@ -11,6 +11,7 @@
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
 #import "AlertControllerFactory.h"
+#import "TutorialCommentParsingHelper.h"
 
 @interface TutorialCommentsController()
 @property (strong, nonatomic) Tutorial *tutorial;
@@ -98,6 +99,24 @@
       [weakSelf updateTutorialObjectFromDictionary:(NSDictionary *)responseObject];
       BOOL success = true;
       CallBlock(completion, success);
+    }
+  }];
+}
+
+- (void)editComment:(TutorialComment *)comment withText:(NSString *)text completion:(VoidBlockWithError)completion
+{
+  AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(text.length);
+  AssertTrueOrReturn(completion);
+  
+  [[AuthenticatedServerCommunicationController sharedInstance] editComment:comment withText:text completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    if (error) {
+      [AlertFactory showGenericErrorAlertViewNoRetry];
+      CallBlock(completion, error);
+    } else {
+      NSDictionary *commentDictionary = (NSDictionary *)responseObject;
+      [[TutorialCommentParsingHelper new] saveCommentFromDictionary:commentDictionary];
+      CallBlock(completion, nil);
     }
   }];
 }

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTutorial:(Tutorial *)tutorial commentsCountChangedBlock:(nullable VoidBlock)commentsCountChangedBlock;
 
 - (void)sendACommentWithText:(NSString *)text completion:(nullable BlockWithBoolParameter)completion;
+- (void)editComment:(TutorialComment *)comment withText:(NSString *)text completion:(VoidBlockWithError)completion;
 
 - (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction;
 
