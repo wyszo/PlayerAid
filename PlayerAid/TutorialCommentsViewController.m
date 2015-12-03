@@ -32,7 +32,6 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsBarHeightConstraint;
 @property (strong, nonatomic) TutorialCommentsController *commentsController;
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (assign, nonatomic) CGFloat navbarHeight;
@@ -40,6 +39,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsContainerBottomOffsetConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsBarHeightConstraint;
 
 @property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputVC;
 @property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
@@ -132,6 +134,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self.arrowImageView tw_setRotationRadians:0];
   
   [self.makeCommentInputViewHandler slideInputViewIn];
+  [self addCommentsTableViewToScreenBottomOffset];
 }
 
 - (void)foldAnimated:(BOOL)animated
@@ -140,16 +143,18 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   AssertTrueOr(commentsBarHeight > 0.0f,);
   
   VoidBlock heightUpdateBlock = ^() {
+    [self removeCommentsTableViewToScreenBottomOffset];
     self.view.tw_height = commentsBarHeight;
     [self invokeDidChangeHeightCallback];
   };
   
   if (animated) {
+    defineWeakSelf();
     [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
       heightUpdateBlock();
       [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-      CallBlock(self.didFoldBlock);
+      CallBlock(weakSelf.didFoldBlock);
     }];
   }
   else {
@@ -166,6 +171,18 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (void)invokeDidChangeHeightCallback
 {
   CallBlock(self.didChangeHeightBlock, self.view);
+}
+
+- (void)addCommentsTableViewToScreenBottomOffset
+{
+  CGFloat inputViewHeight = self.makeCommentInputViewHandler.inputViewHeight;
+  AssertTrueOrReturn(inputViewHeight > 0);
+  self.commentsContainerBottomOffsetConstraint.constant = inputViewHeight;
+}
+
+- (void)removeCommentsTableViewToScreenBottomOffset
+{
+  self.commentsContainerBottomOffsetConstraint.constant = 0.0f;
 }
 
 #pragma mark - UI Updates

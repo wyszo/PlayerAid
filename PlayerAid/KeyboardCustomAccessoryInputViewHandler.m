@@ -119,6 +119,13 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   } completion:completion];
 }
 
+- (CGFloat)inputViewHeight
+{
+  return self.desiredInputViewHeight;
+}
+
+#pragma mark - private
+
 - (void)installInputViewInKeyWindow
 {
   UIViewController *parentVC = [UIWindow tw_keyWindow].rootViewController;
@@ -131,8 +138,6 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   
   [self positionInputViewBelowTheScreen];
 }
-
-#pragma mark - private
 
 - (void)positionInputViewBelowTheScreen
 {

@@ -79,6 +79,7 @@
                         <outlet property="arrowImageView" destination="Lde-bx-8yc" id="sgg-DE-nhZ"/>
                         <outlet property="commentsBar" destination="jSd-xM-cHq" id="UU3-sA-Khd"/>
                         <outlet property="commentsBarHeightConstraint" destination="YhU-Zs-m9r" id="4wl-cC-YUm"/>
+                        <outlet property="commentsContainerBottomOffsetConstraint" destination="bBd-Ef-haB" id="p01-kf-Z0n"/>
                         <outlet property="commentsCountLabel" destination="ahX-GV-xBR" id="BD7-Af-RFX"/>
                         <outlet property="commentsLabel" destination="5nd-TZ-PAM" id="xu0-l0-YtH"/>
                     </connections>
