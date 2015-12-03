@@ -77,18 +77,12 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     TutorialCommentCell *cell = [weakSelf.commentsTableView cellForRowAtIndexPath:indexPath];
     AssertTrueOrReturn(cell);
     
-    BOOL isBeingEdited = NO;
-    if (weakSelf.isAnyCommentBeingEditedBlock) {
-      isBeingEdited = weakSelf.isAnyCommentBeingEditedBlock();
-      if (isBeingEdited) {
-        return;
-      }
+    if (![self shouldShowCommentActionSheetOnCellSelection]) {
+      return;
     }
     
     if ([cell isExpanded]) {
       AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-      
-      // for now we just don't desplay a new actionSheet when a comment is being edited
       [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object withTableViewCell:cell];
     }
     else {
@@ -96,6 +90,14 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     }
   };
   [self.commentsTableView bk_associateValue:delegate withKey:@"tableViewDelegate"];
+}
+
+- (BOOL)shouldShowCommentActionSheetOnCellSelection
+{
+  if (self.isAnyCommentBeingEditedOrAddedBlock) {
+    return !(self.isAnyCommentBeingEditedOrAddedBlock());
+  }
+  return YES;
 }
 
 - (void)setupCommentsTableViewDataSource

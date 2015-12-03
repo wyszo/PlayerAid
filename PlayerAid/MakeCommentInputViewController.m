@@ -21,6 +21,8 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 
 @implementation MakeCommentInputViewController
 
+#pragma mark - Init
+
 - (instancetype)initWithUser:(User *)user
 {
   AssertTrueOrReturnNil(user);
@@ -55,6 +57,13 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
   self.inputTextView.placeholderLabel.alpha = 0.8f;
   
   self.inputTextView.textColor = [ColorsHelper makeCommentInputTextViewTextColor];
+}
+
+#pragma mark - Public
+
+- (BOOL)isInputTextViewFirstResponder
+{
+  return self.inputTextView.isFirstResponder;
 }
 
 #pragma mark - Dismissing keyboard

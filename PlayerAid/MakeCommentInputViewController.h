@@ -19,6 +19,8 @@ NEW_AND_INIT_UNAVAILABLE
 
 - (instancetype)initWithUser:(User *)user;
 
+- (BOOL)isInputTextViewFirstResponder;
+
 @end
 
 NS_ASSUME_NONNULL_END
