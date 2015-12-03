@@ -38,8 +38,10 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (void)styleView
 {
+  self.inputTextView.textColor = [ColorsHelper makeCommentInputTextViewTextColor];
+  
   [self.view tw_addTopBorderWithWidth:0.5f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
-  [self.inputTextView tw_addBorderWithWidth:1.0 color:[ColorsHelper editedCommentKeyboardInputViewInputTextViewBorderColor]];
+  [self.inputTextView tw_addBorderWithWidth:0.5f color:[ColorsHelper editedCommentKeyboardInputViewInputTextViewBorderColor]];
 }
 
 #pragma mark - Dismissing keyboard
