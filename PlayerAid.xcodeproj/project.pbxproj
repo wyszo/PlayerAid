@@ -21,7 +21,7 @@
 		31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E7F1A9C77B7002F3485 /* TutorialSectionHeaderView.m */; };
 		31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */; };
 		3102F93B1BF697C300B544C6 /* MakeCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102F9391BF697C300B544C6 /* MakeCommentInputViewController.m */; };
-		3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */; };
+		3102F93F1BF6982000B544C6 /* MakeCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F93E1BF6982000B544C6 /* MakeCommentInputView.xib */; };
 		3102F9431BF9D58D00B544C6 /* TutorialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3102F9421BF9D58D00B544C6 /* TutorialCommentCell.xib */; };
 		3102F94B1BF9DC6400B544C6 /* TutorialCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */; };
 		310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310308A61A83CC8F00B7F921 /* TutorialTableViewCell.xib */; };
@@ -200,7 +200,7 @@
 		31014E821A9CE98C002F3485 /* UITableView+TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TableViewHelper.m"; sourceTree = "<group>"; };
 		3102F9381BF697C300B544C6 /* MakeCommentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeCommentInputViewController.h; sourceTree = "<group>"; };
 		3102F9391BF697C300B544C6 /* MakeCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeCommentInputViewController.m; sourceTree = "<group>"; };
-		3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentInputView.xib; sourceTree = "<group>"; };
+		3102F93E1BF6982000B544C6 /* MakeCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeCommentInputView.xib; sourceTree = "<group>"; };
 		3102F9421BF9D58D00B544C6 /* TutorialCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCommentCell.xib; sourceTree = "<group>"; };
 		3102F9491BF9DC6400B544C6 /* TutorialCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentCell.h; sourceTree = "<group>"; };
 		3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCommentCell.m; sourceTree = "<group>"; };
@@ -619,7 +619,7 @@
 		3102F93D1BF697D300B544C6 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				3102F93E1BF6982000B544C6 /* AddCommentInputView.xib */,
+				3102F93E1BF6982000B544C6 /* MakeCommentInputView.xib */,
 				31549F871C0908B300B2CA87 /* EditCommentInputView.xib */,
 			);
 			name = Comments;
@@ -2030,7 +2030,7 @@
 				317309F81BF9EFDA004C541D /* Comments.storyboard in Resources */,
 				3102F9431BF9D58D00B544C6 /* TutorialCommentCell.xib in Resources */,
 				31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */,
-				3102F93F1BF6982000B544C6 /* AddCommentInputView.xib in Resources */,
+				3102F93F1BF6982000B544C6 /* MakeCommentInputView.xib in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,

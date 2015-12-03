@@ -10,7 +10,7 @@
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
 
-static NSString *const kXibFileName = @"AddCommentInputView";
+static NSString *const kXibFileName = @"MakeCommentInputView";
 
 @interface MakeCommentInputViewController () <UITextViewDelegate>
 @property (strong, nonatomic, nonnull) User *user;
