@@ -52,6 +52,8 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 {
   self.inputTextView.placeholder = @"add a comment..";
   self.inputTextView.placeholderColor = [ColorsHelper makeCommentInputTextViewPlaceholderColor];
+  self.inputTextView.placeholderLabel.alpha = 0.8f;
+  
   self.inputTextView.textColor = [ColorsHelper makeCommentInputTextViewTextColor];
 }
 
