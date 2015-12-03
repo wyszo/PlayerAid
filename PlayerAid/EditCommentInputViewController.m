@@ -42,6 +42,8 @@ static NSString *const kNibName = @"EditCommentInputView";
   
   [self.view tw_addTopBorderWithWidth:0.5f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
   [self.inputTextView tw_addBorderWithWidth:0.5f color:[ColorsHelper editedCommentKeyboardInputViewInputTextViewBorderColor]];
+  
+  [self.saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
 }
 
 #pragma mark - Dismissing keyboard
