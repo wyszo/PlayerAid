@@ -59,7 +59,7 @@
 {
   AssertTrueOrReturnNil(self.tutorial);
   
-  NSFetchRequest *fetchRequest = [TutorialComment MR_requestAllSortedBy:@"createdOn" ascending:YES];
+  NSFetchRequest *fetchRequest = [TutorialComment MR_requestAll];
   fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@ AND reportedByUser == 0", self.tutorial];
   fetchRequest.sortDescriptors = [self sortDescriptors];
   return fetchRequest;
@@ -68,7 +68,7 @@
 - (NSArray *)sortDescriptors
 {
   NSSortDescriptor *sortDescriptorLikes = [[NSSortDescriptor alloc] initWithKey:@"likesCount" ascending:NO];
-  NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc] initWithKey:@"createdOn" ascending:NO];
+  NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc] initWithKey:@"createdOn" ascending:YES];
   return @[sortDescriptorLikes, sortDescriptorDate];
 }
 
