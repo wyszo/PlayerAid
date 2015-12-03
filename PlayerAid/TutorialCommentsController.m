@@ -66,7 +66,7 @@
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
     [cell setSelected:YES];
     
-    BlockWithBoolParameter didFinishEditingCommentCompletionBlock = ^(BOOL commentChanged) {
+    VoidBlock didFinishEditingCommentCompletionBlock = ^(){
       [cell setSelected:NO];
     };
     

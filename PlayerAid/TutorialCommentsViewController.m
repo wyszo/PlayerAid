@@ -289,14 +289,12 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
       [weakSelf.makeCommentInputVC hideKeyboard];
     };
     
-    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(TutorialComment *comment, BlockWithBoolParameter completion){
-      [weakSelf.editCommentInputViewHandler slideInputViewIn];
-      [weakSelf.editCommentInputVC setComment:comment];
+    [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(TutorialComment *comment, VoidBlock completion){
+      [weakSelf.editCommentInputViewHandler slideInputViewIn]; 
+      weakSelf.editCommentInputViewHandler.inputViewDidDismissBlock = completion;
       
-      weakSelf.editCommentInputViewHandler.inputViewDidDismissBlock = ^() {
-        BOOL commentChanged = YES; // TODO: update this value to whether it really changed or not
-        CallBlock(completion, commentChanged);
-      };
+      [weakSelf.editCommentInputVC setComment:comment];
+      [weakSelf.editCommentInputVC setInputViewToFirstResponder];
       
       weakSelf.editCommentInputVC.saveButtonAction = ^(NSString *editedComment) {
         if (editedComment.length > 0) {

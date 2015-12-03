@@ -7,7 +7,7 @@
 #import "Tutorial.h"
 @class TutorialComment;
 
-typedef void (^EditCommentBlock)(TutorialComment * _Nonnull comment, BlockWithBoolParameter _Nullable completion);
+typedef void (^EditCommentBlock)(TutorialComment * _Nonnull comment, VoidBlock _Nullable completion);
 
 
 NS_ASSUME_NONNULL_BEGIN

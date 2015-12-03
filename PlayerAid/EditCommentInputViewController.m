@@ -67,6 +67,11 @@ static NSString *const kNibName = @"EditCommentInputView";
   self.inputTextView.text = comment.text;
 }
 
+- (void)setInputViewToFirstResponder
+{
+  [self.inputTextView becomeFirstResponder];
+}
+
 - (void)hideKeyboard
 {
   [self.inputTextView resignFirstResponder];
