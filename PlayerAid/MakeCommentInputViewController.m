@@ -47,7 +47,7 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
   self.inputTextView.placeholderColor = [UIColor colorWithWhite:(152.0/255.0) alpha:1.0];
   
   [self.avatarImageView makeCircular];
-  [self.user placeAvatarInImageView:self.avatarImageView];
+  [self.user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
   [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
 }
 
