@@ -34,7 +34,6 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
   [self styleSubviews];
   
   self.inputTextView.delegate = self;
@@ -43,12 +42,17 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 
 - (void)styleSubviews
 {
-  self.inputTextView.placeholder = @"add a comment..";
-  self.inputTextView.placeholderColor = [UIColor colorWithWhite:(152.0/255.0) alpha:1.0];
-  
+  [self styleInputTextView];
   [self.avatarImageView makeCircular];
   [self.user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
   [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
+}
+
+- (void)styleInputTextView
+{
+  self.inputTextView.placeholder = @"add a comment..";
+  self.inputTextView.placeholderColor = [ColorsHelper makeCommentInputTextViewPlaceholderColor];
+  self.inputTextView.textColor = [ColorsHelper makeCommentInputTextViewTextColor];
 }
 
 #pragma mark - Dismissing keyboard

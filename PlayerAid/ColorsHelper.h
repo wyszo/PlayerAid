@@ -34,6 +34,8 @@
 
 + (UIColor *)makeCommentPostButtonActiveBackgroundColor;
 + (UIColor *)makeCommentPostButtonInactiveBackgroundColor;
++ (UIColor *)makeCommentInputTextViewTextColor;
++ (UIColor *)makeCommentInputTextViewPlaceholderColor;
 + (UIColor *)makeEditCommentInputViewTopBorderColor;
 
 + (UIColor *)playerAidBlueColor;

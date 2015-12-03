@@ -43,6 +43,8 @@ UIColorMethodMake(editedCommentKeyboardInputViewInputTextViewBorderColor, 233, 2
 
 UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
 UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
+UIColorFromHexMethodMake(makeCommentInputTextViewTextColor, 0x4444444)
+UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, 0x444444)
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134) // old, darker one
