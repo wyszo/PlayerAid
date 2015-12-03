@@ -34,6 +34,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   self.defaultBackgroundColor = self.contentView.backgroundColor;
   [self.avatarImageView makeCircular];
   [self tw_configureForFullWidthSeparators];
+  self.commentLabel.textColor = [ColorsHelper commentLabelTextColor];
   self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
   [self setupCommentTextLabelMaxLineCount];
 }

@@ -27,6 +27,7 @@
 + (UIColor *)tutorialGradientBlueColor;
 
 + (UIColor *)tutorialCommentsBarBackgroundColor;
++ (UIColor *)commentLabelTextColor;
 + (UIColor *)commentsTimeAgoLabelColor;
 
 + (UIColor *)editedCommentTableViewCellBackgroundColor;

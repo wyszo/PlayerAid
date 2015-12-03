@@ -11,6 +11,7 @@
 #define UIColorFromHexMethodMake(name,hexColor) +(UIColor *)name { return UIColorFromHex(hexColor); }
 
 static const NSInteger kNewPlayerAidBlue = 0x3f68c5;
+static const NSInteger kCommentDarkGrey = 0x444444;
 
 @implementation ColorsHelper
 
@@ -36,6 +37,8 @@ UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
 
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
+
+UIColorFromHexMethodMake(commentLabelTextColor, kCommentDarkGrey)
 UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139)
 
 UIColorMethodMake(editedCommentTableViewCellBackgroundColor, 255, 255, 223)
@@ -43,8 +46,8 @@ UIColorMethodMake(editedCommentKeyboardInputViewInputTextViewBorderColor, 233, 2
 
 UIColorMethodMake(makeCommentPostButtonActiveBackgroundColor, 91, 127, 214)
 UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
-UIColorFromHexMethodMake(makeCommentInputTextViewTextColor, 0x4444444)
-UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, 0x444444)
+UIColorFromHexMethodMake(makeCommentInputTextViewTextColor, kCommentDarkGrey)
+UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, kCommentDarkGrey)
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134) // old, darker one
