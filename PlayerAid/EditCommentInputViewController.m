@@ -65,6 +65,11 @@ static NSString *const kNibName = @"EditCommentInputView";
   self.inputTextView.text = comment.text;
 }
 
+- (void)hideKeyboard
+{
+  [self.inputTextView resignFirstResponder];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)cancelButtonPressed:(id)sender

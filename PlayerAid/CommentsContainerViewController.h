@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  A block should return true if 'edit cell' bar is visible or inputTextView in 'make comment' bar is firstResponder
  */
 @property (nonatomic, copy) BOOL (^isAnyCommentBeingEditedOrAddedBlock)();
+@property (nonatomic, copy) VoidBlock resignMakeOrEditCommentFirstResponderBlock;
 @property (nonatomic, copy) BOOL (^isCommentBeingEditedBlock)(TutorialComment *comment);
 
 // mandatory, part of the initialization

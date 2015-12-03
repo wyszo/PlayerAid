@@ -20,6 +20,7 @@ NEW_AND_INIT_UNAVAILABLE
 - (instancetype)initWithUser:(User *)user;
 
 - (BOOL)isInputTextViewFirstResponder;
+- (void)hideKeyboard;
 
 @end
 

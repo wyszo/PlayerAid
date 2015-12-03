@@ -66,6 +66,11 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
   return self.inputTextView.isFirstResponder;
 }
 
+- (void)hideKeyboard
+{
+  [self.inputTextView resignFirstResponder];
+}
+
 #pragma mark - Dismissing keyboard
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
