@@ -68,10 +68,6 @@
     
     BlockWithBoolParameter didFinishEditingCommentCompletionBlock = ^(BOOL commentChanged) {
       [cell setSelected:NO];
-      
-      if (commentChanged) {
-        // TODO: send edit comment network request
-      }
     };
     
     CallBlock(editCommentAction, comment, didFinishEditingCommentCompletionBlock);
