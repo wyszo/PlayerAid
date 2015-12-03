@@ -12,33 +12,44 @@ static const CGFloat kThinAvatarBorderWidth = 1.0f;
 
 @implementation UIImageView (AvatarStyling)
 
+#pragma mark - public interface
+
 - (void)styleAsSmallAvatar
 {
-  [self makeCircular];
+  [self makeCircularSetAspectFit];
   [self tw_addBorderWithWidth:kSmallAvatarBorderWidth color:self.borderColor];
 }
 
 - (void)styleAsLargeAvatar
 {
-  [self makeCircular];
+  [self makeCircularSetAspectFit];
   [self tw_addBorderWithWidth:kLargeAvatarBorderWidth color:self.borderColor];
 }
 
 - (void)styleAsAvatarThinBorder
 {
-  [self makeCircular];
+  [self makeCircularSetAspectFit];
   [self tw_addBorderWithWidth:kThinAvatarBorderWidth color:self.borderColor];
 }
+
+- (void)makeCircularSetAspectFit
+{
+  [self tw_setCornerRadius:(self.self.frame.size.width / 2.0f) ];
+  self.clipsToBounds = YES;
+  
+  [self setAspectFit];
+}
+
+#pragma mark - private
 
 - (UIColor *)borderColor
 {
   return [UIColor whiteColor];
 }
 
-- (void)makeCircular
+- (void)setAspectFit
 {
-  [self tw_setCornerRadius:(self.self.frame.size.width / 2.0f) ];
-  self.clipsToBounds = YES;
+  self.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 @end

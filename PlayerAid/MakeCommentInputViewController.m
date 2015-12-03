@@ -43,7 +43,7 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 - (void)styleSubviews
 {
   [self styleInputTextView];
-  [self.avatarImageView makeCircular];
+  [self.avatarImageView makeCircularSetAspectFit];
   [self.user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
   [self.view tw_addTopBorderWithWidth:0.5f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
 }

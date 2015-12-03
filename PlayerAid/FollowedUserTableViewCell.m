@@ -19,7 +19,7 @@
 {
   [super awakeFromNib];
   self.selectionStyle = UITableViewCellSelectionStyleNone;
-  [self.avatarImageView makeCircular];
+  [self.avatarImageView makeCircularSetAspectFit];
 }
 
 #pragma mark - Cell configuration
