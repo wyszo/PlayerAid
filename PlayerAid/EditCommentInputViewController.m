@@ -38,7 +38,7 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (void)styleView
 {
-  [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
+  [self.view tw_addTopBorderWithWidth:0.5f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
   [self.inputTextView tw_addBorderWithWidth:1.0 color:[ColorsHelper editedCommentKeyboardInputViewInputTextViewBorderColor]];
 }
 

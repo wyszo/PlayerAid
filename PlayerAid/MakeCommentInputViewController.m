@@ -45,7 +45,7 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
   [self styleInputTextView];
   [self.avatarImageView makeCircular];
   [self.user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
-  [self.view tw_addTopBorderWithWidth:1.0f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
+  [self.view tw_addTopBorderWithWidth:0.5f color:[ColorsHelper makeEditCommentInputViewTopBorderColor]];
 }
 
 - (void)styleInputTextView
