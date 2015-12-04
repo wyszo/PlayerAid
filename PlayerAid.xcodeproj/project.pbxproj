@@ -32,6 +32,7 @@
 		310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 310308BC1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m */; };
 		3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3103B6BE1A92377D0097FE00 /* FontsHelper.m */; };
 		310510B51C124AD30070C702 /* CommentBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310510B41C124AD20070C702 /* CommentBottomBar.xib */; };
+		310510B91C125B270070C702 /* CommentBottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310510B81C125B270070C702 /* CommentBottomBarView.swift */; };
 		3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */; };
 		3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */; };
 		3108E77B1AF783D100E02C07 /* PersistedUsersProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108E77A1AF783D100E02C07 /* PersistedUsersProperties.m */; };
@@ -218,6 +219,8 @@
 		3103B6BD1A92377D0097FE00 /* FontsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontsHelper.h; sourceTree = "<group>"; };
 		3103B6BE1A92377D0097FE00 /* FontsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontsHelper.m; sourceTree = "<group>"; };
 		310510B41C124AD20070C702 /* CommentBottomBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentBottomBar.xib; sourceTree = "<group>"; };
+		310510B71C125B260070C702 /* PlayerAid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayerAid-Bridging-Header.h"; sourceTree = "<group>"; };
+		310510B81C125B270070C702 /* CommentBottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentBottomBarView.swift; sourceTree = "<group>"; };
 		3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialStepButton.xib; sourceTree = "<group>"; };
 		3106D7621AC0857D0076F571 /* CreateTutorialStepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialStepButton.h; sourceTree = "<group>"; };
 		3106D7631AC0857D0076F571 /* CreateTutorialStepButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialStepButton.m; sourceTree = "<group>"; };
@@ -706,6 +709,14 @@
 				31014E701A9AA182002F3485 /* ServerDataUpdateController.m */,
 			);
 			name = ServerCommunication;
+			sourceTree = "<group>";
+		};
+		310510B61C125B0B0070C702 /* CommentBottomBar */ = {
+			isa = PBXGroup;
+			children = (
+				310510B81C125B270070C702 /* CommentBottomBarView.swift */,
+			);
+			name = CommentBottomBar;
 			sourceTree = "<group>";
 		};
 		3108E77C1AF7A61B00E02C07 /* Delegates */ = {
@@ -1525,6 +1536,7 @@
 		31C122621A838A340069D49A /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				310510B61C125B0B0070C702 /* CommentBottomBar */,
 				31B735E11A87B5140081AE15 /* CreateTutorialHeaderView */,
 				31B46D3F1A87AF58004EEA30 /* CreateTutorialButtons */,
 				31FB75381BCFC799001DC102 /* NoTutorialsView */,
@@ -1769,6 +1781,7 @@
 			children = (
 				31F116751A790F680022BD74 /* Info.plist */,
 				31F116761A790F680022BD74 /* main.m */,
+				310510B71C125B260070C702 /* PlayerAid-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1984,6 +1997,7 @@
 		31F116691A790F680022BD74 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					31F116701A790F680022BD74 = {
@@ -2241,6 +2255,7 @@
 				319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
+				310510B91C125B270070C702 /* CommentBottomBarView.swift in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,
 				319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */,
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
@@ -2367,6 +2382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Bakri (5VZCVU7XFD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -2377,6 +2393,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -2386,6 +2404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rami Bakri (37PKU4Y5BL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -2396,6 +2415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
 			};
 			name = Release;
 		};
