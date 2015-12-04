@@ -62,9 +62,24 @@
                             <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
+                        <rect key="frame" x="259" y="134" width="65" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
+                            <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
+                        <state key="normal" title="Reply &gt;">
+                            <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="replyButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="GIx-7t-j7M"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="DtM-Lg-sQJ" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="4hw-pR-BFx"/>
+                    <constraint firstAttribute="bottom" secondItem="hZj-1V-Mew" secondAttribute="bottom" id="6mS-3O-Zn8"/>
                     <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="20" id="9Oe-z1-exT"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="-2" id="LeV-MC-n7b"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="QMV-XM-CXf"/>
@@ -72,6 +87,7 @@
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstAttribute="bottom" secondItem="DtM-Lg-sQJ" secondAttribute="bottom" constant="8" id="fLb-7b-VH8"/>
+                    <constraint firstAttribute="trailing" secondItem="hZj-1V-Mew" secondAttribute="trailing" id="h67-aV-rz8"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="3" id="p5I-KF-tqR"/>
                     <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
