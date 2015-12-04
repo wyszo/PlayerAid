@@ -86,6 +86,7 @@
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
                 <outlet property="timeAgoLabel" destination="DtM-Lg-sQJ" id="NhE-fE-hAV"/>
+                <outlet property="timeAgoToMoreButtonDistanceConstraint" destination="yt9-pa-Zf4" id="P8p-Fv-LPc"/>
             </connections>
             <point key="canvasLocation" x="522" y="156.5"/>
         </tableViewCell>

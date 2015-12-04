@@ -12,8 +12,14 @@
 #import "ColorsHelper.h"
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
-static CGFloat defaultMoreButtonHeightConstraintConstant;
+static const CGFloat kFoldedTimeAgoToMoreButtonDistanceConstraint = 4.0f;
 
+static CGFloat defaultMoreButtonHeightConstraintConstant;
+static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
+
+/**
+ Technical debt: Constraint animations should be provided by a separate class! The view controller itself should not know about precise constraint values, it should only know if cell is expanded or folded.
+ */
 @interface TutorialCommentCell()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -23,6 +29,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 @property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoToMoreButtonDistanceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
 
@@ -36,6 +43,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self tw_configureForFullWidthSeparators];
   self.commentLabel.textColor = [ColorsHelper commentLabelTextColor];
   [self setupCommentTextLabelMaxLineCount];
+  [self saveDefaultTimeAgoToMoreButtonConstraintValue];
 }
 
 - (void)prepareForReuse
@@ -50,6 +58,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
+  [self restoreDefaultTimeAgoToMoreButtonConstraint];
 }
 
 - (void)setupCommentTextLabelMaxLineCount
@@ -70,6 +79,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
+  [self updateElementsSpacingConstraints];
 }
 
 #pragma mark - public
@@ -88,6 +98,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
   [self hideMoreButton]; // cell extended, we don't need more button anymore
   self.expanded = YES;
+  [self updateElementsSpacingConstraints];
   CallBlock(self.didChangeCellHeightBlock);
 }
 
@@ -122,7 +133,30 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self shrinkMoreButtonHeight];
 }
 
-#pragma mark - Constraints manipulation
+#pragma mark - Constraints manipulation - elements spacing
+
+- (void)updateElementsSpacingConstraints
+{
+  if ([self isExpanded]) {
+    [self shrinkTimeAgoToMoreButtonDistance]; // when cell is expanded the distance is smaller (because '...' button is not there anymore)
+  }
+}
+
+- (void)saveDefaultTimeAgoToMoreButtonConstraintValue
+{
+  if (expandedTimeAgoToMoreButtonDistanceConstraintConstant == 0) {
+    CGFloat constant = self.timeAgoToMoreButtonDistanceConstraint.constant;
+    AssertTrueOrReturn(constant != 0);
+    expandedTimeAgoToMoreButtonDistanceConstraintConstant = constant;
+  }
+}
+
+- (void)shrinkTimeAgoToMoreButtonDistance
+{
+  self.timeAgoToMoreButtonDistanceConstraint.constant = kFoldedTimeAgoToMoreButtonDistanceConstraint;
+}
+
+#pragma mark - Constraints manipulation - '...' button
 
 - (void)shrinkMoreButtonHeight
 {
@@ -136,6 +170,12 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
 {
   AssertTrueOrReturn(defaultMoreButtonHeightConstraintConstant != 0.0);
   self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
+}
+
+- (void)restoreDefaultTimeAgoToMoreButtonConstraint
+{
+  AssertTrueOrReturn(expandedTimeAgoToMoreButtonDistanceConstraintConstant != 0.0);
+  self.timeAgoToMoreButtonDistanceConstraint.constant = expandedTimeAgoToMoreButtonDistanceConstraintConstant;
 }
 
 #pragma mark - IBActions
