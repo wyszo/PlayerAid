@@ -8,42 +8,51 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="114" id="dDA-qc-dQS" customClass="TutorialCommentCell">
-            <rect key="frame" x="0.0" y="0.0" width="364" height="114"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="167" id="dDA-qc-dQS" customClass="TutorialCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="167"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="166"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
-                        <rect key="frame" x="8" y="8" width="36" height="36"/>
+                        <rect key="frame" x="8" y="8" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="wYM-dQ-F5j" secondAttribute="height" multiplier="1:1" id="G5h-uI-607"/>
-                            <constraint firstAttribute="width" constant="36" id="VEV-CG-6XX"/>
+                            <constraint firstAttribute="width" constant="32" id="VEV-CG-6XX"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
-                        <rect key="frame" x="52" y="16" width="304" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rami Baker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
+                        <rect key="frame" x="48" y="13" width="268" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                        <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="52" y="45" width="304" height="23"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                        <rect key="frame" x="48" y="33" width="256" height="92"/>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
+                                <attributes>
+                                    <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="13" name="Avenir-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtM-Lg-sQJ">
-                        <rect key="frame" x="52" y="88" width="62" height="17"/>
+                        <rect key="frame" x="48" y="141" width="50" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="jvn-X3-TW9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
+                        <color key="textColor" red="0.71764705882352942" green="0.71764705882352942" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="52" y="74" width="24" height="8"/>
+                        <rect key="frame" x="48" y="129" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                             <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -56,17 +65,17 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="DtM-Lg-sQJ" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="4hw-pR-BFx"/>
-                    <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="8" id="9Oe-z1-exT"/>
-                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="8" id="LeV-MC-n7b"/>
+                    <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="20" id="9Oe-z1-exT"/>
+                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="-2" id="LeV-MC-n7b"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="QMV-XM-CXf"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="bOo-v6-Ia9"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstAttribute="bottom" secondItem="DtM-Lg-sQJ" secondAttribute="bottom" constant="8" id="fLb-7b-VH8"/>
-                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="6" id="p5I-KF-tqR"/>
+                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="4" id="p5I-KF-tqR"/>
                     <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
-                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="6" id="yt9-pa-Zf4"/>
+                    <constraint firstItem="DtM-Lg-sQJ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="4" id="yt9-pa-Zf4"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
             </tableViewCellContentView>
@@ -78,7 +87,7 @@
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
                 <outlet property="timeAgoLabel" destination="DtM-Lg-sQJ" id="NhE-fE-hAV"/>
             </connections>
-            <point key="canvasLocation" x="542" y="130"/>
+            <point key="canvasLocation" x="522" y="156.5"/>
         </tableViewCell>
     </objects>
     <resources>

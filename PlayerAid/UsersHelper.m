@@ -73,6 +73,7 @@
   NSString *placeholderImageName = @"profile-emptystate-";
   
   NSDictionary *placeholderImageNameSufixMapping = @{
+                                                     @(AvatarPlaceholderSize32) : @"extrasmall32",
                                                      @(AvatarPlaceholderSizeSmall) : @"small",
                                                      @(AvatarPlaceholderSizeMedium) : @"medium",
                                                      @(AvatarPlaceholderSizeLarge) : @"large",

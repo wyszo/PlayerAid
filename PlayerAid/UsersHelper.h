@@ -7,6 +7,7 @@
 @class User;
 
 typedef NS_ENUM(NSUInteger, AvatarPlaceholderSize) {
+  AvatarPlaceholderSize32,
   AvatarPlaceholderSizeSmall,
   AvatarPlaceholderSizeMedium,
   AvatarPlaceholderSizeLarge

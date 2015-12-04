@@ -35,7 +35,6 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   [self.avatarImageView makeCircularSetAspectFit];
   [self tw_configureForFullWidthSeparators];
   self.commentLabel.textColor = [ColorsHelper commentLabelTextColor];
-  self.timeAgoLabel.textColor = [ColorsHelper commentsTimeAgoLabelColor];
   [self setupCommentTextLabelMaxLineCount];
 }
 
@@ -70,7 +69,7 @@ static CGFloat defaultMoreButtonHeightConstraintConstant;
   self.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
   
   [self updateMoreButtonVisibility];
-  [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeSmall];
+  [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
 }
 
 #pragma mark - public
