@@ -531,9 +531,9 @@
 		31014E4E1A948623002F3485 /* Other View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				31EFB6C21BAB46DA00F87C03 /* LoginFlow */,
 				31FB6B611B1111840042C409 /* CameraPortraitBlockingOverlay */,
 				314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */,
+				31EFB6C21BAB46DA00F87C03 /* LoginFlow */,
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
 				311486671ADFC4CA00A644CD /* UITabBarControllerWithAutorotate */,

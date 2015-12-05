@@ -3,33 +3,52 @@
 import UIKit
 import TWCommonLib
 
+typealias VoidCallback = () -> ()
+
 class CommentBottomBarView: UIView {
   
-  private var view: UIView!
+  @IBOutlet private weak var view: UIView! 
   
   // MARK: Init
   
   override init(frame: CGRect) {
-    super.init(frame:frame);
-    setupView();
+    super.init(frame:frame)
+    setupView()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder);
-    setupView();
+    super.init(coder: aDecoder)
+    setupView()
   }
-  
+
   private func setupView() {
-    self.view = self.tw_loadView(self.view, fromNibNamed:"CommentBottomBar");
+    NSBundle.mainBundle().loadNibNamed("CommentBottomBar", owner:self, options:nil)
+    self.addSubview(self.view);
   }
   
-  // MARK: IBActions
+  // MARK: public
   
-  // Those two methods should cetrainly be part of the view controller, not the view, right?
+  func setNumberOfLikes(numberOfLikes: Int) {
+    let numberOfLikesString = String(numberOfLikes)
+    assert(numberOfLikesString.characters.count > 0)
+    self.numberOfLikesButton.setTitle(numberOfLikesString, forState: .Normal)
+  }
+  
+  // MARK: callbacks
+  
+  var likeButtonPressed: VoidCallback?
+  var likesCountButtonPressed: VoidCallback?
+  
+  // MARK: UI
+  
+  @IBOutlet weak var timeAgoLabel: UILabel!
+  @IBOutlet private weak var numberOfLikesButton: UIButton!
   
   @IBAction func likeButtonPressed(sender: AnyObject) {
+    likeButtonPressed?()
   }
   
   @IBAction func numberOfLikesButtonPressed(sender: AnyObject) {
+    likesCountButtonPressed?()
   }
 }

@@ -10,12 +10,15 @@
 #import "User.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
+#import "PlayerAid-Swift.h"
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
-static const CGFloat kFoldedTimeAgoToMoreButtonDistanceConstraint = 4.0f;
+static const CGFloat kFoldedTimeAgoBarToMoreButtonDistanceConstraint = -6.0f;
 
 static CGFloat defaultMoreButtonHeightConstraintConstant;
-static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
+static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
+
+@class CommentBottomBarView;
 
 /**
  Technical debt: Constraint animations should be provided by a separate class! The view controller itself should not know about precise constraint values, it should only know if cell is expanded or folded.
@@ -26,10 +29,11 @@ static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
+@property (weak, nonatomic) IBOutlet CommentBottomBarView *commentBottomBar;
 @property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoToMoreButtonDistanceConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoBarToMoreButtonDistanceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
 
@@ -58,7 +62,7 @@ static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
-  [self restoreDefaultTimeAgoToMoreButtonConstraint];
+  [self restoreDefaultTimeAgoBarToMoreButtonConstraint];
 }
 
 - (void)setupCommentTextLabelMaxLineCount
@@ -75,7 +79,9 @@ static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
   
   self.authorLabel.text = commentAuthor.name;
   self.commentLabel.text = comment.text;
-  self.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
+  AssertTrueOr(self.commentBottomBar,);
+  self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
+  [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
   
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
@@ -144,16 +150,16 @@ static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
 
 - (void)saveDefaultTimeAgoToMoreButtonConstraintValue
 {
-  if (expandedTimeAgoToMoreButtonDistanceConstraintConstant == 0) {
-    CGFloat constant = self.timeAgoToMoreButtonDistanceConstraint.constant;
+  if (expandedTimeAgoBarToMoreButtonDistanceConstraintConstant == 0) {
+    CGFloat constant = self.timeAgoBarToMoreButtonDistanceConstraint.constant;
     AssertTrueOrReturn(constant != 0);
-    expandedTimeAgoToMoreButtonDistanceConstraintConstant = constant;
+    expandedTimeAgoBarToMoreButtonDistanceConstraintConstant = constant;
   }
 }
 
 - (void)shrinkTimeAgoToMoreButtonDistance
 {
-  self.timeAgoToMoreButtonDistanceConstraint.constant = kFoldedTimeAgoToMoreButtonDistanceConstraint;
+  self.timeAgoBarToMoreButtonDistanceConstraint.constant = kFoldedTimeAgoBarToMoreButtonDistanceConstraint;
 }
 
 #pragma mark - Constraints manipulation - '...' button
@@ -172,10 +178,10 @@ static CGFloat expandedTimeAgoToMoreButtonDistanceConstraintConstant;
   self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
 }
 
-- (void)restoreDefaultTimeAgoToMoreButtonConstraint
+- (void)restoreDefaultTimeAgoBarToMoreButtonConstraint
 {
-  AssertTrueOrReturn(expandedTimeAgoToMoreButtonDistanceConstraintConstant != 0.0);
-  self.timeAgoToMoreButtonDistanceConstraint.constant = expandedTimeAgoToMoreButtonDistanceConstraintConstant;
+  AssertTrueOrReturn(expandedTimeAgoBarToMoreButtonDistanceConstraintConstant != 0.0);
+  self.timeAgoBarToMoreButtonDistanceConstraint.constant = expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 #pragma mark - IBActions
