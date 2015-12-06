@@ -79,13 +79,24 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   self.authorLabel.text = commentAuthor.name;
   self.commentLabel.text = comment.text;
-  AssertTrueOr(self.commentBottomBar,);
-  self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
-  [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
+  [self configureBottomBarWithTutorialComment:comment];
   
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
   [self updateElementsSpacingConstraints];
+}
+
+- (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment
+{
+  AssertTrueOrReturn(comment);
+  
+  AssertTrueOr(self.commentBottomBar,);
+  self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
+  [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
+  
+  self.commentBottomBar.likeButtonPressed = ^() {
+    // TODO: send like comment network request!
+  };
 }
 
 #pragma mark - public

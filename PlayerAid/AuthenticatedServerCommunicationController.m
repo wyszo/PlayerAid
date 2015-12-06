@@ -21,6 +21,7 @@ static NSString *const kListTutorialsUrlString = @"tutorials";
 @interface AuthenticatedServerCommunicationController ()
 @property (nonatomic, strong) AFHTTPRequestOperationManager *requestOperationManager;
 @property (nonatomic, strong) NSString *apiToken;
+@property (nonatomic, strong) ServerCommunicationController *serverCommunicationController;
 @end
 
 
@@ -33,7 +34,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 + (void)setApiToken:(NSString *)apiToken
 {
   AssertTrueOrReturn(apiToken.length);
-  ((AuthenticatedServerCommunicationController *)[self sharedInstance]).apiToken = apiToken;
+  
+  AuthenticatedServerCommunicationController *sharedInstance = [self sharedInstance];
+  sharedInstance.apiToken = apiToken;
+  [sharedInstance.serverCommunicationController setApiToken:apiToken];
 }
 
 #pragma mark - Ping
@@ -478,6 +482,13 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   }
   _requestOperationManager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy; // reset to default cache
   return _requestOperationManager;
+}
+
+- (ServerCommunicationController *)serverCommunicationController {
+  if (!_serverCommunicationController) {
+    _serverCommunicationController = [[ServerCommunicationController alloc] init];
+  }
+  return _serverCommunicationController;
 }
 
 @end

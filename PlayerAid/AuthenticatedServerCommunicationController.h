@@ -7,19 +7,25 @@
 #import "TutorialComment.h"
 #import "User.h"
 #import <TWCommonLib/TWCommonTypes.h>
+#import "PlayerAid-swift.h"
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error);
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ This class is Deprecated and intended to no longer be extended. Implement new network requests in ServerCommunicationController.swift
+ 
  A wrapper to network requests to our server - if access token is not set, requests will fail (assert)!
  TODO: decompose it into a couple of smaller objects!
  */
+DEPRECATED_ATTRIBUTE // try to use ServerCommunicationController instead!
 @interface AuthenticatedServerCommunicationController : NSObject
 
 + (instancetype)sharedInstance;
 + (void)setApiToken:(NSString *)apiToken;
+
+@property (nonatomic, strong, readonly) ServerCommunicationController *serverCommunicationController;
 
 - (void)pingCompletion:(NetworkResponseBlock)completion;
 - (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;

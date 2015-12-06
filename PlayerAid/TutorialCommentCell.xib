@@ -28,7 +28,7 @@
                         <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
                         <rect key="frame" x="48" y="33" width="256" height="113"/>
                         <attributedString key="attributedText">
                             <fragment>
@@ -42,14 +42,14 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
                         <rect key="frame" x="48" y="158" width="203" height="24"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
                         <rect key="frame" x="48" y="149" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
@@ -60,7 +60,7 @@
                             <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
                         <rect key="frame" x="259" y="154" width="65" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>

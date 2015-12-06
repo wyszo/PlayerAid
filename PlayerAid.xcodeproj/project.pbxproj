@@ -128,6 +128,7 @@
 		31C122651A838A530069D49A /* PlayerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C122641A838A530069D49A /* PlayerInfoView.m */; };
 		31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */; };
 		31CA3CD71AC4A36D0044A13D /* SectionLabelContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */; };
+		31CFDF431C1468DD00A1EAF1 /* ServerCommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CFDF421C1468DD00A1EAF1 /* ServerCommunicationController.swift */; };
 		31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */; };
 		31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
@@ -399,6 +400,7 @@
 		31CA3CD21AC4A3060044A13D /* SectionLabelContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionLabelContainerView.xib; sourceTree = "<group>"; };
 		31CA3CD51AC4A36D0044A13D /* SectionLabelContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionLabelContainer.h; sourceTree = "<group>"; };
 		31CA3CD61AC4A36D0044A13D /* SectionLabelContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionLabelContainer.m; sourceTree = "<group>"; };
+		31CFDF421C1468DD00A1EAF1 /* ServerCommunicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController.swift; sourceTree = "<group>"; };
 		31D8CB0E1B1C614A003EE772 /* UserTutorialsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialsController.h; sourceTree = "<group>"; };
 		31D8CB0F1B1C614A003EE772 /* UserTutorialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialsController.m; sourceTree = "<group>"; };
 		31D8CB111B1CEA28003EE772 /* PlayerAidTabBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAidTabBarHelper.h; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 			children = (
 				31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */,
 				31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */,
+				31CFDF421C1468DD00A1EAF1 /* ServerCommunicationController.swift */,
 			);
 			name = Authenticated;
 			sourceTree = "<group>";
@@ -2273,6 +2276,7 @@
 				31F721BC1BF545D4001DB831 /* TutorialCommentsViewController.m in Sources */,
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
+				31CFDF431C1468DD00A1EAF1 /* ServerCommunicationController.swift in Sources */,
 				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
