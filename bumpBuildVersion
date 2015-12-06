@@ -59,6 +59,7 @@ func main() {
 		print("Things on the list to implement:")
 		print("\t- create a new branch (with number in the name increased by 1)")
 		print("\t- switch to this new branch")
+		print("\t- delete old local branch")
 		print("\t- automatically make a commit updating version number in the info.plist file")
 	}
 }
