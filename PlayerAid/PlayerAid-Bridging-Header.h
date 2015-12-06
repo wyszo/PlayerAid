@@ -3,3 +3,5 @@
 //
 
 #import "TutorialComment.h"
+#import "EnvironmentSettings.h"
+#import "AlertFactory.h"

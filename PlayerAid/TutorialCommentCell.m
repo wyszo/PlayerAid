@@ -11,6 +11,7 @@
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
 #import "PlayerAid-Swift.h"
+#import "AuthenticatedServerCommunicationController.h" // TODO: get rid of this dependency
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 static const CGFloat kFoldedTimeAgoBarToMoreButtonDistanceConstraint = -6.0f;
@@ -95,7 +96,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
   
   self.commentBottomBar.likeButtonPressed = ^() {
-    // TODO: send like comment network request!
+    // TODO: pass this further, we don't want to have AuthenticatedServerCommunicationController dependency in Tutorial Cell
+    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
   };
 }
 
