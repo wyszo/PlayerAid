@@ -1,0 +1,65 @@
+#!/usr/bin/swift 
+
+import Foundation
+
+struct Constants {
+	static let gitPath = "/usr/bin/git"
+}
+
+extension String {
+	func trimWhitespace() -> String {
+		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+	}
+	
+	func trimWhitespaceAndNewline() -> String {
+		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+	}
+}
+
+struct GitUtility {
+	func tagBranchWithTagName(tagName: String) -> String? {
+		return executeGitCommandWithArguments("tag " + tagName.trimWhitespaceAndNewline())
+	}
+	
+	func currentGitBranch() -> String? {
+		return executeGitCommandWithArguments("rev-parse --abbrev-ref HEAD")
+	}
+	
+	private func executeSystemCommandWithLaunchPath(launchPath: String, arguments: String) -> String? {
+		let task = NSTask()
+		task.launchPath = launchPath
+		task.arguments = arguments.characters.split{$0 == " "}.map(String.init);
+
+		let pipe = NSPipe()
+		task.standardOutput = pipe
+		task.launch()
+
+		let data = pipe.fileHandleForReading.readDataToEndOfFile()
+		let output = String(data:data, encoding:NSUTF8StringEncoding) as String?
+		return output
+	}
+
+	private func executeGitCommandWithArguments(arguments: String) -> String? {
+		return executeSystemCommandWithLaunchPath(Constants.gitPath, arguments:arguments)
+	}
+}
+
+func tagNameFromBranchName(branchName : String) -> String {
+	return String(branchName.characters.dropFirst())
+}
+
+func main() {
+	let gitUtility = GitUtility()	
+	let branch = gitUtility.currentGitBranch()
+	
+	if let currentBranch = branch {
+		gitUtility.tagBranchWithTagName(tagNameFromBranchName(currentBranch))
+		
+		print("\nCurrently the script only places a tag in the repo")
+		print("Things on the list to implement:")
+		print("\t- create a new branch (with number in the name increased by 1)")
+		print("\t- switch to this new branch")
+		print("\t- automatically make a commit updating version number in the info.plist file")
+	}
+}
+main();
