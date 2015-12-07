@@ -11,7 +11,6 @@
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
 #import "PlayerAid-Swift.h"
-#import "AuthenticatedServerCommunicationController.h" // TODO: get rid of this dependency
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 static const CGFloat kFoldedTimeAgoBarToMoreButtonDistanceConstraint = -6.0f;
@@ -29,8 +28,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
-@property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 @property (weak, nonatomic) IBOutlet CommentBottomBarView *commentBottomBar;
+@property (strong, nonatomic) TutorialComment *comment;
 @property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
 
@@ -76,6 +75,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 - (void)configureWithTutorialComment:(TutorialComment *)comment
 {
   AssertTrueOrReturn(comment);
+  _comment = comment;
   User *commentAuthor = comment.madeBy;
   
   self.authorLabel.text = commentAuthor.name;
@@ -95,9 +95,9 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
   [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
   
+  defineWeakSelf();
   self.commentBottomBar.likeButtonPressed = ^() {
-    // TODO: pass this further, we don't want to have AuthenticatedServerCommunicationController dependency in Tutorial Cell
-    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
+    CallBlock(weakSelf.likeButtonPressedBlock, weakSelf.comment);
   };
 }
 

@@ -16,6 +16,7 @@
 #import "CommentsTableViewDataSource.h"
 #import "AlertFactory.h"
 #import "UsersFetchController.h"
+#import "AuthenticatedServerCommunicationController.h"
 
 static NSString *const kNibFileName = @"CommentsContainerView";
 
@@ -167,6 +168,9 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   };
   commentCell.didChangeCellHeightBlock = ^() {
     [weakSelf.commentsTableView endUpdates];
+  };
+  commentCell.likeButtonPressedBlock = ^(TutorialComment *comment) {
+    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
   };
   
   if (!object) {

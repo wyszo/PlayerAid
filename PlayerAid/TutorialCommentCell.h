@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) VoidBlock willChangeCellHeightBlock;
 @property (nonatomic, copy) VoidBlock didChangeCellHeightBlock;
+@property (nonatomic, copy) void (^likeButtonPressedBlock)(TutorialComment *comment);
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment;
 
