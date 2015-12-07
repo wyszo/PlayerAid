@@ -44,8 +44,28 @@ struct GitUtility {
 	}
 }
 
-func tagNameFromBranchName(branchName : String) -> String {
+func tagNameFromBranchName(branchName: String) -> String {
 	return String(branchName.characters.dropFirst())
+}
+
+func nextBranchName(branchName: String) -> String {
+	assert(branchName.characters.count > 0)
+	
+	var nextBranchName = branchName
+	var branchNameComponents = branchName.trimWhitespaceAndNewline().characters.split{$0 == "_"}.map(String.init)
+	
+	if let lastNameComponent = branchNameComponents.last {
+		let lastNumber = Int(lastNameComponent)
+		
+		if let safeLastNumber = lastNumber {
+			let nextBranchNumber = Int(safeLastNumber + 1)
+			
+			let lastIndex = (branchNameComponents.count - 1)
+			branchNameComponents[lastIndex] = String(nextBranchNumber)
+		}
+		nextBranchName = branchNameComponents.joinWithSeparator("_")
+	}
+	return nextBranchName
 }
 
 func main() {
@@ -54,6 +74,7 @@ func main() {
 	
 	if let currentBranch = branch {
 		gitUtility.tagBranchWithTagName(tagNameFromBranchName(currentBranch))
+		print("new branch name: " + nextBranchName(currentBranch))
 		
 		print("\nCurrently the script only places a tag in the repo")
 		print("Things on the list to implement:")
