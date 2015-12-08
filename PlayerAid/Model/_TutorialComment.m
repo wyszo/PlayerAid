@@ -4,6 +4,7 @@
 #import "_TutorialComment.h"
 
 const struct TutorialCommentAttributes TutorialCommentAttributes = {
+	.commentDeleted = @"commentDeleted",
 	.createdOn = @"createdOn",
 	.likesCount = @"likesCount",
 	.reportedByUser = @"reportedByUser",
@@ -45,6 +46,11 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"commentDeletedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"commentDeleted"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"likesCountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"likesCount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -62,6 +68,26 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 	}
 
 	return keyPaths;
+}
+
+@dynamic commentDeleted;
+
+- (BOOL)commentDeletedValue {
+	NSNumber *result = [self commentDeleted];
+	return [result boolValue];
+}
+
+- (void)setCommentDeletedValue:(BOOL)value_ {
+	[self setCommentDeleted:@(value_)];
+}
+
+- (BOOL)primitiveCommentDeletedValue {
+	NSNumber *result = [self primitiveCommentDeleted];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveCommentDeletedValue:(BOOL)value_ {
+	[self setPrimitiveCommentDeleted:@(value_)];
 }
 
 @dynamic createdOn;

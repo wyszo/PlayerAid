@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct TutorialCommentAttributes {
+	__unsafe_unretained NSString *commentDeleted;
 	__unsafe_unretained NSString *createdOn;
 	__unsafe_unretained NSString *likesCount;
 	__unsafe_unretained NSString *reportedByUser;
@@ -33,6 +34,14 @@ extern const struct TutorialCommentRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TutorialCommentID* objectID;
+
+@property (nonatomic, strong) NSNumber* commentDeleted;
+
+@property (atomic) BOOL commentDeletedValue;
+- (BOOL)commentDeletedValue;
+- (void)setCommentDeletedValue:(BOOL)value_;
+
+//- (BOOL)validateCommentDeleted:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSDate* createdOn;
 
@@ -105,6 +114,12 @@ extern const struct TutorialCommentRelationships {
 @end
 
 @interface _TutorialComment (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveCommentDeleted;
+- (void)setPrimitiveCommentDeleted:(NSNumber*)value;
+
+- (BOOL)primitiveCommentDeletedValue;
+- (void)setPrimitiveCommentDeletedValue:(BOOL)value_;
 
 - (NSDate*)primitiveCreatedOn;
 - (void)setPrimitiveCreatedOn:(NSDate*)value;
