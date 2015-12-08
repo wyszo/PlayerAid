@@ -275,7 +275,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     
     defineWeakSelf();
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {
-      BOOL anyCommentBeingEdited = weakSelf.editCommentInputViewHandler.inputViewVisible;
+      BOOL anyCommentBeingEdited = weakSelf.editCommentInputViewHandler.inputViewSlidOut;
       BOOL newCommentBeingAdded = [weakSelf.makeCommentInputVC isInputTextViewFirstResponder];
       return (anyCommentBeingEdited || newCommentBeingAdded);
     };

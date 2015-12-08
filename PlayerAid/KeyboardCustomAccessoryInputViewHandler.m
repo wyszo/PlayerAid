@@ -14,7 +14,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 @interface KeyboardCustomAccessoryInputViewHandler()
 @property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
 @property (nonatomic, assign) CGFloat desiredInputViewHeight;
-@property (nonatomic, assign) BOOL inputViewVisible;
+@property (nonatomic, assign) BOOL inputViewSlidOut;
 @end
 
 @implementation KeyboardCustomAccessoryInputViewHandler
@@ -88,7 +88,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 {
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
   [self installInputViewInKeyWindow];
-  self.inputViewVisible = YES;
+  self.inputViewSlidOut = YES;
   
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.inputVC.view.tw_bottom = [UIScreen tw_height];
@@ -102,7 +102,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   
   defineWeakSelf();
   [self invokeSlideInputViewOutAnimationWithCompletion:^(BOOL finished) {
-    weakSelf.inputViewVisible = NO;
+    weakSelf.inputViewSlidOut = NO;
     [strongInputView removeFromSuperview];
     CallBlock(weakSelf.inputViewDidDismissBlock);
   }];
