@@ -4,6 +4,7 @@ import Foundation
 
 struct Constants {
 	static let gitPath = "/usr/bin/git"
+	static let agvtoolPath = "/usr/bin/agvtool"
 }
 
 extension String {
@@ -67,24 +68,32 @@ func tagNameFromBranchName(branchName: String) -> String {
 	return String(safeBranchName.characters.dropFirst())
 }
 
-func nextBranchName(branchName: String) -> String {
-	assert(branchName.characters.count > 0)
-	
-	var nextBranchName = branchName
-	var branchNameComponents = branchName.stringByTrimmingWhitespaceAndNewline().characters.split{$0 == "_"}.map(String.init)
-	
-	if let lastNameComponent = branchNameComponents.last {
-		let lastNumber = Int(lastNameComponent)
-		
-		if let safeLastNumber = lastNumber {
-			let nextBranchNumber = Int(safeLastNumber + 1)
-			
-			let lastIndex = (branchNameComponents.count - 1)
-			branchNameComponents[lastIndex] = String(nextBranchNumber)
-		}
-		nextBranchName = branchNameComponents.joinWithSeparator("_")
+struct VersionStringTransformer {
+	func nextBranchName(branchName: String) -> String {
+		return nextMajorMinorInternalVersion(branchName, separator: "_")
 	}
-	return nextBranchName
+	
+	// MARK: private
+	
+	private func nextMajorMinorInternalVersion(version: String, separator: Character) -> String {
+		assert(version.characters.count > 0)
+		
+		var nextVersionString = version
+		var versionComponents = version.stringByTrimmingWhitespaceAndNewline().characters.split{$0 == separator}.map(String.init)
+		
+		if let lastVersionComponent = versionComponents.last {
+			let lastNumber = Int(lastVersionComponent)
+			
+			if let safeLastNumber = lastNumber {
+				let nextVersionNumber = Int(safeLastNumber + 1)
+				
+				let lastIndex = (versionComponents.count - 1)
+				versionComponents[lastIndex] = String(nextVersionNumber)
+			}
+			nextVersionString = versionComponents.joinWithSeparator(String(separator))
+		}
+		return nextVersionString
+	}
 }
 
 func main() {
@@ -94,12 +103,16 @@ func main() {
 	if let currentBranch = branch {
 		gitUtility.tagBranchWithTagName(tagNameFromBranchName(currentBranch))
 		
-		let newBranchName = nextBranchName(currentBranch)
+		let newBranchName = VersionStringTransformer().nextBranchName(currentBranch)
 		gitUtility.createBranchNamed(newBranchName)
 		gitUtility.switchToBranchNamed(newBranchName)
 		
 		let oldBranchName = currentBranch
 		gitUtility.deleteBranchNamed(oldBranchName)
+		
+		let currentBuildVersionNumber = SystemTaskExecutor().executeSystemCommandWithLaunchPath(Constants.agvtoolPath, arguments: "what-version -terse")
+		// TODO: bump build version number
+		// TODO: pass new version number to "argvtool new-version --all '<version>'"
 		
 		print("\nCurrently the script only places a tag in the repo")
 		print("Things on the list to implement:")
