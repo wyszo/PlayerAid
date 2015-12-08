@@ -7,11 +7,11 @@ struct Constants {
 }
 
 extension String {
-	func trimWhitespace() -> String {
+	func stringByTrimmingWhitespace() -> String {
 		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 	}
 	
-	func trimWhitespaceAndNewline() -> String {
+	func stringByTrimmingWhitespaceAndNewline() -> String {
 		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 	}
 }
@@ -35,11 +35,15 @@ struct SystemTaskExecutor
 
 struct GitUtility {	
 	func tagBranchWithTagName(tagName: String) -> String? {
-		return executeGitCommandWithArguments("tag " + tagName.trimWhitespaceAndNewline())
+		return executeGitCommandWithArguments("tag " + tagName.stringByTrimmingWhitespaceAndNewline())
 	}
 	
 	func createBranchNamed(branchName: String) {
 		executeGitCommandWithArguments("branch " + branchName)
+	}
+	
+	func deleteBranchNamed(branchName: String) {
+		executeGitCommandWithArguments("branch -D " + branchName)
 	}
 	
 	func switchToBranchNamed(branchName: String) {
@@ -47,7 +51,7 @@ struct GitUtility {
 	}
 	
 	func currentGitBranch() -> String? {
-		return executeGitCommandWithArguments("rev-parse --abbrev-ref HEAD")
+		return executeGitCommandWithArguments("rev-parse --abbrev-ref HEAD")?.stringByTrimmingWhitespaceAndNewline()
 	}
 
 	// MARK: private
@@ -59,14 +63,15 @@ struct GitUtility {
 }
 
 func tagNameFromBranchName(branchName: String) -> String {
-	return String(branchName.characters.dropFirst())
+	let safeBranchName = branchName.stringByTrimmingWhitespaceAndNewline()
+	return String(safeBranchName.characters.dropFirst())
 }
 
 func nextBranchName(branchName: String) -> String {
 	assert(branchName.characters.count > 0)
 	
 	var nextBranchName = branchName
-	var branchNameComponents = branchName.trimWhitespaceAndNewline().characters.split{$0 == "_"}.map(String.init)
+	var branchNameComponents = branchName.stringByTrimmingWhitespaceAndNewline().characters.split{$0 == "_"}.map(String.init)
 	
 	if let lastNameComponent = branchNameComponents.last {
 		let lastNumber = Int(lastNameComponent)
@@ -93,10 +98,13 @@ func main() {
 		gitUtility.createBranchNamed(newBranchName)
 		gitUtility.switchToBranchNamed(newBranchName)
 		
+		let oldBranchName = currentBranch
+		gitUtility.deleteBranchNamed(oldBranchName)
+		
 		print("\nCurrently the script only places a tag in the repo")
 		print("Things on the list to implement:")
-		print("\t- delete old local branch")
 		print("\t- automatically make a commit updating version number in the info.plist file")
+		print("\t- print more verbose information about what's happening behind the scenes")		
 	}
 }
 main();
