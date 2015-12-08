@@ -16,16 +16,9 @@ extension String {
 	}
 }
 
-struct GitUtility {
-	func tagBranchWithTagName(tagName: String) -> String? {
-		return executeGitCommandWithArguments("tag " + tagName.trimWhitespaceAndNewline())
-	}
-	
-	func currentGitBranch() -> String? {
-		return executeGitCommandWithArguments("rev-parse --abbrev-ref HEAD")
-	}
-	
-	private func executeSystemCommandWithLaunchPath(launchPath: String, arguments: String) -> String? {
+struct SystemTaskExecutor
+{
+	func executeSystemCommandWithLaunchPath(launchPath: String, arguments: String) -> String? {
 		let task = NSTask()
 		task.launchPath = launchPath
 		task.arguments = arguments.characters.split{$0 == " "}.map(String.init);
@@ -38,9 +31,30 @@ struct GitUtility {
 		let output = String(data:data, encoding:NSUTF8StringEncoding) as String?
 		return output
 	}
+}
+
+struct GitUtility {	
+	func tagBranchWithTagName(tagName: String) -> String? {
+		return executeGitCommandWithArguments("tag " + tagName.trimWhitespaceAndNewline())
+	}
+	
+	func createBranchNamed(branchName: String) {
+		executeGitCommandWithArguments("branch " + branchName)
+	}
+	
+	func switchToBranchNamed(branchName: String) {
+		executeGitCommandWithArguments("checkout " + branchName)
+	}
+	
+	func currentGitBranch() -> String? {
+		return executeGitCommandWithArguments("rev-parse --abbrev-ref HEAD")
+	}
+
+	// MARK: private
 
 	private func executeGitCommandWithArguments(arguments: String) -> String? {
-		return executeSystemCommandWithLaunchPath(Constants.gitPath, arguments:arguments)
+		let taskExecutor = SystemTaskExecutor()
+		return taskExecutor.executeSystemCommandWithLaunchPath(Constants.gitPath, arguments:arguments)
 	}
 }
 
@@ -74,12 +88,13 @@ func main() {
 	
 	if let currentBranch = branch {
 		gitUtility.tagBranchWithTagName(tagNameFromBranchName(currentBranch))
-		print("new branch name: " + nextBranchName(currentBranch))
+		
+		let newBranchName = nextBranchName(currentBranch)
+		gitUtility.createBranchNamed(newBranchName)
+		gitUtility.switchToBranchNamed(newBranchName)
 		
 		print("\nCurrently the script only places a tag in the repo")
 		print("Things on the list to implement:")
-		print("\t- create a new branch (with number in the name increased by 1)")
-		print("\t- switch to this new branch")
 		print("\t- delete old local branch")
 		print("\t- automatically make a commit updating version number in the info.plist file")
 	}
