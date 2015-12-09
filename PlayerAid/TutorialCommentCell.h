@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isExpanded;
 - (void)expandCell;
 
-- (void)setSelected:(BOOL)selected;
+- (void)setHighlighted:(BOOL)highlighted;
 
 @end
 

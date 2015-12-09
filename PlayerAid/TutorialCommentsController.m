@@ -57,17 +57,20 @@
   }];
 }
 
-- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction
+- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction  //completion:(VoidBlock)completion
 {
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(cell);
   AssertTrueOrReturnNil(editCommentAction);
   
   UIAlertController *actionSheet = [AlertControllerFactory editDeleteCommentActionControllerWithEditAction:^{
-    [cell setSelected:YES];
+    [cell setHighlighted:YES];
     
     VoidBlock didFinishEditingCommentCompletionBlock = ^(){
-      [cell setSelected:NO];
+      /**
+       Normally comments tableView cells would be reused, so we wouldn't know if the cell reference is pointing to the same cell as initially. However, because comments are in the TutorialDetails tableView footer, cell reuse mechanism is not used. Moreover even if cell reference would be pointing to another cell, setting highlight to NO on another cell is fine. That would also mean that cell reusing is in place. And if that would be the case, correct highlight would also be set on cell reuse (from the viewController that handles comments tableView).
+       */      
+      [cell setHighlighted:NO];
     };
     
     CallBlock(editCommentAction, comment, didFinishEditingCommentCompletionBlock);

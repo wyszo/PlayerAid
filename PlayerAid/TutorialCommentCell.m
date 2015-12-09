@@ -55,6 +55,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [super prepareForReuse];
   
   self.contentView.backgroundColor = self.defaultBackgroundColor;
+  [self setSelected:NO];
+  [self setHighlighted:NO];
   self.avatarImageView.image = nil;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;
@@ -121,10 +123,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   CallBlock(self.didChangeCellHeightBlock);
 }
 
-- (void)setSelected:(BOOL)selected
+- (void)setHighlighted:(BOOL)highlighted
 {
   UIColor *backgroundColor = self.defaultBackgroundColor;
-  if (selected) {
+  if (highlighted) {
     backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
   }
   self.contentView.backgroundColor = backgroundColor;

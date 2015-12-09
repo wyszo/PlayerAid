@@ -281,7 +281,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     };
     
     commentsContainerVC.isCommentBeingEditedBlock = ^BOOL(TutorialComment *comment) {
-      return [weakSelf.editCommentInputVC.comment isEqual:comment];
+      BOOL anyCommentBeingEdited = weakSelf.editCommentInputViewHandler.inputViewSlidOut;
+      BOOL currentCommentBeingEdited = [weakSelf.editCommentInputVC.comment isEqual:comment];
+      return (anyCommentBeingEdited && currentCommentBeingEdited);
     };
     
     commentsContainerVC.resignMakeOrEditCommentFirstResponderBlock = ^() {
