@@ -73,10 +73,11 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 
 #pragma mark - Dismissing keyboard
 
-- (void)didMoveToParentViewController:(UIViewController *)parent
+- (void)willMoveToParentViewController:(UIViewController *)parent
 {
-  [super didMoveToParentViewController:parent];
+  [super willMoveToParentViewController:parent];
   if (parent == nil) {
+    // dismiss keyboard when dismissing TutorialDetails view (if it's open)
     [self.inputTextView resignFirstResponder];
   }
 }

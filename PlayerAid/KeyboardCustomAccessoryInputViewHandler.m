@@ -38,6 +38,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)dealloc
 {
+  // watch out for memory leaks, can't rely on this logic in case they happen
   [self invokeSlideInputViewOutAnimationWithCompletion:nil];
 }
 
@@ -110,13 +111,18 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)invokeSlideInputViewOutAnimationWithCompletion:(BlockWithBoolParameter)completion
 {
-  [self.inputVC willMoveToParentViewController:nil];
-  [self.inputVC removeFromParentViewController];
-  [self.inputVC didMoveToParentViewController:nil];
+  UIViewController *inputVC = self.inputVC;
+  AssertTrueOrReturn(inputVC);
+  
+  [inputVC willMoveToParentViewController:nil];
   
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
-  } completion:completion];
+  } completion:^(BOOL finished) {
+    CallBlock(completion, finished);
+    [inputVC removeFromParentViewController];
+    [inputVC didMoveToParentViewController:nil];
+  }];
 }
 
 - (CGFloat)inputViewHeight

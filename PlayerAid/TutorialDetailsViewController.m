@@ -52,6 +52,8 @@
 {
   [super viewWillDisappear:animated];
   self.navigationController.hidesBarsOnSwipe = NO;
+  
+  [self.commentsViewController dismissAllInputViews]; // called manually to ensure proper UI cleanup
 }
 
 - (void)dealloc

@@ -64,11 +64,19 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
   
-  DISPATCH_ASYNC_ON_MAIN_THREAD(^{
-    // Technical debt: I don't know why it doesn't set the correct height when I don't delay this operation...
-    [self foldAnimated:NO];
-    [self invokeDidChangeHeightCallback];
-  });
+  [self foldAnimated:NO];
+  [self invokeDidChangeHeightCallback];
+}
+
+- (void)dealloc
+{
+  [self dismissAllInputViews];
+}
+
+- (void)dismissAllInputViews
+{
+  [self.makeCommentInputViewHandler slideInputViewOut];
+  [self.editCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)setupGestureRecognizer

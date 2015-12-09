@@ -48,11 +48,11 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 #pragma mark - Dismissing keyboard
 
-- (void)didMoveToParentViewController:(UIViewController *)parent
+- (void)willMoveToParentViewController:(UIViewController *)parent
 {
-  [super didMoveToParentViewController:parent];
+  [super willMoveToParentViewController:parent];
   if (parent == nil) {
-    [self.inputTextView resignFirstResponder];
+    [self.inputTextView resignFirstResponder]; // dismiss keyboard when dismissing TutorialDetails view (if it's open)
   }
 }
 
