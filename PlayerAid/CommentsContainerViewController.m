@@ -180,10 +180,10 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TutorialComment *comment = (TutorialComment *)object;
   
   [commentCell configureWithTutorialComment:comment];
-  [self updateCellSelectionHightlight:commentCell forComment:comment];
+  [self updateCellHighlight:commentCell forComment:comment];
 }
 
-- (void)updateCellSelectionHightlight:(nonnull TutorialCommentCell *)cell forComment:(nonnull TutorialComment *)comment
+- (void)updateCellHighlight:(nonnull TutorialCommentCell *)cell forComment:(nonnull TutorialComment *)comment
 {
   AssertTrueOrReturn(cell);
   AssertTrueOrReturn(comment);
