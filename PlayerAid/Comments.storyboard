@@ -59,7 +59,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9iM-sq-NWH" firstAttribute="top" secondItem="jSd-xM-cHq" secondAttribute="bottom" id="3zc-Vs-HZr"/>
                             <constraint firstAttribute="trailing" secondItem="jSd-xM-cHq" secondAttribute="trailing" id="UrZ-UQ-6Uh"/>
