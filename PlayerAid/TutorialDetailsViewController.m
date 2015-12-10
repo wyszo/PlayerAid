@@ -18,6 +18,8 @@
 #import "TutorialCommentsViewController.h"
 #import "ViewControllersFactory.h"
 
+static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
+
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
 @property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
@@ -99,7 +101,7 @@
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
   };
   commentsVC.didExpandBlock = ^() {
-    [weakSelf.tableView tw_scrollToBottom];
+    [weakSelf scrollToCommentsBar];
   };
   UIView *footerView = commentsVC.view;
   self.tableView.tableFooterView = footerView;
@@ -140,6 +142,17 @@
 {
   AssertTrueOrReturn(self.tableView);
   self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)scrollToCommentsBar
+{
+  AssertTrueOrReturn(self.tableView.tableFooterView);
+  
+  CGFloat yOffset = (self.tableView.tableFooterView.tw_top - kOpenCommentsToNavbarOffset);
+  yOffset = MAX(0, yOffset);
+  [self.tableView setContentOffset:CGPointMake(0, yOffset) animated:YES];
 }
 
 #pragma mark - Lazy Initalization

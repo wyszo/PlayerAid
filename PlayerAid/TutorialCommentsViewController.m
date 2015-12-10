@@ -25,7 +25,6 @@ static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
 static const CGFloat kFoldingAnimationDuration = 0.5f;
-static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
