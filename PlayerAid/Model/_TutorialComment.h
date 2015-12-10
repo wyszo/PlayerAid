@@ -4,11 +4,10 @@
 @import CoreData;
 
 extern const struct TutorialCommentAttributes {
-	__unsafe_unretained NSString *commentDeleted;
 	__unsafe_unretained NSString *createdOn;
 	__unsafe_unretained NSString *likesCount;
-	__unsafe_unretained NSString *reportedByUser;
 	__unsafe_unretained NSString *serverID;
+	__unsafe_unretained NSString *status;
 	__unsafe_unretained NSString *text;
 } TutorialCommentAttributes;
 
@@ -35,14 +34,6 @@ extern const struct TutorialCommentRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TutorialCommentID* objectID;
 
-@property (nonatomic, strong) NSNumber* commentDeleted;
-
-@property (atomic) BOOL commentDeletedValue;
-- (BOOL)commentDeletedValue;
-- (void)setCommentDeletedValue:(BOOL)value_;
-
-//- (BOOL)validateCommentDeleted:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSDate* createdOn;
 
 //- (BOOL)validateCreatedOn:(id*)value_ error:(NSError**)error_;
@@ -55,14 +46,6 @@ extern const struct TutorialCommentRelationships {
 
 //- (BOOL)validateLikesCount:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* reportedByUser;
-
-@property (atomic) BOOL reportedByUserValue;
-- (BOOL)reportedByUserValue;
-- (void)setReportedByUserValue:(BOOL)value_;
-
-//- (BOOL)validateReportedByUser:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* serverID;
 
 @property (atomic) int64_t serverIDValue;
@@ -70,6 +53,14 @@ extern const struct TutorialCommentRelationships {
 - (void)setServerIDValue:(int64_t)value_;
 
 //- (BOOL)validateServerID:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* status;
+
+@property (atomic) uint64_t statusValue;
+- (uint64_t)statusValue;
+- (void)setStatusValue:(uint64_t)value_;
+
+//- (BOOL)validateStatus:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* text;
 
@@ -115,12 +106,6 @@ extern const struct TutorialCommentRelationships {
 
 @interface _TutorialComment (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveCommentDeleted;
-- (void)setPrimitiveCommentDeleted:(NSNumber*)value;
-
-- (BOOL)primitiveCommentDeletedValue;
-- (void)setPrimitiveCommentDeletedValue:(BOOL)value_;
-
 - (NSDate*)primitiveCreatedOn;
 - (void)setPrimitiveCreatedOn:(NSDate*)value;
 
@@ -130,17 +115,17 @@ extern const struct TutorialCommentRelationships {
 - (int64_t)primitiveLikesCountValue;
 - (void)setPrimitiveLikesCountValue:(int64_t)value_;
 
-- (NSNumber*)primitiveReportedByUser;
-- (void)setPrimitiveReportedByUser:(NSNumber*)value;
-
-- (BOOL)primitiveReportedByUserValue;
-- (void)setPrimitiveReportedByUserValue:(BOOL)value_;
-
 - (NSNumber*)primitiveServerID;
 - (void)setPrimitiveServerID:(NSNumber*)value;
 
 - (int64_t)primitiveServerIDValue;
 - (void)setPrimitiveServerIDValue:(int64_t)value_;
+
+- (NSNumber*)primitiveStatus;
+- (void)setPrimitiveStatus:(NSNumber*)value;
+
+- (uint64_t)primitiveStatusValue;
+- (void)setPrimitiveStatusValue:(uint64_t)value_;
 
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;

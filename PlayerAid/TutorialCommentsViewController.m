@@ -252,7 +252,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (NSUInteger)commentsCount
 {
-  NSPredicate *notReportedPredicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND commentDeleted == NO"];
+  NSPredicate *notReportedPredicate = [NSPredicate predicateWithFormat:@"status == %d", CommentStatusPublished];
   NSOrderedSet *notReportedComments = [self.tutorial.hasCommentsSet filteredOrderedSetUsingPredicate:notReportedPredicate];
   return [notReportedComments count];
 }

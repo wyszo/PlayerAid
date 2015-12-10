@@ -1,6 +1,13 @@
 #import "_TutorialComment.h"
 #import <TWCommonLib/TWConfigurableFromDictionary.h>
 
+typedef NS_ENUM(NSUInteger, CommentStatus) {
+  CommentStatusPublished,
+  CommentStatusReported,
+  CommentStatusDeleted,
+  CommentStatusUnknown
+};
+
 @interface TutorialComment : _TutorialComment <TWConfigurableFromDictionary>
 
 #pragma mark - Class methods

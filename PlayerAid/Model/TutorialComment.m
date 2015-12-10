@@ -1,10 +1,15 @@
 
 @import KZPropertyMapper;
 @import MagicalRecord;
+@import KZAsserts;
 #import "TutorialComment.h"
 #import "UsersHelper.h"
 
 static NSString *const kCommentServerIDAttributeName = @"id";
+
+NSString *const kCommentStatusPublished = @"Published";
+NSString *const kCommentStatusReported = @"Reported";
+NSString *const kCommentStatusDeleted = @"Deleted";
 
 @implementation TutorialComment
 
@@ -14,13 +19,12 @@ static NSString *const kCommentServerIDAttributeName = @"id";
   
   NSDictionary *mapping = @{
                             kCommentServerIDAttributeName : KZProperty(serverID),
+                            @"status" : KZCall(commentStatusFromObject:, status),
                             @"message" : KZProperty(text),
                             @"createdOn" : KZBox(DateWithTZD, createdOn),
                             @"author" : KZCall(userFromDictionary:, madeBy),
-                            @"reportedByUser" : KZProperty(reportedByUser),
-                            @"isDeleted" : KZProperty(commentDeleted),
                             @"upvotes" : KZProperty(likesCount),
-                            };
+                           };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
 }
@@ -28,6 +32,34 @@ static NSString *const kCommentServerIDAttributeName = @"id";
 - (User *)userFromDictionary:(nonnull NSDictionary *)dictionary
 {
   return [[UsersHelper new] userFromDictionary:dictionary inContext:self.managedObjectContext];
+}
+
+- (NSNumber *)commentStatusFromObject:(id)object
+{
+  if ([object isKindOfClass:[NSNumber class]]) {
+    if ([(NSNumber *)object isEqual:@(0)]) {
+      // some of the old comments on Staging don't have status field filled in, they just return 0
+      return @(CommentStatusPublished);
+    } else {
+      AssertTrueOr(NO && @"Unexpected, should never happen!", return @(CommentStatusDeleted););
+    }
+  }
+  
+  AssertTrueOr([object isKindOfClass:[NSString class]], return @(CommentStatusDeleted););
+  NSString *statusString = (NSString *)object;
+  
+  CommentStatus status = CommentStatusUnknown;
+  NSDictionary *mapping = @{ kCommentStatusPublished : @(CommentStatusPublished),
+                             kCommentStatusReported : @(CommentStatusReported),
+                             kCommentStatusDeleted : @(CommentStatusDeleted) };
+  
+  NSNumber *currentStatus = mapping[statusString];
+  if (currentStatus) {
+    status = currentStatus.unsignedIntegerValue;
+  } else {
+    AssertTrueOr(NO && @"unknown comment status value!", return 0;);
+  }
+  return @(status);
 }
 
 #pragma mark - Class methods

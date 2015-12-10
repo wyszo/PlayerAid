@@ -60,7 +60,7 @@
   AssertTrueOrReturnNil(self.tutorial);
   
   NSFetchRequest *fetchRequest = [TutorialComment MR_requestAll];
-  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@ AND reportedByUser == 0 AND commentDeleted == NO", self.tutorial];
+  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@ AND status == %d", self.tutorial, CommentStatusPublished];
   fetchRequest.sortDescriptors = [self sortDescriptors];
   return fetchRequest;
 }
