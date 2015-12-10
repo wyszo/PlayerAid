@@ -33,6 +33,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
 @property (strong, nonatomic) TutorialCommentsController *commentsController;
+@property (strong, nonatomic) CommentsContainerViewController *commentsContainerVC;
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (assign, nonatomic) CGFloat navbarHeight;
 @property (assign, nonatomic) CommentsViewState state;
@@ -64,8 +65,11 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
   
-  [self foldAnimated:NO];
-  [self invokeDidChangeHeightCallback];
+  DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+    // Technical debt: I delay folding to ensure all the UI setup has been done (otherwise comments tableView contentSize.height value seems wrong and part of the comments tableView is not visible)
+    [self foldAnimated:NO];
+    [self invokeDidChangeHeightCallback];
+  });
 }
 
 - (void)dealloc
@@ -115,6 +119,18 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   _navbarHeight = navbarHeight;
 }
 
+#pragma mark - Footer size calculations
+
+- (CGFloat)calculateDesiredTotalCommentsTableViewFooterHeight
+{
+  AssertTrueOr(self.commentsContainerVC.commentsTableView != nil,);
+  
+  CGFloat contentSizeHeight = self.commentsContainerVC.commentsTableView.contentSize.height;
+  CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
+  AssertTrueOr(commentsBarHeight > 0,);
+  return contentSizeHeight + kKeyboardMakeCommentAccessoryInputViewHeight + commentsBarHeight;
+}
+
 #pragma mark - Fold/Expand
 
 - (void)toggleFoldedInvokeCallbacks
@@ -136,8 +152,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 {
   CallBlock(self.willExpandBlock);
   
-  CGFloat desiredHeight = ([UIScreen tw_height] - self.navbarHeight - kOpenCommentsToNavbarOffset);
-  self.view.tw_height = desiredHeight;
+  self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
   self.state = CommentsViewStateExpanded;
   [self.arrowImageView tw_setRotationRadians:0];
   
@@ -278,6 +293,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 {
   if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
+    self.commentsContainerVC = commentsContainerVC;
     [commentsContainerVC setTutorialCommentsController:self.commentsController];
     [commentsContainerVC setTutorial:self.tutorial];
     

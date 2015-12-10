@@ -24,7 +24,7 @@ static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
 @interface CommentsContainerViewController ()
-@property (nonatomic, weak) IBOutlet UITableView *commentsTableView;
+@property (nonatomic, weak, readwrite) IBOutlet UITableView *commentsTableView;
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *dataSource;
 @property (nonatomic, weak) TutorialCommentsController *commentsController;
 @property (nonatomic, weak) IBOutlet UIView *noCommentsOverlayView;
@@ -46,6 +46,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
   [self setupFetchedResultsControllerBinder];
   [self setupCommentsTableView];
+  self.commentsTableView.scrollEnabled = NO;
 }
 
 - (void)setupCommentsTableView

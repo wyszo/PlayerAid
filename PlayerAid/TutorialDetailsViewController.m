@@ -95,12 +95,6 @@
   [commentsVC setNavbarScreenHeight:navbarHeight];
   
   defineWeakSelf();
-  commentsVC.willExpandBlock = ^() {
-    weakSelf.tableView.scrollEnabled = NO;
-  };
-  commentsVC.didFoldBlock = ^() {
-    weakSelf.tableView.scrollEnabled = YES;
-  };
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
   };

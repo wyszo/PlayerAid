@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) BOOL (^isAnyCommentBeingEditedOrAddedBlock)();
 @property (nonatomic, copy) VoidBlock resignMakeOrEditCommentFirstResponderBlock;
 @property (nonatomic, copy) BOOL (^isCommentBeingEditedBlock)(TutorialComment *comment);
+@property (nonatomic, weak, readonly) UITableView *commentsTableView;
 
 // mandatory, part of the initialization
 - (void)setTutorialCommentsController:(TutorialCommentsController *)commentsController;
