@@ -11,6 +11,8 @@
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
 
+static const NSUInteger kMaxInputTextViewCharactersCount = 5000;
+
 static NSString *const kXibFileName = @"MakeCommentInputView";
 static NSString *const kSendingACommentKey = @"SendingComment";
 
@@ -134,6 +136,13 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   // TODO: update tableView size so that comments at the bottom are always visible
   [self updatePostButtonHighlight];
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)textToReplaceRange replacementText:(NSString *)replacementText
+{
+  return (textView.text.length + (replacementText.length - textToReplaceRange.length) <= kMaxInputTextViewCharactersCount);
+}
+
+#pragma mark - InputTextView sizing
 
 - (void)updateTextViewSize
 {
