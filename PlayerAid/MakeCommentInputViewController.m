@@ -19,6 +19,8 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewTopMarginConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewBottomMarginConstraint;
 @end
 
 @implementation MakeCommentInputViewController
@@ -57,6 +59,7 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   self.inputTextView.placeholder = @"add a comment..";
   self.inputTextView.placeholderColor = [ColorsHelper makeCommentInputTextViewPlaceholderColor];
   self.inputTextView.placeholderLabel.alpha = 0.8f;
+  self.inputTextView.scrollEnabled = NO;
   
   self.inputTextView.textColor = [ColorsHelper makeCommentInputTextViewTextColor];
 }
@@ -125,7 +128,37 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 
 - (void)textViewDidChange:(UITextView * _Nonnull)textView
 {
+  AssertTrueOrReturn(textView == self.inputTextView);
+  [self updateTextViewSize];
+  [self adjustWholeViewSizeToTextViewSize];
+  // TODO: update tableView size so that comments at the bottom are always visible
   [self updatePostButtonHighlight];
+}
+
+- (void)updateTextViewSize
+{
+  self.inputTextView.tw_height = [self computedTextViewHeight];
+}
+
+- (CGFloat)computedTextViewHeight
+{
+  return [self.inputTextView sizeThatFits:self.inputTextView.frame.size].height;
+}
+
+- (void)adjustWholeViewSizeToTextViewSize
+{
+  CGFloat viewBottom = self.view.tw_bottom;
+  
+  CGFloat computedViewHeight = ([self computedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
+  self.view.tw_height = computedViewHeight;
+  self.view.tw_bottom = viewBottom;
+}
+
+- (CGFloat)topBottomInputViewMarginConstraints
+{
+  AssertTrueOr(self.inputTextViewTopMarginConstraint,);
+  AssertTrueOr(self.inputTextViewBottomMarginConstraint,);
+  return (self.inputTextViewTopMarginConstraint.constant + self.inputTextViewBottomMarginConstraint.constant);
 }
 
 #pragma mark - Private

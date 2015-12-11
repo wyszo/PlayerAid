@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="avatarImageView" destination="soC-TU-OVY" id="ubt-nc-3qZ"/>
                 <outlet property="inputTextView" destination="d7f-sG-MXo" id="UeV-1I-fQ1"/>
+                <outlet property="inputTextViewBottomMarginConstraint" destination="Whg-fs-BSn" id="ra0-ab-7dp"/>
+                <outlet property="inputTextViewTopMarginConstraint" destination="MOl-w7-FZD" id="ht7-ZQ-Y9A"/>
                 <outlet property="postButton" destination="ogV-yY-2qj" id="eN1-Zc-VN2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wNb-rF-nUy"/>
             </connections>
