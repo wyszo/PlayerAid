@@ -4,6 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
+@import BlocksKit;
 @import UITextView_Placeholder;
 #import "MakeCommentInputViewController.h"
 #import "AuthenticatedServerCommunicationController.h"
@@ -11,6 +12,7 @@
 #import "ColorsHelper.h"
 
 static NSString *const kXibFileName = @"MakeCommentInputView";
+static NSString *const kSendingACommentKey = @"SendingComment";
 
 @interface MakeCommentInputViewController () <UITextViewDelegate>
 @property (strong, nonatomic, nonnull) User *user;
@@ -90,6 +92,12 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
     return;
   }
   
+  if (self.currentlySendingAComment) {
+    // Technical debt: blocking multiple comment requests should be done on a network queue level, not in UI
+    return; // awaiting server response from a previous request
+  }
+  [self setCurrentlySendingAComment:YES];
+  
   NSString *commentText = self.trimmedCommentText;
   AssertTrueOrReturn(commentText.length);
   
@@ -98,7 +106,19 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
       [self clearInputTextView];
       [self.inputTextView resignFirstResponder]; // hide the keyboard
     }
+    [self setCurrentlySendingAComment:NO];
   });
+}
+
+- (BOOL)currentlySendingAComment
+{
+  NSNumber *sendingAComment = [self bk_associatedValueForKey:(__bridge const void *)kSendingACommentKey];
+  return [sendingAComment boolValue];
+}
+
+- (void)setCurrentlySendingAComment:(BOOL)sending
+{
+  [self bk_associateValue:@(sending) withKey:(__bridge const void *)kSendingACommentKey];
 }
 
 #pragma mark - UITextViewDelegate
