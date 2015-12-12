@@ -108,8 +108,11 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   
   CallBlock(self.postButtonPressedBlock, commentText, ^(BOOL success){
     if (success) {
+      // safe tu use self (instead of weakSelf), since the block is not retained by the class instance and executed instantly
       [self clearInputTextView];
+      
       [self.inputTextView resignFirstResponder]; // hide the keyboard
+      [self updateTextViewSizeAndAdjustWholeViewSize]; // shrink to one line
     }
     [self setCurrentlySendingAComment:NO];
   });
@@ -131,8 +134,7 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 - (void)textViewDidChange:(UITextView * _Nonnull)textView
 {
   AssertTrueOrReturn(textView == self.inputTextView);
-  [self updateTextViewSize];
-  [self adjustWholeViewSizeToTextViewSize];
+  [self updateTextViewSizeAndAdjustWholeViewSize];
   // TODO: update tableView size so that comments at the bottom are always visible
   [self updatePostButtonHighlight];
 }
@@ -143,6 +145,12 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 }
 
 #pragma mark - InputTextView sizing
+
+- (void)updateTextViewSizeAndAdjustWholeViewSize
+{
+  [self updateTextViewSize];
+  [self adjustWholeViewSizeToTextViewSize];
+}
 
 - (void)updateTextViewSize
 {
