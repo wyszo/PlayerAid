@@ -73,6 +73,7 @@
 		3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */; };
 		3173C82A1AA7CB62004CEF1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173C8201AA7B4AF004CEF1E /* MediaPlayer.framework */; };
 		3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */; };
+		3175462F1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m in Sources */ = {isa = PBXBuildFile; fileRef = 3175462E1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m */; };
 		31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */; };
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
@@ -299,6 +300,8 @@
 		3173C8281AA7C661004CEF1E /* MediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerHelper.m; sourceTree = "<group>"; };
 		3173C82B1AAB650C004CEF1E /* MediaPickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerHelper.h; sourceTree = "<group>"; };
 		3173C82C1AAB650C004CEF1E /* MediaPickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerHelper.m; sourceTree = "<group>"; };
+		3175462D1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitInputTextViewLineCountBehaviour.h; sourceTree = "<group>"; };
+		3175462E1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitInputTextViewLineCountBehaviour.m; sourceTree = "<group>"; };
 		31777FF81A7F9445007057CD /* FacebookAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthenticationController.h; sourceTree = "<group>"; };
 		31777FF91A7F9445007057CD /* FacebookAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationController.m; sourceTree = "<group>"; };
 		31777FFB1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedServerCommunicationController.h; sourceTree = "<group>"; };
@@ -619,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				31549F831C09086A00B2CA87 /* EditComment */,
+				3175462C1C1E2BD0006A40F2 /* LimitLineCountBehaviour */,
 				31549F821C09086500B2CA87 /* MakeComment */,
 			);
 			name = KeyboardInputVC;
@@ -1034,6 +1038,15 @@
 				31A3120D1AEA5A49002E6B5C /* VideoPlayer */,
 			);
 			name = Image/Video;
+			sourceTree = "<group>";
+		};
+		3175462C1C1E2BD0006A40F2 /* LimitLineCountBehaviour */ = {
+			isa = PBXGroup;
+			children = (
+				3175462D1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.h */,
+				3175462E1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m */,
+			);
+			name = LimitLineCountBehaviour;
 			sourceTree = "<group>";
 		};
 		31777FF71A7F9426007057CD /* Controllers */ = {
@@ -2171,6 +2184,7 @@
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
 				3177802B1A80975C007057CD /* Tutorial.m in Sources */,
 				31FB753B1BCFC7C4001DC102 /* NoTutorialsView.m in Sources */,
+				3175462F1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m in Sources */,
 				31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,

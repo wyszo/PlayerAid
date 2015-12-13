@@ -10,9 +10,9 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
+#import "LimitInputTextViewLineCountBehaviour.h"
 
 static const NSUInteger kMaxInputTextViewCharactersCount = 5000;
-static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 150.0f; // 7 lines
 
 static NSString *const kXibFileName = @"MakeCommentInputView";
 static NSString *const kSendingACommentKey = @"SendingComment";
@@ -22,6 +22,7 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (strong, nonatomic) LimitInputTextViewLineCountBehaviour *limitInputTextViewLineCountBehaviour;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewTopMarginConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewBottomMarginConstraint;
 @end
@@ -45,6 +46,7 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   [super viewDidLoad];
   [self styleSubviews];
   
+  self.limitInputTextViewLineCountBehaviour = [[LimitInputTextViewLineCountBehaviour alloc] initWithInputTextView:self.inputTextView];
   self.inputTextView.delegate = self;
   [self updatePostButtonHighlight];
 }
@@ -149,31 +151,15 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 
 - (void)updateTextViewSizeAndAdjustWholeViewSize
 {
-  [self updateTextViewSizeAndScrollEnabled];
+  [self.limitInputTextViewLineCountBehaviour updateTextViewSizeAndScrollEnabled];
   [self adjustWholeViewSizeToTextViewSize];
-}
-
-- (void)updateTextViewSizeAndScrollEnabled
-{
-  self.inputTextView.tw_height = [self constrainedComputedTextViewHeight];
-  self.inputTextView.scrollEnabled = [self shouldEnableTextViewScrolling];
-}
-
-- (CGFloat)unconstrainedComputedTextViewHeight
-{
-  return [self.inputTextView sizeThatFits:self.inputTextView.frame.size].height;
-}
-
-- (CGFloat)constrainedComputedTextViewHeight
-{
-  return MIN([self unconstrainedComputedTextViewHeight], kMaxAllowedMakeCommentTextViewHeight);
 }
 
 - (void)adjustWholeViewSizeToTextViewSize
 {
   CGFloat viewBottom = self.view.tw_bottom;
   
-  CGFloat computedViewHeight = ([self constrainedComputedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
+  CGFloat computedViewHeight = ([self.limitInputTextViewLineCountBehaviour constrainedComputedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
   self.view.tw_height = computedViewHeight;
   self.view.tw_bottom = viewBottom;
 }
@@ -190,11 +176,6 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 - (void)clearInputTextView
 {
   self.inputTextView.text = @"";
-}
-
-- (BOOL)shouldEnableTextViewScrolling
-{
-  return ([self unconstrainedComputedTextViewHeight] >= kMaxAllowedMakeCommentTextViewHeight);
 }
 
 - (NSString *)trimmedCommentText
