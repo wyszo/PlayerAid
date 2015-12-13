@@ -12,6 +12,7 @@
 #import "ColorsHelper.h"
 
 static const NSUInteger kMaxInputTextViewCharactersCount = 5000;
+static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 150.0f; // 7 lines
 
 static NSString *const kXibFileName = @"MakeCommentInputView";
 static NSString *const kSendingACommentKey = @"SendingComment";
@@ -148,25 +149,31 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 
 - (void)updateTextViewSizeAndAdjustWholeViewSize
 {
-  [self updateTextViewSize];
+  [self updateTextViewSizeAndScrollEnabled];
   [self adjustWholeViewSizeToTextViewSize];
 }
 
-- (void)updateTextViewSize
+- (void)updateTextViewSizeAndScrollEnabled
 {
-  self.inputTextView.tw_height = [self computedTextViewHeight];
+  self.inputTextView.tw_height = [self constrainedComputedTextViewHeight];
+  self.inputTextView.scrollEnabled = [self shouldEnableTextViewScrolling];
 }
 
-- (CGFloat)computedTextViewHeight
+- (CGFloat)unconstrainedComputedTextViewHeight
 {
   return [self.inputTextView sizeThatFits:self.inputTextView.frame.size].height;
+}
+
+- (CGFloat)constrainedComputedTextViewHeight
+{
+  return MIN([self unconstrainedComputedTextViewHeight], kMaxAllowedMakeCommentTextViewHeight);
 }
 
 - (void)adjustWholeViewSizeToTextViewSize
 {
   CGFloat viewBottom = self.view.tw_bottom;
   
-  CGFloat computedViewHeight = ([self computedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
+  CGFloat computedViewHeight = ([self constrainedComputedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
   self.view.tw_height = computedViewHeight;
   self.view.tw_bottom = viewBottom;
 }
@@ -183,6 +190,11 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 - (void)clearInputTextView
 {
   self.inputTextView.text = @"";
+}
+
+- (BOOL)shouldEnableTextViewScrolling
+{
+  return ([self unconstrainedComputedTextViewHeight] >= kMaxAllowedMakeCommentTextViewHeight);
 }
 
 - (NSString *)trimmedCommentText
