@@ -8,6 +8,8 @@
 static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 130.0f; // 7 lines, technical debt: should be calculated programmatically
 static const CGFloat kOnelineHeightConstraintValue = 30.0f; // Technical debt: we don't wanna hardcode that!
 
+static const NSUInteger kMaxInputTextViewCharactersCount = 5000; // should this really be that much?
+
 @interface LimitInputTextViewLineCountBehaviour ()
 @property (nonatomic, strong) UITextView *inputTextView;
 @end
@@ -38,6 +40,14 @@ static const CGFloat kOnelineHeightConstraintValue = 30.0f; // Technical debt: w
     return kOnelineHeightConstraintValue; // technical debt, this should definitely not be hardcoded
   }
   return MIN([self unconstrainedComputedTextViewHeight], kMaxAllowedMakeCommentTextViewHeight);
+}
+
+#pragma mark - UITextViewDelegate routed methods
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)textToReplaceRange replacementText:(NSString *)replacementText
+{
+  AssertTrueOrReturnNo(textView == self.inputTextView);
+  return (textView.text.length + (replacementText.length - textToReplaceRange.length) <= kMaxInputTextViewCharactersCount);
 }
 
 #pragma mark - Private

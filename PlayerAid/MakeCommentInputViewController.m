@@ -12,8 +12,6 @@
 #import "ColorsHelper.h"
 #import "LimitInputTextViewLineCountBehaviour.h"
 
-static const NSUInteger kMaxInputTextViewCharactersCount = 5000;
-
 static NSString *const kXibFileName = @"MakeCommentInputView";
 static NSString *const kSendingACommentKey = @"SendingComment";
 
@@ -144,7 +142,7 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)textToReplaceRange replacementText:(NSString *)replacementText
 {
-  return (textView.text.length + (replacementText.length - textToReplaceRange.length) <= kMaxInputTextViewCharactersCount);
+  return [self.limitInputTextViewLineCountBehaviour textView:textView shouldChangeTextInRange:textToReplaceRange replacementText:replacementText];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView

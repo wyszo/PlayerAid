@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCommentInputViewController">
             <connections>
                 <outlet property="inputTextView" destination="gr7-yp-3zC" id="mqq-9o-UpF"/>
+                <outlet property="inputTextViewBottomMarginConstraint" destination="NgP-d3-S4f" id="nCx-ei-hRa"/>
+                <outlet property="inputTextViewTopMarginConstraint" destination="lSE-eN-Hn1" id="Zwd-aP-4rQ"/>
                 <outlet property="saveButton" destination="Y7e-SK-i9x" id="Vgb-5k-rd3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="tIf-s0-lWA"/>
             </connections>
@@ -68,8 +70,8 @@
                 <constraint firstItem="ql1-j7-e8y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="GRO-wg-MyA"/>
                 <constraint firstAttribute="bottom" secondItem="gr7-yp-3zC" secondAttribute="bottom" constant="6" id="NgP-d3-S4f"/>
                 <constraint firstItem="gr7-yp-3zC" firstAttribute="top" secondItem="Y7e-SK-i9x" secondAttribute="bottom" id="RTX-tc-XjN"/>
-                <constraint firstItem="gr7-yp-3zC" firstAttribute="top" secondItem="WwT-ih-cbc" secondAttribute="bottom" constant="10" id="YBk-Je-tf3"/>
                 <constraint firstAttribute="trailing" secondItem="Y7e-SK-i9x" secondAttribute="trailing" constant="8" id="kEH-yF-YBW"/>
+                <constraint firstItem="gr7-yp-3zC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="lSE-eN-Hn1"/>
                 <constraint firstItem="ql1-j7-e8y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wyX-gf-cbE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

@@ -7,6 +7,7 @@
 #import "EditCommentInputViewController.h"
 #import "ColorsHelper.h"
 #import "TutorialComment.h"
+#import "LimitInputTextViewLineCountBehaviour.h"
 
 static NSString *const kNibName = @"EditCommentInputView";
 
@@ -14,6 +15,9 @@ static NSString *const kNibName = @"EditCommentInputView";
 @property (nonatomic, weak) IBOutlet UITextView *inputTextView;
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, copy) NSString *originalText;
+@property (strong, nonatomic) LimitInputTextViewLineCountBehaviour *limitInputTextViewLineCountBehaviour;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewTopMarginConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextViewBottomMarginConstraint;
 @end
 
 @implementation EditCommentInputViewController
@@ -31,6 +35,7 @@ static NSString *const kNibName = @"EditCommentInputView";
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  self.limitInputTextViewLineCountBehaviour = [[LimitInputTextViewLineCountBehaviour alloc] initWithInputTextView:self.inputTextView];
   self.inputTextView.delegate = self;
   [self styleView];
   [self updateSaveButtonHighlight];
@@ -56,6 +61,30 @@ static NSString *const kNibName = @"EditCommentInputView";
   }
 }
 
+#pragma mark - InputTextView sizing
+
+- (void)updateTextViewSizeAndAdjustWholeViewSize
+{
+  [self.limitInputTextViewLineCountBehaviour updateTextViewSizeAndScrollEnabled];
+  [self adjustWholeViewSizeToTextViewSize];
+}
+
+- (void)adjustWholeViewSizeToTextViewSize
+{
+  CGFloat viewBottom = self.view.tw_bottom;
+  
+  CGFloat computedViewHeight = ([self.limitInputTextViewLineCountBehaviour constrainedComputedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
+  self.view.tw_height = computedViewHeight;
+  self.view.tw_bottom = viewBottom;
+}
+
+- (CGFloat)topBottomInputViewMarginConstraints
+{
+  AssertTrueOr(self.inputTextViewTopMarginConstraint,);
+  AssertTrueOr(self.inputTextViewBottomMarginConstraint,);
+  return (self.inputTextViewTopMarginConstraint.constant + self.inputTextViewBottomMarginConstraint.constant);
+}
+
 #pragma mark - Public
 
 - (void)setComment:(TutorialComment *)comment
@@ -65,6 +94,8 @@ static NSString *const kNibName = @"EditCommentInputView";
   
   self.originalText = comment.text;
   self.inputTextView.text = comment.text;
+  [self.inputTextView becomeFirstResponder]; // required for correct sizing
+  [self updateTextViewSizeAndAdjustWholeViewSize];
 }
 
 - (void)setInputViewToFirstResponder
@@ -108,7 +139,14 @@ static NSString *const kNibName = @"EditCommentInputView";
 
 - (void)textViewDidChange:(UITextView * _Nonnull)textView
 {
+  AssertTrueOrReturn(textView == self.inputTextView);
+  [self updateTextViewSizeAndAdjustWholeViewSize];
   [self updateSaveButtonHighlight];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)textToReplaceRange replacementText:(NSString *)replacementText
+{
+  return [self.limitInputTextViewLineCountBehaviour textView:textView shouldChangeTextInRange:textToReplaceRange replacementText:replacementText];
 }
 
 @end
