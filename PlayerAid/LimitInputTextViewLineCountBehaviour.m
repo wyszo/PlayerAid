@@ -6,6 +6,7 @@
 #import "LimitInputTextViewLineCountBehaviour.h"
 
 static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 130.0f; // 7 lines, technical debt: should be calculated programmatically
+static const CGFloat kOnelineHeightConstraintValue = 30.0f; // Technical debt: we don't wanna hardcode that!
 
 @interface LimitInputTextViewLineCountBehaviour ()
 @property (nonatomic, strong) UITextView *inputTextView;
@@ -27,16 +28,27 @@ static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 130.0f; // 7 lines, 
 
 - (void)updateTextViewSizeAndScrollEnabled
 {
+  [self updateTextViewScrolling];
   self.inputTextView.tw_height = [self constrainedComputedTextViewHeight];
-  self.inputTextView.scrollEnabled = [self shouldEnableTextViewScrolling];
 }
 
 - (CGFloat)constrainedComputedTextViewHeight
 {
+  if (!self.inputTextView.isFirstResponder) {
+    return kOnelineHeightConstraintValue; // technical debt, this should definitely not be hardcoded
+  }
   return MIN([self unconstrainedComputedTextViewHeight], kMaxAllowedMakeCommentTextViewHeight);
 }
 
 #pragma mark - Private
+
+- (void)updateTextViewScrolling
+{
+  if (!self.inputTextView.isFirstResponder) {
+    [self.inputTextView scrollsToTop];
+  }
+  self.inputTextView.scrollEnabled = [self shouldEnableTextViewScrolling];
+}
 
 - (CGFloat)unconstrainedComputedTextViewHeight
 {
@@ -45,6 +57,9 @@ static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 130.0f; // 7 lines, 
 
 - (BOOL)shouldEnableTextViewScrolling
 {
+  if (!self.inputTextView.isFirstResponder) {
+    return NO;
+  }
   return ([self unconstrainedComputedTextViewHeight] >= kMaxAllowedMakeCommentTextViewHeight);
 }
 

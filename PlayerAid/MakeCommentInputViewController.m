@@ -147,6 +147,16 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   return (textView.text.length + (replacementText.length - textToReplaceRange.length) <= kMaxInputTextViewCharactersCount);
 }
 
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+  [self updateTextViewSizeAndAdjustWholeViewSize];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+  [self updateTextViewSizeAndAdjustWholeViewSize];
+}
+
 #pragma mark - InputTextView sizing
 
 - (void)updateTextViewSizeAndAdjustWholeViewSize
