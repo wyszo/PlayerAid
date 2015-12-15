@@ -107,7 +107,6 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   self.tableView.tableFooterView = footerView;
   
   self.commentsViewController = commentsVC;
-  // TODO: set initial frame height programmatically (to 150), because now it probably just takes it from the xib file
 }
 
 - (void)setupTutorialStepsTableView

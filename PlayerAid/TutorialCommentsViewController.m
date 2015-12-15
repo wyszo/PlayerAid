@@ -64,11 +64,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self setupGestureRecognizer];
   [self setupKeyboardInputView];
   
-  DISPATCH_ASYNC_ON_MAIN_THREAD(^{
-    // Technical debt: I delay folding to ensure all the UI setup has been done (otherwise comments tableView contentSize.height value seems wrong and part of the comments tableView is not visible)
-    [self foldAnimated:NO];
-    [self invokeDidChangeHeightCallback];
-  });
+  [self foldAnimated:NO];
 }
 
 - (void)dealloc
@@ -104,6 +100,19 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   };
 }
 
+#pragma mark - LayoutSubviews
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  
+  if (self.state == CommentsViewStateFolded) {
+    /**
+     Bugfix: earlier initial comment state was incorrect. When comment initially folded, it height was reduced to 49, but then on layoutSubviews (which happens automatically due to NavigationBar hiding) it was increased to 113, allowing to see the first comment below the folded comments bar
+     */
+    [self setViewHeightToCommentsBarHeight];
+  }
+}
+
 #pragma mark - Setters
 
 - (void)setTutorial:(Tutorial *)tutorial
@@ -132,19 +141,32 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 #pragma mark - Fold/Expand
 
-- (void)toggleFoldedInvokeCallbacks
+- (void)foldAnimated:(BOOL)animated
 {
-  if (self.state == CommentsViewStateFolded) {
-    [self expand];
+  VoidBlock heightUpdateBlock = ^() {
+    [self removeCommentsTableViewToScreenBottomOffset];
+    [self setViewHeightToCommentsBarHeight];
+    [self.view layoutIfNeeded];
     [self invokeDidChangeHeightCallback];
-    CallBlock(self.didExpandBlock);
-  }
-  else if (self.state == CommentsViewStateExpanded) {
-    [self foldAnimated:YES];
+  };
+  
+  if (animated) {
+    defineWeakSelf();
+    [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
+      heightUpdateBlock();
+    } completion:^(BOOL finished) {
+      CallBlock(weakSelf.didFoldBlock);
+    }];
   }
   else {
-    AssertTrueOrReturn(@"unhandled condition");
+    heightUpdateBlock();
+    CallBlock(self.didFoldBlock);
   }
+  
+  self.state = CommentsViewStateFolded;
+  [self.arrowImageView tw_setRotationRadians:M_PI];
+  
+  [self.makeCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)expand
@@ -159,35 +181,19 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self addCommentsTableViewToScreenBottomOffset];
 }
 
-- (void)foldAnimated:(BOOL)animated
+- (void)toggleFoldedInvokeCallbacks
 {
-  CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
-  AssertTrueOr(commentsBarHeight > 0.0f,);
-  
-  VoidBlock heightUpdateBlock = ^() {
-    [self removeCommentsTableViewToScreenBottomOffset];
-    self.view.tw_height = commentsBarHeight;
+  if (self.state == CommentsViewStateFolded) {
+    [self expand];
     [self invokeDidChangeHeightCallback];
-  };
-  
-  if (animated) {
-    defineWeakSelf();
-    [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
-      heightUpdateBlock();
-      [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-      CallBlock(weakSelf.didFoldBlock);
-    }];
+    CallBlock(self.didExpandBlock);
+  }
+  else if (self.state == CommentsViewStateExpanded) {
+    [self foldAnimated:YES];
   }
   else {
-    heightUpdateBlock();
-    CallBlock(self.didFoldBlock);
+    AssertTrueOrReturn(@"unhandled condition");
   }
-  
-  self.state = CommentsViewStateFolded;
-  [self.arrowImageView tw_setRotationRadians:M_PI];
-  
-  [self.makeCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)invokeDidChangeHeightCallback
@@ -204,7 +210,15 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (void)removeCommentsTableViewToScreenBottomOffset
 {
+  AssertTrueOrReturn(self.commentsContainerBottomOffsetConstraint);
   self.commentsContainerBottomOffsetConstraint.constant = 0.0f;
+}
+
+- (void)setViewHeightToCommentsBarHeight
+{
+  CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
+  AssertTrueOr(commentsBarHeight > 0.0f,);
+  self.view.tw_height = commentsBarHeight;
 }
 
 #pragma mark - UI Updates
