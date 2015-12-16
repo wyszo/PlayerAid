@@ -149,7 +149,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     [self setViewHeightToCommentsBarHeight];
     [self.arrowImageView tw_setRotationRadians:M_PI];
     [self.view layoutIfNeeded];
-    [self invokeDidChangeHeightCallback];
+    [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:NO];
   };
   
   self.state = CommentsViewStateFolded;
@@ -180,7 +180,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self.arrowImageView tw_setRotationRadians:0];
     [self.view layoutIfNeeded];
-    [self invokeDidChangeHeightCallback];
+    [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:YES];
   } completion:^(BOOL finished) {
     if (finished) {
       [self.makeCommentInputViewHandler slideInputViewIn];
@@ -203,9 +203,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   }
 }
 
-- (void)invokeDidChangeHeightCallback
+- (void)invokeDidChangeHeightCallbackShouldScrollToCommentsBar:(BOOL)shouldScroll
 {
-  CallBlock(self.didChangeHeightBlock, self.view);
+  CallBlock(self.didChangeHeightBlock, self.view, shouldScroll);
 }
 
 - (void)addCommentsTableViewToScreenBottomOffset

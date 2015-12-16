@@ -97,11 +97,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   [commentsVC setNavbarScreenHeight:navbarHeight];
   
   defineWeakSelf();
-  commentsVC.didChangeHeightBlock = ^(UIView *commentsView) {
+  commentsVC.didChangeHeightBlock = ^(UIView *commentsView, BOOL shouldScrollToComments) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
-  };
-  commentsVC.didExpandBlock = ^() {
-    [weakSelf scrollToCommentsBar];
+    if (shouldScrollToComments) {
+      [self scrollToCommentsBarAnimated:NO]; // animation handled externally, this is just a single animation step
+    }
   };
   UIView *footerView = commentsVC.view;
   self.tableView.tableFooterView = footerView;
@@ -145,13 +145,13 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 #pragma mark - Auxiliary methods
 
-- (void)scrollToCommentsBar
+- (void)scrollToCommentsBarAnimated:(BOOL)animated
 {
   AssertTrueOrReturn(self.tableView.tableFooterView);
   
   CGFloat yOffset = (self.tableView.tableFooterView.tw_top - kOpenCommentsToNavbarOffset);
   yOffset = MAX(0, yOffset);
-  [self.tableView setContentOffset:CGPointMake(0, yOffset) animated:YES];
+  [self.tableView setContentOffset:CGPointMake(0, yOffset) animated:animated];
 }
 
 #pragma mark - Lazy Initalization
