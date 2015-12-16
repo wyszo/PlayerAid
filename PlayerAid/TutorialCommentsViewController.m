@@ -25,6 +25,7 @@ static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
 static const CGFloat kFoldingExpandingAnimationDuration = 0.5f;
+static const CGFloat kCommentsViewHeightForNoCommentsState = 360.0f;
 
 static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
@@ -135,6 +136,10 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   
   CGFloat contentSizeHeight = self.commentsContainerVC.commentsTableView.contentSize.height;
   AssertTrueOr(contentSizeHeight > 0,);
+  if (!self.tutorial.hasAnyComments) {
+    contentSizeHeight = kCommentsViewHeightForNoCommentsState;
+  }
+  
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
   AssertTrueOr(commentsBarHeight > 0,);
   return (contentSizeHeight + kKeyboardMakeCommentAccessoryInputViewHeight + commentsBarHeight);
@@ -179,12 +184,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
     self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self.arrowImageView tw_setRotationRadians:0];
+    [self.makeCommentInputViewHandler slideInputViewIn];
+    [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments table bottom and makeComment inputView
+    
     [self.view layoutIfNeeded];
     [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:YES];
   } completion:^(BOOL finished) {
     if (finished) {
-      [self.makeCommentInputViewHandler slideInputViewIn];
-      [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments and makeComment inputView
       CallBlock(self.didExpandBlock);
     }
   }];

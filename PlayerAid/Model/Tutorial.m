@@ -108,6 +108,11 @@ static NSString *const kCommentsKey = @"comments";
   return (self.consistsOf.count > 0);
 }
 
+- (BOOL)hasAnyComments
+{
+  return (self.hasComments.count > 0);
+}
+
 #pragma mark - Cloning (public)
 
 + (NSArray *)entityClassNamesThatAllowOnlyShallowCopy
