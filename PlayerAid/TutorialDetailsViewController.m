@@ -36,6 +36,8 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  AssertTrueOr(self.tutorial && @"tutorial property is mandatory",);
+  
   [self setupLazyInitializers];
   [self setupNavigationBarButtons];
   [self setupTableView];
@@ -65,7 +67,9 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 - (void)setupNavigationBarButtons
 {
-  self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
+  if (self.tutorial.isPublished) {
+    self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
+  }
 }
 
 - (void)setupLazyInitializers
