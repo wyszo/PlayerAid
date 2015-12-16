@@ -10,6 +10,7 @@
 #import "TutorialStepHelper.h"
 #import "TutorialCommentParsingHelper.h"
 #import "UsersHelper.h"
+#import "TutorialComment.h"
 
 NSString *const kTutorialStatePublished = @"Published";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
@@ -108,9 +109,11 @@ static NSString *const kCommentsKey = @"comments";
   return (self.consistsOf.count > 0);
 }
 
-- (BOOL)hasAnyComments
+- (BOOL)hasAnyPublishedComments
 {
-  return (self.hasComments.count > 0);
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == %lu", CommentStatusPublished];
+  NSOrderedSet *publishedComments = [self.hasComments filteredOrderedSetUsingPredicate:predicate];
+  return (publishedComments.count > 0);
 }
 
 #pragma mark - Cloning (public)

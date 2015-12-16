@@ -10,6 +10,8 @@ typedef NS_ENUM(NSUInteger, CommentStatus) {
 
 @interface TutorialComment : _TutorialComment <TWConfigurableFromDictionary>
 
+@property (nonatomic, assign, readonly) BOOL isCommentDeleted;
+
 #pragma mark - Class methods
 
 + (nullable NSNumber *)serverIDFromTutorialCommentDictionary:(nonnull NSDictionary *)dictionary;

@@ -7,9 +7,9 @@
 
 static NSString *const kCommentServerIDAttributeName = @"id";
 
-NSString *const kCommentStatusPublished = @"Published";
-NSString *const kCommentStatusReported = @"Reported";
-NSString *const kCommentStatusDeleted = @"Deleted";
+static NSString *const kCommentStatusPublished = @"Published";
+static NSString *const kCommentStatusReported = @"Reported";
+static NSString *const kCommentStatusDeleted = @"Deleted";
 
 @implementation TutorialComment
 
@@ -60,6 +60,13 @@ NSString *const kCommentStatusDeleted = @"Deleted";
     AssertTrueOr(NO && @"unknown comment status value!", return 0;);
   }
   return @(status);
+}
+
+#pragma mark - Instance methods
+
+- (BOOL)isCommentDeleted
+{
+  return [self.status isEqualToNumber:@(CommentStatusDeleted)];
 }
 
 #pragma mark - Class methods

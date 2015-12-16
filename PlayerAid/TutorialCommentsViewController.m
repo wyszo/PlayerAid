@@ -136,7 +136,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   
   CGFloat contentSizeHeight = self.commentsContainerVC.commentsTableView.contentSize.height;
   AssertTrueOr(contentSizeHeight > 0,);
-  if (!self.tutorial.hasAnyComments) {
+  if (!self.tutorial.hasAnyPublishedComments) {
     contentSizeHeight = kCommentsViewHeightForNoCommentsState;
   }
   

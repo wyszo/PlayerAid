@@ -150,12 +150,12 @@
 
 - (void)sendRemoveCommentNetworkRequest:(nonnull TutorialComment *)comment
 {
-  defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] deleteComment:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
     if (error) {
       [AlertFactory showGenericErrorAlertViewNoRetry];
     } else {
-      [weakSelf removeCommentFromCoreData:comment];
+      NSDictionary *commentDictionary = (NSDictionary *)responseObject;
+      [[TutorialCommentParsingHelper new] saveCommentFromDictionary:commentDictionary];
     }
   }];
 }
