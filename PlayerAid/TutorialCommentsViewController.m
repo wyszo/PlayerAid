@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
 static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
-static const CGFloat kFoldingAnimationDuration = 0.5f;
+static const CGFloat kFoldingExpandingAnimationDuration = 0.5f;
 
 static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
@@ -134,9 +134,10 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   AssertTrueOr(self.commentsContainerVC.commentsTableView != nil,);
   
   CGFloat contentSizeHeight = self.commentsContainerVC.commentsTableView.contentSize.height;
+  AssertTrueOr(contentSizeHeight > 0,);
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
   AssertTrueOr(commentsBarHeight > 0,);
-  return contentSizeHeight + kKeyboardMakeCommentAccessoryInputViewHeight + commentsBarHeight;
+  return (contentSizeHeight + kKeyboardMakeCommentAccessoryInputViewHeight + commentsBarHeight);
 }
 
 #pragma mark - Fold/Expand
@@ -146,47 +147,53 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   VoidBlock heightUpdateBlock = ^() {
     [self removeCommentsTableViewToScreenBottomOffset];
     [self setViewHeightToCommentsBarHeight];
+    [self.arrowImageView tw_setRotationRadians:M_PI];
     [self.view layoutIfNeeded];
     [self invokeDidChangeHeightCallback];
   };
   
+  self.state = CommentsViewStateFolded;
+  
   if (animated) {
-    defineWeakSelf();
-    [UIView animateWithDuration:kFoldingAnimationDuration animations:^{
+    [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
       heightUpdateBlock();
+      [self.makeCommentInputViewHandler slideInputViewOut];
     } completion:^(BOOL finished) {
-      CallBlock(weakSelf.didFoldBlock);
+      if (finished) {
+        CallBlock(self.didFoldBlock);
+      }
     }];
   }
   else {
     heightUpdateBlock();
+    [self.makeCommentInputViewHandler slideInputViewOut];
     CallBlock(self.didFoldBlock);
   }
-  
-  self.state = CommentsViewStateFolded;
-  [self.arrowImageView tw_setRotationRadians:M_PI];
-  
-  [self.makeCommentInputViewHandler slideInputViewOut];
 }
 
-- (void)expand
+- (void)expandAnimated
 {
   CallBlock(self.willExpandBlock);
-  
-  self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
   self.state = CommentsViewStateExpanded;
-  [self.arrowImageView tw_setRotationRadians:0];
   
-  [self.makeCommentInputViewHandler slideInputViewIn];
-  [self addCommentsTableViewToScreenBottomOffset];
+  [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
+    self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
+    [self.arrowImageView tw_setRotationRadians:0];
+    [self.view layoutIfNeeded];
+    [self invokeDidChangeHeightCallback];
+  } completion:^(BOOL finished) {
+    if (finished) {
+      [self.makeCommentInputViewHandler slideInputViewIn];
+      [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments and makeComment inputView
+      CallBlock(self.didExpandBlock);
+    }
+  }];
 }
 
 - (void)toggleFoldedInvokeCallbacks
 {
   if (self.state == CommentsViewStateFolded) {
-    [self expand];
-    [self invokeDidChangeHeightCallback];
-    CallBlock(self.didExpandBlock);
+    [self expandAnimated];
   }
   else if (self.state == CommentsViewStateExpanded) {
     [self foldAnimated:YES];
@@ -233,7 +240,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 {
   NSString *numberOfCommentsString = @"";
   if (self.commentsCount) {
-    numberOfCommentsString = [NSString stringWithFormat:@"%lu", self.commentsCount];
+    numberOfCommentsString = [NSString stringWithFormat:@"%tu", self.commentsCount];
   }
   self.commentsCountLabel.text = numberOfCommentsString;
 }
