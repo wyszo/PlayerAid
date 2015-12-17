@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 // mandatory, part of the initialization
 - (void)setEditCommentActionSheetOptionSelectedBlock:(EditCommentBlock)block;
 
+// will trigger overlay update
+- (void)commentsCountDidChange;
+
 @end
 
 NS_ASSUME_NONNULL_END

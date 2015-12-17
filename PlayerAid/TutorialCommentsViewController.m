@@ -270,6 +270,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     defineWeakSelf();
     _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
       [weakSelf refreshAllCommentsLabels];
+      [weakSelf.commentsContainerVC commentsCountDidChange];
     }];
   }
   return _commentsController;

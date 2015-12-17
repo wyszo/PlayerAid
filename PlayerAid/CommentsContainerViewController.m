@@ -131,6 +131,13 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   };
 }
 
+#pragma mark - Public Interface
+
+- (void)commentsCountDidChange
+{
+  [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+}
+
 #pragma mark - Setters
 
 - (void)setTutorialCommentsController:(TutorialCommentsController *)commentsController
