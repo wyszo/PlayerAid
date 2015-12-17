@@ -270,8 +270,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 
 - (IBAction)authorButtonPressed:(id)sender
 {
-  if (self.userAvatarSelectedBlock) {
-    self.userAvatarSelectedBlock(self.tutorial.createdBy);
+  if (self.userAvatarOrNameSelectedBlock) {
+    self.userAvatarOrNameSelectedBlock(self.tutorial.createdBy);
   }
 }
 

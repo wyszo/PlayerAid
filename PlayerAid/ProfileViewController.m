@@ -268,7 +268,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
   dataSource.tutorialTableViewDelegate = self;
-  dataSource.userAvatarSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+  dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
   return dataSource;
 }
 

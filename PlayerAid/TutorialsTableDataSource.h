@@ -17,7 +17,7 @@
 @property (nonatomic, nullable, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;
 @property (nonatomic, assign) BOOL showSectionHeaders;
-@property (nonatomic, nullable, copy) void (^userAvatarSelectedBlock)(User * __nonnull user);
+@property (nonatomic, nullable, copy) void (^userAvatarOrNameSelectedBlock)(User * __nonnull user);
 @property (nonatomic, nullable, copy) void (^didConfigureCellAtIndexPath)(TutorialTableViewCell * __nonnull cell, NSIndexPath *__nonnull indexPath);
 
 NEW_AND_INIT_UNAVAILABLE

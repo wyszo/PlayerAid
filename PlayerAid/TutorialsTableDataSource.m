@@ -120,8 +120,8 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   tutorialCell.showBottomGap = !isLastCellInTableView;
   tutorialCell.canBeDeletedOnSwipe = self.swipeToDeleteEnabled;
 
-  if (self.userAvatarSelectedBlock) {
-    tutorialCell.userAvatarSelectedBlock = self.userAvatarSelectedBlock;
+  if (self.userAvatarOrNameSelectedBlock) {
+    tutorialCell.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelectedBlock;
   }
   
   tutorialCell.tutorialFavouritedBlock = ^(BOOL favourited, TutorialTableViewCell *tutorialCell) {
