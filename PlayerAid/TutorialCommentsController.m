@@ -43,6 +43,7 @@
   
   defineWeakSelf();
   [self bk_addObserverForKeyPath:@"tutorial.hasComments" task:^(id target) {
+    // That doesn't handle a situation when a comment has been marked as deleted - that call is invoked manually
     CallBlock(weakSelf.commentsCountChangedBlock, nil);
   }];
 }
@@ -124,6 +125,7 @@
 {
   AssertTrueOrReturn(comment);
   
+  defineWeakSelf();
   [AlertFactory showReportCommentAlertViewWithOKAction:^{
     [[AuthenticatedServerCommunicationController sharedInstance] reportCommentAsInappropriate:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
       if (error) {
@@ -131,6 +133,7 @@
       }
       else {
         // TODO: comment text should locally change to 'Comment was removed as inappropriate'
+        CallBlock(weakSelf.commentsCountChangedBlock); // hasComments property not changed, need to manually invoke callback
         
         // This needs to persist after fetching new comments! Need to introduce local array of comment ids reported as inappropriate by an user (not recommened). Or even better: handle this server-side, so server always returns the comment as flagged as inappropriate to a current user.
         // So ideally server should return a comment object in here with text changed to 'inappropriate'
@@ -150,12 +153,14 @@
 
 - (void)sendRemoveCommentNetworkRequest:(nonnull TutorialComment *)comment
 {
+  defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] deleteComment:comment completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
     if (error) {
       [AlertFactory showGenericErrorAlertViewNoRetry];
     } else {
       NSDictionary *commentDictionary = (NSDictionary *)responseObject;
       [[TutorialCommentParsingHelper new] saveCommentFromDictionary:commentDictionary];
+      CallBlock(weakSelf.commentsCountChangedBlock); // hasComments property not changed, need to manually invoke callback
     }
   }];
 }
