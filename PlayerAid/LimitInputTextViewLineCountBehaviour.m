@@ -8,7 +8,7 @@
 static const CGFloat kMaxAllowedMakeCommentTextViewHeight = 130.0f; // 7 lines, technical debt: should be calculated programmatically
 static const CGFloat kOnelineHeightConstraintValue = 30.0f; // Technical debt: we don't wanna hardcode that!
 
-static const NSUInteger kMaxInputTextViewCharactersCount = 5000; // should this really be that much?
+static const NSUInteger kMaxInputTextViewCharactersCount = 5000; // this limit is meant just for spambots, we don't expect users to write that much ;)
 
 @interface LimitInputTextViewLineCountBehaviour ()
 @property (nonatomic, strong) UITextView *inputTextView;
