@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import UIKit;
 @import KZAsserts;
 @import TWCommonLib;
 #import "TutorialDetailsViewController.h"
@@ -13,8 +14,6 @@
 #import "CommonViews.h"
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
-#import "TutorialComment.h"
-#import "TutorialCommentsController.h"
 #import "TutorialCommentsViewController.h"
 #import "ViewControllersFactory.h"
 
@@ -36,7 +35,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  AssertTrueOr(self.tutorial && @"tutorial property is mandatory",);
+  AssertTrueOr(self.tutorial && (BOOL)(@"tutorial property is mandatory"),);
   
   [self setupLazyInitializers];
   [self setupNavigationBarButtons];
@@ -97,14 +96,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   }
   
   TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
-  CGFloat navbarHeight = [self.navigationController.navigationBar tw_bottom];
-  [commentsVC setNavbarScreenHeight:navbarHeight];
-  
   defineWeakSelf();
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView, BOOL shouldScrollToComments) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
     if (shouldScrollToComments) {
-      [self scrollToCommentsBarAnimated:NO]; // animation handled externally, this is just a single animation step
+      [weakSelf scrollToCommentsBarAnimated:NO]; // animation handled externally, this is just a single animation step
     }
   };
   UIView *footerView = commentsVC.view;

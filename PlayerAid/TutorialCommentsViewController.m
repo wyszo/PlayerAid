@@ -2,10 +2,12 @@
 //  PlayerAid
 //
 
+@import UIKit;
 @import KZAsserts;
 @import TWCommonLib;
-@import BlocksKit;
 @import MagicalRecord;
+
+#import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
 #import "TutorialCommentsViewController.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
@@ -21,7 +23,6 @@ typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateExpanded,
 };
 
-static NSString * const kXibFileName = @"TutorialComments";
 static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegue";
 
 static const CGFloat kFoldingExpandingAnimationDuration = 0.5f;
@@ -35,7 +36,6 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 @property (strong, nonatomic) TutorialCommentsController *commentsController;
 @property (strong, nonatomic) CommentsContainerViewController *commentsContainerVC;
 @property (strong, nonatomic) Tutorial *tutorial;
-@property (assign, nonatomic) CGFloat navbarHeight;
 @property (assign, nonatomic) CommentsViewState state;
 @property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
@@ -112,6 +112,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
      */
     [self setViewHeightToCommentsBarHeight];
   }
+  else {
+    [self updateCommentsHeightIfExpandedShouldScrollToCommentsBar:NO];
+  }
 }
 
 #pragma mark - Setters
@@ -119,13 +122,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (void)setTutorial:(Tutorial *)tutorial
 {
   AssertTrueOrReturn(tutorial);
-  AssertTrueOrReturn(!self.tutorial && @"Can't reinitialize self.tutorial");
+  AssertTrueOrReturn(!self.tutorial && (BOOL)(@"Can't reinitialize self.tutorial"));
   _tutorial = tutorial;
-}
-
-- (void)setNavbarScreenHeight:(CGFloat)navbarHeight
-{
-  _navbarHeight = navbarHeight;
 }
 
 #pragma mark - Footer size calculations
@@ -152,7 +150,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   VoidBlock heightUpdateBlock = ^() {
     [self removeCommentsTableViewToScreenBottomOffset];
     [self setViewHeightToCommentsBarHeight];
-    [self.arrowImageView tw_setRotationRadians:M_PI];
+    [self.arrowImageView tw_setRotationRadians:(CGFloat)M_PI];
     [self.view layoutIfNeeded];
     [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:NO];
   };
@@ -182,18 +180,24 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   self.state = CommentsViewStateExpanded;
   
   [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
-    self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self.arrowImageView tw_setRotationRadians:0];
     [self.makeCommentInputViewHandler slideInputViewIn];
-    [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments table bottom and makeComment inputView
-    
-    [self.view layoutIfNeeded];
-    [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:YES];
+    [self updateCommentsHeightIfExpandedShouldScrollToCommentsBar:YES];
   } completion:^(BOOL finished) {
     if (finished) {
       CallBlock(self.didExpandBlock);
     }
   }];
+}
+
+- (void)updateCommentsHeightIfExpandedShouldScrollToCommentsBar:(BOOL)shouldScroll
+{
+  if (self.state == CommentsViewStateExpanded) {
+    self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
+    [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments table bottom and makeComment inputView
+    [self.view layoutIfNeeded];
+    [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:shouldScroll];
+  }
 }
 
 - (void)toggleFoldedInvokeCallbacks
@@ -265,12 +269,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (TutorialCommentsController *)commentsController
 {
   if (!_commentsController) {
-    AssertTrueOrReturnNil(self.tutorial && @"Tutorial property is mandatory");
+    AssertTrueOrReturnNil(self.tutorial && (BOOL)(@"Tutorial property is mandatory"));
     
     defineWeakSelf();
     _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
       [weakSelf refreshAllCommentsLabels];
       [weakSelf.commentsContainerVC commentsCountDidChange];
+      [weakSelf.view layoutIfNeeded];
     }];
   }
   return _commentsController;
