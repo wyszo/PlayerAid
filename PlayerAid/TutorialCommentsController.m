@@ -58,8 +58,8 @@
   }];
 }
 
-- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction  //completion:(VoidBlock)completion
-{
+
+- (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction {
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(cell);
   AssertTrueOrReturnNil(editCommentAction);
@@ -74,7 +74,7 @@
       [cell setHighlighted:NO];
     };
     
-    CallBlock(editCommentAction, comment, didFinishEditingCommentCompletionBlock);
+    CallBlock(editCommentAction, comment, cell.frame, didFinishEditingCommentCompletionBlock);
   } removeAction:^{
     [self sendRemoveCommentNetworkRequest:comment];
   }];

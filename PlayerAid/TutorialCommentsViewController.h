@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) VoidBlock willExpandBlock;
 @property (nonatomic, copy, nullable) VoidBlock didFoldBlock;
 
+@property (nonatomic, copy, nullable) BlockWithFloatParameter parentTableViewScrollAnimatedBlock; // required
+@property (nonatomic, copy, nullable) FloatReturningBlock parentTableViewFooterTopBlock; // required
+
 // mandatory, required for initialization
 - (void)setTutorial:(Tutorial * _Nonnull)tutorial;
 

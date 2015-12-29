@@ -103,9 +103,17 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
       [weakSelf scrollToCommentsBarAnimated:NO]; // animation handled externally, this is just a single animation step
     }
   };
+
+  commentsVC.parentTableViewScrollAnimatedBlock = ^(CGFloat offset) {
+      [weakSelf.tableView setContentOffset:CGPointMake(0, offset) animated:YES];
+  };
+  commentsVC.parentTableViewFooterTopBlock = ^() {
+      return weakSelf.tableView.tableFooterView.tw_top;
+  };
+
   UIView *footerView = commentsVC.view;
   self.tableView.tableFooterView = footerView;
-  
+
   self.commentsViewController = commentsVC;
 }
 
