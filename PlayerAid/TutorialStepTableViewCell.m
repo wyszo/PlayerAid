@@ -75,7 +75,6 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   BOOL videoTutorialStep = [tutorialStep isVideoStep];
   
   if (imageTutorialStep || videoTutorialStep) {
-    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.contentImageHeightAndWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
     
