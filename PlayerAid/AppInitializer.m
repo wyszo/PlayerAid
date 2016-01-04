@@ -77,7 +77,7 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
   
   JourneyController *journeyController = [JourneyController new];
   
-  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL || DEBUG_MODE_ADD_TUTORIAL_STEPS || DEBUG_MODE_ADD_PHOTO) {
+  if (DEBUG_MODE_FLOW_EDIT_TUTORIAL || DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [journeyController DEBUG_presentCreateTutorialViewController];
   }
   

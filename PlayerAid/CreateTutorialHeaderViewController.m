@@ -7,9 +7,7 @@
 @import TWCommonLib;
 @import MagicalRecord;
 #import "CreateTutorialHeaderViewController.h"
-#import "TabBarHelper.h"
 #import "AlertFactory.h"
-#import "Section.h"
 #import "GradientHelper.h"
 #import "FDTakeController+WhiteStatusbar.h"
 #import "MediaPickerHelper.h"

@@ -217,7 +217,15 @@ static NSString *const kXibName = @"CreateTutorialView";
       [weakSelf editButtonPressed];
     });
   }
-  
+
+  if (DEBUG_MODE_PREFILL_CREATE_TUTORIAL_HEADER) {
+    self.tutorial.title = @"Bla";
+    self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
+    CGFloat compressionQuality = 1.0;
+    self.tutorial.jpegImageData = UIImageJPEGRepresentation([UIImage imageNamed:@"bubble"], compressionQuality);
+    [self.headerViewController updateWithTutorial:self.tutorial];
+  }
+
   if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_pressPublishButton];
   }
