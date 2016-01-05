@@ -43,6 +43,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   [self setupTableViewHeader];
   [self setupTableViewFooter];
   [self setupTutorialStepsTableView];
+  [self setupKeyboardHandlers];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -59,20 +60,18 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   [self.commentsViewController dismissAllInputViews]; // called manually to ensure proper UI cleanup
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+  [NSNotificationCenter.defaultCenter removeObserver:self]; // deregister keyboard events
   CallBlock(self.onDeallocBlock);
 }
 
-- (void)setupNavigationBarButtons
-{
+- (void)setupNavigationBarButtons {
   if (self.tutorial.isPublished) {
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
   }
 }
 
-- (void)setupLazyInitializers
-{
+- (void)setupLazyInitializers {
   self.videoPlayer = [[VideoPlayer tw_lazy] initWithParentViewController:self.navigationController];
 }
 
@@ -149,6 +148,24 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 {
   AssertTrueOrReturn(self.tableView);
   self.tableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
+}
+
+#pragma mark - Keyboard handling
+
+- (void)setupKeyboardHandlers {
+
+  defineWeakSelf();
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+      weakSelf.commentsViewController.shouldCompensateForOpenKeyboard = YES;
+      [weakSelf.commentsViewController recalculateSize];
+  }];
+
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+      weakSelf.commentsViewController.shouldCompensateForOpenKeyboard = NO;
+      DISPATCH_ASYNC_ON_MAIN_THREAD(^{ // Technical debt: without this atrificial delay, size calculation is incorrect and the gap below comments remains after hiding a keyboard (after editing a comment)
+          [weakSelf.commentsViewController recalculateSize];
+      });
+  }];
 }
 
 #pragma mark - Auxiliary methods

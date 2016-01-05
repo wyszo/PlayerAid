@@ -130,6 +130,11 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 #pragma mark - Footer size calculations
 
+- (void)recalculateSize {
+  [self.view setNeedsLayout];
+  [self.view layoutIfNeeded];
+}
+
 - (CGFloat)calculateDesiredTotalCommentsTableViewFooterHeight
 {
   AssertTrueOr(self.commentsContainerVC.commentsTableView != nil,);
@@ -139,6 +144,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   AssertTrueOr(contentSizeHeight > 0,);
   if (!self.tutorial.hasAnyPublishedComments) {
     contentSizeHeight = kCommentsViewHeightForNoCommentsState;
+  } else if (self.shouldCompensateForOpenKeyboard) {
+    contentSizeHeight += 271; // TODO: hardcoded value!!!
   }
 
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
