@@ -133,6 +133,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (CGFloat)calculateDesiredTotalCommentsTableViewFooterHeight
 {
   AssertTrueOr(self.commentsContainerVC.commentsTableView != nil,);
+  [self.view layoutIfNeeded]; // ensures tableView contentSize is up to date
 
   CGFloat contentSizeHeight = self.commentsContainerVC.commentsTableView.contentSize.height;
   AssertTrueOr(contentSizeHeight > 0,);
@@ -195,9 +196,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (void)updateCommentsHeightIfExpandedShouldScrollToCommentsBar:(BOOL)shouldScroll
 {
   if (self.state == CommentsViewStateExpanded) {
-    self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments table bottom and makeComment inputView
-    [self.view layoutIfNeeded];
+    self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:shouldScroll];
   }
 }
