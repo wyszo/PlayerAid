@@ -47,7 +47,7 @@
                                     <constraint firstItem="ahX-GV-xBR" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" id="RUK-Tk-UTT"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="TJZ-FA-YIR"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="jSd-xM-cHq" secondAttribute="leading" constant="29" id="Udn-oz-ZMy"/>
-                                    <constraint firstAttribute="height" priority="999" constant="49" id="YhU-Zs-m9r"/>
+                                    <constraint firstAttribute="height" priority="998" constant="49" id="YhU-Zs-m9r"/>
                                     <constraint firstItem="5nd-TZ-PAM" firstAttribute="leading" secondItem="ahX-GV-xBR" secondAttribute="trailing" constant="4" id="bvm-pF-wJE"/>
                                     <constraint firstItem="Lde-bx-8yc" firstAttribute="centerY" secondItem="jSd-xM-cHq" secondAttribute="centerY" id="mKt-Xy-9xk"/>
                                 </constraints>
@@ -64,7 +64,7 @@
                             <constraint firstItem="9iM-sq-NWH" firstAttribute="top" secondItem="jSd-xM-cHq" secondAttribute="bottom" id="3zc-Vs-HZr"/>
                             <constraint firstAttribute="trailing" secondItem="jSd-xM-cHq" secondAttribute="trailing" id="UrZ-UQ-6Uh"/>
                             <constraint firstAttribute="trailing" secondItem="9iM-sq-NWH" secondAttribute="trailing" id="Vtd-uC-iSF"/>
-                            <constraint firstItem="DPM-yy-Stk" firstAttribute="top" secondItem="9iM-sq-NWH" secondAttribute="bottom" id="bBd-Ef-haB"/>
+                            <constraint firstItem="DPM-yy-Stk" firstAttribute="top" secondItem="9iM-sq-NWH" secondAttribute="bottom" priority="999" id="bBd-Ef-haB"/>
                             <constraint firstItem="jSd-xM-cHq" firstAttribute="leading" secondItem="VbX-j1-LKg" secondAttribute="leading" id="haF-eS-Vxs"/>
                             <constraint firstItem="9iM-sq-NWH" firstAttribute="leading" secondItem="VbX-j1-LKg" secondAttribute="leading" id="nvW-wS-82Q"/>
                             <constraint firstItem="jSd-xM-cHq" firstAttribute="top" secondItem="VbX-j1-LKg" secondAttribute="top" id="qDx-YT-Bab"/>
@@ -104,7 +104,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O78-V6-vEI" userLabel="No comments Overlay Container">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O78-V6-vEI" userLabel="No comments Overlay Container">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="251"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-Vf-vpM" userLabel="No comments Overlay View">
