@@ -103,6 +103,12 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     }
   };
 
+  commentsVC.didMakeACommentBlock = ^() {
+    DISPATCH_ASYNC_ON_MAIN_THREAD(^{ // minimal delay required, otherwise comments height won't be up to date yet
+      [weakSelf.tableView tw_scrollToBottom];
+    });
+  };
+
   commentsVC.parentTableViewScrollAnimatedBlock = ^(CGFloat offset) {
       [weakSelf.tableView setContentOffset:CGPointMake(0, offset) animated:YES];
   };

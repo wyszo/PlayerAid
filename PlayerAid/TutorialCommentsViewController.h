@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) void (^didChangeHeightBlock)(UIView * _Nonnull contentView, BOOL shouldScrollToCommentsBar);
 @property (nonatomic, copy, nullable) VoidBlock didExpandBlock;
+@property (nonatomic, copy, nullable) VoidBlock didMakeACommentBlock;
 
 @property (nonatomic, copy, nullable) VoidBlock willExpandBlock;
 @property (nonatomic, copy, nullable) VoidBlock didFoldBlock;

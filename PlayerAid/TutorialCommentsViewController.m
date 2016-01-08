@@ -100,7 +100,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   
   defineWeakSelf();
   self.makeCommentInputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
-    [weakSelf.commentsController sendACommentWithText:text completion:completion];
+    BlockWithBoolParameter internalCompletion = ^(BOOL success) {
+        CallBlock(completion, success);
+        if (success) {
+          CallBlock(self.didMakeACommentBlock, nil);
+        }
+    };
+    [weakSelf.commentsController sendACommentWithText:text completion:internalCompletion];
   };
 }
 
