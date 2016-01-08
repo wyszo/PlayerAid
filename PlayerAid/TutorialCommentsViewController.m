@@ -28,6 +28,7 @@ static NSString * const kCommentsContainerEmbedSegueId = @"CommentsContainerSegu
 static const CGFloat kFoldingExpandingAnimationDuration = 0.5f;
 static const CGFloat kCommentsViewHeightForNoCommentsState = 360.0f;
 
+static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; // Technical debt: it should NOT be hardcoded - 271 is the tallest keyboard right now (iPhone 6+ with text predictions enabled)
 static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
@@ -145,7 +146,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   if (!self.tutorial.hasAnyPublishedComments) {
     contentSizeHeight = kCommentsViewHeightForNoCommentsState;
   } else if (self.shouldCompensateForOpenKeyboard) {
-    contentSizeHeight += 271; // TODO: hardcoded value!!!
+    contentSizeHeight += kGapBelowCommentsToCompensateForOpenKeyboardSize;
   }
 
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
@@ -316,10 +317,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   CGFloat commentsBarBottom = parentTableViewFooterTop + (self.commentsBar.tw_top + self.commentsBarHeightConstraint.constant);
   CGFloat offsetToScrollTo = commentsBarBottom + (commentCellRect.origin.y + commentCellRect.size.height); // comment cell frame relative to parent
 
-  CGFloat estimatedKeyboardHeight = 271; // Technical debt: it should NOT be hardcoded - 271 is the tallest keyboard right now (iPhone 6+ with text predictions enabled)
   AssertTrueOrReturn([self.editCommentInputViewHandler inputViewSlidOut]); // Technical Debt: this method assumes being called after showing editComment Keyboard input view...
   CGFloat inputViewHeight = self.editCommentInputVC.view.tw_height;
-  CGFloat topOffsetToKeyboard = [UIScreen tw_height] - (estimatedKeyboardHeight + inputViewHeight); // distance from top of the screen to top of the inputView above keyboard predictions bar
+  CGFloat topOffsetToKeyboard = [UIScreen tw_height] - (kGapBelowCommentsToCompensateForOpenKeyboardSize + inputViewHeight); // distance from top of the screen to top of the inputView above keyboard predictions bar
   offsetToScrollTo -= topOffsetToKeyboard;
 
   AssertTrueOrReturn(self.parentTableViewScrollAnimatedBlock);

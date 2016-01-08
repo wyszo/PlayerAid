@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) BlockWithFloatParameter parentTableViewScrollAnimatedBlock; // required
 @property (nonatomic, copy, nullable) FloatReturningBlock parentTableViewFooterTopBlock; // required
 
-
+// adds a large gap below comments if set to yes
 @property (nonatomic, assign) BOOL shouldCompensateForOpenKeyboard;
 
 // mandatory, required for initialization
