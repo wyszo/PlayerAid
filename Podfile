@@ -3,7 +3,7 @@ platform :ios, '8.0'
 inhibit_all_warnings! # suppress all warnings from pods
 use_frameworks!
 
-pod 'AFNetworking', '2.5.0' # 3.0.0 in beta 2 available, 2.6.3 stable
+pod 'AFNetworking', '2.5.0' # 3.0.4 available
 pod 'FBSDKCoreKit', '4.8.0'
 pod 'FBSDKLoginKit', '4.8.0'
 pod 'MagicalRecord', '2.3.0'
@@ -16,8 +16,8 @@ pod 'Mixpanel', '2.9.0'
 pod 'BlocksKit', '2.2.5'
 pod 'DateTools', '1.7.0'
 pod 'NSString+RemoveEmoji', '0.0.1'
-pod 'Fabric', '1.6.1'
-pod 'Crashlytics', '3.4.1'
+pod 'Fabric', '1.6.2'
+pod 'Crashlytics', '3.5.0'
 pod 'TTTAttributedLabel', '1.13.4'
 
 pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
