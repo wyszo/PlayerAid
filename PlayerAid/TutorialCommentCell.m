@@ -205,6 +205,16 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self expandCell];
 }
 
+- (IBAction)avatarButtonPressed:(id)sender {
+  // TODO: link to a user profile
+  NSLog(@"avatar - show user profile");
+}
+
+- (IBAction)usernamePressed:(id)sender {
+  // TODO: link to a user profile
+  NSLog(@"username - show user profile");
+}
+
 - (IBAction)replyButtonPressed:(id)sender {
 }
 

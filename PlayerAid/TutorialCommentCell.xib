@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="199"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
@@ -22,14 +23,33 @@
                             <constraint firstAttribute="width" constant="32" id="VEV-CG-6XX"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2m-fC-lZp" userLabel="AvatarButton">
+                        <rect key="frame" x="-0.5" y="-1" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="47r-8w-ZjP"/>
+                            <constraint firstAttribute="height" constant="50" id="ahe-eD-Xms"/>
+                        </constraints>
+                        <connections>
+                            <action selector="avatarButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="7Vj-CA-28E"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rami Baker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
-                        <rect key="frame" x="48" y="13" width="268" height="22"/>
+                        <rect key="frame" x="48" y="13" width="81" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                         <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="48" y="33" width="256" height="113"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-jr-cnx" userLabel="UsernameButton">
+                        <rect key="frame" x="44" y="0.0" width="97" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="BKO-00-ZHu"/>
+                        </constraints>
+                        <connections>
+                            <action selector="usernamePressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="vyD-DN-53I"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                        <rect key="frame" x="48" y="33" width="256" height="120.5"/>
                         <attributedString key="attributedText">
                             <fragment>
                                 <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
@@ -42,15 +62,15 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
-                        <rect key="frame" x="48" y="158" width="203" height="24"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
+                        <rect key="frame" x="48" y="165.5" width="203" height="24"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="48" y="149" width="24" height="8"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
+                        <rect key="frame" x="48" y="156.5" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                             <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -60,8 +80,8 @@
                             <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
-                        <rect key="frame" x="259" y="154" width="65" height="32"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
+                        <rect key="frame" x="259" y="167.5" width="65" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
                             <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
@@ -78,7 +98,11 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hZj-1V-Mew" secondAttribute="bottom" id="6mS-3O-Zn8"/>
                     <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="20" id="9Oe-z1-exT"/>
+                    <constraint firstItem="w2m-fC-lZp" firstAttribute="centerX" secondItem="wYM-dQ-F5j" secondAttribute="centerX" id="Az5-9P-fK7"/>
+                    <constraint firstItem="kYH-jr-cnx" firstAttribute="width" secondItem="CTC-2c-EIQ" secondAttribute="width" multiplier="1.2" id="Dec-YX-pUQ"/>
+                    <constraint firstItem="kYH-jr-cnx" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="HlZ-Yn-qXz"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="-2" id="LeV-MC-n7b"/>
+                    <constraint firstItem="w2m-fC-lZp" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="Orr-33-s6x"/>
                     <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="QMV-XM-CXf"/>
                     <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="U2E-Ht-bxx"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="bOo-v6-Ia9"/>
@@ -86,10 +110,11 @@
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstItem="hZj-1V-Mew" firstAttribute="leading" secondItem="1vq-fq-GWQ" secondAttribute="trailing" constant="8" id="daN-3F-Qpr"/>
                     <constraint firstAttribute="trailing" secondItem="hZj-1V-Mew" secondAttribute="trailing" id="h67-aV-rz8"/>
+                    <constraint firstItem="kYH-jr-cnx" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="4" id="jrM-DT-S9B"/>
                     <constraint firstItem="1vq-fq-GWQ" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="kLz-or-tGx"/>
                     <constraint firstAttribute="bottom" secondItem="1vq-fq-GWQ" secondAttribute="bottom" constant="10" id="kbB-eZ-G0i"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="3" id="p5I-KF-tqR"/>
-                    <constraint firstAttribute="trailing" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
