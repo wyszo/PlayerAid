@@ -206,16 +206,15 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (IBAction)avatarButtonPressed:(id)sender {
-  // TODO: link to a user profile
-  NSLog(@"avatar - show user profile");
+  CallBlock(self.didPressUserAvatarOrName, self.comment);
 }
 
 - (IBAction)usernamePressed:(id)sender {
-  // TODO: link to a user profile
-  NSLog(@"username - show user profile");
+  CallBlock(self.didPressUserAvatarOrName, self.comment);
 }
 
 - (IBAction)replyButtonPressed:(id)sender {
+  NOT_IMPLEMENTED_YET_RETURN
 }
 
 @end

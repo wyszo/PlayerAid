@@ -268,7 +268,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
   dataSource.tutorialTableViewDelegate = self;
-  dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+  dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController backButtonActionBlock:nil allowPushingLoggedInUser:NO];
   return dataSource;
 }
 
@@ -280,8 +280,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   __weak typeof(id) weakDataSource = dataSource;
   FollowedUserTableViewDelegate *delegate = [FollowedUserTableViewDelegate new];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    void (^profilePushingBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:weakSelf backButtonActionBlock:^{
-      [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
+    void (^profilePushingBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:weakSelf.navigationController backButtonActionBlock:^{
+        [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
     } allowPushingLoggedInUser:NO];
     AssertTrueOrReturn(profilePushingBlock);
     

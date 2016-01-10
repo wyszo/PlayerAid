@@ -8,17 +8,12 @@
 @import TWCommonLib;
 @import BlocksKit;
 #import "CommentsContainerViewController.h"
-#import "TutorialCommentsController.h"
 #import "TutorialCommentCell.h"
-#import "TutorialComment.h"
-#import "Tutorial.h"
 #import "CommonViews.h"
 #import "CommentsTableViewDataSource.h"
-#import "AlertFactory.h"
 #import "UsersFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
-
-static NSString *const kNibFileName = @"CommentsContainerView";
+#import "ApplicationViewHierarchyHelper.h"
 
 static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
@@ -180,6 +175,9 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   commentCell.likeButtonPressedBlock = ^(TutorialComment *comment) {
     [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
   };
+  commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
+    [weakSelf pushUserProfileLinkedToTutorialComment:comment];
+  };
   
   if (!object) {
     object = [self.dataSource objectAtIndexPath:indexPath];
@@ -227,6 +225,22 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   DISPATCH_ASYNC_ON_MAIN_THREAD(^{
     [actionSheetPresenter presentViewController:actionSheet animated:YES completion:nil];
   });
+}
+
+- (void)pushUserProfileLinkedToTutorialComment:(nonnull TutorialComment *)comment {
+  AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(self.parentNavigationController && @"can't push user's profile without this property");
+  // TODO: this method should not have navigationBar hiding/showing logic baked in
+
+  defineWeakSelf();
+  void (^pushUserProfileBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.parentNavigationController backButtonActionBlock:^() {
+      [weakSelf.parentNavigationController setNavigationBarHidden:YES animated:YES];
+  } allowPushingLoggedInUser:NO];
+  AssertTrueOrReturn(pushUserProfileBlock);
+
+  AssertTrueOrReturn(comment.madeBy);
+  pushUserProfileBlock(comment.madeBy);
+  [self.parentNavigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark - Private

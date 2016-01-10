@@ -32,17 +32,16 @@
 
 #pragma mark - Profile
 
-+ (void (^)(User *))pushProfileViewControllerFromViewController:(UIViewController *)viewController backButtonActionBlock:(VoidBlock)backButtonAction allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
++ (void (^)(User *))pushProfileVCFromNavigationController:(UINavigationController *)navigationController backButtonActionBlock:(VoidBlock)backButtonAction allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
 {
-  __weak UIViewController *weakViewController = viewController;
-  
+  AssertTrueOrReturnNil(navigationController);
+
   void (^pushProfileViewBlock)(User *) = ^(User *user) {
     AssertTrueOrReturn(user);
     
     if (!allowPushingLoggedInUser && user.loggedInUserValue) {
       return;
     }
-    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AssertTrueOrReturn(mainStoryboard);
     
@@ -50,9 +49,7 @@
     AssertTrueOrReturn(profileViewController);
     profileViewController.user = user;
     profileViewController.backButtonAction = backButtonAction;
-    
-    UINavigationController *navigationController = weakViewController.navigationController;
-    AssertTrueOrReturn(navigationController);
+
     [navigationController pushViewController:profileViewController animated:YES];
     
     if (!user.loggedInUserValue) {

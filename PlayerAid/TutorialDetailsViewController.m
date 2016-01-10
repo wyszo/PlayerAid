@@ -95,20 +95,20 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   }
   
   TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
+  commentsVC.parentNavigationController = self.navigationController;
   defineWeakSelf();
+
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView, BOOL shouldScrollToComments) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change
     if (shouldScrollToComments) {
       [weakSelf scrollToCommentsBarAnimated:NO]; // animation handled externally, this is just a single animation step
     }
   };
-
   commentsVC.didMakeACommentBlock = ^() {
     DISPATCH_ASYNC_ON_MAIN_THREAD(^{ // minimal delay required, otherwise comments height won't be up to date yet
       [weakSelf.tableView tw_scrollToBottom];
     });
   };
-
   commentsVC.parentTableViewScrollAnimatedBlock = ^(CGFloat offset) {
       [weakSelf.tableView setContentOffset:CGPointMake(0, offset) animated:YES];
   };
@@ -135,7 +135,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.headerTableView];
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
-    _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+    _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController backButtonActionBlock:nil allowPushingLoggedInUser:NO];
     
     _headerTableViewDataSource.didConfigureCellAtIndexPath = ^(TutorialTableViewCell *cell, NSIndexPath *indexPath) {
       [cell showGradientOverlay:YES];

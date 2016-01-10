@@ -59,7 +59,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  AssertTrueOr(self.tutorial && @"Tutorial property is mandatory",);
+  AssertTrueOr(self.tutorial && @"mandatory property (tutorial)",);
+  AssertTrueOr(self.parentNavigationController && @"mandatory property (parentNavigationController), can't push other views without it",);
   
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
   [self refreshAllCommentsLabels];
@@ -364,6 +365,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     self.commentsContainerVC = commentsContainerVC;
     [commentsContainerVC setTutorialCommentsController:self.commentsController];
     [commentsContainerVC setTutorial:self.tutorial];
+    commentsContainerVC.parentNavigationController = self.parentNavigationController;
     
     defineWeakSelf();
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {

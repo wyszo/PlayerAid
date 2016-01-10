@@ -69,7 +69,7 @@
   self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND reportedByUser == 0", kTutorialStatePublished];
   self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
-  self.tutorialsTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileViewControllerFromViewController:self backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+  self.tutorialsTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController backButtonActionBlock:nil allowPushingLoggedInUser:NO];
 }
 
 - (void)setupTableViewHeader
