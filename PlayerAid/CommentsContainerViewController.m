@@ -210,8 +210,11 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   UIViewController *actionSheetPresenter = [UIWindow tw_keyWindow].rootViewController;
   AssertTrueOrReturn(actionSheetPresenter);
   AssertTrueOr([actionSheetPresenter isKindOfClass:[UITabBarController class]],);
-  
-  UIAlertController *actionSheet = [self.commentsController reportCommentAlertController:comment];
+
+  defineWeakSelf();
+  UIAlertController *actionSheet = [self.commentsController otherUserCommentAlertController:comment visitProfileAction:^{
+    [weakSelf pushUserProfileLinkedToTutorialComment:comment];
+  }];
   
   if ([self isOwnComment:comment]) {
     AssertTrueOrReturn(self.editCommentActionSheetOptionSelectedBlock);

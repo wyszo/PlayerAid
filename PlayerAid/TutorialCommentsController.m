@@ -50,14 +50,15 @@
 
 #pragma mark - public interface
 
-- (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment
-{
-  defineWeakSelf();
-  return [AlertControllerFactory reportCommentActionControllerWithAction:^() {
-    [weakSelf reportCommentShowConfirmationAlert:comment];
-  }];
-}
+- (UIAlertController *)otherUserCommentAlertController:(TutorialComment *)comment visitProfileAction:(VoidBlock)visitProfileAction {
+  AssertTrueOrReturnNil(comment);
+  AssertTrueOrReturnNil(visitProfileAction);
 
+  defineWeakSelf();
+  return [AlertControllerFactory otherUserCommentActionControllerWithReportCommentAction:^() {
+    [weakSelf reportCommentShowConfirmationAlert:comment];
+  } visitProfileAction:visitProfileAction];
+}
 
 - (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction {
   AssertTrueOrReturnNil(comment);

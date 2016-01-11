@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction;
 
-- (UIAlertController *)reportCommentAlertController:(TutorialComment *)comment;
+- (UIAlertController *)otherUserCommentAlertController:(TutorialComment *)comment visitProfileAction:(VoidBlock)visitProfileAction;
 
 @end
 

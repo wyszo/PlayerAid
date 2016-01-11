@@ -48,10 +48,10 @@
   return alertController;
 }
 
-+ (UIAlertController *)reportCommentActionControllerWithAction:(VoidBlock)reportActionBlock
-{
++ (UIAlertController *)otherUserCommentActionControllerWithReportCommentAction:(VoidBlock)reportActionBlock visitProfileAction:(VoidBlock)visitProfileAction {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  [alertController addAction:[self alertActionWithTitle:@"Report Comment" action:reportActionBlock]];  
+  [alertController addAction:[self alertActionWithTitle:@"Visit Profile" action:visitProfileAction]];
+  [alertController addAction:[self alertActionWithTitle:@"Report Comment" action:reportActionBlock]];
   [alertController addAction:[self cancelAlertAction]];
   return alertController;
 }
