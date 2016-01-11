@@ -104,7 +104,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     BlockWithBoolParameter internalCompletion = ^(BOOL success) {
         CallBlock(completion, success);
         if (success) {
-          CallBlock(self.didMakeACommentBlock, nil);
+          CallBlock(weakSelf.didMakeACommentBlock, nil);
         }
     };
     [weakSelf.commentsController sendACommentWithText:text completion:internalCompletion];

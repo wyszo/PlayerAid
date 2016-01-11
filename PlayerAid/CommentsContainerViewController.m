@@ -74,7 +74,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     TutorialCommentCell *cell = [weakSelf.commentsTableView cellForRowAtIndexPath:indexPath];
     AssertTrueOrReturn(cell);
     
-    if (![self shouldShowCommentActionSheetOnCellSelection]) {
+    if (![weakSelf shouldShowCommentActionSheetOnCellSelection]) {
       CallBlock(weakSelf.resignMakeOrEditCommentFirstResponderBlock);
       return;
     }
