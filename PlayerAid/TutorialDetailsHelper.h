@@ -12,7 +12,7 @@
 - (void)performTutorialDetailsSegueFromViewController:(UIViewController *)viewController;
 
 // Call this inside prepareForSegue
-- (void)prepareForTutorialDetailsSegue:(UIStoryboardSegue *)segue pushingTutorial:(Tutorial *)tutorial deallocBlock:(VoidBlock)deallocBlock;
+- (void)prepareForTutorialDetailsSegue:(UIStoryboardSegue *)segue pushingTutorial:(Tutorial *)tutorial;
 
 - (UIBarButtonItem *)reportTutorialBarButtonItem:(Tutorial *)tutorial;
 

@@ -32,8 +32,7 @@
 
 #pragma mark - Profile
 
-+ (void (^)(User *))pushProfileVCFromNavigationController:(UINavigationController *)navigationController backButtonActionBlock:(VoidBlock)backButtonAction allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser
-{
++ (void (^)(User *))pushProfileVCFromNavigationController:(UINavigationController *)navigationController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser {
   AssertTrueOrReturnNil(navigationController);
 
   void (^pushProfileViewBlock)(User *) = ^(User *user) {
@@ -48,7 +47,6 @@
     ProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
     AssertTrueOrReturn(profileViewController);
     profileViewController.user = user;
-    profileViewController.backButtonAction = backButtonAction;
 
     [navigationController pushViewController:profileViewController animated:YES];
     

@@ -98,19 +98,15 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   [super viewDidAppear:animated];
   [self updateFilterViewTutorialsCount];
+
+  [self updateNavigationBarVisibility];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-  if (![self isPartOfNavigationControllerStrack]) {
-    [self backButtonPressed];
+- (void)updateNavigationBarVisibility {
+  BOOL isOnlyViewControllerOnNavigationStack = (self.navigationController.viewControllers.count == 1);
+  if (isOnlyViewControllerOnNavigationStack) {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
   }
-  [super viewWillDisappear:animated];
-}
-
-- (BOOL)isPartOfNavigationControllerStrack
-{
-  return ([self.navigationController.viewControllers indexOfObject:self] != NSNotFound);
 }
 
 - (void)updateFilterViewTutorialsCount
@@ -268,7 +264,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
   dataSource.tutorialTableViewDelegate = self;
-  dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController backButtonActionBlock:nil allowPushingLoggedInUser:NO];
+  dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
   return dataSource;
 }
 
@@ -280,9 +276,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   __weak typeof(id) weakDataSource = dataSource;
   FollowedUserTableViewDelegate *delegate = [FollowedUserTableViewDelegate new];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    void (^profilePushingBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:weakSelf.navigationController backButtonActionBlock:^{
-        [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
-    } allowPushingLoggedInUser:NO];
+    void (^profilePushingBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:weakSelf.navigationController allowPushingLoggedInUser:NO];
     AssertTrueOrReturn(profilePushingBlock);
     
     User *user = [weakDataSource objectAtIndexPath:indexPath];
@@ -397,15 +391,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   defineWeakSelf();
-  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial deallocBlock:^{
-    [weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
-  }];
-}
-
-#pragma mark - Actions 
-
-- (void)backButtonPressed {
-  CallBlock(self.backButtonAction);
+  [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
 }
 
 #pragma mark - Other methods 

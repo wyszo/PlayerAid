@@ -236,9 +236,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   // TODO: this method should not have navigationBar hiding/showing logic baked in
 
   defineWeakSelf();
-  void (^pushUserProfileBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.parentNavigationController backButtonActionBlock:^() {
-      [weakSelf.parentNavigationController setNavigationBarHidden:YES animated:YES];
-  } allowPushingLoggedInUser:NO];
+  void (^pushUserProfileBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.parentNavigationController allowPushingLoggedInUser:NO];
   AssertTrueOrReturn(pushUserProfileBlock);
 
   AssertTrueOrReturn(comment.madeBy);
