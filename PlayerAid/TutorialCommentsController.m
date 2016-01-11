@@ -54,9 +54,8 @@
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(visitProfileAction);
 
-  defineWeakSelf();
   return [AlertControllerFactory otherUserCommentActionControllerWithReportCommentAction:^() {
-    [weakSelf reportCommentShowConfirmationAlert:comment];
+    [self reportCommentShowConfirmationAlert:comment];
   } visitProfileAction:visitProfileAction];
 }
 
