@@ -125,7 +125,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView tutorial:self.tutorial context:nil allowsEditing:NO tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView
+                                                                           tutorial:self.tutorial
+                                                                            context:nil
+                                                                      allowsEditing:NO
+                                                  tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
 }
 
@@ -135,7 +139,8 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.headerTableView];
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
-    _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
+    _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController
+                                                                                                            allowPushingLoggedInUser:NO];
     
     _headerTableViewDataSource.didConfigureCellAtIndexPath = ^(TutorialTableViewCell *cell, NSIndexPath *indexPath) {
       [cell showGradientOverlay:YES];
@@ -161,14 +166,21 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)setupKeyboardHandlers {
 
   defineWeakSelf();
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil
+                                                     queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification *notification) {
       weakSelf.commentsViewController.shouldCompensateForOpenKeyboard = YES;
       [weakSelf.commentsViewController recalculateSize];
   }];
 
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
+                                                    object:nil
+                                                     queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification *notification) {
       weakSelf.commentsViewController.shouldCompensateForOpenKeyboard = NO;
-      DISPATCH_ASYNC_ON_MAIN_THREAD(^{ // Technical debt: without this atrificial delay, size calculation is incorrect and the gap below comments remains after hiding a keyboard (after editing a comment)
+      DISPATCH_ASYNC_ON_MAIN_THREAD(^{ // Technical debt: without this artificial delay,
+          // size calculation is incorrect and the gap below comments remains
+          // after hiding a keyboard (after editing a comment)
           [weakSelf.commentsViewController recalculateSize];
       });
   }];

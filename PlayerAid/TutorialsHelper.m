@@ -44,7 +44,9 @@
 
 #pragma mark - Parsing tutorials
 
-+ (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors inContext:(NSManagedObjectContext *)context
++ (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray
+                                  parseAuthors:(BOOL)parseAuthors
+                                     inContext:(NSManagedObjectContext *)context
 {
   AssertTrueOrReturnNil(context);
   AssertTrueOrReturnNil([dictionariesArray isKindOfClass:[NSArray class]]);
@@ -62,7 +64,9 @@
   return [NSSet setWithArray:tutorialsArray];
 }
 
-+ (Tutorial *)tutorialFromDictionary:(nonnull NSDictionary *)dictionary parseAuthors:(BOOL)parseAuthors inContext:(nonnull NSManagedObjectContext *)context
++ (Tutorial *)tutorialFromDictionary:(nonnull NSDictionary *)dictionary
+                        parseAuthors:(BOOL)parseAuthors
+                           inContext:(nonnull NSManagedObjectContext *)context
 {
   AssertTrueOrReturnNil(dictionary);
   AssertTrueOrReturnNil(context);
