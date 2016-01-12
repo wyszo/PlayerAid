@@ -6,6 +6,7 @@
 @import MagicalRecord;
 #import "TutorialsHelper.h"
 #import "Tutorial.h"
+#import "UsersFetchController.h"
 
 @implementation TutorialsHelper
 
@@ -73,6 +74,13 @@
   }
   [tutorial configureFromDictionary:dictionary includeAuthor:parseAuthors];
   return tutorial;
+}
+
+#pragma mark - Other
+
++ (BOOL)isOwnTutorial:(nonnull Tutorial *)tutorial {
+  AssertTrueOrReturnNo(tutorial);
+  return [tutorial.createdBy isEqual:[[UsersFetchController sharedInstance] currentUser]];
 }
 
 @end

@@ -14,4 +14,6 @@
 + (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors inContext:(NSManagedObjectContext *)context;
 + (Tutorial *)tutorialFromDictionary:(nonnull NSDictionary *)dictionary parseAuthors:(BOOL)parseAuthors inContext:(nonnull NSManagedObjectContext *)context;
 
++ (BOOL)isOwnTutorial:(nonnull Tutorial *)tutorial;
+
 @end

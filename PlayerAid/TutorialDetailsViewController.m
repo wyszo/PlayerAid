@@ -16,6 +16,7 @@
 #import "TutorialDetailsHelper.h"
 #import "TutorialCommentsViewController.h"
 #import "ViewControllersFactory.h"
+#import "TutorialsHelper.h"
 
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
@@ -65,7 +66,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 }
 
 - (void)setupNavigationBarButtons {
-  if (self.tutorial.isPublished) {
+  if (self.tutorial.isPublished && ![TutorialsHelper isOwnTutorial:self.tutorial]) {
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
   }
 }
