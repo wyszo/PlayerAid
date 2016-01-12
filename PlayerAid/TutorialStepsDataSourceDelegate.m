@@ -5,7 +5,7 @@
 @import KZAsserts;
 @import TWCommonLib;
 @import MagicalRecord;
-#import "TutorialStepsDataSource.h"
+#import "TutorialStepsDataSourceDelegate.h"
 #import "MediaPlayerHelper.h"
 #import "AlertFactory.h"
 #import "TutorialStep.h"
@@ -18,7 +18,7 @@ static NSString *const kTutorialStepCellNibName = @"TutorialStepTableViewCell";
 static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 
 
-@interface TutorialStepsDataSource () <UITableViewDelegate>
+@interface TutorialStepsDataSourceDelegate () <UITableViewDelegate>
 
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
@@ -31,12 +31,16 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 @end
 
 
-@implementation TutorialStepsDataSource
+@implementation TutorialStepsDataSourceDelegate
 
 #pragma mark - Initilization
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
-- (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDelegate
+- (instancetype)initWithTableView:(UITableView *)tableView
+                         tutorial:(Tutorial *)tutorial
+                          context:(NSManagedObjectContext *)context
+                    allowsEditing:(BOOL)allowsEditing
+tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDelegate
 {
   AssertTrueOrReturnNil(tableView);
   AssertTrueOrReturnNil(tutorial);
@@ -61,7 +65,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)initFetchedResultsControllerBinder
 {
   defineWeakSelf();
-  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView
+                                                                                          configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
   }];
   
@@ -78,7 +83,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 - (void)initTableViewDataSource
 {
   defineWeakSelf();
-  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialStepCellReuseIdentifier configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+  self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialStepCellReuseIdentifier
+                                                                             configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
     TutorialStepTableViewCell *tutorialStepCell = (TutorialStepTableViewCell *)cell;
     
@@ -93,7 +99,12 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
     AssertTrueOr(weakSelf.fetchedResultsControllerBinder, ;);
     AssertTrueOr(weakSelf.context, ;);
-    return [TutorialStep MR_fetchAllSortedBy:@"order" ascending:YES withPredicate:predicate groupBy:nil delegate:weakSelf.fetchedResultsControllerBinder inContext:weakSelf.context];
+    return [TutorialStep MR_fetchAllSortedBy:@"order"
+                                   ascending:YES
+                               withPredicate:predicate
+                                     groupBy:nil
+                                    delegate:weakSelf.fetchedResultsControllerBinder
+                                   inContext:weakSelf.context];
   };
   self.tableView.dataSource = _tableViewDataSource;
 }
@@ -135,7 +146,8 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
     AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == tutorialStepTo.managedObjectContext);
     AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == weakSelf.context);
     
-    // UI changed, just need to update the model without invoking NSFetchedResultsController methods. That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
+    // UI changed, just need to update the model without invoking NSFetchedResultsController methods.
+    // That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
     NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
     [allObjects replaceObjectAtIndex:fromIndex withObject:tutorialStepTo];
     [allObjects replaceObjectAtIndex:toIndex withObject:tutorialStepFrom];

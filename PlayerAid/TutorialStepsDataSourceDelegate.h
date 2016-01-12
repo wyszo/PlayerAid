@@ -6,7 +6,7 @@
 #import "TutorialStepTableViewCell.h"
 #import <TWCommonLib/TWCommonTypes.h>
 
-@interface TutorialStepsDataSource : NSObject 
+@interface TutorialStepsDataSourceDelegate : NSObject
 
 @property (nonatomic, weak) UIViewController *moviePlayerParentViewController;
 @property (nonatomic, copy) VoidBlock cellDeletionCompletionBlock;

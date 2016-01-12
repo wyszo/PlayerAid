@@ -12,7 +12,7 @@
 #import "TutorialStep.h"
 #import "Section.h"
 #import "User.h"
-#import "TutorialStepsDataSource.h"
+#import "TutorialStepsDataSourceDelegate.h"
 #import "NavigationBarCustomizationHelper.h"
 #import "CreateTutorialHeaderViewController.h"
 #import "CreateTutorialStepButtonsContainerView.h"
@@ -40,7 +40,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 @interface CreateTutorialViewController () <CreateTutorialStepButtonsDelegate, FDTakeDelegate, TutorialStepTableViewCellDelegate>
 @property (strong, nonatomic) CreateTutorialHeaderViewController *headerViewController;
-@property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
+@property (strong, nonatomic) TutorialStepsDataSourceDelegate *tutorialStepsDataSource;
 @property (strong, nonatomic) FDTakeController *mediaController;
 @property (strong, nonatomic) YCameraViewStandardDelegateObject *yCameraControllerDelegate;
 
@@ -188,7 +188,7 @@ static NSString *const kXibName = @"CreateTutorialView";
   AssertTrueOrReturn(self.tutorial);
   AssertTrueOrReturn(self.tutorialTableView);
   AssertTrueOrReturn(self.createTutorialContext);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSourceDelegate alloc] initWithTableView:self.tutorialTableView tutorial:self.tutorial context:self.createTutorialContext allowsEditing:YES tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
   self.tutorialStepsDataSource.scrollToBottomWhenLastItemAdded = YES;
   

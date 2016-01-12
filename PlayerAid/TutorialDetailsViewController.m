@@ -9,7 +9,7 @@
 #import "TutorialTableViewCell.h"
 #import "TutorialsTableDataSource.h"
 #import "TutorialCellHelper.h"
-#import "TutorialStepsDataSource.h"
+#import "TutorialStepsDataSourceDelegate.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "CommonViews.h"
 #import "VideoPlayer.h"
@@ -20,9 +20,9 @@
 
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
-@interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate>
+@interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate, UITableViewDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
-@property (strong, nonatomic) TutorialStepsDataSource *tutorialStepsDataSource;
+@property (strong, nonatomic) TutorialStepsDataSourceDelegate *tutorialStepsDataSource;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
@@ -125,11 +125,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)setupTutorialStepsTableView
 {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSource alloc] initWithTableView:self.tableView
-                                                                           tutorial:self.tutorial
-                                                                            context:nil
-                                                                      allowsEditing:NO
-                                                  tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSource = [[TutorialStepsDataSourceDelegate alloc] initWithTableView:self.tableView
+                                                                                   tutorial:self.tutorial
+                                                                                    context:nil
+                                                                              allowsEditing:NO
+                                                          tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSource.moviePlayerParentViewController = self;
 }
 
