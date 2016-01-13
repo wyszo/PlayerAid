@@ -22,11 +22,12 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate, UITableViewDelegate>
 @property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
-@property (strong, nonatomic) TutorialStepsDataSourceDelegate *tutorialStepsDataSource;
+@property (strong, nonatomic) TutorialStepsDataSourceDelegate *tutorialStepsDataSourceDelegate;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
 @property (strong, nonatomic) TutorialCommentsViewController *commentsViewController;
+@property (strong, nonatomic) TWTableViewScrollHandlingDelegate *scrollDelegate;
 @end
 
 @implementation TutorialDetailsViewController
@@ -124,13 +125,31 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 - (void)setupTutorialStepsTableView
 {
+  [self setupTutorialStepsDataSourceDelegate];
+  [self setupScrollDelegate];
+}
+
+- (void)setupTutorialStepsDataSourceDelegate {
   AssertTrueOrReturn(self.tutorial);
-  self.tutorialStepsDataSource = [[TutorialStepsDataSourceDelegate alloc] initWithTableView:self.tableView
-                                                                                   tutorial:self.tutorial
-                                                                                    context:nil
-                                                                              allowsEditing:NO
-                                                          tutorialStepTableViewCellDelegate:self];
-  self.tutorialStepsDataSource.moviePlayerParentViewController = self;
+  self.tutorialStepsDataSourceDelegate = [[TutorialStepsDataSourceDelegate alloc] initWithTableView:self.tableView
+                                                                                           tutorial:self.tutorial
+                                                                                            context:nil
+                                                                                      allowsEditing:NO
+                                                                  tutorialStepTableViewCellDelegate:self];
+  self.tutorialStepsDataSourceDelegate.moviePlayerParentViewController = self;
+}
+
+- (void)setupScrollDelegate {
+  NSError *error;
+  self.scrollDelegate = [[TWTableViewScrollHandlingDelegate alloc] initWithTableView:self.tableView fallbackDelegate:(id)self.tutorialStepsDataSourceDelegate error:&error];
+  AssertTrueOrReturn(!error);
+  
+  self.scrollDelegate.didScrollAboveFooter = ^() {
+    NSLog(@"did scroll above footer");
+  };
+  self.scrollDelegate.didScrollToFooter = ^() {
+    NSLog(@"did scroll to footer");
+  };
 }
 
 - (TutorialsTableDataSource *)headerTableViewDataSource
