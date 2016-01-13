@@ -173,6 +173,7 @@
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; };
+		6C5AC5E208C8B2C3ADE32C4A /* KeyboardCustomInputAccessoryViewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -480,6 +481,8 @@
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCustomInputAccessoryViewsManager.m; sourceTree = "<group>"; };
+		6C5ACF0B466B9839EEEEB4E5 /* KeyboardCustomInputAccessoryViewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCustomInputAccessoryViewsManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +627,7 @@
 				31549F831C09086A00B2CA87 /* EditComment */,
 				3175462C1C1E2BD0006A40F2 /* LimitLineCountBehaviour */,
 				31549F821C09086500B2CA87 /* MakeComment */,
+				6C5AC2B88E13958CBC5EC7CB /* KeyboardCustomInputAccessoryViewsManager */,
 			);
 			name = KeyboardInputVC;
 			sourceTree = "<group>";
@@ -1960,6 +1964,15 @@
 			name = PublishingTutorial;
 			sourceTree = "<group>";
 		};
+		6C5AC2B88E13958CBC5EC7CB /* KeyboardCustomInputAccessoryViewsManager */ = {
+			isa = PBXGroup;
+			children = (
+				6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */,
+				6C5ACF0B466B9839EEEEB4E5 /* KeyboardCustomInputAccessoryViewsManager.h */,
+			);
+			name = KeyboardCustomInputAccessoryViewsManager;
+			sourceTree = "<group>";
+		};
 		9941D48C7CF54B64C92CF46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2292,6 +2305,7 @@
 				3177802A1A80975C007057CD /* Section.m in Sources */,
 				31CFDF431C1468DD00A1EAF1 /* ServerCommunicationController.swift in Sources */,
 				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
+				6C5AC5E208C8B2C3ADE32C4A /* KeyboardCustomInputAccessoryViewsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

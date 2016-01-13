@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5FB6B730827112AF5E7EA1B8'
-               BlueprintName = 'FDTake'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'FDTake.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A62D8530E099A5FAE4BFA115A87DB7D3"
+               BlueprintName = "FDTake"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "FDTake.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

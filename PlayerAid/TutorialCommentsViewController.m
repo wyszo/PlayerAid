@@ -14,8 +14,8 @@
 #import "MakeCommentInputViewController.h"
 #import "CommentsContainerViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
-#import "UsersFetchController.h"
 #import "TutorialComment.h"
+#import "KeyboardCustomInputAccessoryViewsManager.h"
 #import "EditCommentInputViewController.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
@@ -29,8 +29,6 @@ static const CGFloat kFoldingExpandingAnimationDuration = 0.5f;
 static const CGFloat kCommentsViewHeightForNoCommentsState = 360.0f;
 
 static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; // Technical debt: it should NOT be hardcoded - 271 is the tallest keyboard right now (iPhone 6+ with text predictions enabled)
-static const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
-static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 @interface TutorialCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *commentsBar;
@@ -45,12 +43,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsContainerBottomOffsetConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsBarHeightConstraint;
 
-@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputVC;
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
-
-@property (strong, nonatomic) EditCommentInputViewController *editCommentInputVC;
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *activeInputViewHandler;
+@property (strong, nonatomic) KeyboardCustomInputAccessoryViewsManager *keyboardInputViewsManager;
 @end
 
 @implementation TutorialCommentsViewController
@@ -66,7 +59,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
   [self refreshAllCommentsLabels];
   [self setupGestureRecognizer];
-  [self setupKeyboardInputView];
+  [self setupKeyboardInputViewsManager];
   
   [self foldAnimated:NO];
   AssertTrueOrReturn(self.parentTableViewScrollAnimatedBlock && @"Without parent scroll animated block, scrolling to show currently edited comment won't work");
@@ -74,7 +67,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 }
 
 - (void)dealloc {
-  [self dismissAllInputViews];
+  [self.keyboardInputViewsManager dismissAllInputViews];
 }
 
 - (void)setupGestureRecognizer
@@ -86,48 +79,41 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   [self.commentsBar addGestureRecognizer:gestureRecognizer];
 }
 
-- (void)setupKeyboardInputView
-{
-  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  self.makeCommentInputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
-  
-  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC
-                                                                                                            desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
-  
+- (void)setupKeyboardInputViewsManager {
+  self.keyboardInputViewsManager = [KeyboardCustomInputAccessoryViewsManager new];
+  [self.keyboardInputViewsManager setup]; // TODO: don't call this method.... just init or something...
+
   defineWeakSelf();
-  self.makeCommentInputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
-    BlockWithBoolParameter internalCompletion = ^(BOOL success) {
-        CallBlock(completion, success);
-        if (success) {
-          CallBlock(weakSelf.didMakeACommentBlock, nil);
-        }
-    };
-    [weakSelf.commentsController sendACommentWithText:text completion:internalCompletion];
+  self.keyboardInputViewsManager.areCommentsExpanded = ^BOOL() {
+    return (weakSelf.state == CommentsViewStateExpanded);
+  };
+  
+  self.keyboardInputViewsManager.makeACommentButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
+      BlockWithBoolParameter internalCompletion = ^(BOOL success) {
+          CallBlock(completion, success);
+          if (success) {
+            CallBlock(weakSelf.didMakeACommentBlock, nil);
+          }
+      };
+      [weakSelf.commentsController sendACommentWithText:text completion:internalCompletion];
   };
 }
 
-#pragma mark - Public
+#pragma mark - TEMP
 
-- (void)dismissAllInputViews {
-  [self.makeCommentInputViewHandler slideInputViewOut];
-  [self.editCommentInputViewHandler slideInputViewOut];
-}
+// those two messages should just be forwarded to the keyboardInputViewsManager
+// TODO: route that using forwardingTargetForSelector
 
 - (void)slideOutActiveInputViewIfCommentsExpanded {
-  if (self.makeCommentInputViewHandler.inputViewSlidOut) {
-    self.activeInputViewHandler = self.makeCommentInputViewHandler;
-  } else if (self.editCommentInputViewHandler.inputViewSlidOut) {
-    self.activeInputViewHandler = self.editCommentInputViewHandler;
-  }
-  [self.activeInputViewHandler slideInputViewOut];
+  [self.keyboardInputViewsManager slideOutActiveInputViewIfCommentsExpanded];
 }
 
 - (void)slideInActiveInputViewIfCommentsExpanded {
-  [self.activeInputViewHandler slideInputViewIn];
+  [self.keyboardInputViewsManager slideInActiveInputViewIfCommentsExpanded];
 }
 
-- (void)resetActiveInputViewHandler {
-  self.activeInputViewHandler = nil;
+- (void)dismissAllInputViews {
+  [self.keyboardInputViewsManager dismissAllInputViews];
 }
 
 #pragma mark - LayoutSubviews
@@ -155,6 +141,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   AssertTrueOrReturn(tutorial);
   AssertTrueOrReturn(!self.tutorial && (BOOL)(@"Can't reinitialize self.tutorial"));
   _tutorial = tutorial;
+
+  // dopiero potem mozna zainicjalizowac CommentsContainerVC...
 }
 
 #pragma mark - Footer size calculations
@@ -186,7 +174,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (void)foldAnimated:(BOOL)animated
 {
-  [self resetActiveInputViewHandler];
+  [self.keyboardInputViewsManager resetState];
 
   VoidBlock heightUpdateBlock = ^() {
     [self removeCommentsTableViewToScreenBottomOffset];
@@ -201,7 +189,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   if (animated) {
     [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
       heightUpdateBlock();
-      [self.makeCommentInputViewHandler slideInputViewOut];
+        [self.keyboardInputViewsManager dismissAllInputViews];
     } completion:^(BOOL finished) {
       if (finished) {
         CallBlock(self.didFoldBlock);
@@ -210,7 +198,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   }
   else {
     heightUpdateBlock();
-    [self.makeCommentInputViewHandler slideInputViewOut];
+    [self.keyboardInputViewsManager dismissAllInputViews];
     CallBlock(self.didFoldBlock);
   }
 }
@@ -222,7 +210,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
   [UIView animateWithDuration:kFoldingExpandingAnimationDuration animations:^{
     [self.arrowImageView tw_setRotationRadians:0];
-    [self.makeCommentInputViewHandler slideInputViewIn];
+    [self.keyboardInputViewsManager.makeCommentInputViewHandler slideInputViewIn];
     [self updateCommentsHeightIfExpandedShouldScrollToCommentsBar:YES];
   } completion:^(BOOL finished) {
     if (finished) {
@@ -260,7 +248,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (void)addCommentsTableViewToScreenBottomOffset
 {
-  CGFloat inputViewHeight = self.makeCommentInputViewHandler.inputViewHeight;
+  CGFloat inputViewHeight = self.keyboardInputViewsManager.makeCommentInputViewHandler.inputViewHeight;
   AssertTrueOrReturn(inputViewHeight > 0);
   self.commentsContainerBottomOffsetConstraint.constant = inputViewHeight;
 }
@@ -304,23 +292,6 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   self.commentsLabel.text = [NSString stringWithFormat:@"Comment%@", sufix];
 }
 
-#pragma mark - Lazy initialization
-
-- (TutorialCommentsController *)commentsController
-{
-  if (!_commentsController) {
-    AssertTrueOrReturnNil(self.tutorial && (BOOL)(@"Tutorial property is mandatory"));
-
-    defineWeakSelf();
-    _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
-      [weakSelf refreshAllCommentsLabels];
-      [weakSelf.commentsContainerVC commentsCountDidChange];
-      [weakSelf.view layoutIfNeeded];
-    }];
-  }
-  return _commentsController;
-}
-
 #pragma mark - Auxiliary methods
 
 - (NSUInteger)commentsCount
@@ -328,12 +299,6 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   NSPredicate *notReportedPredicate = [NSPredicate predicateWithFormat:@"status == %d", CommentStatusPublished];
   NSOrderedSet *notReportedComments = [self.tutorial.hasCommentsSet filteredOrderedSetUsingPredicate:notReportedPredicate];
   return [notReportedComments count];
-}
-
-- (void)dismissEditCommentBar
-{
-  [self.editCommentInputVC hideKeyboard];
-  [self.editCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)scrollToShowCommentAboveKeyboardInputBarWithRect:(CGRect)commentCellRect
@@ -347,8 +312,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   CGFloat commentsBarBottom = parentTableViewFooterTop + (self.commentsBar.tw_top + self.commentsBarHeightConstraint.constant);
   CGFloat offsetToScrollTo = commentsBarBottom + (commentCellRect.origin.y + commentCellRect.size.height); // comment cell frame relative to parent
 
-  AssertTrueOrReturn([self.editCommentInputViewHandler inputViewSlidOut]); // Technical Debt: this method assumes being called after showing editComment Keyboard input view...
-  CGFloat inputViewHeight = self.editCommentInputVC.view.tw_height;
+  AssertTrueOrReturn([self.keyboardInputViewsManager.editCommentInputViewHandler inputViewSlidOut]); // Technical Debt: this method assumes being called after showing editComment Keyboard input view...
+  CGFloat inputViewHeight = self.keyboardInputViewsManager.editCommentInputVC.view.tw_height;
   CGFloat topOffsetToKeyboard = [UIScreen tw_height] - (kGapBelowCommentsToCompensateForOpenKeyboardSize + inputViewHeight); // distance from top of the screen to top of the inputView above keyboard predictions bar
   offsetToScrollTo -= topOffsetToKeyboard;
 
@@ -356,28 +321,19 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   CallBlock(self.parentTableViewScrollAnimatedBlock, offsetToScrollTo);
 }
 
-#pragma mark - Lazy Initialization
-
-- (EditCommentInputViewController *)editCommentInputVC
+- (TutorialCommentsController *)commentsController
 {
-  if (!_editCommentInputVC) {
-    _editCommentInputVC = [EditCommentInputViewController new];
-    
+  if (!_commentsController) {
+    AssertTrueOrReturnNil(self.tutorial && (BOOL)(@"Tutorial property is mandatory"));
+
     defineWeakSelf();
-    _editCommentInputVC.cancelButtonAction = ^() {
-      [weakSelf.editCommentInputViewHandler slideInputViewOut];
-    };
+    _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
+        [weakSelf refreshAllCommentsLabels];
+        [weakSelf.commentsContainerVC commentsCountDidChange];
+        [weakSelf.view layoutIfNeeded];
+    }];
   }
-  return _editCommentInputVC;
-}
-
-- (KeyboardCustomAccessoryInputViewHandler *)editCommentInputViewHandler
-{
-  if (!_editCommentInputViewHandler) {
-    _editCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.editCommentInputVC
-                                                                                                          desiredInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
-  }
-  return _editCommentInputViewHandler;
+  return _commentsController;
 }
 
 #pragma mark - Segues
@@ -385,45 +341,50 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   // TODO: move all this code to a separate CommentsContainerVC Configurator object
+  // ok, all this relies on inputViews manipulation - we want a separate object to handle all this first!! before refactoring this method!!
 
   if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
+//    CommentsContainerConfigurator *configurator = [CommentsContainerConfigurator new];
+//    [configurator configureCommentsContainerVC:commentsContainerVC];
+
     self.commentsContainerVC = commentsContainerVC;
+
     [commentsContainerVC setTutorialCommentsController:self.commentsController];
     [commentsContainerVC setTutorial:self.tutorial];
     commentsContainerVC.parentNavigationController = self.parentNavigationController;
     
     defineWeakSelf();
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {
-      BOOL anyCommentBeingEdited = weakSelf.editCommentInputViewHandler.inputViewSlidOut;
-      BOOL newCommentBeingAdded = [weakSelf.makeCommentInputVC isInputTextViewFirstResponder];
+      BOOL anyCommentBeingEdited = weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewSlidOut;
+      BOOL newCommentBeingAdded = [weakSelf.keyboardInputViewsManager.makeCommentInputVC isInputTextViewFirstResponder];
       return (anyCommentBeingEdited || newCommentBeingAdded);
     };
     
     commentsContainerVC.isCommentBeingEditedBlock = ^BOOL(TutorialComment *comment) {
-      BOOL anyCommentBeingEdited = weakSelf.editCommentInputViewHandler.inputViewSlidOut;
-      BOOL currentCommentBeingEdited = [weakSelf.editCommentInputVC.comment isEqual:comment];
+      BOOL anyCommentBeingEdited = weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewSlidOut;
+      BOOL currentCommentBeingEdited = [weakSelf.keyboardInputViewsManager.editCommentInputVC.comment isEqual:comment];
       return (anyCommentBeingEdited && currentCommentBeingEdited);
     };
     
     commentsContainerVC.resignMakeOrEditCommentFirstResponderBlock = ^() {
-      [weakSelf.editCommentInputVC hideKeyboard];
-      [weakSelf.makeCommentInputVC hideKeyboard];
+      [weakSelf.keyboardInputViewsManager.editCommentInputVC hideKeyboard];
+      [weakSelf.keyboardInputViewsManager.makeCommentInputVC hideKeyboard];
     };
     
     [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(TutorialComment *comment, CGRect tutorialCellFrame, VoidBlock completion) {
-        [weakSelf.editCommentInputViewHandler slideInputViewIn];
-        weakSelf.editCommentInputViewHandler.inputViewDidDismissBlock = completion;
+        [weakSelf.keyboardInputViewsManager.editCommentInputViewHandler slideInputViewIn];
+        weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewDidDismissBlock = completion;
 
-        [weakSelf.editCommentInputVC setComment:comment];
-        [weakSelf.editCommentInputVC setInputViewToFirstResponder];
+        [weakSelf.keyboardInputViewsManager.editCommentInputVC setComment:comment];
+        [weakSelf.keyboardInputViewsManager.editCommentInputVC setInputViewToFirstResponder];
         [weakSelf scrollToShowCommentAboveKeyboardInputBarWithRect:tutorialCellFrame];
 
-        weakSelf.editCommentInputVC.saveButtonAction = ^(NSString *editedComment) {
+        weakSelf.keyboardInputViewsManager.editCommentInputVC.saveButtonAction = ^(NSString *editedComment) {
         if (editedComment.length > 0) {
           [weakSelf.commentsController editComment:comment withText:editedComment completion:^(NSError *error) {
             if (!error) {
-              [weakSelf dismissEditCommentBar];
+              [weakSelf.keyboardInputViewsManager dismissEditCommentBar];
             }
           }];
         }
