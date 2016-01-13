@@ -143,12 +143,13 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   NSError *error;
   self.scrollDelegate = [[TWTableViewScrollHandlingDelegate alloc] initWithTableView:self.tableView fallbackDelegate:(id)self.tutorialStepsDataSourceDelegate error:&error];
   AssertTrueOrReturn(!error);
-  
+
+  defineWeakSelf();
   self.scrollDelegate.didScrollAboveFooter = ^() {
-    NSLog(@"did scroll above footer");
+    [weakSelf.commentsViewController slideOutActiveInputViewIfCommentsExpanded];
   };
   self.scrollDelegate.didScrollToFooter = ^() {
-    NSLog(@"did scroll to footer");
+    [weakSelf.commentsViewController slideInActiveInputViewIfCommentsExpanded];
   };
 }
 

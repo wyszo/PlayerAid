@@ -50,6 +50,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 @property (strong, nonatomic) EditCommentInputViewController *editCommentInputVC;
 @property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *activeInputViewHandler;
 @end
 
 @implementation TutorialCommentsViewController
@@ -72,15 +73,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   AssertTrueOrReturn(self.parentTableViewFooterTopBlock && @"ParentTableViewFooterTopBlock is required for offsets calculations");
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   [self dismissAllInputViews];
-}
-
-- (void)dismissAllInputViews
-{
-  [self.makeCommentInputViewHandler slideInputViewOut];
-  [self.editCommentInputViewHandler slideInputViewOut];
 }
 
 - (void)setupGestureRecognizer
@@ -97,7 +91,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
   self.makeCommentInputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
   
-  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
+  self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC
+                                                                                                            desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
   
   defineWeakSelf();
   self.makeCommentInputVC.postButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
@@ -111,6 +106,30 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   };
 }
 
+#pragma mark - Public
+
+- (void)dismissAllInputViews {
+  [self.makeCommentInputViewHandler slideInputViewOut];
+  [self.editCommentInputViewHandler slideInputViewOut];
+}
+
+- (void)slideOutActiveInputViewIfCommentsExpanded {
+  if (self.makeCommentInputViewHandler.inputViewSlidOut) {
+    self.activeInputViewHandler = self.makeCommentInputViewHandler;
+  } else if (self.editCommentInputViewHandler.inputViewSlidOut) {
+    self.activeInputViewHandler = self.editCommentInputViewHandler;
+  }
+  [self.activeInputViewHandler slideInputViewOut];
+}
+
+- (void)slideInActiveInputViewIfCommentsExpanded {
+  [self.activeInputViewHandler slideInputViewIn];
+}
+
+- (void)resetActiveInputViewHandler {
+  self.activeInputViewHandler = nil;
+}
+
 #pragma mark - LayoutSubviews
 
 - (void)viewDidLayoutSubviews {
@@ -118,7 +137,9 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   
   if (self.state == CommentsViewStateFolded) {
     /**
-     Bugfix: earlier initial comment state was incorrect. When comment initially folded, it height was reduced to 49, but then on layoutSubviews (which happens automatically due to NavigationBar hiding) it was increased to 113, allowing to see the first comment below the folded comments bar
+     Bugfix: earlier initial comment state was incorrect. When comment initially folded, it height was reduced to 49, but
+     then on layoutSubviews (which happens automatically due to NavigationBar hiding) it was increased to 113, allowing
+     to see the first comment below the folded comments bar
      */
     [self setViewHeightToCommentsBarHeight];
   }
@@ -165,6 +186,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (void)foldAnimated:(BOOL)animated
 {
+  [self resetActiveInputViewHandler];
+
   VoidBlock heightUpdateBlock = ^() {
     [self removeCommentsTableViewToScreenBottomOffset];
     [self setViewHeightToCommentsBarHeight];
@@ -351,7 +374,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 - (KeyboardCustomAccessoryInputViewHandler *)editCommentInputViewHandler
 {
   if (!_editCommentInputViewHandler) {
-    _editCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.editCommentInputVC desiredInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
+    _editCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.editCommentInputVC
+                                                                                                          desiredInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
   }
   return _editCommentInputViewHandler;
 }
@@ -360,6 +384,8 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+  // TODO: move all this code to a separate CommentsContainerVC Configurator object
+
   if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
     self.commentsContainerVC = commentsContainerVC;
