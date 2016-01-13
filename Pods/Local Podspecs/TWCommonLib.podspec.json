@@ -14,7 +14,7 @@
   "social_media_url": "http://twitter.com/Wyszo",
   "source": {
     "git": "https://github.com/wyszo/TWCommonLib.git",
-    "commit": "bbc47578f985a31d2c9f8b1bbda83e2125c116d7"
+    "tag": "CommonLib_0_9"
   },
   "frameworks": [
     "CoreMotion",
@@ -37,6 +37,9 @@
     ],
     "KZAsserts": [
       "1.0"
+    ],
+    "LBDelegateMatrioska": [
+      "0.0.2"
     ],
     "BlocksKit": [
       "2.2.5"

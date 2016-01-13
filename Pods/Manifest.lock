@@ -35,12 +35,12 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bolts (1.5.1):
-    - Bolts/AppLinks (= 1.5.1)
-    - Bolts/Tasks (= 1.5.1)
-  - Bolts/AppLinks (1.5.1):
+  - Bolts (1.6.0):
+    - Bolts/AppLinks (= 1.6.0)
+    - Bolts/Tasks (= 1.6.0)
+  - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.5.1)
+  - Bolts/Tasks (1.6.0)
   - Crashlytics (3.5.0):
     - Fabric (~> 1.6.0)
   - DateTools (1.7.0)
@@ -61,6 +61,7 @@ PODS:
   - FLKAutoLayout (0.2.1)
   - KZAsserts (1.0)
   - KZPropertyMapper (2.5.1)
+  - LBDelegateMatrioska (0.0.2)
   - MagicalRecord (2.3.0)
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
@@ -71,6 +72,7 @@ PODS:
     - BlocksKit (= 2.2.5)
     - FLKAutoLayout (= 0.2.1)
     - KZAsserts (= 1.0)
+    - LBDelegateMatrioska (= 0.0.2)
     - MagicalRecord (= 2.3.0)
     - UIAlertView-Blocks (= 1.0)
   - UIAlertView-Blocks (1.0)
@@ -124,7 +126,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bolts: a12663244b1d3351c738882e71902fc74db54f64
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: fabfd45d0e8b8dc936c682b97e302b9a49a1c827
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: e8296d4a1abb3c5eed770cc86b311c862f51d340
@@ -134,11 +136,12 @@ SPEC CHECKSUMS:
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7
   KZPropertyMapper: e80e83aa3bc6d37a6dd55e3d04a01afcb8c23d3c
+  LBDelegateMatrioska: 4af6c7c5ba142d2f24d741e360558d8a0202cfc4
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: 3576630058fc0db0fa334ac65d573e8193b39cb6
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  TWCommonLib: ec404fb3d106bc52edec40740fd5a0a77949c9a9
+  TWCommonLib: 9d7580187a20851d8269d4d5da789b837fb13e81
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
