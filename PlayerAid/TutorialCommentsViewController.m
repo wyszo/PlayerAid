@@ -50,8 +50,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 
 #pragma mark - Init
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   AssertTrueOr(self.tutorial && @"mandatory property (tutorial)",);
   AssertTrueOr(self.parentNavigationController && @"mandatory property (parentNavigationController), can't push other views without it",);
@@ -94,6 +93,13 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
       };
       [weakSelf.commentsController sendACommentWithText:text completion:internalCompletion];
   };
+}
+
+#pragma mark - View visibility
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.keyboardInputViewsManager slideInActiveInputViewIfCommentsExpanded];
 }
 
 #pragma mark - Keyboard input methods forwarding
@@ -308,7 +314,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   CGFloat commentsBarBottom = parentTableViewFooterTop + (self.commentsBar.tw_top + self.commentsBarHeightConstraint.constant);
   CGFloat offsetToScrollTo = commentsBarBottom + (commentCellRect.origin.y + commentCellRect.size.height); // comment cell frame relative to parent
 
-  AssertTrueOrReturn([self.keyboardInputViewsManager.editCommentInputViewHandler inputViewSlidOut]); // Technical Debt: this method assumes being called after showing editComment Keyboard input view...
+  AssertTrueOrReturn([self.keyboardInputViewsManager editCommentInputViewSlidOut]); // Technical Debt: this method assumes being called after showing editComment Keyboard input view...
   CGFloat inputViewHeight = self.keyboardInputViewsManager.editCommentInputVC.view.tw_height;
   CGFloat topOffsetToKeyboard = [UIScreen tw_height] - (kGapBelowCommentsToCompensateForOpenKeyboardSize + inputViewHeight); // distance from top of the screen to top of the inputView above keyboard predictions bar
   offsetToScrollTo -= topOffsetToKeyboard;
@@ -349,13 +355,13 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
     
     defineWeakSelf();
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {
-      BOOL anyCommentBeingEdited = weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewSlidOut;
+      BOOL anyCommentBeingEdited = [weakSelf.keyboardInputViewsManager editCommentInputViewSlidOut];
       BOOL newCommentBeingAdded = [weakSelf.keyboardInputViewsManager.makeCommentInputVC isInputTextViewFirstResponder];
       return (anyCommentBeingEdited || newCommentBeingAdded);
     };
     
     commentsContainerVC.isCommentBeingEditedBlock = ^BOOL(TutorialComment *comment) {
-      BOOL anyCommentBeingEdited = weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewSlidOut;
+      BOOL anyCommentBeingEdited = [weakSelf.keyboardInputViewsManager editCommentInputViewSlidOut];
       BOOL currentCommentBeingEdited = [weakSelf.keyboardInputViewsManager.editCommentInputVC.comment isEqual:comment];
       return (anyCommentBeingEdited && currentCommentBeingEdited);
     };
@@ -366,8 +372,8 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
     };
     
     [commentsContainerVC setEditCommentActionSheetOptionSelectedBlock:^(TutorialComment *comment, CGRect tutorialCellFrame, VoidBlock completion) {
-        [weakSelf.keyboardInputViewsManager.editCommentInputViewHandler slideInputViewIn];
-        weakSelf.keyboardInputViewsManager.editCommentInputViewHandler.inputViewDidDismissBlock = completion;
+        [weakSelf.keyboardInputViewsManager slideEditCommentInputViewIn];
+        weakSelf.keyboardInputViewsManager.editCommentInputViewDidDismissBlock = completion;
 
         [weakSelf.keyboardInputViewsManager.editCommentInputVC setComment:comment];
         [weakSelf.keyboardInputViewsManager.editCommentInputVC setInputViewToFirstResponder];

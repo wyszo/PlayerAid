@@ -120,6 +120,9 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   UIView *footerView = commentsVC.view;
   self.tableView.tableFooterView = footerView;
 
+  [self addChildViewController:commentsVC];
+  [commentsVC didMoveToParentViewController:self];
+
   self.commentsViewController = commentsVC;
 }
 

@@ -14,9 +14,9 @@ extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
 @property (strong, nonatomic, readonly) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
 
 @property (strong, nonatomic, readonly) EditCommentInputViewController *editCommentInputVC;
-@property (strong, nonatomic, readonly) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
 
 @property (nonatomic, copy) void (^makeACommentButtonPressedBlock)(NSString *text, BlockWithBoolParameter completion);
+@property (nonatomic, copy) VoidBlock editCommentInputViewDidDismissBlock;
 
 NEW_AND_INIT_UNAVAILABLE
 
@@ -27,6 +27,9 @@ NEW_AND_INIT_UNAVAILABLE
 
 - (void)slideInActiveInputViewIfCommentsExpanded;
 - (void)slideOutActiveInputViewIfCommentsExpanded;
+
+- (void)slideEditCommentInputViewIn;
+- (BOOL)editCommentInputViewSlidOut;
 
 - (void)resetState;
 

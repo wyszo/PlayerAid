@@ -9,7 +9,6 @@
 #import "TutorialStep.h"
 #import "TutorialStepHelper.h"
 #import "TutorialCommentParsingHelper.h"
-#import "UsersHelper.h"
 #import "TutorialComment.h"
 
 NSString *const kTutorialStatePublished = @"Published";

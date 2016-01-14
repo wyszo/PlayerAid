@@ -90,14 +90,29 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
   }
 }
 
+- (void)slideEditCommentInputViewIn {
+  self.isEditViewActive = YES;
+  [self.editCommentInputViewHandler slideInputViewIn];
+}
+
+- (BOOL)editCommentInputViewSlidOut {
+  return [self.editCommentInputViewHandler inputViewSlidOut];
+}
+
 - (void)resetState {
   self.isEditViewActive = NO;
 }
 
 - (void)dismissEditCommentBar
 {
+  self.isEditViewActive = NO;
   [self.editCommentInputVC hideKeyboard];
   [self.editCommentInputViewHandler slideInputViewOut];
+}
+
+- (void)setEditCommentInputViewDidDismissBlock:(VoidBlock)editCommentInputViewDidDismissBlock {
+  _editCommentInputViewDidDismissBlock = editCommentInputViewDidDismissBlock;
+  self.editCommentInputViewHandler.inputViewDidDismissBlock = editCommentInputViewDidDismissBlock;
 }
 
 #pragma mark - Lazy initialization
