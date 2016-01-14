@@ -14,13 +14,29 @@ const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
 @interface KeyboardCustomInputAccessoryViewsManager ()
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *activeInputViewHandler;
+@property (copy, nonatomic) BoolReturningBlock areCommentsExpanded;
+@property (assign, nonatomic) BOOL isEditViewActive;
+
+@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputVC;
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
+
+@property (strong, nonatomic) EditCommentInputViewController *editCommentInputVC;
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
 @end
 
 @implementation KeyboardCustomInputAccessoryViewsManager
 
-- (void)setup {
-  [self setupKeyboardInputView];
+#pragma mark - Init
+
+- (instancetype)initWithAreCommentsExpandedBlock:(BoolReturningBlock)areCommentsExpandedBlock {
+  AssertTrueOrReturnNil(areCommentsExpandedBlock);
+
+  self = [super init];
+  if (self) {
+    self.areCommentsExpanded = areCommentsExpandedBlock;
+    [self setupKeyboardInputView];
+  }
+  return self;
 }
 
 - (void)setupKeyboardInputView
@@ -30,8 +46,6 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
   self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC
                                                                                                             desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
-
-  // TODO: need to override a setter, since this can be changed later on
   self.makeCommentInputVC.postButtonPressedBlock = self.makeACommentButtonPressedBlock;
 }
 
@@ -50,26 +64,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 }
 
 - (void)slideOutActiveInputViewIfCommentsExpanded {
-  // ok - make comment view is always visible
-  // question is - whether editInputView is also visible at a particular time
-
   if (self.editCommentInputViewHandler.inputViewSlidOut) {
-    self.activeInputViewHandler = self.editCommentInputViewHandler;
+    self.isEditViewActive = YES;
 
-    // in this case we want to dismiss makeComment input view without animation instantly
-    // and editCommentInputView normally
-
-    // bug: when keyboard visible and edit is wired up as a keyboard input view, dismissing it
-    // reveals make comment bar for a second
-
-    [self.makeCommentInputViewHandler slideInputViewOutNotAnimated];
+    [self.makeCommentInputViewHandler slideInputViewOutNotAnimated]; // still visible behind edit view, needs to be dismissed
     [self.editCommentInputViewHandler slideInputViewOut];
-
   } else if (self.makeCommentInputViewHandler.inputViewSlidOut) {
-    // (watch out: make comment input view might be slid out even when editCommentView is active)
-    self.activeInputViewHandler = self.makeCommentInputViewHandler;
-
-    // in this case we just want to dismiss both views normally
+    self.isEditViewActive = NO;
     [self dismissAllInputViews];
   }
 }
@@ -84,18 +85,13 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
   [self.makeCommentInputViewHandler slideInputViewIn];
 
-  // that's some misleading variable naming...
-  if (self.activeInputViewHandler == self.editCommentInputViewHandler) {
-    [self.activeInputViewHandler slideInputViewIn];
+  if (self.isEditViewActive) {
+    [self.editCommentInputViewHandler slideInputViewIn];
   }
-
-  // the whole logic will break if trying to make a long comment and then starting to edit a comment!
-  // make comment bar will be visible from behind edit input view bar
-  // nope - but only because make comment view shrinks when the keyboard is dismissed
 }
 
 - (void)resetState {
-  self.activeInputViewHandler = nil;
+  self.isEditViewActive = NO;
 }
 
 - (void)dismissEditCommentBar

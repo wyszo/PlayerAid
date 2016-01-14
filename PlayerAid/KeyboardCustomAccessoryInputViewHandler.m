@@ -21,7 +21,8 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 #pragma mark - Init
 
-- (instancetype)initWithAccessoryKeyboardInputViewController:(UIViewController *)viewController desiredInputViewHeight:(CGFloat)inputViewHeight
+- (instancetype)initWithAccessoryKeyboardInputViewController:(UIViewController *)viewController
+                                      desiredInputViewHeight:(CGFloat)inputViewHeight
 {
   AssertTrueOrReturnNil(viewController);
   AssertTrueOrReturnNil(inputViewHeight > 0);
@@ -39,7 +40,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)dealloc
 {
   // watch out for memory leaks, can't rely on this logic in case they happen
-  [self invokeSlideInputViewOutAnimated:YES completion:nil];
+  [self slideInputViewOutAnimated:YES completion:nil];
 }
 
 - (void)setupKeyboardInputView
@@ -64,7 +65,9 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   const CGFloat kInputViewToKeyboardTopAnimationDuration = 0.2f;
   
   defineWeakSelf();
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil
+                                                     queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification * _Nonnull note) {
     defineStrongSelf();
     CGRect keyboardFrameRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
     
@@ -78,7 +81,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)setupKeyboardWillHideNotificationHandler
 {
   defineWeakSelf();
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
+                                                    object:nil
+                                                     queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification * _Nonnull note) {
     weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
   }];
 }
@@ -102,45 +108,6 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)slideInputViewOutNotAnimated {
   [self slideInputViewOutAnimated:NO];
-}
-
-- (void)slideInputViewOutAnimated:(BOOL)animated {
-  __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
-  AssertTrueOr(self.desiredInputViewHeight > 0,);
-
-  defineWeakSelf();
-  [self invokeSlideInputViewOutAnimated:animated completion:^(BOOL finished) {
-      weakSelf.inputViewSlidOut = NO;
-      [strongInputView removeFromSuperview];
-      CallBlock(weakSelf.inputViewDidDismissBlock);
-  }];
-}
-
-- (void)invokeSlideInputViewOutAnimated:(BOOL)animated completion:(BlockWithBoolParameter)completion
-{
-  UIViewController *inputVC = self.inputVC;
-  AssertTrueOrReturn(inputVC);
-
-  VoidBlock positionUpdateBlock = ^{
-    self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
-  };
-
-  BlockWithBoolParameter internalCompletion = ^(BOOL finished) {
-    CallBlock(completion, finished);
-    [inputVC removeFromParentViewController];
-    [inputVC didMoveToParentViewController:nil];
-  };
-
-  [inputVC willMoveToParentViewController:nil];
-
-  if (animated) {
-    [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
-        positionUpdateBlock();
-    } completion:internalCompletion];
-  } else {
-    positionUpdateBlock();
-    internalCompletion(true);
-  }
 }
 
 - (CGFloat)inputViewHeight
@@ -168,6 +135,49 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self.inputVC.view.tw_width = [UIScreen tw_width];
   self.inputVC.view.tw_bottom = [UIScreen tw_height] + self.inputVC.view.tw_height;
 }
+
+#pragma mark - Sliding view out
+
+- (void)slideInputViewOutAnimated:(BOOL)animated {
+  __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
+  AssertTrueOr(self.desiredInputViewHeight > 0,);
+
+  defineWeakSelf();
+  [self slideInputViewOutAnimated:animated completion:^(BOOL finished) {
+    weakSelf.inputViewSlidOut = NO;
+    [strongInputView removeFromSuperview];
+    CallBlock(weakSelf.inputViewDidDismissBlock);
+  }];
+}
+
+- (void)slideInputViewOutAnimated:(BOOL)animated completion:(BlockWithBoolParameter)completion
+{
+  UIViewController *inputVC = self.inputVC;
+  AssertTrueOrReturn(inputVC);
+
+  VoidBlock positionUpdateBlock = ^{
+      self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
+  };
+
+  BlockWithBoolParameter internalCompletion = ^(BOOL finished) {
+    CallBlock(completion, finished);
+    [inputVC removeFromParentViewController];
+    [inputVC didMoveToParentViewController:nil];
+  };
+
+  [inputVC willMoveToParentViewController:nil];
+
+  if (animated) {
+    [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
+      positionUpdateBlock();
+    } completion:internalCompletion];
+  } else {
+    positionUpdateBlock();
+    internalCompletion(true);
+  }
+}
+
+#pragma mark - Convenience accessors
 
 - (UIViewController *)inputVC
 {

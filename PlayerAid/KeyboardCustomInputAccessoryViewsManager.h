@@ -1,4 +1,5 @@
 @import Foundation;
+@import TWCommonLib;
 
 extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
 
@@ -7,28 +8,26 @@ extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
 
 @interface KeyboardCustomInputAccessoryViewsManager : NSObject
 
-// TODO: try hiding those properties in the implementation?
+// TODO: remove those properties from public interface (encapsulate behaviours in necessary methods)
 
-// managing those input views needs to be extracted into a separate class, it's starting to get messy around here!
+@property (strong, nonatomic, readonly) MakeCommentInputViewController *makeCommentInputVC;
+@property (strong, nonatomic, readonly) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
 
-@property (strong, nonatomic) MakeCommentInputViewController *makeCommentInputVC;
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *makeCommentInputViewHandler;
-
-@property (strong, nonatomic) EditCommentInputViewController *editCommentInputVC;
-@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
+@property (strong, nonatomic, readonly) EditCommentInputViewController *editCommentInputVC;
+@property (strong, nonatomic, readonly) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
 
 @property (nonatomic, copy) void (^makeACommentButtonPressedBlock)(NSString *text, BlockWithBoolParameter completion);
 
-@property (nonatomic, copy) BoolReturningBlock areCommentsExpanded; // required // TODO: enforce this as a requierd property!!
+NEW_AND_INIT_UNAVAILABLE
+
+- (instancetype)initWithAreCommentsExpandedBlock:(BoolReturningBlock)areCommentsExpandedBlock;
 
 - (void)dismissAllInputViews;
 - (void)dismissEditCommentBar;
 
-- (void)setup; // TODO: remove this method!!
+- (void)slideInActiveInputViewIfCommentsExpanded;
+- (void)slideOutActiveInputViewIfCommentsExpanded;
 
 - (void)resetState;
-
-- (void)slideOutActiveInputViewIfCommentsExpanded;
-- (void)slideInActiveInputViewIfCommentsExpanded;
 
 @end

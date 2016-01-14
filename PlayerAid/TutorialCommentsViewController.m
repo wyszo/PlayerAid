@@ -80,14 +80,11 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 }
 
 - (void)setupKeyboardInputViewsManager {
-  self.keyboardInputViewsManager = [KeyboardCustomInputAccessoryViewsManager new];
-  [self.keyboardInputViewsManager setup]; // TODO: don't call this method.... just init or something...
-
   defineWeakSelf();
-  self.keyboardInputViewsManager.areCommentsExpanded = ^BOOL() {
-    return (weakSelf.state == CommentsViewStateExpanded);
-  };
-  
+  self.keyboardInputViewsManager = [[KeyboardCustomInputAccessoryViewsManager alloc] initWithAreCommentsExpandedBlock:^BOOL() {
+      return (weakSelf.state == CommentsViewStateExpanded);
+  }];
+
   self.keyboardInputViewsManager.makeACommentButtonPressedBlock = ^(NSString *text, BlockWithBoolParameter completion) {
       BlockWithBoolParameter internalCompletion = ^(BOOL success) {
           CallBlock(completion, success);
@@ -99,22 +96,23 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   };
 }
 
-#pragma mark - TEMP
+#pragma mark - Keyboard input methods forwarding
 
-// those two messages should just be forwarded to the keyboardInputViewsManager
-// TODO: route that using forwardingTargetForSelector
+// TODO: this definitely needs unit tests to ensure the implementation doesn't break
 
-- (void)slideOutActiveInputViewIfCommentsExpanded {
-  [self.keyboardInputViewsManager slideOutActiveInputViewIfCommentsExpanded];
+- (id)forwardingTargetForSelector:(SEL)aSelector  {
+  return self.keyboardInputViewsManager;
 }
 
-- (void)slideInActiveInputViewIfCommentsExpanded {
-  [self.keyboardInputViewsManager slideInActiveInputViewIfCommentsExpanded];
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+  BOOL respondsToSelector = [super respondsToSelector:aSelector];
+  if (!respondsToSelector) {
+    respondsToSelector = [self.keyboardInputViewsManager respondsToSelector:aSelector];
+  }
+  return respondsToSelector;
 }
 
-- (void)dismissAllInputViews {
-  [self.keyboardInputViewsManager dismissAllInputViews];
-}
 
 #pragma mark - LayoutSubviews
 
@@ -141,8 +139,6 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   AssertTrueOrReturn(tutorial);
   AssertTrueOrReturn(!self.tutorial && (BOOL)(@"Can't reinitialize self.tutorial"));
   _tutorial = tutorial;
-
-  // dopiero potem mozna zainicjalizowac CommentsContainerVC...
 }
 
 #pragma mark - Footer size calculations
@@ -341,12 +337,9 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   // TODO: move all this code to a separate CommentsContainerVC Configurator object
-  // ok, all this relies on inputViews manipulation - we want a separate object to handle all this first!! before refactoring this method!!
 
   if ([segue.identifier isEqualToString:kCommentsContainerEmbedSegueId]) {
     CommentsContainerViewController *commentsContainerVC = segue.destinationViewController;
-//    CommentsContainerConfigurator *configurator = [CommentsContainerConfigurator new];
-//    [configurator configureCommentsContainerVC:commentsContainerVC];
 
     self.commentsContainerVC = commentsContainerVC;
 
