@@ -39,7 +39,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)dealloc
 {
   // watch out for memory leaks, can't rely on this logic in case they happen
-  [self invokeSlideInputViewOutAnimationWithCompletion:nil];
+  [self invokeSlideInputViewOutAnimated:YES completion:nil];
 }
 
 - (void)setupKeyboardInputView
@@ -96,33 +96,51 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   }];
 }
 
-- (void)slideInputViewOut
-{
+- (void)slideInputViewOut {
+  [self slideInputViewOutAnimated:YES];
+}
+
+- (void)slideInputViewOutNotAnimated {
+  [self slideInputViewOutAnimated:NO];
+}
+
+- (void)slideInputViewOutAnimated:(BOOL)animated {
   __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
   AssertTrueOr(self.desiredInputViewHeight > 0,);
-  
+
   defineWeakSelf();
-  [self invokeSlideInputViewOutAnimationWithCompletion:^(BOOL finished) {
-    weakSelf.inputViewSlidOut = NO;
-    [strongInputView removeFromSuperview];
-    CallBlock(weakSelf.inputViewDidDismissBlock);
+  [self invokeSlideInputViewOutAnimated:animated completion:^(BOOL finished) {
+      weakSelf.inputViewSlidOut = NO;
+      [strongInputView removeFromSuperview];
+      CallBlock(weakSelf.inputViewDidDismissBlock);
   }];
 }
 
-- (void)invokeSlideInputViewOutAnimationWithCompletion:(BlockWithBoolParameter)completion
+- (void)invokeSlideInputViewOutAnimated:(BOOL)animated completion:(BlockWithBoolParameter)completion
 {
   UIViewController *inputVC = self.inputVC;
   AssertTrueOrReturn(inputVC);
-  
-  [inputVC willMoveToParentViewController:nil];
-  
-  [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
+
+  VoidBlock positionUpdateBlock = ^{
     self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
-  } completion:^(BOOL finished) {
+  };
+
+  BlockWithBoolParameter internalCompletion = ^(BOOL finished) {
     CallBlock(completion, finished);
     [inputVC removeFromParentViewController];
     [inputVC didMoveToParentViewController:nil];
-  }];
+  };
+
+  [inputVC willMoveToParentViewController:nil];
+
+  if (animated) {
+    [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
+        positionUpdateBlock();
+    } completion:internalCompletion];
+  } else {
+    positionUpdateBlock();
+    internalCompletion(true);
+  }
 }
 
 - (CGFloat)inputViewHeight

@@ -60,15 +60,18 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
     // and editCommentInputView normally
 
     // bug: when keyboard visible and edit is wired up as a keyboard input view, dismissing it
-    // reveals make comment for a second
+    // reveals make comment bar for a second
+
+    [self.makeCommentInputViewHandler slideInputViewOutNotAnimated];
+    [self.editCommentInputViewHandler slideInputViewOut];
 
   } else if (self.makeCommentInputViewHandler.inputViewSlidOut) {
     // (watch out: make comment input view might be slid out even when editCommentView is active)
     self.activeInputViewHandler = self.makeCommentInputViewHandler;
 
     // in this case we just want to dismiss both views normally
+    [self dismissAllInputViews];
   }
-  [self dismissAllInputViews];
 }
 
 - (void)slideInActiveInputViewIfCommentsExpanded {

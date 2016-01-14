@@ -19,6 +19,7 @@ NEW_AND_INIT_UNAVAILABLE
 
 - (void)slideInputViewIn;
 - (void)slideInputViewOut;
+- (void)slideInputViewOutNotAnimated;
 
 - (BOOL)inputViewSlidOut;
 
