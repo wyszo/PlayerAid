@@ -91,12 +91,17 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 #pragma mark - public interface
 
-- (void)slideInputViewIn
-{
-  AssertTrueOrReturn(self.inputVC.view.superview == nil);
-  [self installInputViewInKeyWindow];
+- (void)slideInputViewIn {
+  if (self.inputVC.view.superview != nil) {
+    // If previous animation (most likely SlideOut) haven't finished yet, kill it
+    [self.inputVC.view.layer removeAllAnimations];
+  }
+
+  if (self.inputVC.view.superview == nil) {
+    [self installInputViewInKeyWindow];
+  }
+
   self.inputViewSlidOut = YES;
-  
   [UIView animateWithDuration:kInputViewSlideInOutAnimationDuration animations:^{
     self.inputVC.view.tw_bottom = [UIScreen tw_height];
   }];
@@ -117,8 +122,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 #pragma mark - private
 
-- (void)installInputViewInKeyWindow
-{
+- (void)installInputViewInKeyWindow {
   UIViewController *parentVC = [UIWindow tw_keyWindow].rootViewController;
   AssertTrueOrReturn(parentVC);
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
@@ -145,8 +149,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   defineWeakSelf();
   [self slideInputViewOutAnimated:animated completion:^(BOOL finished) {
     weakSelf.inputViewSlidOut = NO;
-    [strongInputView removeFromSuperview];
-    CallBlock(weakSelf.inputViewDidDismissBlock);
+    if (finished) {
+      [strongInputView removeFromSuperview];
+      CallBlock(weakSelf.inputViewDidDismissBlock);
+    }
   }];
 }
 
@@ -161,8 +167,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
   BlockWithBoolParameter internalCompletion = ^(BOOL finished) {
     CallBlock(completion, finished);
-    [inputVC removeFromParentViewController];
     [inputVC didMoveToParentViewController:nil];
+    if (finished) {
+      [inputVC removeFromParentViewController];
+    }
   };
 
   [inputVC willMoveToParentViewController:nil];
@@ -179,8 +187,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 #pragma mark - Convenience accessors
 
-- (UIViewController *)inputVC
-{
+- (UIViewController *)inputVC {
   return self.accessoryKeyboardInputViewController;
 }
 
