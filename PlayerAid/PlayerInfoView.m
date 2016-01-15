@@ -27,7 +27,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 @implementation PlayerInfoView
 
-#pragma mark - View Initialization
+#pragma mark - Init
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -49,15 +49,13 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   return self;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
   [super awakeFromNib];
   [self.avatarImageView styleAsLargeAvatar];
   [self setupBackgroundColor];
 }
 
-- (void)setupBackgroundColor
-{
+- (void)setupBackgroundColor {
   self.contentView.backgroundColor = [ColorsHelper playerAidBlueColor];
 }
 
@@ -84,20 +82,17 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   [self updateFollowingButtonImageForProfileUser];
 }
 
-- (void)updateFollowingButtonImageForProfileUser
-{
+- (void)updateFollowingButtonImageForProfileUser {
   [[FollowingButtonDecorator new] updateFollowingButtonImage:self.addFriendButton forUser:self.user backgroundType:BackgroundTypeDark];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)editButtonPressed:(id)sender
-{
+- (IBAction)editButtonPressed:(id)sender {
   CallBlock(self.editButtonPressed);
 }
 
-- (IBAction)toggleFollowButtonPressed:(id)sender
-{
+- (IBAction)toggleFollowButtonPressed:(id)sender {
   defineWeakSelf();
   [[UserManipulationController new] toggleFollowButtonPressedSendRequestUpdateModelForUser:self.user completion:^(NSError *error) {
     if (!error) {
