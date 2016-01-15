@@ -30,9 +30,10 @@
 
 - (void)customizeNavigationBarsAppearance
 {
+  [[UINavigationBar appearance] setTranslucent:NO];
   [[UINavigationBar appearance] setBarTintColor:[ColorsHelper navigationBarColor]];
   [[UINavigationBar appearance] setTintColor:[ColorsHelper navigationBarButtonsColor]];
-  
+
   UIFont *font = [FontsHelper navbarTitleFont];
   AssertTrueOrReturn(font);
   [[UINavigationBar appearance] setTitleTextAttributes:@{

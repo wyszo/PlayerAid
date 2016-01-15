@@ -26,7 +26,7 @@ UIColorFromHexMethodMake(tabBarSelectedImageTintColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(tabBarCreateTutorialBackgroundColor, kNewPlayerAidBlue)
 UIColorMethodMake(tabBarCreateTutorialTextColor, 255, 255, 255)
 
-UIColorMethodMake(navigationBarColor, 42, 70, 136)
+UIColorFromHexMethodMake(navigationBarColor, kNewPlayerAidBlue)
 UIColorMethodMake(navigationBarButtonsColor, 255, 255, 255)
 UIColorMethodMake(navigationBarDisabledButtonsColor, 93, 110, 162)
 
@@ -51,7 +51,7 @@ UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, kCommentDarkG
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134) // old, darker one
-UIColorMethodMake(editProfileViewBackgroundColor, 245, 245, 245)
+UIColorFromHexMethodMake(editProfileViewBackgroundColor, 0xf5f5f5)
 UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)
 UIColorMethodMake(editProfileFacebookButtonColor, 81, 101, 157)
 
