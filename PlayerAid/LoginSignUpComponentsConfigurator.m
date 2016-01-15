@@ -67,7 +67,7 @@ static CGFloat kFontSize = 10.5f;
 
 - (NSDictionary *)linkAttributes
 {
-  return @{ (id)kCTForegroundColorAttributeName : (id)[ColorsHelper playerAidBlueColor].CGColor,
+  return @{ (id)kCTForegroundColorAttributeName : (id) [ColorsHelper playerAidOldDarkBlueColor].CGColor,
                             NSFontAttributeName : self.font,
              (id)kCTUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
                   NSParagraphStyleAttributeName : self.paragraphStyle };
