@@ -113,7 +113,7 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)styleLabels
 {
-  self.editLabel.textColor = [ColorsHelper playerAidBlueColor];
+  self.editLabel.textColor = [ColorsHelper editProfileTextLabelsColor];
 
   [self styleTextViewDescriptionLabel:self.nameLabel];
   [self styleTextViewDescriptionLabel:self.aboutMeLabel];
@@ -128,11 +128,10 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   [self.refreshFacebookDetailsButton tw_setCornerRadius:kFacebookButtonCornerRadius];
 }
 
-- (void)styleTextViewDescriptionLabel:(UILabel *)label
-{
+- (void)styleTextViewDescriptionLabel:(UILabel *)label {
   AssertTrueOrReturn(label);
   
-  label.textColor = [ColorsHelper playerAidBlueColor];
+  label.textColor = [ColorsHelper editProfileTextLabelsColor];
   label.alpha = 0.8f;
 }
 

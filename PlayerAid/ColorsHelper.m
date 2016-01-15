@@ -51,6 +51,7 @@ UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, kCommentDarkG
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorMethodMake(playerAidBlueColor, 44, 72, 134) // old, darker one
+UIColorFromHexMethodMake(editProfileTextLabelsColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(editProfileViewBackgroundColor, 0xf5f5f5)
 UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)
 UIColorMethodMake(editProfileFacebookButtonColor, 81, 101, 157)

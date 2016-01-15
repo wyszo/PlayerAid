@@ -40,6 +40,7 @@
 + (UIColor *)makeEditCommentInputViewTopBorderColor;
 
 + (UIColor *)playerAidBlueColor;
++ (UIColor *)editProfileTextLabelsColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;
 + (UIColor *)editProfileFacebookButtonColor;
