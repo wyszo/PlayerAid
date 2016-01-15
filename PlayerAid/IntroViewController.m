@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.view.backgroundColor = [ColorsHelper playerAidOldDarkBlueColor];
+  self.view.backgroundColor = [ColorsHelper playerAidBlueColor];
   [self skinButtons];
 }
 

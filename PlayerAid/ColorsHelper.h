@@ -39,7 +39,8 @@
 + (UIColor *)makeCommentInputTextViewPlaceholderColor;
 + (UIColor *)makeEditCommentInputViewTopBorderColor;
 
-+ (UIColor *)playerAidOldDarkBlueColor;
++ (UIColor *)playerAidBlueColor;
++ (UIColor *)userProfileBackgroundColor;
 + (UIColor *)editProfileTextLabelsColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;

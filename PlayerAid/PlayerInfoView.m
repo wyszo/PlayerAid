@@ -56,7 +56,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 }
 
 - (void)setupBackgroundColor {
-  self.contentView.backgroundColor = [ColorsHelper playerAidOldDarkBlueColor];
+  self.contentView.backgroundColor = [ColorsHelper userProfileBackgroundColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview

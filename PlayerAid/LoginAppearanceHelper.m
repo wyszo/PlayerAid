@@ -29,7 +29,7 @@
   AssertTrueOrReturn(button);
   
   button.backgroundColor = [UIColor clearColor];
-  UIColor *buttonColor = [ColorsHelper playerAidOldDarkBlueColor];
+  UIColor *buttonColor = [ColorsHelper playerAidBlueColor];
   [button tw_addBorderWithWidth:1.0 color:buttonColor];
   [button setTitleColor:buttonColor forState:UIControlStateNormal];
 }
