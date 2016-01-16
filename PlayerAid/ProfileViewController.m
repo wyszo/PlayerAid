@@ -103,9 +103,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }
 }
 
-- (void)updateFilterViewTutorialsCount
-{
-  self.filterCollectionViewController.tutorialsCount = [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+- (void)updateFilterViewTutorialsCount {
+  self.filterCollectionViewController.tutorialsCount = self.publishedTutorialsCount;
   self.filterCollectionViewController.likedTutorialsCount = self.user.likes.count;
   self.filterCollectionViewController.followingCount = self.user.follows.count;
   self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
@@ -315,6 +314,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     [weakSelf setupTutorialsTableDataSource];
     [weakSelf setupUserTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
+    weakSelf.filterCollectionViewController.tutorialsCount = self.publishedTutorialsCount;
   };
   collectionViewController.likedTabSelectedBlock = ^() {
     [weakSelf setupLikedTutorialsTableDataSource];
@@ -394,6 +394,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)reloadTableView {
   [self.tutorialTableView reloadData];
+}
+
+- (NSInteger)publishedTutorialsCount {
+  return [self.tutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
 }
 
 @end
