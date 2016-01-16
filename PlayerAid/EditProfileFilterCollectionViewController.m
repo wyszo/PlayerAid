@@ -27,16 +27,14 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 #pragma mark - View Lifecycle
 
-- (instancetype)init
-{
+- (instancetype)init {
   self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
   if (self) {
   }
   return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   
   self.collectionView.dataSource = nil;
@@ -46,16 +44,14 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
   [self setupCollectionView];
 }
 
-- (void)setupCollectionView
-{
+- (void)setupCollectionView {
   [self.collectionView registerNib:[PlayerInfoCollectionViewCell nib] forCellWithReuseIdentifier:@"Cell"];
   
   [self setupCollectionViewDelegate];
   [self setupCollectionViewDataSource];
 }
 
-- (id<UICollectionViewDelegate>)setupCollectionViewDelegate
-{
+- (id<UICollectionViewDelegate>)setupCollectionViewDelegate {
   CGFloat collectionViewHeight = self.collectionView.frame.size.height;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
   
@@ -64,7 +60,6 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
                                                                                                             numberOfCells:kCollectionViewNumberOfCells
                                                                                                 attachingToCollectionView:self.collectionView];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    
     AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
     AssertTrueOrReturn(self.likedTabSelectedBlock);
     AssertTrueOrReturn(self.followingTabSelectedBlock);
@@ -79,8 +74,7 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
   return delegate;
 }
 
-- (void)setupCollectionViewDataSource
-{
+- (void)setupCollectionViewDataSource {
   TWSimpleCollectionViewDataSource *dataSource = [[TWSimpleCollectionViewDataSource alloc] initAttachingToCollectionView:self.collectionView];
   dataSource.numberOfItems = self.cellLabels.count;
   
@@ -97,8 +91,7 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 #pragma mark - ViewController Containment
 
-- (void)didMoveToParentViewController:(UIViewController *)parent
-{
+- (void)didMoveToParentViewController:(UIViewController *)parent {
   [super didMoveToParentViewController:parent];
   
   self.collectionView.delegate = nil;
@@ -108,38 +101,32 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 #pragma mark - Updating counts
 
-- (void)setTutorialsCount:(NSInteger)tutorialsCount
-{
+- (void)setTutorialsCount:(NSInteger)tutorialsCount {
   _tutorialsCount = tutorialsCount;
   [self updateTutorialsCountLabels];
 }
 
-- (void)updateTutorialsCountLabels
-{
+- (void)updateTutorialsCountLabels {
   [self setCount:self.tutorialsCount inPlayerInfoCollectionViewCell:self.tutorialsCell];
   self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
 }
 
-- (void)setLikedTutorialsCount:(NSInteger)likedTutorialsCount
-{
+- (void)setLikedTutorialsCount:(NSInteger)likedTutorialsCount {
   _likedTutorialsCount = likedTutorialsCount;
   [self setCount:likedTutorialsCount inPlayerInfoCollectionViewCell:self.likedCell];
 }
 
-- (void)setFollowingCount:(NSInteger)followingCount
-{
+- (void)setFollowingCount:(NSInteger)followingCount {
   _followingCount = followingCount;
   [self setCount:followingCount inPlayerInfoCollectionViewCell:self.followingUsersCell];
 }
 
-- (void)setFollowersCount:(NSInteger)followersCount
-{
+- (void)setFollowersCount:(NSInteger)followersCount {
   _followersCount = followersCount;
   [self setCount:followersCount inPlayerInfoCollectionViewCell:self.followersCell];
 }
 
-- (void)setCount:(NSInteger)count inPlayerInfoCollectionViewCell:(PlayerInfoCollectionViewCell *)cell
-{
+- (void)setCount:(NSInteger)count inPlayerInfoCollectionViewCell:(PlayerInfoCollectionViewCell *)cell {
   AssertTrueOrReturn(cell);
   cell.topLabel.text = [@(count) stringValue];
 }
