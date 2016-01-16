@@ -59,7 +59,10 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
   CGFloat collectionViewHeight = self.collectionView.frame.size.height;
   CGSize cellSize = CGSizeMake(kCellWidth, collectionViewHeight);
   
-  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize collectionViewSize:self.collectionView.frame.size numberOfCells:kCollectionViewNumberOfCells attachingToCollectionView:self.collectionView];
+  TWSimpleCollectionViewFlowLayoutDelegate *delegate = [[TWSimpleCollectionViewFlowLayoutDelegate alloc] initWithCellSize:cellSize
+                                                                                                       collectionViewSize:self.collectionView.frame.size
+                                                                                                            numberOfCells:kCollectionViewNumberOfCells
+                                                                                                attachingToCollectionView:self.collectionView];
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
     
     AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
@@ -143,13 +146,11 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 #pragma mark - Auxiliary methods
 
-- (void)selectTutorialCell
-{
+- (void)selectTutorialCell {
   [self.collectionView selectItemAtIndexPath:self.tutorialsCellIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
-- (PlayerInfoCollectionViewCell *)cellForRow:(NSInteger)row
-{
+- (PlayerInfoCollectionViewCell *)cellForRow:(NSInteger)row {
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
   
   PlayerInfoCollectionViewCell *cell = (PlayerInfoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
@@ -157,30 +158,25 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
   return cell;
 }
 
-- (NSIndexPath *)tutorialsCellIndexPath
-{
+- (NSIndexPath *)tutorialsCellIndexPath {
   return [NSIndexPath indexPathForRow:kTutorialsCellIndex inSection:0];
 }
 
 #pragma mark - Cells
 
-- (PlayerInfoCollectionViewCell *)tutorialsCell
-{
+- (PlayerInfoCollectionViewCell *)tutorialsCell {
   return [self cellForRow:kTutorialsCellIndex];
 }
 
-- (PlayerInfoCollectionViewCell *)likedCell
-{
+- (PlayerInfoCollectionViewCell *)likedCell {
   return [self cellForRow:kLikedTutorialsCellIndex];
 }
 
-- (PlayerInfoCollectionViewCell *)followingUsersCell
-{
+- (PlayerInfoCollectionViewCell *)followingUsersCell {
   return [self cellForRow:kFollowingUsersCellIndex];
 }
 
-- (PlayerInfoCollectionViewCell *)followersCell
-{
+- (PlayerInfoCollectionViewCell *)followersCell {
   return [self cellForRow:kFollowersCellIndex];
 }
 

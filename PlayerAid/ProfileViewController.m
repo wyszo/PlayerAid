@@ -46,8 +46,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - Initialization
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   
   [self tw_setNavbarDoesNotCoverTheView];  
@@ -64,8 +63,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   [self removeKeyValueObservers];
 }
 
@@ -77,25 +75,21 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   AssertTrueOrReturn(self.user);
 }
 
-- (void)forceFetchUser
-{
+- (void)forceFetchUser {
   self.user = [User MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"loggedInUser == 1"]];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [[TabBarBadgeHelper new] hideProfileTabBarItemBadge];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self updateFilterViewTutorialsCount];
 
@@ -119,8 +113,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - View Layout
 
--(void)viewDidLayoutSubviews
-{
+-(void)viewDidLayoutSubviews {
   [super viewWillLayoutSubviews];
   [self updateTableOverlayTopConstraint];
 }
@@ -144,8 +137,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }];
 }
 
-- (void)removeKeyValueObservers
-{
+- (void)removeKeyValueObservers {
   [self bk_removeAllBlockObservers];
 }
 
@@ -201,14 +193,12 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - DataSources setup
 
-- (void)setupTableViewUserFollowedCells
-{
+- (void)setupTableViewUserFollowedCells {
   UINib *nib = [UINib nibWithNibName:@"FollowedUser" bundle:nil];
   [self.tutorialTableView registerNib:nib forCellReuseIdentifier:@"UserCellIdentifier"];
 }
 
-- (void)setupTutorialsTableDataSource
-{
+- (void)setupTutorialsTableDataSource {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND createdBy = %@", self.user];
   self.tutorialsTableDataSource.groupBy = @"state";
@@ -216,29 +206,24 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.tutorialsTableDataSource.swipeToDeleteEnabled = YES;
 }
 
-- (void)setupFollowingTableViewDelegate
-{
+- (void)setupFollowingTableViewDelegate {
   self.followingTableViewDelegate = [self followedUserTableViewDelegateForDataSource:self.followingDataSource];
 }
 
-- (void)setupFollowersTableViewDelegate
-{
+- (void)setupFollowersTableViewDelegate {
   self.followersTableViewDelegate = [self followedUserTableViewDelegateForDataSource:self.followersDataSource];
 }
 
-- (void)setupLikedTutorialsTableDataSource
-{
+- (void)setupLikedTutorialsTableDataSource {
   self.tutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND %@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
 }
 
-- (void)setupFollowingUsersTableDataSource
-{
+- (void)setupFollowingUsersTableDataSource {
   self.followingDataSource = [self createUserCellDataSourceWithObjects:self.user.follows.allObjects];
 }
 
-- (void)setupFollowersTableDataSource
-{
+- (void)setupFollowersTableDataSource {
   self.followersDataSource = [self createUserCellDataSourceWithObjects:self.user.isFollowedBy.allObjects];
 }
 
@@ -363,8 +348,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - Tutorials Table View Delegate
 
-- (void)numberOfRowsDidChange:(NSInteger)numberOfRows
-{
+- (void)numberOfRowsDidChange:(NSInteger)numberOfRows {
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
   [self updateFilterViewTutorialsCount];
 }
@@ -388,13 +372,12 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - PrepareForSegue
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   defineWeakSelf();
   [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
 }
 
-#pragma mark - Other methods 
+#pragma mark - Private
 
 - (void)presentEditProfileViewController
 {
@@ -409,8 +392,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)reloadTableView
-{
+- (void)reloadTableView {
   [self.tutorialTableView reloadData];
 }
 
