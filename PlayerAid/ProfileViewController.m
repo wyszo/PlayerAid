@@ -122,11 +122,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupKeyValueObservers
 {
   defineWeakSelf();
+  [self bk_addObserverForKeyPath:@"user.tutorials" task:^(id target) {
+      weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
+  }];
   [self bk_addObserverForKeyPath:@"user.likes" task:^(id target) {
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.user.likes.count;
-  }];
-  [self bk_addObserverForKeyPath:@"user.tutorials" task:^(id target) {
-    weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.user.createdTutorial.count;
   }];
   [self bk_addObserverForKeyPath:@"user.follows" task:^(id target) {
     weakSelf.filterCollectionViewController.followingCount = weakSelf.user.follows.count;
