@@ -314,7 +314,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     [weakSelf setupTutorialsTableDataSource];
     [weakSelf setupUserTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.tutorialsCount = self.publishedTutorialsCount;
+    weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   };
   collectionViewController.likedTabSelectedBlock = ^() {
     [weakSelf setupLikedTutorialsTableDataSource];
@@ -325,7 +325,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   collectionViewController.followingTabSelectedBlock = ^() {
     [weakSelf setupFollowingUsersTableDataSource];
     [weakSelf setupFollowingTableViewDelegate];
-    weakSelf.tutorialTableView.delegate = self.followingTableViewDelegate;
+    weakSelf.tutorialTableView.delegate = weakSelf.followingTableViewDelegate;
     [weakSelf reloadTableView];
     [weakSelf setupNotFollowingAnyoneTableViewOverlay];
     weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
@@ -333,7 +333,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   collectionViewController.followersTabSelectedBlock = ^() {
     [weakSelf setupFollowersTableDataSource];
     [weakSelf setupFollowersTableViewDelegate];
-    weakSelf.tutorialTableView.delegate = self.followersTableViewDelegate;
+    weakSelf.tutorialTableView.delegate = weakSelf.followersTableViewDelegate;
     [weakSelf reloadTableView];
     [weakSelf setupNoFollowersTableViewOverlay];
     weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
