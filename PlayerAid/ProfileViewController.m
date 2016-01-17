@@ -16,7 +16,6 @@
 #import "EditProfileFilterCollectionViewController.h"
 #import "FollowedUserTableViewCell.h"
 #import "FollowedUserTableViewDelegate.h"
-#import "FollowingButtonDecorator.h"
 #import "TutorialDetailsHelper.h"
 #import "CreateTutorialViewController.h"
 #import "DebugSettings.h"
@@ -56,7 +55,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self setupOwnTutorialsTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
-  [self setupUserTutorialsTableViewOverlay];
+  [self setupOwnTutorialsTableViewOverlay];
   [self setupKeyValueObservers];
   
   if (DEBUG_MODE_PUSH_EDIT_PROFILE) {
@@ -68,8 +67,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self removeKeyValueObservers];
 }
 
-- (void)setupUserIfNotNil
-{
+- (void)setupUserIfNotNil {
   if (!self.user) {
     [self forceFetchUser];
   }
@@ -124,7 +122,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   defineWeakSelf();
   [self bk_addObserverForKeyPath:@"user.tutorials" task:^(id target) {
-      weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
+    weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   }];
   [self bk_addObserverForKeyPath:@"user.likes" task:^(id target) {
     weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.user.likes.count;
@@ -143,7 +141,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - TableView overlays
 
-- (void)setupUserTutorialsTableViewOverlay
+- (void)setupOwnTutorialsTableViewOverlay
 {
   [self.noTutorialsView setText:@"No tutorials made" imageNamed:@"emptystate-tutorial-ic"];
   [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.ownTutorialsTableDataSource];
@@ -313,7 +311,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   collectionViewController.tutorialsTabSelectedBlock = ^() {
     [weakSelf setupOwnTutorialsTableDataSource];
-    [weakSelf setupUserTutorialsTableViewOverlay];
+    [weakSelf setupOwnTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
     weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   };
@@ -321,7 +319,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     [weakSelf setupLikedTutorialsTableDataSource];
     [weakSelf setupLikedTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.ownTutorialsTableDataSource.objectCount;
+    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.likedTutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
     [weakSelf setupFollowingUsersTableDataSource];
@@ -354,8 +352,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self updateFilterViewTutorialsCount];
 }
 
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
-{
+- (void)didSelectRowWithTutorial:(Tutorial *)tutorial {
   self.lastSelectedTutorial = tutorial;
   
   if (tutorial.isDraft) {
@@ -380,8 +377,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 #pragma mark - Private
 
-- (void)presentEditProfileViewController
-{
+- (void)presentEditProfileViewController {
   EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:self.user];
 
   defineWeakSelf();
