@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C18A195B13B74719A64C7E02D461E5FF"
-               BlueprintName = "TWCommonLib"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "TWCommonLib.framework">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '57A916436959746F256156A2'
+               BlueprintName = 'TWCommonLib'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'TWCommonLib.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
