@@ -108,7 +108,7 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 - (void)updateTutorialsCountLabels {
   [self setCount:self.tutorialsCount inPlayerInfoCollectionViewCell:self.tutorialsCell];
-  self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Tutorial" : @"Tutorials");;
+  self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Guide" : @"Guides");;
 }
 
 - (void)setLikedTutorialsCount:(NSInteger)likedTutorialsCount {

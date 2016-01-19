@@ -126,7 +126,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ift-CC-fkK">
                                                 <rect key="frame" x="8" y="38" width="254" height="48"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="There are currently no comments for this tutorial">
+                                                    <fragment content="There are currently no comments for this guide">
                                                         <attributes>
                                                             <color key="NSColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="Avenir-Roman"/>

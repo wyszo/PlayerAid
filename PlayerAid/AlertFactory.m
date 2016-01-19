@@ -34,7 +34,7 @@
 
 + (UIAlertView *)showCreateTutorialFillTutorialDetails
 {
-  return [self showOKAlertViewWithMessage:@"Please complete tutorial details"];
+  return [self showOKAlertViewWithMessage:@"Please complete guide details"];
 }
 
 + (UIAlertView *)showCreateTutorialSavingTutorialSteps
@@ -44,17 +44,17 @@
 
 + (UIAlertView *)showCreateTutorialNoTitleAlertView
 {
-  return [self showOKAlertViewWithMessage:@"Please name the tutorial"];
+  return [self showOKAlertViewWithMessage:@"Please name the guide"];
 }
 
 + (UIAlertView *)showCreateTutorialNoSectionSelectedAlertView
 {
-  return [self showOKAlertViewWithMessage:@"Please choose a tutorial category"];
+  return [self showOKAlertViewWithMessage:@"Please choose a guide category"];
 }
 
 + (UIAlertView *)showCreateTutorialNoImageAlertView
 {
-  return [self showOKAlertViewWithMessage:@"Please add a tutorial cover photo"];
+  return [self showOKAlertViewWithMessage:@"Please add a guide cover photo"];
 }
 
 + (UIAlertView *)showOKCancelAlertViewWithTitle:(NSString *)title message:(NSString *)message okTitle:(NSString *)okTitle okAction:(void (^)())okAction cancelAction:(void (^)())cancelAction
@@ -74,7 +74,7 @@
 
 + (UIAlertView *)showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
-  NSString *message = @"Cancel tutorial step?";
+  NSString *message = @"Cancel guide step?";
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes, cancel" firstButtonAction:^{
     CallBlock(completionBlock, YES);
   } secondButtonTitle:@"No, continue editing" secondAction:^{
@@ -84,7 +84,7 @@
 
 + (UIAlertView *)showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
-  NSString *message = @"Cancel editing tutorial step?";
+  NSString *message = @"Cancel editing guide step?";
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes, cancel" firstButtonAction:^{
     CallBlock(completionBlock, YES);
   } secondButtonTitle:@"No, continue editing" secondAction:^{
@@ -94,7 +94,7 @@
 
 + (UIAlertView *)showRemoveNewTutorialConfirmationAlertViewWithCompletion:(void (^)(BOOL discard))completionBlock
 {
-  NSString *message = @"Do you want to keep your tutorial?";
+  NSString *message = @"Do you want to keep your guide?";
   
   RIButtonItem *deleteButtonItem = [RIButtonItem itemWithLabel:@"Delete" action:^{
     CallBlock(completionBlock, YES);
@@ -111,7 +111,7 @@
 
 + (UIAlertView *)showRemoveNewTutorialFinalConfirmationAlertViewWithCompletion:(void (^)(BOOL delete))completionBlock
 {
-  NSString *message = @"This will permanently delete your tutorial. Are you sure?";
+  NSString *message = @"This will permanently delete your guide. Are you sure?";
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:^{
     CallBlock(completionBlock, YES);
   } secondButtonTitle:@"Cancel" secondAction:^{
@@ -137,7 +137,7 @@
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction
 {
-  NSString *message = @"Congratulations on creating your first tutorial!\n\nPlease note that once submitted, you will no longer be able to edit your tutorial.";
+  NSString *message = @"Congratulations on creating your first guide!\n\nPlease note that once submitted, you will no longer be able to edit your guide.";
   
   UIAlertView *alert = [self showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Publish" okAction:okAction cancelAction:nil];
   return alert;
@@ -145,13 +145,13 @@
 
 + (UIAlertView *)showTutorialInReviewInfoAlertView
 {
-  NSString *message = @"Only great tutorials are published on the PlayerAid platform. To maintain that quality, we review every single one. You will hear from the PlayerAid team within two days!";
+  NSString *message = @"Only great guides are published on the PlayerAid platform. To maintain that quality, we review every single one. You will hear from the PlayerAid team within two days!";
   return [self showOKAlertViewWithMessage:message okButtonTitle:@"Got it"];
 }
 
 + (UIAlertView *)showPublishingTutorialFailedAlertViewWithSaveAction:(VoidBlock)saveAction retryAction:(VoidBlock)retryAction
 {
-  NSString *message = @"Struggling to upload tutorial. Please try again now, or save as a draft and try later.";
+  NSString *message = @"Struggling to upload guide. Please try again now, or save as a draft and try later.";
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Save" firstButtonAction:saveAction secondButtonTitle:@"Retry" secondAction:retryAction];
 }
 
@@ -159,15 +159,15 @@
 
 + (UIAlertView *)showDeleteTutorialAlertConfirmationWithOkAction:(VoidBlock)okAction cancelAction:(VoidBlock)cancelAction
 {
-  NSString *title = @"Delete tutorial?";
-  NSString *message = @"This will permanently delete your tutorial.";
+  NSString *title = @"Delete guide?";
+  NSString *message = @"This will permanently delete your guide.";
   return [self showTwoButtonsAlertViewWithTitle:title message:message firstButtonTitle:@"Delete" firstButtonAction:okAction secondButtonTitle:@"Cancel" secondAction:cancelAction];
 }
 
 + (UIAlertView *)showDeleteTutorialStepAlertConfirmationWithOKAction:(ActionBlock)okAction
 {
-  NSString *title = @"Delete tutorial step?";
-  NSString *message = @"This will permanently delete your tutorial step.";
+  NSString *title = @"Delete guide step?";
+  NSString *message = @"This will permanently delete your guide step.";
   UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Delete" okAction:^{
     CallBlock(okAction);
   } cancelAction:nil];
@@ -211,7 +211,7 @@
 + (UIAlertView *)showLogoutConfirmationAlertViewWithOKAction:(ActionBlock)okAction
 {
   NSString *title = @"<DEBUG> Logout?";
-  NSString *message = @"Logging out will permamently delete unsubmitted tutorial drafts [it wipes out all local data]. Continue?";
+  NSString *message = @"Logging out will permamently delete unsubmitted guide drafts [it wipes out all local data]. Continue?";
   UIAlertView *alert = [AlertFactory showOKCancelAlertViewWithTitle:title message:message okTitle:@"Logout" okAction:^{
     CallBlock(okAction);
   } cancelAction:nil];
