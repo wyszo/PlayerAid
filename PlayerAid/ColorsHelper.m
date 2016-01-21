@@ -35,6 +35,7 @@ UIColorMethodMake(tutorialsSelectedFilterButtonTextColor, 255, 255, 255)
 UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
+UIColorFromHexMethodMake(editTutorialStepsBackgroundColor, kNewPlayerAidBlue)
 
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
 
@@ -51,7 +52,7 @@ UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, kCommentDarkG
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 
 UIColorFromHexMethodMake(playerAidBlueColor, kNewPlayerAidBlue)
-UIColorMethodMake(userProfileBackgroundColor, 44, 72, 134) 
+UIColorFromHexMethodMake(userProfileBackgroundColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(editProfileTextLabelsColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(editProfileViewBackgroundColor, 0xf5f5f5)
 UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)

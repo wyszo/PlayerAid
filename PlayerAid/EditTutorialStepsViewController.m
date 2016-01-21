@@ -47,7 +47,7 @@ static const CGFloat kTableViewTopInset = 14.0f;
   [self customizeButton:self.saveButton];
   [self customizeButton:self.cancelButton];
 
-  self.backgroundView.backgroundColor = [ColorsHelper userProfileBackgroundColor];
+  self.backgroundView.backgroundColor = [ColorsHelper editTutorialStepsBackgroundColor];
   [self setupTableView];
 }
 
