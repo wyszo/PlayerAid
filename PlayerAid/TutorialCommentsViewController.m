@@ -17,6 +17,7 @@
 #import "TutorialComment.h"
 #import "KeyboardCustomInputAccessoryViewsManager.h"
 #import "EditCommentInputViewController.h"
+#import "PlayerAid-Swift.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {
   CommentsViewStateFolded,
@@ -36,8 +37,8 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 @property (strong, nonatomic) CommentsContainerViewController *commentsContainerVC;
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (assign, nonatomic) CommentsViewState state;
-@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
+@property (strong, nonatomic) CommentsCountLabelFormatter *commentsCountLabelFormatter;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsContainerBottomOffsetConstraint;
@@ -56,7 +57,8 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   AssertTrueOr(self.parentNavigationController && @"mandatory property (parentNavigationController), can't push other views without it",);
   
   self.commentsBar.backgroundColor = [ColorsHelper tutorialCommentsBarBackgroundColor];
-  [self refreshAllCommentsLabels];
+  self.commentsCountLabelFormatter = [[CommentsCountLabelFormatter alloc] initWithFontSize:self.commentsLabel.font.pointSize];
+  [self updateCommentsCountLabel];
   [self setupGestureRecognizer];
   [self setupKeyboardInputViewsManager];
   
@@ -270,28 +272,8 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 
 #pragma mark - UI Updates
 
-- (void)refreshAllCommentsLabels
-{
-  [self refreshCommentsCountLabel];
-  [self refreshCommentsLabel];
-}
-
-- (void)refreshCommentsCountLabel
-{
-  NSString *numberOfCommentsString = @"";
-  if (self.commentsCount) {
-    numberOfCommentsString = [NSString stringWithFormat:@"%tu", self.commentsCount];
-  }
-  self.commentsCountLabel.text = numberOfCommentsString;
-}
-
-- (void)refreshCommentsLabel
-{
-  NSString *sufix = @"";
-  if (self.commentsCount != 1) {
-    sufix = @"s";
-  }
-  self.commentsLabel.text = [NSString stringWithFormat:@"Comment%@", sufix];
+- (void)updateCommentsCountLabel {
+  self.commentsLabel.attributedText = [self.commentsCountLabelFormatter attributedTextForCommentsCount:self.commentsCount];
 }
 
 #pragma mark - Auxiliary methods
@@ -330,7 +312,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 
     defineWeakSelf();
     _commentsController = [[TutorialCommentsController alloc] initWithTutorial:self.tutorial commentsCountChangedBlock:^{
-        [weakSelf refreshAllCommentsLabels];
+        [weakSelf updateCommentsCountLabel];
         [weakSelf.commentsContainerVC commentsCountDidChange];
         [weakSelf.view layoutIfNeeded];
     }];
