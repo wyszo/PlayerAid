@@ -39,19 +39,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 @implementation TutorialCommentCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
   [super awakeFromNib];
   self.defaultBackgroundColor = self.contentView.backgroundColor;
   [self.avatarImageView makeCircularSetAspectFit];
   [self tw_configureForFullWidthSeparators];
+
   self.commentLabel.textColor = [ColorsHelper commentLabelTextColor];
   [self setupCommentTextLabelMaxLineCount];
   [self saveDefaultTimeAgoToMoreButtonConstraintValue];
 }
 
-- (void)prepareForReuse
-{
+- (void)prepareForReuse {
   [super prepareForReuse];
   
   self.contentView.backgroundColor = self.defaultBackgroundColor;
@@ -67,15 +66,13 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self restoreDefaultTimeAgoBarToMoreButtonConstraint];
 }
 
-- (void)setupCommentTextLabelMaxLineCount
-{
+- (void)setupCommentTextLabelMaxLineCount {
   self.commentLabel.numberOfLines = kMaxFoldedCommentNumberOfLines;
 }
 
 #pragma mark TWConfigurableFromDictionary
 
-- (void)configureWithTutorialComment:(TutorialComment *)comment
-{
+- (void)configureWithTutorialComment:(TutorialComment *)comment {
   AssertTrueOrReturn(comment);
   _comment = comment;
   User *commentAuthor = comment.madeBy;
@@ -90,8 +87,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
-- (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment
-{
+- (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {
   AssertTrueOrReturn(comment);
   
   AssertTrueOr(self.commentBottomBar,);
@@ -120,8 +116,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   return self.expanded || [self shouldHideMoreButton]; // lineCount equals either 0 or <= maxNrOfLines
 }
 
-- (void)expandCell
-{
+- (void)expandCell {
   BOOL bothBeforeAndAfterAnimationBlocksSet = (self.willChangeCellHeightBlock && self.didChangeCellHeightBlock);
   AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
   
@@ -132,8 +127,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
-- (void)setHighlighted:(BOOL)highlighted
-{
+- (void)setHighlighted:(BOOL)highlighted {
   UIColor *backgroundColor = self.defaultBackgroundColor;
   if (highlighted) {
     backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
@@ -143,8 +137,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 #pragma mark - private
 
-- (void)updateMoreButtonVisibility
-{
+- (void)updateMoreButtonVisibility {
   BOOL shouldHideMoreButton = [self shouldHideMoreButton];
   if (shouldHideMoreButton) {
     [self shrinkMoreButtonHeight];
@@ -152,21 +145,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.moreButton.hidden = shouldHideMoreButton;
 }
 
-- (BOOL)shouldHideMoreButton
-{
+- (BOOL)shouldHideMoreButton {
   return ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
 }
 
-- (void)hideMoreButton
-{
+- (void)hideMoreButton {
   self.moreButton.hidden = YES;
   [self shrinkMoreButtonHeight];
 }
 
 #pragma mark - Constraints manipulation - elements spacing
 
-- (void)updateElementsSpacingConstraintsInvokingHeightChangeCallback:(BOOL)heightChangeCallback
-{
+- (void)updateElementsSpacingConstraintsInvokingHeightChangeCallback:(BOOL)heightChangeCallback {
   if ([self isExpanded]) {
     [self shrinkTimeAgoToMoreButtonDistance]; // when cell is expanded the distance is smaller (because '...' button is not there anymore)
   }
@@ -176,8 +166,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   }
 }
 
-- (void)saveDefaultTimeAgoToMoreButtonConstraintValue
-{
+- (void)saveDefaultTimeAgoToMoreButtonConstraintValue {
   if (expandedTimeAgoBarToMoreButtonDistanceConstraintConstant == 0) {
     CGFloat constant = self.timeAgoBarToMoreButtonDistanceConstraint.constant;
     AssertTrueOrReturn(constant != 0);
@@ -185,29 +174,25 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   }
 }
 
-- (void)shrinkTimeAgoToMoreButtonDistance
-{
+- (void)shrinkTimeAgoToMoreButtonDistance {
   self.timeAgoBarToMoreButtonDistanceConstraint.constant = kFoldedTimeAgoBarToMoreButtonDistanceConstraint;
 }
 
 #pragma mark - Constraints manipulation - '...' button
 
-- (void)shrinkMoreButtonHeight
-{
+- (void)shrinkMoreButtonHeight {
   if (defaultMoreButtonHeightConstraintConstant == 0) {
     defaultMoreButtonHeightConstraintConstant = self.moreButtonHeightConstraint.constant;
   }
   self.moreButtonHeightConstraint.constant = 0;
 }
 
-- (void)restoreMoreButtonHeightConstraint
-{
+- (void)restoreMoreButtonHeightConstraint {
   AssertTrueOrReturn(defaultMoreButtonHeightConstraintConstant != 0.0);
   self.moreButtonHeightConstraint.constant = defaultMoreButtonHeightConstraintConstant;
 }
 
-- (void)restoreDefaultTimeAgoBarToMoreButtonConstraint
-{
+- (void)restoreDefaultTimeAgoBarToMoreButtonConstraint {
   AssertTrueOrReturn(expandedTimeAgoBarToMoreButtonDistanceConstraintConstant != 0.0);
   self.timeAgoBarToMoreButtonDistanceConstraint.constant = expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
