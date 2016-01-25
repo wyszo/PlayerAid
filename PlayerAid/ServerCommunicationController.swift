@@ -46,24 +46,34 @@ class ServerCommunicationController : NSObject {
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "upvote")
     
     sendPostRequest(urlPath, completion: {
-      data, response, error -> Void in
-        var statusCode = 0
-        if let httpResponse = response as? NSHTTPURLResponse {
-          statusCode = httpResponse.statusCode
-        }
-
-        if error != nil || statusCode != HTTPStatusCodes.success {
-          dispatch_async(dispatch_get_main_queue(), {
-            AlertFactory.showGenericErrorAlertViewNoRetry()
-          })
-        } else {
-          if let jsonResponse = try? data?.jsonDictionary() {
-            TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
-          } else {
-            assertionFailure("Unexpected response!")
-          }
-        }
+      [weak self] (data, response, error) -> Void in
+        self?.handleTutorialCommentResponse(data, response: response, error: error)
     });
+  }
+  
+  func unlikeComment(comment: TutorialComment) {
+    // DELETE /comment/{id}/upvote
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "upvote")
+    sendNetworkRequest(urlPath, httpMethod: .DELETE, parameters: nil, completion:self.handleTutorialCommentResponse);
+  }
+
+  func handleTutorialCommentResponse(data: NSData?, response: NSURLResponse?, error: NSError?) {
+    var statusCode = 0
+    if let httpResponse = response as? NSHTTPURLResponse {
+      statusCode = httpResponse.statusCode
+    }
+
+    if error != nil || statusCode != HTTPStatusCodes.success {
+      dispatch_async(dispatch_get_main_queue(), {
+        AlertFactory.showGenericErrorAlertViewNoRetry()
+      })
+    } else {
+      if let jsonResponse = try? data?.jsonDictionary() {
+        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
+      } else {
+        assertionFailure("Unexpected response!")
+      }
+    }
   }
   
   // MARK: Auxiliary path methods

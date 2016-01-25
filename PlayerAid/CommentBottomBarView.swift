@@ -33,6 +33,10 @@ class CommentBottomBarView: UIView {
     assert(numberOfLikesString.characters.count > 0)
     self.numberOfLikesButton.setTitle(numberOfLikesString, forState: .Normal)
   }
+
+  func setLikeButtonActive(active: Bool) {
+    self.likeButton.alpha = (active ? 1.0 : 0.5)
+  }
   
   // MARK: callbacks
   
@@ -42,6 +46,7 @@ class CommentBottomBarView: UIView {
   // MARK: UI
   
   @IBOutlet weak var timeAgoLabel: UILabel!
+  @IBOutlet weak var likeButton: UIButton!
   @IBOutlet private weak var numberOfLikesButton: UIButton!
   
   @IBAction func likeButtonPressed(sender: AnyObject) {

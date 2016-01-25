@@ -92,12 +92,24 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   AssertTrueOr(self.commentBottomBar,);
   self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
-  [self.commentBottomBar setNumberOfLikes:[self likesCountForComment:comment]]; 
+  [self.commentBottomBar setNumberOfLikes:[self likesCountForComment:comment]];
+  [self updateCommentsBarLikeButtonStateForComment:comment];
 
   defineWeakSelf();
   self.commentBottomBar.likeButtonPressed = ^() {
-    CallBlock(weakSelf.likeButtonPressedBlock, weakSelf.comment);
+    if (weakSelf.comment.upvotedByUserValue) {
+      CallBlock(weakSelf.unlikeButtonPressedBlock, weakSelf.comment);
+    } else {
+      CallBlock(weakSelf.likeButtonPressedBlock, weakSelf.comment);
+    }
   };
+}
+
+- (void)updateCommentsBarLikeButtonStateForComment:(TutorialComment *)comment {
+  AssertTrueOrReturn(comment);
+
+  BOOL active = !comment.upvotedByUserValue;
+  [self.commentBottomBar setLikeButtonActive:active];
 }
 
 - (NSUInteger)likesCountForComment:(TutorialComment *)comment {

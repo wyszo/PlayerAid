@@ -175,6 +175,9 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   commentCell.likeButtonPressedBlock = ^(TutorialComment *comment) {
     [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
   };
+  commentCell.unlikeButtonPressedBlock = ^(TutorialComment *comment) {
+    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController unlikeComment:comment];
+  };
   commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
     [weakSelf pushUserProfileLinkedToTutorialComment:comment];
   };
