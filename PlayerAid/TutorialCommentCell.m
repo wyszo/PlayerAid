@@ -95,18 +95,27 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   AssertTrueOr(self.commentBottomBar,);
   self.commentBottomBar.timeAgoLabel.text = [comment.createdOn shortTimeAgoSinceNow];
-  [self.commentBottomBar setNumberOfLikes:comment.likedBy.count]; // perhaps this value should dynamically update?
-  
+  [self.commentBottomBar setNumberOfLikes:[self likesCountForComment:comment]]; 
+
   defineWeakSelf();
   self.commentBottomBar.likeButtonPressed = ^() {
     CallBlock(weakSelf.likeButtonPressedBlock, weakSelf.comment);
   };
 }
 
+- (NSUInteger)likesCountForComment:(TutorialComment *)comment {
+  AssertTrueOr(comment, return 0;);
+
+  NSUInteger likesCount = self.comment.likedBy.count;
+  if (likesCount == 0) {
+    likesCount = self.comment.likesCountValue; // fallback value until we have linkedBy relationship populated with data
+  }
+  return likesCount;
+}
+
 #pragma mark - public
 
-- (BOOL)isExpanded
-{
+- (BOOL)isExpanded {
   return self.expanded || [self shouldHideMoreButton]; // lineCount equals either 0 or <= maxNrOfLines
 }
 
