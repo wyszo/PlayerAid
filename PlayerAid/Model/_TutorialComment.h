@@ -9,6 +9,7 @@ extern const struct TutorialCommentAttributes {
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *status;
 	__unsafe_unretained NSString *text;
+	__unsafe_unretained NSString *upvotedByUser;
 } TutorialCommentAttributes;
 
 extern const struct TutorialCommentRelationships {
@@ -65,6 +66,14 @@ extern const struct TutorialCommentRelationships {
 @property (nonatomic, strong) NSString* text;
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* upvotedByUser;
+
+@property (atomic) BOOL upvotedByUserValue;
+- (BOOL)upvotedByUserValue;
+- (void)setUpvotedByUserValue:(BOOL)value_;
+
+//- (BOOL)validateUpvotedByUser:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) Tutorial *belongsToTutorial;
 
@@ -129,6 +138,12 @@ extern const struct TutorialCommentRelationships {
 
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;
+
+- (NSNumber*)primitiveUpvotedByUser;
+- (void)setPrimitiveUpvotedByUser:(NSNumber*)value;
+
+- (BOOL)primitiveUpvotedByUserValue;
+- (void)setPrimitiveUpvotedByUserValue:(BOOL)value_;
 
 - (Tutorial*)primitiveBelongsToTutorial;
 - (void)setPrimitiveBelongsToTutorial:(Tutorial*)value;

@@ -9,6 +9,7 @@ const struct TutorialCommentAttributes TutorialCommentAttributes = {
 	.serverID = @"serverID",
 	.status = @"status",
 	.text = @"text",
+	.upvotedByUser = @"upvotedByUser",
 };
 
 const struct TutorialCommentRelationships TutorialCommentRelationships = {
@@ -57,6 +58,11 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 	}
 	if ([key isEqualToString:@"statusValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"upvotedByUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"upvotedByUser"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -127,6 +133,26 @@ const struct TutorialCommentRelationships TutorialCommentRelationships = {
 }
 
 @dynamic text;
+
+@dynamic upvotedByUser;
+
+- (BOOL)upvotedByUserValue {
+	NSNumber *result = [self upvotedByUser];
+	return [result boolValue];
+}
+
+- (void)setUpvotedByUserValue:(BOOL)value_ {
+	[self setUpvotedByUser:@(value_)];
+}
+
+- (BOOL)primitiveUpvotedByUserValue {
+	NSNumber *result = [self primitiveUpvotedByUser];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveUpvotedByUserValue:(BOOL)value_ {
+	[self setPrimitiveUpvotedByUser:@(value_)];
+}
 
 @dynamic belongsToTutorial;
 
