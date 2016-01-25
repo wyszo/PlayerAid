@@ -41,7 +41,22 @@ class ServerCommunicationController : NSObject {
           AlertFactory.showGenericErrorAlertViewNoRetry()
         })
       } else {
-        // TODO: increase likes count
+        enum JSONError: String, ErrorType {
+          case NoData = "Error: no data"
+          case ConversionFailed = "Error: Conversion from JSON failed"
+        }
+
+        do {
+          guard let validData = data else { throw JSONError.NoData }
+          guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(validData, options: []) as? [NSObject : AnyObject] else { throw JSONError.ConversionFailed }
+          TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse)
+        }
+        catch let error as JSONError {
+          assertionFailure(error.rawValue)
+        }
+        catch {
+          assertionFailure("Unexpected response!")
+        }
       }
     });
   }
