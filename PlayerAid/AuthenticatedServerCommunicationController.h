@@ -34,6 +34,7 @@ DEPRECATED_ATTRIBUTE // try to use ServerCommunicationController instead!
 // tutorials
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(nullable VoidBlockWithError)completion;
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion;
+- (void)listCurrentUserAllTutorialsCompletion:(NetworkResponseBlock)completion;
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;
 - (void)reportTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion;

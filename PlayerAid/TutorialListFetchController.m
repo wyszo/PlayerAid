@@ -2,6 +2,7 @@
 //  PlayerAid
 //
 
+@import KZAsserts;
 @import MagicalRecord;
 #import "TutorialListFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
@@ -12,23 +13,43 @@
 
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
-- (void)fetchTutorials
+- (void)fetchTimelineTutorials
 {
+  defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsWithCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    if (error) {
-      [AlertFactory showGenericErrorAlertViewNoRetry];
-    }
-    else {
-      [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        [TutorialsHelper setOfTutorialsFromDictionariesArray:responseObject parseAuthors:YES inContext:localContext];
-      }];
-    }
+    [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
   }];
-  
-  
+
   // TODO: 2. implement retrying and showing blocking alert view
   
   // TODO: 3. change the mechanism for blocking alert view so the users request and tutorial request don't override an alert view shown by another
+}
+
+- (void)fetchCurrentUserTutorials {
+  defineWeakSelf();
+  [[AuthenticatedServerCommunicationController sharedInstance] listCurrentUserAllTutorialsCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
+  }];
+}
+
+#pragma mark - Private
+
+- (void)showGenericError:(BOOL)showError orParseTutorialsFromDictionariesArray:(NSArray *)tutorialDictionaries {
+  AssertTrueOrReturn(tutorialDictionaries);
+
+  if (showError) {
+    [AlertFactory showGenericErrorAlertViewNoRetry];
+  }
+  else {
+    [self parseTutorialsFromDictionariesArray:tutorialDictionaries];
+  }
+}
+
+- (void)parseTutorialsFromDictionariesArray:(NSArray *)tutorialDictionaries {
+  AssertTrueOrReturn(tutorialDictionaries);
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+      [TutorialsHelper setOfTutorialsFromDictionariesArray:tutorialDictionaries parseAuthors:YES inContext:localContext];
+  }];
 }
 
 @end

@@ -24,13 +24,16 @@
 + (void)updateUserAndTutorialsUserLinkedWithFacebook:(BOOL)linkedWithFacebook
 {
   [[UsersFetchController sharedInstance] fetchCurrentUserProfileUserLinkedWithFacebook:linkedWithFacebook];
-  [[TutorialListFetchController sharedInstance] fetchTutorials];
+  [[TutorialListFetchController sharedInstance] fetchTimelineTutorials];
 }
 
 + (void)updateUserAndTutorials
 {
   [[UsersFetchController sharedInstance] fetchCurrentUserProfile];
-  [[TutorialListFetchController sharedInstance] fetchTutorials];
+
+  // TODO: chain those two calls using promises, so that the bottom one is only made when the first one succeeds
+  [[TutorialListFetchController sharedInstance] fetchTimelineTutorials];
+  [[TutorialListFetchController sharedInstance] fetchCurrentUserTutorials];
 }
 
 + (void)saveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion
