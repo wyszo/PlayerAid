@@ -86,7 +86,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
-  [self updateElementsSpacingConstraints];
+
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment
@@ -128,8 +129,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
   [self hideMoreButton]; // cell extended, we don't need more button anymore
   self.expanded = YES;
-  [self updateElementsSpacingConstraints];
-  CallBlock(self.didChangeCellHeightBlock);
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -165,10 +165,14 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 #pragma mark - Constraints manipulation - elements spacing
 
-- (void)updateElementsSpacingConstraints
+- (void)updateElementsSpacingConstraintsInvokingHeightChangeCallback:(BOOL)heightChangeCallback
 {
   if ([self isExpanded]) {
     [self shrinkTimeAgoToMoreButtonDistance]; // when cell is expanded the distance is smaller (because '...' button is not there anymore)
+  }
+
+  if (heightChangeCallback) {
+    CallBlock(self.didChangeCellHeightBlock);
   }
 }
 
