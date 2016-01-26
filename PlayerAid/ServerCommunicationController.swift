@@ -23,7 +23,13 @@ class ServerCommunicationController : NSObject {
     assert(apiToken.characters.count > 0); // TODO: figure out how to have assertOrReturn in Swift
     self.apiToken = apiToken;
   }
-  
+
+  // MARK: Tutorials
+
+  func listCurrentUserTutorialsWithCompletion() {
+    // TODO: import implementation from AuthenticatedServerCommunicationController
+  }
+
   // MARK: Comments
   
   func likeComment(comment: TutorialComment) {

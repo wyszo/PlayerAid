@@ -8,6 +8,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
+#import "UsersFetchController.h"
 
 @implementation TutorialListFetchController
 
@@ -26,8 +27,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 }
 
 - (void)fetchCurrentUserTutorials {
+  User *currentUser = [[UsersFetchController sharedInstance] currentUser];
+  AssertTrueOrReturn(currentUser);
+
   defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] listCurrentUserAllTutorialsCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsForUserID:currentUser.serverID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
       [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
   }];
 }
