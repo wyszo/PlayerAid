@@ -24,7 +24,7 @@ static NSString *const kTutorialCellNibName = @"TutorialTableViewCell";
   AssertTrueOr(aspectRatio != 0, return 0;);
   CGFloat cellHeight = ([UIScreen tw_width] / aspectRatio);
   AssertTrueOr(cellHeight != 0,);
-  return cellHeight;
+  return ceilf(cellHeight);
 }
 
 - (CGFloat)bottomGapHeight
