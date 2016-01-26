@@ -63,8 +63,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Tutorial management
 
-- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion
-{
+- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion {
   [self performGetRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
 }
 

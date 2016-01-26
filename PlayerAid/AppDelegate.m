@@ -6,7 +6,6 @@
 #import "AppDelegate.h"
 #import "CreateTutorialViewController.h"
 #import "TabBarHelper.h"
-#import "NavigationControllerWhiteStatusbar.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "AppInitializer.h"
 
@@ -20,8 +19,7 @@
 
 #pragma mark - delegate methods
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
   
   self.appInitializer = [AppInitializer new];
@@ -34,25 +32,21 @@
   return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
   [self.appInitializer applicationLaunchFetchUsersAndTutorials];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
   [FBSDKAppEvents activateApp];   // Logs 'install' and 'app activate' App Events.
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Auxiliary methods
 
-- (void)setupTabBarActionHandling
-{
+- (void)setupTabBarActionHandling {
   self.tabBarControllerHandler = [[TabBarControllerHandler alloc] initWithCreateTutorialItemAction:^{
     [ApplicationViewHierarchyHelper presentModalCreateTutorialViewController];
   }];
