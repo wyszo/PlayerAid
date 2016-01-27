@@ -31,14 +31,14 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchCurrentUserTutorials {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  AssertTrueOrReturn(currentUser.serverID);
+  NSInteger userId = currentUser.serverIDValue;
+  AssertTrueOrReturn(userId != 0);
 
   defineWeakSelf();
-
   ServerCommunicationController *serverCommunicationController = [AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController;
-  [serverCommunicationController listTutorialsForUserId:currentUser.serverID completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+  [serverCommunicationController listTutorialsForUserId:userId completion:^(NSData *data, NSURLResponse *response, NSError *error) {
 
-      // TODO: pass JSON here!
+      // TODO: pass a parsed JSON here!
       id responseObject = nil;
 
       [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];

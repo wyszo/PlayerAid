@@ -26,10 +26,13 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
+  // TODO: we want to return jsonDictionary from this request - not NSData..
   func listTutorialsForUserId(userId: Int, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
     let parameters = [ "fields" : "comments,author.tutorials" ]
     let urlString = "user/\(userId)/tutorials"
     sendNetworkRequest(urlString, httpMethod: .GET, completion: completion);
+
+    // TODO: parse the response and pass to callback as JSON dictionary
   }
 
   // MARK: Comments
