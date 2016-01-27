@@ -36,12 +36,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
   defineWeakSelf();
   ServerCommunicationController *serverCommunicationController = [AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController;
-  [serverCommunicationController listTutorialsForUserId:userId completion:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-      // TODO: pass a parsed JSON here!
-      id responseObject = nil;
-
-      [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
+  [serverCommunicationController listTutorialsForUserId:userId completion:^(NSDictionary *jsonResponse, NSURLResponse *response, NSError *error) {
+    [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:jsonResponse];
   }];
 
 

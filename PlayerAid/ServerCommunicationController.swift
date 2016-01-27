@@ -2,6 +2,28 @@
 
 import Foundation
 
+
+// TODO: move this extension to another swift file!
+
+// JSON parsing
+
+enum JSONError: String, ErrorType {
+  case NoData = "Error: no data"
+  case ConversionFailed = "Error: Conversion from JSON failed"
+}
+
+extension NSData {
+  func jsonDictionary() throws -> [NSObject: AnyObject] {
+      guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(self, options: []) as? [NSObject : AnyObject] else {
+        throw JSONError.ConversionFailed
+      }
+      return jsonResponse
+  }
+}
+
+// end of JSON parsing
+
+
 struct HTTPStatusCodes {
   static let success = 200
 }
@@ -26,13 +48,19 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
-  // TODO: we want to return jsonDictionary from this request - not NSData..
-  func listTutorialsForUserId(userId: Int, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+  func listTutorialsForUserId(userId: Int, completion: ([NSObject : AnyObject]?, NSURLResponse?, NSError?) -> Void) {
     let parameters = [ "fields" : "comments,author.tutorials" ]
     let urlString = "user/\(userId)/tutorials"
-    sendNetworkRequest(urlString, httpMethod: .GET, completion: completion);
 
-    // TODO: parse the response and pass to callback as JSON dictionary
+    sendNetworkRequest(urlString, httpMethod: .GET, completion: {
+      data, response, error -> Void in
+        if let jsonResponse = try? data?.jsonDictionary() {
+          completion(jsonResponse, response, error)
+        } else {
+          assertionFailure("Unexpected response!")
+          completion(nil, response, error)
+        }
+    });
   }
 
   // MARK: Comments
@@ -41,35 +69,24 @@ class ServerCommunicationController : NSObject {
     // POST /comment/{id}/upvote
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "upvote")
     
-    sendPostRequest(urlPath, completion: {data, response, error -> Void in
-      var statusCode = 0
-      if let httpResponse = response as? NSHTTPURLResponse {
-        statusCode = httpResponse.statusCode
-      }
-      
-      if error != nil || statusCode != HTTPStatusCodes.success {
-        dispatch_async(dispatch_get_main_queue(), {
-          AlertFactory.showGenericErrorAlertViewNoRetry()
-        })
-      } else {
-        enum JSONError: String, ErrorType {
-          case NoData = "Error: no data"
-          case ConversionFailed = "Error: Conversion from JSON failed"
+    sendPostRequest(urlPath, completion: {
+      data, response, error -> Void in
+        var statusCode = 0
+        if let httpResponse = response as? NSHTTPURLResponse {
+          statusCode = httpResponse.statusCode
         }
 
-        do {
-          // TODO: export JSON parsing from this method
-          guard let validData = data else { throw JSONError.NoData }
-          guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(validData, options: []) as? [NSObject : AnyObject] else { throw JSONError.ConversionFailed }
-          TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse)
+        if error != nil || statusCode != HTTPStatusCodes.success {
+          dispatch_async(dispatch_get_main_queue(), {
+            AlertFactory.showGenericErrorAlertViewNoRetry()
+          })
+        } else {
+          if let jsonResponse = try? data?.jsonDictionary() {
+            TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse)
+          } else {
+            assertionFailure("Unexpected response!")
+          }
         }
-        catch let error as JSONError {
-          assertionFailure(error.rawValue)
-        }
-        catch {
-          assertionFailure("Unexpected response!")
-        }
-      }
     });
   }
   
