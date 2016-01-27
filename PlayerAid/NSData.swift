@@ -12,4 +12,11 @@ extension NSData {
         }
         return jsonResponse
     }
+
+    func jsonArray() throws -> [AnyObject] {
+        guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(self, options: []) as? [AnyObject] else {
+            throw JSONError.ConversionFailed
+        }
+        return jsonResponse
+    }
 }

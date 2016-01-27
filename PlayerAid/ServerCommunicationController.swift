@@ -24,7 +24,7 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
-  func listTutorialsForUserId(userId: Int, completion: ([NSObject : AnyObject]?, NSURLResponse?, NSError?) -> Void) {
+  func listTutorialsForUserId(userId: Int, completion: ([AnyObject]?, NSURLResponse?, NSError?) -> Void) {
     let parameters = [ "fields" : "comments,author.tutorials" ]
     let urlString = "user/\(userId)/tutorials"
 
@@ -32,7 +32,7 @@ class ServerCommunicationController : NSObject {
 
     sendNetworkRequest(urlString, httpMethod: .GET, completion: {
       data, response, error -> Void in
-        if let jsonResponse = try? data?.jsonDictionary() {
+        if let jsonResponse = try? data?.jsonArray() { 
           completion(jsonResponse, response, error)
         } else {
           assertionFailure("Unexpected response!")
