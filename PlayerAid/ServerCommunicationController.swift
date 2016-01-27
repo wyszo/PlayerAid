@@ -6,10 +6,10 @@ struct HTTPStatusCodes {
   static let success = 200
 }
 
-struct HTTPMethods {
-  static let GET = "GET"
-  static let POST = "POST"
-  static let DELETE = "DELETE"
+enum HTTPMethod: String {
+  case GET = "GET"
+  case POST = "POST"
+  case DELETE = "DELETE"
 }
 
 /**
@@ -26,8 +26,10 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
-  func listCurrentUserTutorialsWithCompletion() {
-    // TODO: import implementation from AuthenticatedServerCommunicationController
+  func listTutorialsForUserId(userId: Int, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    let parameters = [ "fields" : "comments,author.tutorials" ]
+    let urlString = "user/\(userId)/tutorials"
+    sendNetworkRequest(urlString, httpMethod: .GET, completion: completion);
   }
 
   // MARK: Comments
@@ -53,6 +55,7 @@ class ServerCommunicationController : NSObject {
         }
 
         do {
+          // TODO: export JSON parsing from this method
           guard let validData = data else { throw JSONError.NoData }
           guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(validData, options: []) as? [NSObject : AnyObject] else { throw JSONError.ConversionFailed }
           TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse)
@@ -76,14 +79,17 @@ class ServerCommunicationController : NSObject {
   // MARK: Generic methods
   
   func sendPostRequest(relativePath: String, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-    let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod: HTTPMethods.POST)
-    
+    sendNetworkRequest(relativePath, httpMethod: .POST, completion: completion)
+  }
+
+  func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod)
     let session = NSURLSession.sharedSession()
     let task = session.dataTaskWithRequest(request, completionHandler: completion)
     task.resume()
   }
-  
-  func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: String = HTTPMethods.GET) -> NSURLRequest {
+
+  func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET) -> NSURLRequest {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
     
@@ -91,7 +97,7 @@ class ServerCommunicationController : NSObject {
     assert(requestURL != nil)
     
     let request = NSMutableURLRequest(URL: requestURL!)
-    request.HTTPMethod = httpMethod
+    request.HTTPMethod = httpMethod.rawValue
     addBearerAuthenticationToMutableRequest(request)
     
     return request.copy() as! NSURLRequest
