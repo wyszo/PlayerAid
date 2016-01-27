@@ -30,18 +30,6 @@ static NSString *const kListTutorialsUrlString = @"tutorials";
 /* Technical debt: could easily avoid making a singleton here */
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
-#pragma mark - To move to Swift..
-
-// TODO: move this method implementation to Swift (to ServerCommunicationController)
-- (void)listTutorialsForUserID:(NSUInteger)userID completion:(NetworkResponseBlock)completion {
-  NSDictionary *parameters = @{
-      @"fields" : @"comments,author.tutorials"
-  };
-
-  NSString *urlString = [NSString stringWithFormat:@"user/%d/tutorials", userID];
-  [self performRequestWithType:@"GET" apiToken:self.apiToken urlString:urlString parameters:parameters useCacheIfAllowed:NO completion:completion];
-}
-
 #pragma mark - Token
 
 + (void)setApiToken:(NSString *)apiToken

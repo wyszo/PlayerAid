@@ -9,6 +9,9 @@
 #import "TutorialsHelper.h"
 #import "AlertFactory.h"
 #import "UsersFetchController.h"
+#import "User.h"
+#import "PlayerAid-Swift.h"
+
 
 @implementation TutorialListFetchController
 
@@ -28,12 +31,23 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchCurrentUserTutorials {
   User *currentUser = [[UsersFetchController sharedInstance] currentUser];
-  AssertTrueOrReturn(currentUser);
+  AssertTrueOrReturn(currentUser.serverID);
 
   defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsForUserID:currentUser.serverID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+
+  ServerCommunicationController *serverCommunicationController = [AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController;
+  [serverCommunicationController listTutorialsForUserId:currentUser.serverID completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+      // TODO: pass JSON here!
+      id responseObject = nil;
+
       [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
   }];
+
+
+//  [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsForUserID:currentUser.serverID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+//      [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
+//  }];
 }
 
 #pragma mark - Private
