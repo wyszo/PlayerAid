@@ -1,28 +1,4 @@
-//  PlayerAid
-
 import Foundation
-
-
-// TODO: move this extension to another swift file!
-
-// JSON parsing
-
-enum JSONError: String, ErrorType {
-  case NoData = "Error: no data"
-  case ConversionFailed = "Error: Conversion from JSON failed"
-}
-
-extension NSData {
-  func jsonDictionary() throws -> [NSObject: AnyObject] {
-      guard let jsonResponse = try NSJSONSerialization.JSONObjectWithData(self, options: []) as? [NSObject : AnyObject] else {
-        throw JSONError.ConversionFailed
-      }
-      return jsonResponse
-  }
-}
-
-// end of JSON parsing
-
 
 struct HTTPStatusCodes {
   static let success = 200
@@ -38,8 +14,8 @@ enum HTTPMethod: String {
  This class replaces AuthenticatedServerCommunicationController as is intended to be further extended. Implement new network requests here.
  */
 class ServerCommunicationController : NSObject {
-  
-  private var apiToken: String? 
+
+  private var apiToken: String?
   
   func setApiToken(apiToken: String) {
     assert(apiToken.characters.count > 0); // TODO: figure out how to have assertOrReturn in Swift
@@ -51,6 +27,8 @@ class ServerCommunicationController : NSObject {
   func listTutorialsForUserId(userId: Int, completion: ([NSObject : AnyObject]?, NSURLResponse?, NSError?) -> Void) {
     let parameters = [ "fields" : "comments,author.tutorials" ]
     let urlString = "user/\(userId)/tutorials"
+
+    // TODO: pass parameters to this method!
 
     sendNetworkRequest(urlString, httpMethod: .GET, completion: {
       data, response, error -> Void in
@@ -82,7 +60,7 @@ class ServerCommunicationController : NSObject {
           })
         } else {
           if let jsonResponse = try? data?.jsonDictionary() {
-            TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse)
+            TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
           } else {
             assertionFailure("Unexpected response!")
           }
@@ -119,7 +97,9 @@ class ServerCommunicationController : NSObject {
     let request = NSMutableURLRequest(URL: requestURL!)
     request.HTTPMethod = httpMethod.rawValue
     addBearerAuthenticationToMutableRequest(request)
-    
+
+    // TODO: add request parameters - they should be passed as a parameter to this method
+
     return request.copy() as! NSURLRequest
   }
   
