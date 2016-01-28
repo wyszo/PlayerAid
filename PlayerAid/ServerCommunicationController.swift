@@ -10,32 +10,6 @@ enum HTTPMethod: String {
   case DELETE = "DELETE"
 }
 
-extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
-  func jsonEncodedData() throws -> NSData? {
-    if NSJSONSerialization.isValidJSONObject(self as! AnyObject) {
-      return try? NSJSONSerialization.dataWithJSONObject(self as! AnyObject, options: [])
-    }
-    return nil
-  }
-}
-
-
-class QueryStringBuilder {
-  func queryString(fromDictionary parameters: [String : AnyObject]) -> String {
-    var queryVariables: [String] = []
-
-    for (key, value) in parameters {
-      let stringValue = value as? String
-
-      if let encodedValue = stringValue?.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
-        queryVariables.append(key + "=" + encodedValue)
-      }
-    }
-    return (queryVariables.isEmpty ? "" : "?" + queryVariables.joinWithSeparator("&"))
-  }
-}
-
-
 /**
  This class replaces AuthenticatedServerCommunicationController as is intended to be further extended. Implement new network requests here.
  */
@@ -116,8 +90,8 @@ class ServerCommunicationController : NSObject {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
 
+    // TODO: extract adding GET request query parameters from this method
     var pathStringWithQueryParams = pathString
-
     if httpMethod == .GET {
       if let validParameters = parameters {
         pathStringWithQueryParams = pathString + QueryStringBuilder().queryString(fromDictionary: validParameters)

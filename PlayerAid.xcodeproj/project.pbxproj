@@ -173,8 +173,10 @@
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; };
+		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
 		6C5AC5E208C8B2C3ADE32C4A /* KeyboardCustomInputAccessoryViewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */; };
 		6C5AC8E1E0F40E3B624B0205 /* CommentsCountLabelFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */; };
+		6C5ACDD7ACB084EBFF711806 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */; };
 		6C5ACF0754075FA009BA0FF7 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC269E49CBEE874D41CDF /* NSData.swift */; };
 /* End PBXBuildFile section */
 
@@ -485,8 +487,10 @@
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5AC269E49CBEE874D41CDF /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCustomInputAccessoryViewsManager.m; sourceTree = "<group>"; };
+		6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCountLabelFormatter.swift; sourceTree = "<group>"; };
 		6C5ACF0B466B9839EEEEB4E5 /* KeyboardCustomInputAccessoryViewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCustomInputAccessoryViewsManager.h; sourceTree = "<group>"; };
+		6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryStringBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1100,6 +1104,7 @@
 				31A0FD361AD034BA00B94CBE /* UserDefaults */,
 				31A8DE381B31EB6700137ACB /* Users */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
+				6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1484,6 +1489,7 @@
 				31E1E1951AECCB110091ED01 /* UITableView */,
 				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
 				6C5AC269E49CBEE874D41CDF /* NSData.swift */,
+				6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2314,6 +2320,8 @@
 				6C5AC5E208C8B2C3ADE32C4A /* KeyboardCustomInputAccessoryViewsManager.m in Sources */,
 				6C5AC8E1E0F40E3B624B0205 /* CommentsCountLabelFormatter.swift in Sources */,
 				6C5ACF0754075FA009BA0FF7 /* NSData.swift in Sources */,
+				6C5ACDD7ACB084EBFF711806 /* DictionaryExtensions.swift in Sources */,
+				6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
