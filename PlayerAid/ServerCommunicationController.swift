@@ -10,6 +10,32 @@ enum HTTPMethod: String {
   case DELETE = "DELETE"
 }
 
+extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+  func jsonEncodedData() throws -> NSData? {
+    if NSJSONSerialization.isValidJSONObject(self as! AnyObject) {
+      return try? NSJSONSerialization.dataWithJSONObject(self as! AnyObject, options: [])
+    }
+    return nil
+  }
+}
+
+
+class QueryStringBuilder {
+  func queryString(fromDictionary parameters: [String : AnyObject]) -> String {
+    var queryVariables: [String] = []
+
+    for (key, value) in parameters {
+      let stringValue = value as? String
+
+      if let encodedValue = stringValue?.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
+        queryVariables.append(key + "=" + encodedValue)
+      }
+    }
+    return (queryVariables.isEmpty ? "" : "?" + queryVariables.joinWithSeparator("&"))
+  }
+}
+
+
 /**
  This class replaces AuthenticatedServerCommunicationController as is intended to be further extended. Implement new network requests here.
  */
@@ -25,12 +51,10 @@ class ServerCommunicationController : NSObject {
   // MARK: Tutorials
 
   func listTutorialsForUserId(userId: Int, completion: ([AnyObject]?, NSURLResponse?, NSError?) -> Void) {
-    let parameters = [ "fields" : "comments,author.tutorials" ]
+    let parameters = [ "fields" : "comments,author.tutorials" ] // shouldn't this be: comments,steps?
     let urlString = "user/\(userId)/tutorials"
 
-    // TODO: pass parameters to this method!
-
-    sendNetworkRequest(urlString, httpMethod: .GET, completion: {
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: {
       data, response, error -> Void in
         if let jsonResponse = try? data?.jsonArray() { 
           completion(jsonResponse, response, error)
@@ -77,29 +101,43 @@ class ServerCommunicationController : NSObject {
   // MARK: Generic methods
   
   func sendPostRequest(relativePath: String, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-    sendNetworkRequest(relativePath, httpMethod: .POST, completion: completion)
+    sendNetworkRequest(relativePath, httpMethod: .POST, parameters: nil, completion: completion)
   }
 
-  func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-    let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod)
+  // add request parameters!
+  func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod, parameters: parameters)
     let session = NSURLSession.sharedSession()
     let task = session.dataTaskWithRequest(request, completionHandler: completion)
     task.resume()
   }
 
-  func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET) -> NSURLRequest {
+  func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
-    
-    let requestURL = NSURL(string: serverURL + pathString)
+
+    var pathStringWithQueryParams = pathString
+
+    if httpMethod == .GET {
+      if let validParameters = parameters {
+        pathStringWithQueryParams = pathString + QueryStringBuilder().queryString(fromDictionary: validParameters)
+      }
+    }
+
+    let requestURL = NSURL(string: serverURL + pathStringWithQueryParams)
     assert(requestURL != nil)
     
     let request = NSMutableURLRequest(URL: requestURL!)
     request.HTTPMethod = httpMethod.rawValue
     addBearerAuthenticationToMutableRequest(request)
 
-    // TODO: add request parameters - they should be passed as a parameter to this method
-
+    if let validParameters = parameters {
+      if httpMethod == .POST {
+        if let validData = try? validParameters.jsonEncodedData() {
+          request.HTTPBody = validData
+        }
+      }
+    }
     return request.copy() as! NSURLRequest
   }
   
