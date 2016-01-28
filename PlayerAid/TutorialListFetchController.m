@@ -39,11 +39,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [serverCommunicationController listTutorialsForUserId:userId completion:^(NSArray *jsonResponses, NSURLResponse *response, NSError *error) {
     [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:jsonResponses];
   }];
-
-
-//  [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsForUserID:currentUser.serverID completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-//      [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
-//  }];
 }
 
 #pragma mark - Private

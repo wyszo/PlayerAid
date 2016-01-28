@@ -78,7 +78,6 @@ class ServerCommunicationController : NSObject {
     sendNetworkRequest(relativePath, httpMethod: .POST, parameters: nil, completion: completion)
   }
 
-  // add request parameters!
   func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
     let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod, parameters: parameters)
     let session = NSURLSession.sharedSession()
