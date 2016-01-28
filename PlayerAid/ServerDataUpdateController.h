@@ -15,6 +15,7 @@ typedef void (^SaveCompletionBlock)(NSError *error);
 + (void)updateUserAndTutorials;
 + (void)updateUserAndTutorialsUserLinkedWithFacebook:(BOOL)linkedWithFacebook;
 
+// TODO: rewrite this method using promises
 + (void)saveTutorial:(Tutorial *)tutorial progressChanged:(BlockWithFloatParameter)progressChangedBlock completion:(SaveCompletionBlock)completion;
 
 @end

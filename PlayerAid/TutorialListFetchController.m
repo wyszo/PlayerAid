@@ -17,11 +17,11 @@
 
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
-- (void)fetchTimelineTutorials
-{
+- (void)fetchTimelineTutorialsCompletion:(BlockWithBoolParameter)completion {
   defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsWithCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
+    CallBlock(completion, (error != nil));
   }];
 
   // TODO: 2. implement retrying and showing blocking alert view
