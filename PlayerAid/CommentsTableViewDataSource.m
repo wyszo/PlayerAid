@@ -67,9 +67,8 @@
 
 - (NSArray *)sortDescriptors
 {
-  NSSortDescriptor *sortDescriptorLikes = [[NSSortDescriptor alloc] initWithKey:@"likesCount" ascending:NO];
   NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc] initWithKey:@"createdOn" ascending:YES];
-  return @[sortDescriptorLikes, sortDescriptorDate];
+  return @[sortDescriptorDate];
 }
 
 #pragma mark - public
