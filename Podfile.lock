@@ -44,7 +44,7 @@ PODS:
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
-  - Fabric (1.6.3)
+  - Fabric (1.6.4)
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.8.0)
@@ -85,7 +85,7 @@ DEPENDENCIES:
   - BlocksKit (= 2.2.5)
   - Crashlytics (= 3.6.0)
   - DateTools (= 1.7.0)
-  - Fabric (= 1.6.3)
+  - Fabric (= 1.6.4)
   - FBSDKCoreKit (= 4.8.0)
   - FBSDKLoginKit (= 4.8.0)
   - FDTake (from `../FDTake`)
@@ -129,7 +129,7 @@ SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Fabric: cbe0ca6c9531bba17910052f6f105fcbc5fa7f67
+  Fabric: ed41fd62173c6bdea24ab02c9d7707161eabb750
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   FDTake: 22f82a1c7060a1d60ed9ae534122694054b2ea22

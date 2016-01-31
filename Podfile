@@ -16,7 +16,7 @@ pod 'Mixpanel', '2.9.0'
 pod 'BlocksKit', '2.2.5'
 pod 'DateTools', '1.7.0'
 pod 'NSString+RemoveEmoji', '0.0.1'
-pod 'Fabric', '1.6.3'
+pod 'Fabric', '1.6.4'
 pod 'Crashlytics', '3.6.0'
 pod 'TTTAttributedLabel', '1.13.4'
 
