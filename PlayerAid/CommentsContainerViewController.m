@@ -1,7 +1,3 @@
-//
-//  PlayerAid
-//
-
 @import KZAsserts;
 @import CoreData;
 @import MagicalRecord;
@@ -14,6 +10,8 @@
 #import "UsersFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "NavigationControllerWhiteStatusbar.h"
+#import "PlayerAid-Swift.h"
 
 static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
@@ -181,7 +179,10 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
     [weakSelf pushUserProfileLinkedToTutorialComment:comment];
   };
-  
+  commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
+    [ApplicationViewHierarchyHelper presentModalCommentsRepliesFromViewController:weakSelf.parentViewController];
+  };
+
   if (!object) {
     object = [self.dataSource objectAtIndexPath:indexPath];
   }

@@ -12,6 +12,8 @@
 @interface ApplicationViewHierarchyHelper : NSObject
 
 + (UINavigationController *)navigationControllerWithCreateTutorialViewController;
+
+// Unnecessary, since this is exactly what UINavigationController.initWithRootViewController does
 + (UINavigationController *)navigationControllerWithViewController:(UIViewController *)viewController;
 
 /**
@@ -25,5 +27,11 @@
  Returns CreateTutorialViewController
  */
 + (UIViewController *)presentModalCreateTutorialViewController;
+
+/**
+ Presents a navigation controller with CommentRepliesVC
+ Returns CommentRepliesViewController
+ */
++ (UIViewController *)presentModalCommentsRepliesFromViewController:(UIViewController *)presentingViewController;
 
 @end

@@ -10,6 +10,8 @@
 #import "UsersFetchController.h"
 #import "PlayerAidTabBarHelper.h"
 #import "AppDelegate.h"
+#import "NavigationControllerWhiteStatusbar.h"
+#import "PlayerAid-Swift.h"
 
 @implementation ApplicationViewHierarchyHelper
 
@@ -57,7 +59,7 @@
   return pushProfileViewBlock;
 }
 
-#pragma mark - Presenting CreateTutorial
+#pragma mark - Custom ViewControllers presentation
 
 + (UIViewController *)presentModalCreateTutorialViewController
 {
@@ -68,6 +70,14 @@
   [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
   
   return navigationController.topViewController;
+}
+
++ (UIViewController *)presentModalCommentsRepliesFromViewController:(UIViewController *)presentingViewController {
+  CommentRepliesViewController *commentRepliesVC = [CommentRepliesViewController new];
+  UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
+  [presentingViewController presentViewController:navigationController animated:YES completion:nil];
+
+  return commentRepliesVC;
 }
 
 @end
