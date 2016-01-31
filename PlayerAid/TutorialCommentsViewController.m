@@ -9,6 +9,7 @@
 
 #import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
 #import "TutorialCommentsViewController.h"
+#import "TutorialCommentsViewController_Debug.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
 #import "MakeCommentInputViewController.h"
@@ -172,6 +173,12 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   CGFloat commentsBarHeight = self.commentsBarHeightConstraint.constant;
   AssertTrueOr(commentsBarHeight > 0,);
   return (contentSizeHeight + kKeyboardMakeCommentAccessoryInputViewHeight + commentsBarHeight);
+}
+
+#pragma mark - DEBUG
+
+- (void)DEBUG_expandComments {
+  [self expandAnimated];
 }
 
 #pragma mark - Fold/Expand

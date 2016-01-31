@@ -15,8 +15,10 @@
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
 #import "TutorialCommentsViewController.h"
+#import "TutorialCommentsViewController_Debug.h"
 #import "ViewControllersFactory.h"
 #import "TutorialsHelper.h"
+#import "DebugSettings.h"
 
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
@@ -46,6 +48,14 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   [self setupTableViewFooter];
   [self setupTutorialStepsTableView];
   [self setupKeyboardHandlers];
+
+  if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
+    defineWeakSelf();
+    DISPATCH_AFTER(0.5, ^{
+        // DEBUG: open comments automatically
+        [weakSelf.commentsViewController DEBUG_expandComments];
+    });
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -488,6 +488,7 @@
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C5AC21EF4FA8887945A916E /* TutorialCommentsViewController_Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentsViewController_Debug.h; sourceTree = "<group>"; };
 		6C5AC269E49CBEE874D41CDF /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCustomInputAccessoryViewsManager.m; sourceTree = "<group>"; };
 		6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepliesViewController.swift; sourceTree = "<group>"; };
@@ -1914,6 +1915,7 @@
 				31F721BA1BF545D4001DB831 /* TutorialCommentsViewController.h */,
 				31F721BB1BF545D4001DB831 /* TutorialCommentsViewController.m */,
 				6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */,
+				6C5AC21EF4FA8887945A916E /* TutorialCommentsViewController_Debug.h */,
 			);
 			name = TutorialComments;
 			sourceTree = "<group>";

@@ -12,6 +12,7 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "PlayerAid-Swift.h"
+#import "DebugSettings.h"
 
 static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
@@ -191,6 +192,15 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   
   [commentCell configureWithTutorialComment:comment];
   [self updateCellHighlight:commentCell forComment:comment];
+
+  if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
+    if (indexPath.row == indexPath.section == 0) {
+      DISPATCH_AFTER(0.5, ^{
+          // present Comment Replies window
+          commentCell.didPressReplyButtonBlock(comment);
+      });
+    }
+  }
 }
 
 - (void)updateCellHighlight:(nonnull TutorialCommentCell *)cell forComment:(nonnull TutorialComment *)comment

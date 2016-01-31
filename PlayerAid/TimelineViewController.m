@@ -62,6 +62,21 @@
   });
   
   // TODO: Filter buttons should be extracted to a separate class!! // We can also use UIStackView on iOS9
+
+  if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
+    DISPATCH_AFTER(0.5, ^{
+        // automatically enter first tutorial
+        [weakSelf DEBUG_PUSH_TUTORIAL_DETAILS];
+    });
+  }
+}
+
+- (void)DEBUG_PUSH_TUTORIAL_DETAILS {
+  Tutorial* tutorial = [self.tutorialsTableDataSource tutorialAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  AssertTrueOrReturn(tutorial);
+
+  self.lastSelectedTutorial = tutorial;
+  [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
 }
 
 - (void)setupDataSource
