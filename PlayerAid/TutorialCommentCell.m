@@ -224,7 +224,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (IBAction)replyButtonPressed:(id)sender {
-  NOT_IMPLEMENTED_YET_RETURN
+  CallBlock(self.didPressReplyButtonBlock, self.comment);
 }
 
 @end

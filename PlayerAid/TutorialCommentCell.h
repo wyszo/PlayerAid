@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^likeButtonPressedBlock)(TutorialComment *comment);
 @property (nonatomic, copy) void (^unlikeButtonPressedBlock)(TutorialComment *comment);
 @property (nonatomic, copy) void (^didPressUserAvatarOrName)(TutorialComment *comment);
+@property (nonatomic, copy) void (^didPressReplyButtonBlock)(TutorialComment *comment);
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment;
 
