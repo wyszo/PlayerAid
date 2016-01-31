@@ -2,6 +2,8 @@ import Foundation
 
 class CommentRepliesViewController : UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+  
     // MARK: Init
 
     convenience init() {
