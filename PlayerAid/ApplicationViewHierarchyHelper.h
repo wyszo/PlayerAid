@@ -32,6 +32,6 @@
  Presents a navigation controller with CommentRepliesVC
  Returns CommentRepliesViewController
  */
-+ (UIViewController *)presentModalCommentsRepliesFromViewController:(UIViewController *)presentingViewController;
++ (UIViewController *)presentModalCommentReplies:(TutorialComment *)comment fromViewController:(UIViewController *)presentingViewController;
 
 @end

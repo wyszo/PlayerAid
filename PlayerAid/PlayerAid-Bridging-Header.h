@@ -6,3 +6,4 @@
 #import "EnvironmentSettings.h"
 #import "AlertFactory.h"
 #import "TutorialCommentParsingHelper.h"
+#import "TutorialCommentCell.h"

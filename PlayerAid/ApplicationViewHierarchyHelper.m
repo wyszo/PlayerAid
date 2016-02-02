@@ -72,8 +72,8 @@
   return navigationController.topViewController;
 }
 
-+ (UIViewController *)presentModalCommentsRepliesFromViewController:(UIViewController *)presentingViewController {
-  CommentRepliesViewController *commentRepliesVC = [CommentRepliesViewController new];
++ (UIViewController *)presentModalCommentReplies:(TutorialComment *)comment fromViewController:(UIViewController *)presentingViewController {
+  CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithTutorialComment:comment];
   UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
   [presentingViewController presentViewController:navigationController animated:YES completion:nil];
 

@@ -21,6 +21,7 @@ class CommentRepliesViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
+        self.setupHeaderViewCell()
     }
 
     // MARK: Protected
@@ -28,6 +29,15 @@ class CommentRepliesViewController : UIViewController {
     func setupNavigationBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<    ", style: .Plain, target: self, action: "backButtonAction")
         self.title = "Reply to Comment"
+    }
+
+    func setupHeaderViewCell() {
+        // for now just setup an arbitrary view as a tableView header...
+        let dummyHeaderView = UIView(frame: CGRectMake(0,0,100,100))
+        dummyHeaderView.backgroundColor = UIColor.blueColor()
+        self.tableView.tableHeaderView = dummyHeaderView
+
+        // TODO: - put a comment cell there and populate it with comment data...
     }
 
     func backButtonAction() {

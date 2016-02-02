@@ -181,7 +181,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     [weakSelf pushUserProfileLinkedToTutorialComment:comment];
   };
   commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
-    [ApplicationViewHierarchyHelper presentModalCommentsRepliesFromViewController:weakSelf.parentViewController];
+      [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
   };
 
   if (!object) {
