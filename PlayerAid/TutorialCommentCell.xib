@@ -126,6 +126,7 @@
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
+                <outlet property="replyButton" destination="hZj-1V-Mew" id="BK0-Dm-LHH"/>
                 <outlet property="timeAgoBarToMoreButtonDistanceConstraint" destination="U2E-Ht-bxx" id="8g8-YB-Wcx"/>
             </connections>
             <point key="canvasLocation" x="522" y="173"/>

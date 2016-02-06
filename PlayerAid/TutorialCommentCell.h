@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^unlikeButtonPressedBlock)(TutorialComment *comment);
 @property (nonatomic, copy) void (^didPressUserAvatarOrName)(TutorialComment *comment);
 @property (nonatomic, copy) void (^didPressReplyButtonBlock)(TutorialComment *comment);
+@property (nonatomic, assign) BOOL replyButtonHidden;
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment;
 

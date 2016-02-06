@@ -28,11 +28,11 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet CommentBottomBarView *commentBottomBar;
 @property (strong, nonatomic) TutorialComment *comment;
 @property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoBarToMoreButtonDistanceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
@@ -60,6 +60,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self.avatarImageView cancelImageRequestOperation];
   self.moreButton.hidden = NO;
   self.expanded = NO;
+  self.replyButtonHidden = NO;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
@@ -145,6 +146,13 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
     backgroundColor = [ColorsHelper editedCommentTableViewCellBackgroundColor];
   }
   self.contentView.backgroundColor = backgroundColor;
+}
+
+#pragma mark - Accessors
+
+- (void)setReplyButtonHidden:(BOOL)replyButtonHidden {
+  _replyButtonHidden = replyButtonHidden;
+  self.replyButton.hidden = replyButtonHidden;
 }
 
 #pragma mark - private

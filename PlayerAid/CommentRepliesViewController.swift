@@ -42,6 +42,7 @@ class CommentRepliesViewController : UIViewController {
         commentCell.frame = CGRectMake(0, 0, UIScreen.tw_width(), UIScreen.tw_height())
         tableView.tableHeaderView = commentCell
         commentCell.configureWithTutorialComment(comment)
+        commentCell.replyButtonHidden = true
 
         commentCell.willChangeCellHeightBlock = { }
         commentCell.didChangeCellHeightBlock = { }
