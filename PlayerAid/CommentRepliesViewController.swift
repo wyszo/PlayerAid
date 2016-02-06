@@ -1,27 +1,34 @@
 import Foundation
+import TWCommonLib
 
 class CommentRepliesViewController : UIViewController {
 
+    var comment: TutorialComment
+    var commentCell: TutorialCommentCell
+
     @IBOutlet weak var tableView: UITableView!
-  
+
     // MARK: Init
 
-    convenience init() {
-        self.init(nibName:"CommentRepliesView", bundle: nil)
+    convenience init(tutorialComment: TutorialComment) {
+        self.init(nibName:"CommentRepliesView", bundle: nil, comment: tutorialComment)
     }
 
     required init?(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
+        fatalError("Don't use this initializer")
+        return nil
     }
 
-    override init(nibName: String?, bundle nibBundleOrNil: NSBundle?) {
+    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, comment tutorialComment: TutorialComment) {
+        commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
+        comment = tutorialComment
         super.init(nibName: nibName, bundle: nibBundleOrNil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigationBar()
-        self.setupHeaderViewCell()
+        setupNavigationBar()
+        setupHeaderViewCell()
     }
 
     // MARK: Protected
@@ -32,12 +39,18 @@ class CommentRepliesViewController : UIViewController {
     }
 
     func setupHeaderViewCell() {
-        // for now just setup an arbitrary view as a tableView header...
-        let dummyHeaderView = UIView(frame: CGRectMake(0,0,100,100))
-        dummyHeaderView.backgroundColor = UIColor.blueColor()
-        self.tableView.tableHeaderView = dummyHeaderView
+        commentCell.frame = CGRectMake(0, 0, UIScreen.tw_width(), UIScreen.tw_height())
+        tableView.tableHeaderView = commentCell
+        commentCell.configureWithTutorialComment(comment)
 
-        // TODO: - put a comment cell there and populate it with comment data...
+        commentCell.willChangeCellHeightBlock = { }
+        commentCell.didChangeCellHeightBlock = { }
+        commentCell.expandCell()
+
+        let compressedSize = commentCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        commentCell.frame = CGRectMake(0, 0, UIScreen.tw_width(), compressedSize.height) // not sure if this is correct, since calculated compressed width might be smaller than actual width
+
+        tableView.tableHeaderView = commentCell // required to adjust to new size
     }
 
     func backButtonAction() {
