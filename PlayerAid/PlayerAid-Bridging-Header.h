@@ -7,3 +7,6 @@
 #import "AlertFactory.h"
 #import "TutorialCommentParsingHelper.h"
 #import "TutorialCommentCell.h"
+#import "KeyboardCustomAccessoryInputViewHandler.h"
+#import "MakeCommentInputViewController.h"
+#import "UsersFetchController.h"

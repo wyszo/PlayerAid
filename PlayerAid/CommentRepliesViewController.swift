@@ -2,8 +2,10 @@ import Foundation
 
 class CommentRepliesViewController : UIViewController {
 
-    var comment: TutorialComment
-    var commentCell: TutorialCommentCell
+    private var comment: TutorialComment
+    private var commentCell: TutorialCommentCell
+    private var replyToCommentBarVC: MakeCommentInputViewController
+    private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -21,6 +23,8 @@ class CommentRepliesViewController : UIViewController {
     init(nibName: String?, bundle nibBundleOrNil: NSBundle?, comment tutorialComment: TutorialComment) {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
         comment = tutorialComment
+        replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
+        replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: replyToCommentBarVC, desiredInputViewHeight: 200) // TODO: set real desired height!
         super.init(nibName: nibName, bundle: nibBundleOrNil)
     }
 
@@ -28,20 +32,24 @@ class CommentRepliesViewController : UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupHeaderViewCell()
+
+        DispatchAfter(2.0) {
+            self.replyInputViewHandler.slideInputViewIn()
+        }
     }
 
-    // MARK: Protected
+    // MARK: Private
 
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<    ", style: .Plain, target: self, action: "backButtonAction")
         self.title = "Reply to Comment"
     }
 
-    func setupHeaderViewCell() {
+    private func setupHeaderViewCell() {
         TableViewHeaderTutorialCommentCellPresenter().installTutorialCommentCell(commentCell, withTutorialComment: comment, inTableView: tableView)
     }
 
-    func backButtonAction() {
+    private func backButtonAction() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
