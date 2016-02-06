@@ -8,7 +8,7 @@ class CommentsCountLabelFormatter : NSObject {
         self.fontSize = fontSize
     }
 
-    public func attributedTextForCommentsCount(count: Int) -> NSAttributedString? {
+    func attributedTextForCommentsCount(count: Int) -> NSAttributedString? {
         let numberOfComments = self.numberOfCommentsAttributedStringForCount(count)
         let sufix = self.commentsSufixAttributedStringForCount(count)
 
@@ -17,9 +17,9 @@ class CommentsCountLabelFormatter : NSObject {
         return attributedText
     }
 
-    // MARK: internal
+    // MARK: private
 
-    func numberOfCommentsAttributedStringForCount(count: Int) -> NSAttributedString {
+    private func numberOfCommentsAttributedStringForCount(count: Int) -> NSAttributedString {
         var numberOfComments = ""
         if count > 0 { numberOfComments = "\(count) " }
 
@@ -29,7 +29,7 @@ class CommentsCountLabelFormatter : NSObject {
         return NSAttributedString(string:numberOfComments, attributes:boldAttributes(self.fontSize))
     }
 
-    func commentsSufixAttributedStringForCount(count: Int) -> NSAttributedString {
+    private func commentsSufixAttributedStringForCount(count: Int) -> NSAttributedString {
         var sufix = ""
         if count != 1 { sufix = "s" }
         return NSAttributedString(string:"Comment\(sufix)")
