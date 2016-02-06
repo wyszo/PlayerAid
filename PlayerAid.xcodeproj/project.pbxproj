@@ -175,6 +175,7 @@
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		6B2F94FCE72A7B5D34DA7035 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BD124536AB076567328F18 /* Pods.framework */; };
 		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
+		6C5AC3692C89ACF336314A7C /* TableViewHeaderTutorialCommentCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC4DE362FE28A7CF33B5 /* TableViewHeaderTutorialCommentCellPresenter.swift */; };
 		6C5AC3954746D912D3140CF4 /* CommentRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */; };
 		6C5AC5E208C8B2C3ADE32C4A /* KeyboardCustomInputAccessoryViewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */; };
 		6C5AC8E1E0F40E3B624B0205 /* CommentsCountLabelFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */; };
@@ -492,6 +493,7 @@
 		6C5AC269E49CBEE874D41CDF /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardCustomInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCustomInputAccessoryViewsManager.m; sourceTree = "<group>"; };
 		6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepliesViewController.swift; sourceTree = "<group>"; };
+		6C5ACC4DE362FE28A7CF33B5 /* TableViewHeaderTutorialCommentCellPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderTutorialCommentCellPresenter.swift; sourceTree = "<group>"; };
 		6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCountLabelFormatter.swift; sourceTree = "<group>"; };
 		6C5ACF0B466B9839EEEEB4E5 /* KeyboardCustomInputAccessoryViewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCustomInputAccessoryViewsManager.h; sourceTree = "<group>"; };
@@ -1997,6 +1999,7 @@
 			isa = PBXGroup;
 			children = (
 				6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */,
+				6C5ACC4DE362FE28A7CF33B5 /* TableViewHeaderTutorialCommentCellPresenter.swift */,
 			);
 			name = CommentReplies;
 			sourceTree = "<group>";
@@ -2340,6 +2343,7 @@
 				6C5ACDD7ACB084EBFF711806 /* DictionaryExtensions.swift in Sources */,
 				6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */,
 				6C5AC3954746D912D3140CF4 /* CommentRepliesViewController.swift in Sources */,
+				6C5AC3692C89ACF336314A7C /* TableViewHeaderTutorialCommentCellPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
