@@ -6,7 +6,7 @@ extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
 @class MakeCommentInputViewController, KeyboardCustomAccessoryInputViewHandler, EditCommentInputViewController;
 
 
-@interface KeyboardCustomInputAccessoryViewsManager : NSObject
+@interface KeyboardMakeEditCommentInputAccessoryViewsManager : NSObject
 
 // TODO: remove those properties from public interface (encapsulate behaviours in necessary methods)
 

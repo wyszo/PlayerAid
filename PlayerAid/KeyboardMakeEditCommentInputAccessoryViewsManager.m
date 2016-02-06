@@ -4,7 +4,7 @@
 
 @import KZAsserts;
 @import TWCommonLib;
-#import "KeyboardCustomInputAccessoryViewsManager.h"
+#import "KeyboardMakeEditCommentInputAccessoryViewsManager.h"
 #import "UsersFetchController.h"
 #import "MakeCommentInputViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
@@ -13,7 +13,7 @@
 const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
 static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 
-@interface KeyboardCustomInputAccessoryViewsManager ()
+@interface KeyboardMakeEditCommentInputAccessoryViewsManager ()
 @property (copy, nonatomic) BoolReturningBlock areCommentsExpanded;
 @property (assign, nonatomic) BOOL isEditViewActive;
 
@@ -24,7 +24,7 @@ static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
 @property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler *editCommentInputViewHandler;
 @end
 
-@implementation KeyboardCustomInputAccessoryViewsManager
+@implementation KeyboardMakeEditCommentInputAccessoryViewsManager
 
 #pragma mark - Init
 

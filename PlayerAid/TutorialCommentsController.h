@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)editComment:(TutorialComment *)comment withText:(NSString *)text completion:(VoidBlockWithError)completion;
 
 - (UIAlertController *)editOrDeleteCommentActionSheet:(TutorialComment *)comment withTableViewCell:(UITableViewCell *)cell editCommentAction:(EditCommentBlock)editCommentAction;
-
 - (UIAlertController *)otherUserCommentAlertController:(TutorialComment *)comment visitProfileAction:(VoidBlock)visitProfileAction;
 
 @end

@@ -16,7 +16,7 @@
 #import "CommentsContainerViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
 #import "TutorialComment.h"
-#import "KeyboardCustomInputAccessoryViewsManager.h"
+#import "KeyboardMakeEditCommentInputAccessoryViewsManager.h"
 #import "EditCommentInputViewController.h"
 #import "PlayerAid-Swift.h"
 
@@ -45,7 +45,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsContainerBottomOffsetConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsBarHeightConstraint;
 
-@property (strong, nonatomic) KeyboardCustomInputAccessoryViewsManager *keyboardInputViewsManager;
+@property (strong, nonatomic) KeyboardMakeEditCommentInputAccessoryViewsManager *keyboardInputViewsManager;
 @end
 
 @implementation TutorialCommentsViewController
@@ -83,7 +83,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 
 - (void)setupKeyboardInputViewsManager {
   defineWeakSelf();
-  self.keyboardInputViewsManager = [[KeyboardCustomInputAccessoryViewsManager alloc] initWithAreCommentsExpandedBlock:^BOOL() {
+  self.keyboardInputViewsManager = [[KeyboardMakeEditCommentInputAccessoryViewsManager alloc] initWithAreCommentsExpandedBlock:^BOOL() {
       return (weakSelf.state == CommentsViewStateExpanded);
   }];
 
