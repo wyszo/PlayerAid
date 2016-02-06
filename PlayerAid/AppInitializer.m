@@ -43,7 +43,10 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
 - (void)initializeFrameworks
 {
+#if DEBUG == 0 // not defined or disabled
   [Fabric with:@[[Crashlytics class]]];
+#endif
+
   [KZPropertyMapper logIgnoredValues:NO];
 }
 
