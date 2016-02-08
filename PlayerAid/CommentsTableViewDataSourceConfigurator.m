@@ -12,6 +12,7 @@
 @interface CommentsTableViewDataSourceConfigurator()
 @property (strong, nonatomic) TWCoreDataTableViewDataSource *dataSource;
 @property (strong, nonatomic) Tutorial *tutorial;
+@property (strong, nonatomic) TutorialComment *comment;
 @property (strong, nonatomic) NSString *cellReuseIdentifier;
 @property (weak, nonatomic) id <NSFetchedResultsControllerDelegate> fetchedResultsControllerDelegate;
 @property (copy, nonatomic) CellWithObjectAtIndexPathBlock configureCellBlock;
@@ -28,6 +29,22 @@
   self = [super init];
   if (self) {
     _tutorial = tutorial;
+    _cellReuseIdentifier = cellReuseIdentifier;
+    _fetchedResultsControllerDelegate = delegate;
+    _configureCellBlock = configureCellBlock;
+    [self setupCommentsTableViewDataSource];
+  }
+  return self;
+}
+
+- (instancetype)initWithComment:(TutorialComment *)comment cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock {
+  AssertTrueOrReturnNil(comment);
+  AssertTrueOrReturnNil(cellReuseIdentifier.length);
+  AssertTrueOrReturnNil(delegate);
+  AssertTrueOrReturnNil(configureCellBlock);
+  self = [super init];
+  if (self) {
+    _comment = comment;
     _cellReuseIdentifier = cellReuseIdentifier;
     _fetchedResultsControllerDelegate = delegate;
     _configureCellBlock = configureCellBlock;
@@ -57,12 +74,22 @@
 
 - (NSFetchRequest *)fetchRequest
 {
-  AssertTrueOrReturnNil(self.tutorial);
+  AssertTrueOrReturnNil(self.tutorial || self.comment);
   
   NSFetchRequest *fetchRequest = [TutorialComment MR_requestAll];
-  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"belongsToTutorial == %@ AND status == %d", self.tutorial, CommentStatusPublished];
+  fetchRequest.predicate = [self predicate];
   fetchRequest.sortDescriptors = [self sortDescriptors];
   return fetchRequest;
+}
+
+- (NSArray *)predicate {
+  AssertTrueOrReturnNil(self.tutorial || self.comment);
+
+  if (self.tutorial) {
+    return [NSPredicate predicateWithFormat:@"belongsToTutorial == %@ AND status == %d", self.tutorial, CommentStatusPublished];
+  }
+  AssertTrueOrReturnNil(self.comment);
+  return [NSPredicate predicateWithFormat:@"isReplyTo == %@ AND status == %d", self.comment, CommentStatusPublished];
 }
 
 - (NSArray *)sortDescriptors

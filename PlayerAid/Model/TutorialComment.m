@@ -25,6 +25,7 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
                             @"author" : KZCall(userFromDictionary:, madeBy),
                             @"upvotes" : KZProperty(likesCount),
                             @"upvotedByUser" : KZProperty(upvotedByUser),
+                            // TODO: parse replies
                            };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];

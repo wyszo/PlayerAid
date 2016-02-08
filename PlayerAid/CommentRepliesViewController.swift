@@ -4,8 +4,13 @@ class CommentRepliesViewController : UIViewController {
 
     private var comment: TutorialComment
     private var commentCell: TutorialCommentCell
+
     private var replyToCommentBarVC: MakeCommentInputViewController
     private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
+
+    private var repliesDataSource: TWCoreDataTableViewDataSource?
+    private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
+    private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -25,10 +30,11 @@ class CommentRepliesViewController : UIViewController {
         comment = tutorialComment
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
         super.init(nibName: nibName, bundle: nibBundleOrNil)
-        setupComponents()
+        setupTableViewCells();
+        setupReplyToCommentBar()
     }
 
-    func setupComponents() {
+    func setupReplyToCommentBar() {
         replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
 
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
@@ -48,12 +54,41 @@ class CommentRepliesViewController : UIViewController {
         }
     }
 
+    func setupTableViewCells() {
+        let cellReuseIdentifier = "commentReplyCell"
+        tableView.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
+    }
+
+    func setupDataSource() {
+        repliesFetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock: {
+            [weak self] (cell, indexPath) in
+                self?.configureCell(cell, object: nil, indexPath: indexPath)
+        })
+        assert(repliesFetchedResultsControllerBinder != nil, "initialisation failed")
+
+        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment, cellReuseIdentifier: cellReuseIdentifier, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
+            [weak self] (cell, object, indexPath) in
+                self?.configureCell(cell, object: object, indexPath: indexPath)
+        })
+        assert(dataSourceConfigurator != nil, "initialisation failed")
+
+        repliesDataSource = dataSourceConfigurator?.dataSource()
+        tableView.dataSource = repliesDataSource
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupDataSource()
         setupNavigationBar()
         setupHeaderViewCell()
         self.replyInputViewHandler?.slideInputViewIn()
+    }
+
+    // MARK: Cell configuration
+
+    private func configureCell(cell: UITableViewCell, object: AnyObject?, indexPath: NSIndexPath) {
+        // TODO: implement this!
     }
 
     // MARK: Private
