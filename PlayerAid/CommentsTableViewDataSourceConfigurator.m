@@ -5,7 +5,7 @@
 @import KZAsserts;
 @import TWCommonLib;
 @import MagicalRecord;
-#import "CommentsTableViewDataSource.h"
+#import "CommentsTableViewDataSourceConfigurator.h"
 #import "Tutorial.h"
 #import "TutorialComment.h"
 

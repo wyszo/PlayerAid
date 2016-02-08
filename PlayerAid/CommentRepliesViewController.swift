@@ -25,11 +25,12 @@ class CommentRepliesViewController : UIViewController {
         comment = tutorialComment
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
         super.init(nibName: nibName, bundle: nibBundleOrNil)
-        setupReplyInputViewHandler()
+        setupComponents()
     }
 
-    func setupReplyInputViewHandler() {
+    func setupComponents() {
         replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
+
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
         replyToCommentBarVC.postButtonPressedBlock = {
             [weak self] (text: String, completion: ((success: Bool) -> Void)) in

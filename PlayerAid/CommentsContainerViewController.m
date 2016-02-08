@@ -6,7 +6,7 @@
 #import "CommentsContainerViewController.h"
 #import "TutorialCommentCell.h"
 #import "CommonViews.h"
-#import "CommentsTableViewDataSource.h"
+#import "CommentsTableViewDataSourceConfigurator.h"
 #import "UsersFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "ApplicationViewHierarchyHelper.h"
