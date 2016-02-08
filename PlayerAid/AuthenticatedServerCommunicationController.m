@@ -11,6 +11,7 @@
 #import "TutorialStep.h"
 #import "NSURL+URLString.h"
 #import "EnvironmentSettings.h"
+#import "PlayerAid-Swift.h"
 
 
 static NSString *const kTutorialUrlString = @"tutorial";

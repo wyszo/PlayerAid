@@ -7,9 +7,10 @@
 #import "TutorialComment.h"
 #import "User.h"
 #import <TWCommonLib/TWCommonTypes.h>
-#import "PlayerAid-swift.h"
 
 typedef void (^NetworkResponseBlock)(NSHTTPURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error);
+
+@class ServerCommunicationController;
 
 NS_ASSUME_NONNULL_BEGIN
 

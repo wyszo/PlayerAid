@@ -39,25 +39,25 @@ class ServerCommunicationController : NSObject {
     });
   }
 
-  // MARK: Comments
+  // MARK: Liking comments
   
   func likeComment(comment: TutorialComment) {
     // POST /comment/{id}/upvote
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "upvote")
     
-    sendPostRequest(urlPath, completion: {
+    sendPostRequest(urlPath, parameters: nil, completion: {
       [weak self] (data, response, error) -> Void in
-        self?.handleTutorialCommentResponse(data, response: response, error: error)
-    });
+        self?.handleResponseContainingTutorialComment(data, response: response, error: error)
+    })
   }
   
   func unlikeComment(comment: TutorialComment) {
     // DELETE /comment/{id}/upvote
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "upvote")
-    sendNetworkRequest(urlPath, httpMethod: .DELETE, parameters: nil, completion:self.handleTutorialCommentResponse);
+    sendNetworkRequest(urlPath, httpMethod: .DELETE, parameters: nil, completion:self.handleResponseContainingTutorialComment);
   }
 
-  func handleTutorialCommentResponse(data: NSData?, response: NSURLResponse?, error: NSError?) {
+  private func handleResponseContainingTutorialComment(data: NSData?, response: NSURLResponse?, error: NSError?) {
     var statusCode = 0
     if let httpResponse = response as? NSHTTPURLResponse {
       statusCode = httpResponse.statusCode
@@ -75,27 +75,40 @@ class ServerCommunicationController : NSObject {
       }
     }
   }
+
+  // MARK: Reply to comment
+
+  func replyToComment(comment: TutorialComment, message: String) { // missing completion block!
+    // POST /comment/{id}/reply
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "reply")
+    let parameters = [ "message" : message]
+
+    sendPostRequest(urlPath, parameters: parameters, completion: {
+      [weak self] (data, response, error) -> Void in
+        // TODO: handle network response here
+    })
+  }
   
   // MARK: Auxiliary path methods
   
-  func commentRelativePathForCommentWithId(commentID: NSNumber, sufix: String) -> String {
+  private func commentRelativePathForCommentWithId(commentID: NSNumber, sufix: String) -> String {
     return "comment/" + commentID.stringValue + "/" + sufix;
   }
   
   // MARK: Generic methods
   
-  func sendPostRequest(relativePath: String, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-    sendNetworkRequest(relativePath, httpMethod: .POST, parameters: nil, completion: completion)
+  private func sendPostRequest(relativePath: String, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    sendNetworkRequest(relativePath, httpMethod: .POST, parameters: parameters, completion: completion)
   }
 
-  func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+  private func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
     let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod, parameters: parameters)
     let session = NSURLSession.sharedSession()
     let task = session.dataTaskWithRequest(request, completionHandler: completion)
     task.resume()
   }
 
-  func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
+  private func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
 

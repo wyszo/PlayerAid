@@ -32,8 +32,11 @@ class CommentRepliesViewController : UIViewController {
         replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
         replyToCommentBarVC.postButtonPressedBlock = {
-            (text: String, completion: ((success: Bool) -> Void)) in
-                // TODO: make a network request with comment reply
+            [weak self] (text: String, completion: ((success: Bool) -> Void)) in
+                if self != nil {
+                    AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(self!.comment, message: text)
+                }
+                // TODO: handle completion block properly!! (see making a root-level comment for a valid sample)
         }
     }
 
