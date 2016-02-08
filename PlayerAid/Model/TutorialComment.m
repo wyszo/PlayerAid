@@ -4,6 +4,7 @@
 @import KZAsserts;
 #import "TutorialComment.h"
 #import "UsersHelper.h"
+#import "TutorialCommentParsingHelper.h"
 
 static NSString *const kCommentServerIDAttributeName = @"id";
 
@@ -25,15 +26,19 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
                             @"author" : KZCall(userFromDictionary:, madeBy),
                             @"upvotes" : KZProperty(likesCount),
                             @"upvotedByUser" : KZProperty(upvotedByUser),
-                            // TODO: parse replies
+                            @"replies" : KZCall(commentRepliesFromDictionariesArray:, hasReplies)
                            };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
 }
 
-- (User *)userFromDictionary:(nonnull NSDictionary *)dictionary
-{
+- (User *)userFromDictionary:(nonnull NSDictionary *)dictionary {
   return [[UsersHelper new] userFromDictionary:dictionary inContext:self.managedObjectContext];
+}
+
+- (NSSet *)commentRepliesFromDictionariesArray:(NSArray *)dictionaries {
+  AssertTrueOrReturnNil(dictionaries);
+  return [[[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:dictionaries inContext:self.managedObjectContext] set];
 }
 
 - (NSNumber *)commentStatusFromObject:(id)object

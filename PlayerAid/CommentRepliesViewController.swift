@@ -2,6 +2,8 @@ import Foundation
 
 class CommentRepliesViewController : UIViewController {
 
+    private let cellReuseIdentifier = "commentReplyCell"
+
     private var comment: TutorialComment
     private var commentCell: TutorialCommentCell
 
@@ -30,7 +32,6 @@ class CommentRepliesViewController : UIViewController {
         comment = tutorialComment
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
         super.init(nibName: nibName, bundle: nibBundleOrNil)
-        setupTableViewCells();
         setupReplyToCommentBar()
     }
 
@@ -55,7 +56,6 @@ class CommentRepliesViewController : UIViewController {
     }
 
     func setupTableViewCells() {
-        let cellReuseIdentifier = "commentReplyCell"
         tableView.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
     }
 
@@ -80,6 +80,7 @@ class CommentRepliesViewController : UIViewController {
         super.viewDidLoad()
 
         setupDataSource()
+        setupTableViewCells();
         setupNavigationBar()
         setupHeaderViewCell()
         self.replyInputViewHandler?.slideInputViewIn()
