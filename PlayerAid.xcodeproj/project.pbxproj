@@ -180,8 +180,6 @@
 		6C5AC5E208C8B2C3ADE32C4A /* KeyboardMakeEditCommentInputAccessoryViewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */; };
 		6C5AC66FE3D8BB7BDC565A90 /* KeyboardInputConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84EEF85E81AA15BEC87 /* KeyboardInputConstants.m */; };
 		6C5AC8E1E0F40E3B624B0205 /* CommentsCountLabelFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */; };
-		6C5ACDD7ACB084EBFF711806 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */; };
-		6C5ACF0754075FA009BA0FF7 /* NSDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC269E49CBEE874D41CDF /* NSDataExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -491,13 +489,11 @@
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5AC21EF4FA8887945A916E /* TutorialCommentsViewController_Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCommentsViewController_Debug.h; sourceTree = "<group>"; };
-		6C5AC269E49CBEE874D41CDF /* NSDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExtensions.swift; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMakeEditCommentInputAccessoryViewsManager.m; sourceTree = "<group>"; };
 		6C5AC74909DA3EFC03DDD702 /* KeyboardInputConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardInputConstants.h; sourceTree = "<group>"; };
 		6C5AC84EEF85E81AA15BEC87 /* KeyboardInputConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardInputConstants.m; sourceTree = "<group>"; };
 		6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepliesViewController.swift; sourceTree = "<group>"; };
 		6C5ACC4DE362FE28A7CF33B5 /* TableViewHeaderTutorialCommentCellPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderTutorialCommentCellPresenter.swift; sourceTree = "<group>"; };
-		6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		6C5ACC950409FD7B236169B3 /* CommentsCountLabelFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCountLabelFormatter.swift; sourceTree = "<group>"; };
 		6C5ACF0B466B9839EEEEB4E5 /* KeyboardMakeEditCommentInputAccessoryViewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardMakeEditCommentInputAccessoryViewsManager.h; sourceTree = "<group>"; };
 		6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryStringBuilder.swift; sourceTree = "<group>"; };
@@ -1502,8 +1498,6 @@
 				31E1E1981AECCB370091ED01 /* NSURL */,
 				31E1E1951AECCB110091ED01 /* UITableView */,
 				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
-				6C5AC269E49CBEE874D41CDF /* NSDataExtensions.swift */,
-				6C5ACC7FBEDBABB66069BB5C /* DictionaryExtensions.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2344,8 +2338,6 @@
 				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
 				6C5AC5E208C8B2C3ADE32C4A /* KeyboardMakeEditCommentInputAccessoryViewsManager.m in Sources */,
 				6C5AC8E1E0F40E3B624B0205 /* CommentsCountLabelFormatter.swift in Sources */,
-				6C5ACF0754075FA009BA0FF7 /* NSDataExtensions.swift in Sources */,
-				6C5ACDD7ACB084EBFF711806 /* DictionaryExtensions.swift in Sources */,
 				6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */,
 				6C5AC3954746D912D3140CF4 /* CommentRepliesViewController.swift in Sources */,
 				6C5AC3692C89ACF336314A7C /* TableViewHeaderTutorialCommentCellPresenter.swift in Sources */,
