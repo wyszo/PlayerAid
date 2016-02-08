@@ -8,7 +8,6 @@
 @import MagicalRecord;
 
 #import <BlocksKit/UIGestureRecognizer+BlocksKit.h>
-#import "TutorialCommentsViewController.h"
 #import "TutorialCommentsViewController_Debug.h"
 #import "ColorsHelper.h"
 #import "TutorialCommentsController.h"
@@ -18,6 +17,7 @@
 #import "TutorialComment.h"
 #import "KeyboardMakeEditCommentInputAccessoryViewsManager.h"
 #import "EditCommentInputViewController.h"
+#import "KeyboardInputConstants.h"
 #import "PlayerAid-Swift.h"
 
 typedef NS_ENUM(NSInteger, CommentsViewState) {

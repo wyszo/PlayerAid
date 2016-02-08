@@ -124,6 +124,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)installInputViewInKeyWindow {
   UIViewController *parentVC = [UIWindow tw_keyWindow].rootViewController;
+  if (parentVC.presentedViewController) {
+    parentVC = parentVC.presentedViewController; // modal view
+  }
+
   AssertTrueOrReturn(parentVC);
   AssertTrueOrReturn(self.inputVC.view.superview == nil);
   

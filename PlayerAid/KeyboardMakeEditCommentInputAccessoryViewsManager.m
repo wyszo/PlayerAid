@@ -9,9 +9,7 @@
 #import "MakeCommentInputViewController.h"
 #import "KeyboardCustomAccessoryInputViewHandler.h"
 #import "EditCommentInputViewController.h"
-
-const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight = 50.0f;
-static CGFloat kKeyboardEditCommentAccessoryInputViewHeight = 70.0f;
+#import "KeyboardInputConstants.h"
 
 @interface KeyboardMakeEditCommentInputAccessoryViewsManager ()
 @property (copy, nonatomic) BoolReturningBlock areCommentsExpanded;

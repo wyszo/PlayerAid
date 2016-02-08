@@ -5,7 +5,7 @@ class CommentRepliesViewController : UIViewController {
     private var comment: TutorialComment
     private var commentCell: TutorialCommentCell
     private var replyToCommentBarVC: MakeCommentInputViewController
-    private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler
+    private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -24,18 +24,20 @@ class CommentRepliesViewController : UIViewController {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
         comment = tutorialComment
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
-        replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: replyToCommentBarVC, desiredInputViewHeight: 200) // TODO: set real desired height!
         super.init(nibName: nibName, bundle: nibBundleOrNil)
+        setupReplyInputViewHandler()
+    }
+
+    func setupReplyInputViewHandler() {
+        replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupNavigationBar()
         setupHeaderViewCell()
-
-        DispatchAfter(2.0) {
-            self.replyInputViewHandler.slideInputViewIn()
-        }
+        self.replyInputViewHandler?.slideInputViewIn()
     }
 
     // MARK: Private
@@ -49,7 +51,7 @@ class CommentRepliesViewController : UIViewController {
         TableViewHeaderTutorialCommentCellPresenter().installTutorialCommentCell(commentCell, withTutorialComment: comment, inTableView: tableView)
     }
 
-    private func backButtonAction() {
+    func backButtonAction() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

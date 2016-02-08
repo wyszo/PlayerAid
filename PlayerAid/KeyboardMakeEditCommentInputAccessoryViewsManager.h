@@ -1,8 +1,6 @@
 @import Foundation;
 @import TWCommonLib;
 
-extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
-
 @class MakeCommentInputViewController, KeyboardCustomAccessoryInputViewHandler, EditCommentInputViewController;
 
 
