@@ -1,4 +1,5 @@
 import Foundation
+import TWCommonLib
 
 struct HTTPStatusCodes {
   static let success = 200
@@ -78,15 +79,17 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Reply to comment
 
-  func replyToComment(comment: TutorialComment, message: String) { // missing completion block!
+  func replyToComment(comment: TutorialComment, message: String, completion: (response: [NSObject : AnyObject]?, success: Bool) -> Void) {
     // POST /comment/{id}/reply
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "reply")
     let parameters = [ "message" : message]
 
-    sendPostRequest(urlPath, parameters: parameters, completion: {
-      [weak self] (data, response, error) -> Void in
-        // TODO: handle network response here
-    })
+    sendPostRequest(urlPath, parameters: parameters) {
+      (data, response, error) -> Void in
+        let success = (error == nil)
+        let jsonResponse = try? data?.jsonDictionary()
+        completion(response: jsonResponse ?? nil, success: success)
+    }
   }
   
   // MARK: Auxiliary path methods

@@ -83,6 +83,10 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   self.inputTextView.placeholder = placeholder;
 }
 
+- (void)clearInputTextView {
+  self.inputTextView.text = @"";
+}
+
 #pragma mark - Dismissing keyboard
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
@@ -184,11 +188,6 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 }
 
 #pragma mark - Private
-
-- (void)clearInputTextView
-{
-  self.inputTextView.text = @"";
-}
 
 - (NSString *)trimmedCommentText
 {

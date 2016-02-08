@@ -91,7 +91,7 @@
   defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance] addAComment:text toTutorial:self.tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
-      [AlertFactory showGenericErrorAlertView];
+      [AlertFactory showGenericErrorAlertViewNoRetry];
       BOOL success = false;
       CallBlock(completion, success);
     } else {

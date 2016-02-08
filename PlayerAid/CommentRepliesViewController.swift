@@ -33,10 +33,21 @@ class CommentRepliesViewController : UIViewController {
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
         replyToCommentBarVC.postButtonPressedBlock = {
             [weak self] (text: String, completion: ((success: Bool) -> Void)) in
-                if self != nil {
-                    AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(self!.comment, message: text)
+                if self == nil { return }
+
+                AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(self!.comment, message: text) {
+                    (response: [NSObject : AnyObject]?, success: Bool) -> Void in
+                        if success == false {
+                            AlertFactory.showGenericErrorAlertViewNoRetry()
+                        } else {
+                            self.replyToCommentBarVC.clearInputTextView()
+
+                            if let jsonResponse = response {
+                                // TODO: parse and save server response (updated comment object with replies)
+                                // CoreData, updateComment (from dictionary): jsonResponse
+                            }
+                        }
                 }
-                // TODO: handle completion block properly!! (see making a root-level comment for a valid sample)
         }
     }
 

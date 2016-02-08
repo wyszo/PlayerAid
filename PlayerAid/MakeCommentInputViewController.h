@@ -22,6 +22,7 @@ NEW_AND_INIT_UNAVAILABLE
 - (BOOL)isInputTextViewFirstResponder;
 - (void)hideKeyboard;
 - (void)setCustomPlaceholder:(NSString *)placeholder;
+- (void)clearInputTextView;
 
 @end
 
