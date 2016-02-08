@@ -13,3 +13,4 @@
 #import "KeyboardInputConstants.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "CommentsTableViewDataSourceConfigurator.h"
+#import "ColorsHelper.h"

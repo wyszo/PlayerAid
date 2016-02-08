@@ -55,8 +55,9 @@ class CommentRepliesViewController : UIViewController {
         }
     }
 
-    func setupTableViewCells() {
+    func setupTableView() {
         tableView.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.separatorColor = ColorsHelper.commentRepliesSeparatorColor()
     }
 
     func setupDataSource() {
@@ -80,7 +81,7 @@ class CommentRepliesViewController : UIViewController {
         super.viewDidLoad()
 
         setupDataSource()
-        setupTableViewCells();
+        setupTableView();
         setupNavigationBar()
         setupHeaderViewCell()
         self.replyInputViewHandler?.slideInputViewIn()
@@ -89,7 +90,12 @@ class CommentRepliesViewController : UIViewController {
     // MARK: Cell configuration
 
     private func configureCell(cell: UITableViewCell, object: AnyObject?, indexPath: NSIndexPath) {
-        // TODO: implement this!
+        assert(cell is TutorialCommentCell);
+
+        if let commentCell = cell as? TutorialCommentCell {
+            commentCell.replyButtonHidden = true
+            commentCell.backgroundColor = ColorsHelper.commentReplyBackgroundColor()
+        }
     }
 
     // MARK: Private

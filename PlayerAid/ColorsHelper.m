@@ -41,6 +41,8 @@ UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
 
 UIColorFromHexMethodMake(commentLabelTextColor, kCommentDarkGrey)
 UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139)
+UIColorMethodMake(commentReplyBackgroundColor, 247, 248, 250)
+UIColorMethodMake(commentRepliesSeparatorColor, 236, 237, 237)
 
 UIColorMethodMake(editedCommentTableViewCellBackgroundColor, 255, 255, 223)
 UIColorMethodMake(editedCommentKeyboardInputViewInputTextViewBorderColor, 233, 233, 233)

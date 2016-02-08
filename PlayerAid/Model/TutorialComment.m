@@ -71,8 +71,7 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
 
 #pragma mark - Instance methods
 
-- (BOOL)isCommentDeleted
-{
+- (BOOL)isCommentDeleted {
   return [self.status isEqualToNumber:@(CommentStatusDeleted)];
 }
 

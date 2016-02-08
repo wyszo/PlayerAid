@@ -30,6 +30,8 @@
 + (UIColor *)tutorialCommentsBarBackgroundColor;
 + (UIColor *)commentLabelTextColor;
 + (UIColor *)commentsTimeAgoLabelColor;
++ (UIColor *)commentReplyBackgroundColor;
++ (UIColor *)commentRepliesSeparatorColor;
 
 + (UIColor *)editedCommentTableViewCellBackgroundColor;
 + (UIColor *)editedCommentKeyboardInputViewInputTextViewBorderColor;
