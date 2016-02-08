@@ -31,6 +31,10 @@ class CommentRepliesViewController : UIViewController {
     func setupReplyInputViewHandler() {
         replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
+        replyToCommentBarVC.postButtonPressedBlock = {
+            (text: String, completion: ((success: Bool) -> Void)) in
+                // TODO: make a network request with comment reply
+        }
     }
 
     override func viewDidLoad() {
