@@ -79,7 +79,7 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Reply to comment
 
-  func replyToComment(comment: TutorialComment, message: String, completion: (response: [NSObject : AnyObject]?, success: Bool) -> Void) {
+  func replyToComment(comment: TutorialComment, message: String, completion: (success: Bool) -> Void) {
     // POST /comment/{id}/reply
     let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "reply")
     let parameters = [ "message" : message]
@@ -87,8 +87,10 @@ class ServerCommunicationController : NSObject {
     sendPostRequest(urlPath, parameters: parameters) {
       (data, response, error) -> Void in
         let success = (error == nil)
-        let jsonResponse = try? data?.jsonDictionary()
-        completion(response: jsonResponse ?? nil, success: success)
+        if let jsonResponse = try? data?.jsonDictionary() {
+          TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
+        }
+        completion(success: success)
     }
   }
   

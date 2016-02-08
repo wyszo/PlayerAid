@@ -36,16 +36,12 @@ class CommentRepliesViewController : UIViewController {
                 if self == nil { return }
 
                 AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(self!.comment, message: text) {
-                    (response: [NSObject : AnyObject]?, success: Bool) -> Void in
-                        if success == false {
-                            AlertFactory.showGenericErrorAlertViewNoRetry()
-                        } else {
-                            self.replyToCommentBarVC.clearInputTextView()
-
-                            if let jsonResponse = response {
-                                // TODO: parse and save server response (updated comment object with replies)
-                                // CoreData, updateComment (from dictionary): jsonResponse
+                    (success: Bool) -> Void in
+                        DispatchSyncOnMainThread {
+                            if success == false {
+                                AlertFactory.showGenericErrorAlertViewNoRetry()
                             }
+                            completion(success: success)
                         }
                 }
         }
