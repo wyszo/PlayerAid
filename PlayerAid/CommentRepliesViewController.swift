@@ -58,6 +58,8 @@ class CommentRepliesViewController : UIViewController {
     func setupTableView() {
         tableView.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorColor = ColorsHelper.commentRepliesSeparatorColor()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
     }
 
     func setupDataSource() {
