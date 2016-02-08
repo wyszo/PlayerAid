@@ -79,6 +79,10 @@ static NSString *const kSendingACommentKey = @"SendingComment";
   [self.inputTextView resignFirstResponder];
 }
 
+- (void)setCustomPlaceholder:(NSString *)placeholder {
+  self.inputTextView.placeholder = placeholder;
+}
+
 #pragma mark - Dismissing keyboard
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
