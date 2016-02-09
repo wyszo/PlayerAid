@@ -188,8 +188,10 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
     if (indexPath.row == indexPath.section == 0 && !alreadyPushed) {
       DISPATCH_AFTER(0.5, ^{
           // present Comment Replies window
-          commentCell.didPressReplyButtonBlock(comment);
+        if (!alreadyPushed) {
           alreadyPushed = YES;
+          commentCell.didPressReplyButtonBlock(comment);
+        }
       });
     }
   }
