@@ -134,6 +134,8 @@ class ServerCommunicationController : NSObject {
 
     if let validParameters = parameters {
       if httpMethod == .POST {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         if let validData = try? validParameters.jsonEncodedData() {
           request.HTTPBody = validData
         }
