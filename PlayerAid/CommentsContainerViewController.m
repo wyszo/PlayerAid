@@ -8,11 +8,9 @@
 #import "CommonViews.h"
 #import "CommentsTableViewDataSourceConfigurator.h"
 #import "UsersFetchController.h"
-#import "AuthenticatedServerCommunicationController.h"
 #import "ApplicationViewHierarchyHelper.h"
-#import "NavigationControllerWhiteStatusbar.h"
-#import "PlayerAid-Swift.h"
 #import "DebugSettings.h"
+#import "PlayerAid-Swift.h"
 
 static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
 static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
@@ -163,34 +161,24 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   
   AssertTrueOrReturn([cell isKindOfClass:[TutorialCommentCell class]]);
   TutorialCommentCell *commentCell = (TutorialCommentCell *)cell;
-  
-  defineWeakSelf();
-  commentCell.willChangeCellHeightBlock = ^() {
-    [weakSelf.commentsTableView beginUpdates];
-  };
-  commentCell.didChangeCellHeightBlock = ^() {
-    [weakSelf.commentsTableView endUpdates];
-  };
-  commentCell.likeButtonPressedBlock = ^(TutorialComment *comment) {
-    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController likeComment:comment];
-  };
-  commentCell.unlikeButtonPressedBlock = ^(TutorialComment *comment) {
-    [AuthenticatedServerCommunicationController.sharedInstance.serverCommunicationController unlikeComment:comment];
-  };
-  commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
-    [weakSelf pushUserProfileLinkedToTutorialComment:comment];
-  };
-  commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
-      [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
-  };
 
   if (!object) {
     object = [self.dataSource objectAtIndexPath:indexPath];
   }
   AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
   TutorialComment *comment = (TutorialComment *)object;
+
+  TutorialCommentCellConfigurator *configurator = [TutorialCommentCellConfigurator new];
+  [configurator configureCell:commentCell inTableView:self.commentsTableView comment:comment];
+
+  defineWeakSelf();
+  commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
+    [weakSelf pushUserProfileLinkedToTutorialComment:comment];
+  };
+  commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
+      [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
+  };
   
-  [commentCell configureWithTutorialComment:comment];
   [self updateCellHighlight:commentCell forComment:comment];
 
   if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {

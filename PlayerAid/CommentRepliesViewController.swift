@@ -98,32 +98,15 @@ class CommentRepliesViewController : UIViewController {
             commentCell.replyButtonHidden = true
             commentCell.backgroundColor = ColorsHelper.commentReplyBackgroundColor()
 
-            commentCell.willChangeCellHeightBlock = {
-                [weak self] in
-                    self?.tableView.beginUpdates()
+            guard let comment = self.repliesDataSource?.objectAtIndexPath(indexPath) as? TutorialComment else {
+                assert(false, "internal error")
             }
-            commentCell.didChangeCellHeightBlock = {
-                [weak self] in
-                    self?.tableView.endUpdates()
-            }
-            // TODO: like, unlike setup is a repetition (see CommentsContainerViewController), introduce TutorialCellConfigurator to remove code duplication
-            commentCell.likeButtonPressedBlock = {
-                comment in
-                    AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.likeComment(comment)
-            }
-            commentCell.unlikeButtonPressedBlock = {
-                comment in
-                    AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.unlikeComment(comment)
-            }
+            TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView, comment: comment)
+
             commentCell.didPressUserAvatarOrName = {
                 comment in // [weak self]
                     // self.pushUserProfileLinkedToTutorialComment(comment)
             }
-
-            guard let comment = self.repliesDataSource?.objectAtIndexPath(indexPath) as? TutorialComment else {
-                assert(false, "internal error")
-            }
-            commentCell.configureWithTutorialComment(comment)
         }
     }
 
