@@ -167,7 +167,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   }
   AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
   TutorialComment *comment = (TutorialComment *)object;
-
+  
   TutorialCommentCellConfigurator *configurator = [TutorialCommentCellConfigurator new];
   [configurator configureCell:commentCell inTableView:self.commentsTableView comment:comment];
 
@@ -175,6 +175,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
     [weakSelf pushUserProfileLinkedToTutorialComment:comment];
   };
+ 
   commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
       [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
   };
@@ -182,10 +183,13 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   [self updateCellHighlight:commentCell forComment:comment];
 
   if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
-    if (indexPath.row == indexPath.section == 0) {
+    static BOOL alreadyPushed = NO;
+    
+    if (indexPath.row == indexPath.section == 0 && !alreadyPushed) {
       DISPATCH_AFTER(0.5, ^{
           // present Comment Replies window
           commentCell.didPressReplyButtonBlock(comment);
+          alreadyPushed = YES;
       });
     }
   }
