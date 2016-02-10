@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="199.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2m-fC-lZp" userLabel="AvatarButton">
-                        <rect key="frame" x="-0.5" y="-1" width="50" height="50"/>
+                        <rect key="frame" x="-1" y="-1" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="47r-8w-ZjP"/>
                             <constraint firstAttribute="height" constant="50" id="ahe-eD-Xms"/>
@@ -49,7 +49,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="48" y="33" width="256" height="120.5"/>
+                        <rect key="frame" x="48" y="33" width="256" height="121"/>
                         <attributedString key="attributedText">
                             <fragment>
                                 <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
@@ -63,14 +63,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
-                        <rect key="frame" x="48" y="165.5" width="203" height="24"/>
+                        <rect key="frame" x="48" y="166" width="203" height="24"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="48" y="156.5" width="24" height="8"/>
+                        <rect key="frame" x="48" y="157" width="24" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                             <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -81,7 +81,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
-                        <rect key="frame" x="259" y="167.5" width="65" height="32"/>
+                        <rect key="frame" x="259" y="168" width="65" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
                             <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
@@ -122,6 +122,7 @@
             <connections>
                 <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>
                 <outlet property="avatarImageView" destination="wYM-dQ-F5j" id="QrU-tr-sUi"/>
+                <outlet property="avatarImageViewWidthConstraint" destination="VEV-CG-6XX" id="sbg-tR-Uqr"/>
                 <outlet property="commentBottomBar" destination="1vq-fq-GWQ" id="DcU-9i-clE"/>
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>

@@ -33,7 +33,9 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (strong, nonatomic) TutorialComment *comment;
 @property (strong, nonatomic) UIColor *defaultBackgroundColor;
 @property (assign, nonatomic) BOOL expanded;
+@property (nonatomic, readwrite) BOOL isCommentReplyCell;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoBarToMoreButtonDistanceConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
 
@@ -61,6 +63,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.moreButton.hidden = NO;
   self.expanded = NO;
   self.replyButtonHidden = NO;
+  self.isCommentReplyCell = NO;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
@@ -76,12 +79,15 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 - (void)configureWithTutorialComment:(TutorialComment *)comment {
   AssertTrueOrReturn(comment);
   _comment = comment;
+
+  self.isCommentReplyCell = (comment.isReplyTo != nil);
   User *commentAuthor = comment.madeBy;
   
   self.authorLabel.text = commentAuthor.name;
   self.commentLabel.text = comment.text;
   [self configureBottomBarWithTutorialComment:comment];
   
+  [self updateCellStyling];
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
 
@@ -172,6 +178,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 - (void)hideMoreButton {
   self.moreButton.hidden = YES;
   [self shrinkMoreButtonHeight];
+}
+
+- (void)updateCellStyling {
+  CGFloat avatarEdgeLength = 32.0;
+  
+  if (self.isCommentReplyCell) {
+    avatarEdgeLength = 22.0;
+  }
+  self.avatarImageViewWidthConstraint.constant = avatarEdgeLength;
+  [self layoutIfNeeded]; // required to recalculate frame before updating corner radius
+  
+  [self.avatarImageView makeCircularSetAspectFit];
 }
 
 #pragma mark - Constraints manipulation - elements spacing
