@@ -13,9 +13,15 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mG-d1-jyc" userLabel="MarginView">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="width" id="iJO-rJ-YiF"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
                         <rect key="frame" x="8" y="8" width="32" height="32"/>
                         <constraints>
@@ -109,7 +115,11 @@
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstItem="hZj-1V-Mew" firstAttribute="leading" secondItem="1vq-fq-GWQ" secondAttribute="trailing" constant="8" id="daN-3F-Qpr"/>
+                    <constraint firstAttribute="bottom" secondItem="5mG-d1-jyc" secondAttribute="bottom" id="ewt-SC-8QR"/>
+                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="5mG-d1-jyc" secondAttribute="trailing" constant="8" id="f4d-pY-0S6"/>
+                    <constraint firstItem="5mG-d1-jyc" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="fXG-gc-BA3"/>
                     <constraint firstAttribute="trailing" secondItem="hZj-1V-Mew" secondAttribute="trailing" id="h67-aV-rz8"/>
+                    <constraint firstItem="5mG-d1-jyc" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" id="imy-CQ-mmV"/>
                     <constraint firstItem="kYH-jr-cnx" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="4" id="jrM-DT-S9B"/>
                     <constraint firstItem="1vq-fq-GWQ" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="kLz-or-tGx"/>
                     <constraint firstAttribute="bottom" secondItem="1vq-fq-GWQ" secondAttribute="bottom" constant="10" id="kbB-eZ-G0i"/>
@@ -118,6 +128,11 @@
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="cmd-0h-mAe"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>
@@ -125,6 +140,7 @@
                 <outlet property="avatarImageViewWidthConstraint" destination="VEV-CG-6XX" id="sbg-tR-Uqr"/>
                 <outlet property="commentBottomBar" destination="1vq-fq-GWQ" id="DcU-9i-clE"/>
                 <outlet property="commentLabel" destination="OZa-Sb-n3z" id="4cc-Ze-Tuz"/>
+                <outlet property="leftMarginWidthConstraint" destination="iJO-rJ-YiF" id="AIH-OA-DbD"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
                 <outlet property="replyButton" destination="hZj-1V-Mew" id="BK0-Dm-LHH"/>

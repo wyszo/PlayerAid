@@ -36,6 +36,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (nonatomic, readwrite) BOOL isCommentReplyCell;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeAgoBarToMoreButtonDistanceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarImageViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
 @end
 
@@ -181,15 +182,30 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (void)updateCellStyling {
+  [self updateAvatarSize];
+  [self updateLeftMarginWidth];
+  [self layoutIfNeeded];
+}
+
+- (void)updateAvatarSize {
   CGFloat avatarEdgeLength = 32.0;
   
   if (self.isCommentReplyCell) {
-    avatarEdgeLength = 22.0;
+    avatarEdgeLength = 26.0;
   }
   self.avatarImageViewWidthConstraint.constant = avatarEdgeLength;
   [self layoutIfNeeded]; // required to recalculate frame before updating corner radius
   
   [self.avatarImageView makeCircularSetAspectFit];
+}
+
+- (void)updateLeftMarginWidth {
+  CGFloat margin = 0;
+  
+  if (self.isCommentReplyCell) {
+    margin = 38.0;
+  }
+  self.leftMarginWidthConstraint.constant = margin;
 }
 
 #pragma mark - Constraints manipulation - elements spacing
