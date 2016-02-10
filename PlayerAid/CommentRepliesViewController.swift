@@ -1,12 +1,21 @@
 import Foundation
+import MagicalRecord
 
 class CommentRepliesViewController : UIViewController {
 
     private let cellReuseIdentifier = "commentReplyCell"
 
-    private var comment: TutorialComment
     private var commentCell: TutorialCommentCell
-
+    private var commentID: String
+  
+    private var commentObjectFetchHelper: TWSingleCoreDataObjectFetchHelper<TutorialComment>?
+    private var comment: TutorialComment?
+    {
+        get {
+            return commentObjectFetchHelper?.managedObject
+        }
+    }
+  
     private var replyToCommentBarVC: MakeCommentInputViewController
     private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
 
@@ -18,20 +27,25 @@ class CommentRepliesViewController : UIViewController {
 
     // MARK: Init
 
-    convenience init(tutorialComment: TutorialComment) {
-        self.init(nibName:"CommentRepliesView", bundle: nil, comment: tutorialComment)
+    convenience init(commentID: String) {
+        self.init(nibName:"CommentRepliesView", bundle: nil, commentID: commentID)
     }
 
     required init?(coder aDecoder: NSCoder!) {
         fatalError("Don't use this initializer")
         return nil
     }
-
-    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, comment tutorialComment: TutorialComment) {
+  
+    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, commentID: String) {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
-        comment = tutorialComment
+        self.commentID = commentID
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
         super.init(nibName: nibName, bundle: nibBundleOrNil)
+      
+        commentObjectFetchHelper = TWSingleCoreDataObjectFetchHelper(objectIdPropertyName: "serverID", objectID: commentID, objectChanged: {
+          [weak self] in
+            self?.setupHeaderViewCell()
+        })
         setupReplyToCommentBar()
     }
 
@@ -42,8 +56,10 @@ class CommentRepliesViewController : UIViewController {
         replyToCommentBarVC.postButtonPressedBlock = {
             [weak self] (text: String, completion: ((success: Bool) -> Void)) in
                 if self == nil { return }
+                let comment = self?.comment
+                assert(comment != nil)
 
-                AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(self!.comment, message: text) {
+                AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.replyToComment(comment!, message: text) {
                     (success: Bool) -> Void in
                         DispatchSyncOnMainThread {
                             if success == false {
@@ -67,13 +83,14 @@ class CommentRepliesViewController : UIViewController {
             [weak self] (cell, indexPath) in
                 self?.configureCell(cell, object: nil, indexPath: indexPath)
         })
-        assert(repliesFetchedResultsControllerBinder != nil, "initialisation failed")
+        assert(repliesFetchedResultsControllerBinder != nil)
+        assert(comment != nil)
 
-        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment, cellReuseIdentifier: cellReuseIdentifier, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
+        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
             [weak self] (cell, object, indexPath) in
                 self?.configureCell(cell, object: object, indexPath: indexPath)
         })
-        assert(dataSourceConfigurator != nil, "initialisation failed")
+        assert(dataSourceConfigurator != nil)
 
         repliesDataSource = dataSourceConfigurator?.dataSource()
         tableView.dataSource = repliesDataSource
@@ -83,10 +100,10 @@ class CommentRepliesViewController : UIViewController {
         super.viewDidLoad()
 
         setupDataSource()
-        setupTableView();
+        setupTableView()
         setupNavigationBar()
         setupHeaderViewCell()
-        self.replyInputViewHandler?.slideInputViewIn()
+        replyInputViewHandler?.slideInputViewIn()
     }
 
     // MARK: Cell configuration
@@ -118,7 +135,8 @@ class CommentRepliesViewController : UIViewController {
     }
 
     private func setupHeaderViewCell() {
-        TableViewHeaderTutorialCommentCellPresenter().installTutorialCommentCell(commentCell, withTutorialComment: comment, inTableView: tableView)
+        assert(self.comment != nil)
+        TableViewHeaderTutorialCommentCellPresenter().installTutorialCommentCell(commentCell, withTutorialComment: self.comment!, inTableView: tableView)
     }
 
     func backButtonAction() {

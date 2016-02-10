@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "PlayerAid-Swift.h"
+#import "TutorialComment.h"
 
 @implementation ApplicationViewHierarchyHelper
 
@@ -67,15 +68,18 @@
   AssertTrueOrReturnNil(navigationController);
   
   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
+  [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:NULL];
   
   return navigationController.topViewController;
 }
 
 + (UIViewController *)presentModalCommentReplies:(TutorialComment *)comment fromViewController:(UIViewController *)presentingViewController {
-  CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithTutorialComment:comment];
+  AssertTrueOrReturnNil(comment);
+  AssertTrueOrReturnNil(presentingViewController);
+  
+  CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithCommentID:[comment.serverID stringValue]];
   UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
-  [presentingViewController presentViewController:navigationController animated:YES completion:nil];
+  [presentingViewController presentViewController:navigationController animated:YES completion:NULL];
 
   return commentRepliesVC;
 }
