@@ -91,8 +91,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateCellStyling];
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
-
-  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {
@@ -210,6 +208,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 #pragma mark - Constraints manipulation - elements spacing
 
+/** Watch out when executing this method invoking callback - if you call didChangeCellHeight block, you must 
+ * have called willChangeCellHeight first - otherwise it might crash */
 - (void)updateElementsSpacingConstraintsInvokingHeightChangeCallback:(BOOL)heightChangeCallback {
   if ([self isExpanded]) {
     [self shrinkTimeAgoToMoreButtonDistance]; // when cell is expanded the distance is smaller (because '...' button is not there anymore)
