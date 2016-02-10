@@ -91,6 +91,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateCellStyling];
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
+  
+  // update UI to reflect compressed constraints change
+  CallBlock(self.willChangeCellHeightBlock);
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {
