@@ -82,7 +82,7 @@
   return fetchRequest;
 }
 
-- (NSArray *)predicate {
+- (NSPredicate *)predicate {
   AssertTrueOrReturnNil(self.tutorial || self.comment);
 
   if (self.tutorial) {
