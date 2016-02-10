@@ -118,6 +118,7 @@ class CommentRepliesViewController : UIViewController {
 
             guard let comment = self.repliesDataSource?.objectAtIndexPath(indexPath) as? TutorialComment else {
                 assert(false, "internal error")
+                return
             }
             TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView, comment: comment)
 
