@@ -130,7 +130,9 @@ class CommentRepliesViewController : UIViewController {
     // MARK: Private
 
     private func setupNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<    ", style: .Plain, target: self, action: "backButtonAction")
+        let backButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_arrow"), style: .Plain, target: self, action: "backButtonAction")
+        self.navigationItem.leftBarButtonItem = backButton
+        
         self.title = "Reply to Comment"
     }
 

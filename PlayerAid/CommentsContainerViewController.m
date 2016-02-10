@@ -1,6 +1,5 @@
 @import KZAsserts;
 @import CoreData;
-@import MagicalRecord;
 @import TWCommonLib;
 @import BlocksKit;
 #import "CommentsContainerViewController.h"
