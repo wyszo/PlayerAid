@@ -40,7 +40,7 @@ class ServerCommunicationController : NSObject {
     });
   }
 
-  // MARK: Liking comments
+  // MARK: (un)liking comments
   
   func likeComment(comment: TutorialComment) {
     // POST /comment/{id}/upvote
@@ -58,26 +58,7 @@ class ServerCommunicationController : NSObject {
     sendNetworkRequest(urlPath, httpMethod: .DELETE, parameters: nil, completion:self.handleResponseContainingTutorialComment);
   }
 
-  private func handleResponseContainingTutorialComment(data: NSData?, response: NSURLResponse?, error: NSError?) {
-    var statusCode = 0
-    if let httpResponse = response as? NSHTTPURLResponse {
-      statusCode = httpResponse.statusCode
-    }
-
-    if error != nil || statusCode != HTTPStatusCodes.success {
-      dispatch_async(dispatch_get_main_queue(), {
-        AlertFactory.showGenericErrorAlertViewNoRetry()
-      })
-    } else {
-      if let jsonResponse = try? data?.jsonDictionary() {
-        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
-      } else {
-        assertionFailure("Unexpected response!")
-      }
-    }
-  }
-
-  // MARK: Reply to comment
+  // MARK: Replying and refreshing comment replies
 
   func replyToComment(comment: TutorialComment, message: String, completion: (success: Bool) -> Void) {
     // POST /comment/{id}/reply
@@ -91,6 +72,33 @@ class ServerCommunicationController : NSObject {
           TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
         }
         completion(success: success)
+    }
+  }
+  
+  func getCommentAndCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
+    // GET /comment/{id}
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "")
+    sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil, completion: self.handleResponseContainingTutorialComment);
+  }
+  
+  // MARK: Handling comments parsing
+  
+  private func handleResponseContainingTutorialComment(data: NSData?, response: NSURLResponse?, error: NSError?) {
+    var statusCode = 0
+    if let httpResponse = response as? NSHTTPURLResponse {
+      statusCode = httpResponse.statusCode
+    }
+    
+    if error != nil || statusCode != HTTPStatusCodes.success {
+      dispatch_async(dispatch_get_main_queue(), {
+        AlertFactory.showGenericErrorAlertViewNoRetry()
+      })
+    } else {
+      if let jsonResponse = try? data?.jsonDictionary() {
+        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
+      } else {
+        assertionFailure("Unexpected response!")
+      }
     }
   }
   
