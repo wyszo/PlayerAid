@@ -75,9 +75,9 @@ class ServerCommunicationController : NSObject {
     }
   }
   
-  func getCommentAndCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
+  func refreshCommentAndCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
     // GET /comment/{id}
-    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "")
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: nil)
     sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil, completion: self.handleResponseContainingTutorialComment);
   }
   
@@ -104,8 +104,12 @@ class ServerCommunicationController : NSObject {
   
   // MARK: Auxiliary path methods
   
-  private func commentRelativePathForCommentWithId(commentID: NSNumber, sufix: String) -> String {
-    return "comment/" + commentID.stringValue + "/" + sufix;
+  private func commentRelativePathForCommentWithId(commentID: NSNumber, sufix: String?) -> String {
+    var path = "comment/" + commentID.stringValue
+    if sufix != nil && sufix?.characters.count > 0 {
+      path = path + "/" + sufix!
+    }
+    return path
   }
   
   // MARK: Generic methods

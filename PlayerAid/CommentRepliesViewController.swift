@@ -104,6 +104,7 @@ class CommentRepliesViewController : UIViewController {
         setupNavigationBar()
         setupHeaderViewCell()
         replyInputViewHandler?.slideInputViewIn()
+        refreshCommentAndReplies()
     }
 
     // MARK: Cell configuration
@@ -129,6 +130,16 @@ class CommentRepliesViewController : UIViewController {
 
     // MARK: Private
 
+    private func refreshCommentAndReplies() {
+      assert(self.comment != nil);
+      AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.refreshCommentAndCommentReplies(self.comment!) {
+        (success) -> Void in
+        if success == false {
+          AlertFactory.showGenericErrorAlertViewNoRetry()
+        }
+      }
+    }
+  
     private func setupNavigationBar() {
         let backButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_arrow"), style: .Plain, target: self, action: "backButtonAction")
         self.navigationItem.leftBarButtonItem = backButton
