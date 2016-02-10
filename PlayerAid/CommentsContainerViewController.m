@@ -183,8 +183,9 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 
   if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
     static BOOL alreadyPushed = NO;
+    NSInteger lastRow = (NSInteger)(MAX(self.dataSource.objectCount - 1, 0));
     
-    if (indexPath.row == indexPath.section == 0 && !alreadyPushed) {
+    if (indexPath.section == 0 && indexPath.row == lastRow && !alreadyPushed) {
       DISPATCH_AFTER(0.5, ^{
           // present Comment Replies window
         if (!alreadyPushed) {
