@@ -6,7 +6,7 @@ class CommentRepliesViewController : UIViewController {
     private let cellReuseIdentifier = "commentReplyCell"
 
     private var commentCell: TutorialCommentCell
-    private var commentID: String
+    private var commentID: Int
   
     private var commentObjectFetchHelper: TWSingleCoreDataObjectFetchHelper<TutorialComment>?
     private var comment: TutorialComment?
@@ -27,7 +27,7 @@ class CommentRepliesViewController : UIViewController {
 
     // MARK: Init
 
-    convenience init(commentID: String) {
+    convenience init(commentID: Int) {
         self.init(nibName:"CommentRepliesView", bundle: nil, commentID: commentID)
     }
 
@@ -36,7 +36,7 @@ class CommentRepliesViewController : UIViewController {
         return nil
     }
   
-    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, commentID: String) {
+    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, commentID: Int) {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
         self.commentID = commentID
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())

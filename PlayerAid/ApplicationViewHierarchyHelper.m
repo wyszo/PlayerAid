@@ -77,7 +77,7 @@
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(presentingViewController);
   
-  CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithCommentID:[comment.serverID stringValue]];
+  CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithCommentID:[comment.serverID integerValue]];
   UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
   [presentingViewController presentViewController:navigationController animated:YES completion:NULL];
 
