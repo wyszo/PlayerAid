@@ -75,9 +75,9 @@ class ServerCommunicationController : NSObject {
     }
   }
   
-  func refreshCommentAndCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
-    // GET /comment/{id}
-    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: nil)
+  func fetchCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
+    // GET /comment/{id}/replies
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "replies")
     sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil, completion: self.handleResponseContainingTutorialComment);
   }
   
