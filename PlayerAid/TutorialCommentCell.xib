@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDA-qc-dQS" id="ak2-qa-ad3">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mG-d1-jyc" userLabel="MarginView">
@@ -113,7 +113,6 @@
                     <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="U2E-Ht-bxx"/>
                     <constraint firstItem="2ak-KO-H2a" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="bOo-v6-Ia9"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
-                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" constant="8" id="cmd-0h-mAe"/>
                     <constraint firstItem="hZj-1V-Mew" firstAttribute="leading" secondItem="1vq-fq-GWQ" secondAttribute="trailing" constant="8" id="daN-3F-Qpr"/>
                     <constraint firstAttribute="bottom" secondItem="5mG-d1-jyc" secondAttribute="bottom" id="ewt-SC-8QR"/>
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="5mG-d1-jyc" secondAttribute="trailing" constant="8" id="f4d-pY-0S6"/>
@@ -128,11 +127,6 @@
                     <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
                     <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="cmd-0h-mAe"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="CTC-2c-EIQ" id="GTL-Ge-fIk"/>

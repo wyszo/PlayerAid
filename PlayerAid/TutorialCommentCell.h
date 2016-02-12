@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^didPressReplyButtonBlock)(TutorialComment *comment);
 @property (nonatomic, assign) BOOL replyButtonHidden;
 @property (nonatomic, readonly) BOOL isCommentReplyCell;
+@property (nonatomic, readonly) CGFloat commentLabelWidth;
 
 - (void)configureWithTutorialComment:(TutorialComment *)comment;
 
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)expandCell;
 
 - (void)setHighlighted:(BOOL)highlighted;
+- (void)setPreferredCommentLabelMaxLayoutWidth:(CGFloat)preferredWidth;
 
 @end
 

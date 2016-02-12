@@ -157,6 +157,14 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.contentView.backgroundColor = backgroundColor;
 }
 
+- (CGFloat)commentLabelWidth {
+    return self.commentLabel.tw_width;
+}
+
+- (void)setPreferredCommentLabelMaxLayoutWidth:(CGFloat)preferredWidth {
+    self.commentLabel.preferredMaxLayoutWidth = preferredWidth;
+}
+
 #pragma mark - Accessors
 
 - (void)setReplyButtonHidden:(BOOL)replyButtonHidden {
