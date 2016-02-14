@@ -65,28 +65,32 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   const CGFloat kInputViewToKeyboardTopAnimationDuration = 0.2f;
   
   defineWeakSelf();
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil
-                                                     queue:[NSOperationQueue mainQueue]
-                                                usingBlock:^(NSNotification * _Nonnull note) {
-    defineStrongSelf();
-    CGRect keyboardFrameRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
-    
-    strongSelf.accessoryKeyboardInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
-    [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
-      strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
-    }];
+  [self registerNotificationObserverForName:UIKeyboardDidShowNotification withBlock:^(NSDictionary *userInfo){
+      defineStrongSelf();
+      CGRect keyboardFrameRect = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
+      
+      strongSelf.accessoryKeyboardInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
+      [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
+          strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
+      }];
   }];
 }
 
 - (void)setupKeyboardWillHideNotificationHandler
 {
   defineWeakSelf();
-  [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
-                                                    object:nil
-                                                     queue:[NSOperationQueue mainQueue]
-                                                usingBlock:^(NSNotification * _Nonnull note) {
-    weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+  [self registerNotificationObserverForName:UIKeyboardWillHideNotification withBlock:^(NSDictionary *userInfo) {
+      weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
   }];
+}
+
+- (void)registerNotificationObserverForName:(nonnull NSString *)name withBlock:(nonnull VoidBlockWithDictionary)block {
+    AssertTrueOrReturn(name.length > 0);
+    AssertTrueOrReturn(block);
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        CallBlock(block, note.userInfo);
+    }];
 }
 
 #pragma mark - public interface
