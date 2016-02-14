@@ -51,7 +51,7 @@ class CommentRepliesViewController : UIViewController {
     }
 
     func setupReplyToCommentBar() {
-        replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, desiredInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
+        replyInputViewHandler = KeyboardCustomAccessoryInputViewHandler(accessoryKeyboardInputViewController: self.replyToCommentBarVC, initialInputViewHeight: kKeyboardMakeCommentAccessoryInputViewHeight)
 
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
         replyToCommentBarVC.postButtonPressedBlock = {

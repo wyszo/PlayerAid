@@ -43,7 +43,7 @@
   self.makeCommentInputVC = [[MakeCommentInputViewController alloc] initWithUser:currentUser];
 
   self.makeCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.makeCommentInputVC
-                                                                                                            desiredInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
+                                                                                                            initialInputViewHeight:kKeyboardMakeCommentAccessoryInputViewHeight];
   self.makeCommentInputVC.postButtonPressedBlock = self.makeACommentButtonPressedBlock;
 }
 
@@ -132,7 +132,7 @@
 {
   if (!_editCommentInputViewHandler) {
     _editCommentInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.editCommentInputVC
-                                                                                                          desiredInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
+                                                                                                          initialInputViewHeight:kKeyboardEditCommentAccessoryInputViewHeight];
   }
   return _editCommentInputViewHandler;
 }

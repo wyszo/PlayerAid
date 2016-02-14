@@ -13,7 +13,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 @interface KeyboardCustomAccessoryInputViewHandler()
 @property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
-@property (nonatomic, assign) CGFloat desiredInputViewHeight;
+@property (nonatomic, assign) CGFloat initialInputViewHeight;
 @property (nonatomic, assign) BOOL inputViewSlidOut;
 @end
 
@@ -22,7 +22,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 #pragma mark - Init
 
 - (instancetype)initWithAccessoryKeyboardInputViewController:(UIViewController *)viewController
-                                      desiredInputViewHeight:(CGFloat)inputViewHeight
+                                      initialInputViewHeight:(CGFloat)inputViewHeight
 {
   AssertTrueOrReturnNil(viewController);
   AssertTrueOrReturnNil(inputViewHeight > 0);
@@ -30,7 +30,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self = [super init];
   if (self) {
     _accessoryKeyboardInputViewController = viewController;
-    _desiredInputViewHeight = inputViewHeight;
+    _initialInputViewHeight = inputViewHeight; 
     [self setupKeyboardInputView];
     [self setupAccessoryKeyboardInputViewNotificationCallbacks];
   }
@@ -49,7 +49,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   AssertTrueOrReturn(accessoryInputView);
   
   accessoryInputView.autoresizingMask = UIViewAutoresizingNone; // required for being able to change inputView height
-  accessoryInputView.tw_height = self.desiredInputViewHeight;
+  accessoryInputView.tw_height = self.initialInputViewHeight;
 }
 
 #pragma mark - Notifications setup
@@ -117,7 +117,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (CGFloat)inputViewHeight
 {
-  return self.desiredInputViewHeight;
+  return self.initialInputViewHeight;
 }
 
 #pragma mark - private
@@ -148,7 +148,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 
 - (void)slideInputViewOutAnimated:(BOOL)animated {
   __strong UIView *strongInputView = self.accessoryKeyboardInputViewController.view; // we want to prolong this object lifetime to ensure completion block gets executed!
-  AssertTrueOr(self.desiredInputViewHeight > 0,);
+  AssertTrueOr(self.initialInputViewHeight > 0,);
 
   defineWeakSelf();
   [self slideInputViewOutAnimated:animated completion:^(BOOL finished) {
@@ -166,7 +166,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   AssertTrueOrReturn(inputVC);
 
   VoidBlock positionUpdateBlock = ^{
-      self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.desiredInputViewHeight;
+      self.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height] + self.initialInputViewHeight;
   };
 
   BlockWithBoolParameter internalCompletion = ^(BOOL finished) {
