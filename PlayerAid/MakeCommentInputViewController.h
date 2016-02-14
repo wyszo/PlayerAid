@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param   completion  Completion block has bool parameter determining if post a comment was successful (if it is, textView is gonna get cleared
  */
 @property (nonatomic, copy) void (^postButtonPressedBlock)(NSString *text, BlockWithBoolParameter completion);
+@property (nonatomic, copy) void (^heightDidChange)(CGFloat newHeight);
 
 NEW_AND_INIT_UNAVAILABLE
 

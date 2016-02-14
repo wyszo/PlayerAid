@@ -24,6 +24,7 @@ class CommentRepliesViewController : UIViewController {
     private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
 
     // MARK: Init
 
@@ -68,6 +69,9 @@ class CommentRepliesViewController : UIViewController {
                             completion(success: success)
                         }
                 }
+        }
+        replyToCommentBarVC.heightDidChange = { [weak self] height in
+            self?.tableViewBottomConstraint.constant = height
         }
     }
 

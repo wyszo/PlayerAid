@@ -16,6 +16,7 @@ static NSString *const kXibFileName = @"MakeCommentInputView";
 static NSString *const kSendingACommentKey = @"SendingComment";
 
 @interface MakeCommentInputViewController () <UITextViewDelegate>
+@property (assign, nonatomic) CGFloat computedViewHeight;
 @property (strong, nonatomic, nonnull) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
@@ -144,7 +145,6 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 {
   AssertTrueOrReturn(textView == self.inputTextView);
   [self updateTextViewSizeAndAdjustWholeViewSize];
-  // TODO: update tableView size so that comments at the bottom are always visible
   [self updatePostButtonHighlight];
 }
 
@@ -173,11 +173,16 @@ static NSString *const kSendingACommentKey = @"SendingComment";
 
 - (void)adjustWholeViewSizeToTextViewSize
 {
-  CGFloat viewBottom = self.view.tw_bottom;
+  CGFloat oldViewBottom = self.view.tw_bottom;
   
   CGFloat computedViewHeight = ([self.limitInputTextViewLineCountBehaviour constrainedComputedTextViewHeight] + [self topBottomInputViewMarginConstraints]);
   self.view.tw_height = computedViewHeight;
-  self.view.tw_bottom = viewBottom;
+  self.view.tw_bottom = oldViewBottom;
+  
+  if (self.computedViewHeight != computedViewHeight) {
+    self.computedViewHeight = computedViewHeight;
+    CallBlock(self.heightDidChange, computedViewHeight);
+  }
 }
 
 - (CGFloat)topBottomInputViewMarginConstraints
