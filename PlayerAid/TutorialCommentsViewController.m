@@ -188,7 +188,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   [self.keyboardInputViewsManager resetState];
 
   VoidBlock heightUpdateBlock = ^() {
-    [self removeCommentsTableViewToScreenBottomOffset];
+    [self resetCommentsTableViewToScreenBottomOffset];
     [self setViewHeightToCommentsBarHeight];
     [self.arrowImageView tw_setRotationRadians:(CGFloat)M_PI];
     [self.view layoutIfNeeded];
@@ -233,7 +233,7 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
 - (void)updateCommentsHeightIfExpandedShouldScrollToCommentsBar:(BOOL)shouldScroll
 {
   if (self.state == CommentsViewStateExpanded) {
-    [self addCommentsTableViewToScreenBottomOffset]; // update bottom offset between comments table bottom and makeComment inputView
+    [self updateCommentsTableViewToScreenBottomOffset];
     self.view.tw_height = [self calculateDesiredTotalCommentsTableViewFooterHeight];
     [self invokeDidChangeHeightCallbackShouldScrollToCommentsBar:shouldScroll];
   }
@@ -257,14 +257,14 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
   CallBlock(self.didChangeHeightBlock, self.view, shouldScroll);
 }
 
-- (void)addCommentsTableViewToScreenBottomOffset
+- (void)updateCommentsTableViewToScreenBottomOffset
 {
   CGFloat inputViewHeight = self.keyboardInputViewsManager.makeCommentInputViewHandler.inputViewHeight;
   AssertTrueOrReturn(inputViewHeight > 0);
   self.commentsContainerBottomOffsetConstraint.constant = inputViewHeight;
 }
 
-- (void)removeCommentsTableViewToScreenBottomOffset
+- (void)resetCommentsTableViewToScreenBottomOffset
 {
   AssertTrueOrReturn(self.commentsContainerBottomOffsetConstraint);
   self.commentsContainerBottomOffsetConstraint.constant = 0.0f;
