@@ -108,9 +108,16 @@ class CommentRepliesViewController : UIViewController {
         setupNavigationBar()
         setupHeaderViewCell()
         replyInputViewHandler?.slideInputViewIn()
+        setInitialTableViewBottomOffset()
+        
         refreshCommentAndReplies()
     }
 
+    func setInitialTableViewBottomOffset() {
+        assert(replyInputViewHandler != nil)
+        tableViewBottomConstraint.constant = replyInputViewHandler!.inputViewHeight
+    }
+    
     // MARK: Cell configuration
 
     private func configureCell(cell: UITableViewCell, object: AnyObject?, indexPath: NSIndexPath) {
