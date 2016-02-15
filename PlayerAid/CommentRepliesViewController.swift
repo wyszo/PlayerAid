@@ -182,6 +182,7 @@ class CommentRepliesViewController : UIViewController {
     }
 
     func backButtonAction() {
+        self.replyToCommentBarVC.hideKeyboard()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
