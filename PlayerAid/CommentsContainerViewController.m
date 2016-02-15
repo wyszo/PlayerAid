@@ -180,21 +180,25 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   };
   
   [self updateCellHighlight:commentCell forComment:comment];
+  
+  [self DEBUG_pushCommentRepliesIfNeeded];
+}
 
-  if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
-    static BOOL alreadyPushed = NO;
-    NSInteger lastRow = (NSInteger)(MAX(self.dataSource.objectCount - 1, 0));
-    
-    if (indexPath.section == 0 && indexPath.row == lastRow && !alreadyPushed) {
-      DISPATCH_AFTER(0.5, ^{
-          // present Comment Replies window
-        if (!alreadyPushed) {
-          alreadyPushed = YES;
-          commentCell.didPressReplyButtonBlock(comment);
+- (void)DEBUG_pushCommentRepliesIfNeeded() {
+    if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
+        static BOOL alreadyPushed = NO;
+        NSInteger lastRow = (NSInteger)(MAX(self.dataSource.objectCount - 1, 0));
+        
+        if (indexPath.section == 0 && indexPath.row == lastRow && !alreadyPushed) {
+            DISPATCH_AFTER(0.5, ^{
+                // present Comment Replies window
+                if (!alreadyPushed) {
+                    alreadyPushed = YES;
+                    commentCell.didPressReplyButtonBlock(comment);
+                }
+            });
         }
-      });
     }
-  }
 }
 
 - (void)updateCellHighlight:(nonnull TutorialCommentCell *)cell forComment:(nonnull TutorialComment *)comment
