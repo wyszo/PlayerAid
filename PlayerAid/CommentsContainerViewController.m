@@ -180,11 +180,10 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   };
   
   [self updateCellHighlight:commentCell forComment:comment];
-  
-  [self DEBUG_pushCommentRepliesIfNeeded];
+  [self DEBUG_pushCommentRepliesIfNeededWithCell:commentCell comment:comment atIndexPath:indexPath];
 }
 
-- (void)DEBUG_pushCommentRepliesIfNeeded() {
+- (void)DEBUG_pushCommentRepliesIfNeededWithCell:(nonnull TutorialCommentCell *)commentCell comment:(nonnull TutorialComment *)comment atIndexPath:(nonnull NSIndexPath *)indexPath {
     if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
         static BOOL alreadyPushed = NO;
         NSInteger lastRow = (NSInteger)(MAX(self.dataSource.objectCount - 1, 0));
