@@ -15,6 +15,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 @property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
 @property (nonatomic, assign) CGFloat initialInputViewHeight;
 @property (nonatomic, assign) BOOL inputViewSlidOut;
+@property (nonatomic, strong) NSMutableArray *notificationObservers;
 @end
 
 @implementation KeyboardCustomAccessoryInputViewHandler
@@ -30,7 +31,8 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   self = [super init];
   if (self) {
     _accessoryKeyboardInputViewController = viewController;
-    _initialInputViewHeight = inputViewHeight; 
+    _initialInputViewHeight = inputViewHeight;
+    _notificationObservers = [NSMutableArray new];
     [self setupKeyboardInputView];
     [self setupAccessoryKeyboardInputViewNotificationCallbacks];
   }
@@ -41,6 +43,14 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 {
   // watch out for memory leaks, can't rely on this logic in case they happen
   [self slideInputViewOutAnimated:YES completion:nil];
+  [self unregisterNotificationObservers];
+}
+
+- (void)unregisterNotificationObservers {
+  for (id observer in self.notificationObservers) {
+    [[NSNotificationCenter defaultCenter] removeObserver:observer];
+  }
+  [self.notificationObservers removeAllObjects];
 }
 
 - (void)setupKeyboardInputView
@@ -88,9 +98,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
     AssertTrueOrReturn(name.length > 0);
     AssertTrueOrReturn(block);
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         CallBlock(block, note.userInfo);
     }];
+    [self.notificationObservers addObject:observer];
 }
 
 #pragma mark - public interface
