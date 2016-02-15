@@ -15,7 +15,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 @property (nonatomic, strong) UIViewController *accessoryKeyboardInputViewController;
 @property (nonatomic, assign) CGFloat initialInputViewHeight;
 @property (nonatomic, assign) BOOL inputViewSlidOut;
-@property (nonatomic, strong) NSMutableArray *notificationObservers;
+@property (nonatomic, strong) TWKeyboardNotificationsManager *keyboardNotificationsManager;
 @end
 
 @implementation KeyboardCustomAccessoryInputViewHandler
@@ -32,7 +32,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   if (self) {
     _accessoryKeyboardInputViewController = viewController;
     _initialInputViewHeight = inputViewHeight;
-    _notificationObservers = [NSMutableArray new];
+    _keyboardNotificationsManager = [TWKeyboardNotificationsManager new];
     [self setupKeyboardInputView];
     [self setupAccessoryKeyboardInputViewNotificationCallbacks];
   }
@@ -43,14 +43,6 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 {
   // watch out for memory leaks, can't rely on this logic in case they happen
   [self slideInputViewOutAnimated:YES completion:nil];
-  [self unregisterNotificationObservers];
-}
-
-- (void)unregisterNotificationObservers {
-  for (id observer in self.notificationObservers) {
-    [[NSNotificationCenter defaultCenter] removeObserver:observer];
-  }
-  [self.notificationObservers removeAllObjects];
 }
 
 - (void)setupKeyboardInputView
@@ -73,35 +65,27 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
 - (void)setupKeyboardDidShowNotificationHandler
 {
   const CGFloat kInputViewToKeyboardTopAnimationDuration = 0.2f;
-  
   defineWeakSelf();
-  [self registerNotificationObserverForName:UIKeyboardDidShowNotification withBlock:^(NSDictionary *userInfo){
-      defineStrongSelf();
-      CGRect keyboardFrameRect = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]; // note we don't use convertRect: in here, no need
-      
-      strongSelf.accessoryKeyboardInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
-      [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
-          strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
-      }];
+  AssertTrueOrReturn(self.keyboardNotificationsManager);
+  
+  [self.keyboardNotificationsManager setupKeyboardDidShowNotificationHandler:^(CGRect keyboardFrameRect) {
+    defineStrongSelf();
+    
+    strongSelf.accessoryKeyboardInputViewController.view.tw_top = keyboardFrameRect.origin.y; // position instantly just below top of the keyboard
+    [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
+      strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
+    }];
   }];
 }
 
 - (void)setupKeyboardWillHideNotificationHandler
 {
+  AssertTrueOrReturn(self.keyboardNotificationsManager);
   defineWeakSelf();
-  [self registerNotificationObserverForName:UIKeyboardWillHideNotification withBlock:^(NSDictionary *userInfo) {
-      weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+  
+  [self.keyboardNotificationsManager setupKeyboardWillHideNotificationHandler:^{
+    weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
   }];
-}
-
-- (void)registerNotificationObserverForName:(nonnull NSString *)name withBlock:(nonnull VoidBlockWithDictionary)block {
-    AssertTrueOrReturn(name.length > 0);
-    AssertTrueOrReturn(block);
-    
-    id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        CallBlock(block, note.userInfo);
-    }];
-    [self.notificationObservers addObject:observer];
 }
 
 #pragma mark - public interface

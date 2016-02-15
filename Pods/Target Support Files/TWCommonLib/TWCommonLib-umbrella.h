@@ -46,6 +46,7 @@
 #import "TWInterfaceOrientationViewControllerDecorator.h"
 #import "TWItemsToSeguesMapping.h"
 #import "TWJSONHelper.h"
+#import "TWKeyboardNotificationsManager.h"
 #import "TWLazyInitializationProxy.h"
 #import "TWLocationUpdatesManager.h"
 #import "TWMagicalRecordDebugErrorHandler.h"
