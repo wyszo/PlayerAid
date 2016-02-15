@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) VoidBlock inputViewDidDismissBlock;
 
+@property (nonatomic, copy) void (^keyboardDidShowBlock)(CGFloat keyboardHeight);
+@property (nonatomic, copy) VoidBlock keyboardWillHideBlock;
+
 // warning: this only returns initial view height, doesn't update when view extends
 @property (nonatomic, assign, readonly) CGFloat inputViewHeight;
 

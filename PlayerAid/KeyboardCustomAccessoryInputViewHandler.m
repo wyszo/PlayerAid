@@ -75,6 +75,7 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
     [UIView animateWithDuration:kInputViewToKeyboardTopAnimationDuration animations:^{
       strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = keyboardFrameRect.origin.y; // animate slide in
     }];
+    CallBlock(strongSelf.keyboardDidShowBlock, keyboardFrameRect.size.height);
   }];
 }
 
@@ -84,7 +85,10 @@ static const CGFloat kInputViewSlideInOutAnimationDuration = 0.5f;
   defineWeakSelf();
   
   [self.keyboardNotificationsManager setupKeyboardWillHideNotificationHandler:^{
-    weakSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+    defineStrongSelf();
+    
+    strongSelf.accessoryKeyboardInputViewController.view.tw_bottom = [UIScreen tw_height]; // in here this will be animated automatically (with keyboard animation)
+    CallBlock(strongSelf.keyboardWillHideBlock);
   }];
 }
 

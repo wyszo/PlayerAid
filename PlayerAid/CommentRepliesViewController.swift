@@ -109,13 +109,30 @@ class CommentRepliesViewController : UIViewController {
         setupHeaderViewCell()
         replyInputViewHandler?.slideInputViewIn()
         setInitialTableViewBottomOffset()
-        
+        setupFooterViewCompensatingForKeyboardOut()
+      
         refreshCommentAndReplies()
     }
 
     func setInitialTableViewBottomOffset() {
         assert(replyInputViewHandler != nil)
         tableViewBottomConstraint.constant = replyInputViewHandler!.inputViewHeight
+    }
+  
+    func setupFooterViewCompensatingForKeyboardOut() {
+        let sampleWidth: CGFloat = 100 // will resize correctly automatically
+        let footerView = UIView(frame: CGRectMake(0, 0, sampleWidth, 0))
+        footerView.backgroundColor = UIColor.whiteColor()
+        tableView.tableFooterView = footerView
+        
+        assert(replyInputViewHandler != nil);
+        replyInputViewHandler!.keyboardDidShowBlock = { [weak self] (keyboardHeight) in
+            footerView.frame = CGRectMake(0, 0, sampleWidth, keyboardHeight)
+            self?.tableView.tableFooterView = footerView
+        }
+        replyInputViewHandler?.keyboardWillHideBlock = { [weak self] in
+            self?.tableView.tableFooterView?.frame = CGRectMake(0, 0, sampleWidth, 0)
+        }
     }
     
     // MARK: Cell configuration
