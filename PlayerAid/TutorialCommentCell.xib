@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -16,116 +16,128 @@
                 <rect key="frame" x="0.0" y="0.0" width="324" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mG-d1-jyc" userLabel="MarginView">
-                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="200"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxz-Xk-q4z" userLabel="CellContainer">
+                        <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mG-d1-jyc" userLabel="MarginView">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="iJO-rJ-YiF"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
+                                <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wYM-dQ-F5j" secondAttribute="height" multiplier="1:1" id="G5h-uI-607"/>
+                                    <constraint firstAttribute="width" constant="32" id="VEV-CG-6XX"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2m-fC-lZp" userLabel="AvatarButton">
+                                <rect key="frame" x="-1" y="-1" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="47r-8w-ZjP"/>
+                                    <constraint firstAttribute="height" constant="50" id="ahe-eD-Xms"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="avatarButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="7Vj-CA-28E"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rami Baker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
+                                <rect key="frame" x="48" y="13" width="81" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-jr-cnx" userLabel="UsernameButton">
+                                <rect key="frame" x="44" y="0.0" width="67.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BKO-00-ZHu"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="usernamePressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="vyD-DN-53I"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
+                                <rect key="frame" x="48" y="33" width="256" height="121"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Avenir-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
+                                <rect key="frame" x="48" y="166" width="203" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
+                                <rect key="frame" x="48" y="157" width="24" height="8"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
+                                    <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
+                                </constraints>
+                                <state key="normal" image="comments-more-ic"/>
+                                <connections>
+                                    <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
+                                <rect key="frame" x="259" y="168" width="65" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
+                                    <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
+                                <state key="normal" title="Reply &gt;">
+                                    <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="replyButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="GIx-7t-j7M"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" id="iJO-rJ-YiF"/>
+                            <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="24I-yE-9yM"/>
+                            <constraint firstAttribute="bottom" secondItem="1vq-fq-GWQ" secondAttribute="bottom" priority="999" constant="10" id="3DK-g3-3Aw"/>
+                            <constraint firstItem="kYH-jr-cnx" firstAttribute="top" secondItem="fxz-Xk-q4z" secondAttribute="top" id="3XI-Ab-S0N"/>
+                            <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="2ak-KO-H2a" secondAttribute="leading" id="BGc-BW-sn8"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="Bm8-qy-2nE"/>
+                            <constraint firstItem="kYH-jr-cnx" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="4" id="ESQ-QU-4p8"/>
+                            <constraint firstAttribute="bottom" secondItem="hZj-1V-Mew" secondAttribute="bottom" id="F4L-Ze-Htp"/>
+                            <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="fxz-Xk-q4z" secondAttribute="top" constant="8" id="GG8-qa-6yS"/>
+                            <constraint firstItem="hZj-1V-Mew" firstAttribute="leading" secondItem="1vq-fq-GWQ" secondAttribute="trailing" constant="8" id="Kpy-Jl-cpx"/>
+                            <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="3" id="UDd-Oy-Lqw"/>
+                            <constraint firstAttribute="bottom" secondItem="5mG-d1-jyc" secondAttribute="bottom" id="UVk-3v-9OB"/>
+                            <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="-2" id="Vb8-rB-avj"/>
+                            <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="XiL-KF-Nm7"/>
+                            <constraint firstAttribute="trailing" secondItem="hZj-1V-Mew" secondAttribute="trailing" id="Yrv-F4-vHL"/>
+                            <constraint firstItem="5mG-d1-jyc" firstAttribute="leading" secondItem="fxz-Xk-q4z" secondAttribute="leading" id="bvb-5n-j0J"/>
+                            <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="5mG-d1-jyc" secondAttribute="trailing" constant="8" id="g5Y-X1-5U4"/>
+                            <constraint firstItem="w2m-fC-lZp" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="gFW-SI-cAe"/>
+                            <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="20" id="gqQ-CM-eiJ"/>
+                            <constraint firstItem="wYM-dQ-F5j" firstAttribute="centerY" secondItem="CTC-2c-EIQ" secondAttribute="centerY" id="jrn-2x-kIU"/>
+                            <constraint firstItem="w2m-fC-lZp" firstAttribute="centerX" secondItem="wYM-dQ-F5j" secondAttribute="centerX" id="nMY-aU-aO9"/>
+                            <constraint firstItem="1vq-fq-GWQ" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="ngM-Pl-PbA"/>
+                            <constraint firstItem="5mG-d1-jyc" firstAttribute="top" secondItem="fxz-Xk-q4z" secondAttribute="top" id="oCT-ih-EaE"/>
+                            <constraint firstItem="CTC-2c-EIQ" firstAttribute="width" secondItem="kYH-jr-cnx" secondAttribute="width" multiplier="1.2" id="oIK-FR-tcJ"/>
+                            <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="zSH-YX-fim"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYM-dQ-F5j" userLabel="Avatar Image View">
-                        <rect key="frame" x="8" y="8" width="32" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="wYM-dQ-F5j" secondAttribute="height" multiplier="1:1" id="G5h-uI-607"/>
-                            <constraint firstAttribute="width" constant="32" id="VEV-CG-6XX"/>
-                        </constraints>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2m-fC-lZp" userLabel="AvatarButton">
-                        <rect key="frame" x="-1" y="-1" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="47r-8w-ZjP"/>
-                            <constraint firstAttribute="height" constant="50" id="ahe-eD-Xms"/>
-                        </constraints>
-                        <connections>
-                            <action selector="avatarButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="7Vj-CA-28E"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rami Baker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-2c-EIQ" userLabel="Author">
-                        <rect key="frame" x="48" y="13" width="81" height="22"/>
-                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                        <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-jr-cnx" userLabel="UsernameButton">
-                        <rect key="frame" x="44" y="0.0" width="97" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="BKO-00-ZHu"/>
-                        </constraints>
-                        <connections>
-                            <action selector="usernamePressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="vyD-DN-53I"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                        <rect key="frame" x="48" y="33" width="256" height="121"/>
-                        <attributedString key="attributedText">
-                            <fragment>
-                                <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
-                                <attributes>
-                                    <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="13" name="Avenir-Medium"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
-                        <rect key="frame" x="48" y="166" width="203" height="24"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
-                        </constraints>
-                    </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                        <rect key="frame" x="48" y="157" width="24" height="8"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
-                            <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
-                        </constraints>
-                        <state key="normal" image="comments-more-ic"/>
-                        <connections>
-                            <action selector="moreButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="zUP-uR-vYJ"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
-                        <rect key="frame" x="259" y="168" width="65" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
-                            <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                        <state key="normal" title="Reply &gt;">
-                            <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="replyButtonPressed:" destination="dDA-qc-dQS" eventType="touchUpInside" id="GIx-7t-j7M"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="hZj-1V-Mew" secondAttribute="bottom" id="6mS-3O-Zn8"/>
-                    <constraint firstAttribute="trailing" secondItem="OZa-Sb-n3z" secondAttribute="trailing" constant="20" id="9Oe-z1-exT"/>
-                    <constraint firstItem="w2m-fC-lZp" firstAttribute="centerX" secondItem="wYM-dQ-F5j" secondAttribute="centerX" id="Az5-9P-fK7"/>
-                    <constraint firstItem="kYH-jr-cnx" firstAttribute="width" secondItem="CTC-2c-EIQ" secondAttribute="width" multiplier="1.2" id="Dec-YX-pUQ"/>
-                    <constraint firstItem="kYH-jr-cnx" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="HlZ-Yn-qXz"/>
-                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="top" secondItem="CTC-2c-EIQ" secondAttribute="bottom" constant="-2" id="LeV-MC-n7b"/>
-                    <constraint firstItem="w2m-fC-lZp" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="Orr-33-s6x"/>
-                    <constraint firstItem="OZa-Sb-n3z" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="QMV-XM-CXf"/>
-                    <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="U2E-Ht-bxx"/>
-                    <constraint firstItem="2ak-KO-H2a" firstAttribute="leading" secondItem="OZa-Sb-n3z" secondAttribute="leading" id="bOo-v6-Ia9"/>
-                    <constraint firstItem="CTC-2c-EIQ" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="8" id="cSc-t3-4yT"/>
-                    <constraint firstItem="hZj-1V-Mew" firstAttribute="leading" secondItem="1vq-fq-GWQ" secondAttribute="trailing" constant="8" id="daN-3F-Qpr"/>
-                    <constraint firstAttribute="bottom" secondItem="5mG-d1-jyc" secondAttribute="bottom" id="ewt-SC-8QR"/>
-                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="leading" secondItem="5mG-d1-jyc" secondAttribute="trailing" constant="8" id="f4d-pY-0S6"/>
-                    <constraint firstItem="5mG-d1-jyc" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="fXG-gc-BA3"/>
-                    <constraint firstAttribute="trailing" secondItem="hZj-1V-Mew" secondAttribute="trailing" id="h67-aV-rz8"/>
-                    <constraint firstItem="5mG-d1-jyc" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" id="imy-CQ-mmV"/>
-                    <constraint firstItem="kYH-jr-cnx" firstAttribute="leading" secondItem="wYM-dQ-F5j" secondAttribute="trailing" constant="4" id="jrM-DT-S9B"/>
-                    <constraint firstItem="1vq-fq-GWQ" firstAttribute="leading" secondItem="CTC-2c-EIQ" secondAttribute="leading" id="kLz-or-tGx"/>
-                    <constraint firstAttribute="bottom" secondItem="1vq-fq-GWQ" secondAttribute="bottom" constant="10" id="kbB-eZ-G0i"/>
-                    <constraint firstItem="2ak-KO-H2a" firstAttribute="top" secondItem="OZa-Sb-n3z" secondAttribute="bottom" constant="3" id="p5I-KF-tqR"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTC-2c-EIQ" secondAttribute="trailing" constant="8" id="tBS-jT-Lt5"/>
-                    <constraint firstItem="wYM-dQ-F5j" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" constant="8" id="wDl-0y-xyh"/>
-                    <constraint firstItem="CTC-2c-EIQ" firstAttribute="centerY" secondItem="wYM-dQ-F5j" secondAttribute="centerY" id="zwL-oi-wLB"/>
+                    <constraint firstItem="fxz-Xk-q4z" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="Zo8-Qt-fbC"/>
+                    <constraint firstAttribute="bottom" secondItem="fxz-Xk-q4z" secondAttribute="bottom" id="fst-UI-0OU"/>
+                    <constraint firstItem="fxz-Xk-q4z" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" id="hcv-am-wlD"/>
+                    <constraint firstAttribute="trailing" secondItem="fxz-Xk-q4z" secondAttribute="trailing" id="v4l-qC-VNH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -138,9 +150,9 @@
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
                 <outlet property="replyButton" destination="hZj-1V-Mew" id="BK0-Dm-LHH"/>
-                <outlet property="timeAgoBarToMoreButtonDistanceConstraint" destination="U2E-Ht-bxx" id="8g8-YB-Wcx"/>
+                <outlet property="timeAgoBarToMoreButtonDistanceConstraint" destination="zSH-YX-fim" id="KSq-M0-e1G"/>
             </connections>
-            <point key="canvasLocation" x="522" y="173"/>
+            <point key="canvasLocation" x="-121" y="101"/>
         </tableViewCell>
     </objects>
     <resources>
