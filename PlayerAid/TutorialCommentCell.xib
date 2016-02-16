@@ -132,10 +132,20 @@
                             <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="zSH-YX-fim"/>
                         </constraints>
                     </view>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-b6-tuh" userLabel="Replies Table View">
+                        <rect key="frame" x="0.0" y="200" width="324" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="7Rt-gI-DGS"/>
+                        </constraints>
+                    </tableView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="qgd-b6-tuh" secondAttribute="bottom" id="LuH-jw-pTW"/>
+                    <constraint firstAttribute="trailing" secondItem="qgd-b6-tuh" secondAttribute="trailing" id="MqO-XD-5No"/>
                     <constraint firstItem="fxz-Xk-q4z" firstAttribute="top" secondItem="ak2-qa-ad3" secondAttribute="top" id="Zo8-Qt-fbC"/>
-                    <constraint firstAttribute="bottom" secondItem="fxz-Xk-q4z" secondAttribute="bottom" id="fst-UI-0OU"/>
+                    <constraint firstItem="qgd-b6-tuh" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" id="dnc-hY-dLm"/>
+                    <constraint firstItem="qgd-b6-tuh" firstAttribute="top" secondItem="fxz-Xk-q4z" secondAttribute="bottom" id="giN-iF-Znv"/>
                     <constraint firstItem="fxz-Xk-q4z" firstAttribute="leading" secondItem="ak2-qa-ad3" secondAttribute="leading" id="hcv-am-wlD"/>
                     <constraint firstAttribute="trailing" secondItem="fxz-Xk-q4z" secondAttribute="trailing" id="v4l-qC-VNH"/>
                 </constraints>
