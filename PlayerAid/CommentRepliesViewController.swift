@@ -2,9 +2,7 @@ import Foundation
 import MagicalRecord
 
 class CommentRepliesViewController : UIViewController {
-
-    private let cellReuseIdentifier = "commentReplyCell"
-
+    
     private var commentCell: TutorialCommentCell
     private var commentID: Int
   
@@ -18,10 +16,7 @@ class CommentRepliesViewController : UIViewController {
   
     private var replyToCommentBarVC: MakeCommentInputViewController
     private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
-
-    private var repliesDataSource: TWCoreDataTableViewDataSource?
-    private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
-    private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
+    private var repliesTableViewController: RepliesToCommentTableViewController
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
@@ -41,6 +36,7 @@ class CommentRepliesViewController : UIViewController {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
         self.commentID = commentID
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
+        repliesTableViewController = RepliesToCommentTableViewController()
         super.init(nibName: nibName, bundle: nibBundleOrNil)
       
         commentObjectFetchHelper = TWSingleCoreDataObjectFetchHelper(objectIdPropertyName: "serverID", objectID: commentID, objectChanged: {
@@ -75,42 +71,18 @@ class CommentRepliesViewController : UIViewController {
         }
     }
 
-    func setupTableView() {
-        tableView.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.separatorColor = ColorsHelper.commentRepliesSeparatorColor()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100.0
-    }
-
-    func setupDataSource() {
-        repliesFetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock: {
-            [weak self] (cell, indexPath) in
-                self?.configureCell(cell, object: nil, indexPath: indexPath)
-        })
-        assert(repliesFetchedResultsControllerBinder != nil)
-        assert(comment != nil)
-
-        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
-            [weak self] (cell, object, indexPath) in
-                self?.configureCell(cell, object: object, indexPath: indexPath)
-        })
-        assert(dataSourceConfigurator != nil)
-
-        repliesDataSource = dataSourceConfigurator?.dataSource()
-        tableView.dataSource = repliesDataSource
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupDataSource()
-        setupTableView()
         setupNavigationBar()
         setupHeaderViewCell()
         replyInputViewHandler?.slideInputViewIn()
         setInitialTableViewBottomOffset()
         setupFooterViewCompensatingForKeyboardOut()
-      
+
+        assert(self.comment != nil)
+        repliesTableViewController.attachToTableView(tableView, withRepliesToComment: self.comment!)
+        
         refreshCommentAndReplies()
     }
 
@@ -135,28 +107,6 @@ class CommentRepliesViewController : UIViewController {
         }
     }
     
-    // MARK: Cell configuration
-
-    private func configureCell(cell: UITableViewCell, object: AnyObject?, indexPath: NSIndexPath) {
-        assert(cell is TutorialCommentCell);
-
-        if let commentCell = cell as? TutorialCommentCell {
-            commentCell.replyButtonHidden = true
-            commentCell.backgroundColor = ColorsHelper.commentReplyBackgroundColor()
-
-            guard let comment = self.repliesDataSource?.objectAtIndexPath(indexPath) as? TutorialComment else {
-                assert(false, "internal error")
-                return
-            }
-            TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView, comment: comment)
-
-            commentCell.didPressUserAvatarOrName = {
-                comment in // [weak self]
-                    // self.pushUserProfileLinkedToTutorialComment(comment)
-            }
-        }
-    }
-
     // MARK: Private
 
     private func refreshCommentAndReplies() {

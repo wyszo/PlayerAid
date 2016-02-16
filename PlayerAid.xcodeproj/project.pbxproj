@@ -62,6 +62,7 @@
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */; };
 		31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */; };
+		316763F01C739E92003184C1 /* RepliesToCommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763EF1C739E92003184C1 /* RepliesToCommentTableViewController.swift */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -287,6 +288,7 @@
 		315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGraphApiRequest.m; sourceTree = "<group>"; };
 		31652D6C1BFB96A50007855A /* TutorialTextStylingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialTextStylingHelper.h; sourceTree = "<group>"; };
 		31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTextStylingHelper.m; sourceTree = "<group>"; };
+		316763EF1C739E92003184C1 /* RepliesToCommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepliesToCommentTableViewController.swift; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -2010,6 +2012,7 @@
 			children = (
 				6C5AC98C4ED63A96F3EE30C8 /* CommentRepliesViewController.swift */,
 				6C5ACC4DE362FE28A7CF33B5 /* TableViewHeaderTutorialCommentCellPresenter.swift */,
+				316763EF1C739E92003184C1 /* RepliesToCommentTableViewController.swift */,
 			);
 			name = CommentReplies;
 			sourceTree = "<group>";
@@ -2246,6 +2249,7 @@
 				31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
+				316763F01C739E92003184C1 /* RepliesToCommentTableViewController.swift in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */,
 				31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */,

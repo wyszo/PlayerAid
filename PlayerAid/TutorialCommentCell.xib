@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-jr-cnx" userLabel="UsernameButton">
-                                <rect key="frame" x="44" y="0.0" width="67.5" height="40"/>
+                                <rect key="frame" x="44" y="0.0" width="68" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BKO-00-ZHu"/>
                                 </constraints>
@@ -132,9 +132,9 @@
                             <constraint firstItem="1vq-fq-GWQ" firstAttribute="top" secondItem="2ak-KO-H2a" secondAttribute="bottom" constant="1" id="zSH-YX-fim"/>
                         </constraints>
                     </view>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-b6-tuh" userLabel="Replies Table View">
+                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-b6-tuh" userLabel="Replies Table View">
                         <rect key="frame" x="0.0" y="200" width="324" height="0.0"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.21381578949999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" id="7Rt-gI-DGS"/>
                         </constraints>
@@ -159,6 +159,8 @@
                 <outlet property="leftMarginWidthConstraint" destination="iJO-rJ-YiF" id="AIH-OA-DbD"/>
                 <outlet property="moreButton" destination="2ak-KO-H2a" id="AhC-lk-Jrb"/>
                 <outlet property="moreButtonHeightConstraint" destination="1rz-3x-zv6" id="kz3-YW-V9g"/>
+                <outlet property="repliesTableView" destination="qgd-b6-tuh" id="JaH-T7-zRO"/>
+                <outlet property="repliesTableViewHeightConstraint" destination="7Rt-gI-DGS" id="Buh-Yk-3HT"/>
                 <outlet property="replyButton" destination="hZj-1V-Mew" id="BK0-Dm-LHH"/>
                 <outlet property="timeAgoBarToMoreButtonDistanceConstraint" destination="zSH-YX-fim" id="KSq-M0-e1G"/>
             </connections>
