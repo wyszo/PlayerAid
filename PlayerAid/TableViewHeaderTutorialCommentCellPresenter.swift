@@ -11,7 +11,7 @@ class TableViewHeaderTutorialCommentCellPresenter {
             and attached to some tableView without your knowledge. We do this in here only to set it up, it's gonna be swapped with UITableViewCell's content view later in this method
             (which you can attach as a tableViewHeader or as a contentView somewhere as long as UITableViewCell gets discarded immediately and only contentView remains */
         
-        commentCell.configureWithTutorialComment(comment)
+        commentCell.configureWithTutorialComment(comment, allowInlineCommentReplies: false)
         commentCell.replyButtonHidden = true
         
         commentCell.willChangeCellHeightBlock = { }

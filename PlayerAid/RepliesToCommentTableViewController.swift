@@ -1,6 +1,7 @@
 import UIKit
 
-class RepliesToCommentTableViewController {
+@objc
+class RepliesToCommentTableViewController : NSObject {
     
     private let cellReuseIdentifier = "commentReplyCell"
     
@@ -65,7 +66,9 @@ class RepliesToCommentTableViewController {
                 return
             }
             assert(tableView != nil)
-            TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView!, comment: comment)
+            
+            // Inline comments always disabled - we don't want Replies inside replies!
+            TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView!, comment: comment, allowInlineCommentReplies: false)
             
             commentCell.didPressUserAvatarOrName = {
                 comment in // [weak self]

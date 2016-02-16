@@ -3,7 +3,7 @@ import Foundation
 @objc
 class TutorialCommentCellConfigurator : NSObject {
 
-    func configureCell(_ commentCell: TutorialCommentCell, inTableView tableView: UITableView, comment: TutorialComment) {
+    func configureCell(_ commentCell: TutorialCommentCell, inTableView tableView: UITableView, comment: TutorialComment, allowInlineCommentReplies: Bool) {
 
         commentCell.willChangeCellHeightBlock = {
             tableView.beginUpdates()
@@ -21,6 +21,6 @@ class TutorialCommentCellConfigurator : NSObject {
             AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.unlikeComment(comment)
         }
 
-        commentCell.configureWithTutorialComment(comment)
+        commentCell.configureWithTutorialComment(comment, allowInlineCommentReplies: allowInlineCommentReplies)
     }
 }

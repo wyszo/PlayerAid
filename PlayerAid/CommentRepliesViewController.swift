@@ -74,14 +74,14 @@ class CommentRepliesViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        assert(self.comment != nil)
+        repliesTableViewController.attachToTableView(tableView, withRepliesToComment: self.comment!)
+        
         setupNavigationBar()
         setupHeaderViewCell()
         replyInputViewHandler?.slideInputViewIn()
         setInitialTableViewBottomOffset()
         setupFooterViewCompensatingForKeyboardOut()
-
-        assert(self.comment != nil)
-        repliesTableViewController.attachToTableView(tableView, withRepliesToComment: self.comment!)
         
         refreshCommentAndReplies()
     }

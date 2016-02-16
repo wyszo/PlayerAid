@@ -20,6 +20,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 @class CommentBottomBarView;
 
+// TODO: extract all this to a separate UIView class (or maybe even give it a UIViewController)!!!
+
 /**
  Technical debt: Constraint animations should be provided by a separate class! The view controller itself should not know about precise constraint values, it should only know if cell is expanded or folded.
  */
@@ -38,6 +40,12 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreButtonHeightConstraint;
+
+// comment replies tableView
+@property (weak, nonatomic) IBOutlet UITableView *repliesTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *repliesTableViewHeightConstraint;
+@property (strong, nonatomic) RepliesToCommentTableViewController *repliesToCommentTableVC;
+
 @end
 
 @implementation TutorialCommentCell
@@ -77,7 +85,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 #pragma mark TWConfigurableFromDictionary
 
-- (void)configureWithTutorialComment:(TutorialComment *)comment {
+- (void)configureWithTutorialComment:(TutorialComment *)comment allowInlineCommentReplies:(BOOL)allowInlineReplies {
   AssertTrueOrReturn(comment);
   _comment = comment;
 
@@ -94,7 +102,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   // update UI to reflect compressed constraints change
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:NO];
+    
+    if (allowInlineReplies) {
+      [self configureRepliesTableView];
+    } else {
+      self.repliesTableViewHeightConstraint.constant = 0;
+    }
   [self layoutIfNeeded];
+}
+
+- (void)configureRepliesTableView {
+    self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
+    [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {

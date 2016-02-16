@@ -168,7 +168,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   TutorialComment *comment = (TutorialComment *)object;
   
   TutorialCommentCellConfigurator *configurator = [TutorialCommentCellConfigurator new];
-  [configurator configureCell:commentCell inTableView:self.commentsTableView comment:comment];
+  [configurator configureCell:commentCell inTableView:self.commentsTableView comment:comment allowInlineCommentReplies:YES];
 
   defineWeakSelf();
   commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {

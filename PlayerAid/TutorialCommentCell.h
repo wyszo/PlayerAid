@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL isCommentReplyCell;
 @property (nonatomic, readonly) CGFloat commentLabelWidth;
 
-- (void)configureWithTutorialComment:(TutorialComment *)comment;
+- (void)configureWithTutorialComment:(TutorialComment *)comment allowInlineCommentReplies:(BOOL)allowInlineReplies;
 
 /**
  Returns true if cell has been expanded or number of text lines < 5 (which means it doesn't need to expand)
