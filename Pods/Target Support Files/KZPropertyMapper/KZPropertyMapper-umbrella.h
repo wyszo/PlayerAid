@@ -4,6 +4,7 @@
 #import "KZPropertyDescriptor.h"
 #import "KZPropertyMapper.h"
 #import "KZPropertyMapperCommon.h"
+#import "KZPropertyMapperFramework.h"
 
 FOUNDATION_EXPORT double KZPropertyMapperVersionNumber;
 FOUNDATION_EXPORT const unsigned char KZPropertyMapperVersionString[];

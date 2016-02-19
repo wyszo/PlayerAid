@@ -14,7 +14,7 @@
   "social_media_url": "http://twitter.com/Wyszo",
   "source": {
     "git": "https://github.com/wyszo/TWCommonLib.git",
-    "tag": "CommonLib_0_9"
+    "tag": "CommonLib_1_0_0"
   },
   "frameworks": [
     "CoreMotion",

@@ -225,6 +225,20 @@
   }
   
   NSString *propertyClassName = [typeEncoding substringWithRange:NSMakeRange(2, typeEncoding.length - 3)];
+
+  if ([propertyClassName hasPrefix:@"<"] && [propertyClassName hasSuffix:@">"]) {
+      NSScanner *protocolScanner = [NSScanner scannerWithString:propertyClassName];
+      protocolScanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
+      NSString *protocolString;
+      while ([protocolScanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&protocolString]) {
+          Protocol *protocol = NSProtocolFromString(protocolString);
+          if (![object conformsToProtocol:protocol]) {
+              return NO;
+          }
+      }
+      return YES; // Looks like it is "id<SomeProtocol>", and all protocols requirements are met
+  }
+
   Class propertyClass = NSClassFromString(propertyClassName);
   BOOL isSameTypeObject = ([object isKindOfClass:propertyClass]);
   
@@ -353,7 +367,10 @@ static BOOL _shouldLogIgnoredValues = YES;
     return nil;
   }
   AssertTrueOrReturnNil([value isKindOfClass:NSString.class]);
-  return [[self dateFormatter] dateFromString:value];
+
+  NSDate *date = [[self dateFormatter] dateFromString:value] ?: [[self dateFormatterWithMilliseconds] dateFromString:value];
+
+  return date;
 }
 
 + (NSDateFormatter *)dateFormatter
@@ -363,7 +380,21 @@ static BOOL _shouldLogIgnoredValues = YES;
   dispatch_once(&onceToken, ^{
     df = [[NSDateFormatter alloc] init];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    [df setLocale:locale];
+    [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+  });
+  return df;
+}
+
++ (NSDateFormatter *)dateFormatterWithMilliseconds
+{
+  static NSDateFormatter *df = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    df = [[NSDateFormatter alloc] init];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     [df setLocale:locale];
     [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
   });
@@ -387,4 +418,3 @@ static BOOL _shouldLogIgnoredValues = YES;
   return objc_msgSendTyped(target, selector, value);
 }
 @end
-
