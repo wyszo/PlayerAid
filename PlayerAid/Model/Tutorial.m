@@ -95,10 +95,10 @@ static NSString *const kCommentsKey = @"comments";
 
 #pragma mark - Comments
 
-- (NSOrderedSet *)commentsFromDictionariesArray:(nonnull NSArray *)commentsDictionaries
+- (NSOrderedSet *)commentsFromDictionariesArray:(nonnull id)commentsDictionaries
 {
-  AssertTrueOrReturnNil(commentsDictionaries);
-  return [[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:commentsDictionaries inContext:self.managedObjectContext];
+  AssertTrueOrReturnNil([commentsDictionaries isKindOfClass:[NSArray class]]);
+  return [[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:(NSArray *)commentsDictionaries inContext:self.managedObjectContext];
 }
 
 #pragma mark - Accessors
