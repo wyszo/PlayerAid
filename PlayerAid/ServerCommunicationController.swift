@@ -11,6 +11,8 @@ enum HTTPMethod: String {
   case DELETE = "DELETE"
 }
 
+typealias NetworkCompletionBlock = (response: AnyObject?, responseObject: NSURLResponse?, error: NSError?) -> Void
+
 /**
  This class replaces AuthenticatedServerCommunicationController as is intended to be further extended. Implement new network requests here.
  */
@@ -25,21 +27,21 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
-  func listTutorialsForUserId(userId: Int, completion: ([AnyObject]?, NSURLResponse?, NSError?) -> Void) {
+  func listTutorialsForUserId(userId: Int, completion: NetworkCompletionBlock) {
     let parameters = [ "fields" : "comments,author.tutorials" ] // shouldn't this be: comments,steps?
     let urlString = "user/\(userId)/tutorials"
 
-    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: {
-      data, response, error -> Void in
-        if let jsonResponse = try? data?.jsonArray() { 
-          completion(jsonResponse, response, error)
-        } else {
-          assertionFailure("Unexpected response!")
-          completion(nil, response, error)
-        }
-    });
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
   }
 
+  // MARK: User
+  
+  func getCurrentUser(completion completion: NetworkCompletionBlock) {
+    // GET /user
+    let fields = [ "fields" : "tutorials,followers,following" ]
+    sendNetworkRequest("user", httpMethod: .GET, parameters: fields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+  }
+  
   // MARK: (un)liking comments
   
   func likeComment(comment: TutorialComment) {
@@ -156,9 +158,37 @@ class ServerCommunicationController : NSObject {
     return request.copy() as! NSURLRequest
   }
   
-  func addBearerAuthenticationToMutableRequest(mutableRequest: NSMutableURLRequest) {
+  private func addBearerAuthenticationToMutableRequest(mutableRequest: NSMutableURLRequest) {
     assert(self.apiToken?.characters.count > 0)
     let bearer = "Bearer " + apiToken!
     mutableRequest.setValue(bearer, forHTTPHeaderField: "Authorization")
+  }
+  
+  // MARK: Network responses handling
+  
+  private func networkResponseAsJSONArrayCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+    
+    return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
+        return try! data?.jsonArray()
+      }, completion: completion)
+  }
+  
+  private func networkResponseAsJSONDictionaryCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+    
+    return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
+        return try! data?.jsonDictionary()
+      }, completion: completion)
+  }
+  
+  private func networkResponseWithTransformationCompletionBlock(transformation: (NSData?) -> AnyObject?, completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+    
+    return { (data, response, error) -> Void in
+      if let transformedData = transformation(data) {
+        completion(response: transformedData, responseObject: response, error: error)
+      } else {
+        assertionFailure("Unexpected response");
+        completion(response: nil, responseObject: response, error: error)
+      }
+    }
   }
 }

@@ -51,11 +51,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 #pragma mark - Users management
 
-- (void)getCurrentUserCompletion:(NetworkResponseBlock)completion
-{
-  [self performGetRequestWithApiToken:self.apiToken urlString:@"user" useCacheIfAllowed:YES completion:completion];
-}
-
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(userID.length);

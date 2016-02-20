@@ -29,7 +29,6 @@ DEPRECATED_ATTRIBUTE // try to use ServerCommunicationController instead!
 @property (nonatomic, strong, readonly) ServerCommunicationController *serverCommunicationController;
 
 - (void)pingCompletion:(NetworkResponseBlock)completion;
-- (void)getCurrentUserCompletion:(NetworkResponseBlock)completion;
 - (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion;
 
 // tutorials

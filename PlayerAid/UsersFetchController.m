@@ -9,6 +9,7 @@
 #import "User.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
+#import "PlayerAid-Swift.h"
 
 static const CGFloat kRetryShortDelay = 3.0;
 static const CGFloat kRetryLongDelay = 10.0;
@@ -54,7 +55,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)fetchCurrentUserProfileFacebookUser:(nullable NSNumber *)userLinkedWithFacebook
 {
   __weak typeof(self) weakSelf = self;
-  [[AuthenticatedServerCommunicationController sharedInstance] getCurrentUserCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getCurrentUserWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if (error) {
       if ([weakSelf isFirstTimeUserSynchronization]) {
         [self showBlockingAlertIfItHasNotBeenShown];
