@@ -49,15 +49,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [self performGetRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
 }
 
-#pragma mark - Users management
-
-- (void)getUserWithID:(NSString *)userID completion:(NetworkResponseBlock)completion
-{
-  AssertTrueOrReturn(userID.length);
-  NSString *urlString = [@"user/" stringByAppendingString:userID];
-  [self performGetRequestWithApiToken:self.apiToken urlString:urlString useCacheIfAllowed:YES completion:completion];
-}
-
 #pragma mark - Tutorial management
 
 - (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion {

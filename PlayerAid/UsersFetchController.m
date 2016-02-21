@@ -34,7 +34,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     return;
   }
   else {
-    [[AuthenticatedServerCommunicationController sharedInstance] getUserWithID:[user.serverID stringValue] completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+    [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getUserWithId:[user.serverID stringValue] completion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
       if (error) {
         [AlertFactory showGenericErrorAlertViewNoRetry];
       }

@@ -38,9 +38,16 @@ class ServerCommunicationController : NSObject {
   
   func getCurrentUser(completion completion: NetworkCompletionBlock) {
     // GET /user
-    let fields = [ "fields" : "tutorials,followers,following" ]
-    sendNetworkRequest("user", httpMethod: .GET, parameters: fields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+    sendNetworkRequest("user", httpMethod: .GET, parameters: userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
   }
+
+  func getUser(id id: String, completion: NetworkCompletionBlock) {
+    // GET /user/{id}
+    let urlString = "user/" + id
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+  }
+  
+  private let userRequestFields = [ "fields" : "tutorials,followers,following" ]
   
   // MARK: (un)liking comments
   
