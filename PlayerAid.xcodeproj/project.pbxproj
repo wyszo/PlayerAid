@@ -66,6 +66,7 @@
 		316763F31C793D40003184C1 /* ServerCommunicationController_Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F21C793D40003184C1 /* ServerCommunicationController_Tutorials.swift */; };
 		316763F51C793E0F003184C1 /* ServerCommunicationController_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F41C793E0F003184C1 /* ServerCommunicationController_User.swift */; };
 		316763F71C793E4D003184C1 /* ServerCommunicationController_Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */; };
+		316763F91C7A4017003184C1 /* MoreRepliesBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316763F81C7A4017003184C1 /* MoreRepliesBar.xib */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -295,6 +296,7 @@
 		316763F21C793D40003184C1 /* ServerCommunicationController_Tutorials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController_Tutorials.swift; sourceTree = "<group>"; };
 		316763F41C793E0F003184C1 /* ServerCommunicationController_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController_User.swift; sourceTree = "<group>"; };
 		316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController_Comments.swift; sourceTree = "<group>"; };
+		316763F81C7A4017003184C1 /* MoreRepliesBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreRepliesBar.xib; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -662,10 +664,11 @@
 		3102F93D1BF697D300B544C6 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				3102F93E1BF6982000B544C6 /* MakeCommentInputView.xib */,
-				31549F871C0908B300B2CA87 /* EditCommentInputView.xib */,
 				310510B41C124AD20070C702 /* CommentBottomBar.xib */,
 				3174F2BA1C5E778800C3B9EF /* CommentRepliesView.xib */,
+				31549F871C0908B300B2CA87 /* EditCommentInputView.xib */,
+				3102F93E1BF6982000B544C6 /* MakeCommentInputView.xib */,
+				316763F81C7A4017003184C1 /* MoreRepliesBar.xib */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -2127,6 +2130,7 @@
 				3174F2BB1C5E778800C3B9EF /* CommentRepliesView.xib in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
+				316763F91C7A4017003184C1 /* MoreRepliesBar.xib in Resources */,
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,

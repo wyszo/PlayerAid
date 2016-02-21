@@ -10,6 +10,7 @@
 #import "User.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
+#import "CommonViews.h"
 #import "PlayerAid-Swift.h"
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
@@ -59,6 +60,16 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.commentLabel.textColor = [ColorsHelper commentLabelTextColor];
   [self setupCommentTextLabelMaxLineCount];
   [self saveDefaultTimeAgoToMoreButtonConstraintValue];
+    
+  self.repliesTableView.scrollEnabled = NO;
+}
+
+- (void)setupRepliesHeaderView {
+    const NSInteger kMoreRepliesHeaderHeight = 34;
+  
+    UIView *headerView = [UIView tw_viewFromNibNamed:@"MoreRepliesBar" withOwner:self];
+    headerView.frame = CGRectMake(0, 0, UIScreen.tw_width, kMoreRepliesHeaderHeight);
+    self.repliesTableView.tableHeaderView = headerView;
 }
 
 - (void)prepareForReuse {
@@ -77,6 +88,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
   [self restoreDefaultTimeAgoBarToMoreButtonConstraint];
+    
+    self.repliesTableView.tableHeaderView = [CommonViews smallTableHeaderOrFooterView];
 }
 
 - (void)setupCommentTextLabelMaxLineCount {
