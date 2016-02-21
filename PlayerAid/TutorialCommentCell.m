@@ -112,8 +112,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (void)configureRepliesTableView {
+    NSNumber *fetchLimit = @7;
+    
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
-    [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment];
+    [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:fetchLimit];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {

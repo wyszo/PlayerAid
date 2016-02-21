@@ -6,15 +6,21 @@ class RepliesToCommentTableViewController : NSObject {
     private let cellReuseIdentifier = "commentReplyCell"
     
     // TODO: initialize this from an initializer!!! initWithTableView!!!
-    private var tableView: UITableView? // Todo: private, !
+    private var tableView: UITableView?
     private var comment: TutorialComment?
+    private var fetchLimit: Int?
     
     private var repliesDataSource: TWCoreDataTableViewDataSource?
     private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
     private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
     
     // MARK: Public
-    
+  
+    func attachToTableView(tableView: UITableView, withRepliesToComment comment: TutorialComment, fetchLimit: NSNumber) {
+      self.fetchLimit = fetchLimit.integerValue
+      attachToTableView(tableView, withRepliesToComment: comment)
+    }
+  
     func attachToTableView(tableView: UITableView, withRepliesToComment comment: TutorialComment) {
         self.tableView = tableView
         self.comment = comment
@@ -36,15 +42,15 @@ class RepliesToCommentTableViewController : NSObject {
     private func setupDataSource() {
         repliesFetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock: {
             [weak self] (cell, indexPath) in
-            self?.configureCell(cell, object: nil, indexPath: indexPath)
+              self?.configureCell(cell, object: nil, indexPath: indexPath)
             })
         assert(repliesFetchedResultsControllerBinder != nil)
         assert(comment != nil)
-        
-        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
-            [weak self] (cell, object, indexPath) in
-            self?.configureCell(cell, object: object, indexPath: indexPath)
-            })
+      
+        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchLimit:fetchLimit, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
+              [weak self] (cell, object, indexPath) in
+                self?.configureCell(cell, object: object, indexPath: indexPath)
+              })
         assert(dataSourceConfigurator != nil)
         
         repliesDataSource = dataSourceConfigurator?.dataSource()

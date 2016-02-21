@@ -14,6 +14,7 @@
 @property (strong, nonatomic) Tutorial *tutorial;
 @property (strong, nonatomic) TutorialComment *comment;
 @property (strong, nonatomic) NSString *cellReuseIdentifier;
+@property (strong, nonatomic) NSNumber *fetchLimit;
 @property (weak, nonatomic) id <NSFetchedResultsControllerDelegate> fetchedResultsControllerDelegate;
 @property (copy, nonatomic) CellWithObjectAtIndexPathBlock configureCellBlock;
 @end
@@ -37,7 +38,7 @@
   return self;
 }
 
-- (instancetype)initWithComment:(TutorialComment *)comment cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock {
+- (instancetype)initWithComment:(TutorialComment *)comment cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchLimit:(NSNumber *)fetchLimit fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock {
   AssertTrueOrReturnNil(comment);
   AssertTrueOrReturnNil(cellReuseIdentifier.length);
   AssertTrueOrReturnNil(delegate);
@@ -46,6 +47,7 @@
   if (self) {
     _comment = comment;
     _cellReuseIdentifier = cellReuseIdentifier;
+    _fetchLimit = fetchLimit;
     _fetchedResultsControllerDelegate = delegate;
     _configureCellBlock = configureCellBlock;
     [self setupCommentsTableViewDataSource];
@@ -79,6 +81,10 @@
   NSFetchRequest *fetchRequest = [TutorialComment MR_requestAll];
   fetchRequest.predicate = [self predicate];
   fetchRequest.sortDescriptors = [self sortDescriptors];
+  
+  if (self.fetchLimit.integerValue > 0) {
+    fetchRequest.fetchLimit = self.fetchLimit.integerValue;
+  }
   return fetchRequest;
 }
 

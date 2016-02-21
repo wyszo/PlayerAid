@@ -17,7 +17,7 @@ NEW_AND_INIT_UNAVAILABLE
 - (instancetype)initWithTutorial:(Tutorial *)tutorial cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock;
 
 // for fetching comments made on a comment
-- (instancetype)initWithComment:(TutorialComment *)comment cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock;
+- (instancetype)initWithComment:(TutorialComment *)comment cellReuseIdentifier:(NSString *)cellReuseIdentifier fetchLimit:(NSNumber * __nullable)fetchLimit fetchedResultsControllerDelegate:(id <NSFetchedResultsControllerDelegate>)delegate configureCellBlock:(CellWithObjectAtIndexPathBlock)configureCellBlock;
 
 - (TWCoreDataTableViewDataSource *)dataSource;
 
