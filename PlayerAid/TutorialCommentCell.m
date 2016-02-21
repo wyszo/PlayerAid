@@ -70,7 +70,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
     UIView *headerView = [UIView tw_viewFromNibNamed:@"MoreRepliesBar" withOwner:self];
     headerView.frame = CGRectMake(0, 0, UIScreen.tw_width, kMoreRepliesHeaderHeight);
+  
+    UIButton *button = [self firstButtonFromArray:headerView.subviews];
+    [button addTarget:self action:@selector(replyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+  
     self.repliesTableView.tableHeaderView = headerView;
+}
+
+- (UIButton *)firstButtonFromArray:(NSArray *)views {
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", [UIButton class]];
+  NSArray *buttons = [views filteredArrayUsingPredicate:predicate];
+  AssertTrueOrReturnNil(buttons.count >= 1);
+  return buttons[0];
 }
 
 - (void)prepareForReuse {
