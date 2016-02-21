@@ -3,7 +3,7 @@ platform :ios, '8.0'
 inhibit_all_warnings! # suppress all warnings from pods
 use_frameworks!
 
-pod 'AFNetworking', '2.5.0' # 3.0.4 available
+pod 'AFNetworking', '2.6.3' # 3.0.4 available
 pod 'FBSDKCoreKit', '4.10.0'
 pod 'FBSDKLoginKit', '4.10.0'
 pod 'MagicalRecord', '2.3.2'
