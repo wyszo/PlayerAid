@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
@@ -28,13 +28,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzY-0k-PMl">
-                    <rect key="frame" x="55" y="12" width="6" height="16"/>
+                    <rect key="frame" x="55" y="12.5" width="5.5" height="15.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                     <color key="textColor" red="0.71764705882352942" green="0.71764705882352942" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynT-me-lMT">
-                    <rect key="frame" x="69" y="5" width="30" height="30"/>
+                    <rect key="frame" x="68.5" y="5" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="SO4-Zo-OIH"/>
                     </constraints>
@@ -47,13 +47,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mK0-hG-HPE">
-                    <rect key="frame" x="104" y="12" width="6" height="16"/>
+                    <rect key="frame" x="103.5" y="12.5" width="5.5" height="15.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                     <color key="textColor" red="0.71764705880000002" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIA-lI-w0m" userLabel="NumberOfLikes">
-                    <rect key="frame" x="120" y="5" width="36" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIA-lI-w0m" userLabel="NumberOfLikes">
+                    <rect key="frame" x="119" y="5" width="36" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Evl-Jq-iPL"/>
                         <constraint firstAttribute="width" constant="36" id="tJU-66-jvz"/>
@@ -66,8 +66,8 @@
                         <action selector="numberOfLikesButtonPressed:" destination="-1" eventType="touchUpInside" id="JcH-8Y-FK8"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="comments-like-ic" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-vu-Nci">
-                    <rect key="frame" x="118" y="16" width="10" height="8"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-like-ic" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-vu-Nci">
+                    <rect key="frame" x="117" y="16" width="10" height="8"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="ZiC-6c-gJt"/>
                         <constraint firstAttribute="width" constant="10" id="qQI-ht-PgV"/>

@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxz-Xk-q4z" userLabel="CellContainer">
-                        <rect key="frame" x="0.0" y="0.0" width="324" height="160"/>
+                        <rect key="frame" x="0.0" y="0.0" width="324" height="200"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mG-d1-jyc" userLabel="MarginView">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="160"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" id="iJO-rJ-YiF"/>
                                 </constraints>
@@ -58,7 +58,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZa-Sb-n3z" userLabel="Comment">
-                                <rect key="frame" x="48" y="33" width="256" height="81"/>
+                                <rect key="frame" x="48" y="33" width="256" height="121"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">What do you do when you want to pass to another team mate but there's a defender between the two of you?  Do you angle the pass or try to pass it over the defender?</string>
@@ -72,14 +72,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-fq-GWQ" userLabel="BottomBar view" customClass="CommentBottomBarView" customModule="PlayerAid" customModuleProvider="target">
-                                <rect key="frame" x="48" y="126" width="203" height="24"/>
+                                <rect key="frame" x="48" y="166" width="203" height="24"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="sjK-Pb-uaE"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-KO-H2a" userLabel="More...">
-                                <rect key="frame" x="48" y="117" width="24" height="8"/>
+                                <rect key="frame" x="48" y="157" width="24" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="1rz-3x-zv6"/>
                                     <constraint firstAttribute="width" constant="24" id="qQQ-3s-GtK"/>
@@ -90,7 +90,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1V-Mew">
-                                <rect key="frame" x="259" y="128" width="65" height="32"/>
+                                <rect key="frame" x="259" y="168" width="65" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="RvG-hL-kH6"/>
                                     <constraint firstAttribute="height" constant="32" id="zlx-64-uOV"/>
@@ -133,10 +133,10 @@
                         </constraints>
                     </view>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-b6-tuh" userLabel="Replies Table View">
-                        <rect key="frame" x="0.0" y="160" width="324" height="40"/>
+                        <rect key="frame" x="0.0" y="200" width="324" height="0.0"/>
                         <color key="backgroundColor" red="1" green="0.21381578949999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" priority="999" constant="40" id="7Rt-gI-DGS"/>
+                            <constraint firstAttribute="height" priority="999" id="7Rt-gI-DGS"/>
                         </constraints>
                     </tableView>
                 </subviews>
