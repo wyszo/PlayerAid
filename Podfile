@@ -6,7 +6,7 @@ use_frameworks!
 pod 'AFNetworking', '2.5.0' # 3.0.4 available
 pod 'FBSDKCoreKit', '4.10.0'
 pod 'FBSDKLoginKit', '4.10.0'
-pod 'MagicalRecord', '2.3.0'
+pod 'MagicalRecord', '2.3.2'
 pod 'KZAsserts', '1.0'
 pod 'KZPropertyMapper', '2.6'
 pod 'UIAlertView-Blocks', '1.0'
