@@ -27,7 +27,11 @@ class RepliesToCommentTableViewController : NSObject {
         setupTableView()
         setupDataSource()
     }
-    
+  
+    func fetchedObjects() -> Int {
+        return repliesDataSource?.objectCount() ?? 0
+    }
+  
     // MARK: Setup
     
     private func setupTableView() {

@@ -15,6 +15,7 @@
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
 static const CGFloat kFoldedTimeAgoBarToMoreButtonDistanceConstraint = -6.0f;
+static const NSInteger kInlineRepliesFetchLimit = 7;
 
 static CGFloat defaultMoreButtonHeightConstraintConstant;
 static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
@@ -125,10 +126,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (void)configureRepliesTableView {
-    NSNumber *fetchLimit = @7;
-    
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
-    [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:fetchLimit];
+    [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:@(kInlineRepliesFetchLimit)];
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {
