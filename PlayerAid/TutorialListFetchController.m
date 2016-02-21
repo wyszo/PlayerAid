@@ -19,8 +19,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchTimelineTutorialsCompletion:(BlockWithBoolParameter)completion {
   defineWeakSelf();
-  [[AuthenticatedServerCommunicationController sharedInstance] listTutorialsWithCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-    [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:responseObject];
+  [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController listTutorialsWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    AssertTrueOrReturn([responseObject isKindOfClass:[NSArray class]]);
+    [weakSelf showGenericError:(error != nil) orParseTutorialsFromDictionariesArray:(NSArray *)responseObject];
     CallBlock(completion, (error != nil));
   }];
 

@@ -27,6 +27,11 @@ class ServerCommunicationController : NSObject {
 
   // MARK: Tutorials
 
+  func listTutorials(completion completion: NetworkCompletionBlock) {
+    let parameters = [ "fields" : "steps,comments" ]
+    sendNetworkRequest("tutorials", httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+  }
+  
   func listTutorialsForUserId(userId: Int, completion: NetworkCompletionBlock) {
     let parameters = [ "fields" : "comments,author.tutorials" ] // shouldn't this be: comments,steps?
     let urlString = "user/\(userId)/tutorials"
@@ -176,14 +181,18 @@ class ServerCommunicationController : NSObject {
   private func networkResponseAsJSONArrayCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
     
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
-        return try! data?.jsonArray()
+        let result = try? data?.jsonArray()
+        assert(result != nil && result! != nil)
+        return result!
       }, completion: completion)
   }
   
   private func networkResponseAsJSONDictionaryCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
     
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
-        return try! data?.jsonDictionary()
+      let result = try? data?.jsonDictionary()
+      assert(result != nil && result! != nil)
+      return result!
       }, completion: completion)
   }
   

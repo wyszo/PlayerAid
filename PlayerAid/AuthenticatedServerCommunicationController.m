@@ -16,7 +16,6 @@
 
 static NSString *const kTutorialUrlString = @"tutorial";
 static NSString *const kUserUrlString = @"user";
-static NSString *const kListTutorialsUrlString = @"tutorials";
 
 
 @interface AuthenticatedServerCommunicationController ()
@@ -50,10 +49,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 }
 
 #pragma mark - Tutorial management
-
-- (void)listTutorialsWithCompletion:(NetworkResponseBlock)completion {
-  [self performGetRequestWithApiToken:self.apiToken urlString:kListTutorialsUrlString useCacheIfAllowed:YES completion:completion];
-}
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion
 {
