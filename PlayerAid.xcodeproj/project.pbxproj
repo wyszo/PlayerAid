@@ -67,6 +67,7 @@
 		316763F51C793E0F003184C1 /* ServerCommunicationController_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F41C793E0F003184C1 /* ServerCommunicationController_User.swift */; };
 		316763F71C793E4D003184C1 /* ServerCommunicationController_Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */; };
 		316763F91C7A4017003184C1 /* MoreRepliesBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316763F81C7A4017003184C1 /* MoreRepliesBar.xib */; };
+		316763FC1C7A967E003184C1 /* CommentRepliesCellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316763FB1C7A967E003184C1 /* CommentRepliesCellConfigurator.m */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -297,6 +298,8 @@
 		316763F41C793E0F003184C1 /* ServerCommunicationController_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController_User.swift; sourceTree = "<group>"; };
 		316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunicationController_Comments.swift; sourceTree = "<group>"; };
 		316763F81C7A4017003184C1 /* MoreRepliesBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreRepliesBar.xib; sourceTree = "<group>"; };
+		316763FA1C7A967E003184C1 /* CommentRepliesCellConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentRepliesCellConfigurator.h; sourceTree = "<group>"; };
+		316763FB1C7A967E003184C1 /* CommentRepliesCellConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentRepliesCellConfigurator.m; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -678,6 +681,8 @@
 			children = (
 				3102F9491BF9DC6400B544C6 /* TutorialCommentCell.h */,
 				3102F94A1BF9DC6400B544C6 /* TutorialCommentCell.m */,
+				316763FA1C7A967E003184C1 /* CommentRepliesCellConfigurator.h */,
+				316763FB1C7A967E003184C1 /* CommentRepliesCellConfigurator.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2281,6 +2286,7 @@
 				312C6AB31AD47FA900D96C19 /* DataCleanupHelper.m in Sources */,
 				31014E741A9B8407002F3485 /* TutorialsHelper.m in Sources */,
 				31B735F01A87FADE0081AE15 /* TutorialStep.m in Sources */,
+				316763FC1C7A967E003184C1 /* CommentRepliesCellConfigurator.m in Sources */,
 				31014E4D1A93EA97002F3485 /* NavigationControllerWhiteStatusbar.m in Sources */,
 				31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */,
 				315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */,
