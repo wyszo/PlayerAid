@@ -346,6 +346,9 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   [self showReplies];
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
+  
+  AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
+  CallBlock(self.updateCommentsTableViewFooterHeight); // that's required to propagate size changes to main tableView footer
 }
 
 - (void)hideRepliesInvokeCallback {
@@ -353,6 +356,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self hideReplies];
   [self layoutIfNeeded];
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
+  CallBlock(self.updateCommentsTableViewFooterHeight);
 }
 
 @end
