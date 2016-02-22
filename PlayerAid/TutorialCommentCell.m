@@ -10,7 +10,7 @@
 #import "User.h"
 #import "UIImageView+AvatarStyling.h"
 #import "ColorsHelper.h"
-#import "CommonViews.h"
+#import "CommentRepliesCellConfigurator.h"
 #import "PlayerAid-Swift.h"
 
 static const NSInteger kMaxFoldedCommentNumberOfLines = 5;
@@ -47,8 +47,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 @property (weak, nonatomic) IBOutlet UITableView *repliesTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *repliesTableViewHeightConstraint;
 @property (strong, nonatomic) RepliesToCommentTableViewController *repliesToCommentTableVC;
+@property (assign, nonatomic) BOOL allowInlineReplies;
 
 @end
+
 
 @implementation TutorialCommentCell
 
@@ -65,25 +67,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.repliesTableView.scrollEnabled = NO;
 }
 
-- (void)setupRepliesHeaderView {
-    const NSInteger kMoreRepliesHeaderHeight = 34;
-  
-    UIView *headerView = [UIView tw_viewFromNibNamed:@"MoreRepliesBar" withOwner:self];
-    headerView.frame = CGRectMake(0, 0, UIScreen.tw_width, kMoreRepliesHeaderHeight);
-  
-    UIButton *button = [self firstButtonFromArray:headerView.subviews];
-    [button addTarget:self action:@selector(replyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-  
-    self.repliesTableView.tableHeaderView = headerView;
-}
-
-- (UIButton *)firstButtonFromArray:(NSArray *)views {
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", [UIButton class]];
-  NSArray *buttons = [views filteredArrayUsingPredicate:predicate];
-  AssertTrueOrReturnNil(buttons.count >= 1);
-  return buttons[0];
-}
-
 - (void)prepareForReuse {
   [super prepareForReuse];
   
@@ -96,12 +79,14 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.expanded = NO;
   self.replyButtonHidden = NO;
   self.isCommentReplyCell = NO;
+  self.allowInlineReplies = NO;
   
   [self setupCommentTextLabelMaxLineCount];
   [self restoreMoreButtonHeightConstraint];
   [self restoreDefaultTimeAgoBarToMoreButtonConstraint];
-    
-    self.repliesTableView.tableHeaderView = [CommonViews smallTableHeaderOrFooterView];
+  
+  self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] dummyHeaderView];
+  self.repliesToCommentTableVC = nil;
 }
 
 - (void)setupCommentTextLabelMaxLineCount {
@@ -113,6 +98,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 - (void)configureWithTutorialComment:(TutorialComment *)comment allowInlineCommentReplies:(BOOL)allowInlineReplies {
   AssertTrueOrReturn(comment);
   _comment = comment;
+  self.allowInlineReplies = allowInlineReplies;
 
   self.isCommentReplyCell = (comment.isReplyTo != nil);
   User *commentAuthor = comment.madeBy;
@@ -125,20 +111,17 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
   
+  [self hideReplies];
+  
   // update UI to reflect compressed constraints change
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:NO];
-    
-    if (allowInlineReplies) {
-      [self configureRepliesTableView];
-    } else {
-      self.repliesTableViewHeightConstraint.constant = 0;
-    }
-  [self layoutIfNeeded];
 }
 
-- (void)configureRepliesTableView {
+- (void)configureRepliesTableViewIfNeeded {
+  if (self.repliesToCommentTableVC == nil && self.allowInlineReplies) {
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
     [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:@(kInlineRepliesFetchLimit)];
+  }
 }
 
 - (void)configureBottomBarWithTutorialComment:(TutorialComment *)comment {
@@ -176,10 +159,32 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   return likesCount;
 }
 
+#pragma mark - Repliess
+
+- (void)showReplies {
+    if ([self shouldShowMoreRepliesHeaderView]) {
+      self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] moreRepliesBarWithPressedActionTarget:self selector:@selector(replyButtonPressed:)];
+    }
+  
+    CGFloat constant = self.repliesTableView.contentSize.height;
+    // alternatively: constant = [self.repliesTableView sizeThatFits:CGSizeMake(CGRectGetWidth(self.repliesTableView.bounds), CGFLOAT_MAX)].height;
+  
+    self.repliesTableViewHeightConstraint.constant = constant;
+}
+
+- (BOOL)shouldShowMoreRepliesHeaderView {
+  return ([self.repliesToCommentTableVC fetchedObjects] == kInlineRepliesFetchLimit);
+}
+
+- (void)hideReplies {
+    self.repliesTableViewHeightConstraint.constant = 0;
+    self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] dummyHeaderView];
+}
+
 #pragma mark - public
 
 - (BOOL)isExpanded {
-  return self.expanded || [self shouldHideMoreButton]; // lineCount equals either 0 or <= maxNrOfLines
+  return (self.expanded || [self shouldHideMoreButton]); // lineCount equals either 0 or <= maxNrOfLines
 }
 
 - (void)expandCell {
@@ -314,7 +319,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (IBAction)avatarButtonPressed:(id)sender {
-  CallBlock(self.didPressUserAvatarOrName, self.comment);
+   CallBlock(self.didPressUserAvatarOrName, self.comment);
 }
 
 - (IBAction)usernamePressed:(id)sender {
@@ -323,6 +328,25 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 - (IBAction)replyButtonPressed:(id)sender {
   CallBlock(self.didPressReplyButtonBlock, self.comment);
+}
+
+#pragma mark - Replies Animations
+
+- (void)showRepliesInvokeCallback {
+  [self configureRepliesTableViewIfNeeded];
+  
+  AssertTrueOrReturn(self.willChangeCellHeightBlock != nil);
+  CallBlock(self.willChangeCellHeightBlock);
+  
+  [self showReplies];
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
+}
+
+- (void)hideRepliesInvokeCallback {
+  CallBlock(self.willChangeCellHeightBlock);
+  [self hideReplies];
+  [self layoutIfNeeded];
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
 }
 
 @end
