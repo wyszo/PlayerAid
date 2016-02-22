@@ -343,6 +343,10 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
     commentsContainerVC.parentNavigationController = self.parentNavigationController;
     
     defineWeakSelf();
+    commentsContainerVC.updateCommentsTableViewFooterHeightBlock = ^() {
+      [weakSelf updateCommentsHeightIfExpandedShouldScrollToCommentsBar:NO];
+    };
+    
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {
       BOOL anyCommentBeingEdited = [weakSelf.keyboardInputViewsManager editCommentInputViewSlidOut];
       BOOL newCommentBeingAdded = [weakSelf.keyboardInputViewsManager.makeCommentInputVC isInputTextViewFirstResponder];

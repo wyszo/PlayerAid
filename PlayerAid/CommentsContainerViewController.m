@@ -23,6 +23,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, copy) EditCommentBlock editCommentActionSheetOptionSelectedBlock;
+@property (nonatomic, strong) TutorialCommentCellConfigurator *cellConfigurator;
 @end
 
 @implementation CommentsContainerViewController
@@ -167,10 +168,11 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
   TutorialComment *comment = (TutorialComment *)object;
   
-  TutorialCommentCellConfigurator *configurator = [TutorialCommentCellConfigurator new];
-  [configurator configureCell:commentCell inTableView:self.commentsTableView comment:comment allowInlineCommentReplies:YES];
-
+  AssertTrueOrReturn(self.cellConfigurator);
+  
   defineWeakSelf();
+  [self.cellConfigurator configureCell:commentCell inTableView:self.commentsTableView comment:comment allowInlineCommentReplies:YES];
+  
   commentCell.didPressUserAvatarOrName = ^(TutorialComment *comment) {
     [weakSelf pushUserProfileLinkedToTutorialComment:comment];
   };
@@ -262,6 +264,21 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturnNo(comment);
   User *currentUser = [UsersFetchController.sharedInstance currentUserInContext:comment.managedObjectContext];
   return (comment.madeBy == currentUser); // objects from same managedObjectContext, pointer equality check is enough
+}
+
+#pragma mark - Lazy init
+
+- (TutorialCommentCellConfigurator *)cellConfigurator {
+  if (_cellConfigurator == nil) {
+      _cellConfigurator = [TutorialCommentCellConfigurator new];
+      
+      defineWeakSelf();
+      _cellConfigurator.updateCommentsTableViewFooterHeightBlock = ^() {
+        // call a block from here from TutorialCommentsVC
+        CallBlock(weakSelf.updateCommentsTableViewFooterHeightBlock);
+      };
+  }
+  return _cellConfigurator;
 }
 
 @end

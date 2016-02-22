@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) VoidBlock willChangeCellHeightBlock;
 @property (nonatomic, copy) VoidBlock didChangeCellHeightBlock;
+@property (nonatomic, copy) VoidBlock updateCommentsTableViewFooterHeight;
+
 @property (nonatomic, copy) void (^likeButtonPressedBlock)(TutorialComment *comment);
 @property (nonatomic, copy) void (^unlikeButtonPressedBlock)(TutorialComment *comment);
 @property (nonatomic, copy) void (^didPressUserAvatarOrName)(TutorialComment *comment);

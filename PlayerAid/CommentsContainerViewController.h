@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) UITableView *commentsTableView;
 @property (nonatomic, weak) UINavigationController *parentNavigationController;
 
+@property (nonatomic, copy) VoidBlock updateCommentsTableViewFooterHeightBlock;
+
 // mandatory, part of the initialization
 - (void)setTutorialCommentsController:(TutorialCommentsController *)commentsController;
 

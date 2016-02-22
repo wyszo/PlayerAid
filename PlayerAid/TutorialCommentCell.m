@@ -195,7 +195,13 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   self.commentLabel.numberOfLines = 0; // this will trigger animations if willChange/didChange blocks contain calls to beginUpdates and endUpdates on tableView
   [self hideMoreButton]; // cell extended, we don't need more button anymore
   self.expanded = YES;
+
+  // update cell height
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
+  
+  // update main comment tableView height to adjust to new cell size
+  AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
+  CallBlock(self.updateCommentsTableViewFooterHeight) // this should be called multiple times, not just once!
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
