@@ -45,7 +45,7 @@ static NSString *const kCommentsKey = @"comments";
   }
   
   if (dictionary[kCommentsKey]) {
-    [mapping addEntriesFromDictionary:@{ kCommentsKey : KZCall(commentsFromDictionariesArray:, hasComments) }];
+    [mapping addEntriesFromDictionary:@{ kCommentsKey : KZCall(commentsFromCommentsFeedDictionary:, hasComments) }];
   }
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
@@ -95,9 +95,16 @@ static NSString *const kCommentsKey = @"comments";
 
 #pragma mark - Comments
 
-- (NSOrderedSet *)commentsFromDictionariesArray:(nonnull id)commentsDictionaries
-{
-  AssertTrueOrReturnNil([commentsDictionaries isKindOfClass:[NSArray class]]);
+- (NSOrderedSet *)commentsFromCommentsFeedDictionary:(nonnull id)feedObject {
+  AssertTrueOrReturnNil([feedObject isKindOfClass:[NSDictionary class]]);
+  NSDictionary *feedDictinary = (NSDictionary *)feedObject;
+  
+  // more comments should be available under nextPage feed...
+  
+  id data = feedDictinary[@"data"];
+  AssertTrueOrReturnNil([data isKindOfClass:[NSArray class]]);
+  NSArray *commentsDictionaries = (NSArray *)data;
+  
   return [[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:(NSArray *)commentsDictionaries inContext:self.managedObjectContext];
 }
 
