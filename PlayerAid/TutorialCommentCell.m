@@ -168,9 +168,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
   NSUInteger likesCount = self.comment.likedBy.count;
   if (likesCount == 0) {
-    likesCount = self.comment.likesCountValue; // fallback value until we have linkedBy relationship populated with data
+    likesCount = (NSUInteger)self.comment.likesCountValue; // fallback value until we have linkedBy relationship populated with data
   }
   return likesCount;
+}
+
+- (BOOL)areRepliesExpanded {
+  return (self.repliesTableViewHeightConstraint.constant > 0);
+}
+
+- (BOOL)commentHasReplies {
+  AssertTrueOrReturnNo(self.comment);
+  return (self.comment.hasReplies.count > 0);
 }
 
 #pragma mark - Repliess
@@ -201,6 +210,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   return (self.expanded || [self shouldHideMoreButton]); // lineCount equals either 0 or <= maxNrOfLines
 }
 
+- (BOOL)canHaveExpandedState {
+  return ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+}
+
 - (void)expandCell {
   BOOL bothBeforeAndAfterAnimationBlocksSet = (self.willChangeCellHeightBlock && self.didChangeCellHeightBlock);
   AssertTrueOrReturn(bothBeforeAndAfterAnimationBlocksSet && "either none of the blocks or both have to be set (willChange.. should call beginUpdates on tableView and didChange should call endUpdates");
@@ -216,6 +229,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   // update main comment tableView height to adjust to new cell size
   AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
   CallBlock(self.updateCommentsTableViewFooterHeight) // this should be called multiple times, not just once!
+}
+
+- (void)expandCommentReplies {
+  [self showRepliesInvokeCallback];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
@@ -252,7 +269,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (BOOL)shouldHideMoreButton {
-  return ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  return [self canHaveExpandedState];
 }
 
 - (void)hideMoreButton {

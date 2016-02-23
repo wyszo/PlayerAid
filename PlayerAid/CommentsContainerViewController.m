@@ -76,9 +76,13 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
       return;
     }
     
-    if ([cell isExpanded]) {
-      AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
-      [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object withTableViewCell:cell];
+    if ([cell isExpanded] || !cell.canHaveExpandedState) {
+      if ([cell commentHasReplies] && !cell.areRepliesExpanded) {
+        [cell expandCommentReplies];
+      } else {
+        AssertTrueOrReturn([object isKindOfClass:[TutorialComment class]]);
+        [weakSelf showUserActionsActionSheetForComment:(TutorialComment *)object withTableViewCell:cell];
+      }
     }
     else {
       [cell expandCell];
