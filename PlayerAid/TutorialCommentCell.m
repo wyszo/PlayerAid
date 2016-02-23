@@ -120,6 +120,11 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 - (void)configureRepliesTableViewIfNeeded {
   if (self.repliesToCommentTableVC == nil && self.allowInlineReplies) {
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
+    
+    defineWeakSelf();
+    self.repliesToCommentTableVC.tableViewDidLoadDataBlock = ^() {
+      [weakSelf showRepliesInvokeCallback];
+    };
     [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:@(kInlineRepliesFetchLimit)];
   }
 }

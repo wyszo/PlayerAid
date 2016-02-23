@@ -1,7 +1,7 @@
 import UIKit
 
 @objc
-class RepliesToCommentTableViewController : NSObject {
+class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
     
     private let cellReuseIdentifier = "commentReplyCell"
     
@@ -13,7 +13,9 @@ class RepliesToCommentTableViewController : NSObject {
     private var repliesDataSource: TWCoreDataTableViewDataSource?
     private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
     private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
-    
+  
+    var tableViewDidLoadDataBlock: (()->())?
+  
     // MARK: Public
   
     func attachToTableView(tableView: UITableView, withRepliesToComment comment: TutorialComment, fetchLimit: NSNumber) {
@@ -26,6 +28,7 @@ class RepliesToCommentTableViewController : NSObject {
         self.comment = comment
         setupTableView()
         setupDataSource()
+        tableView.delegate = self
     }
   
     func fetchedObjects() -> Int {
@@ -86,5 +89,15 @@ class RepliesToCommentTableViewController : NSObject {
             }
         }
     }
+  
+    // MARK: TableView Delegate
     
+    @objc internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      if indexPath.row == tableView.indexPathsForVisibleRows?.last!.row {
+        DispatchAsyncOnMainThread {
+          assert(self.tableViewDidLoadDataBlock != nil)
+          self.tableViewDidLoadDataBlock!()
+        }
+      }
+    }
 }
