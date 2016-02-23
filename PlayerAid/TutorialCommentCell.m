@@ -122,9 +122,18 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
     
     defineWeakSelf();
-    self.repliesToCommentTableVC.tableViewDidLoadDataBlock = ^() {
+    VoidBlock sizeCallback = ^() {
       [weakSelf showRepliesInvokeCallback];
     };
+    self.repliesToCommentTableVC.tableViewDidLoadDataBlock = sizeCallback;
+    
+    self.repliesToCommentTableVC.replyCellDidResizeBlock  = ^() {
+      // at this point cell is already extended internally, now we just need external tableView to accumulate for expanded size
+      DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+        sizeCallback();
+      });
+    };
+    
     [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:@(kInlineRepliesFetchLimit)];
   }
 }

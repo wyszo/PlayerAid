@@ -13,8 +13,21 @@ class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
     private var repliesDataSource: TWCoreDataTableViewDataSource?
     private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
     private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
+    private var cellConfigurator: TutorialCommentCellConfigurator
   
     var tableViewDidLoadDataBlock: (()->())?
+  
+    var replyCellDidResizeBlock: (()->())?
+    {
+      didSet {
+        cellConfigurator.updateCommentsTableViewFooterHeightBlock = replyCellDidResizeBlock
+      }
+    }
+  
+    override init() {
+      cellConfigurator = TutorialCommentCellConfigurator()
+      super.init()
+    }
   
     // MARK: Public
   
@@ -81,7 +94,7 @@ class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
             assert(tableView != nil)
             
             // Inline comments always disabled - we don't want Replies inside replies!
-            TutorialCommentCellConfigurator().configureCell(commentCell, inTableView: tableView!, comment: comment, allowInlineCommentReplies: false)
+            cellConfigurator.configureCell(commentCell, inTableView: tableView!, comment: comment, allowInlineCommentReplies: false)
             
             commentCell.didPressUserAvatarOrName = {
                 comment in // [weak self]
