@@ -26,6 +26,12 @@ class ServerCommunicationController : NSObject {
     self.apiToken = apiToken;
   }
   
+  // MARK: Public methods
+  
+  func ping(completion completion: NetworkCompletionBlock) {
+    sendNetworkRequest("ping", httpMethod: .GET, parameters: nil, completion: completion)
+  }
+  
   // MARK: Generic methods
   
   internal func sendPostRequest(relativePath: String, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {

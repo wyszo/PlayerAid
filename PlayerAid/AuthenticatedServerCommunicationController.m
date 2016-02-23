@@ -41,13 +41,6 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [sharedInstance.serverCommunicationController setApiToken:apiToken];
 }
 
-#pragma mark - Ping
-
-- (void)pingCompletion:(NetworkResponseBlock)completion
-{
-  [self performGetRequestWithApiToken:self.apiToken urlString:@"ping" useCacheIfAllowed:NO completion:completion];
-}
-
 #pragma mark - Tutorial management
 
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(void (^)(NSError *error))completion

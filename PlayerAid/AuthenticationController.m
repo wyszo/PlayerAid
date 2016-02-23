@@ -6,6 +6,7 @@
 #import "AuthenticationController.h"
 #import "AuthenticationController_SavingToken.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "PlayerAid-Swift.h"
 
 static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey";
 
@@ -28,7 +29,7 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
   [AuthenticatedServerCommunicationController setApiToken:apiToken];
   
   // ping server to check if token is valid
-  [[AuthenticatedServerCommunicationController sharedInstance] pingCompletion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pingWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if (completion) {
       // TODO: handle various types of errors
       BOOL authenticated = (error == nil);

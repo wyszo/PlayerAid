@@ -26,9 +26,8 @@ DEPRECATED_ATTRIBUTE // try to use ServerCommunicationController instead!
 + (instancetype)sharedInstance;
 + (void)setApiToken:(NSString *)apiToken;
 
+// TODO: this should be injected to classes as a dependency
 @property (nonatomic, strong, readonly) ServerCommunicationController *serverCommunicationController;
-
-- (void)pingCompletion:(NetworkResponseBlock)completion;
 
 // tutorials
 - (void)deleteTutorial:(Tutorial *)tutorial completion:(nullable VoidBlockWithError)completion;
