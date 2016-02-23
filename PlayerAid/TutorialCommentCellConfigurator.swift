@@ -8,11 +8,7 @@ class TutorialCommentCellConfigurator : NSObject {
     func configureCell(_ commentCell: TutorialCommentCell, inTableView tableView: UITableView, comment: TutorialComment, allowInlineCommentReplies: Bool) {
       
         commentCell.updateCommentsTableViewFooterHeight = { [weak self] in
-          guard let commentsHeightCallback = self?.updateCommentsTableViewFooterHeightBlock else {
-            assertionFailure("cell height won't be updated properly")
-            return
-          }
-          commentsHeightCallback()
+          self?.updateCommentsTableViewFooterHeightBlock?()
         };
       
         commentCell.willChangeCellHeightBlock = { [weak self] in

@@ -225,8 +225,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   // update cell height
   [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
   
-  // update main comment tableView height to adjust to new cell size
-  AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
+  // update main comment tableView height to adjust to new cell size (if there's main tableView)
   CallBlock(self.updateCommentsTableViewFooterHeight) // this should be called multiple times, not just once!
 }
 

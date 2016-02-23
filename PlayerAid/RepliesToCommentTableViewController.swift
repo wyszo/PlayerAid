@@ -108,8 +108,7 @@ class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
     @objc internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       if indexPath.row == tableView.indexPathsForVisibleRows?.last!.row {
         DispatchAsyncOnMainThread {
-          assert(self.tableViewDidLoadDataBlock != nil)
-          self.tableViewDidLoadDataBlock!()
+          self.tableViewDidLoadDataBlock?()
         }
       }
     }
