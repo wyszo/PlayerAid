@@ -190,8 +190,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
     }
   
     CGFloat constant = self.repliesTableView.contentSize.height;
-    // alternatively: constant = [self.repliesTableView sizeThatFits:CGSizeMake(CGRectGetWidth(self.repliesTableView.bounds), CGFLOAT_MAX)].height;
-  
     self.repliesTableViewHeightConstraint.constant = constant;
 }
 
@@ -211,7 +209,8 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (BOOL)canHaveExpandedState {
-  return ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  BOOL numberOfLinesBelowThreshold = ([self.commentLabel tw_lineCount] <= kMaxFoldedCommentNumberOfLines);
+  return !numberOfLinesBelowThreshold;
 }
 
 - (void)expandCell {
@@ -233,6 +232,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 - (void)expandCommentReplies {
   [self showRepliesInvokeCallback];
+}
+
+- (void)shrinkCommentReplies {
+  [self hideRepliesInvokeCallback];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
@@ -269,7 +272,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (BOOL)shouldHideMoreButton {
-  return [self canHaveExpandedState];
+  return ![self canHaveExpandedState];
 }
 
 - (void)hideMoreButton {

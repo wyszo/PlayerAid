@@ -24,6 +24,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, copy) EditCommentBlock editCommentActionSheetOptionSelectedBlock;
 @property (nonatomic, strong) TutorialCommentCellConfigurator *cellConfigurator;
+@property (nonatomic, strong) TutorialCommentCell *previouslySelectedCell;
 @end
 
 @implementation CommentsContainerViewController
@@ -75,6 +76,13 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
       CallBlock(weakSelf.resignMakeOrEditCommentFirstResponderBlock);
       return;
     }
+    
+    if (cell != self.previouslySelectedCell) {
+      if (self.previouslySelectedCell.areRepliesExpanded) {
+        [self.previouslySelectedCell shrinkCommentReplies];
+      }
+    }
+    self.previouslySelectedCell = cell;
     
     if ([cell isExpanded] || !cell.canHaveExpandedState) {
       if ([cell commentHasReplies] && !cell.areRepliesExpanded) {

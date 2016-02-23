@@ -33,7 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
  Returns true if cell has been expanded or number of text lines < 5 (which means it doesn't need to expand)
  */
 - (void)expandCell;
+
 - (void)expandCommentReplies;
+- (void)shrinkCommentReplies;
 
 - (void)setHighlighted:(BOOL)highlighted;
 - (void)setPreferredCommentLabelMaxLayoutWidth:(CGFloat)preferredWidth;
