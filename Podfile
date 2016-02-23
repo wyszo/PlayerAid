@@ -19,6 +19,7 @@ pod 'NSString+RemoveEmoji', '0.1.1'
 pod 'Fabric', '1.6.6'
 pod 'Crashlytics', '3.7.0'
 pod 'TTTAttributedLabel', '1.13.4'
+pod 'Typhoon', '3.4.5'
 
 pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
 pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'

@@ -70,6 +70,9 @@ PODS:
     - LBDelegateMatrioska (= 0.0.2)
     - MagicalRecord (= 2.3.2)
     - UIAlertView-Blocks (= 1.0)
+  - Typhoon (3.4.5):
+    - Typhoon/no-arc (= 3.4.5)
+  - Typhoon/no-arc (3.4.5)
   - UIAlertView-Blocks (1.0)
   - UITextView+Placeholder (1.1.1)
   - XRSA (1.1.0)
@@ -92,6 +95,7 @@ DEPENDENCIES:
   - NSString+RemoveEmoji (= 0.1.1)
   - TTTAttributedLabel (= 1.13.4)
   - TWCommonLib (from `../TWCommonLib`)
+  - Typhoon (= 3.4.5)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.1.1)
   - XRSA (from `https://github.com/wyszo/XRSA.git`, branch `master`)
@@ -137,6 +141,7 @@ SPEC CHECKSUMS:
   NSString+RemoveEmoji: b1068058ef731c646878050972870d06bd859ce1
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TWCommonLib: f627605266da8f5d124dca0259943abe29ef64bc
+  Typhoon: 200100687af3233ec5ed019064df3c9ffe350475
   UIAlertView-Blocks: 7904744fca618afbd2ec646608924f5e69d5acd1
   UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
   XRSA: efd78169cdb34f28194c140f51b49e312d996649

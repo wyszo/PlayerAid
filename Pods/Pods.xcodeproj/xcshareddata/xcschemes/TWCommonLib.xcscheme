@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A604B793004BE2212A880F6D'
+               BlueprintIdentifier = 'AA3C04B03ECBDC69F9707197'
                BlueprintName = 'TWCommonLib'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TWCommonLib.framework'>
