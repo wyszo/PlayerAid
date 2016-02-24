@@ -31,7 +31,42 @@ class ServerCommunicationController : NSObject {
   func ping(completion completion: NetworkCompletionBlock) {
     sendNetworkRequest("ping", httpMethod: .GET, parameters: nil, completion: completion)
   }
+}
+
+extension ServerCommunicationController {
+  // MARK: Tutorials
   
+  func listTutorials(completion completion: NetworkCompletionBlock) {
+    let parameters = [ "fields" : "steps,comments" ]
+    sendNetworkRequest("tutorials", httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+  }
+  
+  func listTutorialsForUserId(userId: Int, completion: NetworkCompletionBlock) {
+    let parameters = [ "fields" : "comments,author.tutorials" ] // shouldn't this be: comments,steps?
+    let urlString = "user/\(userId)/tutorials"
+    
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+  }
+}
+
+extension ServerCommunicationController {
+  // MARK: User
+  
+  func getCurrentUser(completion completion: NetworkCompletionBlock) {
+    // GET /user
+    sendNetworkRequest("user", httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+  }
+  
+  func getUser(id id: String, completion: NetworkCompletionBlock) {
+    // GET /user/{id}
+    let urlString = "user/" + id
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+  }
+  
+  private static let userRequestFields = [ "fields" : "tutorials,followers,following" ]
+}
+
+extension ServerCommunicationController {
   // MARK: Generic methods
   
   internal func sendPostRequest(relativePath: String, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
