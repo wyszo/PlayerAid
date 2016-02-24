@@ -1,7 +1,7 @@
 import UIKit
 
 @objc
-class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
+class RepliesToCommentTableViewController : NSObject {
     
     private let cellReuseIdentifier = "commentReplyCell"
     
@@ -47,7 +47,9 @@ class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
     func fetchedObjects() -> Int {
         return repliesDataSource?.objectCount() ?? 0
     }
-  
+}
+
+extension RepliesToCommentTableViewController {
     // MARK: Setup
     
     private func setupTableView() {
@@ -102,9 +104,10 @@ class RepliesToCommentTableViewController : NSObject, UITableViewDelegate {
             }
         }
     }
+}
+
+extension RepliesToCommentTableViewController: UITableViewDelegate {
   
-    // MARK: TableView Delegate
-    
     @objc internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       if indexPath.row == tableView.indexPathsForVisibleRows?.last!.row {
         DispatchAsyncOnMainThread {
