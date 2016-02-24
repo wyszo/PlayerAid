@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSOrderedSet *)orderedSetOfCommentsFromDictionariesArray:(NSArray *)commentsDictionaries inContext:(NSManagedObjectContext *)context;
 - (void)saveCommentFromDictionary:(NSDictionary *)commentDictionary;
+- (void)saveRepliesToCommentWithID:(nonnull NSNumber *)parentCommentId repliesDictionaries:(nonnull NSArray *)replies;
 
 @end
 

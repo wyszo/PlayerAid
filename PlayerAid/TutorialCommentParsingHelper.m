@@ -43,6 +43,22 @@
   }];
 }
 
+- (void)saveRepliesToCommentWithID:(nonnull NSNumber *)parentCommentId repliesDictionaries:(nonnull NSArray *)replies {
+  AssertTrueOrReturn(parentCommentId);
+  AssertTrueOrReturn(replies);
+  
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+    TutorialComment *parent = [TutorialComment findFirstByServerID:parentCommentId inContext:localContext];
+    AssertTrueOrReturn(parent);
+    
+    for (NSDictionary *replyDictionary in replies) {
+      TutorialComment *reply = [self createOrUpdateCommentFromDictionary:replyDictionary inContext:localContext];
+      AssertTrueOrReturn(reply != nil);
+      reply.isReplyTo = parent;
+    }
+  }];
+}
+
 #pragma mark - private
 
 - (TutorialComment *)createOrUpdateCommentFromDictionary:(NSDictionary *)commentDictionary inContext:(NSManagedObjectContext *)context

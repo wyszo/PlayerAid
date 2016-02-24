@@ -119,6 +119,21 @@ extension ServerCommunicationController {
   
   // MARK: Network responses handling
   
+  internal func isHttpResponseFailureShowGenericError(response: NSURLResponse?, error: NSError?) -> Bool {
+    var statusCode = 0
+    if let httpResponse = response as? NSHTTPURLResponse {
+      statusCode = httpResponse.statusCode
+    }
+    
+    if error != nil || statusCode != HTTPStatusCodes.success {
+      dispatch_async(dispatch_get_main_queue(), {
+        AlertFactory.showGenericErrorAlertViewNoRetry()
+      })
+      return true
+    }
+    return false
+  }
+  
   internal func networkResponseAsJSONArrayCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
     
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in

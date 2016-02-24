@@ -85,8 +85,11 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
   return serverID;
 }
 
-+ (nonnull TutorialComment *)findFirstOrCreateByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context
-{
++ (nonnull TutorialComment *)findFirstByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context {
+  return [TutorialComment MR_findFirstByAttribute:@"serverID" withValue:serverID inContext:context];
+}
+
++ (nonnull TutorialComment *)findFirstOrCreateByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context{
   return [TutorialComment MR_findFirstOrCreateByAttribute:@"serverID" withValue:serverID inContext:context];
 }
 

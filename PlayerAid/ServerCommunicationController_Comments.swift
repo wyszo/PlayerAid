@@ -36,19 +36,27 @@ extension ServerCommunicationController {
     }
   }
   
-  func refreshCommentAndCommentReplies(comment: TutorialComment, completion: (success: Bool) -> Void) {
+  func getCommentRepliesForComment(comment: TutorialComment, completion: (success: Bool) -> Void) {
     // GET /comment/{id}
-    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: nil)
-    sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil, completion: self.handleResponseContainingTutorialComment);
+    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "replies")
+    sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil) {
+      [weak self] (data, response, error) -> Void in
+        (self?.handleRepliesFeedToACommentWithID(comment.serverID, data: data, response: response, error: error))!
+    }
   }
   
   // MARK: Handling comments parsing
   
-  private func handleResponseContainingTutorialComment(data: NSData?, response: NSURLResponse?, error: NSError?) {
-    var statusCode = 0
-    if let httpResponse = response as? NSHTTPURLResponse {
-      statusCode = httpResponse.statusCode
+  private func handleRepliesFeedToACommentWithID(parentCommentID: NSNumber, data: NSData?, response: NSURLResponse?, error: NSError?) {
+    if isHttpResponseFailureShowGenericError(response, error: error) == false {
+      if let jsonDictionary = try? data?.jsonDictionary(), jsonReplies = jsonDictionary?["data"] as? [AnyObject] {
+        TutorialCommentParsingHelper().saveRepliesToCommentWithID(parentCommentID, repliesDictionaries:(jsonReplies));
+      } else {
+        AlertFactory.showGenericErrorAlertViewNoRetry()
+      }
     }
+  }
+  
     
     if error != nil || statusCode != HTTPStatusCodes.success {
       dispatch_async(dispatch_get_main_queue(), {

@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, CommentStatus) {
 #pragma mark - Class methods
 
 + (nullable NSNumber *)serverIDFromTutorialCommentDictionary:(nonnull NSDictionary *)dictionary;
+
++ (nonnull TutorialComment *)findFirstByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context;
 + (nonnull TutorialComment *)findFirstOrCreateByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context;
 
 @end

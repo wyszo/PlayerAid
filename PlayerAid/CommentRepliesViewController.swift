@@ -111,7 +111,7 @@ class CommentRepliesViewController : UIViewController {
 
     private func refreshCommentAndReplies() {
       assert(self.comment != nil);
-      AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.refreshCommentAndCommentReplies(self.comment!) {
+      AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.getCommentRepliesForComment(self.comment!) {
         (success) -> Void in
         if success == false {
           AlertFactory.showGenericErrorAlertViewNoRetry()
