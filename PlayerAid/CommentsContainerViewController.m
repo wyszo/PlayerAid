@@ -57,7 +57,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 {
   self.commentsTableView.estimatedRowHeight = 70.0f;
   self.commentsTableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
-  self.commentsTableView.separatorColor =  [ColorsHelper commentsSeparatorColor];
+  self.commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone; // we have custom separators, don't need default ones
 }
 
 - (void)setupCommentsTableViewCells

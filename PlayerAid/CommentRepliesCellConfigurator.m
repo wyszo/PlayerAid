@@ -24,7 +24,10 @@
 }
 
 - (UIView *)dummyHeaderView {
-  return [CommonViews smallTableHeaderOrFooterView];
+  UIView *simulatedSeparator = [CommonViews smallTableHeaderOrFooterView];
+  simulatedSeparator.tw_height = 0.5;
+  simulatedSeparator.backgroundColor = [ColorsHelper commentsSeparatorColor];
+  return simulatedSeparator;
 }
 
 #pragma mark - Private

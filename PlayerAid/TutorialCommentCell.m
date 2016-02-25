@@ -189,9 +189,14 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 #pragma mark - Repliess
 
 - (void)showReplies {
+    UIView *headerView;
+  
     if ([self shouldShowMoreRepliesHeaderView]) {
-      self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] moreRepliesBarWithPressedActionTarget:self selector:@selector(replyButtonPressed:)];
+      headerView = [[CommentRepliesCellConfigurator new] moreRepliesBarWithPressedActionTarget:self selector:@selector(replyButtonPressed:)];
+    } else {
+      headerView = [[CommentRepliesCellConfigurator new] dummyHeaderView];
     }
+    self.repliesTableView.tableHeaderView = headerView;
   
     CGFloat constant = self.repliesTableView.contentSize.height;
     self.repliesTableViewHeightConstraint.constant = constant;
@@ -199,11 +204,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 
 - (BOOL)shouldShowMoreRepliesHeaderView {
   return ([self.repliesToCommentTableVC fetchedObjects] == kInlineRepliesFetchLimit);
-}
-
-- (void)hideReplies {
-    self.repliesTableViewHeightConstraint.constant = 0;
-    self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] dummyHeaderView];
 }
 
 #pragma mark - public
@@ -378,14 +378,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
   CallBlock(self.updateCommentsTableViewFooterHeight); // that's required to propagate size changes to main tableView footer
-}
-
-- (void)hideRepliesInvokeCallback {
-  CallBlock(self.willChangeCellHeightBlock);
-  [self hideReplies];
-  [self layoutIfNeeded];
-  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
-  CallBlock(self.updateCommentsTableViewFooterHeight);
 }
 
 @end
