@@ -118,7 +118,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 }
 
 - (void)configureRepliesTableViewIfNeeded {
+  BOOL isInitialDataFetch = NO;
+  
   if (self.repliesToCommentTableVC == nil && self.allowInlineReplies) {
+    isInitialDataFetch = YES;
     self.repliesToCommentTableVC = [RepliesToCommentTableViewController new];
     
     defineWeakSelf();
@@ -135,6 +138,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
     };
     
     [self.repliesToCommentTableVC attachToTableView:self.repliesTableView withRepliesToComment:self.comment fetchLimit:@(kInlineRepliesFetchLimit)];
+    
+    if (isInitialDataFetch) {
+      [self.repliesTableView reloadData];
+    }
   }
 }
 

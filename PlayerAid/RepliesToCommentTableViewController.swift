@@ -40,8 +40,8 @@ class RepliesToCommentTableViewController : NSObject {
         self.tableView = tableView
         self.comment = comment
         setupTableView()
-        setupDataSource()
         tableView.delegate = self
+        setupDataSource()
     }
   
     func fetchedObjects() -> Int {
