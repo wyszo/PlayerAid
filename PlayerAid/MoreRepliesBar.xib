@@ -11,6 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
+                <view tag="567" contentMode="scaleToFill" id="lED-g7-6wf" userLabel="Separator">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Replies v" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y9w-No-hGn">
                     <rect key="frame" x="46" y="10" width="101" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>

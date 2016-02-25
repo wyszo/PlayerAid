@@ -30,6 +30,7 @@
 + (UIColor *)tutorialCommentsBarBackgroundColor;
 + (UIColor *)commentLabelTextColor;
 + (UIColor *)commentsTimeAgoLabelColor;
++ (UIColor *)commentsSeparatorColor;
 + (UIColor *)commentReplyBackgroundColor;
 + (UIColor *)commentRepliesSeparatorColor;
 
