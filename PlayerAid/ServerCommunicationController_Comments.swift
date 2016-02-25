@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: Comments
 extension ServerCommunicationController {
   // MARK: (un)liking comments
   
@@ -46,8 +47,8 @@ extension ServerCommunicationController {
   }
 }
 
+// MARK: Comments parsing
 extension ServerCommunicationController {
-  // MARK: Handling comments parsing
   
   private func handleRepliesFeedToACommentWithID(parentCommentID: NSNumber, data: NSData?, response: NSURLResponse?, error: NSError?) {
     if isHttpResponseFailureShowGenericError(response, error: error) == false {

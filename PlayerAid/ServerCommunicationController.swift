@@ -33,8 +33,8 @@ class ServerCommunicationController : NSObject {
   }
 }
 
+// MARK: Tutorials
 extension ServerCommunicationController {
-  // MARK: Tutorials
   
   func listTutorials(completion completion: NetworkCompletionBlock) {
     let parameters = [ "fields" : "steps,comments" ]
@@ -49,8 +49,8 @@ extension ServerCommunicationController {
   }
 }
 
+// MARK: User
 extension ServerCommunicationController {
-  // MARK: User
   
   func getCurrentUser(completion completion: NetworkCompletionBlock) {
     // GET /user
@@ -66,8 +66,8 @@ extension ServerCommunicationController {
   private static let userRequestFields = [ "fields" : "tutorials,followers,following" ]
 }
 
+// MARK: Generic methods
 extension ServerCommunicationController {
-  // MARK: Generic methods
   
   internal func sendPostRequest(relativePath: String, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
     sendNetworkRequest(relativePath, httpMethod: .POST, parameters: parameters, completion: completion)
