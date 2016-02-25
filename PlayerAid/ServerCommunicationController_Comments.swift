@@ -44,7 +44,9 @@ extension ServerCommunicationController {
         (self?.handleRepliesFeedToACommentWithID(comment.serverID, data: data, response: response, error: error))!
     }
   }
-  
+}
+
+extension ServerCommunicationController {
   // MARK: Handling comments parsing
   
   private func handleRepliesFeedToACommentWithID(parentCommentID: NSNumber, data: NSData?, response: NSURLResponse?, error: NSError?) {
