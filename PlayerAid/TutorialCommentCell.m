@@ -111,10 +111,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
   
-  [self hideReplies];
-  
-  // update UI to reflect compressed constraints change
-  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:NO];
+  [self showRepliesInvokeCallback];
 }
 
 - (void)configureRepliesTableViewIfNeeded {
@@ -234,14 +231,6 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   
   // update main comment tableView height to adjust to new cell size (if there's main tableView)
   CallBlock(self.updateCommentsTableViewFooterHeight) // this should be called multiple times, not just once!
-}
-
-- (void)expandCommentReplies {
-  [self showRepliesInvokeCallback];
-}
-
-- (void)shrinkCommentReplies {
-  [self hideRepliesInvokeCallback];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
