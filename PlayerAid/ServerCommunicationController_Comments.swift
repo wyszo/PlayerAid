@@ -57,16 +57,12 @@ extension ServerCommunicationController {
     }
   }
   
-    
-    if error != nil || statusCode != HTTPStatusCodes.success {
-      dispatch_async(dispatch_get_main_queue(), {
-        AlertFactory.showGenericErrorAlertViewNoRetry()
-      })
-    } else {
-      if let jsonResponse = try? data?.jsonDictionary() {
-        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
+  private func handleResponseContainingTutorialComment(data: NSData?, response: NSURLResponse?, error: NSError?) {
+    if isHttpResponseFailureShowGenericError(response, error: error) == false {
+      if let jsonComment = try? data?.jsonDictionary() as? [String:AnyObject] {
+        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonComment!)
       } else {
-        assertionFailure("Unexpected response!")
+        assertionFailure("Unexpected response")
       }
     }
   }

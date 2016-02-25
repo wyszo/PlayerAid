@@ -26,7 +26,7 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
                             @"author" : KZCall(userFromDictionary:, madeBy),
                             @"upvotes" : KZProperty(likesCount),
                             @"upvotedByUser" : KZProperty(upvotedByUser),
-                            @"replies" : KZCall(commentRepliesFromDictionariesArray:, hasReplies)
+                            @"replies" : KZCall(commentRepliesFromFeed:, hasReplies)
                            };
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
@@ -36,9 +36,13 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
   return [[UsersHelper new] userFromDictionary:dictionary inContext:self.managedObjectContext];
 }
 
-- (NSSet *)commentRepliesFromDictionariesArray:(NSArray *)dictionaries {
-  AssertTrueOrReturnNil(dictionaries);
-  return [[[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:dictionaries inContext:self.managedObjectContext] set];
+- (NSSet *)commentRepliesFromFeed:(NSDictionary *)feed {
+  AssertTrueOrReturnNil(feed);
+  
+  id replies = feed[@"data"];
+  AssertTrueOrReturnNil([replies isKindOfClass:[NSArray class]]);
+  
+  return [[[TutorialCommentParsingHelper new] orderedSetOfCommentsFromDictionariesArray:replies inContext:self.managedObjectContext] set];
 }
 
 - (NSNumber *)commentStatusFromObject:(id)object
