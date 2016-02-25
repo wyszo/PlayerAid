@@ -9,6 +9,7 @@
 #import "UsersFetchController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "DebugSettings.h"
+#import "ColorsHelper.h"
 #import "PlayerAid-Swift.h"
 
 static NSString * const kTutorialCommentNibName = @"TutorialCommentCell";
@@ -56,6 +57,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
 {
   self.commentsTableView.estimatedRowHeight = 70.0f;
   self.commentsTableView.tableFooterView = [CommonViews smallTableHeaderOrFooterView];
+  self.commentsTableView.separatorColor =  [ColorsHelper commentsSeparatorColor];
 }
 
 - (void)setupCommentsTableViewCells
