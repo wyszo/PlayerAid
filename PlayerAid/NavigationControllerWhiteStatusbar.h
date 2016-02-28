@@ -6,4 +6,6 @@
 
 @interface NavigationControllerWhiteStatusbar : UINavigationController
 
+- (void)dismissViewController;
+
 @end

@@ -3,6 +3,7 @@
 //
 
 @import KZAsserts;
+@import BlocksKit;
 #import "ApplicationViewHierarchyHelper.h"
 #import "CreateTutorialViewController.h"
 #import "NavigationControllerWhiteStatusbar.h"
@@ -79,9 +80,18 @@
   
   CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithCommentID:[comment.serverID integerValue]];
   UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
+  [self addLeftEdgeSwipeToDismissBehaviourToNavigationController:navigationController];
   [presentingViewController presentViewController:navigationController animated:YES completion:NULL];
-
+  
   return commentRepliesVC;
+}
+
++ (void)addLeftEdgeSwipeToDismissBehaviourToNavigationController:(UINavigationController *)navigationController {
+  AssertTrueOrReturn(navigationController);
+  
+  UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:navigationController action:@selector(dismissViewController)];
+  gestureRecognizer.edges = UIRectEdgeLeft;
+  [navigationController.view addGestureRecognizer:gestureRecognizer];
 }
 
 @end
