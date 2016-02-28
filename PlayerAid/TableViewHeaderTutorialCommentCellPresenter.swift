@@ -13,6 +13,8 @@ class TableViewHeaderTutorialCommentCellPresenter {
       
         commentCell.willChangeCellHeightBlock = { }
         commentCell.didChangeCellHeightBlock = { }
+        commentCell.updateCommentsTableViewFooterHeight = { }
+      
         commentCell.configureWithTutorialComment(comment, allowInlineCommentReplies: false)
         
         commentCell.replyButtonHidden = true
