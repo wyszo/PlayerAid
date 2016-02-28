@@ -12,8 +12,8 @@
 #import "PlayerAidTabBarHelper.h"
 #import "AppDelegate.h"
 #import "NavigationControllerWhiteStatusbar.h"
-#import "PlayerAid-Swift.h"
 #import "TutorialComment.h"
+#import "PlayerAid-Swift.h"
 
 @implementation ApplicationViewHierarchyHelper
 
@@ -80,18 +80,10 @@
   
   CommentRepliesViewController *commentRepliesVC = [[CommentRepliesViewController alloc] initWithCommentID:[comment.serverID integerValue]];
   UINavigationController *navigationController = [[NavigationControllerWhiteStatusbar alloc] initWithRootViewController:commentRepliesVC];
-  [self addLeftEdgeSwipeToDismissBehaviourToNavigationController:navigationController];
+  [[UIViewControllerBehaviourDecorator new] installLeftEdgeSwipeToDismissBehaviourOnViewController:navigationController];
+  
   [presentingViewController presentViewController:navigationController animated:YES completion:NULL];
-  
   return commentRepliesVC;
-}
-
-+ (void)addLeftEdgeSwipeToDismissBehaviourToNavigationController:(UINavigationController *)navigationController {
-  AssertTrueOrReturn(navigationController);
-  
-  UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:navigationController action:@selector(dismissViewController)];
-  gestureRecognizer.edges = UIRectEdgeLeft;
-  [navigationController.view addGestureRecognizer:gestureRecognizer];
 }
 
 @end

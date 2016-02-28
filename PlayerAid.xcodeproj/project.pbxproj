@@ -118,6 +118,8 @@
 		31B548551AB48AC20010FC83 /* EditTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B548541AB48AC20010FC83 /* EditTutorialCell.xib */; };
 		31B548581AB48B160010FC83 /* EditTutorialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */; };
 		31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548631AB7032D0010FC83 /* EnvironmentSettings.m */; };
+		31B698C61C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B698C51C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift */; };
+		31B698C91C83867F00F82D95 /* UIViewControllerDismissExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B698C81C83867F00F82D95 /* UIViewControllerDismissExtension.swift */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -393,6 +395,8 @@
 		31B548571AB48B160010FC83 /* EditTutorialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTutorialTableViewCell.m; sourceTree = "<group>"; };
 		31B548621AB7032D0010FC83 /* EnvironmentSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentSettings.h; sourceTree = "<group>"; };
 		31B548631AB7032D0010FC83 /* EnvironmentSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSettings.m; sourceTree = "<group>"; };
+		31B698C51C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerBehaviourDecorator.swift; sourceTree = "<group>"; };
+		31B698C81C83867F00F82D95 /* UIViewControllerDismissExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerDismissExtension.swift; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -1138,6 +1142,7 @@
 				31A8DE381B31EB6700137ACB /* Users */,
 				31014E7A1A9BB364002F3485 /* View Hierarchy */,
 				6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */,
+				31B698C51C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1487,6 +1492,14 @@
 			name = EditTutorial;
 			sourceTree = "<group>";
 		};
+		31B698C71C83865C00F82D95 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31B698C81C83867F00F82D95 /* UIViewControllerDismissExtension.swift */,
+			);
+			name = UIViewController;
+			sourceTree = "<group>";
+		};
 		31B735E01A87B4350081AE15 /* Create Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1519,6 +1532,7 @@
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
 				31E1E1981AECCB370091ED01 /* NSURL */,
+				31B698C71C83865C00F82D95 /* UIViewController */,
 				31E1E1951AECCB110091ED01 /* UITableView */,
 				31E1E19B1AECCB560091ED01 /* YCameraViewController */,
 			);
@@ -2301,6 +2315,7 @@
 				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
 				313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,
+				31B698C91C83867F00F82D95 /* UIViewControllerDismissExtension.swift in Sources */,
 				31B735F31A87FDEE0081AE15 /* TutorialCellHelper.m in Sources */,
 				3102F93B1BF697C300B544C6 /* MakeCommentInputViewController.m in Sources */,
 				31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */,
@@ -2364,6 +2379,7 @@
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,
+				31B698C61C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift in Sources */,
 				31A8DE451B32B4C900137ACB /* FollowedUserTableViewDelegate.m in Sources */,
 				310308AC1A83DEC100B7F921 /* UIImageView+AvatarStyling.m in Sources */,
 				3173C81A1AA79B0B004CEF1E /* FDTakeController+WhiteStatusbar.m in Sources */,
