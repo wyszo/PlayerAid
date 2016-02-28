@@ -41,6 +41,7 @@ class RepliesToCommentTableViewController : NSObject {
         self.comment = comment
         setupTableView()
         tableView.delegate = self
+        setupFetchedResultsControllerBinder()
         setupDataSource()
     }
   
@@ -60,12 +61,18 @@ extension RepliesToCommentTableViewController {
         tableView!.rowHeight = UITableViewAutomaticDimension
         tableView!.estimatedRowHeight = 100.0
     }
-    
-    private func setupDataSource() {
+  
+    private func setupFetchedResultsControllerBinder() {
         repliesFetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock: {
-            [weak self] (cell, indexPath) in
-              self?.configureCell(cell, object: nil, indexPath: indexPath)
-            })
+          [weak self] (cell, indexPath) in
+          self?.configureCell(cell, object: nil, indexPath: indexPath)
+          })
+        repliesFetchedResultsControllerBinder?.numberOfObjectsChangedBlock = { [weak self] _ -> Void in
+          self?.cellConfigurator.updateCommentsTableViewFooterHeightBlock?()
+        }
+    }
+  
+    private func setupDataSource() {
         assert(repliesFetchedResultsControllerBinder != nil)
         assert(comment != nil)
       
