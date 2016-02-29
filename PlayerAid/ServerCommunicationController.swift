@@ -63,7 +63,7 @@ extension ServerCommunicationController {
     sendNetworkRequest(urlString, httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
   }
   
-  private static let userRequestFields = [ "fields" : "tutorials,followers,following" ]
+  private static let userRequestFields = [ "fields" : "tutorials,tutorials.steps,followers,following" ]
 }
 
 // MARK: Generic methods
