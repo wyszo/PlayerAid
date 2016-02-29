@@ -114,6 +114,10 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self showRepliesInvokeCallback];
 }
 
+- (BOOL)repliesTableViewFullyConfigured {
+  return (self.repliesToCommentTableVC != nil);
+}
+
 - (void)configureRepliesTableViewIfNeeded {
   BOOL isInitialDataFetch = NO;
   
@@ -368,13 +372,17 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
 #pragma mark - Replies Animations
 
 - (void)showRepliesInvokeCallback {
+  BOOL cellFullyConfigured = [self repliesTableViewFullyConfigured];
+  
   [self configureRepliesTableViewIfNeeded];
   
-  AssertTrueOrReturn(self.willChangeCellHeightBlock != nil);
-  CallBlock(self.willChangeCellHeightBlock);
+  if (cellFullyConfigured) {
+    AssertTrueOrReturn(self.willChangeCellHeightBlock != nil);
+    CallBlock(self.willChangeCellHeightBlock);
+  }
   
   [self showReplies];
-  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:YES];
+  [self updateElementsSpacingConstraintsInvokingHeightChangeCallback:cellFullyConfigured];
   
   AssertTrueOrReturn(self.updateCommentsTableViewFooterHeight);
   CallBlock(self.updateCommentsTableViewFooterHeight); // that's required to propagate size changes to main tableView footer
