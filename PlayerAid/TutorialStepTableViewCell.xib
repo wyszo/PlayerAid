@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="412" height="309"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jw-k5-OUc" id="A2P-YG-FCl">
-                <rect key="frame" x="0.0" y="0.0" width="412" height="309"/>
+                <rect key="frame" x="0.0" y="0.0" width="412" height="308.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="This is a comment" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="10" y="6" width="392" height="36"/>
+                        <rect key="frame" x="10" y="6" width="392" height="35.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -62,7 +62,7 @@
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-2" id="gMU-LR-OHg"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="trailing" secondItem="VgH-bu-nap" secondAttribute="trailing" id="hqj-is-NEw"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leading" constant="10" id="kTB-OF-PgU"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" constant="2" id="y0s-iP-8ic"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" priority="999" constant="2" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
