@@ -19,6 +19,8 @@
 #import "ViewControllersFactory.h"
 #import "TutorialsHelper.h"
 #import "DebugSettings.h"
+#import "PlayerAid-Swift.h"
+
 
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
@@ -30,6 +32,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 @property (strong, nonatomic) VideoPlayer *videoPlayer;
 @property (strong, nonatomic) TutorialCommentsViewController *commentsViewController;
 @property (strong, nonatomic) TWTableViewScrollHandlingDelegate *scrollDelegate;
+@property (strong, nonatomic) CommentRepliesFetchController *commentRepliesFetchController;
 @end
 
 @implementation TutorialDetailsViewController
@@ -62,6 +65,12 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 {
   [super viewDidAppear:animated];
   self.navigationController.hidesBarsOnSwipe = YES;
+  
+  if (!_commentRepliesFetchController) {
+    AssertTrueOrReturn(self.tutorial);
+    self.commentRepliesFetchController = [[CommentRepliesFetchController alloc] initWithTutorial:self.tutorial];
+  }
+  [self.commentRepliesFetchController start];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

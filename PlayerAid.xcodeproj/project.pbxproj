@@ -120,6 +120,7 @@
 		31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B548631AB7032D0010FC83 /* EnvironmentSettings.m */; };
 		31B698C61C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B698C51C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift */; };
 		31B698C91C83867F00F82D95 /* UIViewControllerDismissExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B698C81C83867F00F82D95 /* UIViewControllerDismissExtension.swift */; };
+		31B698CB1C83AE0700F82D95 /* CommentRepliesFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B698CA1C83AE0700F82D95 /* CommentRepliesFetchController.swift */; };
 		31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */; };
 		31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */; };
 		31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B735E61A87CC280081AE15 /* CreateTutorialHeaderViewController.m */; };
@@ -397,6 +398,7 @@
 		31B548631AB7032D0010FC83 /* EnvironmentSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSettings.m; sourceTree = "<group>"; };
 		31B698C51C83855700F82D95 /* UIViewControllerBehaviourDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerBehaviourDecorator.swift; sourceTree = "<group>"; };
 		31B698C81C83867F00F82D95 /* UIViewControllerDismissExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerDismissExtension.swift; sourceTree = "<group>"; };
+		31B698CA1C83AE0700F82D95 /* CommentRepliesFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepliesFetchController.swift; sourceTree = "<group>"; };
 		31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialHeaderView.xib; sourceTree = "<group>"; };
 		31B735E21A87B52A0081AE15 /* CreateTutorialHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialHeaderView.h; sourceTree = "<group>"; };
 		31B735E31A87B52A0081AE15 /* CreateTutorialHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialHeaderView.m; sourceTree = "<group>"; };
@@ -1940,6 +1942,7 @@
 			children = (
 				31F721B51BF3F7E0001DB831 /* TutorialCommentsController.h */,
 				31F721B61BF3F7E0001DB831 /* TutorialCommentsController.m */,
+				31B698CA1C83AE0700F82D95 /* CommentRepliesFetchController.swift */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -2376,6 +2379,7 @@
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */,
+				31B698CB1C83AE0700F82D95 /* CommentRepliesFetchController.swift in Sources */,
 				31F116771A790F680022BD74 /* main.m in Sources */,
 				31EFB6C61BAB473B00F87C03 /* LoginAppearanceHelper.m in Sources */,
 				31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */,

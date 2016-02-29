@@ -73,9 +73,8 @@ extension ServerCommunicationController {
     sendNetworkRequest(relativePath, httpMethod: .POST, parameters: parameters, completion: completion)
   }
 
-  internal func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+  internal func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, session: NSURLSession = NSURLSession.sharedSession(), completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
     let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod, parameters: parameters)
-    let session = NSURLSession.sharedSession()
     let task = session.dataTaskWithRequest(request, completionHandler: completion)
     task.resume()
   }
