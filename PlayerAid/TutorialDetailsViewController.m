@@ -116,9 +116,13 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     return;
   }
   
-  TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
-  commentsVC.parentNavigationController = self.navigationController;
   defineWeakSelf();
+  TutorialCommentsViewController *commentsVC = [[ViewControllersFactory new] tutorialCommentsViewControllerFromStoryboardWithTutorial:self.tutorial];
+  commentsVC.didPressReplyBlock = ^(TutorialComment *comment) {
+    AssertTrueOrReturn(comment);
+    [weakSelf.commentRepliesFetchController fetchAllButFirstPageForComment:comment];
+  };
+  commentsVC.parentNavigationController = self.navigationController;
 
   commentsVC.didChangeHeightBlock = ^(UIView *commentsView, BOOL shouldScrollToComments) {
     weakSelf.tableView.tableFooterView = commentsView; // required for tableView to recognize and react to footer size change

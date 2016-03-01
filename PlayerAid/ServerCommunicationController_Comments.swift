@@ -37,12 +37,16 @@ extension ServerCommunicationController {
     }
   }
   
-  func getCommentRepliesForComment(comment: TutorialComment, session: NSURLSession = NSURLSession.sharedSession(), allowErrorAlerts: Bool = true, completion: (success: Bool) -> Void) {
-    // GET /comment/{id}
-    let urlPath = commentRelativePathForCommentWithId(comment.serverID, sufix: "replies")
-    sendNetworkRequest(urlPath, httpMethod: .GET, parameters: nil, session: session) {
+  func getCommentRepliesForComment(comment: TutorialComment, session: NSURLSession = NSURLSession.sharedSession(), allowErrorAlerts: Bool = true, completion: (success: Bool, nextFeedURL: String?) -> Void) {
+    let urlPath = serverRelativePathForCommentRepliesToCommentWithID(comment.serverID)
+    getCommentRepliesForComment(comment, fromFeed: urlPath, isPathRelative: true, session: session, allowErrorAlerts: allowErrorAlerts, completion: completion);
+  }
+  
+  func getCommentRepliesForComment(comment: TutorialComment, fromFeed feed: String, isPathRelative: Bool = false, session: NSURLSession, allowErrorAlerts: Bool, completion: (success: Bool, nextFeedURL: String?) -> Void) {
+    
+    sendNetworkRequest(feed, httpMethod: .GET, isPathRelative: isPathRelative, parameters: nil, session: session) {
       [weak self] (data, response, error) -> Void in
-        (self?.handleRepliesFeedToACommentWithID(comment.serverID, data: data, response: response, error: error))!
+        (self?.handleRepliesFeedToACommentWithID(comment.serverID, allowErrorAlerts: allowErrorAlerts, data: data, response: response, error: error, completion: completion))!
     }
   }
 }
@@ -50,14 +54,26 @@ extension ServerCommunicationController {
 // MARK: Comments parsing
 extension ServerCommunicationController {
   
-  private func handleRepliesFeedToACommentWithID(parentCommentID: NSNumber, allowErrorAlerts: Bool = true, data: NSData?, response: NSURLResponse?, error: NSError?) {
+  private func serverRelativePathForCommentRepliesToCommentWithID(commentID: NSNumber) -> String {
+      // GET /comment/{id}/replies
+    return commentRelativePathForCommentWithId(commentID, sufix: "replies")
+  }
+  
+  private func handleRepliesFeedToACommentWithID(parentCommentID: NSNumber, allowErrorAlerts: Bool = true, data: NSData?, response: NSURLResponse?, error: NSError?, completion: (success: Bool, nextFeedUrl: String?) -> Void) {
     if isHttpResponseFailureShowGenericError(response, error: error) == false {
       if let jsonDictionary = try? data?.jsonDictionary(), jsonReplies = jsonDictionary?["data"] as? [AnyObject] {
         TutorialCommentParsingHelper().saveRepliesToCommentWithID(parentCommentID, repliesDictionaries:(jsonReplies));
+        
+        var feedUrl: String? = nil
+        if let nextFeed = jsonDictionary?["nextPage"] as? String {
+          feedUrl = nextFeed
+        }
+        completion(success: true, nextFeedUrl: feedUrl)
       } else {
         if allowErrorAlerts {
           AlertFactory.showGenericErrorAlertViewNoRetry()
         }
+        completion(success: false, nextFeedUrl: nil)
       }
     }
   }

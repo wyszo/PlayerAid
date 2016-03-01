@@ -4,13 +4,14 @@
 
 @import UIKit;
 @import TWCommonLib;
-@class Tutorial;
+@class Tutorial, TutorialComment;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TutorialCommentsViewController : UIViewController
 
 @property (nonatomic, copy, nullable) void (^didChangeHeightBlock)(UIView * _Nonnull contentView, BOOL shouldScrollToCommentsBar);
+@property (nonatomic, copy, nullable) void (^didPressReplyBlock)(TutorialComment * _Nonnull comment);
 @property (nonatomic, copy, nullable) VoidBlock didExpandBlock;
 @property (nonatomic, copy, nullable) VoidBlock didMakeACommentBlock;
 

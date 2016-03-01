@@ -181,6 +181,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
  
   commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
       [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
+      CallBlock(weakSelf.didPressReplyButtonBlock, comment);
   };
   
   [self updateCellHighlight:commentCell forComment:comment];

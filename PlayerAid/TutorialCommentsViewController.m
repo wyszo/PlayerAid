@@ -347,6 +347,12 @@ static const CGFloat kGapBelowCommentsToCompensateForOpenKeyboardSize = 271.0f; 
       [weakSelf updateCommentsHeightIfExpandedShouldScrollToCommentsBar:NO];
     };
     
+    commentsContainerVC.didPressReplyButtonBlock = ^(TutorialComment *comment) {
+      if (comment != nil) {
+        weakSelf.didPressReplyBlock(comment);
+      }
+    };
+    
     commentsContainerVC.isAnyCommentBeingEditedOrAddedBlock = ^BOOL() {
       BOOL anyCommentBeingEdited = [weakSelf.keyboardInputViewsManager editCommentInputViewSlidOut];
       BOOL newCommentBeingAdded = [weakSelf.keyboardInputViewsManager.makeCommentInputVC isInputTextViewFirstResponder];

@@ -73,13 +73,13 @@ extension ServerCommunicationController {
     sendNetworkRequest(relativePath, httpMethod: .POST, parameters: parameters, completion: completion)
   }
 
-  internal func sendNetworkRequest(relativePath: String, httpMethod: HTTPMethod, parameters: [String : AnyObject]?, session: NSURLSession = NSURLSession.sharedSession(), completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-    let request = authenticatedRequestWithRelativeServerPathString(relativePath, httpMethod:httpMethod, parameters: parameters)
+  internal func sendNetworkRequest(path: String, httpMethod: HTTPMethod, isPathRelative: Bool = true, parameters: [String : AnyObject]?, session: NSURLSession = NSURLSession.sharedSession(), completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    let request = authenticatedRequestWithServerPathString(path, httpMethod:httpMethod, isPathRelative:isPathRelative, parameters:parameters)
     let task = session.dataTaskWithRequest(request, completionHandler: completion)
     task.resume()
   }
 
-  private func authenticatedRequestWithRelativeServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
+  private func authenticatedRequestWithServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, isPathRelative: Bool = true, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
 
@@ -91,7 +91,7 @@ extension ServerCommunicationController {
       }
     }
 
-    let requestURL = NSURL(string: serverURL + pathStringWithQueryParams)
+    let requestURL = NSURL(string: (isPathRelative ? serverURL : "") + pathStringWithQueryParams)
     assert(requestURL != nil)
     
     let request = NSMutableURLRequest(URL: requestURL!)
