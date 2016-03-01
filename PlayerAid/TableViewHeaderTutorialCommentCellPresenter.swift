@@ -24,7 +24,7 @@ class TableViewHeaderTutorialCommentCellPresenter {
         commentCell.layoutIfNeeded()
         
         let compressedSize = commentCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-        commentCell.frame = CGRectMake(0, 0, UIScreen.tw_width(), compressedSize.height) // not sure if this is correct, since calculated compressed width might be smaller than actual width
+        commentCell.frame = CGRectMake(0, 0, UIScreen.tw_width(), ceil(compressedSize.height)) // not sure if this is correct, since calculated compressed width might be smaller than actual width
         
         commentCell.contentView.frame = commentCell.frame;
         tableView.tableHeaderView = commentCell.contentView // swapping cell with contentView and applying new size

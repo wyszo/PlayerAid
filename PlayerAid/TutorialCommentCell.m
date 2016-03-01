@@ -85,7 +85,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self restoreMoreButtonHeightConstraint];
   [self restoreDefaultTimeAgoBarToMoreButtonConstraint];
   
-  self.repliesTableView.tableHeaderView = [[CommentRepliesCellConfigurator new] dummyHeaderView];
+  self.repliesTableView.tableHeaderView = nil;
   self.repliesToCommentTableVC = nil;
 }
 
@@ -111,7 +111,9 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
   [self updateMoreButtonVisibility];
   [commentAuthor placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSize32];
   
-  [self showRepliesInvokeCallback];
+  if (allowInlineReplies) {
+    [self showRepliesInvokeCallback];
+  }
 }
 
 - (BOOL)repliesTableViewFullyConfigured {
@@ -203,7 +205,7 @@ static CGFloat expandedTimeAgoBarToMoreButtonDistanceConstraintConstant;
     self.repliesTableView.tableHeaderView = headerView;
   
     CGFloat constant = self.repliesTableView.contentSize.height;
-    self.repliesTableViewHeightConstraint.constant = constant;
+    self.repliesTableViewHeightConstraint.constant = ceil(constant);
 }
 
 - (BOOL)shouldShowMoreRepliesHeaderView {
