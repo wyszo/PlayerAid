@@ -151,6 +151,10 @@
 
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial
 {
+  if ([self isDuringSegueTransition]) {
+    return; // prevents from pushing details view controller multiple times when tapping multiple times
+  }
+  
   self.lastSelectedTutorial = tutorial;
   [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
 }
@@ -177,6 +181,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
+}
+
+#pragma mark - Private
+
+- (BOOL)isDuringSegueTransition {
+  return (self.navigationController.topViewController != self);
 }
 
 @end
