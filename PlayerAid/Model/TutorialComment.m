@@ -7,6 +7,7 @@
 #import "TutorialCommentParsingHelper.h"
 
 static NSString *const kCommentServerIDAttributeName = @"id";
+static NSString *const kUpvotedByUserAttributeName = @"upvotedByUser";
 
 static NSString *const kCommentStatusPublished = @"Published";
 static NSString *const kCommentStatusReported = @"Reported";
@@ -25,11 +26,17 @@ static NSString *const kCommentStatusDeleted = @"Deleted";
                             @"createdOn" : KZBox(DateWithTZD, createdOn),
                             @"author" : KZCall(userFromDictionary:, madeBy),
                             @"upvotes" : KZProperty(likesCount),
-                            @"upvotedByUser" : KZProperty(upvotedByUser),
+                            kUpvotedByUserAttributeName : KZProperty(upvotedByUser),
                             @"replies" : KZCall(commentRepliesFromFeed:, hasReplies)
                            };
   
-  [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
+  NSArray *errors = [NSArray new];
+  
+  [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping errors:&errors];
+  AssertTrueOrReturn(errors.count == 0);
+  
+  /** If this field is missing, you won't be able to unupvote your own comments (you'll see just an option to upvote them). At the same time we don't wan't to use KZPropertyMapper isRequired() validator, because it'd discard whole comment if the field was empty. */
+  AssertTrueOrReturn(dictionary[kUpvotedByUserAttributeName] != nil);
 }
 
 - (User *)userFromDictionary:(nonnull NSDictionary *)dictionary {
