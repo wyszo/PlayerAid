@@ -180,7 +180,7 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   };
  
   commentCell.didPressReplyButtonBlock = ^(TutorialComment *comment) {
-      [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.parentViewController];
+      [ApplicationViewHierarchyHelper presentModalCommentReplies:comment fromViewController:weakSelf.navigationController];
       CallBlock(weakSelf.didPressReplyButtonBlock, comment);
   };
   
