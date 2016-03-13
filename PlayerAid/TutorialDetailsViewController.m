@@ -52,6 +52,8 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   [self setupTutorialStepsTableView];
   [self setupKeyboardHandlers];
 
+  self.automaticallyAdjustsScrollViewInsets = NO; /* Doesn't help when we have transparent NavBar. Without it there's a problem with NavigationBar not being presented again when you scroll back up after making a comment */
+  
   if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {
     defineWeakSelf();
     DISPATCH_AFTER(0.5, ^{

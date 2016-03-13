@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -114,7 +114,7 @@
         <!--Tutorial-->
         <scene sceneID="KKs-wu-ojb">
             <objects>
-                <viewController title="Tutorial" id="U20-bU-Bha" customClass="TutorialDetailsViewController" sceneMemberID="viewController">
+                <viewController title="Tutorial" automaticallyAdjustsScrollViewInsets="NO" id="U20-bU-Bha" customClass="TutorialDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qJp-aI-doM"/>
                         <viewControllerLayoutGuide type="bottom" id="WHH-tW-RVJ"/>
@@ -130,21 +130,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="qJp-aI-doM" secondAttribute="bottom" id="BkG-N7-SPh"/>
-                            <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="qJp-aI-doM" secondAttribute="bottom" id="Qay-EP-p6L"/>
                             <constraint firstItem="ltD-W7-zuV" firstAttribute="leading" secondItem="KyB-1G-XAP" secondAttribute="leading" id="j5t-mU-YDj"/>
-                            <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="KyB-1G-XAP" secondAttribute="topMargin" id="jWQ-fK-s7X"/>
-                            <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="qJp-aI-doM" secondAttribute="bottom" id="rnf-Gk-jkj"/>
+                            <constraint firstItem="ltD-W7-zuV" firstAttribute="top" secondItem="KyB-1G-XAP" secondAttribute="topMargin" id="wGf-dk-frj"/>
                             <constraint firstAttribute="trailing" secondItem="ltD-W7-zuV" secondAttribute="trailing" id="xHf-BF-EBx"/>
                             <constraint firstItem="ltD-W7-zuV" firstAttribute="bottom" secondItem="KyB-1G-XAP" secondAttribute="bottomMargin" id="yjf-cF-mLl"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="BkG-N7-SPh"/>
-                                <exclude reference="Qay-EP-p6L"/>
-                                <exclude reference="rnf-Gk-jkj"/>
-                            </mask>
-                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
@@ -177,7 +167,7 @@
                                         <rect key="frame" x="0.0" y="50" width="600" height="189"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cei-8Z-tNp" id="nGy-Dj-mQm">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="189"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMI-NQ-tud" userLabel="Background Image View">
@@ -337,7 +327,7 @@
                                         <rect key="frame" x="0.0" y="114" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XWy-Xe-zUg" id="VLk-H5-28y">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
