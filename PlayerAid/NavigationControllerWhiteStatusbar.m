@@ -15,6 +15,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
+  /** When using hidesBarsOnSwipe on NavigationController, viewController statusbar color has to be the same as NavigationController statusbar color (and prefersStatusBarHidden), otherwise it'll break after showing and dismissing a modal view - navigationBar will permanently be hidden */
   return UIStatusBarStyleLightContent;
 }
 

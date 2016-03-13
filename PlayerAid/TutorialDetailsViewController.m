@@ -64,6 +64,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  /** When using hidesBarsOnSwipe, viewController statusbar colour has to be the same as NavigationController statusbar colour, otherwise it'll break after showing and dismissing a modal view - navigationBar will permanently be hidden */
+  return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
