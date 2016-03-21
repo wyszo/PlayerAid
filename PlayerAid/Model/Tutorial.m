@@ -93,6 +93,14 @@ static NSString *const kCommentsKey = @"comments";
   return [[TutorialStepHelper new] tutorialStepsFromDictionariesArray:stepsDictionaries inContext:self.managedObjectContext];
 }
 
+#pragma mark - class methods
+
++ (nonnull Tutorial *)findFirstByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context {
+  AssertTrueOrReturnNil(serverID);
+  AssertTrueOrReturnNil(context);
+  return [Tutorial MR_findFirstByAttribute:@"serverID" withValue:serverID inContext:context];
+}
+
 #pragma mark - Comments
 
 - (NSOrderedSet *)commentsFromCommentsFeedDictionary:(nonnull id)feedObject {

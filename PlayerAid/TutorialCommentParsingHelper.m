@@ -6,6 +6,7 @@
 @import KZAsserts;
 @import MagicalRecord;
 #import "TutorialCommentParsingHelper.h"
+#import "Tutorial.h"
 #import "TutorialComment.h"
 
 @implementation TutorialCommentParsingHelper
@@ -59,6 +60,23 @@
   }];
 }
 
+- (void)saveNewCommentWithID:(NSNumber *)commentID message:(NSString *)message parentTutorialID:(NSNumber *)tutorialID {
+  AssertTrueOrReturn(commentID);
+  AssertTrueOrReturn(tutorialID);
+  AssertTrueOrReturn(message.length > 0);
+  
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+    TutorialComment *comment = [TutorialComment findFirstOrCreateByServerID:commentID inContext:localContext];
+    AssertTrueOrReturn(comment);
+    
+    Tutorial *tutorial = [Tutorial findFirstByServerID:tutorialID inContext:localContext];
+    AssertTrueOrReturn(tutorial);
+    
+    [self fillCommentInitialState:comment connectToTutorial:tutorial];
+    comment.text = message;
+  }];
+}
+
 #pragma mark - private
 
 - (TutorialComment *)createOrUpdateCommentFromDictionary:(NSDictionary *)commentDictionary inContext:(NSManagedObjectContext *)context
@@ -70,6 +88,18 @@
   TutorialComment *comment = [TutorialComment findFirstOrCreateByServerID:serverID inContext:context];
   [comment configureFromDictionary:commentDictionary];
   return comment;
+}
+
+- (void)fillCommentInitialState:(TutorialComment *)comment connectToTutorial:(Tutorial *)tutorial {
+  AssertTrueOrReturn(comment);
+  AssertTrueOrReturn(tutorial);
+  
+  comment.createdOn = [NSDate date];
+  comment.likesCount = 0;
+  comment.status = @(CommentStatusPublished);
+  comment.upvotedByUser = @NO;
+  
+  comment.belongsToTutorial = tutorial;
 }
 
 @end

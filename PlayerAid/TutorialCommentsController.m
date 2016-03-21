@@ -96,7 +96,9 @@
       CallBlock(completion, success);
     } else {
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
-      [weakSelf updateTutorialObjectFromDictionary:(NSDictionary *)responseObject];
+      NSNumber *commentID = [TutorialComment serverIDFromTutorialCommentDictionary:(NSDictionary *)responseObject];
+      [[TutorialCommentParsingHelper new] saveNewCommentWithID:commentID message:text parentTutorialID:self.tutorial.serverID];
+      
       BOOL success = true;
       CallBlock(completion, success);
     }

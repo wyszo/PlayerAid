@@ -18,4 +18,6 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 - (void)setStateToDraft;
 - (void)setStateToInReview;
 
++ (nonnull Tutorial *)findFirstByServerID:(nonnull NSNumber *)serverID inContext:(nonnull NSManagedObjectContext *)context;
+
 @end
