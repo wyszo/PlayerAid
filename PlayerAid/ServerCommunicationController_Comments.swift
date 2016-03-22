@@ -31,7 +31,10 @@ extension ServerCommunicationController {
       (data, response, error) -> Void in
       let success = (error == nil)
       if let jsonResponse = try? data?.jsonDictionary() {
-        TutorialCommentParsingHelper().saveCommentFromDictionary(jsonResponse!)
+        let replyID = TutorialComment.serverIDFromTutorialCommentDictionary(jsonResponse!)
+        assert(replyID != nil)
+        assert(jsonResponse!["replies"] == nil, "old unsupported communication protocol - contains parent comment instead of new reply ID, not supported anymore")
+        TutorialCommentParsingHelper().saveNewReplyWithID(replyID!, message: message, parentCommentID: comment.serverID)
       }
       completion(success: success)
     }

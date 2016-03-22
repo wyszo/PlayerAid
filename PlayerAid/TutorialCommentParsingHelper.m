@@ -72,8 +72,25 @@
     Tutorial *tutorial = [Tutorial findFirstByServerID:tutorialID inContext:localContext];
     AssertTrueOrReturn(tutorial);
     
-    [self fillCommentInitialState:comment connectToTutorial:tutorial];
-    comment.text = message;
+    [self fillCommentInitialState:comment message:message];
+    comment.belongsToTutorial = tutorial;
+  }];
+}
+
+- (void)saveNewReplyWithID:(NSNumber *)replyID message:(NSString *)message parentCommentID:(NSNumber *)parentID {
+  AssertTrueOrReturn(replyID);
+  AssertTrueOrReturn(message.length);
+  AssertTrueOrReturn(parentID);
+  
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+    TutorialComment *parentComment = [TutorialComment findFirstOrCreateByServerID:parentID inContext:localContext];
+    AssertTrueOrReturn(parentComment);
+    
+    TutorialComment *reply = [TutorialComment findFirstOrCreateByServerID:replyID inContext:localContext];
+    AssertTrueOrReturn(reply);
+    
+    [self fillCommentInitialState:reply message:message];
+    reply.isReplyTo = parentComment;
   }];
 }
 
@@ -90,16 +107,15 @@
   return comment;
 }
 
-- (void)fillCommentInitialState:(TutorialComment *)comment connectToTutorial:(Tutorial *)tutorial {
+- (void)fillCommentInitialState:(TutorialComment *)comment message:(NSString *)message {
   AssertTrueOrReturn(comment);
-  AssertTrueOrReturn(tutorial);
+  AssertTrueOrReturn(message.length);
   
   comment.createdOn = [NSDate date];
   comment.likesCount = 0;
   comment.status = @(CommentStatusPublished);
   comment.upvotedByUser = @NO;
-  
-  comment.belongsToTutorial = tutorial;
+  comment.text = message;
 }
 
 @end
