@@ -8,6 +8,7 @@
 #import "TutorialCommentParsingHelper.h"
 #import "Tutorial.h"
 #import "TutorialComment.h"
+#import "UsersFetchController.h"
 
 @implementation TutorialCommentParsingHelper
 
@@ -116,6 +117,9 @@
   comment.status = @(CommentStatusPublished);
   comment.upvotedByUser = @NO;
   comment.text = message;
+  
+  User *currentUserInContext = [[UsersFetchController sharedInstance] currentUserInContext:comment.managedObjectContext];
+  comment.madeBy = currentUserInContext;
 }
 
 @end
