@@ -8,7 +8,7 @@
 #import "TutorialStepTableViewCell.h"
 #import "TutorialTextStylingHelper.h"
 
-static const CGFloat kContentImageMargin = 0.0f;
+static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 
@@ -32,9 +32,14 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 - (void)awakeFromNib
 {
   [super awakeFromNib];
+  [self setupLayout];
+  [self setupGestureRecognizers];
+}
+
+- (void)setupLayout {
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   self.layoutMargins = UIEdgeInsetsZero; // required for hiding cell separator
-  [self setupGestureRecognizers];
+  [self.contentImageView tw_setCornerRadius:5.0];
 }
 
 - (void)setupGestureRecognizers
