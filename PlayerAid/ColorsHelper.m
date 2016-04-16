@@ -35,6 +35,7 @@ UIColorMethodMake(tutorialsSelectedFilterButtonTextColor, 255, 255, 255)
 UIColorMethodMake(tutorialsUnselectedFilterButtonColor, 26, 43, 80)
 UIColorMethodMake(tutorialsUnselectedFilterButtonTextColor, 91, 103, 129)
 UIColorWithAlphaMethodMake(tutorialGradientBlueColor, 24, 45, 97, 0.8)
+UIColorMethodMake(tutorialTextStepColor, 119, 119, 119)
 UIColorFromHexMethodMake(editTutorialStepsBackgroundColor, kNewPlayerAidBlue)
 
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)

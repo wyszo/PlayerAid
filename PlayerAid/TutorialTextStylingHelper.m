@@ -4,9 +4,10 @@
 
 @import KZAsserts;
 #import "TutorialTextStylingHelper.h"
+#import "ColorsHelper.h"
 
-static const CGFloat kLineSpacing = 7.0f;
-static const CGFloat kParagraphAdditionalSpacing = 0.0f;
+static const CGFloat kLineSpacing = 4.0f;
+static const CGFloat kParagraphAdditionalSpacing = -3.0f;
 static const CGFloat kDefaultFontSize = 16.0f;
 
 @implementation TutorialTextStylingHelper
@@ -23,11 +24,12 @@ static const CGFloat kDefaultFontSize = 16.0f;
 - (NSDictionary *)textStepFormatAttributes
 {
   NSParagraphStyle *paragraphStyle = [self textStepParagaraphStyle];
-  UIFont *font = [UIFont systemFontOfSize:kDefaultFontSize];
+  UIFont *font = [UIFont fontWithName:@"Palatino" size:kDefaultFontSize];
   
   return @{
            NSParagraphStyleAttributeName : paragraphStyle,
-           NSFontAttributeName : font
+           NSFontAttributeName : font,
+           NSForegroundColorAttributeName : [ColorsHelper tutorialTextStepColor]
           };
 }
 
