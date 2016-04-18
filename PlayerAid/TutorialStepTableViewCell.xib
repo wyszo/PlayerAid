@@ -27,56 +27,69 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
-                        <rect key="frame" x="62" y="2" width="288" height="288"/>
-                        <color key="backgroundColor" red="1" green="0.20063219569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
-                            <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
-                        </constraints>
-                    </imageView>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoCam" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-14-c1a" userLabel="ContentTypeIcon Image View">
-                        <rect key="frame" x="174" y="114" width="64" height="64"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="64" id="FHx-da-AnZ"/>
-                            <constraint firstAttribute="height" constant="64" id="RBx-2N-Nbx"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playicon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
-                        <rect key="frame" x="294" y="2" width="56" height="56"/>
-                        <color key="backgroundColor" red="0.24705882352941178" green="0.40784313725490196" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="56" id="DQr-Rt-pfh"/>
-                            <constraint firstAttribute="width" constant="56" id="aWT-tP-gNl"/>
-                        </constraints>
-                    </imageView>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-7F-64t" userLabel="Content Container">
                         <rect key="frame" x="62" y="3" width="288" height="288"/>
-                        <state key="normal">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="288"/>
+                                <color key="backgroundColor" red="1" green="0.20063219569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
+                                    <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoCam" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-14-c1a" userLabel="ContentTypeIcon Image View">
+                                <rect key="frame" x="112" y="112" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="FHx-da-AnZ"/>
+                                    <constraint firstAttribute="height" constant="64" id="RBx-2N-Nbx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playicon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
+                                <rect key="frame" x="246" y="246" width="42" height="42"/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.40784313725490196" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="DQr-Rt-pfh"/>
+                                    <constraint firstAttribute="width" constant="42" id="aWT-tP-gNl"/>
+                                </constraints>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="288"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="Do2-tt-mBJ"/>
+                            <constraint firstItem="7zh-14-c1a" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="F0O-zo-ggB"/>
+                            <constraint firstItem="VgH-bu-nap" firstAttribute="centerX" secondItem="qM9-7F-64t" secondAttribute="centerX" id="GS0-ML-ZeY"/>
+                            <constraint firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="Wj3-gQ-teK"/>
+                            <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XZY-NL-MSW"/>
+                            <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="cl5-s9-ngf"/>
+                            <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="da4-Qg-uI3"/>
+                            <constraint firstItem="VgH-bu-nap" firstAttribute="centerY" secondItem="qM9-7F-64t" secondAttribute="centerY" id="diC-54-GAp"/>
+                            <constraint firstAttribute="trailing" secondItem="eac-Sp-Jwl" secondAttribute="trailing" id="jZa-Ku-oO2"/>
+                            <constraint firstItem="7zh-14-c1a" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="mvH-4f-1Me"/>
+                            <constraint firstAttribute="bottom" secondItem="eac-Sp-Jwl" secondAttribute="bottom" id="wal-De-Fhm"/>
+                            <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="xjB-8e-v1B"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VgH-bu-nap" secondAttribute="bottom" priority="999" constant="2" id="9Ap-b6-gby"/>
-                    <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" constant="0.5" id="AcX-yv-oGB"/>
-                    <constraint firstItem="VgH-bu-nap" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="top" constant="2" id="GZw-g5-7we"/>
+                    <constraint firstItem="qM9-7F-64t" firstAttribute="centerX" secondItem="A2P-YG-FCl" secondAttribute="centerX" id="6fw-Jr-RTC"/>
+                    <constraint firstItem="qM9-7F-64t" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-5" id="9xk-ND-JJ4"/>
                     <constraint firstAttribute="trailing" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
-                    <constraint firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="KtF-Sb-yYB"/>
-                    <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>
-                    <constraint firstItem="eac-Sp-Jwl" firstAttribute="top" secondItem="VgH-bu-nap" secondAttribute="top" id="b4T-G2-jcw"/>
-                    <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="eyB-m9-ILx"/>
-                    <constraint firstItem="7zh-14-c1a" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="f9C-xp-04w"/>
-                    <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="fYi-2p-a7u"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-2" id="gMU-LR-OHg"/>
-                    <constraint firstItem="eac-Sp-Jwl" firstAttribute="trailing" secondItem="VgH-bu-nap" secondAttribute="trailing" id="hqj-is-NEw"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leading" constant="10" id="kTB-OF-PgU"/>
-                    <constraint firstItem="7zh-14-c1a" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="lJq-Hn-taT"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qM9-7F-64t" secondAttribute="bottom" priority="900" constant="2" id="tfh-4V-z6u"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" priority="999" constant="-2" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="contentContainerView" destination="qM9-7F-64t" id="uI1-pw-sJg"/>
                 <outlet property="contentImageHeightAndWidthConstraint" destination="fL7-0C-JUo" id="S71-lK-2bD"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
                 <outlet property="contentTypeIconImageView" destination="7zh-14-c1a" id="ky1-Gm-Xh8"/>

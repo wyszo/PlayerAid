@@ -18,6 +18,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 @property (strong, nonatomic) TutorialStep *tutorialStep;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIView *contentContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentTypeIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
@@ -44,7 +45,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 - (void)setupLayout {
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   self.layoutMargins = UIEdgeInsetsZero; // required for hiding cell separator
-  [self.contentImageView tw_setCornerRadius:5.0];
+  [self.contentContainerView tw_setCornerRadius:5.0];
   self.contentImageView.backgroundColor = [ColorsHelper tutorialImageBackgroundColor];
 }
 
