@@ -135,6 +135,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.videoURL = nil;
   self.videoPlayButton.hidden = YES;
   self.contentTypeIconImageView.hidden = YES;
+  self.videoLengthLabel.text = @"";
   
   [self.contentImageView cancelImageRequestOperation];
   [self showSeparator];

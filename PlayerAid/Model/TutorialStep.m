@@ -66,7 +66,8 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
   NSMutableDictionary *mapping = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                    kTutorialStepServerIDAttributeName : KZProperty(serverID),
                                                                                    @"position" : KZProperty(order),
-                                                                                   @"thumbnail" : KZProperty(serverVideoThumbnailUrl)
+                                                                                   @"thumbnail" : KZProperty(serverVideoThumbnailUrl),
+                                                                                   @"videoLength" : KZProperty(videoLength)
                                                                                   }];
   
   if ([dictionary[kTutorialStepDictionaryTypeAttribute] isEqualToString:kTutorialStepTypeText]) {
