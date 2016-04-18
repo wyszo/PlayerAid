@@ -142,6 +142,7 @@
 		31D8CB131B1CEA28003EE772 /* PlayerAidTabBarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D8CB121B1CEA28003EE772 /* PlayerAidTabBarHelper.m */; };
 		31DBC1911A7F03D300740A97 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1901A7F03D300740A97 /* IntroViewController.m */; };
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
+		31DD02171CC486F50027719E /* UIImageView+AFNetworkingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DD02161CC486F40027719E /* UIImageView+AFNetworkingImageView.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
@@ -436,6 +437,8 @@
 		31DBC1901A7F03D300740A97 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		31DBC1931A7F150F00740A97 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
 		31DBC1941A7F150F00740A97 /* AlertFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertFactory.m; sourceTree = "<group>"; };
+		31DD02151CC486D40027719E /* UIImageView+AFNetworkingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworkingImageView.h"; sourceTree = "<group>"; };
+		31DD02161CC486F40027719E /* UIImageView+AFNetworkingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworkingImageView.m"; sourceTree = "<group>"; };
 		31E1E1871AECAE520091ED01 /* CommonViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		31E1E1881AECAE520091ED01 /* CommonViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViews.m; sourceTree = "<group>"; };
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
@@ -1531,6 +1534,7 @@
 		31B735F41A88000B0081AE15 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				31DD02141CC486730027719E /* AFNetworking */,
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
 				3193ACB21AAF1AA4006B5952 /* NSError */,
 				31E1E1981AECCB370091ED01 /* NSURL */,
@@ -1676,6 +1680,15 @@
 				317309F91BFA1B6B004C541D /* ViewControllers */,
 			);
 			name = Factories;
+			sourceTree = "<group>";
+		};
+		31DD02141CC486730027719E /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				31DD02151CC486D40027719E /* UIImageView+AFNetworkingImageView.h */,
+				31DD02161CC486F40027719E /* UIImageView+AFNetworkingImageView.m */,
+			);
+			name = AFNetworking;
 			sourceTree = "<group>";
 		};
 		31E1E1861AECAE3B0091ED01 /* CommonViews */ = {
@@ -2311,6 +2324,7 @@
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */,
 				31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */,
+				31DD02171CC486F50027719E /* UIImageView+AFNetworkingImageView.m in Sources */,
 				3102F94B1BF9DC6400B544C6 /* TutorialCommentCell.m in Sources */,
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,

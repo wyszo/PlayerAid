@@ -8,6 +8,7 @@
 #import "TutorialStepTableViewCell.h"
 #import "TutorialTextStylingHelper.h"
 #import "ColorsHelper.h"
+#import "UIImageView+AFNetworkingImageView.h"
 
 static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
@@ -18,11 +19,14 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *contentTypeIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
 @property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
 @property (strong, nonatomic) NSURL *videoURL;
+
+@property (copy, nonatomic) BlockWithBoolParameter imageLoadedCompletionBlock;
 @end
 
 
@@ -86,20 +90,31 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
     self.contentImageHeightAndWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
     
     if (imageTutorialStep) {
-      [tutorialStep placeImageInImageView:self.contentImageView];
+      [self showContentTypePlaceholderImageNamed:@"photoCam"];
+      [tutorialStep placeImageInImageView:self.contentImageView completion:self.imageLoadedCompletionBlock];
     }
     else if (videoTutorialStep) {
+      VoidBlock ShowVideoIconAndButtonBlock = ^() {
+        self.videoPlayImage.hidden = NO;
+        self.videoPlayButton.hidden = NO;
+      };
+      
       if (tutorialStep.videoThumbnailData) {
         self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
+        ShowVideoIconAndButtonBlock();
       } else {
+        [self showContentTypePlaceholderImageNamed:@"videoCam"];
+
         // no local video - download from web
         NSURL *thumbnailUrl = [NSURL URLWithString:tutorialStep.serverVideoThumbnailUrl];
         AssertTrueOr(thumbnailUrl,);
-        [self.contentImageView setImageWithURL:thumbnailUrl];
+        [self.contentImageView setImageWithURL:thumbnailUrl completion:^(BOOL success) {
+          if (success) {
+            CallBlock(self.imageLoadedCompletionBlock, success);
+            ShowVideoIconAndButtonBlock();
+          }
+        }];
       }
-        
-      self.videoPlayImage.hidden = NO;
-      self.videoPlayButton.hidden = NO;
       self.videoURL = [NSURL URLWithString:tutorialStep.videoPath];
     }
   }
@@ -117,6 +132,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.textView.attributedText = [NSAttributedString new];
   self.videoURL = nil;
   self.videoPlayButton.hidden = YES;
+  self.contentTypeIconImageView.hidden = YES;
   
   [self.contentImageView cancelImageRequestOperation];
   [self showSeparator];
@@ -131,8 +147,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 #pragma mark - Separator visibility
 
-- (void)updateSeparatorVisibility
-{
+- (void)updateSeparatorVisibility {
   if (self.tutorialStep.isTextStep) {
     [self showSeparator];
   } else {
@@ -140,8 +155,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   }
 }
 
-- (void)showSeparator
-{
+- (void)showSeparator {
   [self tw_showSeparatorWithMarginInset:kSeparatorInsetMargin];
 }
 
@@ -166,9 +180,23 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 #pragma mark - Accessors
 
-- (BOOL)isTextType
-{
+- (BOOL)isTextType {
   return (self.textView.text.length > 0);
+}
+
+- (BlockWithBoolParameter)imageLoadedCompletionBlock {
+  return ^(BOOL success) {
+    self.contentTypeIconImageView.hidden = YES;
+  };
+}
+
+#pragma mark - Auxiliary methods
+
+- (void)showContentTypePlaceholderImageNamed:(NSString *)imageName {
+  AssertTrueOrReturn(imageName.length);
+  
+  self.contentTypeIconImageView.image = [UIImage imageNamed:imageName];
+  self.contentTypeIconImageView.hidden = NO;
 }
 
 @end

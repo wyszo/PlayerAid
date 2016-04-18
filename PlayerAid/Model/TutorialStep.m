@@ -7,6 +7,7 @@
 #import "GlobalSettings.h"
 #import "MediaPlayerHelper.h"
 #import "UIImage+TWCropping.h"
+#import "UIImageView+AFNetworkingImageView.h"
 
 static NSString *const kTutorialStepServerIDAttributeName = @"id";
 static NSString *const kTutorialStepDictionaryTypeAttribute = @"type";
@@ -85,7 +86,11 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
 
 #pragma mark - Methods
 
-- (void)placeImageInImageView:(UIImageView *)imageView
+- (void)placeImageInImageView:(UIImageView *)imageView {
+  [self placeImageInImageView:imageView completion:nil];
+}
+
+- (void)placeImageInImageView:(UIImageView *)imageView completion:(BlockWithBoolParameter)completion
 {
   AssertTrueOrReturn(imageView);
   AssertTrueOrReturn(self.imageData || self.imagePath.length);
@@ -96,9 +101,10 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
   
   if (image) {
     imageView.image = image;
+    CallBlock(completion, YES);
   }
   else if (imageUrl) {
-    [imageView setImageWithURL:imageUrl];
+    [imageView setImageWithURL:imageUrl completion:completion];
   }
 }
 

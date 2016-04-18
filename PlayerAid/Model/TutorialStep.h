@@ -2,6 +2,7 @@
 @import UIKit;
 @import CoreData;
 #import <TWCommonLib/TWConfigurableFromDictionary.h>
+#import <TWCommonLib/TWCommonTypes.h>
 
 @interface TutorialStep : _TutorialStep <TWConfigurableFromDictionary>
 
@@ -10,6 +11,7 @@
 + (TutorialStep *)tutorialStepWithVideoURL:(NSURL *)videoUrl inContext:(NSManagedObjectContext *)context;
 
 - (void)placeImageInImageView:(UIImageView *)imageView;
+- (void)placeImageInImageView:(UIImageView *)imageView completion:(BlockWithBoolParameter)completion;
 - (UIImage *)thumbnailImage;
 
 - (BOOL)isTextStep;

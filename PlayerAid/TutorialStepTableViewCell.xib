@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="412" height="309"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jw-k5-OUc" id="A2P-YG-FCl">
-                <rect key="frame" x="0.0" y="0.0" width="412" height="308.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="412" height="308"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="This is a comment" translatesAutoresizingMaskIntoConstraints="NO" id="Z5X-2v-hWY">
-                        <rect key="frame" x="10" y="6" width="392" height="35.5"/>
+                        <rect key="frame" x="10" y="6" width="392" height="34"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="w5F-tw-1pz"/>
@@ -29,9 +29,17 @@
                     </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
                         <rect key="frame" x="62" y="2" width="288" height="288"/>
+                        <color key="backgroundColor" red="1" green="0.20063219569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="height" multiplier="1:1" id="6QV-Ak-WbE"/>
                             <constraint firstAttribute="width" constant="288" id="fL7-0C-JUo"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoCam" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-14-c1a" userLabel="ContentTypeIcon Image View">
+                        <rect key="frame" x="174" y="114" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="FHx-da-AnZ"/>
+                            <constraint firstAttribute="height" constant="64" id="RBx-2N-Nbx"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playicon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
@@ -58,10 +66,12 @@
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XMW-rJ-hjz"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="top" secondItem="VgH-bu-nap" secondAttribute="top" id="b4T-G2-jcw"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="eyB-m9-ILx"/>
+                    <constraint firstItem="7zh-14-c1a" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="f9C-xp-04w"/>
                     <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="fYi-2p-a7u"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-2" id="gMU-LR-OHg"/>
                     <constraint firstItem="eac-Sp-Jwl" firstAttribute="trailing" secondItem="VgH-bu-nap" secondAttribute="trailing" id="hqj-is-NEw"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leading" constant="10" id="kTB-OF-PgU"/>
+                    <constraint firstItem="7zh-14-c1a" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="lJq-Hn-taT"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" priority="999" constant="-2" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
@@ -69,6 +79,7 @@
             <connections>
                 <outlet property="contentImageHeightAndWidthConstraint" destination="fL7-0C-JUo" id="S71-lK-2bD"/>
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
+                <outlet property="contentTypeIconImageView" destination="7zh-14-c1a" id="ky1-Gm-Xh8"/>
                 <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
                 <outlet property="videoPlayButton" destination="glc-HU-D2Y" id="ajJ-M1-jf6"/>
                 <outlet property="videoPlayImage" destination="eac-Sp-Jwl" id="1pd-1n-XGd"/>
@@ -77,6 +88,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="photoCam" width="128" height="121"/>
         <image name="playicon" width="56" height="56"/>
     </resources>
 </document>
