@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="width" constant="42" id="aWT-tP-gNl"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-cY-yW3" userLabel="Video Length Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-cY-yW3" userLabel="Video Length Label">
                                         <rect key="frame" x="14" y="10" width="80" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="N3o-y1-7ci"/>
