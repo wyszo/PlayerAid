@@ -7,6 +7,7 @@
 @import TWCommonLib;
 #import "TutorialStepTableViewCell.h"
 #import "TutorialTextStylingHelper.h"
+#import "ColorsHelper.h"
 
 static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
@@ -40,6 +41,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   self.layoutMargins = UIEdgeInsetsZero; // required for hiding cell separator
   [self.contentImageView tw_setCornerRadius:5.0];
+  self.contentImageView.backgroundColor = [ColorsHelper tutorialImageBackgroundColor];
 }
 
 - (void)setupGestureRecognizers
@@ -112,6 +114,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   [self hideImageView];
   self.videoPlayImage.hidden = YES;
   self.textView.text = @"";
+  self.textView.attributedText = [NSAttributedString new];
   self.videoURL = nil;
   self.videoPlayButton.hidden = YES;
   

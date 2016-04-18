@@ -26,6 +26,7 @@
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 + (UIColor *)tutorialGradientBlueColor;
 + (UIColor *)tutorialTextStepColor;
++ (UIColor *)tutorialImageBackgroundColor;
 + (UIColor *)editTutorialStepsBackgroundColor;
 
 + (UIColor *)tutorialCommentsBarBackgroundColor;
