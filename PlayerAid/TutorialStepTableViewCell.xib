@@ -28,7 +28,7 @@
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-7F-64t" userLabel="Content Container">
-                        <rect key="frame" x="62" y="3" width="288" height="288"/>
+                        <rect key="frame" x="62" y="8" width="288" height="288"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-bu-nap" userLabel="Content Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="288"/>
@@ -102,12 +102,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="qM9-7F-64t" firstAttribute="centerX" secondItem="A2P-YG-FCl" secondAttribute="centerX" id="6fw-Jr-RTC"/>
-                    <constraint firstItem="qM9-7F-64t" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-5" id="9xk-ND-JJ4"/>
+                    <constraint firstItem="qM9-7F-64t" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" id="9xk-ND-JJ4"/>
                     <constraint firstAttribute="trailing" secondItem="Z5X-2v-hWY" secondAttribute="trailing" constant="10" id="KbA-BT-3SM"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="top" secondItem="A2P-YG-FCl" secondAttribute="topMargin" constant="-2" id="gMU-LR-OHg"/>
                     <constraint firstItem="Z5X-2v-hWY" firstAttribute="leading" secondItem="A2P-YG-FCl" secondAttribute="leading" constant="10" id="kTB-OF-PgU"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qM9-7F-64t" secondAttribute="bottom" priority="900" constant="2" id="tfh-4V-z6u"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" priority="999" constant="-2" id="y0s-iP-8ic"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qM9-7F-64t" secondAttribute="bottom" priority="900" id="tfh-4V-z6u"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z5X-2v-hWY" secondAttribute="bottom" priority="999" constant="-4" id="y0s-iP-8ic"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -126,6 +126,6 @@
     </objects>
     <resources>
         <image name="photoCam" width="128" height="121"/>
-        <image name="playicon" width="56" height="56"/>
+        <image name="playicon" width="80" height="80"/>
     </resources>
 </document>
