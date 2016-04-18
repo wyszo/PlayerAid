@@ -34,6 +34,7 @@
 #import "GlobalSettings.h"
 #import "DebugSettings.h"
 #import "TutorialBackupManager.h"
+#import "AVURLAsset+Duration.h"
 
 
 static NSString *const kXibName = @"CreateTutorialView";
@@ -712,6 +713,8 @@ static NSString *const kXibName = @"CreateTutorialView";
 {
   AssertTrueOrReturn(self.createTutorialContext);
   TutorialStep *step = [TutorialStep tutorialStepWithVideoURL:url inContext:self.createTutorialContext];
+  step.videoDurationInSecondsValue = [AVURLAsset assetDurationInSecondsForURL:url];
+
   [self addTutorialStepAndSave:step];
 }
 

@@ -144,6 +144,7 @@
 		31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DBC1941A7F150F00740A97 /* AlertFactory.m */; };
 		31DD02171CC486F50027719E /* UIImageView+AFNetworkingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DD02161CC486F40027719E /* UIImageView+AFNetworkingImageView.m */; };
 		31DD021B1CC49A3E0027719E /* AVURLAsset+Duration.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DD021A1CC49A3E0027719E /* AVURLAsset+Duration.m */; };
+		31DD021E1CC49B840027719E /* VideoDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DD021D1CC49B840027719E /* VideoDurationFormatter.m */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
@@ -442,6 +443,8 @@
 		31DD02161CC486F40027719E /* UIImageView+AFNetworkingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworkingImageView.m"; sourceTree = "<group>"; };
 		31DD02191CC499DB0027719E /* AVURLAsset+Duration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVURLAsset+Duration.h"; sourceTree = "<group>"; };
 		31DD021A1CC49A3E0027719E /* AVURLAsset+Duration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVURLAsset+Duration.m"; sourceTree = "<group>"; };
+		31DD021C1CC49B840027719E /* VideoDurationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDurationFormatter.h; sourceTree = "<group>"; };
+		31DD021D1CC49B840027719E /* VideoDurationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDurationFormatter.m; sourceTree = "<group>"; };
 		31E1E1871AECAE520091ED01 /* CommonViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		31E1E1881AECAE520091ED01 /* CommonViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViews.m; sourceTree = "<group>"; };
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
@@ -908,6 +911,8 @@
 				31014E731A9B8407002F3485 /* TutorialsHelper.m */,
 				31A8DE461B331C3100137ACB /* TutorialStepHelper.h */,
 				31A8DE471B331C3100137ACB /* TutorialStepHelper.m */,
+				31DD021C1CC49B840027719E /* VideoDurationFormatter.h */,
+				31DD021D1CC49B840027719E /* VideoDurationFormatter.m */,
 			);
 			name = Tutorials;
 			sourceTree = "<group>";
@@ -2405,6 +2410,7 @@
 				31115FA11AB2E10100836CB1 /* EditTutorialStepsViewController.m in Sources */,
 				31F09EF61BD8AA55003B9794 /* ImagesPrefetchingController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
+				31DD021E1CC49B840027719E /* VideoDurationFormatter.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */,
 				31B698CB1C83AE0700F82D95 /* CommentRepliesFetchController.swift in Sources */,

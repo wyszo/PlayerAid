@@ -42,7 +42,7 @@
         <attribute name="serverID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="serverVideoThumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="videoLength" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoDurationInSeconds" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoThumbnailData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="belongsTo" maxCount="1" deletionRule="Nullify" destinationEntity="Tutorial" inverseName="consistsOf" inverseEntity="Tutorial" syncable="YES"/>

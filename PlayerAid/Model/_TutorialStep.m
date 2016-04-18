@@ -10,7 +10,7 @@ const struct TutorialStepAttributes TutorialStepAttributes = {
 	.serverID = @"serverID",
 	.serverVideoThumbnailUrl = @"serverVideoThumbnailUrl",
 	.text = @"text",
-	.videoLength = @"videoLength",
+	.videoDurationInSeconds = @"videoDurationInSeconds",
 	.videoPath = @"videoPath",
 	.videoThumbnailData = @"videoThumbnailData",
 };
@@ -52,6 +52,11 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 	}
 	if ([key isEqualToString:@"serverIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"serverID"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"videoDurationInSecondsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"videoDurationInSeconds"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -107,7 +112,25 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 
 @dynamic text;
 
-@dynamic videoLength;
+@dynamic videoDurationInSeconds;
+
+- (int64_t)videoDurationInSecondsValue {
+	NSNumber *result = [self videoDurationInSeconds];
+	return [result longLongValue];
+}
+
+- (void)setVideoDurationInSecondsValue:(int64_t)value_ {
+	[self setVideoDurationInSeconds:@(value_)];
+}
+
+- (int64_t)primitiveVideoDurationInSecondsValue {
+	NSNumber *result = [self primitiveVideoDurationInSeconds];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveVideoDurationInSecondsValue:(int64_t)value_ {
+	[self setPrimitiveVideoDurationInSeconds:@(value_)];
+}
 
 @dynamic videoPath;
 

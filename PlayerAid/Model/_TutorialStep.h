@@ -10,7 +10,7 @@ extern const struct TutorialStepAttributes {
 	__unsafe_unretained NSString *serverID;
 	__unsafe_unretained NSString *serverVideoThumbnailUrl;
 	__unsafe_unretained NSString *text;
-	__unsafe_unretained NSString *videoLength;
+	__unsafe_unretained NSString *videoDurationInSeconds;
 	__unsafe_unretained NSString *videoPath;
 	__unsafe_unretained NSString *videoThumbnailData;
 } TutorialStepAttributes;
@@ -62,9 +62,13 @@ extern const struct TutorialStepRelationships {
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* videoLength;
+@property (nonatomic, strong) NSNumber* videoDurationInSeconds;
 
-//- (BOOL)validateVideoLength:(id*)value_ error:(NSError**)error_;
+@property (atomic) int64_t videoDurationInSecondsValue;
+- (int64_t)videoDurationInSecondsValue;
+- (void)setVideoDurationInSecondsValue:(int64_t)value_;
+
+//- (BOOL)validateVideoDurationInSeconds:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* videoPath;
 
@@ -106,8 +110,11 @@ extern const struct TutorialStepRelationships {
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;
 
-- (NSString*)primitiveVideoLength;
-- (void)setPrimitiveVideoLength:(NSString*)value;
+- (NSNumber*)primitiveVideoDurationInSeconds;
+- (void)setPrimitiveVideoDurationInSeconds:(NSNumber*)value;
+
+- (int64_t)primitiveVideoDurationInSecondsValue;
+- (void)setPrimitiveVideoDurationInSecondsValue:(int64_t)value_;
 
 - (NSString*)primitiveVideoPath;
 - (void)setPrimitiveVideoPath:(NSString*)value;

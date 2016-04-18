@@ -9,6 +9,7 @@
 #import "TutorialTextStylingHelper.h"
 #import "ColorsHelper.h"
 #import "UIImageView+AFNetworkingImageView.h"
+#import "VideoDurationFormatter.h"
 
 static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
@@ -117,7 +118,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
         }];
       }
       self.videoURL = [NSURL URLWithString:tutorialStep.videoPath];
-      self.videoLengthLabel.text = tutorialStep.videoLength;
+      self.videoLengthLabel.text = [[VideoDurationFormatter new] formatDurationInSeconds:(NSTimeInterval)tutorialStep.videoDurationInSecondsValue];
     }
   }
   else {
