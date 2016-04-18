@@ -116,7 +116,7 @@ extension RepliesToCommentTableViewController {
 extension RepliesToCommentTableViewController: UITableViewDelegate {
   
     @objc internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      if indexPath.row == tableView.indexPathsForVisibleRows?.last!.row {
+      if indexPath.row == tableView.indexPathsForVisibleRows?.last?.row {
         DispatchAsyncOnMainThread {
           self.tableViewDidLoadDataBlock?()
         }
