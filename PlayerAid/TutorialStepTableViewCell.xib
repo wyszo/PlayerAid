@@ -45,14 +45,36 @@
                                     <constraint firstAttribute="height" constant="64" id="RBx-2N-Nbx"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playicon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
-                                <rect key="frame" x="246" y="246" width="42" height="42"/>
-                                <color key="backgroundColor" red="0.24705882352941178" green="0.40784313725490196" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0i4-Za-dtM" userLabel="Video Overlay Container">
+                                <rect key="frame" x="0.0" y="246" width="288" height="42"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playicon" translatesAutoresizingMaskIntoConstraints="NO" id="eac-Sp-Jwl" userLabel="Video Play Image View">
+                                        <rect key="frame" x="246" y="0.0" width="42" height="42"/>
+                                        <color key="backgroundColor" red="0.24705882352941178" green="0.40784313725490196" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="DQr-Rt-pfh"/>
+                                            <constraint firstAttribute="width" constant="42" id="aWT-tP-gNl"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-cY-yW3" userLabel="Video Length Label">
+                                        <rect key="frame" x="14" y="10" width="80" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="N3o-y1-7ci"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.39856946790540543" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="DQr-Rt-pfh"/>
-                                    <constraint firstAttribute="width" constant="42" id="aWT-tP-gNl"/>
+                                    <constraint firstAttribute="height" constant="42" id="DQz-Xe-geT"/>
+                                    <constraint firstItem="FFh-cY-yW3" firstAttribute="centerY" secondItem="0i4-Za-dtM" secondAttribute="centerY" id="bIg-Gk-pKQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="eac-Sp-Jwl" secondAttribute="trailing" id="jFg-Fu-l1c"/>
+                                    <constraint firstAttribute="bottom" secondItem="eac-Sp-Jwl" secondAttribute="bottom" id="rOS-LP-K2v"/>
+                                    <constraint firstItem="FFh-cY-yW3" firstAttribute="leading" secondItem="0i4-Za-dtM" secondAttribute="leading" constant="14" id="ydF-Ju-FHS"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glc-HU-D2Y" userLabel="Video Play Button">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="288"/>
                                 <state key="normal">
@@ -65,14 +87,15 @@
                             <constraint firstItem="glc-HU-D2Y" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="Do2-tt-mBJ"/>
                             <constraint firstItem="7zh-14-c1a" firstAttribute="centerY" secondItem="VgH-bu-nap" secondAttribute="centerY" id="F0O-zo-ggB"/>
                             <constraint firstItem="VgH-bu-nap" firstAttribute="centerX" secondItem="qM9-7F-64t" secondAttribute="centerX" id="GS0-ML-ZeY"/>
+                            <constraint firstAttribute="trailing" secondItem="0i4-Za-dtM" secondAttribute="trailing" id="H9g-L9-11f"/>
+                            <constraint firstItem="0i4-Za-dtM" firstAttribute="leading" secondItem="qM9-7F-64t" secondAttribute="leading" id="UjF-gG-MFS"/>
                             <constraint firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="Wj3-gQ-teK"/>
                             <constraint firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="XZY-NL-MSW"/>
                             <constraint firstItem="glc-HU-D2Y" firstAttribute="width" secondItem="VgH-bu-nap" secondAttribute="width" id="cl5-s9-ngf"/>
                             <constraint firstItem="glc-HU-D2Y" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="da4-Qg-uI3"/>
                             <constraint firstItem="VgH-bu-nap" firstAttribute="centerY" secondItem="qM9-7F-64t" secondAttribute="centerY" id="diC-54-GAp"/>
-                            <constraint firstAttribute="trailing" secondItem="eac-Sp-Jwl" secondAttribute="trailing" id="jZa-Ku-oO2"/>
                             <constraint firstItem="7zh-14-c1a" firstAttribute="centerX" secondItem="VgH-bu-nap" secondAttribute="centerX" id="mvH-4f-1Me"/>
-                            <constraint firstAttribute="bottom" secondItem="eac-Sp-Jwl" secondAttribute="bottom" id="wal-De-Fhm"/>
+                            <constraint firstAttribute="bottom" secondItem="0i4-Za-dtM" secondAttribute="bottom" id="pFr-n3-LDJ"/>
                             <constraint firstItem="glc-HU-D2Y" firstAttribute="height" secondItem="VgH-bu-nap" secondAttribute="height" id="xjB-8e-v1B"/>
                         </constraints>
                     </view>
@@ -94,8 +117,9 @@
                 <outlet property="contentImageView" destination="VgH-bu-nap" id="kCb-cF-uqN"/>
                 <outlet property="contentTypeIconImageView" destination="7zh-14-c1a" id="ky1-Gm-Xh8"/>
                 <outlet property="textView" destination="Z5X-2v-hWY" id="5E7-pd-izE"/>
+                <outlet property="videoLengthLabel" destination="FFh-cY-yW3" id="7Sd-VS-0Af"/>
+                <outlet property="videoOverlayContainer" destination="0i4-Za-dtM" id="rb1-aQ-gUT"/>
                 <outlet property="videoPlayButton" destination="glc-HU-D2Y" id="ajJ-M1-jf6"/>
-                <outlet property="videoPlayImage" destination="eac-Sp-Jwl" id="1pd-1n-XGd"/>
             </connections>
             <point key="canvasLocation" x="15" y="516.5"/>
         </tableViewCell>

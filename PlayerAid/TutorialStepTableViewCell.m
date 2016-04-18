@@ -22,9 +22,9 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentTypeIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
-
-@property (weak, nonatomic) IBOutlet UIImageView *videoPlayImage;
+@property (weak, nonatomic) IBOutlet UIView *videoOverlayContainer;
 @property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
+@property (weak, nonatomic) IBOutlet UILabel *videoLengthLabel;
 @property (strong, nonatomic) NSURL *videoURL;
 
 @property (copy, nonatomic) BlockWithBoolParameter imageLoadedCompletionBlock;
@@ -62,7 +62,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 {
   self.tutorialStep = tutorialStep;
   
-  self.videoPlayImage.hidden = YES;
+  self.videoOverlayContainer.hidden = YES;
   [self updateTextWithTutorialStep:tutorialStep];
   [self updateImageViewWithTutorialStep:tutorialStep];
   [self updateSeparatorVisibility];
@@ -96,7 +96,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
     }
     else if (videoTutorialStep) {
       VoidBlock ShowVideoIconAndButtonBlock = ^() {
-        self.videoPlayImage.hidden = NO;
+        self.videoOverlayContainer.hidden = NO;
         self.videoPlayButton.hidden = NO;
       };
       
@@ -117,6 +117,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
         }];
       }
       self.videoURL = [NSURL URLWithString:tutorialStep.videoPath];
+      self.videoLengthLabel.text = tutorialStep.videoLength;
     }
   }
   else {
@@ -128,7 +129,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 {
   [super prepareForReuse];
   [self hideImageView];
-  self.videoPlayImage.hidden = YES;
+  self.videoOverlayContainer.hidden = YES;
   self.textView.text = @"";
   self.textView.attributedText = [NSAttributedString new];
   self.videoURL = nil;

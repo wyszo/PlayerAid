@@ -10,6 +10,7 @@ const struct TutorialStepAttributes TutorialStepAttributes = {
 	.serverID = @"serverID",
 	.serverVideoThumbnailUrl = @"serverVideoThumbnailUrl",
 	.text = @"text",
+	.videoLength = @"videoLength",
 	.videoPath = @"videoPath",
 	.videoThumbnailData = @"videoThumbnailData",
 };
@@ -105,6 +106,8 @@ const struct TutorialStepRelationships TutorialStepRelationships = {
 @dynamic serverVideoThumbnailUrl;
 
 @dynamic text;
+
+@dynamic videoLength;
 
 @dynamic videoPath;
 
