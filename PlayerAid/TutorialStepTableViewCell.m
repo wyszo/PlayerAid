@@ -22,7 +22,9 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 @property (weak, nonatomic) IBOutlet UIView *contentContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentTypeIconImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageHeightAndWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentImageWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewImageAspectConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewVideoAspectConstraint;
 @property (weak, nonatomic) IBOutlet UIView *videoOverlayContainer;
 @property (weak, nonatomic) IBOutlet UIButton *videoPlayButton;
 @property (weak, nonatomic) IBOutlet UILabel *videoLengthLabel;
@@ -88,14 +90,18 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   BOOL videoTutorialStep = [tutorialStep isVideoStep];
   
   if (imageTutorialStep || videoTutorialStep) {
+    [self switchToImageContentViewConstraint];
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.contentImageHeightAndWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
+    self.contentImageWidthConstraint.constant = screenWidth - (kContentImageMargin * 2);
     
     if (imageTutorialStep) {
       [self showContentTypePlaceholderImageNamed:@"photoCam"];
       [tutorialStep placeImageInImageView:self.contentImageView completion:self.imageLoadedCompletionBlock];
     }
     else if (videoTutorialStep) {
+      [self switchToVideoContentViewConstraint];
+    
       VoidBlock ShowVideoIconAndButtonBlock = ^() {
         self.videoOverlayContainer.hidden = NO;
         self.videoPlayButton.hidden = NO;
@@ -138,13 +144,14 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.contentTypeIconImageView.hidden = YES;
   self.videoLengthLabel.text = @"";
   
+  [self switchToImageContentViewConstraint];
   [self.contentImageView cancelImageRequestOperation];
   [self showSeparator];
 }
 
 - (void)hideImageView
 {
-  self.contentImageHeightAndWidthConstraint.constant = 0.0f;
+  self.contentImageWidthConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
 }
@@ -201,6 +208,18 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   
   self.contentTypeIconImageView.image = [UIImage imageNamed:imageName];
   self.contentTypeIconImageView.hidden = NO;
+}
+
+#pragma mark - Constraints
+
+- (void)switchToImageContentViewConstraint {
+  self.contentViewImageAspectConstraint.active = YES;
+  self.contentViewVideoAspectConstraint.active = NO;
+}
+
+- (void)switchToVideoContentViewConstraint {
+  self.contentViewImageAspectConstraint.active = NO;
+  self.contentViewVideoAspectConstraint.active = YES;
 }
 
 @end
