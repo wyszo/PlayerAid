@@ -88,7 +88,9 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 {
   BOOL imageTutorialStep = [tutorialStep isImageStep];
   BOOL videoTutorialStep = [tutorialStep isVideoStep];
-  
+
+  self.contentImageView.contentMode = UIViewContentModeScaleToFill;
+
   if (imageTutorialStep || videoTutorialStep) {
     [self switchToImageContentViewConstraint];
     
@@ -101,6 +103,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
     }
     else if (videoTutorialStep) {
       [self switchToVideoContentViewConstraint];
+      self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
     
       VoidBlock ShowVideoIconAndButtonBlock = ^() {
         self.videoOverlayContainer.hidden = NO;
