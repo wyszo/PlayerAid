@@ -67,7 +67,7 @@ static NSString *const kTutorialStepTypeVideo = @"Video";
                                                                                    kTutorialStepServerIDAttributeName : KZProperty(serverID),
                                                                                    @"position" : KZProperty(order),
                                                                                    @"thumbnail" : KZProperty(serverVideoThumbnailUrl),
-                                                                                   @"videoLength" : KZProperty(videoDurationInSeconds)
+                                                                                   @"videoDurationInSeconds" : KZProperty(videoDurationInSeconds)
                                                                                   }];
   
   if ([dictionary[kTutorialStepDictionaryTypeAttribute] isEqualToString:kTutorialStepTypeText]) {
