@@ -8,6 +8,7 @@ typedef NS_ENUM(NSUInteger, CommentStatus) {
   CommentStatusUnknown
 };
 
+// TODO: rename to GuideComment
 @interface TutorialComment : _TutorialComment <TWConfigurableFromDictionary>
 
 @property (nonatomic, assign, readonly) BOOL isCommentDeleted;

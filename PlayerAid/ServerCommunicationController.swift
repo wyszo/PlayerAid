@@ -33,17 +33,16 @@ class ServerCommunicationController : NSObject {
   }
 }
 
-// MARK: Tutorials
+// MARK: Guides
 extension ServerCommunicationController {
   
-  func listTutorials(completion completion: NetworkCompletionBlock) {
-    let parameters = [ "fields" : "steps,comments" ]
-    sendNetworkRequest("tutorials", httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+  func listGuides(completion completion: NetworkCompletionBlock) {
+    sendNetworkRequest("guides", httpMethod: .GET, parameters: nil, completion: networkResponseAsJSONArrayCompletionBlock(completion))
   }
   
-  func listTutorialsForUserId(userId: Int, completion: NetworkCompletionBlock) {
-    let parameters = [ "fields" : "comments,author.tutorials" ] // shouldn't this be: comments,steps?
-    let urlString = "user/\(userId)/tutorials"
+  func listGuidesForUserId(userId: Int, completion: NetworkCompletionBlock) {
+    let parameters = [ "fields" : "comments,author.guides" ] // shouldn't this be: comments,steps?
+    let urlString = "user/\(userId)/guides"
     
     sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
   }
@@ -63,7 +62,7 @@ extension ServerCommunicationController {
     sendNetworkRequest(urlString, httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
   }
   
-  private static let userRequestFields = [ "fields" : "tutorials,tutorials.steps,followers,following" ]
+  private static let userRequestFields = [ "fields" : "guides,guides.steps,followers,following" ]
 }
 
 // MARK: Generic methods
