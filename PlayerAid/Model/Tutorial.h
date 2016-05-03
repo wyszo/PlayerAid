@@ -10,6 +10,7 @@ extern NSString *const kTutorialDictionaryServerIDPropertyName;
 @property (nonatomic, strong) NSNumber *inReview;
 @property (nonatomic, assign) BOOL storedOnServer;
 @property (nonatomic, assign, readonly) BOOL isDraft;
+@property (nonatomic, assign, readonly) BOOL isInReview;
 @property (nonatomic, assign, readonly) BOOL isPublished;
 @property (nonatomic, assign, readonly) BOOL hasAnySteps;
 @property (nonatomic, assign, readonly) BOOL hasAnyPublishedComments;

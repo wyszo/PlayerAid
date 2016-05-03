@@ -96,9 +96,23 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (void)setupNavigationBar {
   self.title = @"Guide";
   
-  if (self.tutorial.isPublished && ![TutorialsHelper isOwnTutorial:self.tutorial]) {
+  if ([self shouldShowReportNavbarButton]) {
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
+  } else if ([self shouldShowEditNavbarButton]) {
+    self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] editTutorialBarButtonItem:self.tutorial];
   }
+}
+
+- (BOOL)shouldShowReportNavbarButton {
+  return (self.tutorial.isPublished && !self.isOwnTutorial);
+}
+
+- (BOOL)shouldShowEditNavbarButton {
+  return (self.isOwnTutorial && self.tutorial.isInReview);
+}
+
+- (BOOL)isOwnTutorial {
+  return [TutorialsHelper isOwnTutorial:self.tutorial];
 }
 
 - (void)setupLazyInitializers {

@@ -32,7 +32,9 @@
   [[UsersFetchController sharedInstance] fetchCurrentUserProfile];
 
   [[TutorialListFetchController sharedInstance] fetchTimelineTutorialsCompletion:^(BOOL success) {
-    [[TutorialListFetchController sharedInstance] fetchCurrentUserTutorials];
+  
+  // TODO: disabled for now as it fails on server right now...
+//    [[TutorialListFetchController sharedInstance] fetchCurrentUserTutorials];
   }];
 }
 

@@ -15,6 +15,7 @@
 
 
 static NSString *const kGuideUrlString = @"guide";
+static NSString *const kDraftUrlString = @"draft";
 static NSString *const kUserUrlString = @"user";
 
 

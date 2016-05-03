@@ -14,6 +14,7 @@
 // Call this inside prepareForSegue
 - (void)prepareForTutorialDetailsSegue:(UIStoryboardSegue *)segue pushingTutorial:(Tutorial *)tutorial;
 
+- (UIBarButtonItem *)editTutorialBarButtonItem:(Tutorial *)tutorial;
 - (UIBarButtonItem *)reportTutorialBarButtonItem:(Tutorial *)tutorial;
 
 @end

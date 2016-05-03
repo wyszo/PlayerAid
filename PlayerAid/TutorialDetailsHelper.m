@@ -5,11 +5,13 @@
 @import KZAsserts;
 @import BlocksKit;
 @import MagicalRecord;
+#import <TWCommonLib/TWCommonMacros.h>
 #import "TutorialDetailsHelper.h"
 #import "TutorialDetailsViewController.h"
 #import "AlertFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
+#import "PlayerAid-Swift.h"
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
@@ -40,13 +42,32 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 #pragma mark - UIComponents
 
-- (UIBarButtonItem *)reportTutorialBarButtonItem:(Tutorial *)tutorial
-{
+- (UIBarButtonItem *)editTutorialBarButtonItem:(Tutorial *)tutorial {
   AssertTrueOrReturnNil(tutorial);
-  UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [reportButton setTitle:@"Report" forState:UIControlStateNormal];
-  [reportButton sizeToFit];
-  [reportButton bk_addEventHandler:^(id sender) {
+
+  UIButton *button = [self customButtonWithTitle:@"Edit" eventHandler:^ {
+  
+    // TODO: confirm this alert copy
+    [AlertFactory showPullInReviewBackToDraftAlertViewWithYesAction:^{
+    
+      // TODO: make a network request that changes this tutorial state back to draft (I think this is still how it should work???)
+      [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pullGuideBackFromReview:tutorial.serverIDValue completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+          // TODO: show specialised error instead!
+          [AlertFactory showGenericErrorAlertViewNoRetry];
+        } else {
+          // TODO: Change tutorial state to draft!
+        }
+      }];
+    }];
+  }];
+  return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+- (UIBarButtonItem *)reportTutorialBarButtonItem:(Tutorial *)tutorial {
+  AssertTrueOrReturnNil(tutorial);
+
+  UIButton *reportButton = [self customButtonWithTitle:@"Report" eventHandler:^{
     [AlertFactory showReportTutorialAlertViewWithOKAction:^{
       [[AuthenticatedServerCommunicationController sharedInstance] reportTutorial:tutorial completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
         if (error) {
@@ -61,12 +82,26 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
         }
       }];
     }];
-  } forControlEvents:UIControlEventTouchUpInside];
-  
-  reportButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-  reportButton.titleLabel.alpha = 0.5;
+  }];
 
+  reportButton.titleLabel.alpha = 0.5;
   return [[UIBarButtonItem alloc] initWithCustomView:reportButton];
+}
+
+- (UIButton *)customButtonWithTitle:(NSString *)title eventHandler:(VoidBlock)handler {
+  AssertTrueOrReturnNil(title.length > 0);
+  AssertTrueOrReturnNil(handler);
+
+  UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+  [button setTitle:title forState:UIControlStateNormal];
+  button.titleLabel.font = [UIFont systemFontOfSize:15.0];
+  [button sizeToFit];
+
+  [button bk_addEventHandler:^(id sender) {
+    CallBlock(handler);
+  } forControlEvents:UIControlEventTouchUpInside];
+
+  return button;
 }
 
 @end

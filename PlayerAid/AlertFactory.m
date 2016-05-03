@@ -133,6 +133,14 @@
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Yes" firstButtonAction:yesAction secondButtonTitle:@"No" secondAction:nil];
 }
 
+#pragma mark - In-review guides
+
++ (UIAlertView *)showPullInReviewBackToDraftAlertViewWithYesAction:(VoidBlock)yesAction {
+  // TODO: this copy has not been accepted yet!!
+  NSString *message = @"This will cancel your guide review and you'll have to resubmit after you make changes. Continue?";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"No" firstButtonAction:nil secondButtonTitle:@"Yes" secondAction:yesAction];
+}
+
 #pragma mark - Publish tutorial
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction

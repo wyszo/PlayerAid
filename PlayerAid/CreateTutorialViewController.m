@@ -96,6 +96,9 @@ static NSString *const kXibName = @"CreateTutorialView";
   
   [self setupTutorialStepsDataSource];
   [self performDebugActions];
+  
+    [self DEBUG_prefillTutorialHeaderIfNeeded];
+  
   [self setupTapGestureRecognizerForResigningEditing];
   [self setupCustomCamera];
   
@@ -219,13 +222,7 @@ static NSString *const kXibName = @"CreateTutorialView";
     });
   }
 
-  if (DEBUG_MODE_PREFILL_CREATE_TUTORIAL_HEADER) {
-    self.tutorial.title = @"Bla";
-    self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
-    CGFloat compressionQuality = 1.0;
-    self.tutorial.jpegImageData = UIImageJPEGRepresentation([UIImage imageNamed:@"bubble"], compressionQuality);
-    [self.headerViewController updateWithTutorial:self.tutorial];
-  }
+  [self DEBUG_prefillTutorialHeaderIfNeeded];
 
   if (DEBUG_MODE_FLOW_PUBLISH_TUTORIAL) {
     [self DEBUG_pressPublishButton];
@@ -236,6 +233,16 @@ static NSString *const kXibName = @"CreateTutorialView";
     DISPATCH_AFTER(0.5, ^{
       [weakSelf addPhotoStepSelected];
     });
+  }
+}
+
+- (void)DEBUG_prefillTutorialHeaderIfNeeded {
+  if (DEBUG_MODE_PREFILL_CREATE_TUTORIAL_HEADER) {
+    self.tutorial.title = @"Bla";
+    self.tutorial.section = [Section MR_findFirstInContext:self.createTutorialContext];
+    CGFloat compressionQuality = 1.0;
+    self.tutorial.jpegImageData = UIImageJPEGRepresentation([UIImage imageNamed:@"bubble"], compressionQuality);
+    [self.headerViewController updateWithTutorial:self.tutorial];
   }
 }
 

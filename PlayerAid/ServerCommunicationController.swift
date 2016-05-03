@@ -48,6 +48,11 @@ extension ServerCommunicationController {
     
     sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
   }
+
+  func pullGuideBackFromReview(guideId: Int, completion: NetworkCompletionBlock) {
+    let urlString = "/draft/\(guideId)/review"
+    sendNetworkRequest(urlString, httpMethod: .DELETE, parameters: nil, completion: completion)
+  }
 }
 
 // MARK: User

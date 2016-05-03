@@ -222,6 +222,10 @@ static NSString *const kCommentsKey = @"comments";
   self.primitiveState = kTutorialStateInReview;
 }
 
+- (BOOL)isInReview {
+  return [self.primitiveState isEqualToString:kTutorialStateInReview];
+}
+
 - (BOOL)isPublished
 {
   return [self.primitiveState isEqualToString:kTutorialStatePublished];
