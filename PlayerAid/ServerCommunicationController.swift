@@ -37,7 +37,9 @@ class ServerCommunicationController : NSObject {
 extension ServerCommunicationController {
   
   func listGuides(completion completion: NetworkCompletionBlock) {
-    sendNetworkRequest("guides", httpMethod: .GET, parameters: nil, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+    // TODO: implement paging for this one!
+    let parameters = [ "fields" : "steps,comments" ]
+    sendNetworkRequest("guides", httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
   }
   
   func listGuidesForUserId(userId: Int, completion: NetworkCompletionBlock) {
@@ -133,7 +135,7 @@ extension ServerCommunicationController {
   }
   
   internal func networkResponseAsJSONArrayCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
-    
+  
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
         let result = try? data?.jsonArray()
         assert(result != nil && result! != nil)
@@ -147,7 +149,17 @@ extension ServerCommunicationController {
       let result = try? data?.jsonDictionary()
       assert(result != nil && result! != nil)
       return result!
-      }, completion: completion)
+    }, completion: completion)
+  }
+  
+  // FIXME: Temporary method that just returns first page of results!
+  internal func networkResponseAsJSONPagedDictionaryCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+    return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
+      // TODO: this only returns first page of results, be careful!
+      let result = try? data?.jsonDictionary()["data"]
+      assert(result != nil && result! != nil)
+      return result!
+    }, completion: completion)
   }
   
   private func networkResponseWithTransformationCompletionBlock(transformation: (NSData?) -> AnyObject?, completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
