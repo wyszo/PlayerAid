@@ -43,7 +43,7 @@ extension ServerCommunicationController {
   }
   
   func listGuidesForUserId(userId: Int, completion: NetworkCompletionBlock) {
-    let parameters = [ "fields" : "comments,author.guides" ] // shouldn't this be: comments,steps?
+    let parameters = [ "fields" : "steps,comments" ]
     let urlString = "user/\(userId)/guides"
     
     sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
