@@ -14,7 +14,7 @@
 #import "PlayerAid-Swift.h"
 
 
-static NSString *const kTutorialUrlString = @"tutorial";
+static NSString *const kGuideUrlString = @"guide";
 static NSString *const kUserUrlString = @"user";
 
 
@@ -64,7 +64,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (NSString *)urlStringForTutorialIDString:(NSString *)tutorialID
 {
   AssertTrueOrReturnNil(tutorialID.length);
-  return [NSString stringWithFormat:@"%@/%@", kTutorialUrlString, tutorialID];
+  return [NSString stringWithFormat:@"%@/%@", kGuideUrlString, tutorialID];
 }
 
 - (void)createTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
@@ -78,7 +78,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
                                // Optionally we could send CreatedOn date here
                               };
   
-  [self performPostRequestWithApiToken:self.apiToken urlString:kTutorialUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+  [self performPostRequestWithApiToken:self.apiToken urlString:kGuideUrlString parameters:parameters completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     CallBlock(completion, response, responseObject, error);
   }];
 }
