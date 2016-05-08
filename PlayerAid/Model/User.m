@@ -9,6 +9,7 @@
 #import "TutorialsHelper.h"
 #import "UsersHelper.h"
 #import "NSError+PlayerAidErrors.h"
+#import "DebugSettings.h"
 
 NSString *const kUserServerIDJSONAttributeName = @"id";
 NSString *const kUserServerIDKey = @"serverID";
@@ -127,7 +128,9 @@ static NSString *const kFollowingKey = @"following";
       }
       else {
         NSLog(@"Avatar image loading error: %@", error);
-        AssertTrueOrReturn(!error);
+        if (!DEBUG_OFFLINE_MODE) {
+          AssertTrueOrReturn(!error);
+        }
       }
     }];
   }

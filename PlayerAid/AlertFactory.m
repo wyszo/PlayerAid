@@ -136,9 +136,8 @@
 #pragma mark - In-review guides
 
 + (UIAlertView *)showPullInReviewBackToDraftAlertViewWithYesAction:(VoidBlock)yesAction {
-  // TODO: this copy has not been accepted yet!!
-  NSString *message = @"This will cancel your guide review and you'll have to resubmit after you make changes. Continue?";
-  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"No" firstButtonAction:nil secondButtonTitle:@"Yes" secondAction:yesAction];
+  NSString *message = @"This will cancel your Guide review and you'll have to resubmit after you make changes";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Cancel" firstButtonAction:nil secondButtonTitle:@"Continue" secondAction:yesAction];
 }
 
 #pragma mark - Publish tutorial
