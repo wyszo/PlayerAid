@@ -12,6 +12,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "TutorialsHelper.h"
 #import "PlayerAid-Swift.h"
+#import "DebugSettings.h"
 
 static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
@@ -42,21 +43,32 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
 #pragma mark - UIComponents
 
-- (UIBarButtonItem *)editTutorialBarButtonItem:(Tutorial *)tutorial {
+- (UIBarButtonItem *)editTutorialBarButtonItem:(Tutorial *)tutorial completion:(BlockWithBoolParameter)completion {
   AssertTrueOrReturnNil(tutorial);
 
   UIButton *button = [self customButtonWithTitle:@"Edit" eventHandler:^ {
-  
+
     // TODO: confirm this alert copy
     [AlertFactory showPullInReviewBackToDraftAlertViewWithYesAction:^{
-    
+
+      VoidBlock changeTutorialStateBlock = ^() {
+        [TutorialsHelper revertTutorialStateToDraft:tutorial];
+        CallBlock(completion, YES);
+      };
+
+      if (DEBUG_OFFLINE_MODE) {
+        changeTutorialStateBlock();
+        return;
+      }
+
       // TODO: make a network request that changes this tutorial state back to draft (I think this is still how it should work???)
       [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pullGuideBackFromReview:tutorial.serverIDValue completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
         if (error) {
           // TODO: show specialised error instead!
           [AlertFactory showGenericErrorAlertViewNoRetry];
+          CallBlock(completion, NO);
         } else {
-          // TODO: Change tutorial state to draft!
+          changeTutorialStateBlock();
         }
       }];
     }];

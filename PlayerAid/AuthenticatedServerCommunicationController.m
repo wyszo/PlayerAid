@@ -12,7 +12,7 @@
 #import "NSURL+URLString.h"
 #import "EnvironmentSettings.h"
 #import "PlayerAid-Swift.h"
-
+#import "DebugSettings.h"
 
 static NSString *const kGuideUrlString = @"guide";
 static NSString *const kDraftUrlString = @"draft";

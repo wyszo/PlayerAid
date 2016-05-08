@@ -42,6 +42,15 @@
   return respondsToSelector;
 }
 
++ (void)revertTutorialStateToDraft:(Tutorial *)tutorial {
+  AssertTrueOrReturn(tutorial);
+  
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
+    [tutorialInContext setStateToDraft];
+  }];
+}
+
 #pragma mark - Parsing tutorials
 
 + (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray

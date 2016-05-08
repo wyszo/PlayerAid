@@ -99,7 +99,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   if ([self shouldShowReportNavbarButton]) {
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
   } else if ([self shouldShowEditNavbarButton]) {
-    self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] editTutorialBarButtonItem:self.tutorial];
+    self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] editTutorialBarButtonItem:self.tutorial completion:^(BOOL success) {
+      if (success) {
+        // TODO: push a create guide flow with this guide now in draft mode!
+      }
+    }];
   }
 }
 
