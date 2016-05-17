@@ -44,9 +44,13 @@
 
 + (void)revertTutorialStateToDraft:(Tutorial *)tutorial {
   AssertTrueOrReturn(tutorial);
-  
+
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
     Tutorial *tutorialInContext = [tutorial MR_inContext:localContext];
+    AssertTrueOrReturn(tutorialInContext);
+
+    // FIXME: workaround, without it just the draft change is not picked up!
+    tutorialInContext.title = tutorialInContext.title;
     [tutorialInContext setStateToDraft];
   }];
 }
