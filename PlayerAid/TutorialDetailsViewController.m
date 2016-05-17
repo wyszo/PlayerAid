@@ -99,9 +99,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   if ([self shouldShowReportNavbarButton]) {
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] reportTutorialBarButtonItem:self.tutorial];
   } else if ([self shouldShowEditNavbarButton]) {
+  
+    defineWeakSelf();
     self.navigationItem.rightBarButtonItem = [[TutorialDetailsHelper new] editTutorialBarButtonItem:self.tutorial completion:^(BOOL success) {
       if (success) {
-        // TODO: push a create guide flow with this guide now in draft mode!
+        [ApplicationViewHierarchyHelper presentCreateTutorialViewControllerForTutorial:weakSelf.tutorial isEditingDraft:YES];
       }
     }];
   }

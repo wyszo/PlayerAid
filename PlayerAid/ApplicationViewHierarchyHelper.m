@@ -86,4 +86,17 @@
   return commentRepliesVC;
 }
 
++ (UIViewController *)presentCreateTutorialViewControllerForTutorial:(Tutorial *)tutorial isEditingDraft:(BOOL)editingDraft {
+  AssertTrueOrReturnNil(tutorial);
+
+  UIViewController *modalViewController = [self presentModalCreateTutorialViewController];
+  AssertTrueOrReturnNil([modalViewController isKindOfClass:[CreateTutorialViewController class]]);
+
+  CreateTutorialViewController *createTutorialViewController = (CreateTutorialViewController *)modalViewController;
+  createTutorialViewController.tutorialToDisplay = tutorial;
+  createTutorialViewController.isEditingDraft = editingDraft;
+
+  return createTutorialViewController;
+}
+
 @end

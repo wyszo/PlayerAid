@@ -356,11 +356,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.lastSelectedTutorial = tutorial;
   
   if (tutorial.isDraft) {
-    UIViewController *viewController = [ApplicationViewHierarchyHelper presentModalCreateTutorialViewController];
-    AssertTrueOrReturn([viewController isKindOfClass:[CreateTutorialViewController class]]);
-    CreateTutorialViewController *createTutorialViewController = (CreateTutorialViewController *)viewController;
-    createTutorialViewController.tutorialToDisplay = tutorial;
-    createTutorialViewController.isEditingDraft = YES;
+    [ApplicationViewHierarchyHelper presentCreateTutorialViewControllerForTutorial:tutorial isEditingDraft:YES];
   }
   else {
     [[TutorialDetailsHelper new] performTutorialDetailsSegueFromViewController:self];
@@ -371,7 +367,6 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 #pragma mark - PrepareForSegue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  defineWeakSelf();
   [[TutorialDetailsHelper new] prepareForTutorialDetailsSegue:segue pushingTutorial:self.lastSelectedTutorial];
 }
 
