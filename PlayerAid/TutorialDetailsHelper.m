@@ -6,6 +6,7 @@
 @import BlocksKit;
 @import MagicalRecord;
 #import <TWCommonLib/TWCommonMacros.h>
+#import <TWCommonLib/TWDispatchMacros.h>
 #import "TutorialDetailsHelper.h"
 #import "TutorialDetailsViewController.h"
 #import "AlertFactory.h"
@@ -63,13 +64,15 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 
       // TODO: make a network request that changes this tutorial state back to draft (I think this is still how it should work???)
       [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pullGuideBackFromReview:tutorial.serverIDValue completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-          // TODO: show specialised error instead!
-          [AlertFactory showGenericErrorAlertViewNoRetry];
-          CallBlock(completion, NO);
-        } else {
-          changeTutorialStateBlock();
-        }
+        DISPATCH_SYNC_ON_MAIN_THREAD(^{
+          if (error) {
+            // TODO: show specialised error instead!
+            [AlertFactory showGenericErrorAlertViewNoRetry];
+            CallBlock(completion, NO);
+          } else {
+            changeTutorialStateBlock();
+          }
+        });
       }];
     }];
   }];
