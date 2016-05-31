@@ -36,8 +36,9 @@ typedef void (^ActionBlock)() ;
 + (UIAlertView *)showDraftSaveChangesAlertViewWithYesAction:(VoidBlock)yesAction noAction:(VoidBlock)noAction;
 + (UIAlertView *)showThisWillDeleteChangesWithYesAction:(VoidBlock)yesAction;
 
-// Edit in-review tutorial alerts
+// Edit in-review/published tutorial alerts
 + (UIAlertView *)showPullInReviewBackToDraftAlertViewWithYesAction:(VoidBlock)yesAction;
++ (UIAlertView *)showPullPublishedBackToDraftAlertViewWithYesAction:(VoidBlock)yesAction;
 
 // Publish tutorial alerts
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction;

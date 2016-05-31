@@ -45,37 +45,48 @@ static NSString *const kShowTutorialDetailsSegueName = @"ShowTutorialDetails";
 #pragma mark - UIComponents
 
 - (UIBarButtonItem *)editTutorialBarButtonItem:(Tutorial *)tutorial completion:(BlockWithBoolParameter)completion {
-  AssertTrueOrReturnNil(tutorial);
+  AssertTrueOrReturnNil(tutorial.isInReview || tutorial.isPublished);
 
-  UIButton *button = [self customButtonWithTitle:@"Edit" eventHandler:^ {
+  // Technical debt: this method's implementation is waaaay too long, need to break it down
 
-    // TODO: confirm this alert copy
-    [AlertFactory showPullInReviewBackToDraftAlertViewWithYesAction:^{
-
-      VoidBlock changeTutorialStateBlock = ^() {
-        [TutorialsHelper revertTutorialStateToDraft:tutorial];
-        CallBlock(completion, YES);
-      };
-
-      if (DEBUG_OFFLINE_MODE) {
-        changeTutorialStateBlock();
-        return;
-      }
-
-      // TODO: make a network request that changes this tutorial state back to draft (I think this is still how it should work???)
-      [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pullGuideBackFromReview:tutorial.serverIDValue completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-        DISPATCH_SYNC_ON_MAIN_THREAD(^{
-          if (error) {
-            // TODO: show specialised error instead!
-            [AlertFactory showGenericErrorAlertViewNoRetry];
-            CallBlock(completion, NO);
-          } else {
-            changeTutorialStateBlock();
-          }
-        });
-      }];
+  VoidBlock yesAction = ^{
+    VoidBlock changeTutorialStateBlock = ^() {
+      [TutorialsHelper revertTutorialStateToDraft:tutorial];
+      CallBlock(completion, YES);
+    };
+    
+    if (DEBUG_OFFLINE_MODE) {
+      changeTutorialStateBlock();
+      return;
+    }
+    
+    // TODO: make a network request that changes this tutorial state back to draft (I think this is still how it should work???)
+    [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pullGuideBackFromReview:tutorial.serverIDValue completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      DISPATCH_SYNC_ON_MAIN_THREAD(^{
+        if (error) {
+          // TODO: show specialised error instead!
+          [AlertFactory showGenericErrorAlertViewNoRetry];
+          CallBlock(completion, NO);
+        } else {
+          changeTutorialStateBlock();
+        }
+      });
     }];
-  }];
+  };
+
+  VoidBlock eventHandler = nil;
+  if (tutorial.isInReview) {
+    eventHandler = ^{
+      // TODO: confirm this alert copy
+      [AlertFactory showPullInReviewBackToDraftAlertViewWithYesAction:yesAction];
+    };
+  } else if (tutorial.isPublished) {
+    eventHandler = ^{
+      [AlertFactory showPullPublishedBackToDraftAlertViewWithYesAction:yesAction];
+    };
+  }
+  
+  UIButton *button = [self customButtonWithTitle:@"Edit" eventHandler:eventHandler];
   return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 

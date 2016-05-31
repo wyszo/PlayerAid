@@ -140,6 +140,11 @@
   return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Cancel" firstButtonAction:nil secondButtonTitle:@"Continue" secondAction:yesAction];
 }
 
++ (UIAlertView *)showPullPublishedBackToDraftAlertViewWithYesAction:(VoidBlock)yesAction {
+  NSString *message = @"Editing the Guide will put it back into a Draft state. You will have to re-publish the guide when edit is complete";
+  return [self showTwoButtonsAlertViewWithTitle:nil message:message firstButtonTitle:@"Cancel" firstButtonAction:nil secondButtonTitle:@"Continue" secondAction:yesAction];
+}
+
 #pragma mark - Publish tutorial
 
 + (UIAlertView *)showFirstPublishedTutorialAlertViewWithOKAction:(ActionBlock)okAction

@@ -114,7 +114,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 }
 
 - (BOOL)shouldShowEditNavbarButton {
-  return (self.isOwnTutorial && self.tutorial.isInReview);
+  return (self.isOwnTutorial && (self.tutorial.isInReview || self.tutorial.isPublished));
 }
 
 - (BOOL)isOwnTutorial {
