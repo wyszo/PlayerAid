@@ -54,6 +54,7 @@ UIColorMethodMake(makeCommentPostButtonInactiveBackgroundColor, 159, 179, 226)
 UIColorFromHexMethodMake(makeCommentInputTextViewTextColor, kCommentDarkGrey)
 UIColorFromHexMethodMake(makeCommentInputTextViewPlaceholderColor, kCommentDarkGrey)
 UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
+UIColorMethodMake(textStepKeyboardInputAccessoryViewBorderColor, 227, 227, 227)
 
 UIColorFromHexMethodMake(playerAidBlueColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(userProfileBackgroundColor, kNewPlayerAidBlue)

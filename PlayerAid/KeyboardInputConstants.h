@@ -3,3 +3,4 @@
 
 extern const CGFloat kKeyboardMakeCommentAccessoryInputViewHeight;
 extern const CGFloat kKeyboardEditCommentAccessoryInputViewHeight;
+extern const CGFloat kKeyboardGuideTextStepAccessoryInputViewHeight;

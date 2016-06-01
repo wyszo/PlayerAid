@@ -8,6 +8,9 @@
 #import "AlertFactory.h"
 #import "GlobalSettings.h"
 #import "TutorialTextStylingHelper.h"
+#import "KeyboardCustomAccessoryInputViewHandler.h"
+#import "KeyboardInputConstants.h"
+#import "PlayerAid-Swift.h"
 
 /**
  Technical debt: this class should use TWTextViewWithCharacterLimitLabelDelegate instead of implementing it from scratch. See EditProfileView as an example. 
@@ -25,6 +28,9 @@ const NSInteger kTextStepDismissedError = 1;
 @property (weak, nonatomic) IBOutlet UILabel *characterLimitLabel;
 @property (weak, nonatomic) UIBarButtonItem *confirmNavbarButton;
 @property (assign, nonatomic) NSInteger remainingCharactersCount;
+
+@property (strong, nonatomic) KeyboardCustomAccessoryInputViewHandler* keyboardInputViewHandler;
+@property (strong, nonatomic) TextStepKeyboardAccessoryViewController* keyboardBarViewController;
 
 @end
 
@@ -63,6 +69,9 @@ const NSInteger kTextStepDismissedError = 1;
   [self installSwipeRightGestureRecognizer];
   [self updateTextStepRemainingCharactersCount];
   [self updateConfirmButtonState];
+  [self setupKeyboardAccessoryInputView];
+  
+  [self.keyboardInputViewHandler slideInputViewIn];
 }
 
 - (void)styleTextView
@@ -94,6 +103,12 @@ const NSInteger kTextStepDismissedError = 1;
 {
   self.textView.delegate = self;
   [self updateCharactersCountLabel];
+}
+
+- (void)setupKeyboardAccessoryInputView {
+  self.keyboardBarViewController = [[TextStepKeyboardAccessoryViewController alloc] init];
+
+  self.keyboardInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.keyboardBarViewController initialInputViewHeight:kKeyboardGuideTextStepAccessoryInputViewHeight];
 }
 
 - (void)customizeNavigationBarButtons

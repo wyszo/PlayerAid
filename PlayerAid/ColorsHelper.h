@@ -44,6 +44,7 @@
 + (UIColor *)makeCommentInputTextViewTextColor;
 + (UIColor *)makeCommentInputTextViewPlaceholderColor;
 + (UIColor *)makeEditCommentInputViewTopBorderColor;
++ (UIColor *)textStepKeyboardInputAccessoryViewBorderColor;
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)userProfileBackgroundColor;

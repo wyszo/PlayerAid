@@ -66,6 +66,8 @@
 		316763F71C793E4D003184C1 /* ServerCommunicationController_Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */; };
 		316763F91C7A4017003184C1 /* MoreRepliesBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316763F81C7A4017003184C1 /* MoreRepliesBar.xib */; };
 		316763FC1C7A967E003184C1 /* CommentRepliesCellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316763FB1C7A967E003184C1 /* CommentRepliesCellConfigurator.m */; };
+		316BA2C51CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */; };
+		316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -302,6 +304,8 @@
 		316763F81C7A4017003184C1 /* MoreRepliesBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreRepliesBar.xib; sourceTree = "<group>"; };
 		316763FA1C7A967E003184C1 /* CommentRepliesCellConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentRepliesCellConfigurator.h; sourceTree = "<group>"; };
 		316763FB1C7A967E003184C1 /* CommentRepliesCellConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentRepliesCellConfigurator.m; sourceTree = "<group>"; };
+		316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStepKeyboardAccessoryViewController.swift; sourceTree = "<group>"; };
+		316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextStepKeyboardAccessoryViewController.xib; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -725,6 +729,8 @@
 			children = (
 				31A621511A92AFCF00A77878 /* CreateTutorialTextStep */,
 				31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */,
+				316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */,
+				316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */,
 				310308AF1A83FA9400B7F921 /* CreateTutorialViewController.h */,
 				310308B01A83FA9400B7F921 /* CreateTutorialViewController.m */,
 			);
@@ -2183,6 +2189,7 @@
 				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
+				316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
 				31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
@@ -2314,6 +2321,7 @@
 				3175462F1C1E2C21006A40F2 /* LimitInputTextViewLineCountBehaviour.m in Sources */,
 				31B548641AB7032D0010FC83 /* EnvironmentSettings.m in Sources */,
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
+				316BA2C51CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
 				31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
