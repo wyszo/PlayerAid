@@ -7,29 +7,91 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextStepKeyboardAccessoryViewController" customModule="PlayerAid" customModuleProvider="target">
             <connections>
+                <outlet property="boldButton" destination="yih-dO-EJs" id="OuH-5S-5ym"/>
+                <outlet property="bulletListButton" destination="efo-0h-ynv" id="1tq-s0-ZDQ"/>
+                <outlet property="dashButton" destination="0bw-M6-dq9" id="1C6-bh-eif"/>
+                <outlet property="numberedListButton" destination="swQ-ak-deM" id="MJF-NJ-O12"/>
+                <outlet property="subTitleButton" destination="Wgi-Jv-eNF" id="Vlg-LU-7E9"/>
+                <outlet property="titleButton" destination="lFu-Xe-iRp" id="8Fz-25-y4E"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5dz-zi-yRC"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="599" height="313"/>
+            <rect key="frame" x="0.0" y="0.0" width="591" height="147"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yih-dO-EJs">
-                    <rect key="frame" x="8" y="8" width="31" height="30"/>
-                    <state key="normal" title="Bold"/>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yih-dO-EJs">
+                    <rect key="frame" x="0.0" y="0.0" width="36" height="147"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="h86-Hf-A68"/>
+                    </constraints>
+                    <state key="normal" image="Bold-off"/>
+                    <state key="selected" image="Bold-on"/>
                     <connections>
-                        <action selector="didPressBold:" destination="-1" eventType="touchUpInside" id="6zH-hb-vdR"/>
+                        <action selector="didPressBoldButton:" destination="-1" eventType="touchUpInside" id="rvh-dF-Ykg"/>
                     </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-Xe-iRp">
+                    <rect key="frame" x="36" y="0.0" width="30" height="147"/>
+                    <state key="normal" title="Title"/>
+                    <connections>
+                        <action selector="didPressTitleButton:" destination="-1" eventType="touchUpInside" id="mZ4-9g-6MN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wgi-Jv-eNF">
+                    <rect key="frame" x="66" y="0.0" width="53" height="147"/>
+                    <state key="normal" title="Subtitle"/>
+                    <connections>
+                        <action selector="didPressSubtitleButton:" destination="-1" eventType="touchUpInside" id="uSl-wb-xjn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efo-0h-ynv">
+                    <rect key="frame" x="119" y="-0.5" width="60" height="147"/>
+                    <state key="normal" title="Bullet lst"/>
+                    <connections>
+                        <action selector="didPressBulletListButton:" destination="-1" eventType="touchUpInside" id="mAL-aq-cAu"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swQ-ak-deM">
+                    <rect key="frame" x="179" y="-0.5" width="93" height="147"/>
+                    <state key="normal" title="Numbered lst"/>
+                    <connections>
+                        <action selector="didPressNumberedListButton:" destination="-1" eventType="touchUpInside" id="g05-L5-WxC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-M6-dq9">
+                    <rect key="frame" x="272" y="-0.5" width="35" height="147"/>
+                    <state key="normal" title="Dash"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="yih-dO-EJs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="n0r-ld-DoW"/>
-                <constraint firstItem="yih-dO-EJs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="yBq-qb-Slb"/>
+                <constraint firstAttribute="bottom" secondItem="yih-dO-EJs" secondAttribute="bottom" id="1rn-EF-YNV"/>
+                <constraint firstItem="Wgi-Jv-eNF" firstAttribute="centerY" secondItem="yih-dO-EJs" secondAttribute="centerY" id="3iq-cY-hZo"/>
+                <constraint firstItem="Wgi-Jv-eNF" firstAttribute="leading" secondItem="lFu-Xe-iRp" secondAttribute="trailing" id="8qo-cX-ny5"/>
+                <constraint firstItem="0bw-M6-dq9" firstAttribute="leading" secondItem="swQ-ak-deM" secondAttribute="trailing" id="ANY-0O-O0t"/>
+                <constraint firstItem="swQ-ak-deM" firstAttribute="centerY" secondItem="efo-0h-ynv" secondAttribute="centerY" id="DNC-Zh-a0C"/>
+                <constraint firstItem="efo-0h-ynv" firstAttribute="centerY" secondItem="Wgi-Jv-eNF" secondAttribute="centerY" id="Elq-qJ-lkG"/>
+                <constraint firstItem="Wgi-Jv-eNF" firstAttribute="height" secondItem="yih-dO-EJs" secondAttribute="height" id="Hjo-aW-p7W"/>
+                <constraint firstItem="0bw-M6-dq9" firstAttribute="height" secondItem="yih-dO-EJs" secondAttribute="height" id="O8z-dR-IQV"/>
+                <constraint firstItem="swQ-ak-deM" firstAttribute="leading" secondItem="efo-0h-ynv" secondAttribute="trailing" id="SzY-bE-ZZJ"/>
+                <constraint firstItem="efo-0h-ynv" firstAttribute="leading" secondItem="Wgi-Jv-eNF" secondAttribute="trailing" id="TQm-ru-vXk"/>
+                <constraint firstItem="lFu-Xe-iRp" firstAttribute="leading" secondItem="yih-dO-EJs" secondAttribute="trailing" id="eTN-O9-jTI"/>
+                <constraint firstItem="lFu-Xe-iRp" firstAttribute="centerY" secondItem="yih-dO-EJs" secondAttribute="centerY" id="ekU-HN-63W"/>
+                <constraint firstItem="efo-0h-ynv" firstAttribute="height" secondItem="yih-dO-EJs" secondAttribute="height" id="kKr-Bw-y9L"/>
+                <constraint firstItem="lFu-Xe-iRp" firstAttribute="height" secondItem="yih-dO-EJs" secondAttribute="height" id="kzf-v1-X3z"/>
+                <constraint firstItem="yih-dO-EJs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="n0r-ld-DoW"/>
+                <constraint firstItem="0bw-M6-dq9" firstAttribute="centerY" secondItem="swQ-ak-deM" secondAttribute="centerY" id="uZk-B2-Ne9"/>
+                <constraint firstItem="swQ-ak-deM" firstAttribute="height" secondItem="yih-dO-EJs" secondAttribute="height" id="xdv-m6-CtZ"/>
+                <constraint firstItem="yih-dO-EJs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yBq-qb-Slb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="512.5" y="341.5"/>
+            <point key="canvasLocation" x="516.5" y="258.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Bold-off" width="21" height="25"/>
+        <image name="Bold-on" width="21" height="25"/>
+    </resources>
 </document>
