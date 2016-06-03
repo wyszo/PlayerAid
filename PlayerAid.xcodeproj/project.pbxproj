@@ -104,6 +104,7 @@
 		318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318EEAA91A82DBBC00B79E73 /* ColorsHelper.m */; };
 		3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */; };
 		3193ACBA1AAF1BC8006B5952 /* ServerResponseParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */; };
+		3193E3561D01545B006B5451 /* TextStep.css in Resources */ = {isa = PBXBuildFile; fileRef = 3193E3551D01545B006B5451 /* TextStep.css */; };
 		319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */; };
 		319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA1D1BB07DE50079E66C /* RSAEncoder.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
@@ -375,6 +376,7 @@
 		3193ACB51AAF1ACF006B5952 /* NSError+PlayerAidErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PlayerAidErrors.m"; sourceTree = "<group>"; };
 		3193ACB81AAF1BC8006B5952 /* ServerResponseParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseParsing.h; sourceTree = "<group>"; };
 		3193ACB91AAF1BC8006B5952 /* ServerResponseParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseParsing.m; sourceTree = "<group>"; };
+		3193E3551D01545B006B5451 /* TextStep.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = TextStep.css; sourceTree = "<group>"; };
 		319DCA141BB02D750079E66C /* LoginSignUpComponentsConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSignUpComponentsConfigurator.h; sourceTree = "<group>"; };
 		319DCA151BB02D750079E66C /* LoginSignUpComponentsConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignUpComponentsConfigurator.m; sourceTree = "<group>"; };
 		319DCA1C1BB07DE50079E66C /* RSAEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncoder.h; sourceTree = "<group>"; };
@@ -1364,6 +1366,7 @@
 		318EEAAB1A82DBC100B79E73 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				3193E3551D01545B006B5451 /* TextStep.css */,
 				310308B91A84D8DD00B7F921 /* ApplicationAppearance */,
 				310308A91A83DE7900B7F921 /* AvatarStyling */,
 				310308AD1A83DF7C00B7F921 /* Colors */,
@@ -2191,6 +2194,7 @@
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */,
 				31B46D3E1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib in Resources */,
+				3193E3561D01545B006B5451 /* TextStep.css in Resources */,
 				31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */,
 				31F116831A790F680022BD74 /* Main.storyboard in Resources */,
 				317309F81BF9EFDA004C541D /* Comments.storyboard in Resources */,

@@ -1,0 +1,27 @@
+body {
+    font-family: Palatino;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #444444;
+}
+.bold {
+    font-weight: bold;
+}
+.heading {
+    font-family: Avenir-Medium;
+    font-size: 22px;
+}
+.subheading {
+    font-family: Avenir-Roman;
+    font-size: 18pt;
+    color: #000000;
+    opacity: 0.3;
+}
+hr.dashed {
+    border: 0 none;
+    border-top: 2px dashed #322f32;
+    color: #444444;
+    opacity: 0.3;
+    width: 40px;
+}
