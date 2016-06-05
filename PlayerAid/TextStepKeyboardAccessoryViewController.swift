@@ -11,6 +11,15 @@ final class TextStepKeyboardAccessoryViewController: UIViewController {
   @IBOutlet weak var numberedListButton: UIButton!
   @IBOutlet weak var dashButton: UIButton!
   
+  typealias ButtonCallback = (Bool)->()
+  
+  var didPressBold: ButtonCallback?
+  var didPressTitle: ButtonCallback?
+  var didPressSubtitle: ButtonCallback?
+  var didPressBulletList: ButtonCallback?
+  var didPressNumberedList: ButtonCallback?
+  var didPressDash: ( ()->() )?
+  
   init() {
     super.init(nibName: xibName, bundle: nil)
   }
@@ -45,5 +54,10 @@ final class TextStepKeyboardAccessoryViewController: UIViewController {
   
   @IBAction func didPressNumberedListButton(sender: AnyObject) {
     numberedListButton.selected = !numberedListButton.selected
+  }
+  
+  @IBAction func didPressDashButton(sender: AnyObject) {
+    dashButton.selected = !dashButton.selected
+    didPressDash?()
   }
 }

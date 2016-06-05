@@ -63,6 +63,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-M6-dq9">
                     <rect key="frame" x="272" y="-0.5" width="35" height="147"/>
                     <state key="normal" title="Dash"/>
+                    <connections>
+                        <action selector="didPressDashButton:" destination="-1" eventType="touchUpInside" id="jSI-cn-fMY"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
