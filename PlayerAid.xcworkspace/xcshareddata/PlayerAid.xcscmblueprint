@@ -7,14 +7,16 @@
     "3D86EFF9344F139003D9A23F37E0C7553F2D3EF8" : 0,
     "E32DCCBF449877EC87A06E0CB9B49557E2DB90AB" : 0,
     "8AC7DCC1500A3C980EA9F06651B3B3E046C3714E" : 0,
-    "74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D" : 0
+    "74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D" : 0,
+    "E7394247C69D8F2392997E5ABCD87C38314D4715" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "30585268-653B-42EA-9C73-8449B59F8C36",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "3D86EFF9344F139003D9A23F37E0C7553F2D3EF8" : "PlayerAid",
     "E32DCCBF449877EC87A06E0CB9B49557E2DB90AB" : "TWCommonLib",
     "8AC7DCC1500A3C980EA9F06651B3B3E046C3714E" : "YCameraView",
-    "74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D" : "FDTake"
+    "74B30E916FEB3F1F00C0CC7B7C62B66787E7FA1D" : "FDTake",
+    "E7394247C69D8F2392997E5ABCD87C38314D4715" : "RichEditorView\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "PlayerAid",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -39,6 +41,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/wyszo\/TWCommonLib.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E32DCCBF449877EC87A06E0CB9B49557E2DB90AB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cjwirth\/RichEditorView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E7394247C69D8F2392997E5ABCD87C38314D4715"
     }
   ]
 }

@@ -1,1 +1,0 @@
-../../../KZPropertyMapper/KZPropertyMapper/KZPropertyMapperFramework.h

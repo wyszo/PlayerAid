@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import "_MPTweakBindObserver.h"
 #import "Mixpanel.h"
 #import "MPAbstractABTestDesignerMessage.h"
 #import "MPABTestDesignerChangeRequestMessage.h"
@@ -54,6 +53,7 @@
 #import "UIImage+MPAverageColor.h"
 #import "UIImage+MPImageEffects.h"
 #import "UIView+MPHelpers.h"
+#import "_MPTweakBindObserver.h"
 
 FOUNDATION_EXPORT double MixpanelVersionNumber;
 FOUNDATION_EXPORT const unsigned char MixpanelVersionString[];

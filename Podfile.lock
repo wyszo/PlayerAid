@@ -62,6 +62,7 @@ PODS:
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
   - NSString+RemoveEmoji (0.1.1)
+  - RichEditorView (3.2.0)
   - TTTAttributedLabel (1.13.4)
   - TWCommonLib (0.9):
     - BlocksKit (= 2.2.5)
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - MagicalRecord (= 2.3.2)
   - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.1.1)
+  - RichEditorView (from `../RichEditorView`)
   - TTTAttributedLabel (= 1.13.4)
   - TWCommonLib (from `../TWCommonLib`)
   - Typhoon (= 3.4.5)
@@ -105,6 +107,8 @@ EXTERNAL SOURCES:
   FDTake:
     :branch: feature/AssetsHelper
     :path: ../FDTake
+  RichEditorView:
+    :path: ../RichEditorView
   TWCommonLib:
     :path: ../TWCommonLib
   XRSA:
@@ -139,6 +143,7 @@ SPEC CHECKSUMS:
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: b1068058ef731c646878050972870d06bd859ce1
+  RichEditorView: ad9c5caaed52794e778f3bcc164d6e1b38ffa72a
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TWCommonLib: f627605266da8f5d124dca0259943abe29ef64bc
   Typhoon: 200100687af3233ec5ed019064df3c9ffe350475
@@ -147,4 +152,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: ea12a63b73b5e7fa2a6e0b04f58c7c42eff31395
+
+COCOAPODS: 1.0.0
