@@ -57,6 +57,8 @@
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
+		3151C2631D22E685008DEA1C /* CreateTextStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151C2621D22E685008DEA1C /* CreateTextStepViewController.swift */; };
+		3151C2651D22E6C0008DEA1C /* CreateTextStep.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3151C2641D22E6C0008DEA1C /* CreateTextStep.xib */; };
 		31549F861C09089600B2CA87 /* EditCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31549F851C09089600B2CA87 /* EditCommentInputViewController.m */; };
 		31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31549F871C0908B300B2CA87 /* EditCommentInputView.xib */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
@@ -109,7 +111,7 @@
 		319DCA1E1BB07DE50079E66C /* RSAEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 319DCA1D1BB07DE50079E66C /* RSAEncoder.m */; };
 		31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */; };
 		31A5CDAD1B0DFBC30007D92E /* TabBarBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */; };
-		31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */; };
+		31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib */; };
 		31A621541A92B00500A77878 /* CreateTutorialTextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */; };
 		31A8DE3B1B31EC7C00137ACB /* UsersHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A8DE3A1B31EC7C00137ACB /* UsersHelper.m */; };
 		31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A8DE3C1B31F01900137ACB /* FollowedUser.xib */; };
@@ -290,6 +292,8 @@
 		314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		315148A41AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KZPropertyMapper+TZDDateBoxing.h"; sourceTree = "<group>"; };
 		315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KZPropertyMapper+TZDDateBoxing.m"; sourceTree = "<group>"; };
+		3151C2621D22E685008DEA1C /* CreateTextStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextStepViewController.swift; sourceTree = "<group>"; };
+		3151C2641D22E6C0008DEA1C /* CreateTextStep.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTextStep.xib; sourceTree = "<group>"; };
 		31549F841C09089600B2CA87 /* EditCommentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCommentInputViewController.h; sourceTree = "<group>"; };
 		31549F851C09089600B2CA87 /* EditCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCommentInputViewController.m; sourceTree = "<group>"; };
 		31549F871C0908B300B2CA87 /* EditCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCommentInputView.xib; sourceTree = "<group>"; };
@@ -384,7 +388,7 @@
 		31A3120F1AEA5A5F002E6B5C /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		31A5CDAB1B0DFBC30007D92E /* TabBarBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBadgeHelper.h; sourceTree = "<group>"; };
 		31A5CDAC1B0DFBC30007D92E /* TabBarBadgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeHelper.m; sourceTree = "<group>"; };
-		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView.xib; sourceTree = "<group>"; };
+		31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTutorialTextStepView_OBSOLETE.xib; sourceTree = "<group>"; };
 		31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTutorialTextStepViewController.h; sourceTree = "<group>"; };
 		31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTutorialTextStepViewController.m; sourceTree = "<group>"; };
 		31A8DE391B31EC7C00137ACB /* UsersHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersHelper.h; sourceTree = "<group>"; };
@@ -739,7 +743,7 @@
 		310308AE1A83FA7600B7F921 /* Create tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				31A621511A92AFCF00A77878 /* CreateTutorialTextStep */,
+				31A621511A92AFCF00A77878 /* CreateTextStep */,
 				31115F9E1AB2E0E300836CB1 /* EditTutorialSteps */,
 				316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */,
 				316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */,
@@ -988,6 +992,15 @@
 				314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */,
 			);
 			name = EditProfileFiltersCollectionViewController;
+			sourceTree = "<group>";
+		};
+		3151C2611D22E635008DEA1C /* Obsolete (old implementation) */ = {
+			isa = PBXGroup;
+			children = (
+				31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */,
+				31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */,
+			);
+			name = "Obsolete (old implementation)";
 			sourceTree = "<group>";
 		};
 		31549F821C09086500B2CA87 /* MakeComment */ = {
@@ -1458,13 +1471,13 @@
 			name = MediaPlayerHelper;
 			sourceTree = "<group>";
 		};
-		31A621511A92AFCF00A77878 /* CreateTutorialTextStep */ = {
+		31A621511A92AFCF00A77878 /* CreateTextStep */ = {
 			isa = PBXGroup;
 			children = (
-				31A621521A92B00500A77878 /* CreateTutorialTextStepViewController.h */,
-				31A621531A92B00500A77878 /* CreateTutorialTextStepViewController.m */,
+				3151C2611D22E635008DEA1C /* Obsolete (old implementation) */,
+				3151C2621D22E685008DEA1C /* CreateTextStepViewController.swift */,
 			);
-			name = CreateTutorialTextStep;
+			name = CreateTextStep;
 			sourceTree = "<group>";
 		};
 		31A8DE381B31EB6700137ACB /* Users */ = {
@@ -1539,7 +1552,8 @@
 				31B735DE1A87B4270081AE15 /* CreateTutorialHeaderView.xib */,
 				3106D7601AC0839D0076F571 /* CreateTutorialStepButton.xib */,
 				31B46D3D1A87AE61004EEA30 /* CreateTutorialStepButtonsContainerView.xib */,
-				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView.xib */,
+				3151C2641D22E6C0008DEA1C /* CreateTextStep.xib */,
+				31A6214F1A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib */,
 				31115F9C1AB2E0C000836CB1 /* EditTutorialStepsView.xib */,
 				31E1F8F51AADA853005EB35B /* PopoverView.xib */,
 				31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */,
@@ -2204,6 +2218,7 @@
 				31FB752F1BCD38B4001DC102 /* playeraid.cert.der in Resources */,
 				3102F93F1BF6982000B544C6 /* MakeCommentInputView.xib in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
+				3151C2651D22E6C0008DEA1C /* CreateTextStep.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
@@ -2211,7 +2226,7 @@
 				31FB75361BCFC56C001DC102 /* NoTutorialsView.xib in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
-				31A621501A92AC8000A77878 /* CreateTutorialTextStepView.xib in Resources */,
+				31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
@@ -2362,6 +2377,7 @@
 				31014E801A9C77B7002F3485 /* TutorialSectionHeaderView.m in Sources */,
 				31F1167A1A790F680022BD74 /* AppDelegate.m in Sources */,
 				3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */,
+				3151C2631D22E685008DEA1C /* CreateTextStepViewController.swift in Sources */,
 				31D8CB101B1C614A003EE772 /* UserTutorialsController.m in Sources */,
 				313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */,
 				31A312101AEA5A5F002E6B5C /* VideoPlayer.m in Sources */,

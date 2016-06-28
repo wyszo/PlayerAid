@@ -1,5 +1,5 @@
 #import "_TutorialComment.h"
-#import <TWCommonLib/TWConfigurableFromDictionary.h>
+@import TWCommonLib;
 
 typedef NS_ENUM(NSUInteger, CommentStatus) {
   CommentStatusPublished,

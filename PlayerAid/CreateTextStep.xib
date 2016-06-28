@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTextStepViewController" customModule="PlayerAid" customModuleProvider="target">
+            <connections>
+                <outlet property="characterLimit" destination="fWo-Vg-3XK" id="RWh-aU-ff4"/>
+                <outlet property="editorView" destination="5Hj-68-Lx1" id="DXH-DB-DCr"/>
+                <outlet property="view" destination="iN0-l3-epB" id="ZR2-VT-ux4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;CHARACTER_LIMIT&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWo-Vg-3XK" userLabel="Character limit">
+                    <rect key="frame" x="442" y="8" width="150" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="JxK-tQ-aV8"/>
+                        <constraint firstAttribute="width" constant="150" id="Zpk-v1-rcW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hj-68-Lx1" customClass="RichEditorView" customModule="RichEditorView">
+                    <rect key="frame" x="8" y="37" width="584" height="190"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="190" id="hiV-Jd-rYi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5Hj-68-Lx1" firstAttribute="top" secondItem="fWo-Vg-3XK" secondAttribute="bottom" constant="8" id="6bv-BN-tiC"/>
+                <constraint firstAttribute="trailing" secondItem="5Hj-68-Lx1" secondAttribute="trailing" constant="8" id="ONe-j7-w2X"/>
+                <constraint firstAttribute="trailing" secondItem="fWo-Vg-3XK" secondAttribute="trailing" constant="8" id="f38-A0-zmn"/>
+                <constraint firstItem="fWo-Vg-3XK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="p9A-LN-pu4"/>
+                <constraint firstItem="5Hj-68-Lx1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="rfY-op-LiH"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="319" y="118"/>
+        </view>
+    </objects>
+</document>

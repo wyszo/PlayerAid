@@ -35,6 +35,7 @@
 #import "DebugSettings.h"
 #import "TutorialBackupManager.h"
 #import "AVURLAsset+Duration.h"
+#import "PlayerAid-Swift.h"
 
 
 static NSString *const kXibName = @"CreateTutorialView";
@@ -693,7 +694,8 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 - (void)pushCreateTutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
 {
-  CreateTutorialTextStepViewController *viewController = [[CreateTutorialTextStepViewController alloc] initWithCompletion:completion tutorialTextStep:tutorialTextStep];
+  // TODO: pass completion and tutorialTextStep for processing
+  CreateTextStepViewController *viewController = [[CreateTextStepViewController alloc] init];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);
