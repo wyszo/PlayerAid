@@ -10,7 +10,7 @@ final class CreateTextStepViewController: UIViewController {
   private var tutorialTextStep: TutorialStep?
   
   private var remainingCharactersCount: Int
-  private var confirmNavbarButton: UIBarButtonItem!
+  private var confirmNavbarButton: UIBarButtonItem?
   
   lazy var toolbar: RichEditorToolbar = {
     let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
@@ -118,7 +118,7 @@ final class CreateTextStepViewController: UIViewController {
   }
   
   private func updateConfirmButtonState() {
-    confirmNavbarButton.enabled = (!overCharacterLimit() && hasAnyText())
+    confirmNavbarButton?.enabled = (!overCharacterLimit() && hasAnyText())
   }
   
   private func updateTextColor() {
