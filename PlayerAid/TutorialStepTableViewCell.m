@@ -5,6 +5,7 @@
 @import KZAsserts;
 @import AFNetworking;
 @import TWCommonLib;
+@import RichEditorView;
 #import "TutorialStepTableViewCell.h"
 #import "TutorialTextStylingHelper.h"
 #import "ColorsHelper.h"
@@ -15,10 +16,12 @@ static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 
-@interface TutorialStepTableViewCell ()
+@interface TutorialStepTableViewCell () <RichEditorDelegate>
 @property (strong, nonatomic) TutorialStep *tutorialStep;
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet RichEditorView *editorView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *editorViewHeightConstraint;
+
 @property (weak, nonatomic) IBOutlet UIView *contentContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *contentTypeIconImageView;
@@ -42,6 +45,13 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   
   [self setupLayout];
   [self setupGestureRecognizers];
+  [self setupEditorView];
+}
+
+- (void)setupEditorView {
+  self.editorView.delegate = self;
+  self.editorView.editingEnabled = false;
+  self.editorView.scrollEnabled = false;
 }
 
 - (void)setupLayout {
@@ -54,7 +64,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 - (void)setupGestureRecognizers
 {
   UITapGestureRecognizer *textViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
-  [self.textView addGestureRecognizer:textViewTapGestureRecognizer];
+  [self.editorView addGestureRecognizer:textViewTapGestureRecognizer];
   
   UITapGestureRecognizer *videoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(videoPlayButtonTapped:)];
   [self.videoPlayButton addGestureRecognizer:videoTapGestureRecognizer];
@@ -80,7 +90,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   if (!text.length) {
     text = @"";
   }
-  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:text];
+  [self.editorView setHTML:text];
 }
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep
@@ -136,8 +146,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   [super prepareForReuse];
   [self hideImageView];
   self.videoOverlayContainer.hidden = YES;
-  self.textView.text = @"";
-  self.textView.attributedText = [NSAttributedString new];
+  [self.editorView setHTML:@""];
   self.videoURL = nil;
   self.videoPlayButton.hidden = YES;
   self.contentTypeIconImageView.hidden = YES;
@@ -191,7 +200,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 #pragma mark - Accessors
 
 - (BOOL)isTextType {
-  return (self.textView.text.length > 0);
+  return ([self.editorView getText].length > 0);
 }
 
 - (BlockWithBoolParameter)imageLoadedCompletionBlock {
@@ -221,6 +230,12 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 
 - (void)switchToVideoContentViewConstraint {
   self.contentImageHeightConstraint.constant = 0.5 * self.contentImageWidthConstraint.constant;
+}
+
+#pragma mark - RichEditorDelegate
+
+- (void)richEditor:(RichEditorView *)editor heightDidChange:(NSInteger)height {
+  self.editorViewHeightConstraint.constant = height;
 }
 
 @end
