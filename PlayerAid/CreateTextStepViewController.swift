@@ -5,6 +5,10 @@ final class CreateTextStepViewController: UIViewController {
   @IBOutlet weak var editorView: RichEditorView!
   @IBOutlet weak var characterLimit: UILabel!
   
+  typealias CompletionType = (text: String?, error: NSError?) -> ()
+  private var completion: CompletionType!
+  private var tutorialTextStep: TutorialStep?
+  
   lazy var toolbar: RichEditorToolbar = {
     let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
     toolbar.options = RichEditorOptions.playerAidOptions()
@@ -20,8 +24,10 @@ final class CreateTextStepViewController: UIViewController {
     fatalError("VC to be used with xib")
   }
   
-  convenience init() {
+  convenience init(completion: CompletionType, textStep: TutorialStep? = nil) {
     self.init(nibName: "CreateTextStep", bundle: nil)
+    self.completion = completion
+    self.tutorialTextStep = textStep
   }
   
   override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
@@ -37,7 +43,11 @@ final class CreateTextStepViewController: UIViewController {
     toolbar.editor = editorView
     
     setupNavbarButtons()
-    editorView.webView.becomeFirstResponder()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    editorView.focus() // slides keyboard in
   }
   
   private func setupNavbarButtons() {
@@ -55,12 +65,67 @@ final class CreateTextStepViewController: UIViewController {
   }
   
   @objc private func confirmButtonPressed() {
-    // TODO: invoke completion callback and pop view controller
+    popViewController()
+    completion!(text: processedHTML(), error: nil)
   }
   
   private func dismissViewControllerPresentingConfirmationAlertIfNeeded() {
-    // TODO: not implemented yet, see CreateTutorialTextStepviewController for reference implementation
+    self.editorView.resignFirstResponder()
+    
+    if !hasAnyText() {
+      forceDismissViewControllerWithError()
+      return
+    }
+    
+    let dismissBlock = { [unowned self] (discard: Bool) in
+      if discard {
+        self.forceDismissViewControllerWithError()
+      }
+    }
+    
+    if isEditingExistingTutorialStep() {
+      AlertFactory.showCancelEditingExistingTutorialStepConfirmationAlertViewWithCompletion(dismissBlock)
+    } else {
+      AlertFactory.showRemoveNewTutorialTextStepConfirmationAlertViewWithCompletion(dismissBlock)
+    }
+  }
+  
+  //MARK: Auxiliary
+  
+  private func isEditingExistingTutorialStep() -> Bool {
+    return tutorialTextStep != nil
+  }
+  
+  private func hasAnyText() -> Bool {
+    return processedText().characters.count > 0
+  }
+  
+  private func processedText() -> String {
+    return self.editorView.getText().tw_stringByTrimmingWhitespaceAndNewline()
+  }
+  
+  private func processedHTML() -> String {
+    // TODO: remove &nbsp; at the beginning and end of a div!
+    return self.editorView.getHTML()
+  }
+  
+  //MARK: dismiss
+  
+  private func forceDismissViewControllerWithError() {
+    popViewController()
+    
+    // FIXME: replace with ErrorType when we can
+    let error = NSError(domain: Errors.TutorialErrorDomain, code: Errors.TextStepDismissedErrorCode, userInfo: nil)
+    completion!(text: nil, error: error)
+  }
+  
+  private func popViewController() {
     navigationController!.popViewControllerAnimated(true)
+  }
+  
+  struct Errors {
+    static let TutorialErrorDomain = "CreateTutorialDomain"
+    static let TextStepDismissedErrorCode = 1
   }
 }
 
@@ -69,5 +134,11 @@ extension RichEditorOptions {
     return [
       Bold, Header(1), Header(2), OrderedList, UnorderedList, // <HR>
     ]
+  }
+}
+
+extension String {
+  func tw_stringByTrimmingWhitespaceAndNewline() -> String {
+    return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
   }
 }

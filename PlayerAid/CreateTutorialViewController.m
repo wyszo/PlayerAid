@@ -694,8 +694,7 @@ static NSString *const kXibName = @"CreateTutorialView";
 
 - (void)pushCreateTutorialTextStepViewControllerWithCompletion:(void (^)(NSString *text, NSError *error))completion tutorialTextStep:(TutorialStep *)tutorialTextStep
 {
-  // TODO: pass completion and tutorialTextStep for processing
-  CreateTextStepViewController *viewController = [[CreateTextStepViewController alloc] init];
+  CreateTextStepViewController *viewController = [[CreateTextStepViewController alloc] initWithCompletion: completion textStep: tutorialTextStep];
   
   UINavigationController *modalNavigationController = self.navigationController;
   AssertTrueOrReturn(modalNavigationController);

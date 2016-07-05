@@ -3,6 +3,7 @@
 //
 
 #import "TutorialComment.h"
+#import "TutorialStep.h"
 #import "EnvironmentSettings.h"
 #import "AlertFactory.h"
 #import "TutorialCommentParsingHelper.h"
