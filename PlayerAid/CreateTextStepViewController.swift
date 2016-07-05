@@ -9,6 +9,9 @@ final class CreateTextStepViewController: UIViewController {
   private var completion: CompletionType!
   private var tutorialTextStep: TutorialStep?
   
+  private var remainingCharactersCount: Int
+  private var confirmNavbarButton: UIBarButtonItem!
+  
   lazy var toolbar: RichEditorToolbar = {
     let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
     toolbar.options = RichEditorOptions.playerAidOptions()
@@ -31,6 +34,7 @@ final class CreateTextStepViewController: UIViewController {
   }
   
   override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    self.remainingCharactersCount = Constants.MaxTextStepCharactersCount
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -41,8 +45,13 @@ final class CreateTextStepViewController: UIViewController {
     
     editorView.inputAccessoryView = toolbar
     toolbar.editor = editorView
+    editorView.delegate = self
+    prepopulateTextViewText()
     
     setupNavbarButtons()
+    updateCharactersCountLabel()
+    updateConfirmButtonState()
+    installSwipeRightGestureRecognizer()
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -50,15 +59,15 @@ final class CreateTextStepViewController: UIViewController {
     editorView.focus() // slides keyboard in
   }
   
+  //MARK: Navbar
+  
   private func setupNavbarButtons() {
     let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action:#selector(cancelButtonPressed))
     navigationItem.leftBarButtonItem = cancelButton
     
-    let confirmButton = UIBarButtonItem(title: "Confirm", style: .Plain, target: self, action:#selector(confirmButtonPressed))
-    navigationItem.rightBarButtonItem = confirmButton
+    confirmNavbarButton = UIBarButtonItem(title: "Confirm", style: .Plain, target: self, action:#selector(confirmButtonPressed))
+    navigationItem.rightBarButtonItem = confirmNavbarButton
   }
-  
-  //MARK: private
   
   @objc private func cancelButtonPressed() {
     dismissViewControllerPresentingConfirmationAlertIfNeeded()
@@ -68,6 +77,8 @@ final class CreateTextStepViewController: UIViewController {
     popViewController()
     completion!(text: processedHTML(), error: nil)
   }
+  
+  //MARK: Private
   
   private func dismissViewControllerPresentingConfirmationAlertIfNeeded() {
     self.editorView.resignFirstResponder()
@@ -90,7 +101,50 @@ final class CreateTextStepViewController: UIViewController {
     }
   }
   
+  private func updateCharactersCountLabel() {
+    characterLimit.text = "\(remainingCharactersCount)"
+    
+    var labelColor = UIColor.grayColor()
+    if overCharacterLimit() {
+      labelColor = UIColor.redColor()
+    }
+    characterLimit.textColor = labelColor
+  }
+  
+  private func prepopulateTextViewText() {
+    if let text = tutorialTextStep?.text {
+      editorView.setHTML(text)
+    }
+  }
+  
+  private func updateConfirmButtonState() {
+    confirmNavbarButton.enabled = (!overCharacterLimit() && hasAnyText())
+  }
+  
+  private func updateTextColor() {
+    var textColor = UIColor.blackColor()
+    if overCharacterLimit() {
+      textColor = UIColor.redColor()
+    }
+    
+    // FIXME: regression - this only changes color of text that's about to be typed in - we want to change whole component text here
+    // editorView.setTextColor(textColor)
+  }
+  
+  private func installSwipeRightGestureRecognizer() {
+    let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGestureRecognizer))
+    view.addGestureRecognizer(gestureRecognizer)
+  }
+  
+  @objc private func swipeGestureRecognizer() {
+    dismissViewControllerPresentingConfirmationAlertIfNeeded()
+  }
+  
   //MARK: Auxiliary
+  
+  private func overCharacterLimit() -> Bool {
+    return remainingCharactersCount < 0
+  }
   
   private func isEditingExistingTutorialStep() -> Bool {
     return tutorialTextStep != nil
@@ -126,6 +180,19 @@ final class CreateTextStepViewController: UIViewController {
   struct Errors {
     static let TutorialErrorDomain = "CreateTutorialDomain"
     static let TextStepDismissedErrorCode = 1
+  }
+  
+  struct Constants {
+    static let MaxTextStepCharactersCount = 1000
+  }
+}
+
+extension CreateTextStepViewController: RichEditorDelegate {
+  func richEditor(editor: RichEditorView, contentDidChange content: String) {
+    remainingCharactersCount = Constants.MaxTextStepCharactersCount - editor.getText().characters.count
+    updateCharactersCountLabel()
+    updateConfirmButtonState()
+    updateTextColor()
   }
 }
 

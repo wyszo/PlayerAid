@@ -2,6 +2,11 @@
 //  PlayerAid
 //
 
+/**
+ FIXME: This whole class is obsolete, marked for removal
+        Use CreateTextStepViewController instead
+ */
+
 @import TWCommonLib;
 @import NSString_RemoveEmoji;
 #import "CreateTutorialTextStepViewController.h"
