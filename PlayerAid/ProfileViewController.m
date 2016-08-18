@@ -143,13 +143,13 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)setupOwnTutorialsTableViewOverlay
 {
-  [self.noTutorialsView setText:@"No tutorials made" imageNamed:@"emptystate-tutorial-ic"];
+  [self.noTutorialsView setText:@"No guides made" imageNamed:@"emptystate-tutorial-ic"];
   [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.ownTutorialsTableDataSource];
 }
 
 - (void)setupLikedTutorialsTableViewOverlay
 {
-  [self.noTutorialsView setText:@"No liked tutorials" imageNamed:@"emptystate-liked-ic"];
+  [self.noTutorialsView setText:@"No liked guides" imageNamed:@"emptystate-liked-ic"];
   [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.likedTutorialsTableDataSource];
 }
 
