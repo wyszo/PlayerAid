@@ -21,6 +21,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
+@property (weak, nonatomic) IBOutlet UIButton *addDescription;
 
 @property (strong, nonatomic) UIView *view;
 @end
@@ -69,12 +70,15 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)setUser:(User *)user
 {
+  // TODO: ViewController should set that!
+
   _user = user;
   [user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeLarge];
   
   self.usernameLabel.text = user.name;
   self.descriptionLabel.text = user.userDescription;
-
+  self.addDescription.hidden = [self shouldHideAddDescriptionButtonForUser:user];
+  
   BOOL isCurrentUser = user.loggedInUserValue;
   self.editButton.hidden = !isCurrentUser;
   self.addFriendButton.hidden = isCurrentUser;
@@ -84,6 +88,11 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (void)updateFollowingButtonImageForProfileUser {
   [[FollowingButtonDecorator new] updateFollowingButtonImage:self.addFriendButton forUser:self.user backgroundType:BackgroundTypeDark];
+}
+
+- (BOOL)shouldHideAddDescriptionButtonForUser:(User *)user {
+  AssertTrueOrReturnNo(user != nil);
+  return user.userDescription.length > 0;
 }
 
 #pragma mark - IBActions
@@ -100,6 +109,10 @@ static NSString *const kNibFileName = @"PlayerInfoView";
     }
     AssertTrueOrReturn(!error);
   }];
+}
+
+- (IBAction)addDescriptionPressed:(id)sender {
+  CallBlock(self.editButtonPressed);
 }
 
 @end
