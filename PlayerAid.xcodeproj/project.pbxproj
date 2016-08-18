@@ -50,6 +50,7 @@
 		312EFF421BD9181300F2017D /* TutorialTableViewCell+Prefetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 312EFF411BD9181300F2017D /* TutorialTableViewCell+Prefetching.m */; };
 		312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */; };
 		312FF6091AA4807300AE3174 /* GradientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 312FF6081AA4807300AE3174 /* GradientHelper.m */; };
+		3136E2C81D65F55700FB1431 /* NSObject+SafeCasting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3136E2C71D65F55700FB1431 /* NSObject+SafeCasting.m */; };
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63F61B3A901300E16D23 /* UserManipulationController.m */; };
 		313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */; };
@@ -279,6 +280,8 @@
 		312FF6021A9F1AA000AE3174 /* SectionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SectionsDataSource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		312FF6071AA4807300AE3174 /* GradientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientHelper.h; sourceTree = "<group>"; };
 		312FF6081AA4807300AE3174 /* GradientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientHelper.m; sourceTree = "<group>"; };
+		3136E2C61D65F45D00FB1431 /* NSObject+SafeCasting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeCasting.h"; sourceTree = "<group>"; };
+		3136E2C71D65F55700FB1431 /* NSObject+SafeCasting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SafeCasting.m"; sourceTree = "<group>"; };
 		313868551B14FFFA00C0C245 /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
 		313868561B14FFFA00C0C245 /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
 		313B63F51B3A901300E16D23 /* UserManipulationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManipulationController.h; sourceTree = "<group>"; };
@@ -957,6 +960,15 @@
 			name = SectionsDataSource;
 			sourceTree = "<group>";
 		};
+		3136E2C51D65F43F00FB1431 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				3136E2C61D65F45D00FB1431 /* NSObject+SafeCasting.h */,
+				3136E2C71D65F55700FB1431 /* NSObject+SafeCasting.m */,
+			);
+			name = NSObject;
+			sourceTree = "<group>";
+		};
 		313868541B14FFD500C0C245 /* Section */ = {
 			isa = PBXGroup;
 			children = (
@@ -1575,6 +1587,7 @@
 		31B735F41A88000B0081AE15 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3136E2C51D65F43F00FB1431 /* NSObject */,
 				31DD02181CC499B70027719E /* AVURLAsset */,
 				31DD02141CC486730027719E /* AFNetworking */,
 				31E1E1991AECCB420091ED01 /* KZPropertyMapper */,
@@ -2441,6 +2454,7 @@
 				31F09EF61BD8AA55003B9794 /* ImagesPrefetchingController.m in Sources */,
 				31DBC1951A7F150F00740A97 /* AlertFactory.m in Sources */,
 				31DD021E1CC49B840027719E /* VideoDurationFormatter.m in Sources */,
+				3136E2C81D65F55700FB1431 /* NSObject+SafeCasting.m in Sources */,
 				31014E441A9352FA002F3485 /* FacebookLoginControlsFactory.m in Sources */,
 				31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */,
 				31B698CB1C83AE0700F82D95 /* CommentRepliesFetchController.swift in Sources */,

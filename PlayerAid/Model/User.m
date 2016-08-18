@@ -10,6 +10,7 @@
 #import "UsersHelper.h"
 #import "NSError+PlayerAidErrors.h"
 #import "DebugSettings.h"
+#import "NSObject+SafeCasting.h"
 
 NSString *const kUserServerIDJSONAttributeName = @"id";
 NSString *const kUserServerIDKey = @"serverID";
@@ -38,17 +39,17 @@ static NSString *const kFollowingKey = @"following";
   BOOL tutorialsChanged = NO;
   
   if (dictionary[kTutorialsKey]) {
-    [mapping addEntriesFromDictionary:@{ kTutorialsKey : KZCall(setOfOwnTutorialsFromDictionariesArray:, createdTutorial) }];
+    [mapping addEntriesFromDictionary:@{ kTutorialsKey : KZCall(setOfOwnTutorialsFromPagedDictionary:, createdTutorial) }];
     tutorialsChanged = YES;
   }
   if (dictionary[kLikesKey]) {
-    [mapping addEntriesFromDictionary:@{ kLikesKey : KZCall(setOfAnotherUsersTutorialsFromDictionariesArray:, likes) }];
+    [mapping addEntriesFromDictionary:@{ kLikesKey : KZCall(setOfAnotherUsersTutorialsFromPagedDictionary:, likes) }];
   }
   if (dictionary[kFollowersKey]) {
-    [mapping addEntriesFromDictionary:@{ kFollowersKey : KZCall(setOfOtherUsersFromDictionariesArray:, isFollowedBy) }];
+    [mapping addEntriesFromDictionary:@{ kFollowersKey : KZCall(setOfOtherUsersFromPagedDictionary:, isFollowedBy) }];
   }
   if (dictionary[kFollowingKey]) {
-    [mapping addEntriesFromDictionary:@{ kFollowingKey : KZCall(setOfOtherUsersFromDictionariesArray:, follows) }];
+    [mapping addEntriesFromDictionary:@{ kFollowingKey : KZCall(setOfOtherUsersFromPagedDictionary:, follows) }];
   }
   
   [KZPropertyMapper mapValuesFrom:dictionary toInstance:self usingMapping:mapping];
@@ -147,27 +148,34 @@ static NSString *const kFollowingKey = @"following";
 
 #pragma mark - Tutorials data extraction methods
 
-- (NSSet *)setOfAnotherUsersTutorialsFromDictionariesArray:(id)dictionariesArray
+- (NSSet *)setOfAnotherUsersTutorialsFromPagedDictionary:(id)pagedDictionary
 {
-  NSSet *result = [self setOfTutorialsFromDictionariesArray:dictionariesArray parseAuthors:YES];
-  return result;
+  return [self setOfTutorialsFromPagedDictionary:pagedDictionary parseAuthors:YES];
 }
 
-- (NSSet *)setOfOwnTutorialsFromDictionariesArray:(id)dictionariesArray
+- (NSSet *)setOfOwnTutorialsFromPagedDictionary:(id)pagedDictionary
 {
-  return [self setOfTutorialsFromDictionariesArray:dictionariesArray parseAuthors:NO];
+  return [self setOfTutorialsFromPagedDictionary:pagedDictionary parseAuthors:NO];
 }
 
-- (NSSet *)setOfTutorialsFromDictionariesArray:(id)dictionariesArray parseAuthors:(BOOL)parseAuthors
+- (NSSet *)setOfTutorialsFromPagedDictionary:(id)pagedDictionary parseAuthors:(BOOL)parseAuthors
 {
+  NSArray *dictionariesArray = [self dataArrayFromPagedDictionary:pagedDictionary];
   return [TutorialsHelper setOfTutorialsFromDictionariesArray:dictionariesArray parseAuthors:parseAuthors inContext:self.managedObjectContext];
 }
 
 #pragma mark - Users data extraction methods
 
-- (NSSet *)setOfOtherUsersFromDictionariesArray:(id)dictionariesArray
+- (NSSet *)setOfOtherUsersFromPagedDictionary:(id)pagedDictionary
 {
+  NSArray *dictionariesArray = [self dataArrayFromPagedDictionary:pagedDictionary];
   return [[UsersHelper new] setOfOtherUsersFromDictionariesArray:dictionariesArray inContext:self.managedObjectContext];
+}
+
+#pragma mark - Auxiliary methods
+
+- (NSArray *)dataArrayFromPagedDictionary:(id)pagedDictionary {
+    return [[pagedDictionary safeCastToDictionary][@"data"] safeCastToArray];
 }
 
 @end
