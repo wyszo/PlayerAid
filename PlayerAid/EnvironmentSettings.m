@@ -13,9 +13,6 @@ static NSString const* kStagingEnvName = @"staging";
 static NSString const* kProductionServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 static NSString const* kQAServerBaseURL = @"http://qa.api.playeraid.co.uk/v1/";
 static NSString const* kStagingServerBaseURL = @"https://staging-2.api.playeraid.co.uk/v1/";
-static NSString const* kOfficialMockServerBaseURL = @"http://mock.api.playeraid.co.uk/v1/"; // still required?
-static NSString const* kMockableIoServerBaseURL = @"http://demo6914797.mockable.io/v1/"; // still required?
-static NSString const* kDemoServerBaseURL = @"http://playeraid-api-demo.azurewebsites.net/v1/"; // still required?
 
 
 @implementation EnvironmentSettings
