@@ -46,7 +46,7 @@ extension ServerCommunicationController {
     let parameters = [ "fields" : "steps,comments" ]
     let urlString = "user/\(userId)/guides"
     
-    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONArrayCompletionBlock(completion))
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
   }
 
   func pullGuideBackFromReview(guideId: Int, completion: NetworkCompletionBlock) {
