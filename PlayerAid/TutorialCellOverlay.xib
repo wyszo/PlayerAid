@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialCellOverlay" customModule="PlayerAid" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="0pv-2x-KDN" id="TTg-g9-lEX"/>
+                <outlet property="label" destination="e2m-kE-YL7" id="lzG-YM-Hi1"/>
+                <outlet property="overlayView" destination="v5L-WF-xPe" id="d5D-am-Q8t"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pv-2x-KDN" userLabel="Background view">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-WF-xPe" userLabel="Overlay">
+                    <rect key="frame" x="267" y="282" width="66" height="37"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-kE-YL7">
+                            <rect key="frame" x="12" y="8" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.82232517000000005" blue="0.2422052026" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="e2m-kE-YL7" secondAttribute="bottom" constant="8" id="7HF-gj-Pux"/>
+                        <constraint firstItem="e2m-kE-YL7" firstAttribute="leading" secondItem="v5L-WF-xPe" secondAttribute="leading" constant="12" id="87k-p6-EJ8"/>
+                        <constraint firstItem="e2m-kE-YL7" firstAttribute="top" secondItem="v5L-WF-xPe" secondAttribute="top" constant="8" id="X6C-b6-fWS"/>
+                        <constraint firstAttribute="trailing" secondItem="e2m-kE-YL7" secondAttribute="trailing" constant="12" id="YaC-tM-8Wa"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0pv-2x-KDN" secondAttribute="bottom" id="A4b-0g-aiC"/>
+                <constraint firstItem="0pv-2x-KDN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ydf-FH-UXf"/>
+                <constraint firstItem="0pv-2x-KDN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kin-Iy-NDP"/>
+                <constraint firstAttribute="trailing" secondItem="0pv-2x-KDN" secondAttribute="trailing" id="lVV-PS-jjI"/>
+                <constraint firstItem="v5L-WF-xPe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="n01-Ia-dwp"/>
+                <constraint firstItem="v5L-WF-xPe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nUF-lk-InZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

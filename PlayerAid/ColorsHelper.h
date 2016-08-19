@@ -29,6 +29,12 @@
 + (UIColor *)tutorialImageBackgroundColor;
 + (UIColor *)editTutorialStepsBackgroundColor;
 
++ (UIColor *)tutorialCellDraftTextBackgroundColor;
++ (UIColor *)tutorialCellInReviewTextBackgroundColor;
+
++ (UIColor *)tutorialCellDraftOverlayBackgroundColor;
++ (UIColor *)tutorialCellInReviewOverlayBackgroundColor;
+
 + (UIColor *)tutorialCommentsBarBackgroundColor;
 + (UIColor *)commentLabelTextColor;
 + (UIColor *)commentsTimeAgoLabelColor;

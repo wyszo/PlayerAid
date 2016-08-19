@@ -13,6 +13,8 @@
 #import "Section.h"
 #import "TutorialCellHelper.h"
 #import "SectionLabelContainer.h"
+#import "ColorsHelper.h"
+#import "PlayerAid-Swift.h"
 
 static const NSTimeInterval kImageRequestTimeoutIntervalSeconds = 10.0f;
 static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
@@ -37,6 +39,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomGapHeightConstraint;
 
 @property (weak, nonatomic) Tutorial *tutorial;
+@property (weak, nonatomic) IBOutlet TutorialCellOverlay *overlayView;
+
 @end
 
 
@@ -127,7 +131,8 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   [tutorial.createdBy placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeMedium];
   // TODO: update favourited button state based on User's liked relation
   
-  [self adjustAlphaFromTutorial:tutorial];
+  self.overlayView.hidden = tutorial.isPublished;
+  [self styleCellOverlayForTutorial:tutorial];
 }
 
 - (void)updateLikeButtonState
@@ -143,6 +148,32 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   
   self.gradientOverlayView.hidden = !(showGradientOverlay);
   self.topGradientOverlayView.hidden = (!showGradientOverlay);
+}
+
+- (void)styleCellOverlayForTutorial:(Tutorial *)tutorial {
+    AssertTrueOrReturn(tutorial);
+    
+    NSString *text = @"";
+    UIColor *labelBackground = [UIColor clearColor];
+    UIColor *overlayBackground = [UIColor clearColor];
+    CGFloat overlayAlpha = 1.0;
+    
+    if (tutorial.primitiveDraftValue) {
+        text = @"Draft";
+        labelBackground = [ColorsHelper tutorialCellDraftTextBackgroundColor];
+        overlayBackground = [ColorsHelper tutorialCellDraftOverlayBackgroundColor];
+        overlayAlpha = 0.4;
+    } else if (tutorial.primitiveInReviewValue) {
+        text = @"In Review";
+        labelBackground = [ColorsHelper tutorialCellInReviewTextBackgroundColor];
+        overlayBackground = [ColorsHelper tutorialCellInReviewOverlayBackgroundColor];
+        overlayAlpha = 0.5;
+    }
+    
+    self.overlayView.text = text;
+    [self.overlayView setLabelBackgroundColor:labelBackground];
+    [self.overlayView setOverlayBackgroundColor:overlayBackground];
+    [self.overlayView setOverlayBackgroundAlpha:overlayAlpha];
 }
 
 #pragma mark - Update UI to match Tutorial
@@ -208,19 +239,6 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
     }
   }];
   return likesTutorial;
-}
-
-- (void)adjustAlphaFromTutorial:(Tutorial *)tutorial
-{
-  CGFloat alpha = 1.0f;
-  
-  if (tutorial.primitiveDraftValue) {
-    alpha = 0.8f;
-  }
-  else if (tutorial.primitiveInReviewValue) {
-    alpha = 0.9f;
-  }
-  self.contentView.alpha = alpha;
 }
 
 #pragma mark - Other methods

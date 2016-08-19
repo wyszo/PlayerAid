@@ -200,7 +200,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.ownTutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
   self.ownTutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND createdBy = %@", self.user];
   self.ownTutorialsTableDataSource.groupBy = @"state";
-  self.ownTutorialsTableDataSource.showSectionHeaders = YES;
+  self.ownTutorialsTableDataSource.showSectionHeaders = NO;
   self.ownTutorialsTableDataSource.swipeToDeleteEnabled = YES;
 }
 
