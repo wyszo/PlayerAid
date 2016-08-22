@@ -35,7 +35,6 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   self = [super initWithFrame:frame];
   if (self) {
     [self tw_loadView:self.view fromNibNamed:kNibFileName];
-    [self setupBackgroundColor];
   }
   return self;
 }
@@ -45,7 +44,6 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   self = [super initWithCoder:aDecoder];
   if (self) {
     [self tw_loadView:self.view fromNibNamed:kNibFileName];
-    [self setupBackgroundColor];
   }
   return self;
 }
@@ -53,11 +51,6 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 - (void)awakeFromNib {
   [super awakeFromNib];
   [self.avatarImageView styleAsLargeAvatar];
-  [self setupBackgroundColor];
-}
-
-- (void)setupBackgroundColor {
-  self.contentView.backgroundColor = [ColorsHelper userProfileBackgroundColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview

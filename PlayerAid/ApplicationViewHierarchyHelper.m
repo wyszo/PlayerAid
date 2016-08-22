@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "NavigationControllerWhiteStatusbar.h"
 #import "TutorialComment.h"
+#import "EditProfileViewController.h"
 #import "PlayerAid-Swift.h"
 
 @implementation ApplicationViewHierarchyHelper
@@ -59,6 +60,18 @@
     }
   };
   return pushProfileViewBlock;
+}
+
++ (void)presentEditProfileViewControllerFromViewController:(UIViewController *)presenter withUser:(User *)user didUpdateProfileBlock:(VoidBlock)didUpdateProfileBlock {
+
+    AssertTrueOrReturn(presenter);
+    AssertTrueOrReturn(user);
+
+    EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:user];
+    editProfileViewController.didUpdateUserProfileBlock = didUpdateProfileBlock;
+    
+    UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
+    [presenter presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Custom ViewControllers presentation

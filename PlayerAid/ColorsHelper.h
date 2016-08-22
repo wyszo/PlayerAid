@@ -53,7 +53,7 @@
 + (UIColor *)textStepKeyboardInputAccessoryViewBorderColor;
 
 + (UIColor *)playerAidBlueColor;
-+ (UIColor *)userProfileBackgroundColor;
++ (UIColor *)userProfileBackgroundTintColor;
 + (UIColor *)editProfileTextLabelsColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;

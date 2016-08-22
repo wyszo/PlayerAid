@@ -62,7 +62,7 @@ UIColorWithAlphaMethodMake(makeEditCommentInputViewTopBorderColor, 0, 0, 0, 0.2)
 UIColorMethodMake(textStepKeyboardInputAccessoryViewBorderColor, 227, 227, 227)
 
 UIColorFromHexMethodMake(playerAidBlueColor, kNewPlayerAidBlue)
-UIColorFromHexMethodMake(userProfileBackgroundColor, kNewPlayerAidBlue)
+UIColorWithAlphaMethodMake(userProfileBackgroundTintColor, 65, 105, 194, 0.8)
 UIColorFromHexMethodMake(editProfileTextLabelsColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(editProfileViewBackgroundColor, 0xf5f5f5)
 UIColorMethodMake(editProfileSubviewsBorderColor, 200, 199, 204)

@@ -8,7 +8,7 @@
 
 @class User;
 
-// TODO: break this class down into ModalViewsPresenter and FlowCoordinator
+// TODO: transform this class into a FlowCoordinator
 
 @interface ApplicationViewHierarchyHelper : NSObject
 
@@ -40,5 +40,7 @@
  Returns CommentRepliesViewController
  */
 + (UIViewController *)presentModalCommentReplies:(TutorialComment *)comment fromViewController:(UIViewController *)presentingViewController;
+
++ (void)presentEditProfileViewControllerFromViewController:(nonnull UIViewController *)presenter withUser:(nonnull User *)user didUpdateProfileBlock:(nullable VoidBlock)didUpdateProfileBlock;
 
 @end

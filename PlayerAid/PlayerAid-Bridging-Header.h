@@ -17,3 +17,5 @@
 #import "ColorsHelper.h"
 #import "Tutorial.h"
 #import "User.h"
+#import "PlayerInfoView.h"
+#import "ApplicationViewHierarchyHelper.h"

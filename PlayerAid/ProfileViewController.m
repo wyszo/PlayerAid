@@ -373,15 +373,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 #pragma mark - Private
 
 - (void)presentEditProfileViewController {
-  EditProfileViewController *editProfileViewController = [[EditProfileViewController alloc] initWithUser:self.user];
-
-  defineWeakSelf();
-  editProfileViewController.didUpdateUserProfileBlock = ^() {
-    [weakSelf forceFetchUser];
-    weakSelf.playerInfoView.user = self.user;
-  };
-  UINavigationController *navigationController = [ApplicationViewHierarchyHelper navigationControllerWithViewController:editProfileViewController];
-  [self presentViewController:navigationController animated:YES completion:nil];
+    defineWeakSelf();
+    [ApplicationViewHierarchyHelper presentEditProfileViewControllerFromViewController:self withUser:self.user didUpdateProfileBlock:^{
+        [weakSelf forceFetchUser];
+        weakSelf.playerInfoView.user = self.user;
+    }];
 }
 
 - (void)reloadTableView {
