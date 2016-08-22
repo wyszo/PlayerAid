@@ -16,3 +16,4 @@
 #import "CommentsTableViewDataSourceConfigurator.h"
 #import "ColorsHelper.h"
 #import "Tutorial.h"
+#import "User.h"

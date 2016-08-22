@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -164,10 +164,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SectionCell" rowHeight="189" id="cei-8Z-tNp" customClass="SectionCell">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="189"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="189"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cei-8Z-tNp" id="nGy-Dj-mQm">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="188"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="188.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMI-NQ-tud" userLabel="Background Image View">
@@ -324,10 +324,10 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" rowHeight="50" id="XWy-Xe-zUg">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XWy-Xe-zUg" id="VLk-H5-28y">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -375,6 +375,7 @@
                         <segue destination="YGX-n7-kf9" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="17Y-Op-qj8" kind="relationship" relationship="viewControllers" id="hYL-1S-FE7"/>
                         <segue destination="hcs-TP-QxR" kind="relationship" relationship="viewControllers" id="RHa-ld-hUo"/>
+                        <segue destination="GkJ-92-8V2" kind="relationship" relationship="viewControllers" id="5S3-28-766"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -469,6 +470,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7I-Qp-jgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749" y="2464"/>
+        </scene>
+        <!--New Profile-->
+        <scene sceneID="Qzv-9d-ae6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="GkJ-92-8V2" userLabel="New Profile" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="New Profile" image="profile-unselected" id="6ZA-LS-gws" userLabel="New Profile">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGm-RL-qRb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KMG-Zb-lBU" kind="relationship" relationship="rootViewController" id="Q3i-j6-mZw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7a-MJ-bRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="1797"/>
+        </scene>
+        <!--New Profile View Controller-->
+        <scene sceneID="Bkt-rc-xym">
+            <objects>
+                <viewController id="KMG-Zb-lBU" customClass="NewProfileViewController" customModule="PlayerAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F1Y-C9-hbI"/>
+                        <viewControllerLayoutGuide type="bottom" id="cd6-Ta-4Na"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2CR-5b-oS7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xxy-9A-T6e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwa-vA-75d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="2558"/>
         </scene>
     </scenes>
     <resources>

@@ -35,12 +35,12 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bolts (1.6.0):
-    - Bolts/AppLinks (= 1.6.0)
-    - Bolts/Tasks (= 1.6.0)
-  - Bolts/AppLinks (1.6.0):
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.6.0)
+  - Bolts/Tasks (1.8.4)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
@@ -58,6 +58,7 @@ PODS:
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
+  - MGSpotyViewController (0.4.8.1)
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.6)
   - MagicalRecord (= 2.3.2)
+  - MGSpotyViewController (from `git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git`, branch `master`)
   - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.1.1)
   - RichEditorView (from `../RichEditorView`)
@@ -107,6 +109,9 @@ EXTERNAL SOURCES:
   FDTake:
     :branch: feature/AssetsHelper
     :path: ../FDTake
+  MGSpotyViewController:
+    :branch: master
+    :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   RichEditorView:
     :path: ../RichEditorView
   TWCommonLib:
@@ -119,6 +124,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/wyszo/YCameraView.git
 
 CHECKOUT OPTIONS:
+  MGSpotyViewController:
+    :commit: af75b7b1d049ee50c37e3b4c03d88aa620e5405d
+    :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31
     :git: https://github.com/wyszo/XRSA.git
@@ -129,7 +137,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
@@ -141,6 +149,7 @@ SPEC CHECKSUMS:
   KZPropertyMapper: bcaabe1ec5b4368acb8092faf40666096ba9bb23
   LBDelegateMatrioska: 4af6c7c5ba142d2f24d741e360558d8a0202cfc4
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+  MGSpotyViewController: f0dd7ede38da4820acdb0a233939398e16014375
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: b1068058ef731c646878050972870d06bd859ce1
   RichEditorView: ad9c5caaed52794e778f3bcc164d6e1b38ffa72a
@@ -152,6 +161,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: ea12a63b73b5e7fa2a6e0b04f58c7c42eff31395
+PODFILE CHECKSUM: 235349b197ba1f49c31bf686e1f8e2b231322b12
 
 COCOAPODS: 1.0.1

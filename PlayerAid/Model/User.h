@@ -10,7 +10,8 @@ extern NSString *const kUserServerIDKey;
 
 - (void)placeAvatarInImageView:(nonnull UIImageView *)imageView;
 - (void)placeAvatarInImageViewOrDisplayPlaceholder:(nonnull UIImageView *)imageView placeholderSize:(AvatarPlaceholderSize)placeholderSize;
+- (nullable NSURL *)avatarURL;
 
-+ (NSString *)serverIDFromUserDictionary:(NSDictionary *)dictionary;
++ (nullable NSString *)serverIDFromUserDictionary:(nonnull NSDictionary *)dictionary;
 
 @end

@@ -1,0 +1,6 @@
+framework module MGSpotyViewController {
+  umbrella header "MGSpotyViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

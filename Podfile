@@ -22,6 +22,7 @@ target 'PlayerAid' do
     pod 'Crashlytics', '3.7.0'
     pod 'TTTAttributedLabel', '1.13.4'
     pod 'Typhoon', '3.4.5'
+    pod 'MGSpotyViewController', :git => 'git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git', :branch => 'master'
 
     pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
     pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'

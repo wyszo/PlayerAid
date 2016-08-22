@@ -146,6 +146,10 @@ static NSString *const kFollowingKey = @"following";
   }
 }
 
+- (NSURL *)avatarURL {
+    return [NSURL URLWithString:self.pictureURL];
+}
+
 #pragma mark - Tutorials data extraction methods
 
 - (NSSet *)setOfAnotherUsersTutorialsFromPagedDictionary:(id)pagedDictionary
