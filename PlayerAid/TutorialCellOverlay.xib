@@ -22,21 +22,21 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-WF-xPe" userLabel="Overlay">
-                    <rect key="frame" x="267" y="282" width="66" height="37"/>
+                    <rect key="frame" x="244.5" y="284" width="110" height="32"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-kE-YL7">
-                            <rect key="frame" x="12" y="8" width="42" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draft" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-kE-YL7">
+                            <rect key="frame" x="37" y="5" width="36.5" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.82232517000000005" blue="0.2422052026" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="e2m-kE-YL7" secondAttribute="bottom" constant="8" id="7HF-gj-Pux"/>
-                        <constraint firstItem="e2m-kE-YL7" firstAttribute="leading" secondItem="v5L-WF-xPe" secondAttribute="leading" constant="12" id="87k-p6-EJ8"/>
-                        <constraint firstItem="e2m-kE-YL7" firstAttribute="top" secondItem="v5L-WF-xPe" secondAttribute="top" constant="8" id="X6C-b6-fWS"/>
-                        <constraint firstAttribute="trailing" secondItem="e2m-kE-YL7" secondAttribute="trailing" constant="12" id="YaC-tM-8Wa"/>
+                        <constraint firstItem="e2m-kE-YL7" firstAttribute="centerX" secondItem="v5L-WF-xPe" secondAttribute="centerX" id="30a-Sp-9XU"/>
+                        <constraint firstItem="e2m-kE-YL7" firstAttribute="centerY" secondItem="v5L-WF-xPe" secondAttribute="centerY" id="6K2-3E-I9A"/>
+                        <constraint firstAttribute="height" constant="32" id="W8Z-mf-WiH"/>
+                        <constraint firstAttribute="width" constant="110" id="swK-Sk-nsT"/>
                     </constraints>
                 </view>
             </subviews>
@@ -50,6 +50,7 @@
                 <constraint firstItem="v5L-WF-xPe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nUF-lk-InZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="174" y="628"/>
         </view>
     </objects>
 </document>

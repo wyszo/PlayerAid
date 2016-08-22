@@ -42,12 +42,9 @@ UIColorFromHexMethodMake(editTutorialStepsBackgroundColor, kNewPlayerAidBlue)
 UIColorFromHexMethodMake(tutorialCommentsBarBackgroundColor, kNewPlayerAidBlue)
 
 UIColorMethodMake(tutorialCellDraftTextBackgroundColor, 73, 73, 84)
-UIColorMethodMake(tutorialCellInReviewTextBackgroundColor, 65, 105, 195)
-
-// TODO: apply exact colors (I don't know them!)
-UIColorMethodMake(tutorialCellDraftOverlayBackgroundColor, 0, 0, 0)
-UIColorMethodMake(tutorialCellInReviewOverlayBackgroundColor, 75, 115, 200)
-//
+UIColorMethodMake(tutorialCellInReviewTextBackgroundColor, 63, 104, 197)
+UIColorMethodMake(tutorialCellDraftOverlayBackgroundColor, 73, 73, 84)
+UIColorMethodMake(tutorialCellInReviewOverlayBackgroundColor, 63, 104, 197)
 
 UIColorFromHexMethodMake(commentLabelTextColor, kCommentDarkGrey)
 UIColorMethodMake(commentsTimeAgoLabelColor, 43, 71, 139)

@@ -15,3 +15,4 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "CommentsTableViewDataSourceConfigurator.h"
 #import "ColorsHelper.h"
+#import "Tutorial.h"

@@ -118,6 +118,9 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 {
   self.tutorial = tutorial;
   
+  TutorialCellViewModel *viewModel = [[TutorialCellViewModel alloc] initWithTutorial: tutorial];
+  [self configureWithViewModel: viewModel];
+  
   [self updateBackgroundImageView];
   [self updateLikeButtonState];
   self.titleLabel.text = tutorial.title;
@@ -125,14 +128,10 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   self.sectionLabelContainer.titleLabel.text = tutorial.section.displayName;
   [self setSectionNameHidden:(self.tutorial.section == nil)];
   
-  NSString *timeAgo = [tutorial.createdAt shortTimeAgoSinceNow];
-  self.timeLabel.text = timeAgo;
+  self.timeLabel.text = viewModel.timeAgo;
   
   [tutorial.createdBy placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeMedium];
   // TODO: update favourited button state based on User's liked relation
-  
-  self.overlayView.hidden = tutorial.isPublished;
-  [self styleCellOverlayForTutorial:tutorial];
 }
 
 - (void)updateLikeButtonState
@@ -150,30 +149,15 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
   self.topGradientOverlayView.hidden = (!showGradientOverlay);
 }
 
-- (void)styleCellOverlayForTutorial:(Tutorial *)tutorial {
-    AssertTrueOrReturn(tutorial);
+- (void)configureWithViewModel:(TutorialCellViewModel *)viewModel {
+    AssertTrueOrReturn(viewModel);
     
-    NSString *text = @"";
-    UIColor *labelBackground = [UIColor clearColor];
-    UIColor *overlayBackground = [UIColor clearColor];
-    CGFloat overlayAlpha = 1.0;
+    self.overlayView.text = viewModel.cellOverlayLabelText;
+    [self.overlayView setLabelBackgroundColor:viewModel.cellOverlayLabelBackground];
+    [self.overlayView setOverlayBackgroundColor:viewModel.cellOverlayBackground];
+    [self.overlayView setOverlayBackgroundAlpha:viewModel.cellOverlayAlpha];
     
-    if (tutorial.primitiveDraftValue) {
-        text = @"Draft";
-        labelBackground = [ColorsHelper tutorialCellDraftTextBackgroundColor];
-        overlayBackground = [ColorsHelper tutorialCellDraftOverlayBackgroundColor];
-        overlayAlpha = 0.4;
-    } else if (tutorial.primitiveInReviewValue) {
-        text = @"In Review";
-        labelBackground = [ColorsHelper tutorialCellInReviewTextBackgroundColor];
-        overlayBackground = [ColorsHelper tutorialCellInReviewOverlayBackgroundColor];
-        overlayAlpha = 0.5;
-    }
-    
-    self.overlayView.text = text;
-    [self.overlayView setLabelBackgroundColor:labelBackground];
-    [self.overlayView setOverlayBackgroundColor:overlayBackground];
-    [self.overlayView setOverlayBackgroundAlpha:overlayAlpha];
+    self.overlayView.hidden = viewModel.overlayHidden;
 }
 
 #pragma mark - Update UI to match Tutorial

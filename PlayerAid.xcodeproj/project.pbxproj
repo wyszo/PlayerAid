@@ -153,6 +153,7 @@
 		31DD021E1CC49B840027719E /* VideoDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DD021D1CC49B840027719E /* VideoDurationFormatter.m */; };
 		31DF69991D67497C00CA05B0 /* TutorialCellOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31DF69981D67497C00CA05B0 /* TutorialCellOverlay.xib */; };
 		31DF699B1D674B8B00CA05B0 /* TutorialCellOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF699A1D674B8B00CA05B0 /* TutorialCellOverlay.swift */; };
+		31DF69A11D6B029C00CA05B0 /* TutorialCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
@@ -461,6 +462,7 @@
 		31DD021D1CC49B840027719E /* VideoDurationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDurationFormatter.m; sourceTree = "<group>"; };
 		31DF69981D67497C00CA05B0 /* TutorialCellOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCellOverlay.xib; sourceTree = "<group>"; };
 		31DF699A1D674B8B00CA05B0 /* TutorialCellOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellOverlay.swift; sourceTree = "<group>"; };
+		31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellViewModel.swift; sourceTree = "<group>"; };
 		31E1E1871AECAE520091ED01 /* CommonViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		31E1E1881AECAE520091ED01 /* CommonViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViews.m; sourceTree = "<group>"; };
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
@@ -1619,6 +1621,7 @@
 			isa = PBXGroup;
 			children = (
 				312EFF3F1BD917FE00F2017D /* Prefetching */,
+				31DF699F1D6B028B00CA05B0 /* ViewModel */,
 				317780341A80E557007057CD /* TutorialTableViewCell.h */,
 				317780351A80E557007057CD /* TutorialTableViewCell.m */,
 				31DF699A1D674B8B00CA05B0 /* TutorialCellOverlay.swift */,
@@ -1758,6 +1761,14 @@
 				31DD021A1CC49A3E0027719E /* AVURLAsset+Duration.m */,
 			);
 			name = AVURLAsset;
+			sourceTree = "<group>";
+		};
+		31DF699F1D6B028B00CA05B0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		31E1E1861AECAE3B0091ED01 /* CommonViews */ = {
@@ -2367,6 +2378,7 @@
 				31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
+				31DF69A11D6B029C00CA05B0 /* TutorialCellViewModel.swift in Sources */,
 				316763F01C739E92003184C1 /* RepliesToCommentTableViewController.swift in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */,
