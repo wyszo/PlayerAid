@@ -413,5 +413,13 @@ static const NSUInteger kMGOverviewMainSubviewTag = 100;
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    if (section > 0) {
+        if ([self.delegate respondsToSelector:@selector(spotyViewController:willDisplayHeaderView:forSection:)]) {
+            [self.delegate spotyViewController:self willDisplayHeaderView:view forSection:section];
+        }
+    }
+}
+
 
 @end

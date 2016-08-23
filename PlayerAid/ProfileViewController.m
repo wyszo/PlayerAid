@@ -13,7 +13,7 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
 #import "EditProfileViewController.h"
-#import "EditProfileFilterCollectionViewController.h"
+#import "ProfileTabSwitcherViewController.h"
 #import "FollowedUserTableViewCell.h"
 #import "FollowedUserTableViewDelegate.h"
 #import "TutorialDetailsHelper.h"
@@ -37,7 +37,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @property (weak, nonatomic) IBOutlet NoTutorialsView *noTutorialsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *noTutorialsOverlayTopConstraint;
 @property (strong, nonatomic) TWShowOverlayWhenTableViewEmptyBehaviour *tableViewOverlayBehaviour;
-@property (strong, nonatomic) EditProfileFilterCollectionViewController *filterCollectionViewController;
+@property (strong, nonatomic) ProfileTabSwitcherViewController *tabSwitcherViewController;
 @property (weak, nonatomic) Tutorial *lastSelectedTutorial;
 @end
 
@@ -90,7 +90,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self updateFilterViewTutorialsCount];
+  [self updateTabSwitcherGuidesCount];
 
   [self updateNavigationBarVisibility];
 }
@@ -102,11 +102,11 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   }
 }
 
-- (void)updateFilterViewTutorialsCount {
-  self.filterCollectionViewController.tutorialsCount = self.publishedTutorialsCount;
-  self.filterCollectionViewController.likedTutorialsCount = self.user.likes.count;
-  self.filterCollectionViewController.followingCount = self.user.follows.count;
-  self.filterCollectionViewController.followersCount = self.user.isFollowedBy.count;
+- (void)updateTabSwitcherGuidesCount {
+  self.tabSwitcherViewController.tutorialsCount = self.publishedTutorialsCount;
+  self.tabSwitcherViewController.likedTutorialsCount = self.user.likes.count;
+  self.tabSwitcherViewController.followingCount = self.user.follows.count;
+  self.tabSwitcherViewController.followersCount = self.user.isFollowedBy.count;
 }
 
 #pragma mark - View Layout
@@ -122,16 +122,16 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 {
   defineWeakSelf();
   [self bk_addObserverForKeyPath:@"user.tutorials" task:^(id target) {
-    weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
+    weakSelf.tabSwitcherViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   }];
   [self bk_addObserverForKeyPath:@"user.likes" task:^(id target) {
-    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.user.likes.count;
+    weakSelf.tabSwitcherViewController.likedTutorialsCount = weakSelf.user.likes.count;
   }];
   [self bk_addObserverForKeyPath:@"user.follows" task:^(id target) {
-    weakSelf.filterCollectionViewController.followingCount = weakSelf.user.follows.count;
+    weakSelf.tabSwitcherViewController.followingCount = weakSelf.user.follows.count;
   }];
   [self bk_addObserverForKeyPath:@"user.isFollowedBy" task:^(id target) {
-    weakSelf.filterCollectionViewController.followersCount = weakSelf.user.isFollowedBy.count;
+    weakSelf.tabSwitcherViewController.followersCount = weakSelf.user.isFollowedBy.count;
   }];
 }
 
@@ -289,37 +289,37 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   CGRect containerFrame = CGRectMake(0, 0, windowWidth, kPlayerInfoViewHeight + kFilterCollectionViewHeight + kDistanceBetweenPlayerInfoAndFirstTutorial);
   UIView *containerView = [self.playerInfoView tw_wrapInAContainerViewWithFrame:containerFrame];
   
-  [self addFilterCollectionViewControllerWithSize:CGSizeMake(windowWidth, kFilterCollectionViewHeight) toContainerView:containerView];
+  [self addTabSwitcherViewControllerWithSize:CGSizeMake(windowWidth, kFilterCollectionViewHeight) toContainerView:containerView];
   
   self.tutorialTableView.tableHeaderView = containerView;
 }
 
-- (void)addFilterCollectionViewControllerWithSize:(CGSize)cellSize toContainerView:(UIView *)containerView
+- (void)addTabSwitcherViewControllerWithSize:(CGSize)cellSize toContainerView:(UIView *)containerView
 {
   AssertTrueOrReturn(containerView);
   
-  self.filterCollectionViewController = [self filterCollectionViewControllerWithYOffset:kPlayerInfoViewHeight size:cellSize];
-  [self addChildViewController:self.filterCollectionViewController];
-  [containerView addSubview:self.filterCollectionViewController.collectionView];
-  [self.filterCollectionViewController didMoveToParentViewController:self];
+  self.tabSwitcherViewController = [self tabSwitcherViewControllerWithYOffset:kPlayerInfoViewHeight size:cellSize];
+  [self addChildViewController:self.tabSwitcherViewController];
+  [containerView addSubview:self.tabSwitcherViewController.collectionView];
+  [self.tabSwitcherViewController didMoveToParentViewController:self];
 }
 
-- (EditProfileFilterCollectionViewController *)filterCollectionViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
+- (ProfileTabSwitcherViewController *)tabSwitcherViewControllerWithYOffset:(CGFloat)yOffset size:(CGSize)size
 {
-  EditProfileFilterCollectionViewController *collectionViewController = [[EditProfileFilterCollectionViewController alloc] init];
+  ProfileTabSwitcherViewController *collectionViewController = [[ProfileTabSwitcherViewController alloc] init];
   defineWeakSelf();
   
   collectionViewController.tutorialsTabSelectedBlock = ^() {
     [weakSelf setupOwnTutorialsTableDataSource];
     [weakSelf setupOwnTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
+    weakSelf.tabSwitcherViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   };
   collectionViewController.likedTabSelectedBlock = ^() {
     [weakSelf setupLikedTutorialsTableDataSource];
     [weakSelf setupLikedTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
-    weakSelf.filterCollectionViewController.likedTutorialsCount = weakSelf.likedTutorialsTableDataSource.objectCount;
+    weakSelf.tabSwitcherViewController.likedTutorialsCount = weakSelf.likedTutorialsTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
     [weakSelf setupFollowingUsersTableDataSource];
@@ -327,7 +327,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.tutorialTableView.delegate = weakSelf.followingTableViewDelegate;
     [weakSelf reloadTableView];
     [weakSelf setupNotFollowingAnyoneTableViewOverlay];
-    weakSelf.filterCollectionViewController.followingCount = weakSelf.followingDataSource.objectCount;
+    weakSelf.tabSwitcherViewController.followingCount = weakSelf.followingDataSource.objectCount;
   };
   collectionViewController.followersTabSelectedBlock = ^() {
     [weakSelf setupFollowersTableDataSource];
@@ -335,7 +335,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
     weakSelf.tutorialTableView.delegate = weakSelf.followersTableViewDelegate;
     [weakSelf reloadTableView];
     [weakSelf setupNoFollowersTableViewOverlay];
-    weakSelf.filterCollectionViewController.followersCount = weakSelf.followersDataSource.objectCount;
+    weakSelf.tabSwitcherViewController.followersCount = weakSelf.followersDataSource.objectCount;
   };
   
   UICollectionView *collectionView = collectionViewController.collectionView;
@@ -349,7 +349,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows {
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-  [self updateFilterViewTutorialsCount];
+  [self updateTabSwitcherGuidesCount];
 }
 
 - (void)didSelectRowWithTutorial:(Tutorial *)tutorial {

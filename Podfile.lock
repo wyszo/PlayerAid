@@ -125,7 +125,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MGSpotyViewController:
-    :commit: af75b7b1d049ee50c37e3b4c03d88aa620e5405d
+    :commit: a47e2eefe363283710d3325de51c33a9d6f75840
     :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31

@@ -1,8 +1,26 @@
 import UIKit
 import MGSpotyViewController
 
+// TODO: reapply new guide badges logic
+// TODO: update navbar visibility
+
+// TODO: move this out of here
+final class UIComponentsFactory {
+    func createNewProfileTabSwitcherViewController() -> ProfileTabSwitcherViewController {
+        let tabSwitcherVC = ProfileTabSwitcherViewController()
+        //        tabSwitcherVC.tutorialsTabSelectedBlock =
+        //        tabSwitcherVC.likedTabSelectedBlock =
+        //        tabSwitcherVC.followingTabSelectedBlock =
+        //        tabSwitcherVC.followersTabSelectedBlock =
+        return tabSwitcherVC
+    }
+}
+
+
 final class NewProfileViewController: MGSpotyViewController {
-    var viewModel: NewProfileViewModel!
+    private var viewModel: NewProfileViewModel!
+    private var profileDelegate: ProfileTableViewDelegate!
+    private var tabSwitcherViewController: ProfileTabSwitcherViewController!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -13,10 +31,11 @@ final class NewProfileViewController: MGSpotyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDelegate()
         
         viewModel = NewProfileViewModel()
         blurRadius = Constants.BlurRadius
-        self.tintColor = Constants.TintColor
+        tintColor = Constants.TintColor
         
         viewModel.fetchProfileImage { [unowned self] (image) in
             self.setMainImage(image)
@@ -24,11 +43,36 @@ final class NewProfileViewController: MGSpotyViewController {
         setupPlayerInfoOverlay()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        updateTabSwitcherGuidesCount()
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
-    //MARK: private setup
+    //MARK: setup
+    
+    private func setupDelegate() {
+        setupTabSwitcher()
+        let tabSwitcherSize = CGSize(width: view.bounds.size.width, height: Constants.TabSwitcherHeight)
+        
+        profileDelegate = ProfileTableViewDelegate(headerSize: tabSwitcherSize, headerView: tabSwitcherViewController.collectionView!)
+        delegate = profileDelegate!
+        
+        profileDelegate.didAddHeader = { [unowned self] _, section in
+            assert(section == 1) // first relevant section index == 1, not 0 in this case
+            self.tabSwitcherViewController.didMoveToParentViewController(self)
+        }
+    }
+    
+    private func setupTabSwitcher() {
+        tabSwitcherViewController = UIComponentsFactory().createNewProfileTabSwitcherViewController()
+        tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
+        
+         self.addChildViewController(tabSwitcherViewController)
+    }
     
     private func setupPlayerInfoOverlay() {
         let screenWidth = view.bounds.size.width
@@ -47,9 +91,20 @@ final class NewProfileViewController: MGSpotyViewController {
         }
         self.overView = playerInfoView
     }
-}
+    
+    //MARK: private
+    
+    private func updateTabSwitcherGuidesCount() {
+        self.tabSwitcherViewController.tutorialsCount = viewModel.guidesCount
+        self.tabSwitcherViewController.likedTutorialsCount = viewModel.likedGuidesCount
+        self.tabSwitcherViewController.followingCount = viewModel.followingCount
+        self.tabSwitcherViewController.followersCount = viewModel.followersCount
+    }
 
-private struct Constants {
-    static let TintColor = ColorsHelper.userProfileBackgroundTintColor()
-    static let BlurRadius: CGFloat = 5.0
+    private struct Constants {
+        static let TintColor = ColorsHelper.userProfileBackgroundTintColor()
+        static let BlurRadius: CGFloat = 5.0
+        static let HeaderToFirstGuideDistance: CGFloat = 18.0
+        static let TabSwitcherHeight: CGFloat = 54.0 + HeaderToFirstGuideDistance
+    }
 }

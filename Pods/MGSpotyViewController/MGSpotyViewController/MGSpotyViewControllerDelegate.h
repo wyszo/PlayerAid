@@ -34,5 +34,6 @@
 - (void)spotyViewController:(nonnull MGSpotyViewController *)spotyViewController
     didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
+- (void)spotyViewController:(nonnull MGSpotyViewController *)spotyViewController willDisplayHeaderView:(nonnull UIView *)view forSection:(NSInteger)section;
 
 @end

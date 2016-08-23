@@ -1,10 +1,6 @@
-//
-//  PlayerAid
-//
-
 @import KZAsserts;
 @import TWCommonLib;
-#import "EditProfileFilterCollectionViewController.h"
+#import "ProfileTabSwitcherViewController.h"
 #import "PlayerInfoCollectionViewCell.h"
 #import "ColorsHelper.h"
 
@@ -18,12 +14,12 @@ static const NSInteger kFollowersCellIndex = 3;
 static const NSInteger kCollectionViewNumberOfCells = 4;
 
 
-@interface EditProfileFilterCollectionViewController ()
+@interface ProfileTabSwitcherViewController ()
 @property (strong, nonatomic) NSArray *cellLabels;
 @end
 
 
-@implementation EditProfileFilterCollectionViewController
+@implementation ProfileTabSwitcherViewController
 
 #pragma mark - View Lifecycle
 

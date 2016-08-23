@@ -19,3 +19,4 @@
 #import "User.h"
 #import "PlayerInfoView.h"
 #import "ApplicationViewHierarchyHelper.h"
+#import "ProfileTabSwitcherViewController.h"

@@ -54,7 +54,7 @@
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63F61B3A901300E16D23 /* UserManipulationController.m */; };
 		313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */; };
-		314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */; };
+		314B6F3B1B307C1B0051E00D /* ProfileTabSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */; };
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
 		315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 315148A51AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m */; };
@@ -73,6 +73,7 @@
 		316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */; };
 		316D406F1D6B67A4002EA5C5 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */; };
 		316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */; };
+		316D40741D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40731D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -294,8 +295,8 @@
 		313B63F61B3A901300E16D23 /* UserManipulationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManipulationController.m; sourceTree = "<group>"; };
 		313B63F91B3AD8E300E16D23 /* FollowingButtonDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingButtonDecorator.h; sourceTree = "<group>"; };
 		313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingButtonDecorator.m; sourceTree = "<group>"; };
-		314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileFilterCollectionViewController.h; sourceTree = "<group>"; };
-		314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileFilterCollectionViewController.m; sourceTree = "<group>"; };
+		314B6F391B307C1B0051E00D /* ProfileTabSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTabSwitcherViewController.h; sourceTree = "<group>"; };
+		314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTabSwitcherViewController.m; sourceTree = "<group>"; };
 		314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoCollectionViewCell.h; sourceTree = "<group>"; };
 		314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoCollectionViewCell.m; sourceTree = "<group>"; };
 		314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerInfoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -321,6 +322,7 @@
 		316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextStepKeyboardAccessoryViewController.xib; sourceTree = "<group>"; };
 		316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewModel.swift; sourceTree = "<group>"; };
+		316D40731D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewDelegate.swift; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -615,7 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				31FB6B611B1111840042C409 /* CameraPortraitBlockingOverlay */,
-				314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */,
+				314B6F381B307BE50051E00D /* ProfileTabSwitcherViewController */,
 				31EFB6C21BAB46DA00F87C03 /* LoginFlow */,
 				31014E4A1A93EA75002F3485 /* MainNavigationController */,
 				31FFDE1D1AAE6B74006E4D0E /* PublishingTutorial */,
@@ -1010,13 +1012,13 @@
 			name = UpdatingUsers;
 			sourceTree = "<group>";
 		};
-		314B6F381B307BE50051E00D /* EditProfileFiltersCollectionViewController */ = {
+		314B6F381B307BE50051E00D /* ProfileTabSwitcherViewController */ = {
 			isa = PBXGroup;
 			children = (
-				314B6F391B307C1B0051E00D /* EditProfileFilterCollectionViewController.h */,
-				314B6F3A1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m */,
+				314B6F391B307C1B0051E00D /* ProfileTabSwitcherViewController.h */,
+				314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */,
 			);
-			name = EditProfileFiltersCollectionViewController;
+			name = ProfileTabSwitcherViewController;
 			sourceTree = "<group>";
 		};
 		3151C2611D22E635008DEA1C /* Obsolete (old implementation) */ = {
@@ -1090,6 +1092,14 @@
 				316763F61C793E4D003184C1 /* ServerCommunicationController_Comments.swift */,
 			);
 			name = ServerCommunicationController;
+			sourceTree = "<group>";
+		};
+		316D40721D6C9C8D002EA5C5 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				316D40731D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		316D86BF1B205C82003874F4 /* EditProfile */ = {
@@ -1782,6 +1792,7 @@
 		31DF69A21D6B11E100CA05B0 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
+				316D40721D6C9C8D002EA5C5 /* Delegate */,
 				316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */,
 				31DF69A31D6B11F600CA05B0 /* NewProfileViewController.swift */,
 			);
@@ -2450,7 +2461,7 @@
 				31F1167D1A790F680022BD74 /* TimelineViewController.m in Sources */,
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				31DF699B1D674B8B00CA05B0 /* TutorialCellOverlay.swift in Sources */,
-				314B6F3B1B307C1B0051E00D /* EditProfileFilterCollectionViewController.m in Sources */,
+				314B6F3B1B307C1B0051E00D /* ProfileTabSwitcherViewController.m in Sources */,
 				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				317309FC1BFA1B89004C541D /* ViewControllersFactory.m in Sources */,
@@ -2486,6 +2497,7 @@
 				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,
 				319DCA161BB02D750079E66C /* LoginSignUpComponentsConfigurator.m in Sources */,
 				310308BD1A84D90B00B7F921 /* NavigationBarCustomizationHelper.m in Sources */,
+				316D40741D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift in Sources */,
 				310308B11A83FA9400B7F921 /* CreateTutorialViewController.m in Sources */,
 				310510B91C125B270070C702 /* CommentBottomBarView.swift in Sources */,
 				318EEAAA1A82DBBC00B79E73 /* ColorsHelper.m in Sources */,

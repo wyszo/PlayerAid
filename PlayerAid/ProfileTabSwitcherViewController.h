@@ -1,11 +1,7 @@
-//
-//  PlayerAid
-//
-
 @import UIKit;
 #import <TWCommonLib/TWCommonTypes.h>
 
-@interface EditProfileFilterCollectionViewController : UICollectionViewController
+@interface ProfileTabSwitcherViewController : UICollectionViewController
 
 @property (nonatomic, assign) NSInteger tutorialsCount;
 @property (nonatomic, assign) NSInteger likedTutorialsCount;

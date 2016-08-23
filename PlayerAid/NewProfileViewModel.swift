@@ -5,6 +5,22 @@ final class NewProfileViewModel {
     var user: User?
     private let imageDownloader = ImageDownloader()
     
+    var guidesCount: Int {
+        return -1; // TODO: update this!!
+    }
+    
+    var likedGuidesCount: Int {
+        return self.user?.likes.count ?? 0
+    }
+    
+    var followingCount: Int {
+        return self.user?.follows.count ?? 0
+    }
+    
+    var followersCount: Int {
+        return self.user?.isFollowedBy.count ?? 0
+    }
+    
     init() {
         reloadUser()
     }
