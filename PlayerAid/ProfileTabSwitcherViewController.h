@@ -18,4 +18,6 @@
 @property (nonatomic, copy) VoidBlock followingTabSelectedBlock;
 @property (nonatomic, copy) VoidBlock followersTabSelectedBlock;
 
+- (void)updateGuidesCountLabels;
+
 @end

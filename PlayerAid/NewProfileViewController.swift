@@ -21,6 +21,7 @@ final class NewProfileViewController: MGSpotyViewController {
     private var viewModel: NewProfileViewModel!
     private var profileDelegate: ProfileTableViewDelegate!
     private var tabSwitcherViewController: ProfileTabSwitcherViewController!
+    private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +48,7 @@ final class NewProfileViewController: MGSpotyViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        updateTabSwitcherGuidesCount()
+        tabSwitcherViewController.updateGuidesCountLabels()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -74,9 +75,9 @@ final class NewProfileViewController: MGSpotyViewController {
         tabSwitcherViewController = UIComponentsFactory().createNewProfileTabSwitcherViewController()
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
         
-        self.addChildViewController(tabSwitcherViewController)
+        addChildViewController(tabSwitcherViewController)
         
-        let tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!)
+        tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!)
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
         dataSource = tabSwitcherViewModel.ownGuidesDataSource
     }
@@ -100,13 +101,6 @@ final class NewProfileViewController: MGSpotyViewController {
     }
     
     //MARK: private
-    
-    private func updateTabSwitcherGuidesCount() {
-        self.tabSwitcherViewController.tutorialsCount = viewModel.guidesCount
-        self.tabSwitcherViewController.likedTutorialsCount = viewModel.likedGuidesCount
-        self.tabSwitcherViewController.followingCount = viewModel.followingCount
-        self.tabSwitcherViewController.followersCount = viewModel.followersCount
-    }
 
     private struct Constants {
         static let TintColor = ColorsHelper.userProfileBackgroundTintColor()

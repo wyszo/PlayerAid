@@ -3,6 +3,7 @@
 #import "ProfileTabSwitcherViewController.h"
 #import "PlayerInfoCollectionViewCell.h"
 #import "ColorsHelper.h"
+#import "PlayerAid-Swift.h"
 
 static const CGFloat kCellWidth = 72.0f;
 
@@ -99,10 +100,10 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 
 - (void)setTutorialsCount:(NSInteger)tutorialsCount {
   _tutorialsCount = tutorialsCount;
-  [self updateTutorialsCountLabels];
+  [self updateOwnGuidesCountLabel];
 }
 
-- (void)updateTutorialsCountLabels {
+- (void)updateOwnGuidesCountLabel {
   [self setCount:self.tutorialsCount inPlayerInfoCollectionViewCell:self.tutorialsCell];
   self.tutorialsCell.bottomLabel.text = (self.tutorialsCount == 1 ? @"Guide" : @"Guides");;
 }
@@ -125,6 +126,13 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
 - (void)setCount:(NSInteger)count inPlayerInfoCollectionViewCell:(PlayerInfoCollectionViewCell *)cell {
   AssertTrueOrReturn(cell);
   cell.topLabel.text = [@(count) stringValue];
+}
+
+- (void)updateGuidesCountLabels {
+    self.tutorialsCount = self.viewModel.guidesCount;
+    self.likedTutorialsCount = self.viewModel.likedGuidesCount;
+    self.followingCount = self.viewModel.followingCount;
+    self.followersCount = self.viewModel.followersCount;
 }
 
 #pragma mark - Auxiliary methods

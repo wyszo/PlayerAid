@@ -1,13 +1,30 @@
 import Foundation
 
-final class ProfileTabSwitcherViewModel {
+final class ProfileTabSwitcherViewModel: NSObject {
     private let tableView: UITableView
     private let user: User
     var ownGuidesDataSource: GuidesSpotyTableDataSource!
     
+    var guidesCount: Int {
+        return self.publishedGuidesCount()
+    }
+    
+    var likedGuidesCount: Int {
+        return self.user.likes.count ?? 0
+    }
+    
+    var followingCount: Int {
+        return self.user.follows.count ?? 0
+    }
+    
+    var followersCount: Int {
+        return self.user.isFollowedBy.count ?? 0
+    }
+    
     init(tableView: UITableView, user: User) {
         self.tableView = tableView
         self.user = user
+        super.init()
         
         setupOwnGuidesDataSource()
     }
@@ -27,5 +44,9 @@ final class ProfileTabSwitcherViewModel {
 //        dataSource.delegate = // TODO
 //        dataSource.userAvatarOrNameSelectedBlock = // TODO
         return dataSource
+    }
+    
+    private func publishedGuidesCount() -> Int {
+        return self.ownGuidesDataSource.tableViewDataSource.numberOfRowsForSectionNamed("Published")
     }
 }
