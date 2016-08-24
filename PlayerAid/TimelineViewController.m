@@ -6,7 +6,7 @@
 @import TWCommonLib;
 @import AFNetworking;
 #import "TimelineViewController.h"
-#import "TutorialsTableDataSource.h"
+#import "GuidesTableDataSource.h"
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
 #import "ProfileViewController.h"
@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *latestFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *followingFilterButton;
 
-@property (strong, nonatomic) TutorialsTableDataSource *tutorialsTableDataSource;
+@property (strong, nonatomic) GuidesTableDataSource *guidesTableDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialsTableView;
 @property (weak, nonatomic) IBOutlet UILabel *noTutorialsLabel;
 
@@ -49,10 +49,10 @@
   [self setupDataSource];
   [self setupTableViewHeader];
   
-  self.imagesPrefetchingController = [[ImagesPrefetchingController alloc] initWithDataSource:self.tutorialsTableDataSource tableView:self.tutorialsTableView];
+  self.imagesPrefetchingController = [[ImagesPrefetchingController alloc] initWithDataSource:self.guidesTableDataSource tableView:self.tutorialsTableView];
   
   self.noTutorialsLabel.text = @"No tutorials to show yet";
-  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView dataSource:self.tutorialsTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
+  self.tableViewOverlayBehaviour = [[TWShowOverlayWhenTableViewEmptyBehaviour alloc] initWithTableView:self.tutorialsTableView dataSource:self.guidesTableDataSource overlayView:self.noTutorialsLabel allowScrollingWhenNoCells:NO];
 
   // TODO: Technical debt - we definitely shouldn't delay UI skinning like that!
   [self selectFilterLatest]; // intentional
@@ -72,7 +72,7 @@
 }
 
 - (void)DEBUG_PUSH_TUTORIAL_DETAILS {
-  Tutorial* tutorial = [self.tutorialsTableDataSource tutorialAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  Tutorial* tutorial = [self.guidesTableDataSource tutorialAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
   AssertTrueOrReturn(tutorial);
 
   self.lastSelectedTutorial = tutorial;
@@ -81,10 +81,11 @@
 
 - (void)setupDataSource
 {
-  self.tutorialsTableDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialsTableView];
-  self.tutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND reportedByUser == 0", kTutorialStatePublished];
-  self.tutorialsTableDataSource.tutorialTableViewDelegate = self;
-  self.tutorialsTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
+  self.guidesTableDataSource = [[GuidesTableDataSource alloc] initWithTableView:self.tutorialsTableView];
+  [self.guidesTableDataSource attachDataSourceAndDelegateToTableView];
+  self.guidesTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND reportedByUser == 0", kTutorialStatePublished];
+  self.guidesTableDataSource.tutorialTableViewDelegate = self;
+  self.guidesTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
 }
 
 - (void)setupTableViewHeader

@@ -1,7 +1,3 @@
-//
-//  PlayerAid
-//
-
 #import "Tutorial.h"
 #import "User.h"
 #import "TutorialsTableViewDelegate.h"
@@ -10,7 +6,7 @@
 #import <TWCommonLib/TWObjectCountProtocol.h>
 
 
-@interface TutorialsTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
+@interface GuidesTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
 
 @property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
 @property (nonatomic, nonnull, strong) NSPredicate *predicate;
@@ -22,8 +18,19 @@
 
 NEW_AND_INIT_UNAVAILABLE
 
-- (nonnull instancetype)initAttachingToTableView:(nonnull UITableView *)tableView;
+- (nonnull instancetype)initWithTableView:(nonnull UITableView *)tableView;
+
+// call this after initailisation for the class to work
+- (void)attachDataSourceAndDelegateToTableView;
+
 - (NSInteger)numberOfRowsForSectionNamed:(nonnull NSString *)sectionName;
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)sectionsCount;
+
+// you shouldn't need to call this explicitly apart from a wrapper
+- (nullable TutorialTableViewCell *)cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
 - (nullable Tutorial *)tutorialAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end

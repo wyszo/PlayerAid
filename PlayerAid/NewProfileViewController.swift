@@ -31,11 +31,13 @@ final class NewProfileViewController: MGSpotyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegate()
         
         viewModel = NewProfileViewModel()
+        setupDelegate()
+        
         blurRadius = Constants.BlurRadius
         tintColor = Constants.TintColor
+        view.backgroundColor = UIColor.whiteColor()
         
         viewModel.fetchProfileImage { [unowned self] (image) in
             self.setMainImage(image)
@@ -62,7 +64,8 @@ final class NewProfileViewController: MGSpotyViewController {
         delegate = profileDelegate!
         
         profileDelegate.didAddHeader = { [unowned self] _, section in
-            assert(section == 1) // first relevant section index == 1, not 0 in this case
+            let FirstNonHeaderSectionIndex = 1
+            assert(section == FirstNonHeaderSectionIndex)
             self.tabSwitcherViewController.didMoveToParentViewController(self)
         }
     }
@@ -71,7 +74,11 @@ final class NewProfileViewController: MGSpotyViewController {
         tabSwitcherViewController = UIComponentsFactory().createNewProfileTabSwitcherViewController()
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
         
-         self.addChildViewController(tabSwitcherViewController)
+        self.addChildViewController(tabSwitcherViewController)
+        
+        let tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!)
+        tabSwitcherViewController.viewModel = tabSwitcherViewModel
+        dataSource = tabSwitcherViewModel.ownGuidesDataSource
     }
     
     private func setupPlayerInfoOverlay() {

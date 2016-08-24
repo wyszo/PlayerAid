@@ -74,6 +74,8 @@
 		316D406F1D6B67A4002EA5C5 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */; };
 		316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */; };
 		316D40741D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40731D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift */; };
+		316D40761D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */; };
+		316D40781D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40771D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
 		316D86C91B206A66003874F4 /* NavigationBarButtonsDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C81B206A66003874F4 /* NavigationBarButtonsDecorator.m */; };
@@ -93,7 +95,7 @@
 		317780051A7FC6B6007057CD /* FBSDKProfileFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */; };
 		317780091A7FED4F007057CD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780081A7FED4F007057CD /* ProfileViewController.m */; };
 		3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800B1A7FED7A007057CD /* SettingsViewController.m */; };
-		317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* TutorialsTableDataSource.m */; };
+		317780101A80049A007057CD /* GuidesTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* GuidesTableDataSource.m */; };
 		317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317780171A80076C007057CD /* DataModel.xcdatamodeld */; };
 		317780271A80975C007057CD /* _Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177801C1A80975C007057CD /* _Section.m */; };
 		317780291A80975C007057CD /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780201A80975C007057CD /* _User.m */; };
@@ -323,6 +325,8 @@
 		316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewModel.swift; sourceTree = "<group>"; };
 		316D40731D6C9CA4002EA5C5 /* ProfileTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewDelegate.swift; sourceTree = "<group>"; };
+		316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabSwitcherViewModel.swift; sourceTree = "<group>"; };
+		316D40771D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesSpotyTableDataSource.swift; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		316D86C41B205DE6003874F4 /* EditProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
@@ -359,8 +363,8 @@
 		317780081A7FED4F007057CD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3177800A1A7FED7A007057CD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3177800B1A7FED7A007057CD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		3177800E1A80049A007057CD /* TutorialsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableDataSource.h; sourceTree = "<group>"; };
-		3177800F1A80049A007057CD /* TutorialsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialsTableDataSource.m; sourceTree = "<group>"; };
+		3177800E1A80049A007057CD /* GuidesTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidesTableDataSource.h; sourceTree = "<group>"; };
+		3177800F1A80049A007057CD /* GuidesTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidesTableDataSource.m; sourceTree = "<group>"; };
 		317780181A80076C007057CD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3177801B1A80975C007057CD /* _Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Section.h; sourceTree = "<group>"; };
 		3177801C1A80975C007057CD /* _Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Section.m; sourceTree = "<group>"; };
@@ -1015,6 +1019,7 @@
 		314B6F381B307BE50051E00D /* ProfileTabSwitcherViewController */ = {
 			isa = PBXGroup;
 			children = (
+				316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */,
 				314B6F391B307C1B0051E00D /* ProfileTabSwitcherViewController.h */,
 				314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */,
 			);
@@ -1245,7 +1250,7 @@
 			children = (
 				317DC7F81BFE40EF000D18DF /* Comments */,
 				312FF6001A9F1A7C00AE3174 /* SectionsDataSource */,
-				31B736051A8925F80081AE15 /* Tutorials */,
+				31B736051A8925F80081AE15 /* Guides */,
 				31B736061A8926010081AE15 /* TutorialSteps */,
 			);
 			name = DataSources;
@@ -1656,14 +1661,15 @@
 			name = TutorialStep;
 			sourceTree = "<group>";
 		};
-		31B736051A8925F80081AE15 /* Tutorials */ = {
+		31B736051A8925F80081AE15 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
 				31F5C39F1B3F47B1007D0C2F /* FetchedResultsControllerFactory */,
-				3177800E1A80049A007057CD /* TutorialsTableDataSource.h */,
-				3177800F1A80049A007057CD /* TutorialsTableDataSource.m */,
+				3177800E1A80049A007057CD /* GuidesTableDataSource.h */,
+				3177800F1A80049A007057CD /* GuidesTableDataSource.m */,
+				316D40771D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift */,
 			);
-			name = Tutorials;
+			name = Guides;
 			sourceTree = "<group>";
 		};
 		31B736061A8926010081AE15 /* TutorialSteps */ = {
@@ -2391,7 +2397,7 @@
 				31F5C3A21B3F47C4007D0C2F /* TutorialsTableFetchedResultsControllersFactory.m in Sources */,
 				312FF6031A9F1AA000AE3174 /* SectionsDataSource.m in Sources */,
 				316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */,
-				317780101A80049A007057CD /* TutorialsTableDataSource.m in Sources */,
+				317780101A80049A007057CD /* GuidesTableDataSource.m in Sources */,
 				317309F61BF9ECB2004C541D /* CommentsContainerViewController.m in Sources */,
 				31014E831A9CE98C002F3485 /* UITableView+TableViewHelper.m in Sources */,
 				31777FFA1A7F9445007057CD /* FacebookAuthenticationController.m in Sources */,
@@ -2430,6 +2436,7 @@
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
+				316D40761D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift in Sources */,
 				31DD021B1CC49A3E0027719E /* AVURLAsset+Duration.m in Sources */,
 				31A8DE411B32363900137ACB /* FollowedUserTableViewCell.m in Sources */,
 				31F721B71BF3F7E0001DB831 /* TutorialCommentsController.m in Sources */,
@@ -2492,6 +2499,7 @@
 				31549F861C09089600B2CA87 /* EditCommentInputViewController.m in Sources */,
 				312EFF421BD9181300F2017D /* TutorialTableViewCell+Prefetching.m in Sources */,
 				31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */,
+				316D40781D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift in Sources */,
 				3173C82D1AAB650C004CEF1E /* MediaPickerHelper.m in Sources */,
 				317780291A80975C007057CD /* _User.m in Sources */,
 				31014E511A94865D002F3485 /* TermsAndConditionsViewController.m in Sources */,

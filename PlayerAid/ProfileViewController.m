@@ -8,7 +8,7 @@
 @import MagicalRecord;
 #import "ProfileViewController.h"
 #import "PlayerInfoView.h"
-#import "TutorialsTableDataSource.h"
+#import "GuidesTableDataSource.h"
 #import "ColorsHelper.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "TabBarBadgeHelper.h"
@@ -28,8 +28,8 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 @interface ProfileViewController () <TutorialsTableViewDelegate>
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
-@property (strong, nonatomic) TutorialsTableDataSource *ownTutorialsTableDataSource;
-@property (strong, nonatomic) TutorialsTableDataSource *likedTutorialsTableDataSource;
+@property (strong, nonatomic) GuidesTableDataSource *ownGuidesTableDataSource;
+@property (strong, nonatomic) GuidesTableDataSource *likedGuidesTableDataSource;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followingDataSource;
 @property (strong, nonatomic) TWArrayTableViewDataSource *followersDataSource;
 @property (strong, nonatomic) FollowedUserTableViewDelegate *followingTableViewDelegate;
@@ -52,7 +52,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self tw_setNavbarDoesNotCoverTheView];  
   [self setupUserIfNotNil];
   [self setupTableViewUserFollowedCells];
-  [self setupOwnTutorialsTableDataSource];
+  [self setupOwnGuidesTableDataSource];
   [self setupTableHeaderView];
   [self setupPlayerInfoView];
   [self setupOwnTutorialsTableViewOverlay];
@@ -144,13 +144,13 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (void)setupOwnTutorialsTableViewOverlay
 {
   [self.noTutorialsView setText:@"No guides made" imageNamed:@"emptystate-tutorial-ic"];
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.ownTutorialsTableDataSource];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.ownGuidesTableDataSource];
 }
 
 - (void)setupLikedTutorialsTableViewOverlay
 {
   [self.noTutorialsView setText:@"No liked guides" imageNamed:@"emptystate-liked-ic"];
-  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.likedTutorialsTableDataSource];
+  [self setupEmptyTableViewBehaviourWithOverlay:self.noTutorialsView dataSource:self.likedGuidesTableDataSource];
 }
 
 - (void)setupNotFollowingAnyoneTableViewOverlay
@@ -196,12 +196,12 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self.tutorialTableView registerNib:nib forCellReuseIdentifier:@"UserCellIdentifier"];
 }
 
-- (void)setupOwnTutorialsTableDataSource {
-  self.ownTutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
-  self.ownTutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND createdBy = %@", self.user];
-  self.ownTutorialsTableDataSource.groupBy = @"state";
-  self.ownTutorialsTableDataSource.showSectionHeaders = NO;
-  self.ownTutorialsTableDataSource.swipeToDeleteEnabled = YES;
+- (void)setupOwnGuidesTableDataSource {
+  self.ownGuidesTableDataSource = [self createGuidesTableDataSourceNoPredicate];
+  self.ownGuidesTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND createdBy = %@", self.user];
+  self.ownGuidesTableDataSource.groupBy = @"state";
+  self.ownGuidesTableDataSource.showSectionHeaders = NO;
+  self.ownGuidesTableDataSource.swipeToDeleteEnabled = YES;
 }
 
 - (void)setupFollowingTableViewDelegate {
@@ -212,9 +212,9 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   self.followersTableViewDelegate = [self followedUserTableViewDelegateForDataSource:self.followersDataSource];
 }
 
-- (void)setupLikedTutorialsTableDataSource {
-  self.likedTutorialsTableDataSource = [self createTutorialsTableDataSourceNoPredicate];
-  self.likedTutorialsTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND %@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
+- (void)setupLikedGuidesTableDataSource {
+  self.likedGuidesTableDataSource = [self createGuidesTableDataSourceNoPredicate];
+  self.likedGuidesTableDataSource.predicate = [NSPredicate predicateWithFormat:@"reportedByUser == 0 AND %@ IN likedBy", self.user]; // TODO: would be much faster other way round - just displaying user.likes...
 }
 
 - (void)setupFollowingUsersTableDataSource {
@@ -243,9 +243,10 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   return dataSource;
 }
 
-- (TutorialsTableDataSource *)createTutorialsTableDataSourceNoPredicate
+- (GuidesTableDataSource *)createGuidesTableDataSourceNoPredicate
 {
-  TutorialsTableDataSource *dataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.tutorialTableView];
+  GuidesTableDataSource *dataSource = [[GuidesTableDataSource alloc] initWithTableView:self.tutorialTableView];
+  [dataSource attachDataSourceAndDelegateToTableView];
   dataSource.tutorialTableViewDelegate = self;
   dataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
   return dataSource;
@@ -310,16 +311,16 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   defineWeakSelf();
   
   collectionViewController.tutorialsTabSelectedBlock = ^() {
-    [weakSelf setupOwnTutorialsTableDataSource];
+    [weakSelf setupOwnGuidesTableDataSource];
     [weakSelf setupOwnTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
     weakSelf.tabSwitcherViewController.tutorialsCount = weakSelf.publishedTutorialsCount;
   };
   collectionViewController.likedTabSelectedBlock = ^() {
-    [weakSelf setupLikedTutorialsTableDataSource];
+    [weakSelf setupLikedGuidesTableDataSource];
     [weakSelf setupLikedTutorialsTableViewOverlay];
     [weakSelf reloadTableView];
-    weakSelf.tabSwitcherViewController.likedTutorialsCount = weakSelf.likedTutorialsTableDataSource.objectCount;
+    weakSelf.tabSwitcherViewController.likedTutorialsCount = weakSelf.likedGuidesTableDataSource.objectCount;
   };
   collectionViewController.followingTabSelectedBlock = ^() {
     [weakSelf setupFollowingUsersTableDataSource];
@@ -385,7 +386,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 }
 
 - (NSInteger)publishedTutorialsCount {
-  return [self.ownTutorialsTableDataSource numberOfRowsForSectionNamed:@"Published"];
+  return [self.ownGuidesTableDataSource numberOfRowsForSectionNamed:@"Published"];
 }
 
 @end

@@ -19,7 +19,7 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
 
 @interface ImagesPrefetchingController()
 @property (nonatomic, retain, nonnull) dispatch_queue_t dispatchQueue;
-@property (nonatomic, weak, nullable) TutorialsTableDataSource *dataSource;
+@property (nonatomic, weak, nullable) GuidesTableDataSource *dataSource;
 @property (nonatomic, weak, nullable) UITableView *tableView;
 @property (nonatomic, strong, nonnull) NSIndexPath *furthestPrefetchedIndexPath;
 @property (nonatomic, strong, nonnull) NetworkRequestsPrefetchingController *requestsPrefetchingController;
@@ -29,7 +29,7 @@ static const NSInteger kNumberOfCellsToPrefetch = 2;
 
 #pragma mark - Init
 
-- (instancetype)initWithDataSource:(nonnull TutorialsTableDataSource *)dataSource tableView:(nonnull UITableView *)tableView
+- (instancetype)initWithDataSource:(nonnull GuidesTableDataSource *)dataSource tableView:(nonnull UITableView *)tableView
 {
   AssertTrueOrReturnNil(dataSource);
   AssertTrueOrReturnNil(tableView);

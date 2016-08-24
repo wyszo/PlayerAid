@@ -20,3 +20,5 @@
 #import "PlayerInfoView.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "ProfileTabSwitcherViewController.h"
+#import "GuidesTableDataSource.h"
+#import "TutorialCellHelper.h"

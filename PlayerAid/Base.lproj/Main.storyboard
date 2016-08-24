@@ -497,7 +497,7 @@
         <!--New Profile View Controller-->
         <scene sceneID="Bkt-rc-xym">
             <objects>
-                <viewController id="KMG-Zb-lBU" customClass="NewProfileViewController" customModule="PlayerAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="KMG-Zb-lBU" customClass="NewProfileViewController" customModule="PlayerAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F1Y-C9-hbI"/>
                         <viewControllerLayoutGuide type="bottom" id="cd6-Ta-4Na"/>

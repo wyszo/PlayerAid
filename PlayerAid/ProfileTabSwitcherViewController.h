@@ -1,7 +1,12 @@
 @import UIKit;
 #import <TWCommonLib/TWCommonTypes.h>
 
+@class ProfileTabSwitcherViewModel;
+
+
 @interface ProfileTabSwitcherViewController : UICollectionViewController
+
+@property (nonatomic, strong) ProfileTabSwitcherViewModel *viewModel;
 
 @property (nonatomic, assign) NSInteger tutorialsCount;
 @property (nonatomic, assign) NSInteger likedTutorialsCount;

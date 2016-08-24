@@ -7,7 +7,7 @@
 @import TWCommonLib;
 #import "TutorialDetailsViewController.h"
 #import "TutorialTableViewCell.h"
-#import "TutorialsTableDataSource.h"
+#import "GuidesTableDataSource.h"
 #import "TutorialCellHelper.h"
 #import "TutorialStepsDataSourceDelegate.h"
 #import "ApplicationViewHierarchyHelper.h"
@@ -25,7 +25,7 @@
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate, UITableViewDelegate>
-@property (strong, nonatomic) TutorialsTableDataSource *headerTableViewDataSource;
+@property (strong, nonatomic) GuidesTableDataSource *headerTableViewDataSource;
 @property (strong, nonatomic) TutorialStepsDataSourceDelegate *tutorialStepsDataSourceDelegate;
 @property (strong, nonatomic) UITableView *headerTableView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -209,10 +209,12 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   };
 }
 
-- (TutorialsTableDataSource *)headerTableViewDataSource
+- (GuidesTableDataSource *)headerTableViewDataSource
 {
   if (!_headerTableViewDataSource) {
-    _headerTableViewDataSource = [[TutorialsTableDataSource alloc] initAttachingToTableView:self.headerTableView];
+    _headerTableViewDataSource = [[GuidesTableDataSource alloc] initWithTableView:self.headerTableView];
+    [_headerTableViewDataSource attachDataSourceAndDelegateToTableView];
+    
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
     _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController

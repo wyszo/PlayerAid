@@ -1,11 +1,7 @@
-//
-//  PlayerAid
-//
-
 @import KZAsserts;
 @import MagicalRecord;
 @import TWCommonLib;
-#import "TutorialsTableDataSource.h"
+#import "GuidesTableDataSource.h"
 #import "Tutorial.h"
 #import "TutorialTableViewCell.h"
 #import "AuthenticatedServerCommunicationController.h"
@@ -22,33 +18,37 @@
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 
-@interface TutorialsTableDataSource () <NSFetchedResultsControllerDelegate>
+@interface GuidesTableDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @end
 
 
-@implementation TutorialsTableDataSource
+@implementation GuidesTableDataSource
 
 #pragma mark - Initilization
 
-- (nonnull instancetype)initAttachingToTableView:(nonnull UITableView *)tableView
+- (nonnull instancetype)initWithTableView:(nonnull UITableView *)tableView
 {
   AssertTrueOrReturnNil(tableView);
-  // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
   
   self = [super init];
   if (self) {
     _tableView = tableView;
-    
-    _tableView.delegate = self;
     [_tableView registerNib:[TutorialCellHelper new].tutorialCellNib forCellReuseIdentifier:kTutorialCellReuseIdentifier];
     
     [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
   }
   return self;
+}
+
+- (void)attachDataSourceAndDelegateToTableView {
+  // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
+
+    self.tableView.delegate = self;
+    self.tableView.dataSource = _tableViewDataSource;
 }
 
 - (void)initFetchedResultsControllerBinder
@@ -80,7 +80,6 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     [fetchedResultsController tw_performFetchAssertResults];
     return fetchedResultsController;
   };
-  self.tableView.dataSource = _tableViewDataSource;
 }
 
 #pragma mark - Handling CoreData fetching
@@ -267,6 +266,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   return self.tableViewDataSource.objectCount;
 }
 
+- (nullable TutorialTableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (TutorialTableViewCell *)[self.tableViewDataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
+}
+
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -339,6 +342,18 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     }
   }
   return 0;
+}
+
+- (NSInteger)sectionsCount {
+    return self.tableViewDataSource.sectionsCount;
+}
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)sectionIndex {
+    AssertTrueOr(sectionIndex >= 0, return 0;);
+    AssertTrueOr(sectionIndex < [self sectionsCount], return 0;);
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.tableViewDataSource sectionInfoForSection:sectionIndex];
+    return sectionInfo.numberOfObjects;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

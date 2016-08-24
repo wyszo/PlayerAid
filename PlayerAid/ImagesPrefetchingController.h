@@ -3,7 +3,7 @@
 //
 
 @import UIKit;
-#import "TutorialsTableDataSource.h"
+#import "GuidesTableDataSource.h"
 
 
 /**
@@ -12,7 +12,7 @@
 @interface ImagesPrefetchingController : NSObject
 
 NEW_AND_INIT_UNAVAILABLE
-- (nonnull instancetype)initWithDataSource:(nonnull TutorialsTableDataSource *)dataSource tableView:(nonnull UITableView *)tableView;
+- (nonnull instancetype)initWithDataSource:(nonnull GuidesTableDataSource *)dataSource tableView:(nonnull UITableView *)tableView;
 
 // need to be called manually from tableViewDelegate
 - (void)willDisplayCellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;

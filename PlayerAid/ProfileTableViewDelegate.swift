@@ -12,6 +12,8 @@ final class ProfileTableViewDelegate: NSObject, MGSpotyViewControllerDelegate {
         self.headerView = headerView
     }
 
+    //MARK: Header
+
     func spotyViewController(spotyViewController: MGSpotyViewController, viewForHeaderInSection section: Int) -> UIView? {
         if section == Constants.FirstRealSectionIndex {
             headerView.frame = CGRectMake(0, 0, headerSize.width, headerSize.height)
@@ -33,6 +35,14 @@ final class ProfileTableViewDelegate: NSObject, MGSpotyViewControllerDelegate {
             didAddHeader?(header: header, section: section)
             addHeaderCallbackFired = true
         }
+    }
+    
+    //MARK: Cells
+    
+    func spotyViewController(spotyViewController: MGSpotyViewController, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        // TODO: remove a gap after the last guide!
+        return TutorialCellHelper().cellHeightForCurrentScreenWidthWithBottomGapVisible(false)
     }
     
     //MARK: private helpers
