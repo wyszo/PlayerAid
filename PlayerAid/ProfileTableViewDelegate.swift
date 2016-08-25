@@ -1,19 +1,33 @@
 import UIKit
 import MGSpotyViewController
 
-final class ProfileTableViewDelegate: NSObject, MGSpotyViewControllerDelegate {
+final class ProfileTableViewDelegate: NSObject {
     private let headerSize: CGSize
     private let headerView: UIView
     private var addHeaderCallbackFired = false
+    var rowHeight: CGFloat!
     var didAddHeader: ((header: UIView, section: Int)->())?
+    var cellSelected: ((NSIndexPath)->())?
+    
+    var shouldPushProfileOnCellSelected: Bool = false
+    var indexPathToUserTransformation: ((NSIndexPath)->(User?))?
 
     init(headerSize: CGSize, headerView: UIView) {
         self.headerSize = headerSize
         self.headerView = headerView
     }
+    
+    // MARK: Constants
+    
+    private struct Constants {
+        static let FirstRealSectionIndex = 1
+    }
+}
 
+//MARK: MGSpotyViewControllerDelegate
+extension ProfileTableViewDelegate: MGSpotyViewControllerDelegate {
     //MARK: Header
-
+    
     func spotyViewController(spotyViewController: MGSpotyViewController, viewForHeaderInSection section: Int) -> UIView? {
         if section == Constants.FirstRealSectionIndex {
             headerView.frame = CGRectMake(0, 0, headerSize.width, headerSize.height)
@@ -42,12 +56,10 @@ final class ProfileTableViewDelegate: NSObject, MGSpotyViewControllerDelegate {
     func spotyViewController(spotyViewController: MGSpotyViewController, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         // TODO: remove a gap after the last guide!
-        return TutorialCellHelper().cellHeightForCurrentScreenWidthWithBottomGapVisible(false)
+        return rowHeight
     }
     
-    //MARK: private helpers
-    
-    private struct Constants {
-        static let FirstRealSectionIndex = 1
+    func spotyViewController(spotyViewController: MGSpotyViewController, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        cellSelected?(indexPath)
     }
 }

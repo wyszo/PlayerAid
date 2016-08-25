@@ -64,7 +64,7 @@ static const CGFloat kTableViewTopInset = 14.0f;
 
 - (void)setupTableViewDataSource
 {
-  self.tableViewDataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps attachToTableView:self.tutorialStepsTableView cellNibName:kTutorialCellName];
+  self.tableViewDataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.tutorialSteps tableView:self.tutorialStepsTableView attachToTableView:true cellNibName:kTutorialCellName];
   
   defineWeakSelf();
   self.tableViewDataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {

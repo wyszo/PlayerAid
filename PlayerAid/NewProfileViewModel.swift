@@ -1,12 +1,17 @@
 import Foundation
 import MagicalRecord
 
-final class NewProfileViewModel {
+final class NewProfileViewModel: NSObject {
     var user: User?
     private let imageDownloader = ImageDownloader()
     
-    init() {
-        reloadUser()
+    init(user: User? = nil) {
+        self.user = user
+        super.init()
+        
+        if user == nil {
+            reloadUser()
+        }
     }
     
     func fetchProfileImage(completion: (UIImage?)->()) {

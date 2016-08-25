@@ -49,9 +49,9 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AssertTrueOrReturn(mainStoryboard);
     
-    ProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+    NewProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"NewProfileViewController"];
     AssertTrueOrReturn(profileViewController);
-    profileViewController.user = user;
+    profileViewController.viewModel = [[NewProfileViewModel alloc] initWithUser: user];
 
     [navigationController pushViewController:profileViewController animated:YES];
     

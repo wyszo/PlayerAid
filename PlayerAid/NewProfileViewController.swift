@@ -3,22 +3,13 @@ import MGSpotyViewController
 
 // TODO: reapply new guide badges logic
 // TODO: update navbar visibility
-
-// TODO: move this out of here
-final class UIComponentsFactory {
-    func createNewProfileTabSwitcherViewController() -> ProfileTabSwitcherViewController {
-        let tabSwitcherVC = ProfileTabSwitcherViewController()
-        //        tabSwitcherVC.tutorialsTabSelectedBlock =
-        //        tabSwitcherVC.likedTabSelectedBlock =
-        //        tabSwitcherVC.followingTabSelectedBlock =
-        //        tabSwitcherVC.followersTabSelectedBlock =
-        return tabSwitcherVC
-    }
-}
+// TODO: restore tableView empty states
+// TODO: fix following & followers tabs
 
 
 final class NewProfileViewController: MGSpotyViewController {
-    private var viewModel: NewProfileViewModel!
+    var viewModel: NewProfileViewModel!
+    
     private var profileDelegate: ProfileTableViewDelegate!
     private var tabSwitcherViewController: ProfileTabSwitcherViewController!
     private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
@@ -32,8 +23,11 @@ final class NewProfileViewController: MGSpotyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFollowersCells()
         
-        viewModel = NewProfileViewModel()
+        if viewModel == nil {
+            viewModel = NewProfileViewModel()
+        }
         setupDelegate()
         
         blurRadius = Constants.BlurRadius
@@ -57,11 +51,17 @@ final class NewProfileViewController: MGSpotyViewController {
     
     //MARK: setup
     
+    private func setupFollowersCells() {
+        let nib = UINib(nibName: Constants.UserCellNibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: Constants.UserCellIdentifier)
+    }
+    
     private func setupDelegate() {
         setupTabSwitcher()
         let tabSwitcherSize = CGSize(width: view.bounds.size.width, height: Constants.TabSwitcherHeight)
         
         profileDelegate = ProfileTableViewDelegate(headerSize: tabSwitcherSize, headerView: tabSwitcherViewController.collectionView!)
+        profileDelegate.rowHeight = ProfileTabSwitcherFactory.Constants.GuidesRowHeight
         delegate = profileDelegate!
         
         profileDelegate.didAddHeader = { [unowned self] _, section in
@@ -69,16 +69,41 @@ final class NewProfileViewController: MGSpotyViewController {
             assert(section == FirstNonHeaderSectionIndex)
             self.tabSwitcherViewController.didMoveToParentViewController(self)
         }
+        
+        profileDelegate.cellSelected = { [unowned self] indexPath in
+            if self.profileDelegate.shouldPushProfileOnCellSelected {
+                if let user = self.profileDelegate.indexPathToUserTransformation?(indexPath) {
+                    self.pushProfile(user)
+                }
+            }
+        }
+    }
+    
+    private func pushProfile(user: User) {
+        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: true)
+        userPushBlock(user)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func setupTabSwitcher() {
-        tabSwitcherViewController = UIComponentsFactory().createNewProfileTabSwitcherViewController()
+        tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!, userCellReuseIdentifier: Constants.UserCellIdentifier, userAvatarOrNameSelected: { [unowned self] user in
+            self.pushProfile(user)
+        })
+        
+        tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, setDataSource: { [unowned self] dataSource in
+            self.dataSource = dataSource
+            self.tableView.reloadData() 
+        }, setRowHeight: { [unowned self] rowHeight in
+            self.profileDelegate.rowHeight = rowHeight
+        }, setPushProfileOnCellSelected: { shouldPush in
+            self.profileDelegate.shouldPushProfileOnCellSelected = shouldPush
+        }, setIndexPathToUserTransformation: { transformation in
+            self.profileDelegate.indexPathToUserTransformation = transformation
+        })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
+        tabSwitcherViewController.viewModel = tabSwitcherViewModel
         
         addChildViewController(tabSwitcherViewController)
-        
-        tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!)
-        tabSwitcherViewController.viewModel = tabSwitcherViewModel
         dataSource = tabSwitcherViewModel.ownGuidesDataSource
     }
     
@@ -107,5 +132,7 @@ final class NewProfileViewController: MGSpotyViewController {
         static let BlurRadius: CGFloat = 5.0
         static let HeaderToFirstGuideDistance: CGFloat = 18.0
         static let TabSwitcherHeight: CGFloat = 54.0 + HeaderToFirstGuideDistance
+        static let UserCellIdentifier = "UserCellIdentifier"
+        static let UserCellNibName = "FollowedUser"
     }
 }

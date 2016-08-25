@@ -228,7 +228,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 - (TWArrayTableViewDataSource *)createUserCellDataSourceWithObjects:(NSArray *)objects
 {
   AssertTrueOrReturnNil(objects);
-  TWArrayTableViewDataSource *dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:objects attachToTableView:self.tutorialTableView cellDequeueIdentifier:@"UserCellIdentifier"];
+  TWArrayTableViewDataSource *dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:objects tableView:self.tutorialTableView attachToTableView:true cellDequeueIdentifier:@"UserCellIdentifier"];
   
   dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[FollowedUserTableViewCell class]]);

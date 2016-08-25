@@ -65,7 +65,7 @@ static const CGFloat kRowHeight = 150.0f;
   NSArray *sectionDescriptions = [self.sections valueForKey:@"sectionDescription"];
   AssertTrueOrReturn(sectionDescriptions.count);
   
-  self.dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:sectionNames attachToTableView:self.sectionsTableView cellDequeueIdentifier:kSectionCellIdentifier];
+  self.dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:sectionNames tableView:self.sectionsTableView attachToTableView:true cellDequeueIdentifier:kSectionCellIdentifier];
   self.dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[SectionCell class]]);
     SectionCell *sectionCell = (SectionCell *)cell;

@@ -52,7 +52,7 @@ static NSString *const kSettingsLogoutItem = @"Log out";
 
 - (void)setupTableViewDataSource
 {
-  self.dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.settings attachToTableView:self.settingsTableView cellDequeueIdentifier:kSettingsCellReuseIdentifier];
+  self.dataSource = [[TWArrayTableViewDataSource alloc] initWithArray:self.settings tableView:self.settingsTableView attachToTableView:true cellDequeueIdentifier:kSettingsCellReuseIdentifier];
   
   defineWeakSelf();
   self.dataSource.configureCellBlock = ^(UITableViewCell *cell, NSIndexPath *indexPath) {

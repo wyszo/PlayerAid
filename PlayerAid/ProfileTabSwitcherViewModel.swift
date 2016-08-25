@@ -1,9 +1,16 @@
 import Foundation
+import TWCommonLib
 
 final class ProfileTabSwitcherViewModel: NSObject {
     private let tableView: UITableView
     private let user: User
+    private let userCellReuseIdentifier: String
+    private let userAvatarOrNameSelected: (User)->()
+    
     var ownGuidesDataSource: GuidesSpotyTableDataSource!
+    var likedGuidesDataSource: GuidesSpotyTableDataSource!
+    var followingDataSource: GuidesArraySpotyTableDataSource!
+    var followersDataSource: GuidesArraySpotyTableDataSource!
     
     var guidesCount: Int {
         return self.publishedGuidesCount()
@@ -21,32 +28,68 @@ final class ProfileTabSwitcherViewModel: NSObject {
         return self.user.isFollowedBy.count ?? 0
     }
     
-    init(tableView: UITableView, user: User) {
+    init(tableView: UITableView, user: User, userCellReuseIdentifier: String, userAvatarOrNameSelected: (User)->()) {
         self.tableView = tableView
         self.user = user
+        self.userCellReuseIdentifier = userCellReuseIdentifier
+        self.userAvatarOrNameSelected = userAvatarOrNameSelected
         super.init()
         
+        setupDataSources()
+    }
+}
+
+//MARK: dataSources setup
+private extension ProfileTabSwitcherViewModel {
+    func setupDataSources() {
         setupOwnGuidesDataSource()
+        setupLikedGuidesDataSource()
+        setupFollowingDataSource()
+        setupFollowersDataSource()
+    }
+
+    func setupOwnGuidesDataSource() {
+        let dataSource = createGuidesTableDataSourceWithoutPredicate()
+        dataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND createdBy = %@", user)
+        dataSource.tableViewDataSource.groupBy = "state"
+        dataSource.tableViewDataSource.showSectionHeaders = false
+        dataSource.tableViewDataSource.swipeToDeleteEnabled = true
+        
+        ownGuidesDataSource = dataSource
     }
     
-    //MARK: private
-    
-    private func setupOwnGuidesDataSource() {
-        ownGuidesDataSource = createGuidesTableDataSourceWithoutPredicate()
-        ownGuidesDataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND createdBy = %@", user)
-        ownGuidesDataSource.tableViewDataSource.groupBy = "state"
-        ownGuidesDataSource.tableViewDataSource.showSectionHeaders = false
-        ownGuidesDataSource.tableViewDataSource.swipeToDeleteEnabled = true
+    func setupLikedGuidesDataSource() {
+        let dataSource = createGuidesTableDataSourceWithoutPredicate()
+        dataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND %@ IN likedBy", self.user)
+        
+        likedGuidesDataSource = dataSource
     }
     
-    private func createGuidesTableDataSourceWithoutPredicate() -> GuidesSpotyTableDataSource {
+    func createGuidesTableDataSourceWithoutPredicate() -> GuidesSpotyTableDataSource {
         let dataSource = GuidesSpotyTableDataSource(tableView: tableView)
-//        dataSource.delegate = // TODO
-//        dataSource.userAvatarOrNameSelectedBlock = // TODO
+        dataSource.tableViewDataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
         return dataSource
     }
     
-    private func publishedGuidesCount() -> Int {
+    func setupFollowingDataSource() {
+        followingDataSource = createUserCellDataSource(objects: Array(user.follows))
+    }
+    
+    func setupFollowersDataSource() {
+        followersDataSource = createUserCellDataSource(objects: Array(user.isFollowedBy))
+    }
+    
+    func createUserCellDataSource(objects objects: [AnyObject]) -> GuidesArraySpotyTableDataSource {
+        assert(objects.count >= 0)
+        let arrayDataSource = TWArrayTableViewDataSource(array: objects, tableView: tableView, attachToTableView: false, cellDequeueIdentifier: self.userCellReuseIdentifier)
+        
+        return GuidesArraySpotyTableDataSource(tableView: tableView, arrayDataSource: arrayDataSource)
+    }
+}
+
+//MARK: Auxiliary methods
+private extension ProfileTabSwitcherViewModel {
+    func publishedGuidesCount() -> Int {
         return self.ownGuidesDataSource.tableViewDataSource.numberOfRowsForSectionNamed("Published")
     }
 }

@@ -54,6 +54,9 @@
 		313868571B14FFFA00C0C245 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313868561B14FFFA00C0C245 /* SectionCell.m */; };
 		313B63F71B3A901300E16D23 /* UserManipulationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63F61B3A901300E16D23 /* UserManipulationController.m */; };
 		313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */; };
+		31458AB81D6F2D09008937F0 /* GuidesArraySpotyTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31458AB71D6F2D09008937F0 /* GuidesArraySpotyTableDataSource.swift */; };
+		31458ABA1D6F2D4A008937F0 /* MGSpotySectionIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31458AB91D6F2D4A008937F0 /* MGSpotySectionIndexTransformer.swift */; };
+		31458ABC1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31458ABB1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift */; };
 		314B6F3B1B307C1B0051E00D /* ProfileTabSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */; };
 		314B6F401B3081220051E00D /* PlayerInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314B6F3F1B3081220051E00D /* PlayerInfoCollectionViewCell.m */; };
 		314B6F421B3081520051E00D /* PlayerInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */; };
@@ -297,6 +300,9 @@
 		313B63F61B3A901300E16D23 /* UserManipulationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManipulationController.m; sourceTree = "<group>"; };
 		313B63F91B3AD8E300E16D23 /* FollowingButtonDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingButtonDecorator.h; sourceTree = "<group>"; };
 		313B63FA1B3AD8E300E16D23 /* FollowingButtonDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingButtonDecorator.m; sourceTree = "<group>"; };
+		31458AB71D6F2D09008937F0 /* GuidesArraySpotyTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesArraySpotyTableDataSource.swift; sourceTree = "<group>"; };
+		31458AB91D6F2D4A008937F0 /* MGSpotySectionIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGSpotySectionIndexTransformer.swift; sourceTree = "<group>"; };
+		31458ABB1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabSwitcherFactory.swift; sourceTree = "<group>"; };
 		314B6F391B307C1B0051E00D /* ProfileTabSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTabSwitcherViewController.h; sourceTree = "<group>"; };
 		314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTabSwitcherViewController.m; sourceTree = "<group>"; };
 		314B6F3E1B3081220051E00D /* PlayerInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerInfoCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1022,6 +1028,7 @@
 				316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */,
 				314B6F391B307C1B0051E00D /* ProfileTabSwitcherViewController.h */,
 				314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */,
+				31458ABB1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift */,
 			);
 			name = ProfileTabSwitcherViewController;
 			sourceTree = "<group>";
@@ -1668,6 +1675,8 @@
 				3177800E1A80049A007057CD /* GuidesTableDataSource.h */,
 				3177800F1A80049A007057CD /* GuidesTableDataSource.m */,
 				316D40771D6DA891002EA5C5 /* GuidesSpotyTableDataSource.swift */,
+				31458AB71D6F2D09008937F0 /* GuidesArraySpotyTableDataSource.swift */,
+				31458AB91D6F2D4A008937F0 /* MGSpotySectionIndexTransformer.swift */,
 			);
 			name = Guides;
 			sourceTree = "<group>";
@@ -2416,6 +2425,7 @@
 				316763F01C739E92003184C1 /* RepliesToCommentTableViewController.swift in Sources */,
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */,
+				31458ABC1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift in Sources */,
 				31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,
@@ -2433,6 +2443,7 @@
 				311486501ADBD3B900A644CD /* UITabBarControllerWithAutorotate.m in Sources */,
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */,
+				31458ABA1D6F2D4A008937F0 /* MGSpotySectionIndexTransformer.swift in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
 				316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
@@ -2459,6 +2470,7 @@
 				31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */,
 				313B63FB1B3AD8E300E16D23 /* FollowingButtonDecorator.m in Sources */,
 				31EFB6C11BAB25F000F87C03 /* LoginManager.m in Sources */,
+				31458AB81D6F2D09008937F0 /* GuidesArraySpotyTableDataSource.swift in Sources */,
 				317DC7FB1BFE4116000D18DF /* CommentsTableViewDataSourceConfigurator.m in Sources */,
 				31A8DE481B331C3100137ACB /* TutorialStepHelper.m in Sources */,
 				318EEAA71A82D9B000B79E73 /* AppearanceCustomizationHelper.m in Sources */,
