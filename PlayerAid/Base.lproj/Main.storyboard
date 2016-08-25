@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658" y="434"/>
+            <point key="canvasLocation" x="1790" y="694"/>
         </scene>
         <!--Create Guide-->
         <scene sceneID="lfC-Ck-9hu">
@@ -492,7 +492,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7a-MJ-bRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-797" y="1797"/>
+            <point key="canvasLocation" x="723" y="-1283"/>
         </scene>
         <!--New Profile View Controller-->
         <scene sceneID="Bkt-rc-xym">
@@ -508,10 +508,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xxy-9A-T6e"/>
+                    <connections>
+                        <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="lV6-9E-dlK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mwa-vA-75d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-797" y="2558"/>
+            <point key="canvasLocation" x="1547" y="-1283"/>
         </scene>
     </scenes>
     <resources>
@@ -526,6 +529,6 @@
         <image name="settings-unselected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hsy-NE-Zkj"/>
+        <segue reference="WCv-E4-gA0"/>
     </inferredMetricsTieBreakers>
 </document>

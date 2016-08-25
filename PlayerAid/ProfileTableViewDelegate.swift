@@ -11,6 +11,7 @@ final class ProfileTableViewDelegate: NSObject {
     
     var shouldPushProfileOnCellSelected: Bool = false
     var indexPathToUserTransformation: ((NSIndexPath)->(User?))?
+    var indexPathToGuideTransformation: ((NSIndexPath)->(Tutorial?))?
 
     init(headerSize: CGSize, headerView: UIView) {
         self.headerSize = headerSize

@@ -23,3 +23,4 @@
 #import "GuidesTableDataSource.h"
 #import "TutorialCellHelper.h"
 #import "FollowedUserTableViewCell.h"
+#import "TutorialDetailsHelper.h"

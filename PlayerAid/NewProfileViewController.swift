@@ -4,15 +4,16 @@ import MGSpotyViewController
 // TODO: reapply new guide badges logic
 // TODO: update navbar visibility
 // TODO: restore tableView empty states
-// TODO: fix following & followers tabs
 
 
 final class NewProfileViewController: MGSpotyViewController {
     var viewModel: NewProfileViewModel!
+    private let spotySectionIndexTransformer = MGSpotySectionIndexTransformer()
     
     private var profileDelegate: ProfileTableViewDelegate!
     private var tabSwitcherViewController: ProfileTabSwitcherViewController!
     private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
+    private var lastSelectedGuide: Tutorial?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,7 @@ final class NewProfileViewController: MGSpotyViewController {
             viewModel = NewProfileViewModel()
         }
         setupDelegate()
+        tabSwitcherViewController.tutorialsTabSelectedBlock()
         
         blurRadius = Constants.BlurRadius
         tintColor = Constants.TintColor
@@ -43,6 +45,7 @@ final class NewProfileViewController: MGSpotyViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tabSwitcherViewController.updateGuidesCountLabels()
+        updateNavigationBarVisibility()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -70,10 +73,17 @@ final class NewProfileViewController: MGSpotyViewController {
             self.tabSwitcherViewController.didMoveToParentViewController(self)
         }
         
-        profileDelegate.cellSelected = { [unowned self] indexPath in
+        profileDelegate.cellSelected = { [unowned self] oneBasedIndexPath in
+            let sectionIndex = self.spotySectionIndexTransformer.zeroBasedSectionIndex(oneBasedIndexPath.section)
+            let indexPath = NSIndexPath(forRow: oneBasedIndexPath.row, inSection: sectionIndex)
+            
             if self.profileDelegate.shouldPushProfileOnCellSelected {
                 if let user = self.profileDelegate.indexPathToUserTransformation?(indexPath) {
                     self.pushProfile(user)
+                }
+            } else {
+                if let guide = self.profileDelegate.indexPathToGuideTransformation?(indexPath) {
+                    self.didSelectRowWithGuide(guide)
                 }
             }
         }
@@ -99,6 +109,8 @@ final class NewProfileViewController: MGSpotyViewController {
             self.profileDelegate.shouldPushProfileOnCellSelected = shouldPush
         }, setIndexPathToUserTransformation: { transformation in
             self.profileDelegate.indexPathToUserTransformation = transformation
+        }, setIndexPathToGuideTransformation: {transformation in
+            self.profileDelegate.indexPathToGuideTransformation = transformation
         })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
@@ -126,6 +138,31 @@ final class NewProfileViewController: MGSpotyViewController {
     }
     
     //MARK: private
+    
+    private func updateNavigationBarVisibility() {
+        let isOnlyViewControllerOnStack = (self.navigationController?.viewControllers.count == 1)
+        if (isOnlyViewControllerOnStack) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    private func didSelectRowWithGuide(guide: Tutorial) {
+        lastSelectedGuide = guide
+    
+        if guide.isDraft {
+            ApplicationViewHierarchyHelper.presentCreateTutorialViewControllerForTutorial(guide, isEditingDraft: true)
+        } else {
+            TutorialDetailsHelper().performTutorialDetailsSegueFromViewController(self)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
+    //MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        TutorialDetailsHelper().prepareForTutorialDetailsSegue(segue, pushingTutorial: lastSelectedGuide)
+    }
 
     private struct Constants {
         static let TintColor = ColorsHelper.userProfileBackgroundTintColor()

@@ -6,21 +6,32 @@ final class ProfileTabSwitcherFactory {
     typealias SetRowHeightType = (CGFloat)->()
     typealias PushUserProfileType = (User)->()
     typealias SetPushProfileOnCellSelectedType = (Bool)->()
+    
     typealias IndexPathToUserType = (NSIndexPath)->(User?)
     typealias SetIndexPathToUserTransformationType = (IndexPathToUserType -> ())
+    typealias IndexPathToGuideType = (NSIndexPath)->(Tutorial?)
+    typealias SetIndexPathToGuideTransformationType = (IndexPathToGuideType -> ())
     
-    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, setDataSource: SetDataSourceType, setRowHeight: SetRowHeightType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setIndexPathToUserTransformation: SetIndexPathToUserTransformationType) -> ProfileTabSwitcherViewController {
+    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, setDataSource: SetDataSourceType, setRowHeight: SetRowHeightType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setIndexPathToUserTransformation: SetIndexPathToUserTransformationType, setIndexPathToGuideTransformation: SetIndexPathToGuideTransformationType) -> ProfileTabSwitcherViewController {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
             setDataSource(viewModel.ownGuidesDataSource)
             setRowHeight(Constants.GuidesRowHeight)
             setPushProfileOnCellSelected(false)
+            
+            setIndexPathToGuideTransformation({ indexPath in
+                return viewModel.ownGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
+            })
         }
         tabSwitcher.likedTabSelectedBlock = {
             setDataSource(viewModel.likedGuidesDataSource)
             setRowHeight(Constants.GuidesRowHeight)
             setPushProfileOnCellSelected(false)
+            
+            setIndexPathToGuideTransformation({ indexPath in
+                return viewModel.likedGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
+            })
         }
         tabSwitcher.followingTabSelectedBlock = {
             setDataSource(viewModel.followingDataSource)
