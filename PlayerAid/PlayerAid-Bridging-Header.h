@@ -22,3 +22,4 @@
 #import "ProfileTabSwitcherViewController.h"
 #import "GuidesTableDataSource.h"
 #import "TutorialCellHelper.h"
+#import "FollowedUserTableViewCell.h"

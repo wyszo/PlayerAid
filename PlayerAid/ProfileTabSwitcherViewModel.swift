@@ -83,6 +83,18 @@ private extension ProfileTabSwitcherViewModel {
         assert(objects.count >= 0)
         let arrayDataSource = TWArrayTableViewDataSource(array: objects, tableView: tableView, attachToTableView: false, cellDequeueIdentifier: self.userCellReuseIdentifier)
         
+        arrayDataSource.configureCellBlock = { cell, indexPath in
+            let userCell = cell as? FollowedUserTableViewCell
+            assert(userCell != nil)
+            
+            assert(indexPath.row < arrayDataSource.objectCount())
+            let user = arrayDataSource.objectAtIndexPath(indexPath) as? User
+            assert(user != nil)
+            
+            if user != nil {
+                userCell!.configureWithUser(user)
+            }
+        }
         return GuidesArraySpotyTableDataSource(tableView: tableView, arrayDataSource: arrayDataSource)
     }
 }
