@@ -15,6 +15,12 @@ final class GuidesSpotyTableDataSource: NSObject, MGSpotyViewControllerDataSourc
     }
     
     func spotyViewController(spotyViewController: MGSpotyViewController, numberOfRowsInSection section: Int) -> Int {
+    
+        // z tym jest problem po tym jak dostaniemy callback od FRCBindera
+        if section > tableViewDataSource.sectionsCount() {
+            return 0
+        }
+    
         let sectionIndex: Int = sectionIndexTransformer.zeroBasedSectionIndex(section)
         return tableViewDataSource.numberOfRowsInSection(sectionIndex)
     }
@@ -26,8 +32,14 @@ final class GuidesSpotyTableDataSource: NSObject, MGSpotyViewControllerDataSourc
     }
     
     func numberOfSectionsInSpotyViewController(spotyViewController: MGSpotyViewController) -> Int {
+    
         let sections = tableViewDataSource.sectionsCount()
-        assert(sections > 0)
+        
+        // z tym jest problem po tym jak dostaniemy callback od FRCBindera
+        if sections == 0 {
+            return 1 // for tabSwitcher
+        }
+        
         return sections
     }
 }

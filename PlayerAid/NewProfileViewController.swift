@@ -67,8 +67,8 @@ final class NewProfileViewController: MGSpotyViewController {
         delegate = profileDelegate!
         
         profileDelegate.didAddHeader = { [unowned self] _, section in
-            let FirstNonHeaderSectionIndex = 1
-            assert(section == FirstNonHeaderSectionIndex)
+            let TabSwitcherSectionIndex = 1 
+            assert(section == TabSwitcherSectionIndex)
             self.tabSwitcherViewController.didMoveToParentViewController(self)
         }
         
