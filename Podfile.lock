@@ -41,10 +41,10 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
-  - Fabric (1.6.6)
+  - Fabric (1.6.8)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.0):
@@ -83,9 +83,9 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.6.3)
   - BlocksKit (= 2.2.5)
-  - Crashlytics (= 3.7.0)
+  - Crashlytics (= 3.7.3)
   - DateTools (= 1.7.0)
-  - Fabric (= 1.6.6)
+  - Fabric (= 1.6.8)
   - FBSDKCoreKit (= 4.10.0)
   - FBSDKLoginKit (= 4.10.0)
   - FDTake (from `../FDTake`)
@@ -138,9 +138,9 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FDTake: 22f82a1c7060a1d60ed9ae534122694054b2ea22
@@ -161,6 +161,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 235349b197ba1f49c31bf686e1f8e2b231322b12
+PODFILE CHECKSUM: 2bd7d58626d4b2778f512e6338c1544616590b28
 
 COCOAPODS: 1.0.1
