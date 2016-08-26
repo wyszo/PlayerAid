@@ -79,6 +79,11 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
     AssertTrueOrReturn([cell isKindOfClass:[PlayerInfoCollectionViewCell class]]);
     PlayerInfoCollectionViewCell *collectionViewCell = (PlayerInfoCollectionViewCell *)cell;
     collectionViewCell.selectionBackgroundColor = [ColorsHelper tutorialsSelectedFilterButtonColor];
+    collectionViewCell.selectedTextColor = [ColorsHelper tutorialsSelectedFilterButtonTextColor];
+    collectionViewCell.unselectedTextColor = [ColorsHelper tutorialsUnselectedFilterButtonTextColor];
+    
+    BOOL selected = (indexPath.row == 0);
+    [collectionViewCell setSelected:selected];
     
     AssertTrueOrReturn(indexPath.row < self.cellLabels.count);
     NSString *labelString = self.cellLabels[indexPath.row];

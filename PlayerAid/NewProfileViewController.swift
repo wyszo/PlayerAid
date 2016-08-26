@@ -118,7 +118,7 @@ final class NewProfileViewController: MGSpotyViewController {
         }, setIndexPathToGuideTransformation: { [unowned self] transformation in
             self.profileDelegate.indexPathToGuideTransformation = transformation
         })
-        tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
+        tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
         
         addChildViewController(tabSwitcherViewController)

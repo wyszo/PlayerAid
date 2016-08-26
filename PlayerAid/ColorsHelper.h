@@ -22,7 +22,7 @@
 
 + (UIColor *)tutorialsSelectedFilterButtonColor;
 + (UIColor *)tutorialsSelectedFilterButtonTextColor;
-+ (UIColor *)tutorialsUnselectedFilterButtonColor;
++ (UIColor *)tutorialsUnselectedFilterBackgroundColor;
 + (UIColor *)tutorialsUnselectedFilterButtonTextColor;
 + (UIColor *)tutorialGradientBlueColor;
 + (UIColor *)tutorialTextStepColor;

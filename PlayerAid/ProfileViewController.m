@@ -341,7 +341,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   
   UICollectionView *collectionView = collectionViewController.collectionView;
   collectionView.frame = CGRectMake(0, yOffset, size.width, size.height);
-  collectionView.backgroundColor = [ColorsHelper tutorialsUnselectedFilterButtonColor];
+  collectionView.backgroundColor = [ColorsHelper tutorialsUnselectedFilterBackgroundColor];
   
   return collectionViewController;
 }

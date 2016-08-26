@@ -13,6 +13,7 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 
 @property (strong, nonatomic) UIView *view;
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
+@property (weak, nonatomic) IBOutlet UIView *selectionIndicatorView;
 
 @end;
 
@@ -26,7 +27,7 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 {
   [super awakeFromNib];
   [self customize];
-  self.defaultBackgroundColor = self.backgroundColor;
+  self.defaultBackgroundColor = [UIColor clearColor];
 }
 
 - (void)customize
@@ -49,7 +50,12 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 - (void)setSelected:(BOOL)selected
 {
   [super setSelected:selected];
-  self.backgroundColor = (selected ? self.selectionBackgroundColor : self.defaultBackgroundColor);
+  
+  self.selectionIndicatorView.backgroundColor = (selected ? self.selectionBackgroundColor : self.defaultBackgroundColor);
+  
+    UIColor *textColor = (selected ? self.selectedTextColor : self.unselectedTextColor);
+    self.topLabel.textColor = textColor;
+    self.bottomLabel.textColor = textColor;
 }
 
 - (UIColor *)selectionBackgroundColor
@@ -64,6 +70,22 @@ static NSString *const kNibFileName = @"PlayerInfoCollectionViewCell";
 {
   _selectionBackgroundColor = selectionBackgroundColor;
   [self setSelected:self.selected];
+}
+
+#pragma mark - Accessors
+
+- (UIColor *)selectedTextColor {
+    if (!_selectedTextColor) {
+        _selectedTextColor = [UIColor whiteColor];
+    }
+    return _selectedTextColor;
+}
+
+- (UIColor *)unselectedTextColor {
+    if (!_unselectedTextColor) {
+        _unselectedTextColor = [UIColor whiteColor];
+    }
+    return _unselectedTextColor;
 }
 
 @end
