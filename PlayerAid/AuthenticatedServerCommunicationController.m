@@ -49,11 +49,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   AssertTrueOrReturn(tutorial.serverID);
   NSString *URLString = [self urlStringForTutorialID:tutorial.serverID];
   
-  [self.requestOperationManager DELETE:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    CallBlock(completion, nil);
-    
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    CallBlock(completion, error);
+  [self performDeleteRequestWithApiToken:self.apiToken urlString:URLString parameters:nil completion:^(NSHTTPURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+      CallBlock(completion, error);
   }];
 }
 

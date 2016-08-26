@@ -9,4 +9,9 @@ final class MGSpotySectionIndexTransformer {
         assert(index != 0)
         return index - 1
     }
+    
+    func zeroBasedIndexPath(spotyVCIndexPath: NSIndexPath) -> NSIndexPath {
+        let sectionIndex = zeroBasedSectionIndex(spotyVCIndexPath.section)
+        return NSIndexPath(forRow: spotyVCIndexPath.row, inSection: sectionIndex)
+    }
 }

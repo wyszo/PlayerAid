@@ -421,5 +421,16 @@ static const NSUInteger kMGOverviewMainSubviewTag = 100;
     }
 }
 
+#pragma mark - UITableViewDelegate: Cell deletion
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    return (self.deleteCellOnSwipeBlock != nil);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.deleteCellOnSwipeBlock && editingStyle == UITableViewCellEditingStyleDelete) {
+        self.deleteCellOnSwipeBlock(indexPath);
+    }
+}
 
 @end

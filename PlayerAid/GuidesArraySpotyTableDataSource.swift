@@ -20,10 +20,8 @@ final class GuidesArraySpotyTableDataSource: NSObject, MGSpotyViewControllerData
     
     func spotyViewController(spotyViewController: MGSpotyViewController, tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let sectionIndex: Int = sectionIndexTransformer.zeroBasedSectionIndex(indexPath.section)
-        let modifiedIndexPath = NSIndexPath(forRow: indexPath.row, inSection: sectionIndex)
-        
-        return tableViewDataSource.cellForRowAtIndexPath(modifiedIndexPath)
+        let zeroBasedIndexPath = sectionIndexTransformer.zeroBasedIndexPath(indexPath)
+        return tableViewDataSource.cellForRowAtIndexPath(zeroBasedIndexPath)
     }
     
     func numberOfSectionsInSpotyViewController(spotyViewController: MGSpotyViewController) -> Int {

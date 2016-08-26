@@ -2,7 +2,6 @@ import UIKit
 import MGSpotyViewController
 
 // TODO: reapply new guide badges logic
-// TODO: update navbar visibility
 // TODO: restore tableView empty states
 
 
@@ -105,11 +104,13 @@ final class NewProfileViewController: MGSpotyViewController {
             self.tableView.reloadData() 
         }, setRowHeight: { [unowned self] rowHeight in
             self.profileDelegate.rowHeight = rowHeight
-        }, setPushProfileOnCellSelected: { shouldPush in
+        }, setPushProfileOnCellSelected: { [unowned self] shouldPush in
             self.profileDelegate.shouldPushProfileOnCellSelected = shouldPush
-        }, setIndexPathToUserTransformation: { transformation in
+        }, setDeleteCellAtIndexPath: { [unowned self] deleteCallback in
+            self.setupAllowCellDeletion(deleteCallback != nil, cellDeletionBlock:deleteCallback)
+        }, setIndexPathToUserTransformation: { [unowned self] transformation in
             self.profileDelegate.indexPathToUserTransformation = transformation
-        }, setIndexPathToGuideTransformation: {transformation in
+        }, setIndexPathToGuideTransformation: { [unowned self] transformation in
             self.profileDelegate.indexPathToGuideTransformation = transformation
         })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterButtonColor()
@@ -117,6 +118,17 @@ final class NewProfileViewController: MGSpotyViewController {
         
         addChildViewController(tabSwitcherViewController)
         dataSource = tabSwitcherViewModel.ownGuidesDataSource
+    }
+    
+    private func setupAllowCellDeletion(allowDeletion: Bool, cellDeletionBlock:((NSIndexPath)->())?) {
+        if allowDeletion {
+            self.deleteCellOnSwipeBlock = { [unowned self] oneBasedIndexPath in
+                let indexPath = self.spotySectionIndexTransformer.zeroBasedIndexPath(oneBasedIndexPath)
+                cellDeletionBlock?(indexPath)
+            }
+        } else {
+            self.deleteCellOnSwipeBlock = nil
+        }
     }
     
     private func setupPlayerInfoOverlay() {

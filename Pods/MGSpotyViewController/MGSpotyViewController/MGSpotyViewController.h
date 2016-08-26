@@ -91,6 +91,11 @@ typedef NS_ENUM(NSUInteger, MGSpotyViewTableScrollingType) {
 @property (nonatomic, weak) id <MGSpotyViewControllerDelegate> delegate;
 
 /**
+ *  If that block is set, all cells have delete on swipe enabled
+ */
+@property (copy, nonatomic, nullable) void (^deleteCellOnSwipeBlock)(NSIndexPath * indexPath);
+
+/**
  *  Initialize method for MGSpotyViewController
  *
  *  @param image UIImage you want to use

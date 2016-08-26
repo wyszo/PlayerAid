@@ -28,9 +28,16 @@ NEW_AND_INIT_UNAVAILABLE
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 - (NSInteger)sectionsCount;
 
-// you shouldn't need to call this explicitly apart from a wrapper
+- (nullable Tutorial *)tutorialAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
+@end
+
+@interface GuidesTableDataSource(Internal)
+
+// you shouldn't need to call this explicitly (apart from a wrapper classes)
 - (nullable TutorialTableViewCell *)cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
-- (nullable Tutorial *)tutorialAtIndexPath:(nonnull NSIndexPath *)indexPath;
+// you shouldn't need to call this explicitly (apart from a wrapper classes)
+- (void)deleteGuideAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end

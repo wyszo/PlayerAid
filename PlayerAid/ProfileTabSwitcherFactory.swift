@@ -6,19 +6,25 @@ final class ProfileTabSwitcherFactory {
     typealias SetRowHeightType = (CGFloat)->()
     typealias PushUserProfileType = (User)->()
     typealias SetPushProfileOnCellSelectedType = (Bool)->()
+    typealias IndexPathCallback = (NSIndexPath)->()
+    typealias SetDeleteCellAtIndexPathType = (IndexPathCallback?->())
     
     typealias IndexPathToUserType = (NSIndexPath)->(User?)
     typealias SetIndexPathToUserTransformationType = (IndexPathToUserType -> ())
     typealias IndexPathToGuideType = (NSIndexPath)->(Tutorial?)
     typealias SetIndexPathToGuideTransformationType = (IndexPathToGuideType -> ())
     
-    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, setDataSource: SetDataSourceType, setRowHeight: SetRowHeightType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setIndexPathToUserTransformation: SetIndexPathToUserTransformationType, setIndexPathToGuideTransformation: SetIndexPathToGuideTransformationType) -> ProfileTabSwitcherViewController {
+    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, setDataSource: SetDataSourceType, setRowHeight: SetRowHeightType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setDeleteCellAtIndexPath: SetDeleteCellAtIndexPathType, setIndexPathToUserTransformation: SetIndexPathToUserTransformationType, setIndexPathToGuideTransformation: SetIndexPathToGuideTransformationType) -> ProfileTabSwitcherViewController {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
             setDataSource(viewModel.ownGuidesDataSource)
             setRowHeight(Constants.GuidesRowHeight)
             setPushProfileOnCellSelected(false)
+            
+            setDeleteCellAtIndexPath({ indexPath in
+                viewModel.ownGuidesDataSource.tableViewDataSource.deleteGuideAtIndexPath(indexPath)
+            })
             
             setIndexPathToGuideTransformation({ indexPath in
                 return viewModel.ownGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
@@ -28,6 +34,7 @@ final class ProfileTabSwitcherFactory {
             setDataSource(viewModel.likedGuidesDataSource)
             setRowHeight(Constants.GuidesRowHeight)
             setPushProfileOnCellSelected(false)
+            setDeleteCellAtIndexPath(nil)
             
             setIndexPathToGuideTransformation({ indexPath in
                 return viewModel.likedGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
@@ -37,6 +44,7 @@ final class ProfileTabSwitcherFactory {
             setDataSource(viewModel.followingDataSource)
             setRowHeight(Constants.FollowerRowHeight)
             setPushProfileOnCellSelected(true)
+            setDeleteCellAtIndexPath(nil)
             
             setIndexPathToUserTransformation({ indexPath in
                 return viewModel.followingDataSource.tableViewDataSource.objectAtIndexPath(indexPath) as? User
@@ -46,6 +54,7 @@ final class ProfileTabSwitcherFactory {
             setDataSource(viewModel.followersDataSource)
             setRowHeight(Constants.FollowerRowHeight)
             setPushProfileOnCellSelected(true)
+            setDeleteCellAtIndexPath(nil)
             
             setIndexPathToUserTransformation({ indexPath in
                 return viewModel.followersDataSource.tableViewDataSource.objectAtIndexPath(indexPath) as? User

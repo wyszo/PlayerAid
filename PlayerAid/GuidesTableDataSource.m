@@ -188,6 +188,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   };
 }
 
+- (void)deleteGuideAtIndexPath:(NSIndexPath *)indexPath {
+    [self deleteTutorialAtIndexPath:indexPath];
+}
+
 - (void)deleteTutorialAtIndexPath:(NSIndexPath *)indexPath
 {
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
