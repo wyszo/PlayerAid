@@ -185,7 +185,7 @@ final class NewProfileViewController: MGSpotyViewController {
         static let TintColor = ColorsHelper.userProfileBackgroundTintColor()
         static let BlurRadius: CGFloat = 5.0
         static let HeaderToFirstGuideDistance: CGFloat = 18.0
-        static let TabSwitcherHeight: CGFloat = 54.0 + HeaderToFirstGuideDistance
+        static let TabSwitcherHeight: CGFloat = 54.0
         static let UserCellIdentifier = "UserCellIdentifier"
         static let UserCellNibName = "FollowedUser"
     }
