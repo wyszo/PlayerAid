@@ -6,7 +6,7 @@
 #import "PlayerAidTabBarHelper.h"
 #import "TabBarHelper.h"
 #import "CreateTutorialViewController.h"
-
+#import "PlayerAid-Swift.h"
 
 @implementation PlayerAidTabBarHelper
 
@@ -31,14 +31,14 @@
   return [TabBarHelper frameForTabBarItemAtIndex:indexNumber.unsignedIntegerValue];
 }
 
-+ (ProfileViewController *)tabBarProfileViewController
++ (NewProfileViewController *)tabBarProfileViewController
 {
   UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
-  __block ProfileViewController *profileViewController;
+  __block NewProfileViewController *profileViewController;
   
   [tabBarController.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
-    if ([viewController isKindOfClass:ProfileViewController.class]) {
-      profileViewController = (ProfileViewController *)viewController;
+    if ([viewController isKindOfClass:NewProfileViewController.class]) {
+      profileViewController = (NewProfileViewController *)viewController;
       *stop = YES;
     }
     
@@ -46,8 +46,8 @@
       UINavigationController *navigationController = (UINavigationController *)viewController;
       UIViewController *navigationControllerFirstObject = navigationController.viewControllers.firstObject;
       
-      if ([navigationControllerFirstObject isKindOfClass:ProfileViewController.class]) {
-        profileViewController = (ProfileViewController *)navigationControllerFirstObject;
+      if ([navigationControllerFirstObject isKindOfClass:NewProfileViewController.class]) {
+        profileViewController = (NewProfileViewController *)navigationControllerFirstObject;
         *stop = YES;
       }
     }

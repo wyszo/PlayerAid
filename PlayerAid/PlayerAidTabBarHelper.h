@@ -4,7 +4,8 @@
 
 @import Foundation;
 #import "TabBarHelper.h"
-#import "ProfileViewController.h"
+
+@class NewProfileViewController;
 
 /**
  TabBar utility methods that require assumptions about available tabBar items
@@ -17,6 +18,6 @@
 /**
  Returns ProfileViewController provided it's embeded directly in TabBarController or firstObject of a NavigationController in TabBar
  */
-+ (ProfileViewController *)tabBarProfileViewController;
++ (NewProfileViewController *)tabBarProfileViewController;
 
 @end
