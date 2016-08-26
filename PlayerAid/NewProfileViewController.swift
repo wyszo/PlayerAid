@@ -41,6 +41,11 @@ final class NewProfileViewController: MGSpotyViewController {
         setupPlayerInfoOverlay()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        TabBarBadgeHelper().hideProfileTabBarItemBadge()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tabSwitcherViewController.updateGuidesCountLabels()
