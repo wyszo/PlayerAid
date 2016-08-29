@@ -63,10 +63,7 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     }
   };
   
-    // bardzo tymczasowo to wszystko tutaj
-    self.fetchedResultsControllerBinder.indexPathTransformBlock = ^(NSIndexPath *indexPath) {
-        return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section + 1];
-    };
+  self.fetchedResultsControllerBinder.indexPathTransformBlock = self.indexPathTransformBlock;
 }
 
 - (void)initTableViewDataSource
@@ -257,9 +254,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
     CallBlock(onDeleteBlock);
   } cancelAction:^{
   
-      // baaardzo tymczasowo...
-      NSIndexPath *modifiedIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section + 1];
-  
+    NSIndexPath *modifiedIndexPath = indexPath;
+    if (self.indexPathTransformBlock) {
+        modifiedIndexPath = self.indexPathTransformBlock(indexPath);
+    }
     [weakSelf.tableView reloadRowAtIndexPath:modifiedIndexPath];
   }];
 }

@@ -61,6 +61,9 @@ private extension ProfileTabSwitcherViewModel {
     func setupLikedGuidesDataSource() {
         let dataSource = createGuidesTableDataSourceWithoutPredicate()
         dataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND %@ IN likedBy", self.user)
+        dataSource.tableViewDataSource.indexPathTransformBlock = { indexPath in
+            return NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
+        }
         
         likedGuidesDataSource = dataSource
     }

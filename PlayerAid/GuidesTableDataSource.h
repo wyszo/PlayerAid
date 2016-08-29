@@ -15,6 +15,7 @@
 @property (nonatomic, assign) BOOL showSectionHeaders;
 @property (nonatomic, nullable, copy) void (^userAvatarOrNameSelectedBlock)(User * __nonnull user);
 @property (nonatomic, nullable, copy) void (^didConfigureCellAtIndexPath)(TutorialTableViewCell * __nonnull cell, NSIndexPath *__nonnull indexPath);
+@property (nonatomic, nullable, copy) IndexPathTransformBlock indexPathTransformBlock;
 
 NEW_AND_INIT_UNAVAILABLE
 
