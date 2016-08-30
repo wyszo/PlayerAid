@@ -164,10 +164,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SectionCell" rowHeight="189" id="cei-8Z-tNp" customClass="SectionCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="600" height="189"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="189"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cei-8Z-tNp" id="nGy-Dj-mQm">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="188.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMI-NQ-tud" userLabel="Background Image View">
@@ -324,10 +324,10 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" rowHeight="50" id="XWy-Xe-zUg">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XWy-Xe-zUg" id="VLk-H5-28y">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -502,10 +502,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cd6-Ta-4Na"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2CR-5b-oS7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Xxy-9A-T6e"/>
                     <connections>
                         <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="lV6-9E-dlK"/>
@@ -528,6 +529,6 @@
         <image name="settings-unselected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hsy-NE-Zkj"/>
+        <segue reference="lV6-9E-dlK"/>
     </inferredMetricsTieBreakers>
 </document>

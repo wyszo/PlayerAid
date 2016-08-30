@@ -12,5 +12,8 @@ IB_DESIGNABLE
 
 @property (nonatomic, weak) User *user;
 @property (nonatomic, copy) VoidBlock editButtonPressed;
+@property (nonatomic, copy) VoidBlock backButtonPressed;
+
+- (void)setBackButtonHidden:(BOOL)hidden;
 
 @end

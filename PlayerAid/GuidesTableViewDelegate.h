@@ -4,10 +4,10 @@
 
 @import Foundation;
 
-@protocol TutorialsTableViewDelegate <NSObject>
+@protocol GuidesTableViewDelegate <NSObject>
 
 @optional
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial;
+- (void)didSelectRowWithGuide:(Tutorial *)tutorial;
 - (void)numberOfRowsDidChange:(NSInteger)numberOfRows;
 - (void)willDisplayCellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)didEndDisplayingCellForRowAtIndexPath:(NSIndexPath *)indexPath withTutorial:(Tutorial *)tutorial;

@@ -54,6 +54,7 @@
 
 + (UIColor *)playerAidBlueColor;
 + (UIColor *)userProfileBackgroundTintColor;
++ (UIColor *)userProfileHeaderOverscrollBackgroundColor;
 + (UIColor *)editProfileTextLabelsColor;
 + (UIColor *)editProfileViewBackgroundColor;
 + (UIColor *)editProfileSubviewsBorderColor;

@@ -25,7 +25,7 @@ static const NSUInteger kFilterCollectionViewHeight = 54.0f;
 static const NSUInteger kPlayerInfoViewHeight = 310;
 static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
 
-@interface ProfileViewController () <TutorialsTableViewDelegate>
+@interface ProfileViewController () <GuidesTableViewDelegate>
 @property (strong, nonatomic) PlayerInfoView *playerInfoView;
 @property (weak, nonatomic) IBOutlet UITableView *tutorialTableView;
 @property (strong, nonatomic) GuidesTableDataSource *ownGuidesTableDataSource;
@@ -353,7 +353,7 @@ static const NSUInteger kDistanceBetweenPlayerInfoAndFirstTutorial = 18;
   [self updateTabSwitcherGuidesCount];
 }
 
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial {
+- (void)didSelectRowWithGuide:(Tutorial *)tutorial {
   self.lastSelectedTutorial = tutorial;
   
   if (tutorial.isDraft) {

@@ -19,6 +19,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
 @property (weak, nonatomic) IBOutlet UIButton *addDescription;
@@ -59,6 +60,12 @@ static NSString *const kNibFileName = @"PlayerInfoView";
   [super willMoveToSuperview:newSuperview];
 }
 
+#pragma mark - Public
+
+- (void)setBackButtonHidden:(BOOL)hidden {
+    self.backButton.hidden = hidden;
+}
+
 #pragma mark - UI Customization
 
 - (void)setUser:(User *)user
@@ -92,6 +99,10 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (IBAction)editButtonPressed:(id)sender {
   CallBlock(self.editButtonPressed);
+}
+
+- (IBAction)backButtonPressed:(id)sender {
+  CallBlock(self.backButtonPressed);
 }
 
 - (IBAction)toggleFollowButtonPressed:(id)sender {

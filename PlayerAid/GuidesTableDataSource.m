@@ -290,8 +290,8 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
   Tutorial *tutorial = [self tutorialAtIndexPath:indexPath];
   AssertTrueOrReturn(tutorial);
   
-  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(didSelectRowWithTutorial:)]) {
-    [self.tutorialTableViewDelegate didSelectRowWithTutorial:tutorial];
+  if ([self.tutorialTableViewDelegate respondsToSelector:@selector(didSelectRowWithGuide:)]) {
+    [self.tutorialTableViewDelegate didSelectRowWithGuide:tutorial];
   }
 }
 

@@ -2,63 +2,55 @@ import Foundation
 import MGSpotyViewController
 
 final class ProfileTabSwitcherFactory {
-    typealias SetDataSourceType = (MGSpotyViewControllerDataSource)->()
-    typealias SetRowHeightType = (CGFloat)->()
+    typealias SetDataSourceType = (UITableViewDataSource)->()
     typealias PushUserProfileType = (User)->()
     typealias SetPushProfileOnCellSelectedType = (Bool)->()
     typealias IndexPathCallback = (NSIndexPath)->()
     typealias SetDeleteCellAtIndexPathType = (IndexPathCallback?->())
     
-    typealias IndexPathToUserType = (NSIndexPath)->(User?)
-    typealias SetIndexPathToUserTransformationType = (IndexPathToUserType -> ())
-    typealias IndexPathToGuideType = (NSIndexPath)->(Tutorial?)
-    typealias SetIndexPathToGuideTransformationType = (IndexPathToGuideType -> ())
+    typealias VoidBlock = ()->()
     
-    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, setDataSource: SetDataSourceType, setRowHeight: SetRowHeightType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setDeleteCellAtIndexPath: SetDeleteCellAtIndexPathType, setIndexPathToUserTransformation: SetIndexPathToUserTransformationType, setIndexPathToGuideTransformation: SetIndexPathToGuideTransformationType) -> ProfileTabSwitcherViewController {
+    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, guidesTableViewDelegate: GuidesTableViewDelegate, reloadTableView: VoidBlock, setDataSource: SetDataSourceType, setPushProfileOnCellSelected: SetPushProfileOnCellSelectedType, setDeleteCellAtIndexPath: SetDeleteCellAtIndexPathType) -> ProfileTabSwitcherViewController {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
-            setDataSource(viewModel.ownGuidesDataSource)
-            setRowHeight(Constants.GuidesRowHeight)
-            setPushProfileOnCellSelected(false)
+            viewModel.ownGuidesDataSource.attachDataSourceAndDelegateToTableView()
+            viewModel.ownGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
+            setPushProfileOnCellSelected(false) // required?
             
-            setDeleteCellAtIndexPath({ indexPath in
-                viewModel.ownGuidesDataSource.tableViewDataSource.deleteGuideAtIndexPath(indexPath)
-            })
+            reloadTableView()
             
-            setIndexPathToGuideTransformation({ indexPath in
-                return viewModel.ownGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
-            })
+//            setDeleteCellAtIndexPath({ indexPath in
+//                viewModel.ownGuidesDataSource.deleteGuideAtIndexPath(indexPath)
+//            })
         }
         tabSwitcher.likedTabSelectedBlock = {
-            setDataSource(viewModel.likedGuidesDataSource)
-            setRowHeight(Constants.GuidesRowHeight)
-            setPushProfileOnCellSelected(false)
-            setDeleteCellAtIndexPath(nil)
+            viewModel.likedGuidesDataSource.attachDataSourceAndDelegateToTableView()
+            viewModel.likedGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
             
-            setIndexPathToGuideTransformation({ indexPath in
-                return viewModel.likedGuidesDataSource.tableViewDataSource.tutorialAtIndexPath(indexPath)
-            })
+            reloadTableView()
+            
+//            setPushProfileOnCellSelected(false)
+//            setDeleteCellAtIndexPath(nil)
         }
         tabSwitcher.followingTabSelectedBlock = {
-            setDataSource(viewModel.followingDataSource)
-            setRowHeight(Constants.FollowerRowHeight)
-            setPushProfileOnCellSelected(true)
-            setDeleteCellAtIndexPath(nil)
+            viewModel.followingDataSource.attachDataSourceToTableView()
+            viewModel.attachFollowingTableViewDelegate()
             
-            setIndexPathToUserTransformation({ indexPath in
-                return viewModel.followingDataSource.tableViewDataSource.objectAtIndexPath(indexPath) as? User
-            })
+//            setRowHeight(Constants.FollowerRowHeight)
+            reloadTableView()
+            
+//            setPushProfileOnCellSelected(true)
+//            setDeleteCellAtIndexPath(nil)
         }
         tabSwitcher.followersTabSelectedBlock = {
-            setDataSource(viewModel.followersDataSource)
-            setRowHeight(Constants.FollowerRowHeight)
-            setPushProfileOnCellSelected(true)
-            setDeleteCellAtIndexPath(nil)
+            viewModel.followersDataSource.attachDataSourceToTableView()
+            viewModel.attachFollowersTableViewDelegate()
             
-            setIndexPathToUserTransformation({ indexPath in
-                return viewModel.followersDataSource.tableViewDataSource.objectAtIndexPath(indexPath) as? User
-            })
+            reloadTableView()
+            
+//            setPushProfileOnCellSelected(true)
+//            setDeleteCellAtIndexPath(nil)
         }
         return tabSwitcher
     }

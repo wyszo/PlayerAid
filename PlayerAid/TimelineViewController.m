@@ -16,7 +16,7 @@
 #import "TutorialDetailsHelper.h"
 #import "ImagesPrefetchingController.h"
 
-@interface TimelineViewController () <TutorialsTableViewDelegate>
+@interface TimelineViewController () <GuidesTableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *latestFilterBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *followingFilterBackgroundView;
@@ -150,7 +150,7 @@
 
 #pragma mark - TutorialTableViewDelegate
 
-- (void)didSelectRowWithTutorial:(Tutorial *)tutorial
+- (void)didSelectRowWithGuide:(Tutorial *)tutorial
 {
   if ([self isDuringSegueTransition]) {
     return; // prevents from pushing details view controller multiple times when tapping multiple times

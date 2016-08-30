@@ -167,6 +167,8 @@
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
 		31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1F8F91AADA948005EB35B /* PopoverView.m */; };
+		31E9622A1D75EB40000FA49F /* ProfileOverscrollOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E962291D75EB40000FA49F /* ProfileOverscrollOverlay.xib */; };
+		31E9622C1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */; };
 		31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6A81BAB250200F87C03 /* LoginViewController.m */; };
 		31EFB6AD1BAB252100F87C03 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6AC1BAB252100F87C03 /* SignUpViewController.m */; };
 		31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6AE1BAB253D00F87C03 /* Login.storyboard */; };
@@ -487,6 +489,8 @@
 		31E1F8F51AADA853005EB35B /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
 		31E1F8F81AADA948005EB35B /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		31E1F8F91AADA948005EB35B /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		31E962291D75EB40000FA49F /* ProfileOverscrollOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileOverscrollOverlay.xib; sourceTree = "<group>"; };
+		31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverscrollOverlay.swift; sourceTree = "<group>"; };
 		31EFB6A71BAB250200F87C03 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31EFB6A81BAB250200F87C03 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		31EFB6AB1BAB252100F87C03 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -534,7 +538,7 @@
 		31FB03A81B3DDD7900539B50 /* TutorialDetailsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialDetailsHelper.m; sourceTree = "<group>"; };
 		31FB6B621B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPortraitBlockingOverlayViewController.h; sourceTree = "<group>"; };
 		31FB6B631B1111A40042C409 /* CameraPortraitBlockingOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPortraitBlockingOverlayViewController.m; sourceTree = "<group>"; };
-		31FB6BD01B1329C40042C409 /* TutorialsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialsTableViewDelegate.h; sourceTree = "<group>"; };
+		31FB6BD01B1329C40042C409 /* GuidesTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidesTableViewDelegate.h; sourceTree = "<group>"; };
 		31FB6BD21B13482F0042C409 /* TutorialListFetchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialListFetchController.h; sourceTree = "<group>"; };
 		31FB6BD31B13482F0042C409 /* TutorialListFetchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialListFetchController.m; sourceTree = "<group>"; };
 		31FB752C1BCD38B4001DC102 /* playeraid.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = playeraid.cert.der; path = Certificates/playeraid.cert.der; sourceTree = "<group>"; };
@@ -925,6 +929,7 @@
 			children = (
 				314B6F411B3081520051E00D /* PlayerInfoCollectionViewCell.xib */,
 				31C122601A8388EB0069D49A /* PlayerInfoView.xib */,
+				31E962291D75EB40000FA49F /* ProfileOverscrollOverlay.xib */,
 			);
 			name = PlayerInfo;
 			sourceTree = "<group>";
@@ -1279,6 +1284,7 @@
 				316D86BF1B205C82003874F4 /* EditProfile */,
 				317780071A7FED4F007057CD /* ProfileViewController.h */,
 				317780081A7FED4F007057CD /* ProfileViewController.m */,
+				31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -2117,7 +2123,7 @@
 		31FB6BCE1B13298B0042C409 /* TutorialsTableView */ = {
 			isa = PBXGroup;
 			children = (
-				31FB6BD01B1329C40042C409 /* TutorialsTableViewDelegate.h */,
+				31FB6BD01B1329C40042C409 /* GuidesTableViewDelegate.h */,
 			);
 			name = TutorialsTableView;
 			sourceTree = "<group>";
@@ -2294,6 +2300,7 @@
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				3151C2651D22E6C0008DEA1C /* CreateTextStep.xib in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
+				31E9622A1D75EB40000FA49F /* ProfileOverscrollOverlay.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				310510B51C124AD30070C702 /* CommentBottomBar.xib in Resources */,
@@ -2426,6 +2433,7 @@
 				3177803A1A80ED2C007057CD /* TutorialDetailsViewController.m in Sources */,
 				31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */,
 				31458ABC1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift in Sources */,
+				31E9622C1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift in Sources */,
 				31BBDD0C1BDFD5FD000732E7 /* NetworkRequestsPrefetchingController.m in Sources */,
 				310308B51A84C94400B7F921 /* TabBarControllerHandler.m in Sources */,
 				317E631B1AE267C100652AE1 /* ViewControllerPresentationHelper.m in Sources */,

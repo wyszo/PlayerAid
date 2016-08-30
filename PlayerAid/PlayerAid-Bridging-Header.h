@@ -25,3 +25,4 @@
 #import "FollowedUserTableViewCell.h"
 #import "TutorialDetailsHelper.h"
 #import "TabBarBadgeHelper.h"
+#import "FollowedUserTableViewDelegate.h"

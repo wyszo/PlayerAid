@@ -135,7 +135,7 @@ CHECKOUT OPTIONS:
     :commit: a47e2eefe363283710d3325de51c33a9d6f75840
     :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   ParallaxBlur:
-    :commit: fd3455505f21c61bc8c233fd65286f0403e21790
+    :commit: 1c1ca5f617d43e2ab33cc4047df5df277d30c911
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31

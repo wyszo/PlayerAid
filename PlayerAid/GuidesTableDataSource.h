@@ -1,6 +1,6 @@
 #import "Tutorial.h"
 #import "User.h"
-#import "TutorialsTableViewDelegate.h"
+#import "GuidesTableViewDelegate.h"
 #import "TutorialTableViewCell.h"
 #import <TWCommonLib/TWCommonMacros.h>
 #import <TWCommonLib/TWObjectCountProtocol.h>
@@ -8,7 +8,7 @@
 
 @interface GuidesTableDataSource : NSObject <UITableViewDelegate, TWObjectCountProtocol>
 
-@property (nonatomic, weak) id<TutorialsTableViewDelegate> tutorialTableViewDelegate;
+@property (nonatomic, weak) id<GuidesTableViewDelegate> tutorialTableViewDelegate;
 @property (nonatomic, nonnull, strong) NSPredicate *predicate;
 @property (nonatomic, nullable, copy) NSString *groupBy;
 @property (nonatomic, assign) BOOL swipeToDeleteEnabled;

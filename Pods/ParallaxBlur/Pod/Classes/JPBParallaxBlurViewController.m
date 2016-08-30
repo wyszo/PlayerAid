@@ -1,4 +1,4 @@
-//
+ //
 //  ParallaxBlurViewController.m
 //  Pods
 //
@@ -20,6 +20,7 @@
     UIView *_scrollViewContainer;
     UIScrollView *_contentView;
     UIView *_subHeaderView;
+    UIView *_headerOverscrollOverlay;
     
     NSMutableArray *_headerOverlayViews;
 }
@@ -31,10 +32,13 @@ static CGFloat INVIS_DELTA = 50.0f;
 static CGFloat BLUR_DISTANCE = 200.0f;
 static CGFloat HEADER_HEIGHT = 60.0f;
 static CGFloat IMAGE_HEIGHT = 320.0f;
-static CGFloat STATUSBAR_HEIGHT = 20.0f;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    if (_blurIterations == 0) {
+        _blurIterations = 40.0f;
+    }
     
     self.navigationController.navigationBarHidden = YES;
     
@@ -72,7 +76,6 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
     
     _floatingHeaderView = [[UIView alloc] initWithFrame:_backgroundScrollView.frame];
     [_floatingHeaderView setBackgroundColor:[UIColor clearColor]];
-    [_floatingHeaderView setUserInteractionEnabled:NO];
     
     [_backgroundScrollView addSubview:_blurredImageView];
     
@@ -84,12 +87,25 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
     
     _subHeaderView = [self subHeaderView];
     [_scrollViewContainer addSubview:_subHeaderView];
-    
     [_scrollViewContainer addSubview:_contentView];
     
     [_mainScrollView addSubview:_backgroundScrollView];
     [_mainScrollView addSubview:_floatingHeaderView];
     [_mainScrollView addSubview:_scrollViewContainer];
+}
+
+- (void)setOverscrollOverlay:(UIView *)overlay {
+    _headerOverscrollOverlay = overlay;
+    overlay.frame = CGRectMake(0, 0, CGRectGetWidth(_backgroundScrollView.frame), CGRectGetHeight(_backgroundScrollView.frame));
+    overlay.hidden = YES;
+    [self addHeaderOverlayView:overlay];
+}
+
+- (UIView *)overscrollOverlayWithFrame:(CGRect)frame {
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    view.backgroundColor = self.headerOverscrollBackgroundColor;
+    return view;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,7 +125,7 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
 
 - (CGFloat)navBarHeight{
     if (self.navigationController && !self.navigationController.navigationBarHidden && self.navigationController.navigationBar.translucent) {
-        return CGRectGetHeight(self.navigationController.navigationBar.frame) + STATUSBAR_HEIGHT;
+        return CGRectGetHeight(self.navigationController.navigationBar.frame);
     }
     return 0.0f;
 }
@@ -118,30 +134,27 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
     return HEADER_HEIGHT + [self navBarHeight] + [self subHeaderHeight];
 }
 
-- (CGFloat)mainScrollViewContentOffset {
-    CGFloat offset = _mainScrollView.contentOffset.y;
-    if ([self navBarHeight] == 0.0) {
-        offset += STATUSBAR_HEIGHT;
-    }
-    return offset;
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat delta = 0.0f;
     CGRect rect = CGRectMake(0, 0, CGRectGetWidth(_scrollViewContainer.frame), IMAGE_HEIGHT);
     
     CGFloat backgroundScrollViewLimit = _backgroundScrollView.frame.size.height - [self offsetHeight];
-    
+    _headerOverscrollOverlay.hidden = YES;
     
     // Here is where I do the "Zooming" image and the quick fade out the text and toolbar
     if (scrollView.contentOffset.y < 0.0f) {
+        // swipe do dolu maksymalnie
+        
         //calculate delta
-        delta = fabs(MIN(0.0f, [self mainScrollViewContentOffset] + [self navBarHeight]));
+        delta = fabs(MIN(0.0f, _mainScrollView.contentOffset.y + [self navBarHeight]));
         _backgroundScrollView.frame = CGRectMake(CGRectGetMinX(rect) - delta / 2.0f, CGRectGetMinY(rect) - delta, CGRectGetWidth(_scrollViewContainer.frame) + delta, CGRectGetHeight(rect) + delta);
         [_floatingHeaderView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
         [_blurredImageView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
+        
+        _headerOverscrollOverlay.hidden = YES;
+        
     } else {
-        delta = [self mainScrollViewContentOffset];
+        delta = _mainScrollView.contentOffset.y;
         
         //set alfas
         CGFloat newAlpha = 1 - ((BLUR_DISTANCE - delta)/ BLUR_DISTANCE);
@@ -151,14 +164,21 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
         // Here I check whether or not the user has scrolled passed the limit where I want to stick the header, if they have then I move the frame with the scroll view
         // to give it the sticky header look
         if (delta > backgroundScrollViewLimit) {
+            // mocny swipe do gory
+        
             _backgroundScrollView.frame = (CGRect) {.origin = {0, delta - _backgroundScrollView.frame.size.height + [self offsetHeight]}, .size = {CGRectGetWidth(_scrollViewContainer.frame), IMAGE_HEIGHT}};
             _floatingHeaderView.frame = (CGRect) {.origin = {0, delta - _floatingHeaderView.frame.size.height + [self offsetHeight]}, .size = {CGRectGetWidth(_scrollViewContainer.frame), IMAGE_HEIGHT}};
             _scrollViewContainer.frame = (CGRect){.origin = {0, CGRectGetMinY(_backgroundScrollView.frame) + CGRectGetHeight(_backgroundScrollView.frame)}, .size = _scrollViewContainer.frame.size };
             _contentView.contentOffset = CGPointMake (0, delta - backgroundScrollViewLimit);
             CGFloat contentOffsetY = -backgroundScrollViewLimit * 0.5f;
             [_backgroundScrollView setContentOffset:(CGPoint){0,contentOffsetY} animated:NO];
+            
+            _headerOverscrollOverlay.hidden = NO;
+            _headerOverscrollOverlay.alpha = 1.0;
         }
         else {
+            // lekki swipe do gory
+            
             _backgroundScrollView.frame = rect;
             _floatingHeaderView.frame = rect;
             _scrollViewContainer.frame = (CGRect){.origin = {0, CGRectGetMinY(rect) + CGRectGetHeight(rect)}, .size = _scrollViewContainer.frame.size };
@@ -166,6 +186,13 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
             [_backgroundScrollView setContentOffset:CGPointMake(0, -delta * 0.5f)animated:NO];
             
             [_blurredImageView setAlpha:1.0];
+            
+            // header overscroll overlay alpha
+            CGFloat edge = CGRectGetHeight(rect);
+            CGFloat alpha = MAX(0, 3 * (delta - (edge/2.0)) / edge);
+            
+            _headerOverscrollOverlay.alpha = alpha;
+            _headerOverscrollOverlay.hidden = NO;
         }
     }
 }
@@ -190,12 +217,17 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
 - (void)setHeaderImage:(UIImage*)headerImage{
     _originalImageView = headerImage;
     [_headerImageView setImage:headerImage];
-    
-    UIColor *tintColor = _headerTintColor;
-    if (!tintColor) {
-        tintColor = [UIColor clearColor];
+    [_blurredImageView setImage:[headerImage blurredImageWithRadius:self.blurIterations iterations:4 tintColor:nil]];
+    [self setupTintSubview];
+}
+
+- (void)setupTintSubview {
+    if (_headerTintColor != nil) {
+        UIView *tintSubview = [[UIView alloc] initWithFrame:_blurredImageView.bounds];
+        tintSubview.backgroundColor = _headerTintColor;
+        tintSubview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [_blurredImageView addSubview:tintSubview];
     }
-    [_blurredImageView setImage:[headerImage blurredImageWithRadius:40.0f iterations:4 tintColor:tintColor]];
 }
 
 - (void)addHeaderOverlayView:(UIView*)overlay{
@@ -209,6 +241,13 @@ static CGFloat STATUSBAR_HEIGHT = 20.0f;
 
 - (CGFloat)headerHeight{
     return CGRectGetHeight(_backgroundScrollView.frame);
+}
+
+- (UIColor *)headerOverscrollBackgroundColor {
+    if (!_headerOverscrollBackgroundColor) {
+        _headerOverscrollBackgroundColor = [UIColor blueColor];
+    }
+    return _headerOverscrollBackgroundColor;
 }
 
 - (UIScrollView*)mainScrollView{

@@ -7,10 +7,13 @@ final class ProfileTabSwitcherViewModel: NSObject {
     private let userCellReuseIdentifier: String
     private let userAvatarOrNameSelected: (User)->()
     
-    var ownGuidesDataSource: GuidesSpotyTableDataSource!
-    var likedGuidesDataSource: GuidesSpotyTableDataSource!
-    var followingDataSource: GuidesArraySpotyTableDataSource!
-    var followersDataSource: GuidesArraySpotyTableDataSource!
+    var ownGuidesDataSource: GuidesTableDataSource!
+    var likedGuidesDataSource: GuidesTableDataSource!
+    var followingDataSource: TWArrayTableViewDataSource!
+    var followersDataSource: TWArrayTableViewDataSource!
+    
+    private var followingTableViewDelegate: FollowedUserTableViewDelegate!
+    private var followersTableViewDelegate: FollowedUserTableViewDelegate!
     
     var guidesCount: Int {
         return self.publishedGuidesCount()
@@ -36,6 +39,42 @@ final class ProfileTabSwitcherViewModel: NSObject {
         super.init()
         
         setupDataSources()
+        setupDelegates()
+    }
+    
+    func attachFollowingTableViewDelegate() {
+        tableView.delegate = followingTableViewDelegate
+    }
+    
+    func attachFollowersTableViewDelegate() {
+        tableView.delegate = followersTableViewDelegate
+    }
+}
+
+//MARK: delegates setup
+private extension ProfileTabSwitcherViewModel {
+    
+    func setupDelegates() {
+        setupFollowingTableViewDelegate(userAvatarOrNameSelected)
+        setupFollowersTableViewDelegate(userAvatarOrNameSelected)
+    }
+    
+    func setupFollowingTableViewDelegate(userSelected: (User)->()) {
+        self.followingTableViewDelegate = followedUserTableViewDelegate(self.followingDataSource, userSelected: userSelected)
+    }
+    
+    func setupFollowersTableViewDelegate(userSelected: (User)->()) {
+        self.followersTableViewDelegate = followedUserTableViewDelegate(self.followersDataSource, userSelected: userSelected)
+    }
+    
+    func followedUserTableViewDelegate(dataSource: TWArrayTableViewDataSource, userSelected: (User)->()) -> FollowedUserTableViewDelegate {
+        let delegate = FollowedUserTableViewDelegate()
+        
+        delegate.cellSelectedBlock = { indexPath in
+            let user = dataSource.objectAtIndexPath(indexPath) as! User
+            userSelected(user)
+        }
+        return delegate
     }
 }
 
@@ -50,27 +89,27 @@ private extension ProfileTabSwitcherViewModel {
 
     func setupOwnGuidesDataSource() {
         let dataSource = createGuidesTableDataSourceWithoutPredicate()
-        dataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND createdBy = %@", user)
-        dataSource.tableViewDataSource.groupBy = "state"
-        dataSource.tableViewDataSource.showSectionHeaders = false
-        dataSource.tableViewDataSource.swipeToDeleteEnabled = true
+        dataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND createdBy = %@", user)
+        dataSource.groupBy = "state"
+        dataSource.showSectionHeaders = false
+        dataSource.swipeToDeleteEnabled = true
         
         ownGuidesDataSource = dataSource
     }
     
     func setupLikedGuidesDataSource() {
         let dataSource = createGuidesTableDataSourceWithoutPredicate()
-        dataSource.tableViewDataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND %@ IN likedBy", self.user)
-        dataSource.tableViewDataSource.indexPathTransformBlock = { indexPath in
+        dataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND %@ IN likedBy", self.user)
+        dataSource.indexPathTransformBlock = { indexPath in
             return NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
         }
         
         likedGuidesDataSource = dataSource
     }
     
-    func createGuidesTableDataSourceWithoutPredicate() -> GuidesSpotyTableDataSource {
-        let dataSource = GuidesSpotyTableDataSource(tableView: tableView)
-        dataSource.tableViewDataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
+    func createGuidesTableDataSourceWithoutPredicate() -> GuidesTableDataSource {
+        let dataSource = GuidesTableDataSource(tableView: tableView)
+        dataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
         return dataSource
     }
     
@@ -82,7 +121,7 @@ private extension ProfileTabSwitcherViewModel {
         followersDataSource = createUserCellDataSource(objects: Array(user.isFollowedBy))
     }
     
-    func createUserCellDataSource(objects objects: [AnyObject]) -> GuidesArraySpotyTableDataSource {
+    func createUserCellDataSource(objects objects: [AnyObject]) -> TWArrayTableViewDataSource {
         assert(objects.count >= 0)
         let arrayDataSource = TWArrayTableViewDataSource(array: objects, tableView: tableView, attachToTableView: false, cellDequeueIdentifier: self.userCellReuseIdentifier)
         
@@ -98,13 +137,13 @@ private extension ProfileTabSwitcherViewModel {
                 userCell!.configureWithUser(user)
             }
         }
-        return GuidesArraySpotyTableDataSource(tableView: tableView, arrayDataSource: arrayDataSource)
+        return arrayDataSource
     }
 }
 
 //MARK: Auxiliary methods
 private extension ProfileTabSwitcherViewModel {
     func publishedGuidesCount() -> Int {
-        return self.ownGuidesDataSource.tableViewDataSource.numberOfRowsForSectionNamed("Published")
+        return self.ownGuidesDataSource.numberOfRowsForSectionNamed("Published")
     }
 }
