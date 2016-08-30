@@ -52,6 +52,7 @@ PODS:
   - FDTake (0.2.4):
     - TWCommonLib
   - FLKAutoLayout (0.2.1)
+  - FXBlurView (1.6.4)
   - KZAsserts (1.0)
   - KZPropertyMapper (2.6)
   - LBDelegateMatrioska (0.0.2)
@@ -63,6 +64,8 @@ PODS:
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
   - NSString+RemoveEmoji (0.1.1)
+  - ParallaxBlur (0.1.4):
+    - FXBlurView (~> 1.6.2)
   - RichEditorView (3.2.0)
   - TTTAttributedLabel (1.13.4)
   - TWCommonLib (0.9):
@@ -96,6 +99,7 @@ DEPENDENCIES:
   - MGSpotyViewController (from `git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git`, branch `master`)
   - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.1.1)
+  - ParallaxBlur (from `git@bitbucket.org:twyszomirski/parallaxblur-fork.git`, branch `PlayerAid`)
   - RichEditorView (from `../RichEditorView`)
   - TTTAttributedLabel (= 1.13.4)
   - TWCommonLib (from `../TWCommonLib`)
@@ -112,6 +116,9 @@ EXTERNAL SOURCES:
   MGSpotyViewController:
     :branch: master
     :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
+  ParallaxBlur:
+    :branch: PlayerAid
+    :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   RichEditorView:
     :path: ../RichEditorView
   TWCommonLib:
@@ -127,6 +134,9 @@ CHECKOUT OPTIONS:
   MGSpotyViewController:
     :commit: a47e2eefe363283710d3325de51c33a9d6f75840
     :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
+  ParallaxBlur:
+    :commit: fd3455505f21c61bc8c233fd65286f0403e21790
+    :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31
     :git: https://github.com/wyszo/XRSA.git
@@ -145,6 +155,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FDTake: 22f82a1c7060a1d60ed9ae534122694054b2ea22
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   KZAsserts: 6e613b569a33582dc94cf7a1f34a2c6d870982a7
   KZPropertyMapper: bcaabe1ec5b4368acb8092faf40666096ba9bb23
   LBDelegateMatrioska: 4af6c7c5ba142d2f24d741e360558d8a0202cfc4
@@ -152,6 +163,7 @@ SPEC CHECKSUMS:
   MGSpotyViewController: f0dd7ede38da4820acdb0a233939398e16014375
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: b1068058ef731c646878050972870d06bd859ce1
+  ParallaxBlur: 352a49c2319b41f3b334456815089afb1220b799
   RichEditorView: ad9c5caaed52794e778f3bcc164d6e1b38ffa72a
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   TWCommonLib: f627605266da8f5d124dca0259943abe29ef64bc
@@ -161,6 +173,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 2bd7d58626d4b2778f512e6338c1544616590b28
+PODFILE CHECKSUM: 7020cc995af7d0a21e36c7247c641d3812362385
 
 COCOAPODS: 1.0.1

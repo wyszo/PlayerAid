@@ -1,0 +1,6 @@
+framework module ParallaxBlur {
+  umbrella header "ParallaxBlur-umbrella.h"
+
+  export *
+  module * { export * }
+}
