@@ -1,5 +1,6 @@
 import UIKit
 import ParallaxBlur
+import DZNEmptyDataSet
 
 final class NewProfileViewController: JPBParallaxTableViewController {
     var viewModel: NewProfileViewModel!
@@ -13,7 +14,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     private var lastSelectedGuide: Tutorial?
     
     override func viewDidLoad() {
-        blurIterations = 10.0
+        blurIterations = Constants.BlurIterations
         headerOverscrollBackgroundColor = ColorsHelper.userProfileHeaderOverscrollBackgroundColor()
         setupProfileOverscrollOverlay()
         
@@ -27,6 +28,8 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         setupBackgroundImage()
         setupHeaderOverlay()
         setupHeaderOverscrollOverlay()
+        setupEmptyTableViewOverlays()
+        setupTableViewHeaderAndFooter()
         
         tabSwitcherViewController.tutorialsTabSelectedBlock()
     }
@@ -51,6 +54,17 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     }
     
     //MARK: setup
+    
+    private func setupTableViewHeaderAndFooter() {
+        let gapHeight = Constants.TableViewHeaderFooterGapHeight
+        tableView.tableHeaderView = CommonViews.tableHeaderOrFooterViewWithHeight(gapHeight)
+        tableView.tableFooterView = CommonViews.tableHeaderOrFooterViewWithHeight(gapHeight)
+    }
+    
+    private func setupEmptyTableViewOverlays() {
+        tableView.emptyDataSetSource = tabSwitcherViewModel.emptyDataSetSource
+        tableView.emptyDataSetDelegate = tabSwitcherViewModel.emptyDataSetDelegate
+    }
     
     private func setupProfileOverscrollOverlay() {
         profileOverscrollOverlay = ProfileOverscrollOverlay()
@@ -165,15 +179,6 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         super.prepareForSegue(segue, sender: sender)
         TutorialDetailsHelper().prepareForTutorialDetailsSegue(segue, pushingTutorial: lastSelectedGuide)
     }
-    
-    private struct Constants {
-        static let TintColor = ColorsHelper.userProfileBackgroundTintColor()
-        static let BlurRadius: CGFloat = 5.0
-        static let HeaderToFirstGuideDistance: CGFloat = 18.0
-        static let TabSwitcherHeight: CGFloat = 54.0
-        static let UserCellIdentifier = "UserCellIdentifier"
-        static let UserCellNibName = "FollowedUser"
-    }
 }
 
 //MARK: GuidesTableViewDelegate
@@ -221,4 +226,15 @@ extension NewProfileViewController {
         // folded profile height from screen top to tabSelection bar
         return 65.0
     }
+}
+
+private struct Constants {
+    static let TintColor = ColorsHelper.userProfileBackgroundTintColor()
+    static let BlurRadius: CGFloat = 5.0
+    static let BlurIterations: CGFloat = 10.0
+    static let HeaderToFirstGuideDistance: CGFloat = 18.0
+    static let TabSwitcherHeight: CGFloat = 54.0
+    static let UserCellIdentifier = "UserCellIdentifier"
+    static let UserCellNibName = "FollowedUser"
+    static let TableViewHeaderFooterGapHeight: CGFloat = 18.0
 }

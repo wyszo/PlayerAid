@@ -1,5 +1,6 @@
 import Foundation
 import TWCommonLib
+import DZNEmptyDataSet
 
 final class ProfileTabSwitcherViewModel: NSObject {
     private let tableView: UITableView
@@ -11,6 +12,11 @@ final class ProfileTabSwitcherViewModel: NSObject {
     var likedGuidesDataSource: GuidesTableDataSource!
     var followingDataSource: TWArrayTableViewDataSource!
     var followersDataSource: TWArrayTableViewDataSource!
+    
+    let emptyDataSetSource: EmptyDataSetSource
+    var emptyDataSetDelegate: DZNEmptyDataSetDelegate {
+        return emptyDataSetSource
+    }
     
     private var followingTableViewDelegate: FollowedUserTableViewDelegate!
     private var followersTableViewDelegate: FollowedUserTableViewDelegate!
@@ -36,6 +42,8 @@ final class ProfileTabSwitcherViewModel: NSObject {
         self.user = user
         self.userCellReuseIdentifier = userCellReuseIdentifier
         self.userAvatarOrNameSelected = userAvatarOrNameSelected
+        emptyDataSetSource = EmptyDataSetSource(offset: Constants.EmptyStateOverlayOffset)
+        
         super.init()
         
         setupDataSources()
@@ -48,6 +56,11 @@ final class ProfileTabSwitcherViewModel: NSObject {
     
     func attachFollowersTableViewDelegate() {
         tableView.delegate = followersTableViewDelegate
+    }
+    
+    func setEmptyState(title: String, imageName: String) {
+        emptyDataSetSource.title = title
+        emptyDataSetSource.image = UIImage(named: imageName)
     }
 }
 
@@ -146,4 +159,8 @@ private extension ProfileTabSwitcherViewModel {
     func publishedGuidesCount() -> Int {
         return self.ownGuidesDataSource.numberOfRowsForSectionNamed("Published")
     }
+}
+
+private struct Constants {
+    static let EmptyStateOverlayOffset: CGFloat = -150.0
 }
