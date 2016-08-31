@@ -22,6 +22,7 @@ target 'PlayerAid' do
     pod 'Crashlytics', '3.7.3'
     pod 'TTTAttributedLabel', '1.13.4'
     pod 'Typhoon', '3.4.5'
+    pod 'DZNEmptyDataSet', '1.8.1'
     pod 'ParallaxBlur', :git => 'git@bitbucket.org:twyszomirski/parallaxblur-fork.git', :branch => 'PlayerAid'
 
     pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'

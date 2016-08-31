@@ -44,6 +44,7 @@ PODS:
   - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
+  - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.8)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - BlocksKit (= 2.2.5)
   - Crashlytics (= 3.7.3)
   - DateTools (= 1.7.0)
+  - DZNEmptyDataSet (= 1.8.1)
   - Fabric (= 1.6.8)
   - FBSDKCoreKit (= 4.10.0)
   - FBSDKLoginKit (= 4.10.0)
@@ -127,7 +129,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ParallaxBlur:
-    :commit: 1c1ca5f617d43e2ab33cc4047df5df277d30c911
+    :commit: e151338d204ec1c890f104d02658bccb1ccb7a39
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31
@@ -142,6 +144,7 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
@@ -164,6 +167,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 137cea603a4900eb48f1e2fbfa62683efd1859d6
+PODFILE CHECKSUM: 61e59531a24c63f8aacaf2f60f89ffd9d4b9de33
 
 COCOAPODS: 1.0.1

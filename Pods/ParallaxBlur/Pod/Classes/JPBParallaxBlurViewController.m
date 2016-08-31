@@ -1,4 +1,4 @@
- //
+//
 //  ParallaxBlurViewController.m
 //  Pods
 //
@@ -140,7 +140,7 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     
     // Here is where I do the "Zooming" image and the quick fade out the text and toolbar
     if (scrollView.contentOffset.y < 0.0f) {
-        // swipe do dolu maksymalnie
+        // strong swipe down (as much as possible)
         
         //calculate delta
         delta = fabs(MIN(0.0f, _mainScrollView.contentOffset.y + [self navBarHeight]));
@@ -161,8 +161,8 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
         // Here I check whether or not the user has scrolled passed the limit where I want to stick the header, if they have then I move the frame with the scroll view
         // to give it the sticky header look
         if (delta > backgroundScrollViewLimit) {
-            // mocny swipe do gory
-        
+            // strong swipe up
+            
             _backgroundScrollView.frame = (CGRect) {.origin = {0, delta - _backgroundScrollView.frame.size.height + [self offsetHeight]}, .size = {CGRectGetWidth(_scrollViewContainer.frame), IMAGE_HEIGHT}};
             _floatingHeaderView.frame = (CGRect) {.origin = {0, delta - _floatingHeaderView.frame.size.height + [self offsetHeight]}, .size = {CGRectGetWidth(_scrollViewContainer.frame), IMAGE_HEIGHT}};
             _scrollViewContainer.frame = (CGRect){.origin = {0, CGRectGetMinY(_backgroundScrollView.frame) + CGRectGetHeight(_backgroundScrollView.frame)}, .size = _scrollViewContainer.frame.size };
@@ -174,7 +174,7 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
             _headerOverscrollOverlay.alpha = 1.0;
         }
         else {
-            // lekki swipe do gory
+            // light swipe up
             
             _backgroundScrollView.frame = rect;
             _floatingHeaderView.frame = rect;
