@@ -1,3 +1,4 @@
+import UIKit
 import DZNEmptyDataSet
 
 final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
@@ -12,7 +13,12 @@ final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: title)
+        
+        let attributes: [String : AnyObject] = [
+            NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 16.0)!,
+            NSForegroundColorAttributeName : UIColor.blackColor()
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
     }
     
     func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
