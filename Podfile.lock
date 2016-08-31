@@ -59,7 +59,6 @@ PODS:
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
-  - MGSpotyViewController (0.4.8.1)
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
@@ -96,7 +95,6 @@ DEPENDENCIES:
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.6)
   - MagicalRecord (= 2.3.2)
-  - MGSpotyViewController (from `git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git`, branch `master`)
   - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.1.1)
   - ParallaxBlur (from `git@bitbucket.org:twyszomirski/parallaxblur-fork.git`, branch `PlayerAid`)
@@ -113,9 +111,6 @@ EXTERNAL SOURCES:
   FDTake:
     :branch: feature/AssetsHelper
     :path: ../FDTake
-  MGSpotyViewController:
-    :branch: master
-    :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   ParallaxBlur:
     :branch: PlayerAid
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
@@ -131,9 +126,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/wyszo/YCameraView.git
 
 CHECKOUT OPTIONS:
-  MGSpotyViewController:
-    :commit: a47e2eefe363283710d3325de51c33a9d6f75840
-    :git: git@bitbucket.org:twyszomirski/mgspotyviewcontroller.git
   ParallaxBlur:
     :commit: 1c1ca5f617d43e2ab33cc4047df5df277d30c911
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
@@ -160,7 +152,6 @@ SPEC CHECKSUMS:
   KZPropertyMapper: bcaabe1ec5b4368acb8092faf40666096ba9bb23
   LBDelegateMatrioska: 4af6c7c5ba142d2f24d741e360558d8a0202cfc4
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
-  MGSpotyViewController: f0dd7ede38da4820acdb0a233939398e16014375
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   NSString+RemoveEmoji: b1068058ef731c646878050972870d06bd859ce1
   ParallaxBlur: 352a49c2319b41f3b334456815089afb1220b799
@@ -173,6 +164,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 7020cc995af7d0a21e36c7247c641d3812362385
+PODFILE CHECKSUM: 137cea603a4900eb48f1e2fbfa62683efd1859d6
 
 COCOAPODS: 1.0.1

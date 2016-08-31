@@ -1,5 +1,4 @@
 import Foundation
-import MGSpotyViewController
 
 final class ProfileTabSwitcherFactory {
     typealias VoidBlock = ()->()
