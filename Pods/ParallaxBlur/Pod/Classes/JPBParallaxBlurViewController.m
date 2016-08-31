@@ -74,6 +74,10 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     [_blurredImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerImageTapped:)]];
     [_blurredImageView setUserInteractionEnabled:YES];
     
+    if (self.headerImageViewBackgroundColor) {
+        _blurredImageView.backgroundColor = self.headerImageViewBackgroundColor;
+    }
+    
     _floatingHeaderView = [[UIView alloc] initWithFrame:_backgroundScrollView.frame];
     [_floatingHeaderView setBackgroundColor:[UIColor clearColor]];
     
@@ -99,13 +103,6 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     overlay.frame = CGRectMake(0, 0, CGRectGetWidth(_backgroundScrollView.frame), CGRectGetHeight(_backgroundScrollView.frame));
     overlay.hidden = YES;
     [self addHeaderOverlayView:overlay];
-}
-
-- (UIView *)overscrollOverlayWithFrame:(CGRect)frame {
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    view.backgroundColor = self.headerOverscrollBackgroundColor;
-    return view;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -237,6 +234,11 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
 
 - (void)setHeaderTintColor:(UIColor *)tintColor {
     _headerTintColor = tintColor;
+}
+
+- (void)setHeaderImageViewBackgroundColor:(UIColor *)headerImageViewBackgroundColor {
+    _headerImageViewBackgroundColor = headerImageViewBackgroundColor;
+    _blurredImageView.backgroundColor = self.headerImageViewBackgroundColor;
 }
 
 - (CGFloat)headerHeight{

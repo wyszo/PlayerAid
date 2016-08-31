@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) CGFloat blurIterations;
 @property (nonatomic, assign) UIColor *headerOverscrollBackgroundColor;
+@property (nonatomic, assign) UIColor *headerImageViewBackgroundColor;
 
 - (void)setHeaderImage:(UIImage*)headerImage;
 - (void)addHeaderOverlayView:(UIView*)overlay;
@@ -25,7 +26,6 @@
 // overridable
 - (UIView *)subHeaderView;
 - (CGFloat)subHeaderHeight;
-- (UIView *)overscrollOverlayWithFrame:(CGRect)frame;
 
 /**
  *  This should be called whenever the content size of the scrollview need to be adjusted.

@@ -470,11 +470,11 @@
             </objects>
             <point key="canvasLocation" x="749" y="2464"/>
         </scene>
-        <!--New Profile-->
+        <!--Profile-->
         <scene sceneID="Qzv-9d-ae6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="GkJ-92-8V2" userLabel="New Profile" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="New Profile" image="profile-unselected" id="6ZA-LS-gws" userLabel="New Profile">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="GkJ-92-8V2" userLabel="Profile" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="6ZA-LS-gws" userLabel="Profile">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
                         </userDefinedRuntimeAttributes>

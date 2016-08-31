@@ -1,7 +1,3 @@
-//
-//  PlayerAid
-//
-
 @import Foundation;
 
 @protocol GuidesTableViewDelegate <NSObject>

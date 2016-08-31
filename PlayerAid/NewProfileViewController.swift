@@ -1,19 +1,15 @@
 import UIKit
-import MGSpotyViewController
 import ParallaxBlur
-
-// TODO: restore tableView empty states
-
 
 final class NewProfileViewController: JPBParallaxTableViewController {
     var viewModel: NewProfileViewModel!
-    private let spotySectionIndexTransformer = MGSpotySectionIndexTransformer()
     
-    private var profileDelegate: ProfileTableViewDelegate!
     private var tabSwitcherViewController: ProfileTabSwitcherViewController!
     private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
+    
     private var profileOverscrollOverlay: ProfileOverscrollOverlay!
     private var playerInfoView: PlayerInfoView!
+    
     private var lastSelectedGuide: Tutorial?
     
     override func viewDidLoad() {
@@ -35,6 +31,27 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         tabSwitcherViewController.tutorialsTabSelectedBlock()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        TabBarBadgeHelper().hideProfileTabBarItemBadge()
+        updateBackButtons()
+        updateNavigationBarVisibility()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tabSwitcherViewController.updateGuidesCountLabels()
+    }
+    
+    //MARK: statusbar
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    //MARK: setup
+    
     private func setupProfileOverscrollOverlay() {
         profileOverscrollOverlay = ProfileOverscrollOverlay()
         profileOverscrollOverlay.backButtonAction = { [unowned self] in
@@ -49,10 +66,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     }
     
     private func setupBackgroundImage() {
-        // TODO: poczatkowo widac czarne tlo - nie powinno byc czarne!! (ani widoczne!)
-        let transparentStub = UIImage(named: "transparent")
-        setHeaderImage(transparentStub)
-        
+        self.headerImageViewBackgroundColor = ColorsHelper.userProfileDefaultBackgroundColor()
         setHeaderTintColor(Constants.TintColor)
         
         viewModel.fetchProfileImage { [unowned self] image in
@@ -60,55 +74,9 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        TabBarBadgeHelper().hideProfileTabBarItemBadge()
-        updateBackButtons()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        tabSwitcherViewController.updateGuidesCountLabels()
-        updateNavigationBarVisibility()
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    //MARK: setup
-    
     private func setupFollowersCells() {
         let nib = UINib(nibName: Constants.UserCellNibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: Constants.UserCellIdentifier)
-    }
-    
-    private func setupDelegate() {
-        setupTabSwitcher()
-        let tabSwitcherSize = CGSize(width: view.bounds.size.width, height: Constants.TabSwitcherHeight)
-        
-        profileDelegate = ProfileTableViewDelegate(headerSize: tabSwitcherSize, headerView: tabSwitcherViewController.collectionView!)
-        profileDelegate.rowHeight = ProfileTabSwitcherFactory.Constants.GuidesRowHeight
-//        delegate = profileDelegate!
-        
-        profileDelegate.cellSelected = { [unowned self] oneBasedIndexPath in
-            let sectionIndex = self.spotySectionIndexTransformer.zeroBasedSectionIndex(oneBasedIndexPath.section)
-            let indexPath = NSIndexPath(forRow: oneBasedIndexPath.row, inSection: sectionIndex)
-            
-            if self.profileDelegate.shouldPushProfileOnCellSelected {
-                if let user = self.profileDelegate.indexPathToUserTransformation?(indexPath) {
-                    self.pushProfile(user)
-                }
-            } else {
-                if let guide = self.profileDelegate.indexPathToGuideTransformation?(indexPath) {
-//                    self.didSelectRowWithGuide(guide)
-                }
-            }
-        }
     }
     
     private func pushProfile(user: User) {
@@ -125,31 +93,14 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, reloadTableView: { [unowned self] in
                 self.tableView.reloadData()
                 self.recalculateHeight()
-            }, setDataSource: { [unowned self] dataSource in
-//            self.dataSource = dataSource
-            self.tableView.reloadData()
-        }, setPushProfileOnCellSelected: { [unowned self] shouldPush in
-//            self.profileDelegate.shouldPushProfileOnCellSelected = shouldPush
-        }, setDeleteCellAtIndexPath: { [unowned self] deleteCallback in
-            self.setupAllowCellDeletion(deleteCallback != nil, cellDeletionBlock:deleteCallback)
-        })
+            })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
         
         addChildViewController(tabSwitcherViewController)
-//        dataSource = tabSwitcherViewModel.ownGuidesDataSource
     }
     
-    private func setupAllowCellDeletion(allowDeletion: Bool, cellDeletionBlock:((NSIndexPath)->())?) {
-        if allowDeletion {
-//            self.deleteCellOnSwipeBlock = { [unowned self] oneBasedIndexPath in
-//                let indexPath = self.spotySectionIndexTransformer.zeroBasedIndexPath(oneBasedIndexPath)
-//                cellDeletionBlock?(indexPath)
-//            }
-        } else {
-//            self.deleteCellOnSwipeBlock = nil
-        }
-    }
+    //MARK: header overlay
     
     private func setupHeaderOverlay() {
         let screenWidth = view.bounds.size.width
@@ -186,13 +137,16 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         updateProfileOverscrollOverlay()
     }
     
+    private func overscrollOverlayWithFrame(frame: CGRect) -> UIView! {
+        profileOverscrollOverlay.view.frame = frame
+        profileOverscrollOverlay.view.backgroundColor = ColorsHelper.userProfileHeaderOverscrollBackgroundColor()
+        return profileOverscrollOverlay.view
+    }
+    
     //MARK: private
     
     private func updateNavigationBarVisibility() {
-        let isOnlyViewControllerOnStack = (self.navigationController?.viewControllers.count == 1)
-        if (isOnlyViewControllerOnStack) {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     private func isOnlyViewControllerOnNavigationStack() -> Bool {
@@ -226,9 +180,9 @@ final class NewProfileViewController: JPBParallaxTableViewController {
 extension NewProfileViewController: GuidesTableViewDelegate {
     
     @objc func numberOfRowsDidChange(numberOfRows: Int) {
-//        [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-//        [self updateTabSwitcherGuidesCount];
+        // [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
         
+        tabSwitcherViewController.updateGuidesCountLabels()
         self.recalculateHeight() // to powinno byc zawolane dopiero po zakonczeniu animacji z FRB, inaczej nie ma sensu!
     }
 
@@ -243,8 +197,7 @@ extension NewProfileViewController: GuidesTableViewDelegate {
         }
     }
     
-    func recalculateHeight() 
-    {
+    func recalculateHeight() {
         self.setNeedsScrollViewAppearanceUpdate()
     }
 }
@@ -265,12 +218,7 @@ extension NewProfileViewController {
     }
     
     func offsetHeight() -> CGFloat {
-        return 65.0 // folded profile height from screen top to tabSelection bar
-    }
-    
-    override func overscrollOverlayWithFrame(frame: CGRect) -> UIView! {
-        profileOverscrollOverlay.view.frame = frame
-        profileOverscrollOverlay.view.backgroundColor = ColorsHelper.userProfileHeaderOverscrollBackgroundColor()
-        return profileOverscrollOverlay.view
+        // folded profile height from screen top to tabSelection bar
+        return 65.0
     }
 }
