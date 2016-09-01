@@ -35,4 +35,8 @@ final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
         return scrollEnabled
     }
+    
+    func emptyDataSetDidDisappear(scrollView: UIScrollView!) {
+        scrollView.scrollEnabled = scrollEnabled
+    }
 }
