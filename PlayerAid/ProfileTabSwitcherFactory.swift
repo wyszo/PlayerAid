@@ -7,6 +7,8 @@ final class ProfileTabSwitcherFactory {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
+            self.disableAllDataSources(viewModel)
+        
             viewModel.ownGuidesDataSource.attachDataSourceAndDelegateToTableView()
             viewModel.ownGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
             viewModel.setEmptyState("No guides made", imageName: "emptystate-tutorial-ic")
@@ -14,6 +16,8 @@ final class ProfileTabSwitcherFactory {
             reloadTableView()
         }
         tabSwitcher.likedTabSelectedBlock = {
+            self.disableAllDataSources(viewModel)
+            
             viewModel.likedGuidesDataSource.attachDataSourceAndDelegateToTableView()
             viewModel.likedGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
             viewModel.setEmptyState("No liked guides", imageName: "emptystate-liked-ic")
@@ -21,6 +25,8 @@ final class ProfileTabSwitcherFactory {
             reloadTableView()
         }
         tabSwitcher.followingTabSelectedBlock = {
+            self.disableAllDataSources(viewModel)
+            
             viewModel.followingDataSource.attachDataSourceToTableView()
             viewModel.attachFollowingTableViewDelegate()
             viewModel.setEmptyState("Not following anyone yet", imageName: "emptystate-followers-ic")
@@ -28,6 +34,8 @@ final class ProfileTabSwitcherFactory {
             reloadTableView()
         }
         tabSwitcher.followersTabSelectedBlock = {
+            self.disableAllDataSources(viewModel)
+            
             viewModel.followersDataSource.attachDataSourceToTableView()
             viewModel.attachFollowersTableViewDelegate()
             viewModel.setEmptyState("No followers yet", imageName: "emptystate-followers-ic")
@@ -35,5 +43,10 @@ final class ProfileTabSwitcherFactory {
             reloadTableView()
         }
         return tabSwitcher
+    }
+    
+    func disableAllDataSources(viewModel: ProfileTabSwitcherViewModel) {
+        viewModel.ownGuidesDataSource.detachFromTableView()
+        viewModel.likedGuidesDataSource.detachFromTableView()
     }
 }

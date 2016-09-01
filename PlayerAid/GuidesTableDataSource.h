@@ -23,6 +23,7 @@ NEW_AND_INIT_UNAVAILABLE
 
 // call this after initailisation for the class to work
 - (void)attachDataSourceAndDelegateToTableView;
+- (void)detachFromTableView;
 
 - (NSInteger)numberOfRowsForSectionNamed:(nonnull NSString *)sectionName;
 

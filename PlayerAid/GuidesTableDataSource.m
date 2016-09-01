@@ -49,6 +49,12 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
     self.tableView.delegate = self;
     self.tableView.dataSource = _tableViewDataSource;
+    
+    self.fetchedResultsControllerBinder.disabled = false;
+}
+
+- (void)detachFromTableView {
+    self.fetchedResultsControllerBinder.disabled = true;
 }
 
 - (void)initFetchedResultsControllerBinder
