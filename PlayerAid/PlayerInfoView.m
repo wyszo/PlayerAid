@@ -10,6 +10,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
+#import "UsersFetchController.h"
 
 static NSString *const kNibFileName = @"PlayerInfoView";
 
@@ -92,7 +93,7 @@ static NSString *const kNibFileName = @"PlayerInfoView";
 
 - (BOOL)shouldHideAddDescriptionButtonForUser:(User *)user {
   AssertTrueOrReturnNo(user != nil);
-  return user.userDescription.length > 0;
+  return (user.userDescription.length > 0 || user != [UsersFetchController.sharedInstance currentUser]);
 }
 
 #pragma mark - IBActions
