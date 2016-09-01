@@ -30,6 +30,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         setupHeaderOverscrollOverlay()
         setupEmptyTableViewOverlays()
         setupTableViewHeaderAndFooter()
+        tableView.scrollEnabled = false
         
         tabSwitcherViewController.tutorialsTabSelectedBlock()
     }
