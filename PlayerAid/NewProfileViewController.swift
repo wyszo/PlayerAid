@@ -108,9 +108,10 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         })
         
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, reloadTableView: { [unowned self] in
+                self.tableView.contentOffset = CGPointZero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
                 self.tableView.reloadData()
-                self.recalculateHeight()
                 self.adjustTableViewContentSize()
+                self.recalculateHeight()
             })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
