@@ -23,6 +23,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         
         super.viewDidLoad()
         tabSwitcherViewController.didMoveToParentViewController(self)
+        self.view.backgroundColor = UIColor.whiteColor()
         
         setupFollowersCells()
         setupBackgroundImage()
@@ -41,6 +42,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         TabBarBadgeHelper().hideProfileTabBarItemBadge()
         updateBackButtons()
         updateNavigationBarVisibility()
+        adjustTableViewContentSize()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -108,13 +110,14 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, reloadTableView: { [unowned self] in
                 self.tableView.reloadData()
                 self.recalculateHeight()
+                self.adjustTableViewContentSize()
             })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
         
         addChildViewController(tabSwitcherViewController)
     }
-    
+
     //MARK: header overlay
     
     private func setupHeaderOverlay() {
@@ -174,6 +177,24 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         playerInfoView.setBackButtonHidden(hidden)
     }
     
+    //MARK: TableView size adjustments
+    
+    func adjustTableViewContentSize() {
+        let headersHeight = self.headerHeight() + self.subHeaderHeight()
+        assert(headersHeight > 0)
+        
+        let viewHeight = self.view.frame.height
+        assert(viewHeight > 0)
+        
+        setMinimumTableViewHeight(viewHeight - headersHeight)
+    }
+    
+    func setMinimumTableViewHeight(height: CGFloat) {
+        var frame = tableView.frame
+        frame.size.height = max(tableView.contentSize.height, height)
+        tableView.frame = frame
+    }
+    
     //MARK: Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -186,10 +207,10 @@ final class NewProfileViewController: JPBParallaxTableViewController {
 extension NewProfileViewController: GuidesTableViewDelegate {
     
     @objc func numberOfRowsDidChange(numberOfRows: Int) {
-        // [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
-        
         tabSwitcherViewController.updateGuidesCountLabels()
-        self.recalculateHeight() // to powinno byc zawolane dopiero po zakonczeniu animacji z FRB, inaczej nie ma sensu!
+        recalculateHeight() // this needs to be called only AFTER finishing rows animations, otherwise doesn't make sense...
+        
+        // self.tableView.frame = self.tableView.contentSize
     }
 
     @objc func didSelectRowWithGuide(guide: Tutorial) {

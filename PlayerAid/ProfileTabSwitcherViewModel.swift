@@ -13,7 +13,7 @@ final class ProfileTabSwitcherViewModel: NSObject {
     var followingDataSource: TWArrayTableViewDataSource!
     var followersDataSource: TWArrayTableViewDataSource!
     
-    let emptyDataSetSource: EmptyDataSetSource
+    let emptyDataSetSource = EmptyDataSetSource()
     var emptyDataSetDelegate: DZNEmptyDataSetDelegate {
         return emptyDataSetSource
     }
@@ -42,7 +42,6 @@ final class ProfileTabSwitcherViewModel: NSObject {
         self.user = user
         self.userCellReuseIdentifier = userCellReuseIdentifier
         self.userAvatarOrNameSelected = userAvatarOrNameSelected
-        emptyDataSetSource = EmptyDataSetSource(offset: Constants.EmptyStateOverlayOffset)
         
         super.init()
         

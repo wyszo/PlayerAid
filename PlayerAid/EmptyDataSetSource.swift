@@ -2,15 +2,13 @@ import UIKit
 import DZNEmptyDataSet
 
 final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    var offset: CGFloat!
     var title: String!
     var image: UIImage!
     var scrollEnabled = false
     
-    init(title: String = "", image: UIImage = UIImage(), offset: CGFloat = 0) {
+    init(title: String = "", image: UIImage = UIImage()) {
         self.title = title
         self.image = image
-        self.offset = offset
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -20,10 +18,6 @@ final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
             NSForegroundColorAttributeName : UIColor.blackColor()
         ]
         return NSAttributedString(string: title, attributes: attributes)
-    }
-    
-    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
-        return offset
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
