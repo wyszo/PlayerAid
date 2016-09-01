@@ -110,7 +110,6 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, reloadTableView: { [unowned self] in
                 self.tableView.contentOffset = CGPointZero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
                 self.tableView.reloadData()
-                self.adjustTableViewContentSize()
                 self.recalculateHeight()
             })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
@@ -208,10 +207,13 @@ final class NewProfileViewController: JPBParallaxTableViewController {
 extension NewProfileViewController: GuidesTableViewDelegate {
     
     @objc func numberOfRowsDidChange(numberOfRows: Int) {
-        tabSwitcherViewController.updateGuidesCountLabels()
-        recalculateHeight() // this needs to be called only AFTER finishing rows animations, otherwise doesn't make sense...
-        
-        // self.tableView.frame = self.tableView.contentSize
+        DispatchAsyncOnMainThread { 
+            self.tabSwitcherViewController.updateGuidesCountLabels()
+            
+            DispatchAfter(0.5, closure: { // horrible workaround for now callback!
+                self.recalculateHeight() // this needs to be called only AFTER finishing rows animations, otherwise doesn't make sense...
+            })
+        }
     }
 
     @objc func didSelectRowWithGuide(guide: Tutorial) {
@@ -226,6 +228,7 @@ extension NewProfileViewController: GuidesTableViewDelegate {
     }
     
     func recalculateHeight() {
+        self.adjustTableViewContentSize()
         self.setNeedsScrollViewAppearanceUpdate()
     }
 }
