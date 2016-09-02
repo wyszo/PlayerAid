@@ -54,9 +54,11 @@
 }
 
 - (void)updateDescriptionHeightForUserDescription:(NSString *)userDescription {
-    NSInteger minPriority = 1;
-    NSInteger maxPriority = UILayoutPriorityRequired;
-    self.heightEqualZeroConstraint.priority = (userDescription.length == 0 ? maxPriority : minPriority);
+    BOOL hideDescription = (userDescription.length == 0);
+    if (userDescription == nil) {
+        hideDescription = YES;
+    }
+    self.heightEqualZeroConstraint.active = hideDescription;
 }
 
 #pragma mark - IBActions

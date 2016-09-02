@@ -99,7 +99,6 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     private func pushOtherUserProfile(user: User) {
         let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: false)
         userPushBlock(user)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func setupTabSwitcher() {
