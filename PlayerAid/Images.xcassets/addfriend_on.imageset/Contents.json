@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "addfriend_on.png"
+      "filename" : "addfriend-grey-on-1.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "addfriend_on@2x.png"
+      "filename" : "addfriend-grey-on@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "addfriend_on@3x.png"
+      "filename" : "addfriend-grey-on.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
