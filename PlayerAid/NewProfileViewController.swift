@@ -107,15 +107,23 @@ final class NewProfileViewController: JPBParallaxTableViewController {
             self.pushProfile(user)
         })
         
-        tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, reloadTableView: { [unowned self] in
+        tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, usersTableViewDelegate: self, reloadTableView: { [unowned self] in
                 self.tableView.contentOffset = CGPointZero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
                 self.tableView.reloadData()
                 self.recalculateHeight()
+            
+                if self.isViewLoadedAndInViewHierarchy() {
+                    self.tabSwitcherViewController.updateGuidesCountLabels() // this is just masking a bug that tab numbers don't update dynamically on core data change
+                }
             })
         tabSwitcherViewController.collectionView?.backgroundColor = ColorsHelper.tutorialsUnselectedFilterBackgroundColor()
         tabSwitcherViewController.viewModel = tabSwitcherViewModel
         
         addChildViewController(tabSwitcherViewController)
+    }
+    
+    private func isViewLoadedAndInViewHierarchy() -> Bool {
+        return isViewLoaded() && view.window != nil;
     }
 
     //MARK: header overlay
@@ -203,8 +211,8 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     }
 }
 
-//MARK: GuidesTableViewDelegate
-extension NewProfileViewController: GuidesTableViewDelegate {
+//MARK: Guides/Users TableViewDelegate
+extension NewProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate {
     
     @objc func numberOfRowsDidChange(numberOfRows: Int) {
         DispatchAsyncOnMainThread { 

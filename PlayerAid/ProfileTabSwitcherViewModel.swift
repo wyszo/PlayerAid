@@ -10,8 +10,8 @@ final class ProfileTabSwitcherViewModel: NSObject {
     
     var ownGuidesDataSource: GuidesTableDataSource!
     var likedGuidesDataSource: GuidesTableDataSource!
-    var followingDataSource: TWArrayTableViewDataSource!
-    var followersDataSource: TWArrayTableViewDataSource!
+    var followingDataSource: UsersTableViewDataSource!
+    var followersDataSource: UsersTableViewDataSource!
     
     let emptyDataSetSource = EmptyDataSetSource()
     var emptyDataSetDelegate: DZNEmptyDataSetDelegate {
@@ -79,7 +79,7 @@ private extension ProfileTabSwitcherViewModel {
         self.followersTableViewDelegate = followedUserTableViewDelegate(self.followersDataSource, userSelected: userSelected)
     }
     
-    func followedUserTableViewDelegate(dataSource: TWArrayTableViewDataSource, userSelected: (User)->()) -> FollowedUserTableViewDelegate {
+    func followedUserTableViewDelegate(dataSource: TWObjectAtIndexPathProtocol, userSelected: (User)->()) -> FollowedUserTableViewDelegate {
         let delegate = FollowedUserTableViewDelegate()
         
         delegate.cellSelectedBlock = { indexPath in
@@ -126,30 +126,17 @@ private extension ProfileTabSwitcherViewModel {
     }
     
     func setupFollowingDataSource() {
-        followingDataSource = createUserCellDataSource(objects: Array(user.follows))
+        followingDataSource = UsersTableViewDataSource(tableView: tableView)
+        followingDataSource.predicate = NSPredicate(format: "%@ IN isFollowedBy", self.user)
+        
+        // TODO: dataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
     }
     
     func setupFollowersDataSource() {
-        followersDataSource = createUserCellDataSource(objects: Array(user.isFollowedBy))
-    }
+        followersDataSource = UsersTableViewDataSource(tableView: tableView)
+        followersDataSource.predicate = NSPredicate(format: "%@ IN follows", self.user)
     
-    func createUserCellDataSource(objects objects: [AnyObject]) -> TWArrayTableViewDataSource {
-        assert(objects.count >= 0)
-        let arrayDataSource = TWArrayTableViewDataSource(array: objects, tableView: tableView, attachToTableView: false, cellDequeueIdentifier: self.userCellReuseIdentifier)
-        
-        arrayDataSource.configureCellBlock = { cell, indexPath in
-            let userCell = cell as? FollowedUserTableViewCell
-            assert(userCell != nil)
-            
-            assert(indexPath.row < arrayDataSource.objectCount())
-            let user = arrayDataSource.objectAtIndexPath(indexPath) as? User
-            assert(user != nil)
-            
-            if user != nil {
-                userCell!.configureWithUser(user)
-            }
-        }
-        return arrayDataSource
+        // TODO: dataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
     }
 }
 

@@ -3,7 +3,7 @@ import Foundation
 final class ProfileTabSwitcherFactory {
     typealias VoidBlock = ()->()
     
-    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, guidesTableViewDelegate: GuidesTableViewDelegate, reloadTableView: VoidBlock) -> ProfileTabSwitcherViewController {
+    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, guidesTableViewDelegate: GuidesTableViewDelegate, usersTableViewDelegate: UsersTableViewDelegate, reloadTableView: VoidBlock) -> ProfileTabSwitcherViewController {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
@@ -29,6 +29,7 @@ final class ProfileTabSwitcherFactory {
             
             viewModel.followingDataSource.attachDataSourceToTableView()
             viewModel.attachFollowingTableViewDelegate()
+            viewModel.followingDataSource.usersTableViewDelegate = usersTableViewDelegate
             viewModel.setEmptyState("Not following anyone yet", imageName: "emptystate-followers-ic")
             
             reloadTableView()
@@ -38,6 +39,7 @@ final class ProfileTabSwitcherFactory {
             
             viewModel.followersDataSource.attachDataSourceToTableView()
             viewModel.attachFollowersTableViewDelegate()
+            viewModel.followersDataSource.usersTableViewDelegate = usersTableViewDelegate
             viewModel.setEmptyState("No followers yet", imageName: "emptystate-followers-ic")
             
             reloadTableView()
@@ -48,5 +50,7 @@ final class ProfileTabSwitcherFactory {
     func disableAllDataSources(viewModel: ProfileTabSwitcherViewModel) {
         viewModel.ownGuidesDataSource.detachFromTableView()
         viewModel.likedGuidesDataSource.detachFromTableView()
+        viewModel.followingDataSource.detachFromTableView()
+        viewModel.followersDataSource.detachFromTableView()
     }
 }

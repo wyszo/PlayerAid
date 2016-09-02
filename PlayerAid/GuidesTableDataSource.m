@@ -18,7 +18,7 @@
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 
 
-@interface GuidesTableDataSource () <NSFetchedResultsControllerDelegate>
+@interface GuidesTableDataSource ()
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
 @property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
