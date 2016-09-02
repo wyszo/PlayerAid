@@ -128,15 +128,11 @@ private extension ProfileTabSwitcherViewModel {
     func setupFollowingDataSource() {
         followingDataSource = UsersTableViewDataSource(tableView: tableView)
         followingDataSource.predicate = NSPredicate(format: "%@ IN isFollowedBy", self.user)
-        
-        // TODO: dataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
     }
     
     func setupFollowersDataSource() {
         followersDataSource = UsersTableViewDataSource(tableView: tableView)
         followersDataSource.predicate = NSPredicate(format: "%@ IN follows", self.user)
-    
-        // TODO: dataSource.userAvatarOrNameSelectedBlock = self.userAvatarOrNameSelected
     }
 }
 

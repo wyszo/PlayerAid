@@ -96,15 +96,15 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: Constants.UserCellIdentifier)
     }
     
-    private func pushProfile(user: User) {
-        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: true)
+    private func pushOtherUserProfile(user: User) {
+        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: false)
         userPushBlock(user)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func setupTabSwitcher() {
         tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!, userCellReuseIdentifier: Constants.UserCellIdentifier, userAvatarOrNameSelected: { [unowned self] user in
-            self.pushProfile(user)
+            self.pushOtherUserProfile(user)
         })
         
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, usersTableViewDelegate: self, reloadTableView: { [unowned self] in
