@@ -10,7 +10,7 @@
 #import "UserManipulationController.h"
 
 @interface FollowedUserTableViewCell ()
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightEqualZeroConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *heightEqualZeroConstraint;
 @property (weak, nonatomic) User *user;
 @end
 
@@ -54,11 +54,15 @@
 }
 
 - (void)updateDescriptionHeightForUserDescription:(NSString *)userDescription {
+    AssertTrueOrReturn(self.heightEqualZeroConstraint);
+
     BOOL hideDescription = (userDescription.length == 0);
     if (userDescription == nil) {
         hideDescription = YES;
     }
     self.heightEqualZeroConstraint.active = hideDescription;
+    [self setNeedsUpdateConstraints];
+    [self layoutIfNeeded];
 }
 
 #pragma mark - IBActions
