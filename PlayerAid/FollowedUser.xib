@@ -30,6 +30,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rm-aX-ofi" userLabel="descriptionLabel">
                         <rect key="frame" x="80" y="38" width="305" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="1" id="sBi-dX-fxC"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -66,6 +69,7 @@
                 <outlet property="avatarImageView" destination="4vl-6X-1GH" id="2l0-9v-h7w"/>
                 <outlet property="descriptionLabel" destination="3rm-aX-ofi" id="IgG-tk-yX1"/>
                 <outlet property="followingButton" destination="cr5-51-yDw" id="chj-pY-wR6"/>
+                <outlet property="heightEqualZeroConstraint" destination="sBi-dX-fxC" id="eyt-Of-4eb"/>
                 <outlet property="nameLabel" destination="iZP-HI-AEQ" id="stO-mq-7J0"/>
             </connections>
             <point key="canvasLocation" x="496" y="412"/>

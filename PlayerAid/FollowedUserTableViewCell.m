@@ -10,6 +10,7 @@
 #import "UserManipulationController.h"
 
 @interface FollowedUserTableViewCell ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightEqualZeroConstraint;
 @property (weak, nonatomic) User *user;
 @end
 
@@ -35,6 +36,7 @@
   
   [self updateFollowingButtonVisibility];
   [self updateFollowingButtonImage];
+  [self updateDescriptionHeightForUserDescription:user.userDescription];
 }
 
 - (void)updateFollowingButtonVisibility
@@ -49,6 +51,12 @@
 {
   AssertTrueOrReturn(self.user);
   [[FollowingButtonDecorator new] updateFollowingButtonImage:self.followingButton forUser:self.user backgroundType:BackgroundTypeLight];
+}
+
+- (void)updateDescriptionHeightForUserDescription:(NSString *)userDescription {
+    NSInteger minPriority = 1;
+    NSInteger maxPriority = UILayoutPriorityRequired;
+    self.heightEqualZeroConstraint.priority = (userDescription.length == 0 ? maxPriority : minPriority);
 }
 
 #pragma mark - IBActions
