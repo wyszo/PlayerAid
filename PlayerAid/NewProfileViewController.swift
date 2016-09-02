@@ -108,7 +108,11 @@ final class NewProfileViewController: JPBParallaxTableViewController {
         
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, usersTableViewDelegate: self, reloadTableView: { [unowned self] in
                 self.tableView.contentOffset = CGPointZero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
-                self.tableView.reloadData()
+            
+                UIView.transitionWithView(self.tableView, duration:Constants.TabSwitchingCrossDissolveAnimationDuration, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                    self.tableView.reloadData()
+                }, completion: nil)
+            
                 self.recalculateHeight()
             
                 if self.isViewLoadedAndInViewHierarchy() {
@@ -270,4 +274,6 @@ private struct Constants {
     static let UserCellIdentifier = "UserCellIdentifier"
     static let UserCellNibName = "FollowedUser"
     static let TableViewHeaderFooterGapHeight: CGFloat = 18.0
+    
+    static let TabSwitchingCrossDissolveAnimationDuration: NSTimeInterval = 0.25
 }
