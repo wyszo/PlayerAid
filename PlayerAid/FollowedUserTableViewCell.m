@@ -8,6 +8,7 @@
 #import "UIImageView+AvatarStyling.h"
 #import "FollowingButtonDecorator.h"
 #import "UserManipulationController.h"
+#import "PlayerAid-Swift.h"
 
 @interface FollowedUserTableViewCell ()
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *heightEqualZeroConstraint;
@@ -31,12 +32,15 @@
   self.user = user;
   
   self.nameLabel.text = user.name;
-  self.descriptionLabel.text = user.userDescription;
+  
   [user placeAvatarInImageViewOrDisplayPlaceholder:self.avatarImageView placeholderSize:AvatarPlaceholderSizeMedium];
+  
+  NSString *trimmedDescription = [user.userDescription tw_condensedWhitespace];
+  self.descriptionLabel.text = trimmedDescription;
   
   [self updateFollowingButtonVisibility];
   [self updateFollowingButtonImage];
-  [self updateDescriptionHeightForUserDescription:user.userDescription];
+  [self updateDescriptionHeightForUserDescription:trimmedDescription];
 }
 
 - (void)updateFollowingButtonVisibility
