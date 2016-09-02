@@ -51,9 +51,9 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     }
     
     //MARK: statusbar
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     //MARK: setup

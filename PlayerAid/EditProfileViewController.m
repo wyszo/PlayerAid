@@ -79,10 +79,6 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   self.refreshFacebookDetailsButton.hidden = HideRefreshFromFacebookButton;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 - (void)setupViewController
 {
   [self tw_setNavbarDoesNotCoverTheView];
