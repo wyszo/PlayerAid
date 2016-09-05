@@ -257,56 +257,6 @@
             </objects>
             <point key="canvasLocation" x="750" y="1061"/>
         </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="58c-xg-3RA">
-            <objects>
-                <viewController storyboardIdentifier="ProfileViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Uix-Ga-AJb" customClass="ProfileViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DIJ-1J-d9a"/>
-                        <viewControllerLayoutGuide type="bottom" id="aMs-ni-5qO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WZN-gV-v0K">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="knL-tG-Q8f">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6UK-xR-8AO" userLabel="NoTutorials View" customClass="NoTutorialsView">
-                                <rect key="frame" x="0.0" y="435" width="600" height="80"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="INP-cM-51K"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6UK-xR-8AO" firstAttribute="top" secondItem="DIJ-1J-d9a" secondAttribute="bottom" constant="415" id="7bf-wn-S6l"/>
-                            <constraint firstAttribute="trailing" secondItem="6UK-xR-8AO" secondAttribute="trailing" id="BUo-Qn-pl3"/>
-                            <constraint firstItem="knL-tG-Q8f" firstAttribute="top" secondItem="WZN-gV-v0K" secondAttribute="topMargin" id="UbT-0r-oEn"/>
-                            <constraint firstItem="6UK-xR-8AO" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leading" id="asl-g7-Bb8"/>
-                            <constraint firstItem="knL-tG-Q8f" firstAttribute="leading" secondItem="WZN-gV-v0K" secondAttribute="leading" id="c9Z-1G-CcX"/>
-                            <constraint firstAttribute="trailing" secondItem="knL-tG-Q8f" secondAttribute="trailing" id="js7-MW-caI"/>
-                            <constraint firstItem="aMs-ni-5qO" firstAttribute="top" secondItem="knL-tG-Q8f" secondAttribute="bottom" id="mQU-Em-qlE"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="9Kc-AF-f7Z"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="noTutorialsOverlayTopConstraint" destination="7bf-wn-S6l" id="c8S-kv-IAi"/>
-                        <outlet property="noTutorialsView" destination="6UK-xR-8AO" id="vNT-qw-87I"/>
-                        <outlet property="tutorialTableView" destination="knL-tG-Q8f" id="bDj-7W-8MO"/>
-                        <segue destination="U20-bU-Bha" kind="show" identifier="ShowTutorialDetails" id="Hsy-NE-Zkj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B9V-94-XeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1561" y="1763"/>
-        </scene>
         <!--Settings View Controller-->
         <scene sceneID="vCx-Fh-bQX">
             <objects>
@@ -357,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dX-8w-yEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1561" y="2464"/>
+            <point key="canvasLocation" x="2630" y="2000"/>
         </scene>
         <!--Tab Bar Controller With Autorotate-->
         <scene sceneID="yl2-sM-qoP">
@@ -405,29 +355,6 @@
             </objects>
             <point key="canvasLocation" x="1562" y="-320"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="ORk-No-nVo">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hcs-TP-QxR" customClass="NavigationControllerWhiteStatusbar" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile-unselected" id="EaO-0c-Utx" userLabel="Profile">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="profile-selected"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cXj-Kn-Jy4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Uix-Ga-AJb" kind="relationship" relationship="rootViewController" id="GvM-Ry-eY3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lfE-Pt-FLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="749" y="1763"/>
-        </scene>
         <!--Dummy tabbar controller-->
         <scene sceneID="GCx-HI-qpZ">
             <objects>
@@ -445,7 +372,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lo-MT-8oZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119" y="2464"/>
+            <point key="canvasLocation" x="950" y="2000"/>
         </scene>
         <!--Settings-->
         <scene sceneID="fd4-l6-gd4">
@@ -468,7 +395,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7I-Qp-jgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="2464"/>
+            <point key="canvasLocation" x="1818" y="2000"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Qzv-9d-ae6">
@@ -493,10 +420,10 @@
             </objects>
             <point key="canvasLocation" x="723" y="-1283"/>
         </scene>
-        <!--New Profile View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="Bkt-rc-xym">
             <objects>
-                <viewController storyboardIdentifier="NewProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="KMG-Zb-lBU" customClass="NewProfileViewController" customModule="PlayerAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="KMG-Zb-lBU" customClass="ProfileViewController" customModule="PlayerAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F1Y-C9-hbI"/>
                         <viewControllerLayoutGuide type="bottom" id="cd6-Ta-4Na"/>

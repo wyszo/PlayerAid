@@ -1,7 +1,7 @@
 import Foundation
 import MagicalRecord
 
-final class NewProfileViewModel: NSObject {
+final class ProfileViewModel: NSObject {
     var user: User?
     private let imageDownloader = ImageDownloader()
     

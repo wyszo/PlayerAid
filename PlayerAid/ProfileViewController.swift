@@ -2,8 +2,8 @@ import UIKit
 import ParallaxBlur
 import DZNEmptyDataSet
 
-final class NewProfileViewController: JPBParallaxTableViewController {
-    var viewModel: NewProfileViewModel!
+final class ProfileViewController: JPBParallaxTableViewController {
+    var viewModel: ProfileViewModel!
     
     private var tabSwitcherViewController: ProfileTabSwitcherViewController!
     private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
@@ -78,7 +78,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
     
     private func setupViewModel() {
         if viewModel == nil {
-            viewModel = NewProfileViewModel()
+            viewModel = ProfileViewModel()
         }
     }
     
@@ -215,7 +215,7 @@ final class NewProfileViewController: JPBParallaxTableViewController {
 }
 
 //MARK: Guides/Users TableViewDelegate
-extension NewProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate {
+extension ProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate {
     
     @objc func numberOfRowsDidChange(numberOfRows: Int) {
         DispatchAsyncOnMainThread { 
@@ -245,7 +245,7 @@ extension NewProfileViewController: GuidesTableViewDelegate, UsersTableViewDeleg
 }
 
 //MARK: JPBParallaxTableViewController overrides
-extension NewProfileViewController {
+extension ProfileViewController {
     override func subHeaderView() -> UIView {
         assert(tabSwitcherViewController != nil)
         

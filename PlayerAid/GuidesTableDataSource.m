@@ -9,10 +9,10 @@
 #import "TutorialSectionHeaderView.h"
 #import "AlertFactory.h"
 #import "UITableView+TableViewHelper.h"
-#import "ProfileViewController.h"
 #import "UsersFetchController.h"
 #import "TutorialsTableFetchedResultsControllersFactory.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "PlayerAid-Swift.h"
 
 
 static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";

@@ -74,7 +74,7 @@
 		316BA2C51CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */; };
 		316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */; };
 		316D406F1D6B67A4002EA5C5 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */; };
-		316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */; };
+		316D40711D6B67D0002EA5C5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40701D6B67D0002EA5C5 /* ProfileViewModel.swift */; };
 		316D40761D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */; };
 		316D86C21B205C93003874F4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D86C11B205C93003874F4 /* EditProfileViewController.m */; };
 		316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D86C41B205DE6003874F4 /* EditProfileView.xib */; };
@@ -93,7 +93,6 @@
 		31777FFD1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31777FFC1A7FA5FE007057CD /* AuthenticatedServerCommunicationController.m */; };
 		317780011A7FBFBC007057CD /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780001A7FBFBC007057CD /* AuthenticationController.m */; };
 		317780051A7FC6B6007057CD /* FBSDKProfileFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */; };
-		317780091A7FED4F007057CD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 317780081A7FED4F007057CD /* ProfileViewController.m */; };
 		3177800C1A7FED7A007057CD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800B1A7FED7A007057CD /* SettingsViewController.m */; };
 		317780101A80049A007057CD /* GuidesTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3177800F1A80049A007057CD /* GuidesTableDataSource.m */; };
 		317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317780171A80076C007057CD /* DataModel.xcdatamodeld */; };
@@ -161,7 +160,7 @@
 		31DF69991D67497C00CA05B0 /* TutorialCellOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31DF69981D67497C00CA05B0 /* TutorialCellOverlay.xib */; };
 		31DF699B1D674B8B00CA05B0 /* TutorialCellOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF699A1D674B8B00CA05B0 /* TutorialCellOverlay.swift */; };
 		31DF69A11D6B029C00CA05B0 /* TutorialCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */; };
-		31DF69A41D6B11F600CA05B0 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF69A31D6B11F600CA05B0 /* NewProfileViewController.swift */; };
+		31DF69A41D6B11F600CA05B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF69A31D6B11F600CA05B0 /* ProfileViewController.swift */; };
 		31E1E1891AECAE520091ED01 /* CommonViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1E1881AECAE520091ED01 /* CommonViews.m */; };
 		31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */; };
 		31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1F8F51AADA853005EB35B /* PopoverView.xib */; };
@@ -329,7 +328,7 @@
 		316BA2C41CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStepKeyboardAccessoryViewController.swift; sourceTree = "<group>"; };
 		316BA2C61CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextStepKeyboardAccessoryViewController.xib; sourceTree = "<group>"; };
 		316D406E1D6B67A4002EA5C5 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewModel.swift; sourceTree = "<group>"; };
+		316D40701D6B67D0002EA5C5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		316D40751D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabSwitcherViewModel.swift; sourceTree = "<group>"; };
 		316D86C01B205C93003874F4 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		316D86C11B205C93003874F4 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
@@ -363,8 +362,6 @@
 		317780001A7FBFBC007057CD /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
 		317780031A7FC6B6007057CD /* FBSDKProfileFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSDKProfileFormatter.h; sourceTree = "<group>"; };
 		317780041A7FC6B6007057CD /* FBSDKProfileFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSDKProfileFormatter.m; sourceTree = "<group>"; };
-		317780071A7FED4F007057CD /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		317780081A7FED4F007057CD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3177800A1A7FED7A007057CD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3177800B1A7FED7A007057CD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3177800E1A80049A007057CD /* GuidesTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidesTableDataSource.h; sourceTree = "<group>"; };
@@ -480,7 +477,7 @@
 		31DF69981D67497C00CA05B0 /* TutorialCellOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCellOverlay.xib; sourceTree = "<group>"; };
 		31DF699A1D674B8B00CA05B0 /* TutorialCellOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellOverlay.swift; sourceTree = "<group>"; };
 		31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellViewModel.swift; sourceTree = "<group>"; };
-		31DF69A31D6B11F600CA05B0 /* NewProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
+		31DF69A31D6B11F600CA05B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		31E1E1871AECAE520091ED01 /* CommonViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		31E1E1881AECAE520091ED01 /* CommonViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViews.m; sourceTree = "<group>"; };
 		31E1E18A1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPortraitBlockingOverlay.xib; sourceTree = "<group>"; };
@@ -1242,7 +1239,6 @@
 				317780141A80060A007057CD /* Browse */,
 				310308AE1A83FA7600B7F921 /* Create tutorial */,
 				317780121A8005FE007057CD /* Profile */,
-				31DF69A21D6B11E100CA05B0 /* NewProfile */,
 				317780131A800604007057CD /* Settings */,
 				310308B21A84C92F00B7F921 /* TabBarControllerHandler */,
 			);
@@ -1275,9 +1271,9 @@
 			isa = PBXGroup;
 			children = (
 				316D86BF1B205C82003874F4 /* EditProfile */,
-				317780071A7FED4F007057CD /* ProfileViewController.h */,
-				317780081A7FED4F007057CD /* ProfileViewController.m */,
 				31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */,
+				316D40701D6B67D0002EA5C5 /* ProfileViewModel.swift */,
+				31DF69A31D6B11F600CA05B0 /* ProfileViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1814,15 +1810,6 @@
 				31DF69A01D6B029C00CA05B0 /* TutorialCellViewModel.swift */,
 			);
 			name = ViewModel;
-			sourceTree = "<group>";
-		};
-		31DF69A21D6B11E100CA05B0 /* NewProfile */ = {
-			isa = PBXGroup;
-			children = (
-				316D40701D6B67D0002EA5C5 /* NewProfileViewModel.swift */,
-				31DF69A31D6B11F600CA05B0 /* NewProfileViewController.swift */,
-			);
-			name = NewProfile;
 			sourceTree = "<group>";
 		};
 		31E1E1861AECAE3B0091ED01 /* CommonViews */ = {
@@ -2459,7 +2446,7 @@
 				317780191A80076C007057CD /* DataModel.xcdatamodeld in Sources */,
 				31F721861BEEB1B2001DB831 /* _TutorialComment.m in Sources */,
 				3193ACB61AAF1ACF006B5952 /* NSError+PlayerAidErrors.m in Sources */,
-				316D40711D6B67D0002EA5C5 /* NewProfileViewModel.swift in Sources */,
+				316D40711D6B67D0002EA5C5 /* ProfileViewModel.swift in Sources */,
 				31B735E41A87B52A0081AE15 /* CreateTutorialHeaderView.m in Sources */,
 				316D40761D6D98E7002EA5C5 /* ProfileTabSwitcherViewModel.swift in Sources */,
 				31DD021B1CC49A3E0027719E /* AVURLAsset+Duration.m in Sources */,
@@ -2495,7 +2482,6 @@
 				31C122651A838A530069D49A /* PlayerInfoView.m in Sources */,
 				31DF699B1D674B8B00CA05B0 /* TutorialCellOverlay.swift in Sources */,
 				314B6F3B1B307C1B0051E00D /* ProfileTabSwitcherViewController.m in Sources */,
-				317780091A7FED4F007057CD /* ProfileViewController.m in Sources */,
 				312C6AAF1AD473AD00D96C19 /* JourneyController.m in Sources */,
 				317309FC1BFA1B89004C541D /* ViewControllersFactory.m in Sources */,
 				3114866A1ADFC4F900A644CD /* YCameraViewController+InterfaceOrientation.m in Sources */,
@@ -2517,7 +2503,7 @@
 				31014E6E1A99FFFA002F3485 /* UnauthenticatedServerCommunicationController.m in Sources */,
 				315148A61AB9DEF4008934AE /* KZPropertyMapper+TZDDateBoxing.m in Sources */,
 				317780361A80E557007057CD /* TutorialTableViewCell.m in Sources */,
-				31DF69A41D6B11F600CA05B0 /* NewProfileViewController.swift in Sources */,
+				31DF69A41D6B11F600CA05B0 /* ProfileViewController.swift in Sources */,
 				31B736021A88EB3A0081AE15 /* TutorialStepTableViewCell.m in Sources */,
 				31B735E71A87CC280081AE15 /* CreateTutorialHeaderViewController.m in Sources */,
 				31FB6BD41B13482F0042C409 /* TutorialListFetchController.m in Sources */,

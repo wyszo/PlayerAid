@@ -4,9 +4,11 @@
 
 @import UIKit;
 @import Foundation;
-#import "ProfileViewController.h"
+@import TWCommonLib;
 
 @class User;
+@class Tutorial;
+@class TutorialComment;
 
 // TODO: transform this class into a FlowCoordinator
 

@@ -9,12 +9,12 @@
 #import "GuidesTableDataSource.h"
 #import "TutorialDetailsViewController.h"
 #import "ColorsHelper.h"
-#import "ProfileViewController.h"
 #import "ApplicationViewHierarchyHelper.h"
 #import "DebugSettings.h"
 #import "VideoPlayer.h"
 #import "TutorialDetailsHelper.h"
 #import "ImagesPrefetchingController.h"
+#import "PlayerAid-Swift.h"
 
 @interface TimelineViewController () <GuidesTableViewDelegate>
 

@@ -31,14 +31,14 @@
   return [TabBarHelper frameForTabBarItemAtIndex:indexNumber.unsignedIntegerValue];
 }
 
-+ (NewProfileViewController *)tabBarProfileViewController
++ (ProfileViewController *)tabBarProfileViewController
 {
   UITabBarController *tabBarController = [TabBarHelper mainTabBarController];
-  __block NewProfileViewController *profileViewController;
+  __block ProfileViewController *profileViewController;
   
   [tabBarController.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
-    if ([viewController isKindOfClass:NewProfileViewController.class]) {
-      profileViewController = (NewProfileViewController *)viewController;
+    if ([viewController isKindOfClass:ProfileViewController.class]) {
+      profileViewController = (ProfileViewController *)viewController;
       *stop = YES;
     }
     
@@ -46,8 +46,8 @@
       UINavigationController *navigationController = (UINavigationController *)viewController;
       UIViewController *navigationControllerFirstObject = navigationController.viewControllers.firstObject;
       
-      if ([navigationControllerFirstObject isKindOfClass:NewProfileViewController.class]) {
-        profileViewController = (NewProfileViewController *)navigationControllerFirstObject;
+      if ([navigationControllerFirstObject isKindOfClass:ProfileViewController.class]) {
+        profileViewController = (ProfileViewController *)navigationControllerFirstObject;
         *stop = YES;
       }
     }

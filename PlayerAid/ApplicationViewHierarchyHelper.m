@@ -7,7 +7,6 @@
 #import "ApplicationViewHierarchyHelper.h"
 #import "CreateTutorialViewController.h"
 #import "NavigationControllerWhiteStatusbar.h"
-#import "ProfileViewController.h"
 #import "UsersFetchController.h"
 #import "PlayerAidTabBarHelper.h"
 #import "AppDelegate.h"
@@ -49,9 +48,9 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AssertTrueOrReturn(mainStoryboard);
     
-    NewProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"NewProfileViewController"];
+    ProfileViewController *profileViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
     AssertTrueOrReturn(profileViewController);
-    profileViewController.viewModel = [[NewProfileViewModel alloc] initWithUser: user];
+    profileViewController.viewModel = [[ProfileViewModel alloc] initWithUser: user];
 
     [navigationController pushViewController:profileViewController animated:YES];
     
