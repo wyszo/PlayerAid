@@ -12,11 +12,17 @@ static const NSInteger kTutorialsCellIndex = 0;
 static const NSInteger kLikedTutorialsCellIndex = 1;
 static const NSInteger kFollowingUsersCellIndex = 2;
 static const NSInteger kFollowersCellIndex = 3;
+
 static const NSInteger kCollectionViewNumberOfCells = 4;
+static const CGFloat kTabSelectionViewHeight = 6.0;
+static const CGFloat kTabSelectionViewMargin = 8.0;
 
 
 @interface ProfileTabSwitcherViewController ()
 @property (strong, nonatomic) NSArray *cellLabels;
+
+@property (assign, nonatomic) NSInteger selectedCellIndex;
+@property (strong, nonatomic) FloatingSelectionOverlay *selectionOverlay;
 @end
 
 
@@ -37,9 +43,17 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
   self.collectionView.dataSource = nil;
   self.collectionView.delegate = nil;
   self.cellLabels = @[ @"Tutorials", @"Liked", @"Following", @"Followers" ];
-  
   [self setupCollectionView];
+  
+  self.selectionOverlay = [[FloatingSelectionOverlay alloc] initWithColor:[ColorsHelper tutorialsSelectedFilterButtonColor] superview:self.collectionView];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self updateSelectionOverlayAnimated:NO];
+}
+
+#pragma mark - CollectionView setup
 
 - (void)setupCollectionView {
   [self.collectionView registerNib:[PlayerInfoCollectionViewCell nib] forCellWithReuseIdentifier:@"Cell"];
@@ -56,39 +70,71 @@ static const NSInteger kCollectionViewNumberOfCells = 4;
                                                                                                        collectionViewSize:self.collectionView.frame.size
                                                                                                             numberOfCells:kCollectionViewNumberOfCells
                                                                                                 attachingToCollectionView:self.collectionView];
+  defineWeakSelf();
   delegate.cellSelectedBlock = ^(NSIndexPath *indexPath) {
-    AssertTrueOrReturn(self.tutorialsTabSelectedBlock);
-    AssertTrueOrReturn(self.likedTabSelectedBlock);
-    AssertTrueOrReturn(self.followingTabSelectedBlock);
-    AssertTrueOrReturn(self.followersTabSelectedBlock);
+    AssertTrueOrReturn(weakSelf.tutorialsTabSelectedBlock);
+    AssertTrueOrReturn(weakSelf.likedTabSelectedBlock);
+    AssertTrueOrReturn(weakSelf.followingTabSelectedBlock);
+    AssertTrueOrReturn(weakSelf.followersTabSelectedBlock);
     
-    NSArray *callbacks = @[ self.tutorialsTabSelectedBlock, self.likedTabSelectedBlock, self.followingTabSelectedBlock, self.followersTabSelectedBlock ];
+    NSArray *callbacks = @[ weakSelf.tutorialsTabSelectedBlock, weakSelf.likedTabSelectedBlock, weakSelf.followingTabSelectedBlock, weakSelf.followersTabSelectedBlock ];
     
     AssertTrueOrReturn(indexPath.row < callbacks.count);
     VoidBlock callback = callbacks[indexPath.row];
     CallBlock(callback);
+    
+    weakSelf.selectedCellIndex = indexPath.row;
+    [weakSelf updateSelectionOverlayAnimated:YES];
   };
   return delegate;
 }
 
 - (void)setupCollectionViewDataSource {
   TWSimpleCollectionViewDataSource *dataSource = [[TWSimpleCollectionViewDataSource alloc] initAttachingToCollectionView:self.collectionView];
-  dataSource.numberOfItems = self.cellLabels.count;
+  dataSource.numberOfItems = [self numberOfItems];
   
+  defineWeakSelf();
   dataSource.cellConfigurationBlock = ^(UICollectionViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[PlayerInfoCollectionViewCell class]]);
     PlayerInfoCollectionViewCell *collectionViewCell = (PlayerInfoCollectionViewCell *)cell;
-    collectionViewCell.selectionBackgroundColor = [ColorsHelper tutorialsSelectedFilterButtonColor];
     collectionViewCell.selectedTextColor = [ColorsHelper tutorialsSelectedFilterButtonTextColor];
     collectionViewCell.unselectedTextColor = [ColorsHelper tutorialsUnselectedFilterButtonTextColor];
     
     BOOL selected = (indexPath.row == 0);
     [collectionViewCell setSelected:selected];
     
-    AssertTrueOrReturn(indexPath.row < self.cellLabels.count);
-    NSString *labelString = self.cellLabels[indexPath.row];
+    AssertTrueOrReturn(indexPath.row < weakSelf.cellLabels.count);
+    NSString *labelString = weakSelf.cellLabels[indexPath.row];
     collectionViewCell.bottomLabel.text = labelString;
   };
+}
+
+- (NSInteger)numberOfItems {
+    return self.cellLabels.count;
+}
+
+#pragma mark - Selection Overlay
+
+- (void)updateSelectionOverlayAnimated:(BOOL)animated {
+    CGRect frame = [self frameForSelectionOverlayForSelectedIndex:self.selectedCellIndex];
+    [self.selectionOverlay setFrame:frame animated:animated];
+}
+
+- (CGRect)frameForSelectionOverlayForSelectedIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.selectedCellIndex inSection:0];
+    
+    CGRect frame = [self.collectionView cellForItemAtIndexPath: indexPath].frame; // this only works for visible cells!
+    AssertTrueOr(frame.size.width != 0, return CGRectZero;);
+    
+    // selection view height
+    frame.origin.y = frame.size.height - kTabSelectionViewHeight;
+    frame.size.height = kTabSelectionViewHeight;
+    
+    // margins
+    frame.origin.x += kTabSelectionViewMargin;
+    frame.size.width -= 2 * kTabSelectionViewMargin;
+    
+    return frame;
 }
 
 #pragma mark - ViewController Containment

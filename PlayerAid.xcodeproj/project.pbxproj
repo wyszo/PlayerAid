@@ -64,6 +64,7 @@
 		3151C2651D22E6C0008DEA1C /* CreateTextStep.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3151C2641D22E6C0008DEA1C /* CreateTextStep.xib */; };
 		31549F861C09089600B2CA87 /* EditCommentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31549F851C09089600B2CA87 /* EditCommentInputViewController.m */; };
 		31549F881C0908B300B2CA87 /* EditCommentInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31549F871C0908B300B2CA87 /* EditCommentInputView.xib */; };
+		3157CA191D7DA7E70004CCB8 /* FloatingSelectionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157CA181D7DA7E70004CCB8 /* FloatingSelectionOverlay.swift */; };
 		315822271AEBD85500DA6CCE /* ImagePickerOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */; };
 		315C0E001C07A4D700B82BA4 /* FBGraphApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C0DFF1C07A4D700B82BA4 /* FBGraphApiRequest.m */; };
 		31652D6E1BFB96A50007855A /* TutorialTextStylingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31652D6D1BFB96A50007855A /* TutorialTextStylingHelper.m */; };
@@ -314,6 +315,7 @@
 		31549F841C09089600B2CA87 /* EditCommentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCommentInputViewController.h; sourceTree = "<group>"; };
 		31549F851C09089600B2CA87 /* EditCommentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCommentInputViewController.m; sourceTree = "<group>"; };
 		31549F871C0908B300B2CA87 /* EditCommentInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCommentInputView.xib; sourceTree = "<group>"; };
+		3157CA181D7DA7E70004CCB8 /* FloatingSelectionOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingSelectionOverlay.swift; sourceTree = "<group>"; };
 		315822251AEBD85500DA6CCE /* ImagePickerOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerOverlayController.h; sourceTree = "<group>"; };
 		315822261AEBD85500DA6CCE /* ImagePickerOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerOverlayController.m; sourceTree = "<group>"; };
 		315C0DFE1C07A4D700B82BA4 /* FBGraphApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGraphApiRequest.h; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 				314B6F3A1B307C1B0051E00D /* ProfileTabSwitcherViewController.m */,
 				31458ABB1D6F2E24008937F0 /* ProfileTabSwitcherFactory.swift */,
 				312459051D773C3A00C75B11 /* EmptyDataSetSource.swift */,
+				3157CA181D7DA7E70004CCB8 /* FloatingSelectionOverlay.swift */,
 			);
 			name = ProfileTabSwitcherViewController;
 			sourceTree = "<group>";
@@ -2538,6 +2541,7 @@
 				317780271A80975C007057CD /* _Section.m in Sources */,
 				3103B6BF1A92377D0097FE00 /* FontsHelper.m in Sources */,
 				3177802A1A80975C007057CD /* Section.m in Sources */,
+				3157CA191D7DA7E70004CCB8 /* FloatingSelectionOverlay.swift in Sources */,
 				31CFDF431C1468DD00A1EAF1 /* ServerCommunicationController.swift in Sources */,
 				3106D7641AC0857D0076F571 /* CreateTutorialStepButton.m in Sources */,
 				6C5AC5E208C8B2C3ADE32C4A /* KeyboardMakeEditCommentInputAccessoryViewsManager.m in Sources */,
