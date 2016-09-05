@@ -36,7 +36,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   else {
     [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getUserWithId:[user.serverID stringValue] completion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
       if (error) {
-        [AlertFactory showGenericErrorAlertViewNoRetry];
+          DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+              [AlertFactory showGenericErrorAlertViewNoRetry];
+          });
       }
     }];
   }
@@ -58,8 +60,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getCurrentUserWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if (error) {
       if ([weakSelf isFirstTimeUserSynchronization]) {
-        [self showBlockingAlertIfItHasNotBeenShown];
-        
+          DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+            [self showBlockingAlertIfItHasNotBeenShown];
+          });
+          
         // this is the first synchronisation, retry api call soon
         DISPATCH_AFTER(kRetryShortDelay, ^{
           [weakSelf fetchCurrentUserProfile];
@@ -73,7 +77,9 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       }
     }
     else if (!error) {
-      [weakSelf dismissBlockingAlertView];
+        DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+            [weakSelf dismissBlockingAlertView];
+        });
       
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
       [weakSelf updateLoggedInUserObjectWithDictionary:(NSDictionary *)responseObject userLinkedWithFacebook:userLinkedWithFacebook];
