@@ -113,7 +113,9 @@ final class ProfileViewController: JPBParallaxTableViewController {
                     self.tableView.reloadData()
                 }, completion: nil)
             
-                self.recalculateHeight()
+                UIView.animateWithDuration(Constants.ProfileHeaderResizeAnimationDuration, animations: {
+                    self.recalculateHeight()
+                })
             
                 if self.isViewLoadedAndInViewHierarchy() {
                     self.tabSwitcherViewController.updateGuidesCountLabels() // this is just masking a bug that tab numbers don't update dynamically on core data change
@@ -276,4 +278,5 @@ private struct Constants {
     static let TableViewHeaderFooterGapHeight: CGFloat = 18.0
     
     static let TabSwitchingCrossDissolveAnimationDuration: NSTimeInterval = 0.25
+    static let ProfileHeaderResizeAnimationDuration: NSTimeInterval = 0.3
 }

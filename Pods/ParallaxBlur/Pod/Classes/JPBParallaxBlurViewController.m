@@ -155,8 +155,13 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
         
         //set alfas
         CGFloat newAlpha = 1 - ((BLUR_DISTANCE - delta)/ BLUR_DISTANCE);
-        [_blurredImageView setAlpha:newAlpha];
         [_floatingHeaderView setAlpha:1];
+        
+        if (delta > backgroundScrollViewLimit) {
+            [_blurredImageView setAlpha:newAlpha];
+        } else {
+            [_blurredImageView setAlpha:1.0];
+        }
         
         // Here I check whether or not the user has scrolled passed the limit where I want to stick the header, if they have then I move the frame with the scroll view
         // to give it the sticky header look
@@ -181,8 +186,6 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
             _scrollViewContainer.frame = (CGRect){.origin = {0, CGRectGetMinY(rect) + CGRectGetHeight(rect)}, .size = _scrollViewContainer.frame.size };
             [_contentView setContentOffset:(CGPoint){0,0} animated:NO];
             [_backgroundScrollView setContentOffset:CGPointMake(0, -delta * 0.5f)animated:NO];
-            
-            [_blurredImageView setAlpha:1.0];
             
             // header overscroll overlay alpha
             CGFloat edge = CGRectGetHeight(rect);
