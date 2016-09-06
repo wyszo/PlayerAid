@@ -21,6 +21,7 @@
     UIScrollView *_contentView;
     UIView *_subHeaderView;
     UIView *_headerOverscrollOverlay;
+    UIView *_tintSubview;
     
     NSMutableArray *_headerOverlayViews;
 }
@@ -217,16 +218,17 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
 - (void)setHeaderImage:(UIImage*)headerImage{
     _originalImageView = headerImage;
     [_headerImageView setImage:headerImage];
+    
     [_blurredImageView setImage:[headerImage blurredImageWithRadius:self.blurIterations iterations:4 tintColor:nil]];
     [self setupTintSubview];
 }
 
 - (void)setupTintSubview {
-    if (_headerTintColor != nil) {
-        UIView *tintSubview = [[UIView alloc] initWithFrame:_blurredImageView.bounds];
-        tintSubview.backgroundColor = _headerTintColor;
-        tintSubview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [_blurredImageView addSubview:tintSubview];
+    if (_tintSubview == nil && _headerTintColor != nil) {
+        _tintSubview = [[UIView alloc] initWithFrame:_blurredImageView.bounds];
+        _tintSubview.backgroundColor = _headerTintColor;
+        _tintSubview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [_blurredImageView addSubview:_tintSubview];
     }
 }
 
