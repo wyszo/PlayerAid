@@ -59,8 +59,7 @@ const NSInteger kTextStepDismissedError = 1;
   return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
 
   [self customizeNavigationBarButtons];
@@ -79,17 +78,27 @@ const NSInteger kTextStepDismissedError = 1;
   [self.keyboardInputViewHandler slideInputViewIn];
 }
 
-- (void)styleTextView
-{
+- (void)styleTextView {
   self.textView.keyboardType = UIKeyboardTypeASCIICapable;
-  self.textView.typingAttributes = [[TutorialTextStylingHelper new] textStepFormatAttributes];
 }
 
-- (void)prepopulateTextViewText
-{
+- (void)prepopulateTextViewText {
+  NSString *text = @"";
   if (self.tutorialTextStep) {
-    self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:self.tutorialTextStep.text];
+    text = self.tutorialTextStep.text;
   }
+  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:[self htmlStringFromText:text]];
+}
+
+// TODO: extract this method from here
+- (NSString *)cssStyle {
+  NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"TextStep" ofType:@"css"];
+  return [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
+}
+
+// TODO: extract this method from here
+- (NSString *)htmlStringFromText:(NSString *)text {
+  return [NSString stringWithFormat:@"<style type='text/css'>%@</style><body>%@</body>", [self cssStyle], text];
 }
 
 - (void)installSwipeRightGestureRecognizer
@@ -112,6 +121,12 @@ const NSInteger kTextStepDismissedError = 1;
 
 - (void)setupKeyboardAccessoryInputView {
   self.keyboardBarViewController = [[TextStepKeyboardAccessoryViewController alloc] init];
+  
+  defineWeakSelf();
+  self.keyboardBarViewController.didPressDash = ^{
+    NSString *hrString = @"<hr style='dashed'>";
+    [weakSelf.textView replaceRange:weakSelf.textView.selectedTextRange withText:hrString];
+  };
 
   self.keyboardInputViewHandler = [[KeyboardCustomAccessoryInputViewHandler alloc] initWithAccessoryKeyboardInputViewController:self.keyboardBarViewController initialInputViewHeight:kKeyboardGuideTextStepAccessoryInputViewHeight];
 }
@@ -183,6 +198,9 @@ const NSInteger kTextStepDismissedError = 1;
   [self updateCharactersCountLabel];
   [self updateConfirmButtonState];
   [self updateTextColor];
+
+  // is there a better way to do this than setting attributed text on every change?
+  textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:[self htmlStringFromText:textView.text]];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

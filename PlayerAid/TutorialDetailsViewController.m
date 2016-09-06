@@ -65,8 +65,19 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-  /** When using hidesBarsOnSwipe, viewController statusbar colour has to be the same as NavigationController statusbar colour, otherwise it'll break after showing and dismissing a modal view - navigationBar will permanently be hidden */
   return UIStatusBarStyleLightContent;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+    
+    DISPATCH_AFTER(0.65, ^{
+        // update cells sizing, ugly workaround
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    });
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,6 +89,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     self.commentRepliesFetchController = [[CommentRepliesFetchController alloc] initWithTutorial:self.tutorial];
   }
   [self.commentRepliesFetchController start];
+  
+  
+  // update sizing
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -193,6 +209,8 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
                                                                                       allowsEditing:NO
                                                                   tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSourceDelegate.moviePlayerParentViewController = self;
+  
+    [self.tutorialStepsDataSourceDelegate initFRC];
 }
 
 - (void)setupScrollDelegate {
