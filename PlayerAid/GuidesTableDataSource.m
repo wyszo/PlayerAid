@@ -45,11 +45,10 @@ static NSString *const kTutorialCellReuseIdentifier = @"TutorialCell";
 }
 
 - (void)attachDataSourceAndDelegateToTableView {
-  // AssertTrueOrReturnNil(tableView.delegate && @"tableView already has a delegate - overriding it probably not desired"); // TODO: we want this, but it'll break existing implementation
-
     self.tableView.delegate = self;
     self.tableView.dataSource = _tableViewDataSource;
     
+    [self.tableViewDataSource resetFetchedResultsController]; // data might have been updated while binder was disabled, this will recreate it
     self.fetchedResultsControllerBinder.disabled = false;
 }
 
