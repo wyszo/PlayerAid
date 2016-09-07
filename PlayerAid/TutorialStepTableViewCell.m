@@ -47,8 +47,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   [self setupGestureRecognizers];
   [self setupEditorView];
   
-  
-//  self.backgroundColor = [UIColor blueColor];
+    [self tw_hideSeparator];
   
     // workaround...
     [self prepareForReuse];
@@ -83,7 +82,6 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.videoOverlayContainer.hidden = YES;
   [self updateTextWithTutorialStep:tutorialStep];
   [self updateImageViewWithTutorialStep:tutorialStep];
-  [self updateSeparatorVisibility];
 }
 
 - (void)updateTextWithTutorialStep:(TutorialStep *)tutorialStep
@@ -176,7 +174,6 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.videoLengthLabel.text = @"";
 
   [self.contentImageView cancelImageRequestOperation];
-  [self showSeparator];
 }
 
 - (void)hideImageView
@@ -185,20 +182,6 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   self.contentImageHeightConstraint.constant = 0.0f;
   self.contentImageView.image = nil;
   [self layoutIfNeeded];
-}
-
-#pragma mark - Separator visibility
-
-- (void)updateSeparatorVisibility {
-  if (self.tutorialStep.isTextStep) {
-    [self showSeparator];
-  } else {
-    [self tw_hideSeparator];
-  }
-}
-
-- (void)showSeparator {
-  [self tw_showSeparatorWithMarginInset:kSeparatorInsetMargin];
 }
 
 #pragma mark - Actions
@@ -258,9 +241,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 #pragma mark - RichEditorDelegate
 
 - (void)richEditor:(RichEditorView *)editor heightDidChange:(NSInteger)height {
-    NSLog(@"height: %ld", height);
     AssertTrueOrReturn(self.editorViewHeightConstraint != nil);
-    
   self.editorViewHeightConstraint.constant = height;
 }
 
