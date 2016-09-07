@@ -9,11 +9,12 @@ static NSString const* kAppStoreEnvName = @"playeraid";
 static NSString const* kProductionEnvName = @"production";
 static NSString const* kQAEnvName = @"qa";
 static NSString const* kStagingEnvName = @"staging";
+static NSString const* kDemoEnvName = @"demo";
 
 static NSString const* kProductionServerBaseURL = @"http://api.playeraid.co.uk/v1/";
 static NSString const* kQAServerBaseURL = @"http://qa.api.playeraid.co.uk/v1/";
 static NSString const* kStagingServerBaseURL = @"https://staging-2.api.playeraid.co.uk/v1/";
-
+static NSString const* kDemoServerBaseURL = @"https://demo.api.playeraid.co.uk/v1/";
 
 @implementation EnvironmentSettings
 
@@ -39,6 +40,7 @@ static NSString const* kStagingServerBaseURL = @"https://staging-2.api.playeraid
            kProductionEnvName : kProductionServerBaseURL,
            kQAEnvName : kQAServerBaseURL,
            kStagingEnvName : kStagingServerBaseURL,
+           kDemoEnvName : kDemoServerBaseURL
            };
 }
 

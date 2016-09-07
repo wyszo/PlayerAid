@@ -168,6 +168,7 @@
 		31E1F8FA1AADA948005EB35B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1F8F91AADA948005EB35B /* PopoverView.m */; };
 		31E9622A1D75EB40000FA49F /* ProfileOverscrollOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E962291D75EB40000FA49F /* ProfileOverscrollOverlay.xib */; };
 		31E9622C1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */; };
+		31EAFE6C1D80358D0050FE9C /* demo.cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 31EAFE6B1D8035890050FE9C /* demo.cert.der */; };
 		31EFB6A91BAB250200F87C03 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6A81BAB250200F87C03 /* LoginViewController.m */; };
 		31EFB6AD1BAB252100F87C03 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EFB6AC1BAB252100F87C03 /* SignUpViewController.m */; };
 		31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EFB6AE1BAB253D00F87C03 /* Login.storyboard */; };
@@ -488,6 +489,7 @@
 		31E1F8F91AADA948005EB35B /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		31E962291D75EB40000FA49F /* ProfileOverscrollOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileOverscrollOverlay.xib; sourceTree = "<group>"; };
 		31E9622B1D75EBE3000FA49F /* ProfileOverscrollOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverscrollOverlay.swift; sourceTree = "<group>"; };
+		31EAFE6B1D8035890050FE9C /* demo.cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = demo.cert.der; path = Certificates/demo.cert.der; sourceTree = "<group>"; };
 		31EFB6A71BAB250200F87C03 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31EFB6A81BAB250200F87C03 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		31EFB6AB1BAB252100F87C03 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 		3109125F1BB44B12007536B6 /* Server certificates */ = {
 			isa = PBXGroup;
 			children = (
+				31EAFE6B1D8035890050FE9C /* demo.cert.der */,
 				31FB752C1BCD38B4001DC102 /* playeraid.cert.der */,
 				31FB752D1BCD38B4001DC102 /* production.cert.der */,
 				31FB752E1BCD38B4001DC102 /* staging.cert.der */,
@@ -2269,6 +2272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
+				31EAFE6C1D80358D0050FE9C /* demo.cert.der in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
 				31DF69991D67497C00CA05B0 /* TutorialCellOverlay.xib in Resources */,
 				310308B71A84CB8C00B7F921 /* CreateTutorialView.xib in Resources */,
@@ -2669,7 +2673,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
@@ -2692,7 +2696,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
