@@ -70,6 +70,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.hidesBarsOnSwipe = YES;
     
     [self.tableView reloadData];
     
@@ -94,6 +95,11 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
   // update sizing
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.hidesBarsOnSwipe = NO;
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
