@@ -24,7 +24,4 @@ NEW_AND_INIT_UNAVAILABLE
  */
 - (instancetype)initWithTableView:(UITableView *)tableView tutorial:(Tutorial *)tutorial context:(NSManagedObjectContext *)context allowsEditing:(BOOL)allowsEditing tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDelegate;
 
-
-- (void)initFRC;
-
 @end

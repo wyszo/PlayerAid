@@ -46,11 +46,9 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   [self setupLayout];
   [self setupGestureRecognizers];
   [self setupEditorView];
+  [self tw_hideSeparator];
   
-    [self tw_hideSeparator];
-  
-    // workaround...
-    [self prepareForReuse];
+  [self prepareForReuse];
 }
 
 - (void)setupEditorView {
@@ -89,30 +87,15 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   AssertTrueOrReturn(tutorialStep);
   NSString *text;
   if ([self.tutorialStep isTextStep]) {
-    text = [self htmlStringFromText:self.tutorialStep.text];
+    text = self.tutorialStep.text;
   }
   if (!text.length) {
     text = @"";
   }
-  [self.editorView setHTML:text];
   
-    // ..
-    self.editorViewHeightConstraint.constant = self.editorView.editorHeight;
+  [self.editorView setHTML:text];
+  self.editorViewHeightConstraint.constant = self.editorView.editorHeight;
 }
-
-
-
-    // TODO: extract this method from here
-    - (NSString *)cssStyle {
-        NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"TextStep" ofType:@"css"];
-        return [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
-    }
-
-    // TODO: extract this method from here
-    - (NSString *)htmlStringFromText:(NSString *)text {
-        return [NSString stringWithFormat:@"<style type='text/css'>%@</style><body>%@</body>", [self cssStyle], text];
-    }
-
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep
 {
@@ -241,7 +224,7 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 #pragma mark - RichEditorDelegate
 
 - (void)richEditor:(RichEditorView *)editor heightDidChange:(NSInteger)height {
-    AssertTrueOrReturn(self.editorViewHeightConstraint != nil);
+  AssertTrueOrReturn(self.editorViewHeightConstraint != nil);
   self.editorViewHeightConstraint.constant = height;
 }
 

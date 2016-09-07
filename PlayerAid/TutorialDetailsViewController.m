@@ -75,9 +75,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     [self.tableView reloadData];
     
     DISPATCH_AFTER(0.65, ^{
-        // update cells sizing, ugly workaround
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
+        [self updateCellsSizing]; // ugly workaround
     });
 }
 
@@ -89,10 +87,12 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
     AssertTrueOrReturn(self.tutorial);
     self.commentRepliesFetchController = [[CommentRepliesFetchController alloc] initWithTutorial:self.tutorial];
   }
+  
   [self.commentRepliesFetchController start];
-  
-  
-  // update sizing
+  [self updateCellsSizing];
+}
+
+- (void)updateCellsSizing {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
@@ -215,8 +215,6 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
                                                                                       allowsEditing:NO
                                                                   tutorialStepTableViewCellDelegate:self];
   self.tutorialStepsDataSourceDelegate.moviePlayerParentViewController = self;
-  
-    [self.tutorialStepsDataSourceDelegate initFRC];
 }
 
 - (void)setupScrollDelegate {

@@ -87,18 +87,8 @@ const NSInteger kTextStepDismissedError = 1;
   if (self.tutorialTextStep) {
     text = self.tutorialTextStep.text;
   }
-  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:[self htmlStringFromText:text]];
-}
-
-// TODO: extract this method from here
-- (NSString *)cssStyle {
-  NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"TextStep" ofType:@"css"];
-  return [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
-}
-
-// TODO: extract this method from here
-- (NSString *)htmlStringFromText:(NSString *)text {
-  return [NSString stringWithFormat:@"<style type='text/css'>%@</style><body>%@</body>", [self cssStyle], text];
+  
+  self.textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:text];
 }
 
 - (void)installSwipeRightGestureRecognizer
@@ -200,7 +190,7 @@ const NSInteger kTextStepDismissedError = 1;
   [self updateTextColor];
 
   // is there a better way to do this than setting attributed text on every change?
-  textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:[self htmlStringFromText:textView.text]];
+  textView.attributedText = [[TutorialTextStylingHelper new] textStepFormattedAttributedStringFromText:textView.text];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

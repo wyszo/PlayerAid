@@ -21,6 +21,7 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 @interface TutorialStepsDataSourceDelegate () <UITableViewDelegate>
 
 @property (nonatomic, strong) TWCoreDataTableViewDataSource *tableViewDataSource;
+@property (nonatomic, strong) TWTableViewFetchedResultsControllerBinder *fetchedResultsControllerBinder;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) Tutorial *tutorial;
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -33,20 +34,6 @@ static NSString *const kTutorialStepCellReuseIdentifier = @"TutorialStepCell";
 @implementation TutorialStepsDataSourceDelegate
 
 #pragma mark - Initilization
-
-- (void)initFRC {
-    defineWeakSelf();
-    self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
-        AssertTrueOr(weakSelf.tutorial, ;);
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
-        return [TutorialStep MR_fetchAllSortedBy:@"order"
-                                       ascending:YES
-                                   withPredicate:predicate
-                                         groupBy:nil
-                                        delegate:nil //weakSelf.fetchedResultsControllerBinder
-                                       inContext:weakSelf.context];
-    };
-}
 
 // TODO: it's confusing that you don't set this class as a tableView dataSource and you just initialize it. Need to document it! 
 - (instancetype)initWithTableView:(UITableView *)tableView
@@ -69,16 +56,33 @@ tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDel
     
     [_tableView registerNibWithName:kTutorialStepCellNibName forCellReuseIdentifier:kTutorialStepCellReuseIdentifier];
     
+    [self initFetchedResultsControllerBinder];
     [self initTableViewDataSource];
   }
   return self;
 }
 
-// to nie jest za wczesnie tworzone?? - nie chyba, ale trzeba jeszcze reload data dac przed pokazaniem...
+- (void)initFetchedResultsControllerBinder
+{
+  defineWeakSelf();
+  self.fetchedResultsControllerBinder = [[TWTableViewFetchedResultsControllerBinder alloc] initWithTableView:self.tableView
+                                                                                          configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
+    [weakSelf configureCell:(TutorialStepTableViewCell *)cell atIndexPath:indexPath];
+  }];
+  
+  self.fetchedResultsControllerBinder.objectInsertedAtIndexPathBlock = ^(NSIndexPath *indexPath) {
+    if (weakSelf.scrollToBottomWhenLastItemAdded) {
+      NSInteger lastIndexPathRow = ([weakSelf.tableViewDataSource objectCount] - 1);
+      if (indexPath.row == lastIndexPathRow) {
+        [weakSelf.tableView tw_scrollToBottomAnimated:YES];
+      }
+    }
+  };
+}
+
 - (void)initTableViewDataSource
 {
   defineWeakSelf();
-  
   self.tableViewDataSource = [[TWCoreDataTableViewDataSource alloc] initWithCellReuseIdentifier:kTutorialStepCellReuseIdentifier
                                                                              configureCellBlock:^(UITableViewCell *cell, NSIndexPath *indexPath) {
     AssertTrueOrReturn([cell isKindOfClass:[TutorialStepTableViewCell class]]);
@@ -88,7 +92,100 @@ tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDel
     [weakSelf updateSeparatorVisiblityForCell:tutorialStepCell atIndexPath:indexPath];
   }];
   
+  [self setupTableViewDataSourceCellsEditing];
+  
+  self.tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = ^() {
+    AssertTrueOr(weakSelf.tutorial, ;);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsTo == %@", weakSelf.tutorial];
+    AssertTrueOr(weakSelf.fetchedResultsControllerBinder, ;);
+    AssertTrueOr(weakSelf.context, ;);
+    return [TutorialStep MR_fetchAllSortedBy:@"order"
+                                   ascending:YES
+                               withPredicate:predicate
+                                     groupBy:nil
+                                    delegate:weakSelf.fetchedResultsControllerBinder
+                                   inContext:weakSelf.context];
+  };
   self.tableView.dataSource = _tableViewDataSource;
+}
+
+- (void)setupTableViewDataSourceCellsEditing
+{
+  if (!self.allowsEditing) {
+    return;
+  }
+  
+  [self setupTableViewDataSourceCellMoveRowBlock];
+  [self setupTableViewDataSourceCellDeleteBlock];
+}
+
+- (void)setupTableViewDataSourceCellMoveRowBlock
+{
+  defineWeakSelf();
+  // TODO: this block implementation should be made more generic and extracted from here to a separate class!!
+  self.tableViewDataSource.moveRowAtIndexPathToIndexPathBlock = ^(NSIndexPath *fromIndexPath, NSIndexPath *toIndexPath) {
+    if (fromIndexPath == toIndexPath) {
+      return; // user didn't change the order after all
+    }
+    
+    id objectFrom = [weakSelf.tableViewDataSource objectAtIndexPath:fromIndexPath];
+    id objectTo = [weakSelf.tableViewDataSource objectAtIndexPath:toIndexPath];
+    AssertTrueOrReturn([objectFrom isKindOfClass:[TutorialStep class]]);
+    AssertTrueOrReturn([objectTo isKindOfClass:[TutorialStep class]]);
+    
+    TutorialStep *tutorialStepFrom = objectFrom;
+    TutorialStep *tutorialStepTo = objectTo;
+    
+    AssertTrueOrReturn(tutorialStepFrom.belongsTo == tutorialStepTo.belongsTo);
+    Tutorial *parentTutorial = tutorialStepFrom.belongsTo;
+    AssertTrueOrReturn(parentTutorial);
+    
+    NSInteger fromIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepFrom];
+    NSInteger toIndex = [parentTutorial.consistsOf indexOfObject:tutorialStepTo];
+    
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == tutorialStepTo.managedObjectContext);
+    AssertTrueOrReturn(tutorialStepFrom.managedObjectContext == weakSelf.context);
+    
+    // UI changed, just need to update the model without invoking NSFetchedResultsController methods.
+    // That's why we change the whole set instead of relaying on NSMutableOrderedSet methods replaceObjectsAtIndexes:
+    NSMutableArray *allObjects = parentTutorial.consistsOf.array.mutableCopy;
+    [allObjects replaceObjectAtIndex:fromIndex withObject:tutorialStepTo];
+    [allObjects replaceObjectAtIndex:toIndex withObject:tutorialStepFrom];
+    
+    weakSelf.fetchedResultsControllerBinder.disabled = YES;
+    
+    NSNumber *toOrder = tutorialStepTo.order;
+    tutorialStepTo.order = tutorialStepFrom.order;
+    tutorialStepFrom.order = toOrder;
+    
+    AssertTrueOrReturn(![allObjects isEqualToArray:parentTutorial.consistsOf.array]);
+    [parentTutorial setConsistsOf:[NSOrderedSet orderedSetWithArray:allObjects]];
+    
+    [weakSelf.context MR_saveOnlySelfAndWait];
+    weakSelf.fetchedResultsControllerBinder.disabled = NO;
+    
+    [weakSelf.tableView reloadData]; // that doesn't really help, just hides the problem temporarily.. (the assertion above will be thrown sooner or later)..
+  };
+}
+
+- (void)setupTableViewDataSourceCellDeleteBlock
+{
+  defineWeakSelf();
+  self.tableViewDataSource.deleteCellOnSwipeBlock = ^(NSIndexPath *indexPath) {
+    NSString *message = @"Are you sure you want to delete this tutorial step? This action cannot be undone.";
+    [AlertFactory showOKCancelAlertViewWithTitle:nil message:message okTitle:@"Yes, delete" okAction:^{
+      TutorialStep *tutorialStep = [weakSelf.tableViewDataSource objectAtIndexPath:indexPath];
+      AssertTrueOrReturn(weakSelf.context);
+      [tutorialStep MR_deleteEntityInContext:weakSelf.context];
+      [weakSelf.context MR_saveOnlySelfAndWait];
+      
+      if (weakSelf.cellDeletionCompletionBlock) {
+        weakSelf.cellDeletionCompletionBlock();
+      }
+    } cancelAction:^{
+      [weakSelf.tableView reloadRowAtIndexPath:indexPath];
+    }];
+  };
 }
 
 - (void)configureCell:(nonnull TutorialStepTableViewCell *)tutorialStepCell atIndexPath:(nonnull NSIndexPath *)indexPath
@@ -96,7 +193,6 @@ tutorialStepTableViewCellDelegate:(id<TutorialStepTableViewCellDelegate>)cellDel
   AssertTrueOrReturn(tutorialStepCell);
   AssertTrueOrReturn(indexPath);
   
-  // tu jest problem troche ze na tym etapie cellka nie jest jeszcze dodana do widoku...
   TutorialStep *tutorialStep = [self.tableViewDataSource objectAtIndexPath:indexPath];
   [tutorialStepCell configureWithTutorialStep:tutorialStep];
   tutorialStepCell.delegate = self.cellDelegate;

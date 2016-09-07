@@ -2,8 +2,6 @@
 #import "TutorialTextStylingHelper.h"
 #import "ColorsHelper.h"
 
-// TODO: customize html line spacing and paragraph additional spacing
-
 @implementation TutorialTextStylingHelper
 
 #pragma mark - public
