@@ -42,7 +42,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3O-XH-GGQ" userLabel="LatestContainer">
-                                <rect key="frame" x="0.0" y="-20" width="160" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQR-yQ-A0P">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="0.0"/>
@@ -66,11 +66,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="186" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UA2-bK-PCk">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="495"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tutorials" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwP-3F-HWu" userLabel="No Tutorials Label">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="495"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="width" secondItem="5VS-F2-10W" secondAttribute="width" id="ckU-tH-OW3"/>
                             <constraint firstAttribute="trailing" secondItem="DwP-3F-HWu" secondAttribute="trailing" id="ePH-ic-eIJ"/>
                             <constraint firstItem="DwP-3F-HWu" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="iDv-Jl-4cb"/>
-                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="-20" id="mmJ-e8-az8"/>
+                            <constraint firstItem="j3O-XH-GGQ" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="mmJ-e8-az8"/>
                             <constraint firstItem="j3O-XH-GGQ" firstAttribute="height" secondItem="5VS-F2-10W" secondAttribute="height" id="nqT-to-aBH"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="UA2-bK-PCk" secondAttribute="bottom" id="yGi-as-Qhi"/>
                         </constraints>

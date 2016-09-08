@@ -41,8 +41,6 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
         _blurIterations = 40.0f;
     }
     
-    self.navigationController.navigationBarHidden = YES;
-    
     _headerOverlayViews = [NSMutableArray array];
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];

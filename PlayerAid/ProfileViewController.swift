@@ -41,7 +41,7 @@ final class ProfileViewController: JPBParallaxTableViewController {
         
         TabBarBadgeHelper().hideProfileTabBarItemBadge()
         updateBackButtons()
-        updateNavigationBarVisibility()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         adjustTableViewContentSize()
     }
     
@@ -184,10 +184,6 @@ final class ProfileViewController: JPBParallaxTableViewController {
     
     //MARK: private
     
-    private func updateNavigationBarVisibility() {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
     private func isOnlyViewControllerOnNavigationStack() -> Bool {
         return (self.navigationController!.viewControllers.count == 1)
     }
@@ -244,7 +240,6 @@ extension ProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate
             ApplicationViewHierarchyHelper.presentCreateTutorialViewControllerForTutorial(guide, isEditingDraft: true)
         } else {
             TutorialDetailsHelper().performTutorialDetailsSegueFromViewController(self)
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
     

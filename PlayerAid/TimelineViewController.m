@@ -61,7 +61,7 @@
     [weakSelf selectFilterLatest];
   });
   
-  [self.navigationController setNavigationBarHidden:YES animated:NO];
+  [self.navigationController setNavigationBarHidden:NO animated:NO];
   
   // TODO: Filter buttons should be extracted to a separate class!! // We can also use UIStackView on iOS9
 
@@ -71,6 +71,10 @@
         [weakSelf DEBUG_PUSH_TUTORIAL_DETAILS];
     });
   }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)DEBUG_PUSH_TUTORIAL_DETAILS {
@@ -102,6 +106,7 @@
 {
   [super viewWillAppear:animated];
   [self.tableViewOverlayBehaviour updateTableViewScrollingAndOverlayViewVisibility];
+  [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark - latest & following buttons bar
