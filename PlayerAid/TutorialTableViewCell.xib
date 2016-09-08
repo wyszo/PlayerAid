@@ -23,14 +23,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEK-nM-QJK" userLabel="topGradientView" customClass="TWGradientView">
-                        <rect key="frame" x="0.0" y="96" width="368" height="50"/>
+                        <rect key="frame" x="0.0" y="71" width="368" height="100"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" priority="999" constant="50" id="wMW-c5-bCI"/>
+                            <constraint firstAttribute="height" priority="999" constant="100" id="wMW-c5-bCI"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-lP-FpM" userLabel="TutorialDetails (gradient) overlay view">
-                        <rect key="frame" x="0.0" y="146" width="368" height="96"/>
+                        <rect key="frame" x="0.0" y="171" width="368" height="71"/>
                         <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="50" id="qke-h4-p41"/>
@@ -153,7 +153,7 @@
                     <constraint firstItem="RTe-nH-zxI" firstAttribute="leading" secondItem="l9K-RJ-Tmc" secondAttribute="trailing" constant="4" id="YAA-0y-hKi"/>
                     <constraint firstItem="exw-H4-PlW" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="-8" id="Zvv-En-Gcf"/>
                     <constraint firstItem="fFb-Ug-2gd" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leadingMargin" constant="8" id="a2s-LB-Ako"/>
-                    <constraint firstItem="fFb-Ug-2gd" firstAttribute="top" secondItem="fp1-lP-FpM" secondAttribute="top" id="bKv-ee-Qmw"/>
+                    <constraint firstItem="fFb-Ug-2gd" firstAttribute="top" secondItem="fp1-lP-FpM" secondAttribute="top" constant="-25" id="bKv-ee-Qmw"/>
                     <constraint firstAttribute="trailing" secondItem="OOG-mE-GJc" secondAttribute="trailing" id="bRL-3C-7b5"/>
                     <constraint firstItem="n6d-ft-6nn" firstAttribute="top" secondItem="VaV-Pj-OYA" secondAttribute="bottom" constant="6" id="bUI-04-ER0"/>
                     <constraint firstItem="OOG-mE-GJc" firstAttribute="leading" secondItem="Gdk-OC-wt1" secondAttribute="leading" id="c41-s8-rar"/>
