@@ -10,7 +10,7 @@
   long durationInMinutes = (NSInteger)(durationInSeconds / 60);
   long remainingSeconds = (NSInteger)durationInSeconds % 60;
   
-  return [NSString stringWithFormat:@"%ld.%2ld", durationInMinutes, remainingSeconds];
+  return [NSString stringWithFormat:@"%ld:%02ld", durationInMinutes, remainingSeconds];
 }
 
 @end
