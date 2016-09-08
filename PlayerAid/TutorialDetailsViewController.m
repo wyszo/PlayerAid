@@ -23,6 +23,7 @@
 
 
 static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
+static const CGFloat kHeaderToGuidesOffset = 10.0f;
 
 @interface TutorialDetailsViewController () <TutorialStepTableViewCellDelegate, UITableViewDelegate>
 @property (strong, nonatomic) GuidesTableDataSource *headerTableViewDataSource;
@@ -302,7 +303,7 @@ static const CGFloat kOpenCommentsToNavbarOffset = 100.0f;
 - (UITableView *)headerTableView
 {
   if (!_headerTableView) {
-    CGFloat cellHeight = [[TutorialCellHelper new] cellHeightForCurrentScreenWidthWithBottomGapVisible:NO];
+    CGFloat cellHeight = [[TutorialCellHelper new] cellHeightForCurrentScreenWidthWithBottomGapVisible:NO] + kHeaderToGuidesOffset;
     CGRect frame = CGRectMake(0, 0, 0, cellHeight);
     _headerTableView = [[UITableView alloc] initWithFrame:frame];
     
