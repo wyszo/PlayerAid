@@ -61,6 +61,8 @@
     [weakSelf selectFilterLatest];
   });
   
+  [self.navigationController setNavigationBarHidden:YES animated:NO];
+  
   // TODO: Filter buttons should be extracted to a separate class!! // We can also use UIStackView on iOS9
 
   if (DEBUG_MODE_PUSH_COMMENT_REPLIES) {

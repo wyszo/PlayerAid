@@ -72,6 +72,7 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.hidesBarsOnSwipe = YES;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [self.tableView reloadData];
     
@@ -101,6 +102,7 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.hidesBarsOnSwipe = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
