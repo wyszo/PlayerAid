@@ -129,7 +129,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ParallaxBlur:
-    :commit: 0ceb4bbc52097de089d54616dd1858415b68f28b
+    :commit: 430dce7aff44b90e1fb45f5027831dcaf0c450ae
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31

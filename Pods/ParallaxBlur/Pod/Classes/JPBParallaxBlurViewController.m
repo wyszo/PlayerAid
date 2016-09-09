@@ -74,6 +74,7 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     [_blurredImageView setUserInteractionEnabled:YES];
     
     if (self.headerImageViewBackgroundColor) {
+        _headerImageView.backgroundColor = self.headerImageViewBackgroundColor;
         _blurredImageView.backgroundColor = self.headerImageViewBackgroundColor;
     }
     
@@ -144,11 +145,13 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
         //calculate delta
         delta = fabs(MIN(0.0f, _mainScrollView.contentOffset.y + [self navBarHeight]));
         _backgroundScrollView.frame = CGRectMake(CGRectGetMinX(rect) - delta / 2.0f, CGRectGetMinY(rect) - delta, CGRectGetWidth(_scrollViewContainer.frame) + delta, CGRectGetHeight(rect) + delta);
-        [_floatingHeaderView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
-        [_blurredImageView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
         
-        _headerOverscrollOverlay.hidden = YES;
+        if (_blurredImageView.image != nil) {
+            [_floatingHeaderView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
+            [_blurredImageView setAlpha:(INVIS_DELTA - delta) / INVIS_DELTA];
         
+            _headerOverscrollOverlay.hidden = YES;
+        }
     } else {
         delta = _mainScrollView.contentOffset.y;
         
@@ -241,6 +244,7 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
 
 - (void)setHeaderImageViewBackgroundColor:(UIColor *)headerImageViewBackgroundColor {
     _headerImageViewBackgroundColor = headerImageViewBackgroundColor;
+    _headerImageView.backgroundColor = self.headerImageViewBackgroundColor;
     _blurredImageView.backgroundColor = self.headerImageViewBackgroundColor;
 }
 
