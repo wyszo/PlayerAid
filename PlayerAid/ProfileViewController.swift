@@ -146,17 +146,19 @@ final class ProfileViewController: JPBParallaxTableViewController {
             }
             
             playerInfoView.editButtonPressed = { [unowned self] in
-                let previousAvatarUrl = user.pictureURL
-            
                 ApplicationViewHierarchyHelper.presentEditProfileViewControllerFromViewController(self, withUser: user, didUpdateProfileBlock: { [unowned self] in
                     self.viewModel.reloadUser()
                     self.playerInfoView.user = self.viewModel.user
                     
-                    if previousAvatarUrl != self.viewModel.user!.pictureURL {
-                        self.viewModel.fetchProfileImage({ (image) in
-                            self.setHeaderImage(image)
-                        })
-                    }
+                    self.viewModel.fetchProfileImage({ (image) in
+                        assert(image != nil);
+                        
+                        if image != nil {
+                            DispatchSyncOnMainThread({
+                                self.setHeaderImage(image)
+                            })
+                        }
+                    })
                 })
             }
             updateProfileOverscrollOverlay()

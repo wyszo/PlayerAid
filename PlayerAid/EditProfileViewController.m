@@ -339,8 +339,10 @@ static const NSInteger kAboutMeCharacterLimit = 150;
       AssertTrueOrReturn([responseObject isKindOfClass:[NSDictionary class]]);
       [weakSelf saveCurrentUserFromUserDictionary:responseObject];
       
-      CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
-      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      DISPATCH_SYNC_ON_MAIN_THREAD(^{
+          CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
+          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      });
     }
   };
   return completion;
