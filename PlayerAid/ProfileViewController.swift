@@ -97,7 +97,7 @@ final class ProfileViewController: JPBParallaxTableViewController {
     }
     
     private func pushOtherUserProfile(user: User) {
-        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: false)
+        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: false, denyPushingUser: viewModel.user)
         userPushBlock(user)
     }
     

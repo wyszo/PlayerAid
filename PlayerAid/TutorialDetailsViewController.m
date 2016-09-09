@@ -242,8 +242,7 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
     AssertTrueOrReturnNil(self.tutorial);
     _headerTableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"self == %@", self.tutorial];
     _headerTableViewDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController
-                                                                                                            allowPushingLoggedInUser:NO];
-    
+                                                                                                            allowPushingLoggedInUser:NO denyPushingUser:nil];
     _headerTableViewDataSource.didConfigureCellAtIndexPath = ^(TutorialTableViewCell *cell, NSIndexPath *indexPath) {
       [cell showGradientOverlay:YES];
      };

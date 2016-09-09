@@ -250,9 +250,8 @@ static NSString * const kTutorialCommentCellIdentifier = @"TutorialCommentCell";
   AssertTrueOrReturn(comment);
   AssertTrueOrReturn(self.parentNavigationController && @"can't push user's profile without this property");
   // TODO: this method should not have navigationBar hiding/showing logic baked in
-
-  defineWeakSelf();
-  void (^pushUserProfileBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.parentNavigationController allowPushingLoggedInUser:NO];
+  
+  void (^pushUserProfileBlock)(User *) = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.parentNavigationController allowPushingLoggedInUser:NO denyPushingUser:nil ];
   AssertTrueOrReturn(pushUserProfileBlock);
 
   AssertTrueOrReturn(comment.madeBy);

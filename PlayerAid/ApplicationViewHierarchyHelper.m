@@ -36,12 +36,15 @@
 
 #pragma mark - Profile
 
-+ (void (^)(User *))pushProfileVCFromNavigationController:(UINavigationController *)navigationController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser {
++ (void (^)(User *))pushProfileVCFromNavigationController:(UINavigationController *)navigationController allowPushingLoggedInUser:(BOOL)allowPushingLoggedInUser denyPushingUser:(User *)deniedUser {
   AssertTrueOrReturnNil(navigationController);
 
   void (^pushProfileViewBlock)(User *) = ^(User *user) {
     AssertTrueOrReturn(user);
     
+    if (user == deniedUser) {
+        return;
+    }
     if (!allowPushingLoggedInUser && user.loggedInUserValue) {
       return;
     }

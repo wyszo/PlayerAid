@@ -91,7 +91,7 @@
   [self.guidesTableDataSource attachDataSourceAndDelegateToTableView];
   self.guidesTableDataSource.predicate = [NSPredicate predicateWithFormat:@"state == %@ AND reportedByUser == 0", kTutorialStatePublished];
   self.guidesTableDataSource.tutorialTableViewDelegate = self;
-  self.guidesTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO];
+  self.guidesTableDataSource.userAvatarOrNameSelectedBlock = [ApplicationViewHierarchyHelper pushProfileVCFromNavigationController:self.navigationController allowPushingLoggedInUser:NO denyPushingUser:nil];
 }
 
 - (void)setupTableViewHeader
