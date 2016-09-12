@@ -51,6 +51,11 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
   [self prepareForReuse];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self updateTextAndRecalculateHeight];
+}
+
 - (void)setupEditorView {
   self.editorView.delegate = self;
   self.editorView.editingEnabled = false;
@@ -85,16 +90,23 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
 - (void)updateTextWithTutorialStep:(TutorialStep *)tutorialStep
 {
   AssertTrueOrReturn(tutorialStep);
-  NSString *text;
-  if ([self.tutorialStep isTextStep]) {
-    text = self.tutorialStep.text;
-  }
-  if (!text.length) {
-    text = @"";
-  }
-  
-  [self.editorView setHTML:text];
-  self.editorViewHeightConstraint.constant = self.editorView.editorHeight;
+  [self updateTextAndRecalculateHeight];
+}
+
+- (void)updateTextAndRecalculateHeight {
+    [self.editorView setHTML:[self textStepText]];
+    self.editorViewHeightConstraint.constant = self.editorView.editorHeight;
+}
+
+- (NSString *)textStepText {
+    NSString *text;
+    if ([self.tutorialStep isTextStep]) {
+        text = self.tutorialStep.text;
+    }
+    if (!text.length) {
+        text = @"";
+    }
+    return text;
 }
 
 - (void)updateImageViewWithTutorialStep:(TutorialStep *)tutorialStep

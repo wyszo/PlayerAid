@@ -65,20 +65,10 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
   }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-  return UIStatusBarStyleLightContent;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.hidesBarsOnSwipe = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    [self.tableView reloadData];
-    
-    DISPATCH_AFTER(0.65, ^{
-        [self updateCellsSizing]; // ugly workaround
-    });
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,17 +81,15 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
   }
   
   [self.commentRepliesFetchController start];
-  [self updateCellsSizing];
-}
-
-- (void)updateCellsSizing {
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.hidesBarsOnSwipe = NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -111,6 +99,21 @@ static const CGFloat kHeaderToGuidesOffset = 10.0f;
   }
   
   [self.commentsViewController dismissAllInputViews]; // called manually to ensure proper UI cleanup
+}
+
+- (void)didMoveToParentViewController:(UIViewController *)parent {
+    [super didMoveToParentViewController:parent];
+    
+    if (parent != nil) {
+        [self updateCellsSizing];
+    }
+}
+
+- (void)updateCellsSizing {
+    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    } completion:nil];
 }
 
 - (void)dealloc {
