@@ -9,6 +9,7 @@
 #import "User.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
+#import "UserManipulationController.h"
 #import "PlayerAid-Swift.h"
 
 static const CGFloat kRetryShortDelay = 3.0;
@@ -39,6 +40,8 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
           DISPATCH_ASYNC_ON_MAIN_THREAD(^{
               [AlertFactory showGenericErrorAlertViewNoRetry];
           });
+      } else {
+          [UserManipulationController updateUser:user withDictionary:(NSDictionary *)responseObject];
       }
     }];
   }

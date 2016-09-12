@@ -108,4 +108,19 @@
   }];
 }
 
+#pragma mark - Updating CoreData
+
++ (void)updateUser:(User *)user withDictionary:(NSDictionary *)dictionary {
+    AssertTrueOrReturn(user);
+    AssertTrueOrReturn(dictionary.count);
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        User *userInContext = [user MR_inContext:localContext];
+        if (!userInContext) {
+            userInContext = [User MR_createEntityInContext:localContext];
+        }
+        [userInContext configureFromDictionary:dictionary];
+    }];
+}
+
 @end

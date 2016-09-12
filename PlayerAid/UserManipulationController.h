@@ -12,4 +12,6 @@
 
 - (BOOL)loggedInUserFollowsUser:(User *)user;
 
++ (void)updateUser:(User *)user withDictionary:(NSDictionary *)dictionary;
+
 @end
