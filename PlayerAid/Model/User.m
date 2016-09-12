@@ -15,7 +15,7 @@
 NSString *const kUserServerIDJSONAttributeName = @"id";
 NSString *const kUserServerIDKey = @"serverID";
 
-static NSString *const kTutorialsKey = @"tutorials";
+static NSString *const kGuidesKey = @"guides";
 static NSString *const kLikesKey = @"likes";
 static NSString *const kFollowersKey = @"followers";
 static NSString *const kFollowingKey = @"following";
@@ -38,16 +38,19 @@ static NSString *const kFollowingKey = @"following";
   
   BOOL tutorialsChanged = NO;
   
-  if (dictionary[kTutorialsKey]) {
-    [mapping addEntriesFromDictionary:@{ kTutorialsKey : KZCall(setOfOwnTutorialsFromPagedDictionary:, createdTutorial) }];
+  if (dictionary[kGuidesKey]) {
+    [mapping addEntriesFromDictionary:@{ kGuidesKey : KZCall(setOfOwnTutorialsFromPagedDictionary:, createdTutorial) }];
     tutorialsChanged = YES;
   }
+  
   if (dictionary[kLikesKey]) {
     [mapping addEntriesFromDictionary:@{ kLikesKey : KZCall(setOfAnotherUsersTutorialsFromPagedDictionary:, likes) }];
   }
+  
   if (dictionary[kFollowersKey]) {
     [mapping addEntriesFromDictionary:@{ kFollowersKey : KZCall(setOfOtherUsersFromPagedDictionary:, isFollowedBy) }];
   }
+  
   if (dictionary[kFollowingKey]) {
     [mapping addEntriesFromDictionary:@{ kFollowingKey : KZCall(setOfOtherUsersFromPagedDictionary:, follows) }];
   }

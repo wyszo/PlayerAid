@@ -19,6 +19,7 @@ static NSString *const kTutorialStateInReview = @"In Review";
 static NSString *const kTutorialStateReported = @"Reported"; // as inappropriate
 static NSString *const kTutorialDictionaryStepsKey = @"steps";
 static NSString *const kCommentsKey = @"comments";
+static NSString *const kAuthorKey = @"author";
 
 @implementation Tutorial
 
@@ -39,8 +40,9 @@ static NSString *const kCommentsKey = @"comments";
                           }];
   
   if (includeAuthor) {
+    AssertTrueOr(dictionary[kAuthorKey], ;);
     [mapping addEntriesFromDictionary:@{
-                                       @"author" : KZCall(authorFromDictionary:, createdBy)
+                                       kAuthorKey : KZCall(authorFromDictionary:, createdBy)
                                        }];
   }
   
