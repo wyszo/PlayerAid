@@ -15,8 +15,8 @@ final class ProfileViewModel: NSObject {
     }
     
     func fetchProfileImage(completion: (UIImage?)->()) {
-        if let pictureURL = user?.pictureURL {
-            imageDownloader.fetchImage(NSURL(string: pictureURL)!) { image in
+        if let urlString = user?.pictureURL, pictureURL = NSURL(string: urlString) {
+            imageDownloader.fetchImage(pictureURL) { image in
                 completion(image)
             }
         } else {
