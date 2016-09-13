@@ -2,12 +2,12 @@
 //  PlayerAid
 //
 
+@import TWCommonLib;
 #import "EditTutorialTableViewCell.h"
 
 @interface EditTutorialTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *playIconImageView;
 @end
-
 
 @implementation EditTutorialTableViewCell
 
@@ -24,7 +24,7 @@
   NSString *text;
   
   if ([tutorialStep isTextStep]) {
-    text = tutorialStep.text;
+    text = [tutorialStep.text tw_stringByRemovingHtmlTags];
   } else if ([tutorialStep isImageStep]) {
     text = @"Photo";
   } else if ([tutorialStep isVideoStep]) {
