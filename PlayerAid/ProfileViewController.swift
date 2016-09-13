@@ -42,6 +42,7 @@ final class ProfileViewController: JPBParallaxTableViewController {
         TabBarBadgeHelper().hideProfileTabBarItemBadge()
         updateBackButtons()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        enableSwipeBackGesture()
         adjustTableViewContentSize()
     }
     
@@ -269,6 +270,14 @@ extension ProfileViewController {
     func offsetHeight() -> CGFloat {
         // folded profile height from screen top to tabSelection bar
         return 65.0
+    }
+}
+
+// Swipe back navigation gesture
+extension ProfileViewController: UIGestureRecognizerDelegate  {
+    func enableSwipeBackGesture() {
+        // required when NavigationBar hidden with animation
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
