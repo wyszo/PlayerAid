@@ -26,6 +26,6 @@ class TutorialCommentCellConfigurator : NSObject {
             AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.unlikeComment(comment)
         }
 
-        commentCell.configureWithTutorialComment(comment, allowInlineCommentReplies: allowInlineCommentReplies)
+        commentCell.configure(with: comment, allowInlineCommentReplies: allowInlineCommentReplies)
     }
 }

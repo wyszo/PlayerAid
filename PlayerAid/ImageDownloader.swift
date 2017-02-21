@@ -3,9 +3,9 @@ import AFNetworking
 
 final class ImageDownloader {
     
-    func fetchImage(url: NSURL, completion: (UIImage?)->()) {
+    func fetchImage(_ url: URL, completion: @escaping (UIImage?)->()) {
         
-        let request = NSURLRequest(URL: url)
+        let request = URLRequest(url: url)
         let requestOperation = AFHTTPRequestOperation(request: request)
         requestOperation.responseSerializer = AFImageResponseSerializer()
         

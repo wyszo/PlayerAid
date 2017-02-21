@@ -6,11 +6,11 @@ final class ProfileOverscrollOverlay: UIViewController {
     
     var backButtonAction: (()->())!
     
-    func setBackButtonHidden(hidden: Bool) {
-        backButton!.hidden = hidden
+    func setBackButtonHidden(_ hidden: Bool) {
+        backButton!.isHidden = hidden
     }
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
         backButtonAction()
     }
 }

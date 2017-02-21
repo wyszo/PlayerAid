@@ -10,9 +10,9 @@ final class FloatingSelectionOverlay: NSObject {
         superview.addSubview(selectionOverlay)
     }
     
-    func setFrame(frame: CGRect, animated: Bool = true) {
+    func setFrame(_ frame: CGRect, animated: Bool = true) {
         if (animated) {
-            UIView.animateWithDuration(Constants.AnimationDuration, animations: { 
+            UIView.animate(withDuration: Constants.AnimationDuration, animations: { 
                 self.selectionOverlay.frame = frame;
             })
         } else {

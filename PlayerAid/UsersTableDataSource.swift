@@ -3,9 +3,9 @@ import TWCommonLib
 import MagicalRecord
 
 final class UsersTableViewDataSource: NSObject {
-    private let tableView: UITableView
-    private var tableViewDataSource: TWCoreDataTableViewDataSource!
-    private var fetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder!
+    fileprivate let tableView: UITableView
+    fileprivate var tableViewDataSource: TWCoreDataTableViewDataSource<NSManagedObject>!
+    fileprivate var fetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder!
     var usersTableViewDelegate: UsersTableViewDelegate!
     var predicate: NSPredicate!
 
@@ -19,23 +19,23 @@ final class UsersTableViewDataSource: NSObject {
     
     //MARK: private setup
     
-    private func setupFollowersCells() {
+    fileprivate func setupFollowersCells() {
         let nib = UINib(nibName: Constants.UserCellNibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: Constants.UserCellReuseIdentifier)
+        tableView.register(nib, forCellReuseIdentifier: Constants.UserCellReuseIdentifier)
     }
     
-    private func setupTableViewDataSource() {
+    fileprivate func setupTableViewDataSource() {
         tableViewDataSource = TWCoreDataTableViewDataSource(cellReuseIdentifier: Constants.UserCellReuseIdentifier, configureCellBlock: self.configureUserCellBlock())
         tableViewDataSource.fetchedResultsControllerLazyInitializationBlock = self.fetchedResultsControllerLazyInitializationBlock()
     }
     
-    private func fetchedResultsControllerLazyInitializationBlock() -> ()->(NSFetchedResultsController) {
+    fileprivate func fetchedResultsControllerLazyInitializationBlock() -> ()->(NSFetchedResultsController<NSFetchRequestResult>) {
         return { [unowned self] in
-            let fetchRequest = NSFetchRequest(entityName: "User")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
             fetchRequest.predicate = self.predicate
             fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "name", ascending: true) ]
             
-            let context = NSManagedObjectContext.MR_contextForCurrentThread()
+            let context = NSManagedObjectContext.mr_contextForCurrentThread()
             
             let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             fetchedResultsController.delegate = self.fetchedResultsControllerBinder
@@ -45,7 +45,7 @@ final class UsersTableViewDataSource: NSObject {
         }
     }
     
-    private func setupFetchedResultsControllerBinder() {
+    fileprivate func setupFetchedResultsControllerBinder() {
         
         fetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock:configureUserCellBlock())
         fetchedResultsControllerBinder.numberOfObjectsChangedBlock = { [unowned self] objectCount in
@@ -60,12 +60,12 @@ final class UsersTableViewDataSource: NSObject {
             let userCell = cell as? FollowedUserTableViewCell
             assert(userCell != nil)
             
-            assert(indexPath.row < self.tableViewDataSource.objectCount())
-            let user = self.tableViewDataSource.objectAtIndexPath(indexPath) as? User
+            assert((indexPath?.row)! < self.tableViewDataSource.objectCount())
+            let user = self.tableViewDataSource.object(at: indexPath!) as? User
             assert(user != nil)
             
             if user != nil {
-                userCell!.configureWithUser(user)
+                userCell!.configure(with: user)
             }
         }
     }
@@ -83,8 +83,8 @@ final class UsersTableViewDataSource: NSObject {
 }
 
 extension UsersTableViewDataSource: TWObjectAtIndexPathProtocol {
-    func objectAtIndexPath(indexPath: NSIndexPath) -> AnyObject? {
-        return tableViewDataSource.objectAtIndexPath(indexPath)
+    func object(at indexPath: IndexPath) -> Any? {
+        return tableViewDataSource.object(at: indexPath)
     }
 }
 

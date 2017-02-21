@@ -3,13 +3,13 @@ import Foundation
 final class ProfileTabSwitcherFactory {
     typealias VoidBlock = ()->()
     
-    func createNewProfileTabSwitcherViewController(viewModel: ProfileTabSwitcherViewModel, guidesTableViewDelegate: GuidesTableViewDelegate, usersTableViewDelegate: UsersTableViewDelegate, reloadTableView: VoidBlock) -> ProfileTabSwitcherViewController {
+    func createNewProfileTabSwitcherViewController(_ viewModel: ProfileTabSwitcherViewModel, guidesTableViewDelegate: GuidesTableViewDelegate, usersTableViewDelegate: UsersTableViewDelegate, reloadTableView: @escaping VoidBlock) -> ProfileTabSwitcherViewController {
         let tabSwitcher = ProfileTabSwitcherViewController()
         
         tabSwitcher.tutorialsTabSelectedBlock = {
             self.disableAllDataSources(viewModel)
         
-            viewModel.ownGuidesDataSource.attachDataSourceAndDelegateToTableView()
+            viewModel.ownGuidesDataSource.attachAndDelegateToTableView()
             viewModel.ownGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
             viewModel.setEmptyState("No guides made", imageName: "emptystate-tutorial-ic")
             
@@ -18,7 +18,7 @@ final class ProfileTabSwitcherFactory {
         tabSwitcher.likedTabSelectedBlock = {
             self.disableAllDataSources(viewModel)
             
-            viewModel.likedGuidesDataSource.attachDataSourceAndDelegateToTableView()
+            viewModel.likedGuidesDataSource.attachAndDelegateToTableView()
             viewModel.likedGuidesDataSource.tutorialTableViewDelegate = guidesTableViewDelegate
             viewModel.setEmptyState("No liked guides", imageName: "emptystate-liked-ic")
             
@@ -47,7 +47,7 @@ final class ProfileTabSwitcherFactory {
         return tabSwitcher
     }
     
-    func disableAllDataSources(viewModel: ProfileTabSwitcherViewModel) {
+    func disableAllDataSources(_ viewModel: ProfileTabSwitcherViewModel) {
         viewModel.ownGuidesDataSource.detachFromTableView()
         viewModel.likedGuidesDataSource.detachFromTableView()
         viewModel.followingDataSource.detachFromTableView()

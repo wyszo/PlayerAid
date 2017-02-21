@@ -1,5 +1,5 @@
 import Foundation
-import DateTools
+import DateToolsSwift
 
 final class TutorialCellViewModel: NSObject {
     let cellOverlayAlpha: CGFloat
@@ -26,10 +26,10 @@ final class TutorialCellViewModel: NSObject {
         } else {
             cellOverlayAlpha = 1.0
             cellOverlayLabelText = ""
-            cellOverlayBackground = UIColor.whiteColor()
-            cellOverlayLabelBackground = UIColor.whiteColor()
+            cellOverlayBackground = UIColor.white
+            cellOverlayLabelBackground = UIColor.white
         }
         
-        timeAgo = tutorial.createdAt.shortTimeAgoSinceNow()
+        timeAgo = tutorial.createdAt.shortTimeAgoSinceNow
     }
 }

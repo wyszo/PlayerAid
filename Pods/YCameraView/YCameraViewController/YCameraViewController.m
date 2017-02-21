@@ -61,6 +61,7 @@
 
 
 @implementation YCameraViewController
+@synthesize prefersStatusBarHidden = _prefersStatusBarHidden;
 
 - (instancetype)init
 {

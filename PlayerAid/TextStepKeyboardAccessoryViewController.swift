@@ -31,33 +31,33 @@ final class TextStepKeyboardAccessoryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.view.tw_addTopBorderWithWidth(1.0, color: ColorsHelper.textStepKeyboardInputAccessoryViewBorderColor())
+    self.view.tw_addTopBorder(withWidth: 1.0, color: ColorsHelper.textStepKeyboardInputAccessoryViewBorderColor())
   }
   
   //MARK: IBActions
   
-  @IBAction func didPressBoldButton(sender: AnyObject) {
-    boldButton.selected = !boldButton.selected
+  @IBAction func didPressBoldButton(_ sender: AnyObject) {
+    boldButton.isSelected = !boldButton.isSelected
   }
 
-  @IBAction func didPressTitleButton(sender: AnyObject) {
-    titleButton.selected = !titleButton.selected
+  @IBAction func didPressTitleButton(_ sender: AnyObject) {
+    titleButton.isSelected = !titleButton.isSelected
   }
 
-  @IBAction func didPressSubtitleButton(sender: AnyObject) {
-    subTitleButton.selected = !subTitleButton.selected
+  @IBAction func didPressSubtitleButton(_ sender: AnyObject) {
+    subTitleButton.isSelected = !subTitleButton.isSelected
   }
   
-  @IBAction func didPressBulletListButton(sender: AnyObject) {
-    bulletListButton.selected = !bulletListButton.selected
+  @IBAction func didPressBulletListButton(_ sender: AnyObject) {
+    bulletListButton.isSelected = !bulletListButton.isSelected
   }
   
-  @IBAction func didPressNumberedListButton(sender: AnyObject) {
-    numberedListButton.selected = !numberedListButton.selected
+  @IBAction func didPressNumberedListButton(_ sender: AnyObject) {
+    numberedListButton.isSelected = !numberedListButton.isSelected
   }
   
-  @IBAction func didPressDashButton(sender: AnyObject) {
-    dashButton.selected = !dashButton.selected
+  @IBAction func didPressDashButton(_ sender: AnyObject) {
+    dashButton.isSelected = !dashButton.isSelected
     didPressDash?()
   }
 }

@@ -3,7 +3,7 @@ import MagicalRecord
 
 final class ProfileViewModel: NSObject {
     var user: User?
-    private let imageDownloader = ImageDownloader()
+    fileprivate let imageDownloader = ImageDownloader()
     
     init(user: User? = nil) {
         self.user = user
@@ -14,8 +14,8 @@ final class ProfileViewModel: NSObject {
         }
     }
     
-    func fetchProfileImage(completion: (UIImage?)->()) {
-        if let urlString = user?.pictureURL, pictureURL = NSURL(string: urlString) {
+    func fetchProfileImage(_ completion: @escaping (UIImage?)->()) {
+        if let urlString = user?.pictureURL, let pictureURL = URL(string: urlString) {
             imageDownloader.fetchImage(pictureURL) { image in
                 completion(image)
             }
@@ -26,6 +26,6 @@ final class ProfileViewModel: NSObject {
     
     func reloadUser() {
         let predicate = NSPredicate(format: "loggedInUser == 1")
-        user = User.MR_findFirstWithPredicate(predicate)
+        user = User.mr_findFirst(with: predicate)
     }
 }

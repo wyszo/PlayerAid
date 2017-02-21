@@ -43,7 +43,8 @@ PODS:
   - Bolts/Tasks (1.8.4)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - DateTools (1.7.0)
+  - DateTools (2.0.0)
+  - DateToolsSwift (2.0.0)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.10)
   - FBSDKCoreKit (4.10.0):
@@ -87,7 +88,8 @@ DEPENDENCIES:
   - AFNetworking (= 2.6.3)
   - BlocksKit (= 2.2.5)
   - Crashlytics (= 3.8.3)
-  - DateTools (= 1.7.0)
+  - DateTools (= 2.0.0)
+  - DateToolsSwift (= 2.0.0)
   - DZNEmptyDataSet (= 1.8.1)
   - Fabric (= 1.6.10)
   - FBSDKCoreKit (= 4.10.0)
@@ -112,14 +114,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   FDTake:
     :branch: feature/AssetsHelper
-    :path: ../FDTake
+    :path: "../FDTake"
   ParallaxBlur:
     :branch: PlayerAid
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   RichEditorView:
-    :path: ../RichEditorView
+    :path: "../RichEditorView"
   TWCommonLib:
-    :path: ../TWCommonLib
+    :path: "../TWCommonLib"
   XRSA:
     :branch: master
     :git: https://github.com/wyszo/XRSA.git
@@ -143,7 +145,8 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
-  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  DateToolsSwift: 27336736d877c8734159da1f37afbda2aa704649
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
@@ -167,6 +170,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 26bd4c5efb287ed3b7055c2a38b6564e43d53da1
+PODFILE CHECKSUM: 512b9dcd79c2945f3860cc0bdfccd9f159eb0574
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

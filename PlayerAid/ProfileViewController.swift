@@ -5,13 +5,13 @@ import DZNEmptyDataSet
 final class ProfileViewController: JPBParallaxTableViewController {
     var viewModel: ProfileViewModel!
     
-    private var tabSwitcherViewController: ProfileTabSwitcherViewController!
-    private var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
+    fileprivate var tabSwitcherViewController: ProfileTabSwitcherViewController!
+    fileprivate var tabSwitcherViewModel: ProfileTabSwitcherViewModel!
     
-    private var profileOverscrollOverlay: ProfileOverscrollOverlay!
-    private var playerInfoView: PlayerInfoView!
+    fileprivate var profileOverscrollOverlay: ProfileOverscrollOverlay!
+    fileprivate var playerInfoView: PlayerInfoView!
     
-    private var lastSelectedGuide: Tutorial?
+    fileprivate var lastSelectedGuide: Tutorial?
     
     override func viewDidLoad() {
         blurIterations = Constants.BlurIterations
@@ -22,8 +22,8 @@ final class ProfileViewController: JPBParallaxTableViewController {
         setupTabSwitcher()
         
         super.viewDidLoad()
-        tabSwitcherViewController.didMoveToParentViewController(self)
-        self.view.backgroundColor = UIColor.whiteColor()
+        tabSwitcherViewController.didMove(toParentViewController: self)
+        self.view.backgroundColor = UIColor.white
         
         setupFollowersCells()
         setupBackgroundImage()
@@ -31,12 +31,12 @@ final class ProfileViewController: JPBParallaxTableViewController {
         setupHeaderOverscrollOverlay()
         setupEmptyTableViewOverlays()
         setupTableViewHeaderAndFooter()
-        tableView.scrollEnabled = false
+        tableView.isScrollEnabled = false
         
         tabSwitcherViewController.tutorialsTabSelectedBlock()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         TabBarBadgeHelper().hideProfileTabBarItemBadge()
@@ -46,44 +46,44 @@ final class ProfileViewController: JPBParallaxTableViewController {
         adjustTableViewContentSize()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tabSwitcherViewController.updateGuidesCountLabels()
     }
     
     //MARK: statusbar
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     //MARK: setup
     
-    private func setupTableViewHeaderAndFooter() {
+    fileprivate func setupTableViewHeaderAndFooter() {
         let gapHeight = Constants.TableViewHeaderFooterGapHeight
-        tableView.tableHeaderView = CommonViews.tableHeaderOrFooterViewWithHeight(gapHeight)
-        tableView.tableFooterView = CommonViews.tableHeaderOrFooterViewWithHeight(gapHeight)
+        tableView.tableHeaderView = CommonViews.tableHeaderOrFooterView(withHeight: gapHeight)
+        tableView.tableFooterView = CommonViews.tableHeaderOrFooterView(withHeight: gapHeight)
     }
     
-    private func setupEmptyTableViewOverlays() {
+    fileprivate func setupEmptyTableViewOverlays() {
         tableView.emptyDataSetSource = tabSwitcherViewModel.emptyDataSetSource
         tableView.emptyDataSetDelegate = tabSwitcherViewModel.emptyDataSetDelegate
     }
     
-    private func setupProfileOverscrollOverlay() {
+    fileprivate func setupProfileOverscrollOverlay() {
         profileOverscrollOverlay = ProfileOverscrollOverlay()
         profileOverscrollOverlay.backButtonAction = { [unowned self] in
-            self.navigationController!.popViewControllerAnimated(true)
+            self.navigationController!.popViewController(animated: true)
         }
     }
     
-    private func setupViewModel() {
+    fileprivate func setupViewModel() {
         if viewModel == nil {
             viewModel = ProfileViewModel()
         }
     }
     
-    private func setupBackgroundImage() {
+    fileprivate func setupBackgroundImage() {
         self.headerImageViewBackgroundColor = ColorsHelper.userProfileDefaultBackgroundColor()
         setHeaderTintColor(Constants.TintColor)
         
@@ -92,29 +92,29 @@ final class ProfileViewController: JPBParallaxTableViewController {
         }
     }
     
-    private func setupFollowersCells() {
+    fileprivate func setupFollowersCells() {
         let nib = UINib(nibName: Constants.UserCellNibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: Constants.UserCellIdentifier)
+        tableView.register(nib, forCellReuseIdentifier: Constants.UserCellIdentifier)
     }
     
-    private func pushOtherUserProfile(user: User) {
-        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVCFromNavigationController(self.navigationController, allowPushingLoggedInUser: false, denyPushingUser: viewModel.user)
-        userPushBlock(user)
+    fileprivate func pushOtherUserProfile(_ user: User) {
+        let userPushBlock = ApplicationViewHierarchyHelper.pushProfileVC(from: self.navigationController, allowPushingLoggedInUser: false, denyPushing: viewModel.user)
+        userPushBlock!(user)
     }
     
-    private func setupTabSwitcher() {
+    fileprivate func setupTabSwitcher() {
         tabSwitcherViewModel = ProfileTabSwitcherViewModel(tableView: tableView, user: viewModel.user!, userCellReuseIdentifier: Constants.UserCellIdentifier, userAvatarOrNameSelected: { [unowned self] user in
             self.pushOtherUserProfile(user)
         })
         
         tabSwitcherViewController = ProfileTabSwitcherFactory().createNewProfileTabSwitcherViewController(tabSwitcherViewModel, guidesTableViewDelegate: self, usersTableViewDelegate: self, reloadTableView: { [unowned self] in
-                self.tableView.contentOffset = CGPointZero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
+                self.tableView.contentOffset = CGPoint.zero // empty view overlay position is incorrect if we reload when contentOffset.y != 0
             
-                UIView.transitionWithView(self.tableView, duration:Constants.TabSwitchingCrossDissolveAnimationDuration, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                UIView.transition(with: self.tableView, duration:Constants.TabSwitchingCrossDissolveAnimationDuration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
                     self.tableView.reloadData()
                 }, completion: nil)
             
-                UIView.animateWithDuration(Constants.ProfileHeaderResizeAnimationDuration, animations: {
+                UIView.animate(withDuration: Constants.ProfileHeaderResizeAnimationDuration, animations: {
                     self.recalculateHeight()
                 })
             
@@ -128,26 +128,26 @@ final class ProfileViewController: JPBParallaxTableViewController {
         addChildViewController(tabSwitcherViewController)
     }
     
-    private func isViewLoadedAndInViewHierarchy() -> Bool {
-        return isViewLoaded() && view.window != nil;
+    fileprivate func isViewLoadedAndInViewHierarchy() -> Bool {
+        return isViewLoaded && view.window != nil;
     }
 
     //MARK: header overlay
     
-    private func setupHeaderOverlay() {
+    fileprivate func setupHeaderOverlay() {
         let screenWidth = view.bounds.size.width
         
-        playerInfoView = PlayerInfoView(frame: CGRectMake(0, 0, screenWidth, screenWidth))
+        playerInfoView = PlayerInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth))
         
         if let user = viewModel.user {
             playerInfoView.user = user
             
             playerInfoView.backButtonPressed = { [unowned self] in
-                self.navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewController(animated: true)
             }
             
             playerInfoView.editButtonPressed = { [unowned self] in
-                ApplicationViewHierarchyHelper.presentEditProfileViewControllerFromViewController(self, withUser: user, didUpdateProfileBlock: { [unowned self] in
+                ApplicationViewHierarchyHelper.presentEditProfileViewController(from: self, with: user, didUpdateProfileBlock: { [unowned self] in
                     self.viewModel.reloadUser()
                     self.playerInfoView.user = self.viewModel.user
                     
@@ -167,19 +167,19 @@ final class ProfileViewController: JPBParallaxTableViewController {
         addHeaderOverlayView(playerInfoView)
     }
     
-    private func updateProfileOverscrollOverlay() {
+    fileprivate func updateProfileOverscrollOverlay() {
         profileOverscrollOverlay.playerName?.text = viewModel.user!.name
     }
     
-    private func setupHeaderOverscrollOverlay() {
+    fileprivate func setupHeaderOverscrollOverlay() {
         assert(profileOverscrollOverlay != nil)
         
-        let overlay = overscrollOverlayWithFrame(CGRectZero)
+        let overlay = overscrollOverlayWithFrame(CGRect.zero)
         setOverscrollOverlay(overlay)
         updateProfileOverscrollOverlay()
     }
     
-    private func overscrollOverlayWithFrame(frame: CGRect) -> UIView! {
+    fileprivate func overscrollOverlayWithFrame(_ frame: CGRect) -> UIView! {
         profileOverscrollOverlay.view.frame = frame
         profileOverscrollOverlay.view.backgroundColor = ColorsHelper.userProfileHeaderOverscrollBackgroundColor()
         return profileOverscrollOverlay.view
@@ -187,11 +187,11 @@ final class ProfileViewController: JPBParallaxTableViewController {
     
     //MARK: private
     
-    private func isOnlyViewControllerOnNavigationStack() -> Bool {
+    fileprivate func isOnlyViewControllerOnNavigationStack() -> Bool {
         return (self.navigationController!.viewControllers.count == 1)
     }
     
-    private func updateBackButtons() {
+    fileprivate func updateBackButtons() {
         let hidden = isOnlyViewControllerOnNavigationStack()
         profileOverscrollOverlay.setBackButtonHidden(hidden)
         playerInfoView.setBackButtonHidden(hidden)
@@ -209,7 +209,7 @@ final class ProfileViewController: JPBParallaxTableViewController {
         setMinimumTableViewHeight(viewHeight - headersHeight)
     }
     
-    func setMinimumTableViewHeight(height: CGFloat) {
+    func setMinimumTableViewHeight(_ height: CGFloat) {
         var frame = tableView.frame
         frame.size.height = max(tableView.contentSize.height, height)
         tableView.frame = frame
@@ -217,16 +217,16 @@ final class ProfileViewController: JPBParallaxTableViewController {
     
     //MARK: Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        TutorialDetailsHelper().prepareForTutorialDetailsSegue(segue, pushingTutorial: lastSelectedGuide)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        TutorialDetailsHelper().prepare(forTutorialDetailsSegue: segue, pushing: lastSelectedGuide)
     }
 }
 
 //MARK: Guides/Users TableViewDelegate
 extension ProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate {
     
-    @objc func numberOfRowsDidChange(numberOfRows: Int) {
+    @objc func numberOfRowsDidChange_(ofRowsDidChange numberOfRows: Int) {
         DispatchAsyncOnMainThread { 
             self.tabSwitcherViewController.updateGuidesCountLabels()
             
@@ -236,13 +236,13 @@ extension ProfileViewController: GuidesTableViewDelegate, UsersTableViewDelegate
         }
     }
 
-    @objc func didSelectRowWithGuide(guide: Tutorial) {
+    @objc func didSelectRow(withGuide guide: Tutorial) {
         lastSelectedGuide = guide
         
         if guide.isDraft {
-            ApplicationViewHierarchyHelper.presentCreateTutorialViewControllerForTutorial(guide, isEditingDraft: true)
+            ApplicationViewHierarchyHelper.presentCreateTutorialViewController(for: guide, isEditingDraft: true)
         } else {
-            TutorialDetailsHelper().performTutorialDetailsSegueFromViewController(self)
+            TutorialDetailsHelper().performTutorialDetailsSegue(from: self)
         }
     }
     
@@ -258,9 +258,9 @@ extension ProfileViewController {
         assert(tabSwitcherViewController != nil)
         
         let subHeaderView = tabSwitcherViewController.view
-        subHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), subHeaderHeight())
-        subHeaderView.autoresizingMask = .FlexibleWidth
-        return subHeaderView
+        subHeaderView?.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: subHeaderHeight())
+        subHeaderView?.autoresizingMask = .flexibleWidth
+        return subHeaderView!
     }
     
     override func subHeaderHeight() -> CGFloat {
@@ -291,6 +291,6 @@ private struct Constants {
     static let UserCellNibName = "FollowedUser"
     static let TableViewHeaderFooterGapHeight: CGFloat = 18.0
     
-    static let TabSwitchingCrossDissolveAnimationDuration: NSTimeInterval = 0.25
-    static let ProfileHeaderResizeAnimationDuration: NSTimeInterval = 0.3
+    static let TabSwitchingCrossDissolveAnimationDuration: TimeInterval = 0.25
+    static let ProfileHeaderResizeAnimationDuration: TimeInterval = 0.3
 }

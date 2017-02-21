@@ -1,5 +1,5 @@
 import Foundation
 
 @objc protocol UsersTableViewDelegate {
-    optional func numberOfRowsDidChange(rows: Int)
+    @objc optional func numberOfRowsDidChange(_ rows: Int)
 }

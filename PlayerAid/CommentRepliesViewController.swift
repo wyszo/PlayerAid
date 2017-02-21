@@ -3,20 +3,20 @@ import MagicalRecord
 
 class CommentRepliesViewController : UIViewController {
     
-    private var commentCell: TutorialCommentCell
-    private var commentID: Int
+    fileprivate var commentCell: TutorialCommentCell
+    fileprivate var commentID: Int
   
-    private var commentObjectFetchHelper: TWSingleCoreDataObjectFetchHelper<TutorialComment>?
-    private var comment: TutorialComment?
+    fileprivate var commentObjectFetchHelper: TWSingleCoreDataObjectFetchHelper<TutorialComment>?
+    fileprivate var comment: TutorialComment?
     {
         get {
             return commentObjectFetchHelper?.managedObject
         }
     }
   
-    private var replyToCommentBarVC: MakeCommentInputViewController
-    private var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
-    private var repliesTableViewController: RepliesToCommentTableViewController
+    fileprivate var replyToCommentBarVC: MakeCommentInputViewController
+    fileprivate var replyInputViewHandler: KeyboardCustomAccessoryInputViewHandler?
+    fileprivate var repliesTableViewController: RepliesToCommentTableViewController
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
@@ -32,7 +32,7 @@ class CommentRepliesViewController : UIViewController {
         return nil
     }
   
-    init(nibName: String?, bundle nibBundleOrNil: NSBundle?, commentID: Int) {
+    init(nibName: String?, bundle nibBundleOrNil: Bundle?, commentID: Int) {
         commentCell = UIView.fromNibNamed("TutorialCommentCell") as! TutorialCommentCell
         self.commentID = commentID
         replyToCommentBarVC = MakeCommentInputViewController(user: UsersFetchController.sharedInstance().currentUser())
@@ -51,7 +51,7 @@ class CommentRepliesViewController : UIViewController {
 
         replyToCommentBarVC.setCustomPlaceholder("Reply to comment")
         replyToCommentBarVC.postButtonPressedBlock = {
-            [weak self] (text: String, completion: ((success: Bool) -> Void)) in
+            [weak self] (text: String, completion: @escaping ((_ success: Bool) -> Void)) in
                 if self == nil { return }
                 let comment = self?.comment
                 assert(comment != nil)
@@ -62,7 +62,7 @@ class CommentRepliesViewController : UIViewController {
                             if success == false {
                                 AlertFactory.showGenericErrorAlertViewNoRetry()
                             }
-                            completion(success: success)
+                            completion(success)
                         }
                 }
         }
@@ -91,36 +91,36 @@ class CommentRepliesViewController : UIViewController {
   
     func setupFooterViewCompensatingForKeyboardOut() {
         let sampleWidth: CGFloat = 100 // will resize correctly automatically
-        let footerView = UIView(frame: CGRectMake(0, 0, sampleWidth, 0))
-        footerView.backgroundColor = UIColor.whiteColor()
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: sampleWidth, height: 0))
+        footerView.backgroundColor = UIColor.white
         tableView.tableFooterView = footerView
         
         assert(replyInputViewHandler != nil);
         replyInputViewHandler!.keyboardDidShowBlock = { [weak self] (keyboardHeight) in
-            footerView.frame = CGRectMake(0, 0, sampleWidth, keyboardHeight)
+            footerView.frame = CGRect(x: 0, y: 0, width: sampleWidth, height: keyboardHeight)
             self?.tableView.tableFooterView = footerView
         }
         replyInputViewHandler?.keyboardWillHideBlock = { [weak self] in
-            self?.tableView.tableFooterView?.frame = CGRectMake(0, 0, sampleWidth, 0)
+            self?.tableView.tableFooterView?.frame = CGRect(x: 0, y: 0, width: sampleWidth, height: 0)
         }
     }
     
     // MARK: Private
     
-    private func setupNavigationBar() {
-        let backButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_arrow"), style: .Plain, target: self, action: "backButtonAction")
+    fileprivate func setupNavigationBar() {
+        let backButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_arrow"), style: .plain, target: self, action: #selector(CommentRepliesViewController.backButtonAction))
         self.navigationItem.leftBarButtonItem = backButton
         
         self.title = "Reply to Comment"
     }
 
-    private func setupHeaderViewCell() {
+    fileprivate func setupHeaderViewCell() {
         assert(self.comment != nil)
         TableViewHeaderTutorialCommentCellPresenter().installTutorialCommentCell(commentCell, withTutorialComment: self.comment!, inTableView: tableView)
     }
 
     func backButtonAction() {
         self.replyToCommentBarVC.hideKeyboard()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -7,7 +7,7 @@ typealias VoidCallback = () -> ()
 
 class CommentBottomBarView: UIView {
   
-  @IBOutlet private weak var view: UIView! 
+  @IBOutlet fileprivate weak var view: UIView! 
   
   // MARK: Init
   
@@ -21,20 +21,20 @@ class CommentBottomBarView: UIView {
     setupView()
   }
 
-  private func setupView() {
-    NSBundle.mainBundle().loadNibNamed("CommentBottomBar", owner:self, options:nil)
+  fileprivate func setupView() {
+    Bundle.main.loadNibNamed("CommentBottomBar", owner:self, options:nil)
     self.addSubview(self.view);
   }
   
   // MARK: public
   
-  func setNumberOfLikes(numberOfLikes: Int) {
+  func setNumberOfLikes(_ numberOfLikes: Int) {
     let numberOfLikesString = String(numberOfLikes)
     assert(numberOfLikesString.characters.count > 0)
-    self.numberOfLikesButton.setTitle(numberOfLikesString, forState: .Normal)
+    self.numberOfLikesButton.setTitle(numberOfLikesString, for: UIControlState())
   }
 
-  func setLikeButtonActive(active: Bool) {
+  func setLikeButtonActive(_ active: Bool) {
     self.likeButton.alpha = (active ? 1.0 : 0.5)
   }
   
@@ -47,13 +47,13 @@ class CommentBottomBarView: UIView {
   
   @IBOutlet weak var timeAgoLabel: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  @IBOutlet private weak var numberOfLikesButton: UIButton!
+  @IBOutlet fileprivate weak var numberOfLikesButton: UIButton!
   
-  @IBAction func likeButtonPressed(sender: AnyObject) {
+  @IBAction func likeButtonPressed(_ sender: AnyObject) {
     likeButtonPressed?()
   }
   
-  @IBAction func numberOfLikesButtonPressed(sender: AnyObject) {
+  @IBAction func numberOfLikesButtonPressed(_ sender: AnyObject) {
     likesCountButtonPressed?()
   }
 }

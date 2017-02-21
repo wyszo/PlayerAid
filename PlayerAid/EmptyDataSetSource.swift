@@ -11,26 +11,26 @@ final class EmptyDataSetSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         self.image = image
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         
         let attributes: [String : AnyObject] = [
             NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 16.0)!,
-            NSForegroundColorAttributeName : UIColor.blackColor()
+            NSForegroundColorAttributeName : UIColor.black
         ]
         return NSAttributedString(string: title, attributes: attributes)
     }
     
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return image
     }
     
     //MARK: delegate 
     
-    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return scrollEnabled
     }
     
-    func emptyDataSetDidDisappear(scrollView: UIScrollView!) {
-        scrollView.scrollEnabled = scrollEnabled
+    func emptyDataSetDidDisappear(_ scrollView: UIScrollView!) {
+        scrollView.isScrollEnabled = scrollEnabled
     }
 }

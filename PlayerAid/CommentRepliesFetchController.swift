@@ -1,15 +1,39 @@
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 @objc
 class CommentRepliesFetchController: NSObject {
   
-  private var tutorial: Tutorial
-  private var session: NSURLSession
-  private var started: Bool
-  private var commentsToFetchReplies: NSOrderedSet
-  private var nextRepliesFeedUrls: Dictionary<NSNumber,String>
+  fileprivate var tutorial: Tutorial
+  fileprivate var session: URLSession
+  fileprivate var started: Bool
+  fileprivate var commentsToFetchReplies: NSOrderedSet
+  fileprivate var nextRepliesFeedUrls: Dictionary<NSNumber,String>
   
-  private let kRetryRequestAfterSeconds: NSTimeInterval = 6.0
+  fileprivate let kRetryRequestAfterSeconds: TimeInterval = 6.0
   
   init(tutorial: Tutorial) {
     self.tutorial = tutorial
@@ -17,9 +41,9 @@ class CommentRepliesFetchController: NSObject {
     self.started = false
     self.nextRepliesFeedUrls = Dictionary()
     
-    let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-    sessionConfiguration.HTTPMaximumConnectionsPerHost = 3;
-    self.session = NSURLSession(configuration: sessionConfiguration)
+    let sessionConfiguration = URLSessionConfiguration.default
+    sessionConfiguration.httpMaximumConnectionsPerHost = 3;
+    self.session = URLSession(configuration: sessionConfiguration)
     super.init()
   }
   
@@ -34,15 +58,15 @@ class CommentRepliesFetchController: NSObject {
     }
   }
   
-  func fetchAllButFirstPageForComment(comment: TutorialComment) {
-    if let feedUrl = self.nextRepliesFeedUrls[comment.serverID] where feedUrl.characters.count > 0 {
+  func fetchAllButFirstPageForComment(_ comment: TutorialComment) {
+    if let feedUrl = self.nextRepliesFeedUrls[comment.serverID], feedUrl.characters.count > 0 {
       
       AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.getCommentRepliesForComment(comment, fromFeed: feedUrl, session: session, allowErrorAlerts: false, completion: { [weak self] (success, nextFeedUrl) -> Void in
         
         if success == true && nextFeedUrl?.characters.count > 0 {
           var valueToSet: String? = nextFeedUrl
           
-          if let currentUrl = self?.nextRepliesFeedUrls[comment.serverID] where currentUrl == nextFeedUrl {
+          if let currentUrl = self?.nextRepliesFeedUrls[comment.serverID], currentUrl == nextFeedUrl {
             valueToSet = nil // if current and next feed URLs are the same, we're done
           }
           self?.nextRepliesFeedUrls[comment.serverID] = valueToSet // remember next page URL 
@@ -61,7 +85,7 @@ class CommentRepliesFetchController: NSObject {
   
   // MARK: private
 
-  private func fetchFirstBatchOfCommentReplies(comment: TutorialComment, session: NSURLSession) {
+  fileprivate func fetchFirstBatchOfCommentReplies(_ comment: TutorialComment, session: URLSession) {
     AuthenticatedServerCommunicationController.sharedInstance().serverCommunicationController.getCommentRepliesForComment(comment, session: session, allowErrorAlerts: false) {
       [weak self] (success, nextFeedUrl) -> Void in
         if success == true && nextFeedUrl?.characters.count > 0 {

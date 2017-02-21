@@ -1,5 +1,29 @@
 import Foundation
 import TWCommonLib
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 internal struct HTTPStatusCodes {
   static let success = 200
@@ -11,7 +35,7 @@ internal enum HTTPMethod: String {
   case DELETE = "DELETE"
 }
 
-typealias NetworkCompletionBlock = (response: AnyObject?, responseObject: NSURLResponse?, error: NSError?) -> Void
+typealias NetworkCompletionBlock = (_ response: Any?, _ responseObject: URLResponse?, _ error: NSError?) -> Void
 
 
 /**
@@ -19,16 +43,16 @@ typealias NetworkCompletionBlock = (response: AnyObject?, responseObject: NSURLR
  */
 class ServerCommunicationController : NSObject {
 
-  private var apiToken: String?
+  fileprivate var apiToken: String?
   
-  func setApiToken(apiToken: String) {
+  func setApiToken(_ apiToken: String) {
     assert(apiToken.characters.count > 0); // TODO: figure out how to have assertOrReturn in Swift
     self.apiToken = apiToken;
   }
   
   // MARK: Public methods
   
-  func ping(completion completion: NetworkCompletionBlock) {
+  func ping(completion: @escaping NetworkCompletionBlock) {
     sendNetworkRequest("ping", httpMethod: .GET, parameters: nil, completion: completion)
   }
 }
@@ -36,20 +60,20 @@ class ServerCommunicationController : NSObject {
 // MARK: Guides
 extension ServerCommunicationController {
   
-  func listGuides(completion completion: NetworkCompletionBlock) {
+  func listGuides(completion: @escaping NetworkCompletionBlock) {
     // TODO: implement paging for this one!
     let parameters = [ "fields" : "steps,comments" ]
-    sendNetworkRequest("guides", httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
+    sendNetworkRequest("guides", httpMethod: .GET, parameters: parameters as [String : AnyObject]?, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
   }
   
-  func listGuidesForUserId(userId: Int, completion: NetworkCompletionBlock) {
+  func listGuidesForUserId(_ userId: Int, completion: @escaping NetworkCompletionBlock) {
     let parameters = [ "fields" : "steps,comments" ]
     let urlString = "user/\(userId)/guides"
     
-    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: parameters as [String : AnyObject]?, completion: networkResponseAsJSONPagedDictionaryCompletionBlock(completion))
   }
 
-  func pullGuideBackFromReview(guideId: Int, completion: NetworkCompletionBlock) {
+  func pullGuideBackFromReview(_ guideId: Int, completion: @escaping NetworkCompletionBlock) {
     let urlString = "/draft/\(guideId)/review"
     sendNetworkRequest(urlString, httpMethod: .DELETE, parameters: nil, completion: completion)
   }
@@ -58,34 +82,34 @@ extension ServerCommunicationController {
 // MARK: User
 extension ServerCommunicationController {
   
-  func getCurrentUser(completion completion: NetworkCompletionBlock) {
+  func getCurrentUser(completion: @escaping NetworkCompletionBlock) {
     // GET /user
-    sendNetworkRequest("user", httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+    sendNetworkRequest("user", httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields as [String : AnyObject]?, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
   }
   
-  func getUser(id id: String, completion: NetworkCompletionBlock) {
+  func getUser(id: String, completion: @escaping NetworkCompletionBlock) {
     // GET /user/{id}
     let urlString = "user/" + id
-    sendNetworkRequest(urlString, httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
+    sendNetworkRequest(urlString, httpMethod: .GET, parameters: ServerCommunicationController.userRequestFields as [String : AnyObject]?, completion: networkResponseAsJSONDictionaryCompletionBlock(completion))
   }
   
-  private static let userRequestFields = [ "fields" : "guides,guides.steps,followers,following" ]
+  fileprivate static let userRequestFields = [ "fields" : "guides,guides.steps,followers,following" ]
 }
 
 // MARK: Generic methods
 extension ServerCommunicationController {
   
-  internal func sendPostRequest(relativePath: String, parameters: [String : AnyObject]?, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+  internal func sendPostRequest(_ relativePath: String, parameters: [String : AnyObject]?, completion: @escaping (Data?, URLResponse?, NSError?) -> Void) {
     sendNetworkRequest(relativePath, httpMethod: .POST, parameters: parameters, completion: completion)
   }
 
-  internal func sendNetworkRequest(path: String, httpMethod: HTTPMethod, isPathRelative: Bool = true, parameters: [String : AnyObject]?, session: NSURLSession = NSURLSession.sharedSession(), completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
+  internal func sendNetworkRequest(_ path: String, httpMethod: HTTPMethod, isPathRelative: Bool = true, parameters: [String : AnyObject]?, session: URLSession = URLSession.shared, completion: @escaping (Data?, URLResponse?, NSError?) -> Void) {
     let request = authenticatedRequestWithServerPathString(path, httpMethod:httpMethod, isPathRelative:isPathRelative, parameters:parameters)
-    let task = session.dataTaskWithRequest(request, completionHandler: completion)
+    let task = session.dataTask(with: request, completionHandler: completion as! (Data?, URLResponse?, Error?) -> Void)
     task.resume()
   }
 
-  private func authenticatedRequestWithServerPathString(pathString: String, httpMethod: HTTPMethod = .GET, isPathRelative: Bool = true, parameters: [String : AnyObject]? = nil) -> NSURLRequest {
+  fileprivate func authenticatedRequestWithServerPathString(_ pathString: String, httpMethod: HTTPMethod = .GET, isPathRelative: Bool = true, parameters: [String : AnyObject]? = nil) -> URLRequest {
     let serverURL = EnvironmentSettings().serverBaseURL() as String
     assert(serverURL.characters.count > 0)
 
@@ -97,11 +121,11 @@ extension ServerCommunicationController {
       }
     }
 
-    let requestURL = NSURL(string: (isPathRelative ? serverURL : "") + pathStringWithQueryParams)
+    let requestURL = URL(string: (isPathRelative ? serverURL : "") + pathStringWithQueryParams)
     assert(requestURL != nil)
     
-    let request = NSMutableURLRequest(URL: requestURL!)
-    request.HTTPMethod = httpMethod.rawValue
+    let request = NSMutableURLRequest(url: requestURL!)
+    request.httpMethod = httpMethod.rawValue
     addBearerAuthenticationToMutableRequest(request)
 
     if let validParameters = parameters {
@@ -109,14 +133,14 @@ extension ServerCommunicationController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         if let validData = try? validParameters.jsonEncodedData() {
-          request.HTTPBody = validData
+          request.httpBody = validData
         }
       }
     }
-    return request.copy() as! NSURLRequest
+    return request.copy() as! URLRequest
   }
   
-  private func addBearerAuthenticationToMutableRequest(mutableRequest: NSMutableURLRequest) {
+  fileprivate func addBearerAuthenticationToMutableRequest(_ mutableRequest: NSMutableURLRequest) {
     assert(self.apiToken?.characters.count > 0)
     let bearer = "Bearer " + apiToken!
     mutableRequest.setValue(bearer, forHTTPHeaderField: "Authorization")
@@ -124,14 +148,14 @@ extension ServerCommunicationController {
   
   // MARK: Network responses handling
   
-  internal func isHttpResponseFailureShowGenericError(response: NSURLResponse?, error: NSError?) -> Bool {
+  internal func isHttpResponseFailureShowGenericError(_ response: URLResponse?, error: NSError?) -> Bool {
     var statusCode = 0
-    if let httpResponse = response as? NSHTTPURLResponse {
+    if let httpResponse = response as? HTTPURLResponse {
       statusCode = httpResponse.statusCode
     }
     
     if error != nil || statusCode != HTTPStatusCodes.success {
-      dispatch_async(dispatch_get_main_queue(), {
+      DispatchQueue.main.async(execute: {
         AlertFactory.showGenericErrorAlertViewNoRetry()
       })
       return true
@@ -139,42 +163,42 @@ extension ServerCommunicationController {
     return false
   }
   
-  internal func networkResponseAsJSONArrayCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+  internal func networkResponseAsJSONArrayCompletionBlock(_ completion: @escaping NetworkCompletionBlock) -> (Data?, URLResponse?, NSError?) -> Void {
   
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
         let result = try? data?.jsonArray()
         assert(result != nil && result! != nil)
-        return result!
+        return result! as AnyObject?
       }, completion: completion)
   }
   
-  internal func networkResponseAsJSONDictionaryCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+  internal func networkResponseAsJSONDictionaryCompletionBlock(_ completion: @escaping NetworkCompletionBlock) -> (Data?, URLResponse?, NSError?) -> Void {
     
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
       let result = try? data?.jsonDictionary()
       assert(result != nil && result! != nil)
-      return result!
+      return result! as AnyObject?
     }, completion: completion)
   }
   
   // FIXME: Temporary method that just returns first page of results!
-  internal func networkResponseAsJSONPagedDictionaryCompletionBlock(completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+  internal func networkResponseAsJSONPagedDictionaryCompletionBlock(_ completion: @escaping NetworkCompletionBlock) -> (Data?, URLResponse?, NSError?) -> Void {
     return networkResponseWithTransformationCompletionBlock({ (data) -> AnyObject? in
       // TODO: this only returns first page of results, be careful!
       let result = try? data?.jsonDictionary()["data"]
       assert(result != nil && result! != nil)
-      return result!
+      return result! as AnyObject?
     }, completion: completion)
   }
   
-  private func networkResponseWithTransformationCompletionBlock(transformation: (NSData?) -> AnyObject?, completion: NetworkCompletionBlock) -> (NSData?, NSURLResponse?, NSError?) -> Void {
+  fileprivate func networkResponseWithTransformationCompletionBlock(_ transformation: @escaping (Data?) -> AnyObject?, completion: @escaping NetworkCompletionBlock) -> (Data?, URLResponse?, NSError?) -> Void {
     
     return { (data, response, error) -> Void in
       if let transformedData = transformation(data) {
-        completion(response: transformedData, responseObject: response, error: error)
+        completion(transformedData, response, error)
       } else {
         assertionFailure("Unexpected response");
-        completion(response: nil, responseObject: response, error: error)
+        completion(nil, response, error)
       }
     }
   }

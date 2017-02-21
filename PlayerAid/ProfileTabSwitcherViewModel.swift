@@ -3,10 +3,10 @@ import TWCommonLib
 import DZNEmptyDataSet
 
 final class ProfileTabSwitcherViewModel: NSObject {
-    private let tableView: UITableView
-    private let user: User
-    private let userCellReuseIdentifier: String
-    private let userAvatarOrNameSelected: (User)->()
+    fileprivate let tableView: UITableView
+    fileprivate let user: User
+    fileprivate let userCellReuseIdentifier: String
+    fileprivate let userAvatarOrNameSelected: (User)->()
     
     var ownGuidesDataSource: GuidesTableDataSource!
     var likedGuidesDataSource: GuidesTableDataSource!
@@ -18,8 +18,8 @@ final class ProfileTabSwitcherViewModel: NSObject {
         return emptyDataSetSource
     }
     
-    private var followingTableViewDelegate: FollowedUserTableViewDelegate!
-    private var followersTableViewDelegate: FollowedUserTableViewDelegate!
+    fileprivate var followingTableViewDelegate: FollowedUserTableViewDelegate!
+    fileprivate var followersTableViewDelegate: FollowedUserTableViewDelegate!
     
     var guidesCount: Int {
         return publishedGuidesCount()
@@ -37,7 +37,7 @@ final class ProfileTabSwitcherViewModel: NSObject {
         return user.isFollowedBy.count ?? 0
     }
     
-    init(tableView: UITableView, user: User, userCellReuseIdentifier: String, userAvatarOrNameSelected: (User)->()) {
+    init(tableView: UITableView, user: User, userCellReuseIdentifier: String, userAvatarOrNameSelected: @escaping (User)->()) {
         self.tableView = tableView
         self.user = user
         self.userCellReuseIdentifier = userCellReuseIdentifier
@@ -57,7 +57,7 @@ final class ProfileTabSwitcherViewModel: NSObject {
         tableView.delegate = followersTableViewDelegate
     }
     
-    func setEmptyState(title: String, imageName: String) {
+    func setEmptyState(_ title: String, imageName: String) {
         emptyDataSetSource.title = title
         emptyDataSetSource.image = UIImage(named: imageName)
     }
@@ -71,19 +71,19 @@ private extension ProfileTabSwitcherViewModel {
         setupFollowersTableViewDelegate(userAvatarOrNameSelected)
     }
     
-    func setupFollowingTableViewDelegate(userSelected: (User)->()) {
+    func setupFollowingTableViewDelegate(_ userSelected: @escaping (User)->()) {
         followingTableViewDelegate = followedUserTableViewDelegate(followingDataSource, userSelected: userSelected)
     }
     
-    func setupFollowersTableViewDelegate(userSelected: (User)->()) {
+    func setupFollowersTableViewDelegate(_ userSelected: @escaping (User)->()) {
         followersTableViewDelegate = followedUserTableViewDelegate(followersDataSource, userSelected: userSelected)
     }
     
-    func followedUserTableViewDelegate(dataSource: TWObjectAtIndexPathProtocol, userSelected: (User)->()) -> FollowedUserTableViewDelegate {
+    func followedUserTableViewDelegate(_ dataSource: TWObjectAtIndexPathProtocol, userSelected: @escaping (User)->()) -> FollowedUserTableViewDelegate {
         let delegate = FollowedUserTableViewDelegate()
         
         delegate.cellSelectedBlock = { indexPath in
-            let user = dataSource.objectAtIndexPath(indexPath) as! User
+            let user = dataSource.object(at: indexPath!) as! User
             userSelected(user)
         }
         return delegate
@@ -113,7 +113,7 @@ private extension ProfileTabSwitcherViewModel {
         let dataSource = createGuidesTableDataSourceWithoutPredicate()
         dataSource.predicate = NSPredicate(format: "reportedByUser == 0 AND %@ IN likedBy", user)
         dataSource.indexPathTransformBlock = { indexPath in
-            return NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
+            return IndexPath(row: (indexPath?.row)!, section: (indexPath?.section)! + 1)
         }
         
         likedGuidesDataSource = dataSource
@@ -139,7 +139,7 @@ private extension ProfileTabSwitcherViewModel {
 //MARK: Auxiliary methods
 private extension ProfileTabSwitcherViewModel {
     func publishedGuidesCount() -> Int {
-        return ownGuidesDataSource.numberOfRowsForSectionNamed("Published")
+        return ownGuidesDataSource.numberOfRows(forSectionNamed: "Published")
     }
 }
 

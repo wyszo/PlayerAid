@@ -7,10 +7,10 @@ class QueryStringBuilder {
         for (key, value) in parameters {
             let stringValue = value as? String
 
-            if let encodedValue = stringValue?.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
+            if let encodedValue = stringValue?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
                 queryVariables.append(key + "=" + encodedValue)
             }
         }
-        return (queryVariables.isEmpty ? "" : "?" + queryVariables.joinWithSeparator("&"))
+        return (queryVariables.isEmpty ? "" : "?" + queryVariables.joined(separator: "&"))
     }
 }

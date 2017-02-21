@@ -3,17 +3,17 @@ import UIKit
 @objc
 class RepliesToCommentTableViewController : NSObject {
     
-    private let cellReuseIdentifier = "commentReplyCell"
+    fileprivate let cellReuseIdentifier = "commentReplyCell"
     
     // TODO: initialize this from an initializer!!! initWithTableView!!!
-    private var tableView: UITableView?
-    private var comment: TutorialComment?
-    private var fetchLimit: Int?
+    fileprivate var tableView: UITableView?
+    fileprivate var comment: TutorialComment?
+    fileprivate var fetchLimit: Int?
     
-    private var repliesDataSource: TWCoreDataTableViewDataSource?
-    private var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
-    private var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
-    private var cellConfigurator: TutorialCommentCellConfigurator
+    fileprivate var repliesDataSource: TWCoreDataTableViewDataSource<NSManagedObject>?
+    fileprivate var dataSourceConfigurator: CommentsTableViewDataSourceConfigurator?
+    fileprivate var repliesFetchedResultsControllerBinder: TWTableViewFetchedResultsControllerBinder?
+    fileprivate var cellConfigurator: TutorialCommentCellConfigurator
   
     var tableViewDidLoadDataBlock: (()->())?
   
@@ -31,12 +31,12 @@ class RepliesToCommentTableViewController : NSObject {
   
     // MARK: Public
   
-    func attachToTableView(tableView: UITableView, withRepliesToComment comment: TutorialComment, fetchLimit: NSNumber) {
-      self.fetchLimit = fetchLimit.integerValue
+    func attachToTableView(_ tableView: UITableView, withRepliesToComment comment: TutorialComment, fetchLimit: NSNumber) {
+      self.fetchLimit = fetchLimit.intValue
       attachToTableView(tableView, withRepliesToComment: comment)
     }
   
-    func attachToTableView(tableView: UITableView, withRepliesToComment comment: TutorialComment) {
+    func attachToTableView(_ tableView: UITableView, withRepliesToComment comment: TutorialComment) {
         self.tableView = tableView
         self.comment = comment
         setupTableView()
@@ -53,33 +53,33 @@ class RepliesToCommentTableViewController : NSObject {
 extension RepliesToCommentTableViewController {
     // MARK: Setup
     
-    private func setupTableView() {
+    fileprivate func setupTableView() {
         assert(tableView != nil)
         
-        tableView!.registerNibWithName("TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
+        tableView!.registerNib(withName: "TutorialCommentCell", forCellReuseIdentifier: cellReuseIdentifier)
         tableView!.separatorColor = ColorsHelper.commentRepliesSeparatorColor()
         tableView!.rowHeight = UITableViewAutomaticDimension
         tableView!.estimatedRowHeight = 100.0
     }
   
-    private func setupFetchedResultsControllerBinder() {
+    fileprivate func setupFetchedResultsControllerBinder() {
         repliesFetchedResultsControllerBinder = TWTableViewFetchedResultsControllerBinder(tableView: tableView, configureCellBlock: {
           [weak self] (cell, indexPath) in
-          self?.configureCell(cell, object: nil, indexPath: indexPath)
+          self?.configureCell(cell!, object: nil, indexPath: indexPath!)
           })
         repliesFetchedResultsControllerBinder?.numberOfObjectsChangedBlock = { [weak self] _ -> Void in
           self?.cellConfigurator.updateCommentsTableViewFooterHeightBlock?()
         }
     }
   
-    private func setupDataSource() {
+    fileprivate func setupDataSource() {
         assert(repliesFetchedResultsControllerBinder != nil)
         assert(comment != nil)
       
-        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchLimit:fetchLimit, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
-              [weak self] (cell, object, indexPath) in
+        dataSourceConfigurator = CommentsTableViewDataSourceConfigurator(comment: comment!, cellReuseIdentifier: cellReuseIdentifier, fetchLimit:fetchLimit as NSNumber?, fetchedResultsControllerDelegate: repliesFetchedResultsControllerBinder!, configureCellBlock: {
+              [weak self] (cell: UITableViewCell, object: AnyObject, indexPath: IndexPath) in
                 self?.configureCell(cell, object: object, indexPath: indexPath)
-              })
+              } as! CellWithObjectAtIndexPathBlock)
         assert(dataSourceConfigurator != nil)
         
         repliesDataSource = dataSourceConfigurator?.dataSource()
@@ -89,14 +89,14 @@ extension RepliesToCommentTableViewController {
     
     // MARK: Cell configuration
     
-    private func configureCell(cell: UITableViewCell, object: AnyObject?, indexPath: NSIndexPath) {
+    fileprivate func configureCell(_ cell: UITableViewCell, object: AnyObject?, indexPath: IndexPath) {
         assert(cell is TutorialCommentCell);
         
         if let commentCell = cell as? TutorialCommentCell {
             commentCell.replyButtonHidden = true
             commentCell.backgroundColor = ColorsHelper.commentReplyBackgroundColor()
             
-            guard let comment = self.repliesDataSource?.objectAtIndexPath(indexPath) as? TutorialComment else {
+            guard let comment = self.repliesDataSource?.object(at: indexPath) as? TutorialComment else {
                 assert(false, "internal error")
                 return
             }
@@ -115,7 +115,7 @@ extension RepliesToCommentTableViewController {
 
 extension RepliesToCommentTableViewController: UITableViewDelegate {
   
-    @objc internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    @objc internal func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
       if indexPath.row == tableView.indexPathsForVisibleRows?.last?.row {
         DispatchAsyncOnMainThread {
           self.tableViewDidLoadDataBlock?()

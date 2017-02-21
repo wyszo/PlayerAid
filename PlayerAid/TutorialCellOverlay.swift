@@ -4,18 +4,18 @@ import TWCommonLib
 class TutorialCellOverlay: UIView {
 
     @IBOutlet var view: UIView!
-    @IBOutlet private weak var backgroundView: UIView!
-    @IBOutlet private weak var overlayView: UIView!
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet fileprivate weak var backgroundView: UIView!
+    @IBOutlet fileprivate weak var overlayView: UIView!
+    @IBOutlet fileprivate weak var label: UILabel!
   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        view = NSBundle.mainBundle().loadNibNamed("TutorialCellOverlay", owner: self, options: nil)[0] as! UIView
+        view = Bundle.main.loadNibNamed("TutorialCellOverlay", owner: self, options: nil)?[0] as! UIView
         self.addSubview(view!)
         view!.frame = self.bounds
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
   
     var text: String = "" {
@@ -29,21 +29,21 @@ class TutorialCellOverlay: UIView {
         overlayView.tw_setCornerRadius(overlayView.frame.size.height / 2)
     }
     
-    func setLabelBackgroundColor(backgroundColor: UIColor) {
+    func setLabelBackgroundColor(_ backgroundColor: UIColor) {
         overlayView.backgroundColor = backgroundColor
     }
     
-    func setOverlayBackgroundColor(backgroundColor: UIColor) {
+    func setOverlayBackgroundColor(_ backgroundColor: UIColor) {
         backgroundView.backgroundColor = backgroundColor
     }
     
-    func setOverlayBackgroundAlpha(alpha: CGFloat) {
+    func setOverlayBackgroundAlpha(_ alpha: CGFloat) {
         backgroundView.alpha = alpha
     }
     
     //MARK: Touch events
     
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return false // Passing all touches to the next view in hierarchy
     }
 }
