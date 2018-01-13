@@ -60,7 +60,59 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>playeraiddemo.streaming.mediaservices.windows.net</key>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>cdn.playeraid.co.uk</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>graph.facebook.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>playeraid.co.uk</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>playeraid.streaming.mediaservices.windows.net</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
@@ -82,59 +134,7 @@
 				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>cdn.playeraid.co.uk</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>akamaihd.net</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>facebook.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>fbcdn.net</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>graph.facebook.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>playeraid.co.uk</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-			<key>playeraid.streaming.mediaservices.windows.net</key>
+			<key>playeraiddemo.streaming.mediaservices.windows.net</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

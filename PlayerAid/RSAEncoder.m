@@ -18,7 +18,8 @@
   self = [super init];
   if (self) {
     NSString *certificatePath = [self serverRSACertificatePath];
-    _xRsaEncryptor = [[XRSA alloc] initWithPublicKey:certificatePath];
+    _xRsaEncryptor = [[XRSA alloc] initWithPublicKey:certificatePath]; // if this is nil, it means that server certificates expired
+    AssertTrueOrReturnNil(_xRsaEncryptor != nil);
   }
   return self;
 }
