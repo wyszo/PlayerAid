@@ -12,6 +12,7 @@
 #import "AlertFactory.h"
 #import "FBSDKProfileFormatter.h"
 #import "NSError+PlayerAidErrors.h"
+#import "GlobalSettings.h"
 
 static const NSTimeInterval kTimeDelayToRetryAuthenticationRequest = 5;
 
@@ -48,7 +49,11 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
       NSLog(@"access token: %@", authRequestData.facebookAuthenticationToken);
       AssertTrueOrReturn(accessTokenString.length && @"no access token means FB session is not open");
       
-      [[self sharedInstance] sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:YES completion:completion];
+      if (OFFLINE_DEMO_ENVIRONMENT) {
+        completion(@"offline demo mock token", nil);
+      } else {
+        [[self sharedInstance] sendAuthenticationApiRequestWithAuthenticationRequestData:authRequestData showErrorOnFailure:YES completion:completion];
+      }
     }
   }];
   [loginButton bk_associateValue:fbAuthenticationController withKey:@"fbAuthenticationController"];

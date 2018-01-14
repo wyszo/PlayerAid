@@ -13,6 +13,7 @@
 #import "SignUpValidator.h"
 #import "AlertFactory.h"
 #import "LoginManager.h"
+#import "GlobalSettings.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *loginTextFields;
@@ -156,6 +157,13 @@
   if([self validateEmailAndPassword]) {
     TWFullscreenActivityIndicatorView *activityIndicator = [TWFullscreenActivityIndicatorView new];
     [self.navigationController.view addSubview:activityIndicator];
+    
+    if(OFFLINE_DEMO_ENVIRONMENT) {
+      [self dismissViewControllerAnimated:YES completion:^() {
+        [activityIndicator dismiss];
+      }];
+      return;
+    }
     
     defineWeakSelf();
     [[UnauthenticatedServerCommunicationController sharedInstance] loginWithEmail:[self emailAddress] password:[self password] completion:^(NSString * __nullable apiToken, id responseObject, NSError * __nullable error) {
