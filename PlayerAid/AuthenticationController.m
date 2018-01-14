@@ -6,6 +6,7 @@
 #import "AuthenticationController.h"
 #import "AuthenticationController_SavingToken.h"
 #import "AuthenticatedServerCommunicationController.h"
+#import "GlobalSettings.h"
 #import "PlayerAid-Swift.h"
 
 static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey";
@@ -27,6 +28,14 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
     return;
   }
   [AuthenticatedServerCommunicationController setApiToken:apiToken];
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    if (completion) {
+      BOOL authenticated = YES;
+      completion(authenticated);
+    }
+    return;
+  }
   
   // ping server to check if token is valid
   [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pingWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {

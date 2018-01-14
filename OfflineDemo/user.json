@@ -1,0 +1,76 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "pictureUri": "https://picsum.photos/200/200/",
+  "description": "Coach of a fake sports team.",
+  "followers": {
+    "data": [
+               {
+               "id": 2,
+               "name": "Jane Doe",
+               "pictureUri": "https://picsum.photos/200/200/",
+               "description": "Player in a fake sports team."
+               }
+            ]
+  },
+  "following": {
+      "data": [
+         {
+           "id": 3,
+           "name": "Jimmy Doe",
+           "pictureUri": "https://picsum.photos/200/200/",
+           "description": "Member of a fake sports team."
+         }
+    ]
+  },
+  "likes": {
+    "data": [
+             {
+               "id": 2,
+               "title": "IbrahimoviÄ‡'s Taekwondo Kick!",
+               "imageUri": "https://picsum.photos/400/600/",
+               "section": "Technique",
+               "author": {
+                 "id": 3,
+                 "name": "Jimmy Doe",
+                 "pictureUri": "https://picsum.photos/200/200/",
+                 "description": "Member of a fake sports team."
+               },
+               "createdOn": "2015-02-01T09:00:00Z",
+               "status": "Published"
+             }
+            ]
+  },
+  "tutorials": {
+    "data": [
+               {
+                 "id": 1,
+                 "title": "How to fake an injury like an Italian!",
+                 "imageUri": "https://picsum.photos/400/600/",
+                 "section": "Technique",
+                 "author": {
+                   "id": 1,
+                   "name": "John Doe",
+             "pictureUri": "https://picsum.photos/200/200/",
+                   "description": "Coach of a fake sports team."
+                 },
+                 "createdOn": "2015-01-31T15:00:00Z",
+                 "status": "Draft"
+               },
+               {
+                 "id": 2,
+                 "title": "When are Amazon drones going to take over the world??",
+                 "imageUri": "https://picsum.photos/400/600/",
+                 "section": "Technique",
+                 "author": {
+                   "id": 1,
+                   "name": "John Doe",
+                   "pictureUri": "https://picsum.photos/200/200/",
+                   "description": "Coach of a fake sports team."
+                 },
+                 "createdOn": "2015-01-31T15:00:00Z",
+                 "status": "Published"
+               }
+          ]
+  }
+}

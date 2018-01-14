@@ -10,6 +10,8 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
 #import "UserManipulationController.h"
+#import "GlobalSettings.h"
+#import "OfflineDemoMock.h"
 #import "PlayerAid-Swift.h"
 
 static const CGFloat kRetryShortDelay = 3.0;
@@ -59,6 +61,13 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchCurrentUserProfileFacebookUser:(nullable NSNumber *)userLinkedWithFacebook
 {
+  if (OFFLINE_DEMO_ENVIRONMENT) {   
+    NSDictionary *userDictionary = [[OfflineDemoMock sharedInstance] mockUser];
+    
+    [self updateLoggedInUserObjectWithDictionary:userDictionary userLinkedWithFacebook: @YES];
+    return;
+  }
+  
   __weak typeof(self) weakSelf = self;
   [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getCurrentUserWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if (error) {

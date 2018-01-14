@@ -202,6 +202,8 @@
 		31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */; };
 		31FFDE201AAE6B96006E4D0E /* PublishingTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */; };
 		33C4424ABFEE770E466B2220 /* Pods_PlayerAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8F01391113A3EB031C7E69 /* Pods_PlayerAid.framework */; };
+		43237E94200B6D8D00E7F168 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 43237E93200B6D8D00E7F168 /* user.json */; };
+		43237E99200B6EA300E7F168 /* OfflineDemoMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43237E98200B6EA300E7F168 /* OfflineDemoMock.m */; };
 		6C5AC036C47710D9EBE8D888 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84F40CAEAB470F6036E /* TutorialCommentsViewController.m */; };
 		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
 		6C5AC2B836204DA177D06367 /* TutorialCommentCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC85092883657598DCE02 /* TutorialCommentCellConfigurator.swift */; };
@@ -547,6 +549,9 @@
 		31FFDE1B1AAE6B36006E4D0E /* PublishingTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishingTutorialView.xib; sourceTree = "<group>"; };
 		31FFDE1E1AAE6B96006E4D0E /* PublishingTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishingTutorialViewController.h; sourceTree = "<group>"; };
 		31FFDE1F1AAE6B96006E4D0E /* PublishingTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishingTutorialViewController.m; sourceTree = "<group>"; };
+		43237E93200B6D8D00E7F168 /* user.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = user.json; path = OfflineDemo/user.json; sourceTree = SOURCE_ROOT; };
+		43237E97200B6EA300E7F168 /* OfflineDemoMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDemoMock.h; sourceTree = "<group>"; };
+		43237E98200B6EA300E7F168 /* OfflineDemoMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDemoMock.m; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1D3473B7AFBE46471123D0 /* Pods-PlayerAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerAid/Pods-PlayerAid.debug.xcconfig"; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMakeEditCommentInputAccessoryViewsManager.m; sourceTree = "<group>"; };
@@ -1969,6 +1974,7 @@
 		31F116731A790F680022BD74 /* PlayerAid */ = {
 			isa = PBXGroup;
 			children = (
+				43237E92200B6D6C00E7F168 /* OfflineDemo */,
 				318BA8111A7ABB6B0012F507 /* AppDelegate */,
 				31777FF71A7F9426007057CD /* Controllers */,
 				3177801A1A80975C007057CD /* DataModel */,
@@ -2162,6 +2168,16 @@
 			name = PublishingTutorial;
 			sourceTree = "<group>";
 		};
+		43237E92200B6D6C00E7F168 /* OfflineDemo */ = {
+			isa = PBXGroup;
+			children = (
+				43237E93200B6D8D00E7F168 /* user.json */,
+				43237E97200B6EA300E7F168 /* OfflineDemoMock.h */,
+				43237E98200B6EA300E7F168 /* OfflineDemoMock.m */,
+			);
+			name = OfflineDemo;
+			sourceTree = "<group>";
+		};
 		6C5AC2B88E13958CBC5EC7CB /* KeyboardCustomInputAccessoryViewsManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2304,6 +2320,7 @@
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */,
+				43237E94200B6D8D00E7F168 /* user.json in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
@@ -2423,6 +2440,7 @@
 				31B735EA1A87D8160081AE15 /* TabBarHelper.m in Sources */,
 				316BA2C51CFEA4DC0029FD37 /* TextStepKeyboardAccessoryViewController.swift in Sources */,
 				3108E7801AF7A66C00E02C07 /* YCameraViewStandardDelegateObject.m in Sources */,
+				43237E99200B6EA300E7F168 /* OfflineDemoMock.m in Sources */,
 				31F721B31BF28058001DB831 /* TutorialCommentParsingHelper.m in Sources */,
 				3129036B1B24ECBA00C730DA /* AlertControllerFactory.m in Sources */,
 				3173C8291AA7C661004CEF1E /* MediaPlayerHelper.m in Sources */,
@@ -2677,7 +2695,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
@@ -2701,7 +2719,7 @@
 				INFOPLIST_FILE = PlayerAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playeraid.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlayerAid/PlayerAid-Bridging-Header.h";
