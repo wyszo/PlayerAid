@@ -132,10 +132,14 @@
 }
 
 - (void)dealloc{
+    // was falling over on the first dealloc call.. (when logging in)
+    // todo: uncomment that
+    /**
     CFRelease(certificate);
     CFRelease(trust);
     CFRelease(policy);
     CFRelease(publicKey);
+    */
 }
 
 @end

@@ -14,5 +14,6 @@ NEW_AND_INIT_UNAVAILABLE
 SHARED_INSTANCE_GENERATE_INTERFACE
 
 - (NSDictionary *)mockUser;
+- (NSArray *)mockGuideDictionaries;
 
 @end

@@ -41,7 +41,7 @@
              }
             ]
   },
-  "tutorials": {
+  "guides": {
     "data": [
                {
                  "id": 1,
@@ -69,7 +69,25 @@
                    "description": "Coach of a fake sports team."
                  },
                  "createdOn": "2015-01-31T15:00:00Z",
-                 "status": "Published"
+                 "status": "Published",
+                 "steps": [
+                           {
+                            "id": 1,
+                            "type": "Text",
+                            "position": 1,
+                            "thumbnail": null,
+                            "duration": null,
+                            "data": "sample text step!"
+                           },
+                           {
+                           "id": 2,
+                           "type": "Text",
+                           "position": 2,
+                           "thumbnail": null,
+                           "duration": null,
+                           "data": "another step!!"
+                           },
+                 ]
                }
           ]
   }

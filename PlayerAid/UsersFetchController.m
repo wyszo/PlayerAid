@@ -61,7 +61,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchCurrentUserProfileFacebookUser:(nullable NSNumber *)userLinkedWithFacebook
 {
-  if (OFFLINE_DEMO_ENVIRONMENT) {   
+  if (OFFLINE_DEMO_ENVIRONMENT) {
     NSDictionary *userDictionary = [[OfflineDemoMock sharedInstance] mockUser];
     
     [self updateLoggedInUserObjectWithDictionary:userDictionary userLinkedWithFacebook: @YES];

@@ -37,7 +37,7 @@
 - (nonnull NSString *)encodeToString:(nonnull NSString *)string
 {
   AssertTrueOrReturnNil(string.length);
-  AssertTrueOrReturnNil(self.xRsaEncryptor);
+  AssertTrueOrReturnNil(self.xRsaEncryptor); // na tym sie wywala, to jest puste
   
   NSString *encryptedString = [self.xRsaEncryptor encryptToString:string];
   AssertTrueOrReturnNil(encryptedString.length);

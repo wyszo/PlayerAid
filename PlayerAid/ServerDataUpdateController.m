@@ -10,6 +10,7 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "NSError+PlayerAidErrors.h"
 #import "ServerResponseParsing.h"
+#import "GlobalSettings.h"
 
 // TODO: rewrite this to use chained BFTasks instead of manual synchronisation..
 
@@ -30,8 +31,16 @@
 + (void)updateUserAndTutorials
 {
   [[UsersFetchController sharedInstance] fetchCurrentUserProfile];
-
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    return; // don't even fetch all tutorials, let's mock tutorials steps first!
+  }
+  
   [[TutorialListFetchController sharedInstance] fetchTimelineTutorialsCompletion:^(BOOL success) {
+    
+    if (OFFLINE_DEMO_ENVIRONMENT) {
+      return; // don't even fetch current user's tutorials
+    }
     [[TutorialListFetchController sharedInstance] fetchCurrentUserTutorials];
   }];
 }

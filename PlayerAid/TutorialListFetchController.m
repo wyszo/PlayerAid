@@ -10,6 +10,8 @@
 #import "AlertFactory.h"
 #import "UsersFetchController.h"
 #import "User.h"
+#import "GlobalSettings.h"
+#import "OfflineDemoMock.h"
 #import "PlayerAid-Swift.h"
 
 
@@ -18,6 +20,14 @@
 SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 
 - (void)fetchTimelineTutorialsCompletion:(BlockWithBoolParameter)completion {
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    NSArray *guides = [[OfflineDemoMock sharedInstance] mockGuideDictionaries];
+    [self showGenericError:NO orParseTutorialsFromDictionariesArray:guides];
+    CallBlock(completion, NO);
+    return;
+  }
+  
   defineWeakSelf();
   [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController listGuidesWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     AssertTrueOrReturn([responseObject isKindOfClass:[NSArray class]]);
