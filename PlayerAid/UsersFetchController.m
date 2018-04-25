@@ -37,6 +37,10 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     return;
   }
   else {
+    if (OFFLINE_DEMO_ENVIRONMENT) {
+      return; 
+    }
+    
     [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController getUserWithId:[user.serverID stringValue] completion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
       if (error) {
           DISPATCH_ASYNC_ON_MAIN_THREAD(^{
