@@ -8,4 +8,4 @@
 const NSInteger kMaxTextStepCharactersCount = 1000; // obsolete, marked for removal
 const CGFloat kJPEGCompressionQuality = 0.85;
 
-const BOOL OFFLINE_DEMO_ENVIRONMENT = true;
+const BOOL OFFLINE_DEMO_ENVIRONMENT = YES;

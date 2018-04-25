@@ -18,6 +18,14 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
 
 + (void)checkIsUserAuthenticatedPingServerCompletion:(void (^)(BOOL authenticated))completion
 {
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    if (completion) {
+      BOOL authenticated = YES;
+      completion(authenticated);
+    }
+    return;
+  }
+  
   // TODO: what if our token is valid, but Facebook token is not??
   
   NSString *apiToken = [self apiAuthenticationTokenFromUserDefaults];
@@ -28,14 +36,6 @@ static NSString const* kApiAuthenticationTokenKey = @"APIAuthenticationTokenKey"
     return;
   }
   [AuthenticatedServerCommunicationController setApiToken:apiToken];
-  
-  if (OFFLINE_DEMO_ENVIRONMENT) {
-    if (completion) {
-      BOOL authenticated = YES;
-      completion(authenticated);
-    }
-    return;
-  }
   
   // ping server to check if token is valid
   [[AuthenticatedServerCommunicationController sharedInstance].serverCommunicationController pingWithCompletion:^(id _Nullable responseObject, NSURLResponse * _Nullable response, NSError * _Nullable error) {
