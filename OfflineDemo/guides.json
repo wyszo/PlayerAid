@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "How to fake an injury like an Italian!",
+      "imageUri": "https://picsum.photos/400/600/",
+      "section": "Technique",
+      "author": {
+        "id": 1,
+        "name": "John Doe",
+        "pictureUri": "https://picsum.photos/200/200/",
+        "description": "Coach of a fake sports team."
+      },
+      "createdOn": "2015-01-31T15:00:00Z",
+      "status": "Published",
+           "steps": [
+                   {
+                     "id": 1,
+                     "type": "Text",
+                     "position": 1,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "sample text step!"
+                   },
+                   {
+                     "id": 2,
+                     "type": "Text",
+                     "position": 2,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "another step!!"
+                   },
+                  ]
+    },
+  ]
+}

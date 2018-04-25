@@ -16,9 +16,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 }
 
 - (NSArray *)mockGuideDictionaries {
-  // perhaps this won't even be necessary, let's try with mocking guide steps in user object first
-  // return @[[self JSONFromFile:@"guide"]];
-  return @[];
+  return [self JSONFromFile:@"guides"][@"data"];
 }
 
 - (NSDictionary *)JSONFromFile:(NSString *)filename

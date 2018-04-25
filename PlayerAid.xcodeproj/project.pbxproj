@@ -204,6 +204,7 @@
 		33C4424ABFEE770E466B2220 /* Pods_PlayerAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8F01391113A3EB031C7E69 /* Pods_PlayerAid.framework */; };
 		43237E94200B6D8D00E7F168 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 43237E93200B6D8D00E7F168 /* user.json */; };
 		43237E99200B6EA300E7F168 /* OfflineDemoMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43237E98200B6EA300E7F168 /* OfflineDemoMock.m */; };
+		43FFB4D92090DBFA0054CD64 /* guides.json in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4D82090DBFA0054CD64 /* guides.json */; };
 		6C5AC036C47710D9EBE8D888 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84F40CAEAB470F6036E /* TutorialCommentsViewController.m */; };
 		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
 		6C5AC2B836204DA177D06367 /* TutorialCommentCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC85092883657598DCE02 /* TutorialCommentCellConfigurator.swift */; };
@@ -552,6 +553,7 @@
 		43237E93200B6D8D00E7F168 /* user.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = user.json; path = OfflineDemo/user.json; sourceTree = SOURCE_ROOT; };
 		43237E97200B6EA300E7F168 /* OfflineDemoMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDemoMock.h; sourceTree = "<group>"; };
 		43237E98200B6EA300E7F168 /* OfflineDemoMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDemoMock.m; sourceTree = "<group>"; };
+		43FFB4D82090DBFA0054CD64 /* guides.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = guides.json; path = OfflineDemo/guides.json; sourceTree = SOURCE_ROOT; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1D3473B7AFBE46471123D0 /* Pods-PlayerAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerAid/Pods-PlayerAid.debug.xcconfig"; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMakeEditCommentInputAccessoryViewsManager.m; sourceTree = "<group>"; };
@@ -2171,6 +2173,7 @@
 		43237E92200B6D6C00E7F168 /* OfflineDemo */ = {
 			isa = PBXGroup;
 			children = (
+				43FFB4D82090DBFA0054CD64 /* guides.json */,
 				43237E93200B6D8D00E7F168 /* user.json */,
 				43237E97200B6EA300E7F168 /* OfflineDemoMock.h */,
 				43237E98200B6EA300E7F168 /* OfflineDemoMock.m */,
@@ -2285,6 +2288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FFB4D92090DBFA0054CD64 /* guides.json in Resources */,
 				31E1F8F61AADA853005EB35B /* PopoverView.xib in Resources */,
 				31EAFE6C1D80358D0050FE9C /* demo.cert.der in Resources */,
 				31FFDE1C1AAE6B36006E4D0E /* PublishingTutorialView.xib in Resources */,
