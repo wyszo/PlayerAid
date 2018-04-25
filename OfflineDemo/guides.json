@@ -2,14 +2,14 @@
   "data": [
     {
       "id": 1,
-      "title": "How to fake an injury like an Italian!",
+      "title": "The fundamentals of controlling the ball",
       "imageUri": "https://picsum.photos/400/600/",
       "section": "Technique",
       "author": {
-        "id": 1,
-        "name": "John Doe",
+        "id": 2,
+        "name": "Jamie DeCruz",
         "pictureUri": "https://picsum.photos/200/200/",
-        "description": "Coach of a fake sports team."
+        "description": "Jamie DeCruz profile description."
       },
       "createdOn": "2015-01-31T15:00:00Z",
       "status": "Published",
@@ -20,7 +20,7 @@
                      "position": 1,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "sample text step!"
+                     "data": "<h1>When do you normally control the ball?</h1>"
                    },
                    {
                      "id": 2,
@@ -28,8 +28,152 @@
                      "position": 2,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "another step!!"
+                     "data": "This is arguably the most important skill you’ll develop as a footballer so it’s important to master."
                    },
+                     {
+                     "id": 3,
+                     "type": "Text",
+                     "position": 3,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "The common scenario for controlling the ball is obviously when your teammate simply passes the ball to you."
+                     },
+                     {
+                     "id": 4,
+                     "type": "Text",
+                     "position": 4,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Keep in mind that the <b>goal of controlling the ball is to be able to do something useful with it as quickly as possible</b>."
+                     },
+                     {
+                     "id": 5,
+                     "type": "Text",
+                     "position": 5,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "What does ‘useful' mean? Well at the highest level it’s basically trying to help your team score a goal. So depending where you are on the pitch, this could be shooting at goal (if you’re in a good position to do so), passing to a teammate who’s making a dangerous run that may enable a goal scoring opportunity, or simply retaining possession if you are under pressure and stand a good chance of losing the ball (you can’t score a goal without the ball!)"
+                     },
+                     {
+                     "id": 6,
+                     "type": "Text",
+                     "position": 6,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>What goes into quality control?</h1>"
+                     },
+                     {
+                     "id": 7,
+                     "type": "Text",
+                     "position": 7,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>1. Awareness!</h2>"
+                     },
+                     {
+                     "id": 8,
+                     "type": "Text",
+                     "position": 8,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Quality control actually starts before you receive the ball."
+                     },
+                     {
+                     "id": 9,
+                     "type": "Text",
+                     "position": 9,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Awareness requires that you concentrate on the game and try to think a step or two ahead of the where the game currently is. Where’s some space, who’s in that space, is somebody making a good run etc."
+                     },
+                     {
+                     "id": 10,
+                     "type": "Text",
+                     "position": 10,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Awareness is critical to achieve two simple things - i. to be in a position to receive the ball as nicely as possible ii. to be able to do something productive with the ball as quickly as possible."
+                     },
+                     {
+                     "id": 11,
+                     "type": "Text",
+                     "position": 11,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<ol><li>Being in the best position to receive the ball</li> <ul><li>Ideally you're in an area where you have some room away from the opposition, as this gives you more time to decide what to do with the ball.<li>Moving into an area where you teammate can actually pass to you. So if there’s a player in-between you and your teammate he can’t pass to you, so you want to change the angle so that he can pass to you without the defender winning the ball back.</li></ul></li> <li>Doing something productive with the ball as quickly as possible. <ul><li>Before receiving the ball, you want to have scanned the pitch for as many things as possible and to have decided on a couple of the best options available to you.</li><li>These includes things like where the opposition players are, where you players are, and whether or not your teammates are making runs that you can pass to. </li></ul> </li></ol>"
+                     },
+                     {
+                     "id": 12,
+                     "type": "Text",
+                     "position": 12,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>2. Quickly putting the ball where you want it.</h2>"
+                     },
+                     {
+                     "id": 13,
+                     "type": "Text",
+                     "position": 13,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "The quicker the ball is where you want it to be, the faster you can act on the things you noticed before receiving the ball."
+                     },
+                     {
+                     "id": 14,
+                     "type": "Text",
+                     "position": 14,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "When you receive the ball you want to control it into the place where you can be more effective."
+                     },
+                     {
+                     "id": 15,
+                     "type": "Text",
+                     "position": 15,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "So depending on your situation, where you control the ball could be different. We’ll dig into them a bit below."
+                     },
+                     {
+                     "id": 16,
+                     "type": "Text",
+                     "position": 16,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>Some of the different situations to control the ball in</h1>"
+                     },
+                     {
+                     "id": 17,
+                     "type": "Text",
+                     "position": 17,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "So depending on the situation there’s a few ways you can control the ball. A few very commons situations are: <ol><li>Receiving a well weighted pass (i.e. not too quick or slow) when not under pressure. This is the ideal scenario of course.</li><li>Receiving a heavy pass when not under pressure from opposition.</li><ul><li>Here you’ll want to take the force out of the ball. To do so you’ll simply ‘soften’ the way the ball hits your foot by bringing your foot back slightly as you receive the ball.</li><li>You also want to ensure the ball ends in a position where you can do something positive with it as quickly as possible.</li><li>This could be so that you’re facing forward towards goal and can then make a more dangerous pass.</li></ul><li>Receiving a well weighted pass when under pressure.</li><ul><li>You want to maintain possession above all.</li><li>So you’ll look to control into an area where the defender can’t get the ball.</li><li>This could be into a space where they aren’t or it could simply be controlling the ball close to you, with your body in the way so they can’t kick the ball way from you.</li></ul></ol>"
+                     },
+                     {
+                     "id": 18,
+                     "type": "Text",
+                     "position": 18,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Ultimately you want to control the ball into space in order to be able to dribble or to have more time to find a teammate with a pass."
+                     },
+                     {
+                     "id": 19,
+                     "type": "Text",
+                     "position": 19,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "You could also control it in a way to take it away from the defender/ person marking you, so that you can keep possession ready to do something productive."
+                     },
+                     {
+                     "id": 20,
+                     "type": "Text",
+                     "position": 20,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "See a general example of controlling the ball, in a normal situation, in the video below."
+                     },
                   ]
     },
   ]
