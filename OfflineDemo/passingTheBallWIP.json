@@ -1,0 +1,356 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Learn to pass like a pro",
+      "imageUri": "https://picsum.photos/400/600/",
+      "section": "Technique",
+      "author": {
+        "id": 2,
+        "name": "Jamie DeCruz",
+        "pictureUri": "https://picsum.photos/200/200/",
+        "description": "Jamie DeCruz profile description."
+      },
+      "createdOn": "2015-01-31T15:00:00Z",
+      "status": "Published",
+           "steps": [
+                   {
+                     "id": 1,
+                     "type": "Text",
+                     "position": 1,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>When do you pass?</h1>"
+                   },
+                   {
+                     "id": 2,
+                     "type": "Text",
+                     "position": 2,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Whilst an obvious question, it’s beneficial to go into this briefly to ensure we’re all on the same page."
+                   },
+                     {
+                     "id": 3,
+                     "type": "Text",
+                     "position": 3,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "The most common scenarios for passing the ball are to retain possession and simply find a teammate, pass into space for a teammate to run onto, or create positive attacking opportunities and break the defensive line (in-between the lines of the opposition)."
+                     },
+                     {
+                     "id": 4,
+                     "type": "Text",
+                     "position": 4,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>Who’s good at this?</h1>"
+                     },
+                     {
+                     "id": 5,
+                     "type": "Text",
+                     "position": 5,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "As a fundamental skill, it’s essential all pros can pass the ball well over short distances."
+                     },
+                     {
+                     "id": 6,
+                     "type": "Text",
+                     "position": 6,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Some particularly great passers however are Xavi and Mesut Ozil.<ul><li>Xavi is incredible at both retaining possession and helping his teammates probe the opposition defensive lines for gaps and weak spots.</li><li>Ozil is slightly different in that he specialises in his vision and for creating dangerous attacking opportunities in and around the opposition’s box.</li></ul>"
+                     },
+                     {
+                     "id": 7,
+                     "type": "Text",
+                     "position": 7,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>What goes into a good pass? What makes a good pass?</h1>"
+                     },
+                     {
+                     "id": 8,
+                     "type": "Text",
+                     "position": 8,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Where are you passing to?</h2>"
+                     },
+                     {
+                     "id": 9,
+                     "type": "Text",
+                     "position": 9,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Into your teammate’s feet, in front of them if they’re running or into space inviting them to move into that space?"
+                     },
+                     {
+                     "id": 10,
+                     "type": "Text",
+                     "position": 10,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Weight of the pass.</h2>"
+                     },
+                     {
+                     "id": 11,
+                     "type": "Text",
+                     "position": 11,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Too light and you run a higher risk of an interception or your teammate having to come meet the ball."
+                     },
+                     {
+                     "id": 12,
+                     "type": "Text",
+                     "position": 12,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Too strong and you make it more difficult to control for your teammate increasing the risk of losing possession or them not being able to reach it and it going out of play."
+                     },
+                     {
+                     "id": 13,
+                     "type": "Text",
+                     "position": 13,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Keeping the ball on the ground or in the air?</h2>"
+                     },
+                     {
+                     "id": 14,
+                     "type": "Text",
+                     "position": 14,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "On the ground tends to be easier to control as your teammate only has to worry about lateral control, but in the air means they have to think about vertical and lateral control i.e. cushioning the ball from height and ensuring it doesn’t get away from them on the ground."
+                     },
+                     {
+                     "id": 15,
+                     "type": "Text",
+                     "position": 15,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Sometimes passing through the air is necessary in order to avoid the opposition between your teammate and yourself, but just be aware of the extra risk."
+                     },
+                     {
+                     "id": 16,
+                     "type": "Text",
+                     "position": 16,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Ultimate aim: Remember that your pass should enable your teammate to do something positive with the ball for your team.</h2>"
+                     },
+                     {
+                     "id": 17,
+                     "type": "Text",
+                     "position": 17,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Some of those ‘positive’ things include: <ol><li>Running with the ball to attack the opposition’s defense.</li><li>Giving them a better opportunity (such as time or a good angle) to pass the ball to another of your teammates.</li><li>Enabling them to clear the ball (in a defensive position) if they are under less pressure from the opposition than yourself, which then gives your team a higher chance of retaining possession.</li></ol>"
+                     },
+                     {
+                     "id": 18,
+                     "type": "Text",
+                     "position": 18,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>Key things to a simple pass</h1>"
+                     },
+                     {
+                     "id": 19,
+                     "type": "Text",
+                     "position": 19,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<ol><li>Look where you’re trying to pass before passing the ball. You should memorise where you’re passing to.</li><li>When you actually pass the ball, look at the ball! This is a crucial habit to build. By looking the ball it ensures a much more consistent connection, which increases your accuracy of where the ball is passed to.</li><li>Use the middle of your foot where possible as this offers more ‘surface area’ on the ball and therefore gives you more control over where the ball is headed.</li><li>Make sure to place your standing leg (i.e. the one you don’t pass with) next to the ball as this helps set your body up for an accurate pass.</li><li>As you pass, make sure to follow through with a ‘straight’ leg as this also ensures the ball is more effectively guided to its target.</li><li>You can use your upper body, arms and head, to inject more power into the pass. The more you involve your body in the passing movement, the more control you’ll have over your pass.</br></br>This is one to test out yourself. Try passing without moving your body at all. Now try passing whilst using your arms. Notice the dramatic difference?</li></ol>"
+                     },
+                     {
+                     "id": 20,
+                     "type": "Text",
+                     "position": 20,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>See the images and video for a simple pass in action.</h2>"
+                     },
+                     {
+                     "id": 21,
+                     "type": "Text",
+                     "position": 21,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "PLACEHOLDER: IMG_1535"
+                     },
+                     {
+                     "id": 22,
+                     "type": "Text",
+                     "position": 22,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "PLACEHOLDER: IMG_1501"
+                     },
+                     {
+                     "id": 23,
+                     "type": "Text",
+                     "position": 23,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "PLACEHOLDER: IMG_1502"
+                     },
+                     {
+                     "id": 24,
+                     "type": "Text",
+                     "position": 24,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "PLACEHOLDER: VIDEO THE SIMPLE PASS 8:00 MIN"
+                     },
+                     {
+                     "id": 25,
+                     "type": "Text",
+                     "position": 25,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>Some ways to improve your passing</h1>"
+                     },
+                     {
+                     "id": 26,
+                     "type": "Text",
+                     "position": 26,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Three cones on the ground and stand 10 yards away.</h2>"
+                     },
+                     {
+                     "id": 27,
+                     "type": "Text",
+                     "position": 27,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Using right or left foot, can you knock one of the balls off of a cone."
+                     },
+                     {
+                     "id": 28,
+                     "type": "Text",
+                     "position": 28,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Ideally you have a friend to help you reset the balls!"
+                     },
+                     {
+                     "id": 29,
+                     "type": "Text",
+                     "position": 29,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "This exercise is particularly useful for building the accuracy of your passing."
+                     },
+                     {
+                     "id": 30,
+                     "type": "Text",
+                     "position": 30,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Remember to memorise where cones are and focus on looking at the ball when passing."
+                     },
+                     {
+                     "id": 31,
+                     "type": "Text",
+                     "position": 31,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "If you’re missing the cone, learn to consciously adjust what you’re doing and as your accuracy improves try to understand exactly what adjustments you made that helped you improve."
+                     },
+                     {
+                     "id": 32,
+                     "type": "Text",
+                     "position": 32,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "PLACEHOLDER - PRACTISING USING CONES VIDEO 0:39"
+                     },
+                     {
+                     "id": 33,
+                     "type": "Text",
+                     "position": 33,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h2>Passing between you and a friend.</h2>"
+                     },
+                     {
+                     "id": 34,
+                     "type": "Text",
+                     "position": 34,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "This is also decent for accuracy though the fact your friend can move to the ball makes this a more forgiving exercise than the cones."
+                     },
+                     {
+                     "id": 35,
+                     "type": "Text",
+                     "position": 35,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "So use this as an opportunity to focus on the other elements of passing."
+                     },
+                     {
+                     "id": 36,
+                     "type": "Text",
+                     "position": 36,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Try using both feet - becoming confident with either foot is important."
+                     },
+                     {
+                     "id": 37,
+                     "type": "Text",
+                     "position": 37,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "That’s because it makes you more flexible in a game situation which in turn makes it harder for the opposition to steal the ball from you and secondly enables you to pick passes more opportunistically."
+                     },
+                     {
+                     "id": 38,
+                     "type": "Text",
+                     "position": 38,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Focus on using your body and following through with your passing leg. Feel how different the pass is by you do and don’t do these things."
+                     },
+                     {
+                     "id": 39,
+                     "type": "Text",
+                     "position": 39,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "<h1>The perfect technique may not always be right for the situation</h1>"
+                     },
+                     {
+                     "id": 40,
+                     "type": "Text",
+                     "position": 40,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Do remember to keep in mind the fundamentals of what you’re trying to achieve with a pass. That is what we outlined above such as retaining the ball or setting your teammate up for a good attacking opportunity."
+                     },
+                     {
+                     "id": 41,
+                     "type": "Text",
+                     "position": 41,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "That means that sometimes in order to find your teammate quickly, you might for example pass with the outside of your foot. "
+                     },
+                     {
+                     "id": 42,
+                     "type": "Text",
+                     "position": 42,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "Whilst this is on average less accurate, it may well be worth the risk of a less accurate pass to reach them faster, if the opportunity of doing so gives them a larger chance of doing something positive with the ball."
+                     },
+                  ]
+    },
+  ]
+}
