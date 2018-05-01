@@ -207,7 +207,6 @@
 		43FFB4D92090DBFA0054CD64 /* guides.json in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4D82090DBFA0054CD64 /* guides.json */; };
 		43FFB4DC20938F0E0054CD64 /* Videos in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4DB20938F0D0054CD64 /* Videos */; };
 		43FFB4DE20938FA50054CD64 /* passingTheBallWIP.json in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4DD20938FA40054CD64 /* passingTheBallWIP.json */; };
-		43FFB4F52098567B0054CD64 /* Cover photo.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EC2098567B0054CD64 /* Cover photo.JPG */; };
 		43FFB4F62098567B0054CD64 /* IMG_1454.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4ED2098567B0054CD64 /* IMG_1454.JPG */; };
 		43FFB4F72098567B0054CD64 /* IMG_1523.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */; };
 		43FFB4F82098567B0054CD64 /* IMG_1525.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */; };
@@ -215,6 +214,7 @@
 		43FFB4FA2098567B0054CD64 /* PassingTheBall_cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F22098567B0054CD64 /* PassingTheBall_cover.jpg */; };
 		43FFB4FB2098567B0054CD64 /* Looking where passing on run up.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F32098567B0054CD64 /* Looking where passing on run up.png */; };
 		43FFB4FC2098567B0054CD64 /* Passing. Connecting with the ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F42098567B0054CD64 /* Passing. Connecting with the ball.png */; };
+		43FFB4FE209903720054CD64 /* ControllingTheBall_cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4FD209903720054CD64 /* ControllingTheBall_cover.jpg */; };
 		6C5AC036C47710D9EBE8D888 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84F40CAEAB470F6036E /* TutorialCommentsViewController.m */; };
 		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
 		6C5AC2B836204DA177D06367 /* TutorialCommentCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC85092883657598DCE02 /* TutorialCommentCellConfigurator.swift */; };
@@ -566,7 +566,6 @@
 		43FFB4D82090DBFA0054CD64 /* guides.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = guides.json; path = OfflineDemo/guides.json; sourceTree = SOURCE_ROOT; };
 		43FFB4DB20938F0D0054CD64 /* Videos */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Videos; path = OfflineDemo/Videos; sourceTree = SOURCE_ROOT; };
 		43FFB4DD20938FA40054CD64 /* passingTheBallWIP.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = passingTheBallWIP.json; path = OfflineDemo/passingTheBallWIP.json; sourceTree = SOURCE_ROOT; };
-		43FFB4EC2098567B0054CD64 /* Cover photo.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cover photo.JPG"; sourceTree = "<group>"; };
 		43FFB4ED2098567B0054CD64 /* IMG_1454.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1454.JPG; sourceTree = "<group>"; };
 		43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1523.JPG; sourceTree = "<group>"; };
 		43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1525.JPG; sourceTree = "<group>"; };
@@ -574,6 +573,7 @@
 		43FFB4F22098567B0054CD64 /* PassingTheBall_cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PassingTheBall_cover.jpg; sourceTree = "<group>"; };
 		43FFB4F32098567B0054CD64 /* Looking where passing on run up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Looking where passing on run up.png"; sourceTree = "<group>"; };
 		43FFB4F42098567B0054CD64 /* Passing. Connecting with the ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Passing. Connecting with the ball.png"; sourceTree = "<group>"; };
+		43FFB4FD209903720054CD64 /* ControllingTheBall_cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ControllingTheBall_cover.jpg; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1D3473B7AFBE46471123D0 /* Pods-PlayerAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerAid/Pods-PlayerAid.debug.xcconfig"; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMakeEditCommentInputAccessoryViewsManager.m; sourceTree = "<group>"; };
@@ -2217,7 +2217,7 @@
 		43FFB4EB2098567B0054CD64 /* Controlling the ball */ = {
 			isa = PBXGroup;
 			children = (
-				43FFB4EC2098567B0054CD64 /* Cover photo.JPG */,
+				43FFB4FD209903720054CD64 /* ControllingTheBall_cover.jpg */,
 				43FFB4ED2098567B0054CD64 /* IMG_1454.JPG */,
 				43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */,
 				43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */,
@@ -2386,9 +2386,9 @@
 				43FFB4F82098567B0054CD64 /* IMG_1525.JPG in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
+				43FFB4FE209903720054CD64 /* ControllingTheBall_cover.jpg in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */,
 				43237E94200B6D8D00E7F168 /* user.json in Resources */,
-				43FFB4F52098567B0054CD64 /* Cover photo.JPG in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				43FFB4DE20938FA50054CD64 /* passingTheBallWIP.json in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
