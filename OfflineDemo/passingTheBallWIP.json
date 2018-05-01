@@ -3,12 +3,12 @@
     {
       "id": 1,
       "title": "Learn to pass like a pro",
-      "imageUri": "https://picsum.photos/400/600/",
+      "imageUri": "PassingTheBall_cover.jpg",
       "section": "Technique",
       "author": {
         "id": 2,
         "name": "Jamie DeCruz",
-        "pictureUri": "https://picsum.photos/200/200/",
+        "pictureUri": "https://picsum.photos/400/600/",
         "description": "Jamie DeCruz profile description."
       },
       "createdOn": "2015-01-31T15:00:00Z",

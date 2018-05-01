@@ -13,6 +13,7 @@
 #import "TutorialCellHelper.h"
 #import "SectionLabelContainer.h"
 #import "ColorsHelper.h"
+#import "GlobalSettings.h"
 #import "PlayerAid-Swift.h"
 
 static const NSTimeInterval kImageRequestTimeoutIntervalSeconds = 10.0f;
@@ -181,6 +182,11 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
 
 - (void)fetchBackgroundImageView
 {
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [self fetchLocalBackgroundImageView];
+    return; // don't fetch image from network
+  }
+  
   NSString *imageURLString = self.tutorial.imageURL;
   AssertTrueOrReturn(imageURLString.length);
   
@@ -203,6 +209,12 @@ static const NSTimeInterval kBackgroundImageViewFadeInDuration = 0.2f;
       [strongSelf setBackgroundImage:image fadeInAnimation:YES];
     }
   } failure:nil];
+}
+
+- (void)fetchLocalBackgroundImageView
+{
+  UIImage *image = [UIImage imageNamed:self.tutorial.imageURL];
+  [self setBackgroundImage: image fadeInAnimation: NO];
 }
 
 - (BOOL)likeButtonHighlighted

@@ -212,7 +212,7 @@
 		43FFB4F72098567B0054CD64 /* IMG_1523.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */; };
 		43FFB4F82098567B0054CD64 /* IMG_1525.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */; };
 		43FFB4F92098567B0054CD64 /* After the pass.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F12098567B0054CD64 /* After the pass.png */; };
-		43FFB4FA2098567B0054CD64 /* Cover Photo - edited.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F22098567B0054CD64 /* Cover Photo - edited.jpg */; };
+		43FFB4FA2098567B0054CD64 /* PassingTheBall_cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F22098567B0054CD64 /* PassingTheBall_cover.jpg */; };
 		43FFB4FB2098567B0054CD64 /* Looking where passing on run up.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F32098567B0054CD64 /* Looking where passing on run up.png */; };
 		43FFB4FC2098567B0054CD64 /* Passing. Connecting with the ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4F42098567B0054CD64 /* Passing. Connecting with the ball.png */; };
 		6C5AC036C47710D9EBE8D888 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84F40CAEAB470F6036E /* TutorialCommentsViewController.m */; };
@@ -571,7 +571,7 @@
 		43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1523.JPG; sourceTree = "<group>"; };
 		43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1525.JPG; sourceTree = "<group>"; };
 		43FFB4F12098567B0054CD64 /* After the pass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "After the pass.png"; sourceTree = "<group>"; };
-		43FFB4F22098567B0054CD64 /* Cover Photo - edited.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cover Photo - edited.jpg"; sourceTree = "<group>"; };
+		43FFB4F22098567B0054CD64 /* PassingTheBall_cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PassingTheBall_cover.jpg; sourceTree = "<group>"; };
 		43FFB4F32098567B0054CD64 /* Looking where passing on run up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Looking where passing on run up.png"; sourceTree = "<group>"; };
 		43FFB4F42098567B0054CD64 /* Passing. Connecting with the ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Passing. Connecting with the ball.png"; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2229,7 +2229,7 @@
 			isa = PBXGroup;
 			children = (
 				43FFB4F12098567B0054CD64 /* After the pass.png */,
-				43FFB4F22098567B0054CD64 /* Cover Photo - edited.jpg */,
+				43FFB4F22098567B0054CD64 /* PassingTheBall_cover.jpg */,
 				43FFB4F32098567B0054CD64 /* Looking where passing on run up.png */,
 				43FFB4F42098567B0054CD64 /* Passing. Connecting with the ball.png */,
 			);
@@ -2362,7 +2362,7 @@
 				31C122611A8388EB0069D49A /* PlayerInfoView.xib in Resources */,
 				310308A71A83CC8F00B7F921 /* TutorialTableViewCell.xib in Resources */,
 				316D86C51B205DE6003874F4 /* EditProfileView.xib in Resources */,
-				43FFB4FA2098567B0054CD64 /* Cover Photo - edited.jpg in Resources */,
+				43FFB4FA2098567B0054CD64 /* PassingTheBall_cover.jpg in Resources */,
 				31E1E18B1AECB9800091ED01 /* CameraPortraitBlockingOverlay.xib in Resources */,
 				31EFB6AF1BAB253D00F87C03 /* Login.storyboard in Resources */,
 				316BA2C71CFEA7570029FD37 /* TextStepKeyboardAccessoryViewController.xib in Resources */,
