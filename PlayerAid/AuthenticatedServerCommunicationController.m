@@ -203,6 +203,12 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)likeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(tutorial);
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    completion([NSNull null], [NSNull null], nil);
+    return;
+  }
+  
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
   [self performPostRequestWithApiToken:self.apiToken urlString:urlString parameters:nil completion:completion];
 }
@@ -210,6 +216,12 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 - (void)unlikeTutorial:(Tutorial *)tutorial completion:(NetworkResponseBlock)completion
 {
   AssertTrueOrReturn(tutorial);
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    completion([NSNull null], [NSNull null], nil);
+    return;
+  }
+  
   NSString *urlString = [self likeUrlStringForTutorial:tutorial];
   [self performRequestWithType:@"DELETE" apiToken:self.apiToken urlString:urlString parameters:nil useCacheIfAllowed:NO completion:completion];
 }
