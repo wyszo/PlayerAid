@@ -28,3 +28,4 @@
 #import "FollowedUserTableViewDelegate.h"
 #import "CommonViews.h"
 #import "TutorialStepsDataSourceDelegate.h"
+#import "GlobalSettings.h"

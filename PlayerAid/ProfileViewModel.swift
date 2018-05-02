@@ -15,6 +15,15 @@ final class ProfileViewModel: NSObject {
     }
     
     func fetchProfileImage(_ completion: @escaping (UIImage?)->()) {
+      
+        if OFFLINE_DEMO_ENVIRONMENT.boolValue {
+            let image = UIImage(named: user!.pictureURL!)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+              completion(image)
+            })
+            return
+        }
+      
         if let urlString = user?.pictureURL, let pictureURL = URL(string: urlString) {
             imageDownloader.fetchImage(pictureURL) { image in
                 completion(image)
