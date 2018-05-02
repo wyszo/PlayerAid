@@ -200,11 +200,11 @@
                      },
                      {
                      "id": 24,
-                     "type": "Text",
+                     "type": "Video",
                      "position": 24,
-                     "thumbnail": null,
-                     "duration": null,
-                     "data": "PLACEHOLDER: VIDEO THE SIMPLE PASS 8:00 MIN"
+                     "thumbnail": "passing1_thumbnail.png",
+                     "duration": 67,
+                     "data": "passing1.m4v"
                      },
                      {
                      "id": 25,
@@ -264,11 +264,11 @@
                      },
                      {
                      "id": 32,
-                     "type": "Text",
+                     "type": "Video",
                      "position": 32,
-                     "thumbnail": null,
-                     "duration": null,
-                     "data": "PLACEHOLDER - PRACTISING USING CONES VIDEO 0:39"
+                     "thumbnail": "passing2_thumbnail.png",
+                     "duration": 39,
+                     "data": "passing2.m4v"
                      },
                      {
                      "id": 33,

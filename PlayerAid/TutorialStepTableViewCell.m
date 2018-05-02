@@ -142,6 +142,14 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
         self.contentImageView.image = [UIImage imageWithData:tutorialStep.videoThumbnailData];
         ShowVideoIconAndButtonBlock();
       } else {
+        if (OFFLINE_DEMO_ENVIRONMENT && tutorialStep.serverVideoThumbnailUrl.length > 0) {
+          self.contentImageView.image = [UIImage imageNamed:tutorialStep.serverVideoThumbnailUrl];
+          ShowVideoIconAndButtonBlock();
+          self.videoURL = [[NSBundle mainBundle] URLForResource:tutorialStep.videoPath withExtension:nil];
+          self.videoLengthLabel.text = [[VideoDurationFormatter new] formatDurationInSeconds:(NSTimeInterval)tutorialStep.videoDurationInSecondsValue];
+          return;
+        }
+        
         [self showContentTypePlaceholderImageNamed:@"videoCam"];
 
         // no local video - download from web
