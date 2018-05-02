@@ -216,13 +216,15 @@
 		43FFB504209987480054CD64 /* passing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB501209987480054CD64 /* passing1.png */; };
 		43FFB508209992A70054CD64 /* passing1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB506209992A70054CD64 /* passing1.m4v */; };
 		43FFB509209992A70054CD64 /* passing2.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB507209992A70054CD64 /* passing2.m4v */; };
-		43FFB511209992C50054CD64 /* Controlling and passing the ball.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB50C209992C50054CD64 /* Controlling and passing the ball.m4v */; };
-		43FFB512209992C50054CD64 /* How to control the ball in a normal situation.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB50D209992C50054CD64 /* How to control the ball in a normal situation.m4v */; };
 		43FFB513209992C50054CD64 /* passing1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB50F209992C50054CD64 /* passing1.m4v */; };
 		43FFB514209992C50054CD64 /* passing2.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB510209992C50054CD64 /* passing2.m4v */; };
 		43FFB5162099AADB0054CD64 /* passing1_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB5152099AADA0054CD64 /* passing1_thumbnail.png */; };
 		43FFB5182099AEC10054CD64 /* passing2_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB5172099AEC10054CD64 /* passing2_thumbnail.png */; };
 		43FFB51A2099B0CA0054CD64 /* jamieProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB5192099B0CA0054CD64 /* jamieProfile.png */; };
+		43FFB51D2099B59A0054CD64 /* controlling2.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB51B2099B59A0054CD64 /* controlling2.m4v */; };
+		43FFB51E2099B59A0054CD64 /* controlling1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB51C2099B59A0054CD64 /* controlling1.m4v */; };
+		43FFB5202099B64A0054CD64 /* controlling2_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB51F2099B64A0054CD64 /* controlling2_thumbnail.png */; };
+		43FFB5222099B7E10054CD64 /* controlling1_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB5212099B7E00054CD64 /* controlling1_thumbnail.png */; };
 		6C5AC036C47710D9EBE8D888 /* TutorialCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC84F40CAEAB470F6036E /* TutorialCommentsViewController.m */; };
 		6C5AC13A734F3711A230E858 /* QueryStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5ACFEFF7D0CBC63977F9EE /* QueryStringBuilder.swift */; };
 		6C5AC2B836204DA177D06367 /* TutorialCommentCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AC85092883657598DCE02 /* TutorialCommentCellConfigurator.swift */; };
@@ -583,13 +585,15 @@
 		43FFB501209987480054CD64 /* passing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passing1.png; sourceTree = "<group>"; };
 		43FFB506209992A70054CD64 /* passing1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = passing1.m4v; sourceTree = "<group>"; };
 		43FFB507209992A70054CD64 /* passing2.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = passing2.m4v; sourceTree = "<group>"; };
-		43FFB50C209992C50054CD64 /* Controlling and passing the ball.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Controlling and passing the ball.m4v"; sourceTree = "<group>"; };
-		43FFB50D209992C50054CD64 /* How to control the ball in a normal situation.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How to control the ball in a normal situation.m4v"; sourceTree = "<group>"; };
 		43FFB50F209992C50054CD64 /* passing1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = passing1.m4v; sourceTree = "<group>"; };
 		43FFB510209992C50054CD64 /* passing2.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = passing2.m4v; sourceTree = "<group>"; };
 		43FFB5152099AADA0054CD64 /* passing1_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passing1_thumbnail.png; sourceTree = "<group>"; };
 		43FFB5172099AEC10054CD64 /* passing2_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passing2_thumbnail.png; sourceTree = "<group>"; };
 		43FFB5192099B0CA0054CD64 /* jamieProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jamieProfile.png; sourceTree = "<group>"; };
+		43FFB51B2099B59A0054CD64 /* controlling2.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = controlling2.m4v; sourceTree = "<group>"; };
+		43FFB51C2099B59A0054CD64 /* controlling1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = controlling1.m4v; sourceTree = "<group>"; };
+		43FFB51F2099B64A0054CD64 /* controlling2_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controlling2_thumbnail.png; sourceTree = "<group>"; };
+		43FFB5212099B7E00054CD64 /* controlling1_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controlling1_thumbnail.png; sourceTree = "<group>"; };
 		47BD124536AB076567328F18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1D3473B7AFBE46471123D0 /* Pods-PlayerAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerAid/Pods-PlayerAid.debug.xcconfig"; sourceTree = "<group>"; };
 		6C5AC7084AC01E239E4A1DC0 /* KeyboardMakeEditCommentInputAccessoryViewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMakeEditCommentInputAccessoryViewsManager.m; sourceTree = "<group>"; };
@@ -2277,8 +2281,10 @@
 		43FFB50B209992C50054CD64 /* Controlling the ball */ = {
 			isa = PBXGroup;
 			children = (
-				43FFB50C209992C50054CD64 /* Controlling and passing the ball.m4v */,
-				43FFB50D209992C50054CD64 /* How to control the ball in a normal situation.m4v */,
+				43FFB51C2099B59A0054CD64 /* controlling1.m4v */,
+				43FFB5212099B7E00054CD64 /* controlling1_thumbnail.png */,
+				43FFB51B2099B59A0054CD64 /* controlling2.m4v */,
+				43FFB51F2099B64A0054CD64 /* controlling2_thumbnail.png */,
 			);
 			path = "Controlling the ball";
 			sourceTree = "<group>";
@@ -2416,6 +2422,7 @@
 				3174F2BB1C5E778800C3B9EF /* CommentRepliesView.xib in Resources */,
 				43FFB4F62098567B0054CD64 /* IMG_1454.JPG in Resources */,
 				43FFB51A2099B0CA0054CD64 /* jamieProfile.png in Resources */,
+				43FFB51D2099B59A0054CD64 /* controlling2.m4v in Resources */,
 				31B735DF1A87B4270081AE15 /* CreateTutorialHeaderView.xib in Resources */,
 				31B735FE1A88D96D0081AE15 /* TutorialStepTableViewCell.xib in Resources */,
 				316763F91C7A4017003184C1 /* MoreRepliesBar.xib in Resources */,
@@ -2437,11 +2444,10 @@
 				3102F93F1BF6982000B544C6 /* MakeCommentInputView.xib in Resources */,
 				3106D7611AC0839D0076F571 /* CreateTutorialStepButton.xib in Resources */,
 				3151C2651D22E6C0008DEA1C /* CreateTextStep.xib in Resources */,
-				43FFB512209992C50054CD64 /* How to control the ball in a normal situation.m4v in Resources */,
 				31014E7C1A9C7590002F3485 /* TutorialsSectionHeaderView.xib in Resources */,
 				31E9622A1D75EB40000FA49F /* ProfileOverscrollOverlay.xib in Resources */,
 				31115F9D1AB2E0C000836CB1 /* EditTutorialStepsView.xib in Resources */,
-				43FFB511209992C50054CD64 /* Controlling and passing the ball.m4v in Resources */,
+				43FFB51E2099B59A0054CD64 /* controlling1.m4v in Resources */,
 				31A8DE3D1B31F01900137ACB /* FollowedUser.xib in Resources */,
 				310510B51C124AD30070C702 /* CommentBottomBar.xib in Resources */,
 				43FFB4F72098567B0054CD64 /* IMG_1523.JPG in Resources */,
@@ -2449,6 +2455,7 @@
 				43FFB4F82098567B0054CD64 /* IMG_1525.JPG in Resources */,
 				31CA3CD31AC4A3060044A13D /* SectionLabelContainerView.xib in Resources */,
 				43FFB5162099AADB0054CD64 /* passing1_thumbnail.png in Resources */,
+				43FFB5222099B7E10054CD64 /* controlling1_thumbnail.png in Resources */,
 				31FB75311BCD38B4001DC102 /* staging.cert.der in Resources */,
 				43FFB4FE209903720054CD64 /* ControllingTheBall_cover.jpg in Resources */,
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */,
@@ -2456,6 +2463,7 @@
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
 				43FFB4DE20938FA50054CD64 /* passingTheBallWIP.json in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
+				43FFB5202099B64A0054CD64 /* controlling2_thumbnail.png in Resources */,
 				43FFB508209992A70054CD64 /* passing1.m4v in Resources */,
 				31F116881A790F680022BD74 /* LaunchScreen.xib in Resources */,
 				31F116851A790F680022BD74 /* Images.xcassets in Resources */,

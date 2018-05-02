@@ -176,11 +176,11 @@
                      },
                      {
                      "id": 21,
-                     "type": "Text",
+                     "type": "Video",
                      "position": 21,
-                     "thumbnail": null,
-                     "duration": null,
-                     "data": "<h1>Top tip</h1>"
+                     "thumbnail": "controlling1_thumbnail.png",
+                     "duration": 24,
+                     "data": "controlling2.m4v"
                      },
                      {
                      "id": 22,
@@ -188,7 +188,7 @@
                      "position": 22,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "Try controlling the ball with your back foot."
+                     "data": "<h1>Top tip</h1>"
                      },
                      {
                      "id": 23,
@@ -196,7 +196,7 @@
                      "position": 23,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "This enables you to control the ball on a ‘half turn’ which is much harder to defend against because it makes you more unpredictable and able to move in more directions vs. controlling the ball with your front foot."
+                     "data": "Try controlling the ball with your back foot."
                      },
                      {
                      "id": 24,
@@ -204,7 +204,7 @@
                      "position": 24,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "This is because the half turn makes you pivot your hips and move with the ball, which tends to open up room for you when being marked by the defender."
+                     "data": "This enables you to control the ball on a ‘half turn’ which is much harder to defend against because it makes you more unpredictable and able to move in more directions vs. controlling the ball with your front foot."
                      },
                      {
                      "id": 25,
@@ -212,7 +212,7 @@
                      "position": 25,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "<h1>Ways to practice</h1>"
+                     "data": "This is because the half turn makes you pivot your hips and move with the ball, which tends to open up room for you when being marked by the defender."
                      },
                      {
                      "id": 26,
@@ -220,7 +220,7 @@
                      "position": 26,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "<h2>1. On your own</h2>"
+                     "data": "<h1>Ways to practice</h1>"
                      },
                      {
                      "id": 27,
@@ -228,7 +228,7 @@
                      "position": 27,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "Simply take a ball and bouncing it off a surface e.g. a wall. "
+                     "data": "<h2>1. On your own</h2>"
                      },
                      {
                      "id": 28,
@@ -236,7 +236,7 @@
                      "position": 28,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "Try passing with different weights but still putting the ball into the same position. This will get you used to dealing with the different types of pass. "
+                     "data": "Simply take a ball and bouncing it off a surface e.g. a wall. "
                      },
                      {
                      "id": 29,
@@ -244,7 +244,7 @@
                      "position": 29,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "You can also try receiving the ball on your back foot to get used to controlling on the half-turn."
+                     "data": "Try passing with different weights but still putting the ball into the same position. This will get you used to dealing with the different types of pass. "
                      },
                      {
                      "id": 30,
@@ -252,7 +252,7 @@
                      "position": 30,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "<h2>2. With a friend</h2>"
+                     "data": "You can also try receiving the ball on your back foot to get used to controlling on the half-turn."
                      },
                      {
                      "id": 31,
@@ -260,7 +260,7 @@
                      "position": 31,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "If you have a friend then you can do something similar, but they can surprise you by using different weights and passing in different directions."
+                     "data": "<h2>2. With a friend</h2>"
                      },
                      {
                      "id": 32,
@@ -268,7 +268,7 @@
                      "position": 32,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "If you have a goal, do also get used to checking where the goal is before you receive the ball and remembering where the goal is even if you receive the ball with your back to it."
+                     "data": "If you have a friend then you can do something similar, but they can surprise you by using different weights and passing in different directions."
                      },
                      {
                      "id": 33,
@@ -276,7 +276,7 @@
                      "position": 33,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "See an example of a drill below"
+                     "data": "If you have a goal, do also get used to checking where the goal is before you receive the ball and remembering where the goal is even if you receive the ball with your back to it."
                      },
                      {
                      "id": 34,
@@ -284,15 +284,15 @@
                      "position": 34,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "/PLACEHOLDER FOR A DRILL VIDEO!!!/"
+                     "data": "See an example of a drill below"
                      },
                      {
                      "id": 35,
-                     "type": "Text",
+                     "type": "Video",
                      "position": 35,
-                     "thumbnail": null,
-                     "duration": null,
-                     "data": "<h1>Final thoughts</h1>"
+                     "thumbnail": "controlling2_thumbnail.png",
+                     "duration": 22,
+                     "data": "controlling2.m4v"
                      },
                      {
                      "id": 36,
@@ -300,12 +300,20 @@
                      "position": 36,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "If you’re with a team or in a match situation, try to think ahead of receiving the ball."
+                     "data": "<h1>Final thoughts</h1>"
                      },
                      {
                      "id": 37,
                      "type": "Text",
                      "position": 37,
+                     "thumbnail": null,
+                     "duration": null,
+                     "data": "If you’re with a team or in a match situation, try to think ahead of receiving the ball."
+                     },
+                     {
+                     "id": 38,
+                     "type": "Text",
+                     "position": 38,
                      "thumbnail": null,
                      "duration": null,
                      "data": "What are your options to e.g. pass, shoot at goal, or take a dribble into space (to name just a few!), and where are those options on the pitch in relation to yourself?"
