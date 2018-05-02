@@ -176,27 +176,27 @@
                      },
                      {
                      "id": 21,
-                     "type": "Text",
+                     "type": "Image",
                      "position": 21,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "PLACEHOLDER: IMG_1535"
+                     "data": "passing1.png"
                      },
                      {
                      "id": 22,
-                     "type": "Text",
+                     "type": "Image",
                      "position": 22,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "PLACEHOLDER: IMG_1501"
+                     "data": "passing2.png"
                      },
                      {
                      "id": 23,
-                     "type": "Text",
+                     "type": "Image",
                      "position": 23,
                      "thumbnail": null,
                      "duration": null,
-                     "data": "PLACEHOLDER: IMG_1502"
+                     "data": "passing3.png"
                      },
                      {
                      "id": 24,

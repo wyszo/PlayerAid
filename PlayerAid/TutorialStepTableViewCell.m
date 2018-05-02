@@ -11,6 +11,7 @@
 #import "ColorsHelper.h"
 #import "UIImageView+AFNetworkingImageView.h"
 #import "VideoDurationFormatter.h"
+#import "GlobalSettings.h"
 
 static const CGFloat kContentImageMargin = 8.0f;
 static const NSInteger kSeparatorInsetMargin = 8.0f;
@@ -120,6 +121,11 @@ static const NSInteger kSeparatorInsetMargin = 8.0f;
     [self setupImageViewConstriants];
     
     if (imageTutorialStep) {
+      if (OFFLINE_DEMO_ENVIRONMENT && tutorialStep.imagePath.length > 0) {
+        self.contentImageView.image = [UIImage imageNamed:tutorialStep.imagePath];
+        return;
+      }
+      
       [self showContentTypePlaceholderImageNamed:@"photoCam"];
       [tutorialStep placeImageInImageView:self.contentImageView completion:self.imageLoadedCompletionBlock];
     }
