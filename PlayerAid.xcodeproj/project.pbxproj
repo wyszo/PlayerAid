@@ -205,7 +205,6 @@
 		43237E94200B6D8D00E7F168 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 43237E93200B6D8D00E7F168 /* user.json */; };
 		43237E99200B6EA300E7F168 /* OfflineDemoMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43237E98200B6EA300E7F168 /* OfflineDemoMock.m */; };
 		43FFB4D92090DBFA0054CD64 /* guides.json in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4D82090DBFA0054CD64 /* guides.json */; };
-		43FFB4DE20938FA50054CD64 /* passingTheBallWIP.json in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4DD20938FA40054CD64 /* passingTheBallWIP.json */; };
 		43FFB4F62098567B0054CD64 /* IMG_1454.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4ED2098567B0054CD64 /* IMG_1454.JPG */; };
 		43FFB4F72098567B0054CD64 /* IMG_1523.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */; };
 		43FFB4F82098567B0054CD64 /* IMG_1525.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */; };
@@ -574,7 +573,6 @@
 		43237E97200B6EA300E7F168 /* OfflineDemoMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDemoMock.h; sourceTree = "<group>"; };
 		43237E98200B6EA300E7F168 /* OfflineDemoMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDemoMock.m; sourceTree = "<group>"; };
 		43FFB4D82090DBFA0054CD64 /* guides.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = guides.json; path = OfflineDemo/guides.json; sourceTree = SOURCE_ROOT; };
-		43FFB4DD20938FA40054CD64 /* passingTheBallWIP.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = passingTheBallWIP.json; path = OfflineDemo/passingTheBallWIP.json; sourceTree = SOURCE_ROOT; };
 		43FFB4ED2098567B0054CD64 /* IMG_1454.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1454.JPG; sourceTree = "<group>"; };
 		43FFB4EE2098567B0054CD64 /* IMG_1523.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1523.JPG; sourceTree = "<group>"; };
 		43FFB4EF2098567B0054CD64 /* IMG_1525.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1525.JPG; sourceTree = "<group>"; };
@@ -2217,7 +2215,6 @@
 				43FFB4EA2098567B0054CD64 /* Images */,
 				43FFB50A209992C50054CD64 /* Videos */,
 				43FFB4D82090DBFA0054CD64 /* guides.json */,
-				43FFB4DD20938FA40054CD64 /* passingTheBallWIP.json */,
 				43237E93200B6D8D00E7F168 /* user.json */,
 				43237E97200B6EA300E7F168 /* OfflineDemoMock.h */,
 				43237E98200B6EA300E7F168 /* OfflineDemoMock.m */,
@@ -2461,7 +2458,6 @@
 				31A621501A92AC8000A77878 /* CreateTutorialTextStepView_OBSOLETE.xib in Resources */,
 				43237E94200B6D8D00E7F168 /* user.json in Resources */,
 				31EFB6BD1BAB25B500F87C03 /* PrivacyPolicy.html in Resources */,
-				43FFB4DE20938FA50054CD64 /* passingTheBallWIP.json in Resources */,
 				31EFB6BB1BAB25A800F87C03 /* T&Cs.html in Resources */,
 				43FFB5202099B64A0054CD64 /* controlling2_thumbnail.png in Resources */,
 				43FFB508209992A70054CD64 /* passing1.m4v in Resources */,

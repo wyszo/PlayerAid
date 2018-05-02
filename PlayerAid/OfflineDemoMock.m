@@ -16,9 +16,7 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
 }
 
 - (NSArray *)mockGuideDictionaries {
-  NSString *filename = @"passingTheBallWIP"; // @"guides";
-  
-  return [self JSONFromFile:filename][@"data"];
+  return [self JSONFromFile:@"guides"][@"data"];
 }
 
 - (NSDictionary *)JSONFromFile:(NSString *)filename
