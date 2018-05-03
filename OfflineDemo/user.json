@@ -1,8 +1,8 @@
 {
   "id": 1,
-  "name": "John Doe",
+  "name": "Rami Bakri",
   "pictureUri": "https://picsum.photos/200/200/",
-  "description": "Coach of a fake sports team.",
+  "description": "PlayerAid CEO and football enthusiast.",
   "followers": {
     "data": [
             ]
