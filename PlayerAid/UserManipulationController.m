@@ -8,6 +8,7 @@
 #import "UsersFetchController.h"
 #import "AuthenticatedServerCommunicationController.h"
 #import "AlertFactory.h"
+#import "GlobalSettings.h"
 
 @implementation UserManipulationController
 
@@ -47,6 +48,12 @@
 - (void)sendFollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [self updateCurrentUserModelAddFollowedUser:user];
+    CallBlock(completion, nil);
+    return;
+  }
  
   __strong typeof(id) strongSelf = self; // prolonging object lifecycle on purpose
   [[AuthenticatedServerCommunicationController sharedInstance] followUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
@@ -66,6 +73,12 @@
 - (void)sendUnfollowUserNetworkRequestAndUpdateDataModel:(User *)user completion:(VoidBlockWithError)completion
 {
   AssertTrueOrReturn(user);
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [self updateCurrentUserModelRemoveFollowedUser:user];
+    CallBlock(completion, nil);
+    return;
+  }
   
   __strong typeof(id) strongSelf = self; // prolonging object lifecycle on purpose
   [[AuthenticatedServerCommunicationController sharedInstance] unfollowUser:user completion:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
