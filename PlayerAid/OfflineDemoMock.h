@@ -15,5 +15,6 @@ SHARED_INSTANCE_GENERATE_INTERFACE
 
 - (NSDictionary *)mockUser;
 - (NSArray *)mockGuideDictionaries;
+- (void)updateCurrentUserName:(NSString *)userName description:(NSString *)description;
 
 @end

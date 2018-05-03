@@ -6,6 +6,7 @@
 @import FDTake;
 @import KZAsserts;
 @import TWCommonLib;
+@import MagicalRecord;
 #import "EditProfileViewController.h"
 #import "UITextView+Placeholder.h"
 #import "NavigationBarButtonsDecorator.h"
@@ -16,6 +17,8 @@
 #import "AuthenticatedServerCommunicationController.h"
 #import "UsersFetchController_Private.h"
 #import "MediaPickerHelper.h"
+#import "GlobalSettings.h"
+#import "OfflineDemoMock.h"
 
 static const BOOL HideRefreshFromFacebookButton = YES;
 
@@ -231,7 +234,15 @@ static const NSInteger kAboutMeCharacterLimit = 150;
   NSString *userName = self.nameTextView.text;
   AssertTrueOrReturn(userName.length > 0);
   
-  [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:self.bioTextView.text completion:[self saveAvatarOrProfileCompletionBlock]];
+  NSString *description = self.bioTextView.text;
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [[OfflineDemoMock sharedInstance] updateCurrentUserName:userName description:description];
+    [self saveAvatarOrProfileCompletionBlock]([NSNull null], [NSNull null], nil);
+    return;
+  }
+  
+  [[AuthenticatedServerCommunicationController sharedInstance] saveUserProfileWithName:userName description:description completion:[self saveAvatarOrProfileCompletionBlock]];
 }
 
 #pragma mark - NavigationBar button states
@@ -331,6 +342,15 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (NetworkResponseBlock)saveAvatarOrProfileCompletionBlock
 {
   defineWeakSelf();
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    return ^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+      DISPATCH_SYNC_ON_MAIN_THREAD(^{
+        CallBlock(weakSelf.didUpdateUserProfileBlock, nil);
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+      });
+    };
+  }
+  
   void (^completion)(NSHTTPURLResponse *response, id responseObject, NSError *error) = ^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
     if (error) {
       [AlertFactory showOKAlertViewWithMessage:@"Failed to upload, please try again"];

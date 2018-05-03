@@ -5,7 +5,9 @@
 //  Created by PlayerAid on 14/01/2018.
 //
 
+@import MagicalRecord;
 #import "OfflineDemoMock.h"
+#import "UsersFetchController.h"
 
 @implementation OfflineDemoMock
 
@@ -24,6 +26,19 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:@"json"];
   NSData *data = [NSData dataWithContentsOfFile:path];
   return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+}
+
+- (void)updateCurrentUserName:(NSString *)userName description:(NSString *)description
+{
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    User *user = [UsersFetchController.sharedInstance currentUserInContext:localContext];
+    NSAssert(user != nil, @"");
+    
+    [user setLoggedInUserValue:YES];
+    
+    user.name = userName;
+    user.userDescription = description;
+  }];
 }
 
 @end
