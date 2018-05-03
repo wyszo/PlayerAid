@@ -7,6 +7,7 @@
 
 @import MagicalRecord;
 #import "OfflineDemoMock.h"
+#import "TutorialsHelper.h"
 #import "UsersFetchController.h"
 
 @implementation OfflineDemoMock
@@ -38,6 +39,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     
     user.name = userName;
     user.userDescription = description;
+  }];
+}
+
+- (void)publishTutorial:(Tutorial *)tutorial {
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+    Tutorial* tutorialInContext = [tutorial MR_inContext:localContext];
+    NSAssert(tutorialInContext != nil, @"");
+    
+    tutorialInContext.state = kTutorialStateInReview;
   }];
 }
 

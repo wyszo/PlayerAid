@@ -7,6 +7,8 @@
 #import "PublishingTutorialViewController.h"
 #import "ServerDataUpdateController.h"
 #import "AlertFactory.h"
+#import "OfflineDemoMock.h"
+#import "GlobalSettings.h"
 
 static NSString *const kNibFileName = @"PublishingTutorialView";
 
@@ -60,14 +62,7 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
   AssertTrueOrReturn(self.tutorial);
   
   defineWeakSelf();
-  [ServerDataUpdateController saveTutorial:self.tutorial progressChanged:^(CGFloat progress) {
-    AssertTrueOr(progress >= 0 && progress <= 1.0, ;);
-    
-    DISPATCH_ASYNC_ON_MAIN_THREAD(^{
-      weakSelf.progressBarWidthConstraint.constant = progress * weakSelf.progressBarBackgroundWidthConstraint.constant;
-      [weakSelf.view setNeedsLayout];
-    });
-  } completion:^(NSError *error) {
+  VoidBlockWithError localCompletion = ^(NSError *error){
     DISPATCH_ASYNC_ON_MAIN_THREAD(^{
       if (!error) {
         [AlertFactory showTutorialInReviewInfoAlertView];
@@ -77,6 +72,23 @@ static NSString *const kNibFileName = @"PublishingTutorialView";
         [weakSelf showPublisihngTutorialFailedAlertViewWithError:error];
       }
     });
+  };
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [[OfflineDemoMock sharedInstance] publishTutorial:self.tutorial];
+    localCompletion(nil);
+    return;
+  }
+  
+  [ServerDataUpdateController saveTutorial:self.tutorial progressChanged:^(CGFloat progress) {
+    AssertTrueOr(progress >= 0 && progress <= 1.0, ;);
+    
+    DISPATCH_ASYNC_ON_MAIN_THREAD(^{
+      weakSelf.progressBarWidthConstraint.constant = progress * weakSelf.progressBarBackgroundWidthConstraint.constant;
+      [weakSelf.view setNeedsLayout];
+    });
+  } completion:^(NSError *error) {
+    localCompletion(error);
   }];
 }
 

@@ -1,6 +1,7 @@
 #import "_Tutorial.h"
 
 extern NSString *const kTutorialStatePublished;
+extern NSString *const kTutorialStateInReview;
 extern NSString *const kTutorialDictionaryServerIDPropertyName;
 
 

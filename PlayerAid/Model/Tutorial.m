@@ -12,10 +12,10 @@
 #import "TutorialComment.h"
 
 NSString *const kTutorialStatePublished = @"Published";
+NSString *const kTutorialStateInReview = @"In Review";
 NSString *const kTutorialDictionaryServerIDPropertyName = @"id";
 
 static NSString *const kTutorialStateDraft = @"Draft";
-static NSString *const kTutorialStateInReview = @"In Review";
 static NSString *const kTutorialStateReported = @"Reported"; // as inappropriate
 static NSString *const kTutorialDictionaryStepsKey = @"steps";
 static NSString *const kCommentsKey = @"comments";
