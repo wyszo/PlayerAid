@@ -29,6 +29,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
   return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
+- (void)updateCurrentUserAvatarPath:(NSString *)avatarPath {
+  [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    User *user = [UsersFetchController.sharedInstance currentUserInContext:localContext];
+    NSAssert(user != nil, @"");
+    
+    user.pictureURL = avatarPath;
+  }];
+}
+
 - (void)updateCurrentUserName:(NSString *)userName description:(NSString *)description
 {
   [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
@@ -49,6 +58,15 @@ SHARED_INSTANCE_GENERATE_IMPLEMENTATION
     
     tutorialInContext.state = kTutorialStateInReview;
   }];
+}
+
+- (NSString *)saveImageToDocumentsFolder:(UIImage *)image {
+  
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"avatar.png"];
+  
+  [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
+  return filePath;
 }
 
 @end

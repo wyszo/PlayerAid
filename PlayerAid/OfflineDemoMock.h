@@ -17,7 +17,11 @@ SHARED_INSTANCE_GENERATE_INTERFACE
 
 - (NSDictionary *)mockUser;
 - (NSArray *)mockGuideDictionaries;
+- (void)updateCurrentUserAvatarPath:(NSString *)avatarPath;
 - (void)updateCurrentUserName:(NSString *)userName description:(NSString *)description;
 - (void)publishTutorial:(Tutorial *)tutorial;
+
+/** returns path */
+- (NSString *)saveImageToDocumentsFolder:(UIImage *)image;
 
 @end

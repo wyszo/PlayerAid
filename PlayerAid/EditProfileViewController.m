@@ -215,6 +215,11 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 
 - (void)makeUpdateAvatarFromFacebookNetworkRequest
 {
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    // funcionality turned off in offline mode
+    return;
+  }
+  
   NSString *facebookToken = [FBSDKAccessToken currentAccessToken].tokenString;
   AssertTrueOrReturn(facebookToken.length);
   
@@ -328,6 +333,15 @@ static const NSInteger kAboutMeCharacterLimit = 150;
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   AssertTrueOrReturn(photo);
+  
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    NSString* path = [[OfflineDemoMock sharedInstance] saveImageToDocumentsFolder:photo];
+    [[OfflineDemoMock sharedInstance] updateCurrentUserAvatarPath:path];
+    [self populateDataFromUserObject];
+    [self saveAvatarOrProfileCompletionBlock]([NSNull null], [NSNull null], nil);
+    return;
+  }
+  
   [[AuthenticatedServerCommunicationController sharedInstance] saveUserAvatarPicture:photo completion:[self saveAvatarOrProfileCompletionBlock]];
 }
 
