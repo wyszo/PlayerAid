@@ -28,6 +28,7 @@
   [self.appInitializer customizeAppAppearance];
   
   [self setupTabBarActionHandling];
+  [self.appInitializer offlineDemoShowLogin];
   
   return YES;
 }

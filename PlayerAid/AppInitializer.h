@@ -11,5 +11,6 @@
 
 // TODO: this logic should not be part of the initializer
 - (void)applicationLaunchFetchUsersAndTutorials;
+- (void)offlineDemoShowLogin;
 
 @end

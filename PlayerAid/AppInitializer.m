@@ -13,6 +13,7 @@
 #import "ServerDataUpdateController.h"
 #import "CoreDataStackHelper.h"
 #import "DebugSettings.h"
+#import "GlobalSettings.h"
 #import "AppearanceCustomizationHelper.h"
 
 static NSString *const AppLifetimeStaticVariable = @"Lifetime";
@@ -65,9 +66,15 @@ static NSString *const AppLifetimeStaticVariable = @"Lifetime";
 
 #pragma mark - AppLaunchDataFetch
 
+- (void)offlineDemoShowLogin {
+  if (OFFLINE_DEMO_ENVIRONMENT) {
+    [[JourneyController new] performLoginSegueAnimated:NO];
+  }
+}
+
 - (void)applicationLaunchFetchUsersAndTutorials
 {
-  if (!DEBUG_OFFLINE_MODE) {
+  if (!DEBUG_OFFLINE_MODE && !OFFLINE_DEMO_ENVIRONMENT) {
     [AuthenticationController checkIsUserAuthenticatedPingServerCompletion:^(BOOL authenticated) {
       if (authenticated) {
         [ServerDataUpdateController updateUserAndTutorials];
