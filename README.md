@@ -29,7 +29,7 @@ Offline Demo compilation instructions
 
 	You can either do it from GUI or type this in terminal:
 
-	```
+```
 mkdir ~/PlayerAid/
 cd ~/PlayerAid
 git clone git@github.com:wyszo/PlayerAid.git
@@ -37,21 +37,21 @@ git clone git@github.com:wyszo/PlayerAid.git
 
 	Keep in mind it'll take a while to download (some videos are under version control unnecessarily).
 
-	```
+```
 cd PlayerAid
 git checkout offlineDemo
 ```
 
 	Then
 
-	```
+```
 pod repo update
 pod install
 ```
 
 	Only if the above commands fail, you first need to install cocoapods by typing
 
-	```
+```
 sudo gem install cocoapods
 ```
 
