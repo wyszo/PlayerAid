@@ -94,7 +94,7 @@ DEPENDENCIES:
   - Fabric (= 1.6.10)
   - FBSDKCoreKit (= 4.10.0)
   - FBSDKLoginKit (= 4.10.0)
-  - FDTake (from `../FDTake`)
+  - FDTake (from `https://github.com/wyszo/FDTake.git`, branch `feature/AssetsHelper`)
   - FLKAutoLayout (= 0.2.1)
   - KZAsserts (= 1.0)
   - KZPropertyMapper (= 2.6)
@@ -102,9 +102,9 @@ DEPENDENCIES:
   - Mixpanel (= 2.9.0)
   - NSString+RemoveEmoji (= 0.1.1)
   - ParallaxBlur (from `git@bitbucket.org:twyszomirski/parallaxblur-fork.git`, branch `PlayerAid`)
-  - RichEditorView (from `../RichEditorView`)
+  - RichEditorView (from `https://github.com/wyszo/RichEditorView-fork.git`)
   - TTTAttributedLabel (= 1.13.4)
-  - TWCommonLib (from `../TWCommonLib`)
+  - TWCommonLib (from `https://github.com/wyszo/TWCommonLib.git`)
   - Typhoon (= 3.4.5)
   - UIAlertView-Blocks (= 1.0)
   - UITextView+Placeholder (= 1.1.1)
@@ -114,14 +114,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   FDTake:
     :branch: feature/AssetsHelper
-    :path: "../FDTake"
+    :git: https://github.com/wyszo/FDTake.git
   ParallaxBlur:
     :branch: PlayerAid
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
   RichEditorView:
-    :path: "../RichEditorView"
+    :git: https://github.com/wyszo/RichEditorView-fork.git
   TWCommonLib:
-    :path: "../TWCommonLib"
+    :git: https://github.com/wyszo/TWCommonLib.git
   XRSA:
     :branch: master
     :git: https://github.com/wyszo/XRSA.git
@@ -130,9 +130,18 @@ EXTERNAL SOURCES:
     :git: https://github.com/wyszo/YCameraView.git
 
 CHECKOUT OPTIONS:
+  FDTake:
+    :commit: ad8d9d0a7a8424fe1d2e743313591f658e178f3c
+    :git: https://github.com/wyszo/FDTake.git
   ParallaxBlur:
     :commit: 430dce7aff44b90e1fb45f5027831dcaf0c450ae
     :git: git@bitbucket.org:twyszomirski/parallaxblur-fork.git
+  RichEditorView:
+    :commit: f82b8007a843902e6db5904204ad1eb7d7975c6b
+    :git: https://github.com/wyszo/RichEditorView-fork.git
+  TWCommonLib:
+    :commit: fc63efe385899bf18a6798bf45791f1914879e14
+    :git: https://github.com/wyszo/TWCommonLib.git
   XRSA:
     :commit: cdee66f519be0b2a76679cb82ae394ae7bba8f31
     :git: https://github.com/wyszo/XRSA.git
@@ -170,6 +179,6 @@ SPEC CHECKSUMS:
   XRSA: efd78169cdb34f28194c140f51b49e312d996649
   YCameraView: d42d1a8a15eeda442717b688e3decc139d46a537
 
-PODFILE CHECKSUM: 512b9dcd79c2945f3860cc0bdfccd9f159eb0574
+PODFILE CHECKSUM: af7e46e2904cb25de21dfce37864832b71c8ade2
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1
