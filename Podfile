@@ -27,7 +27,7 @@ target 'PlayerAid' do
     pod 'ParallaxBlur', :git => 'git@bitbucket.org:twyszomirski/parallaxblur-fork.git', :branch => 'PlayerAid'
 
     pod 'XRSA', :git => 'https://github.com/wyszo/XRSA.git', :branch => 'master'
-    pod 'FDTake', :path => '../FDTake', :branch => 'feature/AssetsHelper'
+    pod 'FDTake', :git => 'https://github.com/wyszo/FDTake.git', :branch => 'feature/AssetsHelper'
     pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
 
     pod 'TWCommonLib', :path => '../TWCommonLib'
