@@ -30,8 +30,8 @@ target 'PlayerAid' do
     pod 'FDTake', :git => 'https://github.com/wyszo/FDTake.git', :branch => 'feature/AssetsHelper'
     pod 'YCameraView', :git => 'https://github.com/wyszo/YCameraView.git', :branch => 'MorePAChanges'
 
-    pod 'TWCommonLib', :path => '../TWCommonLib'
-    pod 'RichEditorView', :path => '../RichEditorView'
+    pod 'TWCommonLib', :git => 'https://github.com/wyszo/TWCommonLib.git'
+    pod 'RichEditorView', :git => 'https://github.com/wyszo/RichEditorView-fork.git'
 
     # post-install configuration hooks
     post_install do |installer|
