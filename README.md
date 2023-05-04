@@ -7,7 +7,7 @@ App for a business venture I was working on with 3 other guys. Didn't work out -
 
 You can see how it works on YouTube:
 
-https://www.youtube.com/watch?v=GGfTUeMZVCk
+[![Watch the PlayerAid video](YTScreenshot.jpg)](https://youtu.be/GGfTUeMZVCk)
 
 Tech details
 ------------
